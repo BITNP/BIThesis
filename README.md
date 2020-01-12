@@ -1,7 +1,15 @@
 <div align="center">
-<img src="assets/bithesis.png" alt="BIThesis" width="300px" />
-<h3>📖 Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).</h3>
+  <img src="assets/bithesis.png" alt="BIThesis" width="300px" />
+  
+  *📖 Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
+  
+  ![](https://flat.badgen.net/badge/thesis/BIT?color=009944)
+  ![](https://flat.badgen.net/badge/compiler/XeLaTeX?color=blue)
+  [![](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](LICENSE)
+  ![](https://flat.badgen.net/badge/WIP/🚧?color=fce100)
 </div>
+
+## Welcome
 
 BIThesis is an unofficial LaTeX template(s) for your BIT bachelor graduation thesis and corresponding reports.
 
