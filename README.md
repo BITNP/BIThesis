@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/bithesis.png" alt="BIThesis" width="300px" />
+  <img src="assets/bithesis_icon.svg" alt="BIThesis Icon">
 
   📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
 
