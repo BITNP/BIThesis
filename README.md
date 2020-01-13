@@ -1,9 +1,9 @@
 <div align="center">
   <img src="assets/bithesis.png" alt="BIThesis" width="300px" />
-  
-  *📖 Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
-  
-  ![](https://flat.badgen.net/badge/thesis/BIT?color=009944)
+
+  📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
+
+  ![](https://flat.badgen.net/badge/BIT/thesis?color=009944)
   ![](https://flat.badgen.net/badge/compiler/XeLaTeX?color=blue)
   [![](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](LICENSE)
   ![](https://flat.badgen.net/badge/WIP/🚧?color=fce100)
@@ -11,7 +11,7 @@
 
 ## Welcome
 
-BIThesis is an unofficial LaTeX template(s) for your BIT bachelor graduation thesis and corresponding reports.
+BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *Office of Academic Affairs* at the *School of Computer Science*.
 
 ![](https://i.loli.net/2020/01/12/AZQ8uSzkVI6OJGg.png)
 
@@ -22,8 +22,6 @@ BIThesis is an unofficial LaTeX template(s) for your BIT bachelor graduation the
 Compile with XeLaTeX.
 
 ## Similar Projects
-
-> 🚧 Currently WIP.
 
 - [北京理工大学硕士（博士）学位论文 LaTeX 模板](https://github.com/BIT-thesis/LaTeX-template)
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)
