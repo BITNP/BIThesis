@@ -14,7 +14,7 @@
 
 BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *Office of Academic Affairs* at the *School of Computer Science*.
 
-![](https://i.loli.net/2020/01/12/AZQ8uSzkVI6OJGg.png)
+![](https://i.loli.net/2020/01/19/OhvLfeRC4nktGwb.png)
 
 ## Usage
 
