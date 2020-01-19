@@ -19,6 +19,8 @@
 %
 % This work consists of the files main.tex, misc/cover.tex and
 % the external PDF misc/reviewTable.pdf
+%
+% Compile with: xelatex -> biber -> xelatex -> xelatex
 
 \documentclass[UTF8,AutoFakeBold,AutoFakeSlant,12pt]{ctexart}
 \usepackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
@@ -28,13 +30,17 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{pdfpages}
-\usepackage{cite}
 \usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{caption}
 
-% 随机生成文字，可以删掉
-\usepackage{lipsum}
+% 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
+\usepackage[style=ieee,backend=biber]{biblatex}
 
-% 在这里替换你的姓名、专业、学院、指导老师…
+% 参考文献引用文件 refs.bib
+\addbibresource{misc/refs.bib}
+
 \newcommand{\deptName}{计算机学院}
 \newcommand{\majorName}{计算机科学与技术}
 \newcommand{\className}{07xxxxxx}
@@ -42,9 +48,14 @@
 \newcommand{\mentorName}{张哈希}
 \newcommand{\offCampusMentorName}{刘阿贝尔}
 
-% 中文大写日期（理论上这里 \ctexset{today=big} 应该就可以实现中文日期的
-% 显示，但是在 misc/cover.tex 中进行这样的设置之后就是渲染不出来，暂时使
-% 用即将 deprecated 的 API）
+% 定义表格上标格式
+\DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
+\captionsetup[table]{skip=10bp,labelfont=bf,font=kaiticaption}
+
+% 定义一个概念
+\newtheorem{definition}{概念}[section]
+
+% 输出大写数字日期
 \CTEXoptions[today=big]
 
 % 将西文字体设置为 Times New Roman
@@ -54,7 +65,7 @@
 % \setCJKfamilyfont{zhkai}{[SIMKAI.TTF]}
 % \newcommand*{\kaiti}{\CJKfamily{zhkai}}
 
-% 设置引用
+% 设置引用位于右上角
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % 设置文档标题深度
@@ -110,32 +121,64 @@
 
 % 内容开始
 \section{毕业设计（论文）选题的内容}
-\lipsum[1]
+开题报告总长度约 5 至 6 页，本部分重点介绍毕业设计选题的主要内容 \upcite{LeCun2010}，宋体，小三，段落前后 0.5 行。
 
 \section{研究方案}
 \subsection{本选题的主要任务}
-\lipsum[2]
+本部分重点关注毕业设计的主要任务，宋体，四号，段落前后 0.5 行。
 
 \subsection{技术方案的分析、选择}
+此部分要分析任务书，并给出初步方案，要体现出复杂系统的概念，约写 2 至 3 页。
 
 \subsubsection{第一阶段}
-\lipsum[3-4]
-
-\subsubsection{第二阶段}
-\lipsum[5]
+在第一阶段，我们准备……
 
 \subsection{实施技术方案所需的条件}
-\lipsum[6]
+此部分说明所需的软硬件等环境，建议使用表格的形式，方便表述。
+
+\begin{table}[!ht]
+  \centering
+  \caption{硬件、软件环境}
+  \label{tab:soft-hardware}
+  \begin{tabular}{@{}l|c|l@{}}
+    \toprule
+                              & 指标     & \multicolumn{1}{c}{版本参数} \\ \midrule
+    \multirow{2}{*}{硬件环境} & CPU      & Intel i7-6500U               \\ \cmidrule(l){2-3}
+                              & RAM      & 8 GB                         \\ \midrule
+    \multirow{2}{*}{软件环境} & 操作系统 & \begin{tabular}[c]{@{}l@{}}Windows 10 Pro x86\_64\\  Ubuntu 18.04.3 LTS\end{tabular}    \\ \cmidrule(l){2-3}
+                              & Python   & Python 3.7.6                 \\ \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{存在的主要问题和技术关键}
-\lipsum[7]
+目前存在的主要问题是……
+
+正文，小四，行距 22 磅。
 
 \subsection{预期能够达到的研究目标}
-\lipsum[8]
+要包括最后提交的成果。
 
 \section{课题计划进度表}
-\lipsum[9-10]
+大致的课题计划进度如下表 \ref{tab:progress} 所示。
+
+\begin{table}[!ht]
+  \centering
+  \caption{毕业设计计划进度表}
+  \label{tab:progress}
+  \begin{tabular}{@{}c|l|l|c@{}}
+    \toprule
+    阶段 & \multicolumn{1}{c|}{任务} & \multicolumn{1}{c|}{完成标志} & 时间规划       \\ \midrule
+    1    & 第一阶段的任务……          & 成功搭建……                    & 2019.12-2020.1 \\ \midrule
+    2    & 第二阶段的任务……          & 成功验证……                    & 2020.1-2020.2  \\ \midrule
+    3    & 第三阶段的任务……          & 成功验证……失效，并优化……增强  & 2020.2-2020.4  \\ \midrule
+    4    & 第四阶段的任务……          & 成功完成毕业设计              & 2020.4-2020.5  \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+注意：下文的参考文献应包含近 5 年内文献，经典文献除外。
 
 \section{参考文献}
+% 删除默认的「参考文献 / Reference」标题，使用上面定义的 section 标题
+\printbibliography[heading=none]
 
 \end{document}
