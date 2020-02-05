@@ -1,12 +1,12 @@
 %%
 % The BIThesis Template for experiment report
-% 
+%
 % Copyright 2020 Spencer Woo, Silvester Wang
-% 
+%
 % Compile with: xelatex -> xelatex -> xelatex
 
 \documentclass[UTF8,AutoFakeBold,AutoFakeSlant,12pt]{ctexart}
-\usepackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\usepackage[a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm,includeheadfoot]{geometry}
 \usepackage{fontspec}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -29,9 +29,6 @@
 % 定义一个概念
 % \newtheorem{definition}{概念}[section]
 
-% 输出大写数字日期
-\CTEXoptions[today=big]
-
 % 将西文字体设置为 Times New Roman
 \setromanfont{Times New Roman}
 
@@ -44,22 +41,14 @@
 
 %%
 % 设置一级标题、二级标题格式
-% 一级标题：小三，宋体，加粗，段前段后各半行
 \ctexset{section={
   format={\raggedright \bfseries \songti \zihao{-3}},
-  beforeskip = 24bp plus 1ex minus .2ex,
-  afterskip = 24bp plus .2ex,
-  fixskip = true,
-  name = {,.\quad},
+  name = {,.},
   number = \chinese{section}
   }
 }
-% 二级标题：小四，宋体，加粗，段前段后各半行
 \ctexset{subsection={
   format = {\bfseries \songti \raggedright \zihao{-4}},
-  beforeskip =24bp plus 1ex minus .2ex,
-  afterskip = 24bp plus .2ex,
-  fixskip = true,
   }
 }
 
@@ -74,17 +63,10 @@
 \setcounter{page}{1}
 % 页眉和页脚（页码）的格式设定
 \fancyhf{}
-\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{\reportName}}
-\fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
-\renewcommand{\headrulewidth}{1pt}
+\fancyhead[L]{\fontsize{10.5pt}{10.5pt}\selectfont\kaishu{\reportName}}
+\fancyfoot[C]{\fontsize{9pt}{9pt}\selectfont\kaishu{\thepage}}
+\renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0pt}
-
-% 正文 22 磅的行距
-\setstretch{1.53}
-% 正文首行悬挂 1.02cm
-\setlength{\parindent}{1.02cm}
-
-
 
 \section{实验目的}
 \begin{enumerate}
@@ -109,10 +91,11 @@
 
 波形图如下图\ref{波形图}。
 
-\begin{figure}[htbp] %htbp 代表图片插入位置的设置
-  \centering %图片居中
-  \includegraphics[width= .8\textwidth]{p1.jpg} %[]中可选参数，可以设置图片的宽高，80%页面宽，高等比例缩放
-  \caption{波形图}\label{波形图} %添加图体
+% 插入图片，htbp 代表图片插入位置的设置
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= .8\textwidth]{assets/p1.jpg}
+  \caption{波形图}\label{波形图}
 \end{figure}
 
 \subsection{理想抽样信号重建观察}
