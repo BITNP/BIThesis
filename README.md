@@ -3,10 +3,9 @@
 
   📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
 
-  <!-- ![](https://flat.badgen.net/badge/BIT/thesis?color=009944) -->
-  ![](assets/bithesis_badge.svg)
+  ![](./assets/bithesis_badge.svg)
   ![](https://flat.badgen.net/badge/compiler/XeLaTeX?color=blue)
-  [![](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](LICENSE)
+  [![](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
   ![](https://flat.badgen.net/badge/WIP/🚧?color=fce100)
 </div>
 
@@ -14,13 +13,18 @@
 
 BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *Office of Academic Affairs* at the *School of Computer Science*.
 
-![](https://i.loli.net/2020/01/19/POMsK1IyidWYjt3.png)
+## What's inside?
 
-## Usage
+<h6>🚧 Currently WIP.</h6>
 
-> 🚧 Currently WIP.
+This project aims to cover all of your essays, lab reports ... all the way to your final graduation thesis for your undergraduate studies. Currently the project is under heavy maintanence, and we aim to bring you the most reusable LaTeX templates that you can use directly for most of your works.
 
-Compile with XeLaTeX.
+| Template | Preview | Features | Maintainer |
+|:--|:--|:--|:--|
+| **[Graduation Thesis (Proposal)](./proposal-report)** | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" /> | <ul><li>Graduation Thesis Proposal Report</li><li>Part I of the Graduation Thesis</li><li>Includes cover page and (non-editable) review table</li><li>Includes bibliography and corresponding styles</li></ul> | [@SpencerWoo](https://github.com/spencerwooo) |
+| **[Lab Report](./lab-report)** | <img src="https://i.loli.net/2020/02/05/KrVMudJwcbOEj2h.png" width="300px" alt="proposal" /> | <ul><li>Basic Lab Report Template</li><li>Includes cover page, BIT logo and assets folder</li></ul> | [@Silverster](https://github.com/Silverster98) |
+
+Compile with XeLaTeX and BibTeX.
 
 ## Similar Projects
 
