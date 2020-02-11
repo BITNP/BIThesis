@@ -22,9 +22,11 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-\documentclass[UTF8,AutoFakeBold,AutoFakeSlant,12pt]{ctexart}
-\usepackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.6cm,includeheadfoot]{geometry}
+% 章节支持、单面打印：ctexbook
+\documentclass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4,oneside,openany]{ctexbook}
+\usepackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.6cm]{geometry}
 \usepackage{xeCJK}
+\usepackage{titletoc}
 \usepackage{fontspec}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -35,6 +37,9 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{caption}
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage{hyperref}
 
 % 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
 % \usepackage[style=ieee,backend=biber]{biblatex}
@@ -57,12 +62,90 @@
 \newcommand{\yourStudentID}{11xxxxxxxx}
 \newcommand{\mentorName}{张哈希}
 
+\fancypagestyle{BIThesis}{%
+  % 页眉高度
+  \setlength{\headheight}{20pt}
+  \setlength{\footskip}{14pt}
+  \fancyhf{}
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
+  \fancyfoot[C]{\songti\zihao{5} \thepage}
+  % 页眉分割线稍微粗一些
+  \renewcommand{\headrulewidth}{0.6pt}
+}
+
+%% 设置章节格式, 黑体三号加粗居中，行距22磅，与正文或节标题的间距设定为段后间距1行。章序号与章名间空一格。
+\ctexset{chapter={
+    name = {第,章},
+    number = {\arabic{chapter}},
+    format = {\bfseries \centering \zihao{3} },
+    pagestyle = BIThesis,
+    beforeskip = 16 bp,
+    afterskip = 32 bp,
+    fixskip = true,
+  }
+}
+
+% 设置一级标题格式
+% 黑体四号加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。
+\ctexset{section={
+  format={\heiti \raggedright \bfseries \zihao{4}},
+  beforeskip = 28bp plus 1ex minus .2ex,
+  afterskip = 24bp plus .2ex,
+  fixskip = true,
+  }
+}
+
+% 设置二级标题格式
+% 黑体小四加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。
+\ctexset{subsection={
+   format = {\heiti \bfseries \raggedright \zihao{-4}},
+   beforeskip =28bp plus 1ex minus .2ex,
+   afterskip = 24bp plus .2ex,
+   fixskip = true,
+   }
+}
+
+
+% 设置三级标题格式
+\ctexset{subsubsection={
+      format={\heiti \raggedright \zihao{-4}},
+      beforeskip=28bp plus 1ex minus .2ex,
+      afterskip=24bp plus .2ex,
+      fixskip=true,
+  }
+}
+
 \begin{document}
 
 % 标题页面
 \input{chapters/0_cover.tex}
 
+\renewcommand{\frontmatter}{
+  \pagenumbering{Roman}
+  \pagestyle{BIThesis}
+}
+
+\renewcommand{\mainmatter}{
+  \pagenumbering{arabic}
+  \pagestyle{BIThesis}
+}
+
+% 前置页面
+\frontmatter
 % 原创性声明
 \input{chapters/1_originality.tex}
+% 摘要
+\input{chapters/2_abstract.tex}
+% 目录
+\input{chapters/3_toc.tex}
+
+% 正文开始
+\mainmatter
+% 正文 22 磅的行距
+\setstretch{1.53}
+\setlength{\parskip}{0em}
+
+% 第一章
+\input{chapters/3_chapter1.tex}
 
 \end{document}
