@@ -59,6 +59,13 @@
 \newcommand{\yourStudentID}{11xxxxxxxx}
 \newcommand{\mentorName}{张哈希}
 
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+% 设置表格的 caption 格式
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space}
+
 % 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{
   % 页眉高度
