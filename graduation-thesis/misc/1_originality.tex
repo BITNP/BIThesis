@@ -17,6 +17,7 @@
 %
 % The Current Maintainer of this work is Spencer Woo.
 
+% 原创性声明页无页码页面格式
 \fancypagestyle{originality}{
   % 页眉高度
   \setlength{\headheight}{20pt}
@@ -32,6 +33,7 @@
 \pagestyle{originality}
 \topskip=0pt
 
+% 圆形数字编号定义
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
   {\node[shape = circle, draw, inner sep = 1pt]
   (char) {\phantom{\ifblank{#1}{#2}{#1}}};
@@ -40,11 +42,12 @@
 
 % 设置行间距
 \setlength{\parskip}{0.4em}
-\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\baselinestretch}{1.41}
 
 % 顶部空白
 \vspace*{-6mm}
 
+% 原创性声明部分
 \begin{center}
   \heiti\zihao{2}\textbf{原创性声明}
 \end{center}
@@ -64,6 +67,7 @@
 
 \vspace{18mm}
 
+% 使用授权声明部分
 \begin{center}
   \heiti\zihao{2}\textbf{关于使用授权的声明}
 \end{center}

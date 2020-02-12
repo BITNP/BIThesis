@@ -17,9 +17,6 @@
 %
 % The Current Maintainer of this work is Spencer Woo.
 %
-% This work consists of the files main.tex, misc/cover.tex and
-% the external PDF misc/reviewTable.pdf
-%
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
 % 章节支持、单面打印：ctexbook
@@ -31,7 +28,6 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
-\usepackage{titlesec}
 \usepackage{pdfpages}
 \usepackage{setspace}
 \usepackage{booktabs}
@@ -40,6 +36,7 @@
 \usepackage{tikz}
 \usepackage{etoolbox}
 \usepackage{hyperref}
+\usepackage{xcolor}
 
 % 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
 % \usepackage[style=ieee,backend=biber]{biblatex}
@@ -62,90 +59,86 @@
 \newcommand{\yourStudentID}{11xxxxxxxx}
 \newcommand{\mentorName}{张哈希}
 
+% 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{%
   % 页眉高度
   \setlength{\headheight}{20pt}
+  % 页码高度（不完美，比规定稍微靠下 2mm）
   \setlength{\footskip}{14pt}
+
   \fancyhf{}
+  % 定义页眉、页码
   \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \renewcommand{\headrulewidth}{0.6pt}
 }
 
-%% 设置章节格式, 黑体三号加粗居中，行距22磅，与正文或节标题的间距设定为段后间距1行。章序号与章名间空一格。
+% 设置章节格式
+% 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
 \ctexset{chapter={
     name = {第,章},
     number = {\arabic{chapter}},
-    format = {\bfseries \centering \zihao{3} },
+    format = {\heiti \bfseries \centering \zihao{3} },
     pagestyle = BIThesis,
-    beforeskip = 16 bp,
-    afterskip = 32 bp,
+    beforeskip = 8bp,
+    afterskip = 32bp,
     fixskip = true,
   }
 }
 
-% 设置一级标题格式
-% 黑体四号加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。
+% 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{section={
-  format={\heiti \raggedright \bfseries \zihao{4}},
-  beforeskip = 28bp plus 1ex minus .2ex,
-  afterskip = 24bp plus .2ex,
-  fixskip = true,
+    format = {\heiti \raggedright \bfseries \zihao{4}},
+    name = {,\ },
+    beforeskip = 20bp plus 1ex minus .2ex,
+    afterskip = 17bp plus .2ex,
+    fixskip = true,
   }
 }
 
-% 设置二级标题格式
-% 黑体小四加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。
+% 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{subsection={
-   format = {\heiti \bfseries \raggedright \zihao{-4}},
-   beforeskip =28bp plus 1ex minus .2ex,
-   afterskip = 24bp plus .2ex,
-   fixskip = true,
-   }
-}
-
-
-% 设置三级标题格式
-\ctexset{subsubsection={
-      format={\heiti \raggedright \zihao{-4}},
-      beforeskip=28bp plus 1ex minus .2ex,
-      afterskip=24bp plus .2ex,
-      fixskip=true,
-  }
+      format = {\heiti \bfseries \raggedright \zihao{-4}},
+      beforeskip = 18bp plus 1ex minus .2ex,
+      afterskip = 16bp plus .2ex,
+      fixskip = true,
+    }
 }
 
 \begin{document}
 
 % 标题页面
-\input{chapters/0_cover.tex}
+\input{misc/0_cover.tex}
 
+% 前置页面（原创性声明、中英文摘要、目录等）
 \renewcommand{\frontmatter}{
   \pagenumbering{Roman}
   \pagestyle{BIThesis}
 }
 
+% 正文页面
 \renewcommand{\mainmatter}{
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
 }
 
-% 前置页面
+% 前置页面定义
 \frontmatter
 % 原创性声明
-\input{chapters/1_originality.tex}
+\input{misc/1_originality.tex}
 % 摘要
-\input{chapters/2_abstract.tex}
+\input{chapters/0_abstract.tex}
 % 目录
-\input{chapters/3_toc.tex}
+\input{misc/2_toc.tex}
 
 % 正文开始
 \mainmatter
 % 正文 22 磅的行距
-\setstretch{1.53}
 \setlength{\parskip}{0em}
+\renewcommand{\baselinestretch}{1.53}
 
 % 第一章
-\input{chapters/3_chapter1.tex}
+\input{chapters/1_chapter1.tex}
 
 \end{document}
