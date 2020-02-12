@@ -60,7 +60,7 @@
 \newcommand{\mentorName}{张哈希}
 
 % 主题页面格式：BIThesis
-\fancypagestyle{BIThesis}{%
+\fancypagestyle{BIThesis}{
   % 页眉高度
   \setlength{\headheight}{20pt}
   % 页码高度（不完美，比规定稍微靠下 2mm）
@@ -120,11 +120,6 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
-\begin{document}
-
-% 标题页面
-\input{misc/0_cover.tex}
-
 % 前置页面（原创性声明、中英文摘要、目录等）
 \renewcommand{\frontmatter}{
   \pagenumbering{Roman}
@@ -136,6 +131,12 @@
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
 }
+
+% 文档开始
+\begin{document}
+
+% 标题页面
+\input{misc/0_cover.tex}
 
 % 前置页面定义
 \frontmatter
