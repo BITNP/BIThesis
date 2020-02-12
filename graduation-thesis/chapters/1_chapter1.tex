@@ -1,7 +1,7 @@
 %%
 % The BIThesis Template for Bachelor Graduation Thesis
 %
-% 北京理工大学毕业设计（论文）中英文摘要 —— 使用 XeLaTeX 编译
+% 北京理工大学毕业设计（论文）第一章节 —— 使用 XeLaTeX 编译
 %
 % Copyright 2020 Spencer Woo
 %
@@ -22,6 +22,7 @@
 \chapter{一级题目}
 
 \section{二级题目}
+正文……
 
 \subsection{三级题目}
 
@@ -31,24 +32,23 @@
 
 \textcolor{blue}{图、表居中，图注标在图下方，表头标在表上方，宋体、五号、居中，1.25倍行距，间距段前段后均为0行，图表与上下文之间各空一行。阅后删除此段。}
 
-\textcolor{blue}{图-示例：（阅后删除此段）}
+\textcolor{blue}{\underline{\underline{图-示例：（阅后删除此段）}}}
 
 \begin{figure}[htbp]
-  \vspace{11pt} % 调整图片与上文的垂直距离
+  \vspace{13pt} % 调整图片与上文的垂直距离
   \centering
   \includegraphics[]{images/bit_logo.png}
   \caption{标题序号}\label{标题序号} % label 用来在文中索引
 \end{figure}
 
-\textcolor{blue}{表-示例：（阅后删除此段）}
+\textcolor{blue}{\underline{\underline{表-示例：（阅后删除此段）}}}
 
 \begin{table}[htbp]
-  \vspace{11pt} % 调整图片与上文的垂直距离
   \linespread{1.5}
-  \small
+  \zihao{5}
   \centering
   \caption{统计表}\label{统计表}
-  \begin{tabular}{ccccc}
+  \begin{tabular}{*{5}{>{\centering\arraybackslash}p{2cm}}}
     \hline
     项目    & 产量    & 销量    & 产值   & 比重    \\ \hline
     手机    & 1000  & 10000 & 500  & 50\%  \\
@@ -56,5 +56,13 @@
     笔记本电脑 & 1100  & 1000  & 280  & 28\%  \\ \hline
     合计    & 17600 & 16000 & 1000 & 100\% \\ \hline
     \end{tabular}
-  \vspace{11pt}
 \end{table}
+
+\textcolor{blue}{公式标注应于该公式所在行的最右侧。对于较长的公式只可在符号处（+、-、*、/、$\leqslant$ $\geqslant$ 等）转行。在文中引用公式时，在标号前加“式”，如式（1-2）。阅后删除此
+段。}
+
+\textcolor{blue}{公式-示例：（阅后删除此段）}
+
+\begin{equation}
+    LRI=1\ ∕\ \sqrt{1+{\left(\frac{{\mu }_{R}}{{\mu }_{s}}\right)}^{2}{\left(\frac{{\delta }_{R}}{{\delta }_{s}}\right)}^{2}}
+\end{equation}

@@ -37,6 +37,10 @@
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{xcolor}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 % 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
 % \usepackage[style=ieee,backend=biber]{biblatex}
@@ -58,13 +62,6 @@
 \newcommand{\yourName}{惠计算}
 \newcommand{\yourStudentID}{11xxxxxxxx}
 \newcommand{\mentorName}{张哈希}
-
-% 设置图片的 caption 格式
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
-\captionsetup[figure]{font=small,labelsep=space}
-% 设置表格的 caption 格式
-\renewcommand{\thetable}{\thechapter-\arabic{table}}
-\captionsetup[table]{font=small,labelsep=space}
 
 % 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{
@@ -98,7 +95,7 @@
 \ctexset{section={
     format = {\heiti \raggedright \bfseries \zihao{4}},
     beforeskip = 20bp plus 1ex minus .2ex,
-    afterskip = 17bp plus .2ex,
+    afterskip = 18bp plus .2ex,
     fixskip = true,
   }
 }
@@ -106,8 +103,8 @@
 % 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{subsection={
     format = {\heiti \bfseries \raggedright \zihao{-4}},
-    beforeskip = 18bp plus 1ex minus .2ex,
-    afterskip = 16bp plus .2ex,
+    beforeskip = 17bp plus 1ex minus .2ex,
+    afterskip = 14bp plus .2ex,
     fixskip = true,
   }
 }
@@ -138,6 +135,24 @@
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
 }
+
+% 设置 caption 与 figure 之间的距离
+\setlength{\abovecaptionskip}{11pt}
+\setlength{\belowcaptionskip}{9pt}
+
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+% 设置表格的 caption 与 table 之间的垂直距离
+\captionsetup[table]{skip=2pt}
+
+% 设置表格的 caption 格式
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space}
+
+% 设置数学公式编号格式
+\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
 
 % 文档开始
 \begin{document}
