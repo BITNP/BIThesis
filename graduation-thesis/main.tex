@@ -105,6 +105,21 @@
     }
 }
 
+% 设置目录样式
+% 添加 PDF 链接
+\addtocontents{toc}{\protect\hypersetup{hidelinks}}
+
+% 定义目录样式
+\titlecontents{chapter}[0pt]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{section}[2\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{subsection}[4\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+
 \begin{document}
 
 % 标题页面
@@ -139,5 +154,11 @@
 
 % 第一章
 \input{chapters/1_chapter1.tex}
+
+% 结论、参考文献、附录与致谢
+\input{misc/3_conclusion.tex}
+\input{misc/4_reference.tex}
+\input{misc/5_appendix.tex}
+\input{misc/6_acknowledgements.tex}
 
 \end{document}

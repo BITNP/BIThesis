@@ -1,7 +1,7 @@
 %%
 % The BIThesis Template for Bachelor Graduation Thesis
 %
-% 北京理工大学毕业设计（论文）目录 —— 使用 XeLaTeX 编译
+% 北京理工大学毕业设计（论文）致谢 —— 使用 XeLaTeX 编译
 %
 % Copyright 2020 Spencer Woo
 %
@@ -17,8 +17,11 @@
 %
 % The Current Maintainer of this work is Spencer Woo.
 %
-% 目录开始
+% Compile with: xelatex -> biber -> xelatex -> xelatex
 
-% 目录
-\tableofcontents
-\newpage
+\addcontentsline{toc}{chapter}{致~~谢}
+\chapter*{致\quad 谢}
+
+值此论文完成之际，首先向我的导师……
+
+\textcolor{blue}{致谢正文样式与文章正文相同：宋体、小四；行距：22 磅；间距段前段后均为 0 行。阅后删除此段。}
