@@ -22,13 +22,12 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-\documentclass[UTF8,AutoFakeBold,AutoFakeSlant,12pt]{ctexart}
+\documentclass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4]{ctexart}
 \usepackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
 \usepackage{fontspec}
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
-\usepackage{titlesec}
 \usepackage{pdfpages}
 \usepackage{setspace}
 \usepackage{booktabs}
@@ -85,7 +84,7 @@
 }
 % 二级标题：小四，宋体，加粗，段前段后各半行
 \ctexset{subsection={
-  format = {\bfseries \songti \raggedright \zihao{-4}},
+  format = {\bfseries \songti \raggedright \zihao{4}},
   beforeskip =24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
@@ -114,8 +113,9 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% 正文 22 磅的行距
-\setstretch{1.53}
+% 正文 22 磅的行距，段前段后间距为 0
+\setlength{\parskip}{0em}
+\renewcommand{\baselinestretch}{1.53}
 % 正文首行悬挂 1.02cm
 \setlength{\parindent}{1.02cm}
 
