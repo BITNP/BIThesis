@@ -62,9 +62,11 @@
 \setCJKfamilyfont{xihei}{STXihei}
 \newcommand{\xihei}{\CJKfamily{xihei}}
 
+% 在这里填写你的论文中英文题目
 \newcommand{\thesisTitle}{北京理工大学本科生毕业设计（论文）题目}
 \newcommand{\thesisTitleEN}{The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology}
 
+% 在这里填写你的相关信息
 \newcommand{\deptName}{计算机学院}
 \newcommand{\majorName}{计算机科学与技术}
 \newcommand{\yourName}{惠计算}
@@ -171,16 +173,16 @@
 % 文档开始
 \begin{document}
 
-% 标题页面
+% 标题页面：如无特殊需要，本部分无需改动
 \input{misc/0_cover.tex}
 
 % 前置页面定义
 \frontmatter
-% 原创性声明
+% 原创性声明：如无特殊需要，本部分无需改动
 \input{misc/1_originality.tex}
-% 摘要
+% 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
 \input{chapters/0_abstract.tex}
-% 目录
+% 目录：如无特殊需要，本部分无需改动
 \input{misc/2_toc.tex}
 
 % 正文开始
@@ -191,11 +193,18 @@
 
 % 第一章
 \input{chapters/1_chapter1.tex}
+% 在这里添加第二章、第三章……TeX 文件的引用
+% \input{chapters/2_chapter2.tex}
+% \input{chapters/3_chapter3.tex}
 
-% 结论、参考文献、附录与致谢
+% 结论：在结论相应的 TeX 文件处进行结论部分的撰写
 \input{misc/3_conclusion.tex}
+% 参考文献：如无特殊需要，参考文献相应的 TeX 文件无需改动，添加参考文献请使用 BibTeX 的格式
+%   添加至 misc/ref.bib 中，并在正文的相应位置使用 \cite{xxx} 的格式引用参考文献
 \input{misc/4_reference.tex}
+% 附录：在附录相应的 TeX 文件处进行附录部分的撰写
 \input{misc/5_appendix.tex}
+% 致谢：在致谢相应的 TeX 文件处进行致谢部分的撰写
 \input{misc/6_acknowledgements.tex}
 
 \end{document}

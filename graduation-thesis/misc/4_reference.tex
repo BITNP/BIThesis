@@ -18,7 +18,10 @@
 % The Current Maintainer of this work is Spencer Woo.
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
+%
+% 如无特殊需要，本页面无需更改
 
+% 参考文献开始
 \addcontentsline{toc}{chapter}{参考文献}
 \chapter*{参考文献}
 
@@ -30,7 +33,13 @@
 \setlength{\bibinitsep}{0ex}
 % 设置单倍行距
 \renewcommand{\baselinestretch}{1.2}
-% 设置
-\setlength{\bibitemindent}{0em}
+% 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+\setlength{\biblabelsep}{0.5mm}
+% 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+\renewcommand{\itemcmd}{
+  \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
+  \mkgbnumlabel{\printfield{labelnumber}}
+  \hspace{\biblabelsep}}
+
 % 删除默认的「参考文献 / Reference」标题，使用上面定义的 section 标题
 \printbibliography[heading=none]
