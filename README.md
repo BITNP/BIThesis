@@ -9,13 +9,18 @@
   ![](https://flat.badgen.net/badge/experimental/🚧?color=fce100)
 </div>
 
-## Welcome
+<h2>Welcome</h2>
 
 BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *Office of Academic Affairs* at the *School of Computer Science*.
 
-## What's inside?
+<h2>Table of Contents</h2>
 
-<h6>🚧 Currently WIP.</h6>
+- [What's inside?](#whats-inside)
+- [How to use BIThesis?](#how-to-use-bithesis)
+- [Similar Projects](#similar-projects)
+- [Disclaimer](#disclaimer)
+
+## What's inside?
 
 This project aims to cover all of your essays, lab reports ... all the way to your final graduation thesis for your undergraduate studies. Currently the project is under heavy maintanence, and we aim to bring you the most reusable LaTeX templates that you can use directly for most of your works.
 
@@ -30,6 +35,10 @@ For detailed compilation documentation, **please refer to each of the READMEs in
 1. [Proposal Report](./proposal-report)：北京理工大学毕业设计开题报告
 2. [Graduation Thesis](./graduation-thesis)：北京理工大学毕业设计（论文）
 3. [Lab Report](./lab-report)：北京理工大学课程实验报告
+
+## How to use BIThesis?
+
+**For a detailed explanation on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
 
 ## Similar Projects
 
