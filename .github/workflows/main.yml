@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  publish:
+    name: Publish ${{ matrix.template }}
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        template: [graduation-thesis, proposal-report, lab-report]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Zip files under ./graduation-thesis
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
+    - name: Upload ${{ matrix.template }}.zip to release
+      uses: svenstaro/upload-release-action@1.0.1
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ matrix.template }}.zip
+        asset_name: ${{ matrix.template }}.zip
+        tag: ${{ github.ref }}
