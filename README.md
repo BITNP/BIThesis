@@ -4,10 +4,9 @@
   📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
 
   ![BIThesis](./assets/bithesis_badge.svg)
-  ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)
-  ![XeLaTeX](https://badgen.net/badge/compiler/XeLaTeX?color=blue)
-  [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
-  ![Experimental](https://badgen.net/badge/experimental/🚧?color=fce100)
+  ![XeLaTeX](https://flat.badgen.net/badge/compiler/XeLaTeX?color=blue)
+  [![License](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
+  ![Experimental](https://flat.badgen.net/badge/experimental/🚧?color=fce100)
 </div>
 
 <h2>Welcome</h2>
@@ -19,6 +18,7 @@ BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesi
 - [What's inside?](#whats-inside)
 - [How do I use BIThesis?](#how-do-i-use-bithesis)
 - [Similar Projects](#similar-projects)
+- [Release status](#release-status)
 - [Disclaimer](#disclaimer)
 
 ## What's inside?
@@ -47,6 +47,12 @@ Specifically, detailed guides on how to use and compile a single one of the temp
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)
 - [上海交通大学 XeLaTeX 学位论文及课程论文模板](https://github.com/sjtug/SJTUThesis)
 - ……
+
+## Release status
+
+|       CI       |                                         Build status                                          |
+| :------------: | :-------------------------------------------------------------------------------------------: |
+| GitHub Release | ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master) |
 
 ## Disclaimer
 
