@@ -22,8 +22,15 @@
 \addcontentsline{toc}{chapter}{参考文献}
 \chapter*{参考文献}
 
-\textcolor{blue}{参考文献书写规范}
-
-\textcolor{blue}{参考国家标准《信息与文献参考文献著录规则》【GB/T 7714—2015】，参考文献书写规范如下：}
-
-\textcolor{blue}{1. 文献类型和标识代码}
+% 设置参考文献字号为 5 号
+\renewcommand*{\bibfont}{\zihao{5}}
+% 设置参考文献各个项目之间的垂直距离为 0
+\setlength{\bibitemsep}{0ex}
+\setlength{\bibnamesep}{0ex}
+\setlength{\bibinitsep}{0ex}
+% 设置单倍行距
+\renewcommand{\baselinestretch}{1.2}
+% 设置
+\setlength{\bibitemindent}{0em}
+% 删除默认的「参考文献 / Reference」标题，使用上面定义的 section 标题
+\printbibliography[heading=none]

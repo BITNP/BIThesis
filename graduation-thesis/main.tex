@@ -42,11 +42,19 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-% 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
-% \usepackage[style=ieee,backend=biber]{biblatex}
+% 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
+% 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
+\usepackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  doi=false,
+  url=false
+]{biblatex}
 
-% 参考文献引用文件 refs.bib
-% \addbibresource{misc/refs.bib}
+% 参考文献引用文件位于 misc/ref.bib
+\addbibresource{misc/ref.bib}
 
 % 西文字体默认为 Times New Roman
 \setromanfont{Times New Roman}
