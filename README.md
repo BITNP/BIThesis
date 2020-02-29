@@ -16,7 +16,7 @@ BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesi
 <h2>Table of Contents</h2>
 
 - [What's inside?](#whats-inside)
-- [How to use BIThesis?](#how-to-use-bithesis)
+- [How do I use BIThesis?](#how-do-i-use-bithesis)
 - [Similar Projects](#similar-projects)
 - [Disclaimer](#disclaimer)
 
@@ -30,15 +30,15 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 | **[Graduation Thesis](./graduation-thesis)**<br>（毕业设计 · 论文） | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="proposal" /> | <ul><li>The one and only! **Graduation Thesis**</li><li>With full cover page, abstract, reference and appendix support</li><li>Full equation, tabular and figure caption support</li><li>Bibliography formatted following the specifications of GBT7714-2015</li><li>🚧 **Currently under maintainence**</li></ul> | [@SpencerWoo](https://github.com/spencerwooo)  |
 | **[Lab Report](./lab-report)**<br>（实验报告）                      | <img src="https://i.loli.net/2020/02/05/KrVMudJwcbOEj2h.png" width="300px" alt="proposal" /> | <ul><li>Basic Lab Report Template</li><li>Includes cover page, BIT logo and assets folder</li></ul>                                                                                                                                                                                                                | [@Silverster](https://github.com/Silverster98) |
 
-For detailed compilation documentation, **please refer to each of the READMEs inside the folder of each document.** Direct links:
+## How do I use BIThesis?
 
-1. [Proposal Report](./proposal-report)：北京理工大学毕业设计开题报告
-2. [Graduation Thesis](./graduation-thesis)：北京理工大学毕业设计（论文）
-3. [Lab Report](./lab-report)：北京理工大学课程实验报告
+**For a comprehensive explanation on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
 
-## How to use BIThesis?
+Specifically, detailed guides on how to use and compile a single one of the templates are available at:
 
-**For a detailed explanation on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
+- [BIThesis Wiki: Proposal report](https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report)
+- [BIThesis Wiki: Graduation thesis](https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis)
+- [BIThesis Wiki: Lab report](https://github.com/spencerwooo/BIThesis/wiki/Lab-Report)
 
 ## Similar Projects
 
