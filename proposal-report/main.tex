@@ -34,8 +34,9 @@
 \usepackage{multirow}
 \usepackage{caption}
 
-% 设置参考文献编译后端为 biber，引用格式为 IEEE 格式
-\usepackage[style=ieee,backend=biber]{biblatex}
+% 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
+% 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
+\usepackage[style=gb7714-2015,backend=biber]{biblatex}
 
 % 参考文献引用文件 refs.bib
 \addbibresource{misc/refs.bib}
@@ -47,9 +48,16 @@
 \newcommand{\mentorName}{张哈希}
 \newcommand{\offCampusMentorName}{刘阿贝尔}
 
-% 定义表格上标格式
+% 定义 caption 字体为楷体
 \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
-\captionsetup[table]{skip=10bp,labelfont=bf,font=kaiticaption}
+
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+
+% 设置表格的 caption 格式
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
 
 % 定义一个概念
 \newtheorem{definition}{概念}[section]
@@ -63,9 +71,6 @@
 %% 将中文楷体设置为 SIMKAI.TTF（如果需要）
 % \setCJKfamilyfont{zhkai}{[SIMKAI.TTF]}
 % \newcommand*{\kaiti}{\CJKfamily{zhkai}}
-
-% 设置引用位于右上角
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 % 设置文档标题深度
 \setcounter{tocdepth}{3}
@@ -121,7 +126,7 @@
 
 % 内容开始
 \section{毕业设计（论文）选题的内容}
-开题报告总长度约 5 至 6 页，本部分重点介绍毕业设计选题的主要内容 \upcite{LeCun2010}，宋体，小三，段落前后 0.5 行。
+开题报告总长度约 5 至 6 页，本部分重点介绍毕业设计选题的主要内容 \cite{LeCun2010}，宋体，小三，段落前后 0.5 行。
 
 \section{研究方案}
 \subsection{本选题的主要任务}
@@ -129,6 +134,13 @@
 
 \subsection{技术方案的分析、选择}
 此部分要分析任务书，并给出初步方案，要体现出复杂系统的概念，约写 2 至 3 页。
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.6\linewidth]{merge-sort-recursion-tree}
+  \caption{Merge sort recursion tree：一张示意图}
+  \label{fig:mergesort}
+\end{figure}
 
 \subsubsection{第一阶段}
 在第一阶段，我们准备……
@@ -140,7 +152,7 @@
   \centering
   \caption{硬件、软件环境}
   \label{tab:soft-hardware}
-  \begin{tabular}{@{}l|c|l@{}}
+  \begin{tabular}{@{}lcl@{}}
     \toprule
                               & 指标     & \multicolumn{1}{c}{版本参数} \\ \midrule
     \multirow{2}{*}{硬件环境} & CPU      & Intel i7-6500U               \\ \cmidrule(l){2-3}
@@ -165,9 +177,9 @@
   \centering
   \caption{毕业设计计划进度表}
   \label{tab:progress}
-  \begin{tabular}{@{}c|l|l|c@{}}
+  \begin{tabular}{@{}cllc@{}}
     \toprule
-    阶段 & \multicolumn{1}{c|}{任务} & \multicolumn{1}{c|}{完成标志} & 时间规划       \\ \midrule
+    阶段 & \multicolumn{1}{c}{任务} & \multicolumn{1}{c}{完成标志} & 时间规划       \\ \midrule
     1    & 第一阶段的任务……          & 成功搭建……                    & 2019.12-2020.1 \\ \midrule
     2    & 第二阶段的任务……          & 成功验证……                    & 2020.1-2020.2  \\ \midrule
     3    & 第三阶段的任务……          & 成功验证……失效，并优化……增强  & 2020.2-2020.4  \\ \midrule
