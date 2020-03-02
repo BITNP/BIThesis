@@ -21,7 +21,7 @@
 \topskip=0pt
 \zihao{-4}
 
-\vspace*{-6mm}
+\vspace*{-7mm}
 
 \begin{center}
   \heiti\zihao{-2}\textbf{\thesisTitle}
@@ -38,7 +38,7 @@
 \setstretch{1.53}
 \setlength{\parskip}{0em}
 
-% 中文摘要正文
+% 中文摘要正文从这里开始
 本文……。
 
 \textcolor{blue}{摘要正文选用模板中的样式所定义的“正文”，每段落首行缩进 2 个字符；或者手动设置成每段落首行缩进 2 个汉字，字体：宋体，字号：小四，行距：固定值 22 磅，间距：段前、段后均为 0 行。阅后删除此段。}
@@ -58,14 +58,17 @@
   \heiti\zihao{3}\textbf{\thesisTitleEN}
 \end{spacing}
 
-\vspace*{16mm}
+\vspace*{17mm}
 
 \addcontentsline{toc}{chapter}{Abstract}
-{\let\clearpage\relax \chapter*{\textmd{Abstract}}}
+{\let\clearpage\relax \chapter*{
+  \zihao{-3}\textmd{Abstract}\vskip -3bp}}
 \setcounter{page}{2}
 
 \setstretch{1.53}
 \setlength{\parskip}{0em}
+
+% 英文摘要正文从这里开始
 In order to study……
 
 \textcolor{blue}{Abstract 正文设置成每段落首行缩进 2 字符，字体：Times New Roman，字号：小四，行距：固定值 22 磅，间距：段前、段后均为 0 行。阅后删除此段。}
