@@ -94,7 +94,7 @@
     name = {第,章},
     number = {\arabic{chapter}},
     format = {\heiti \bfseries \centering \zihao{3}},
-    aftername = \hspace{10bp},
+    aftername = \hspace{9bp},
     pagestyle = BIThesis,
     beforeskip = 8bp,
     afterskip = 32bp,
@@ -104,17 +104,20 @@
 
 % 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{section={
+    number = {\thechapter.\hspace{4bp}\arabic{section}},
     format = {\heiti \raggedright \bfseries \zihao{4}},
+    aftername = \hspace{8bp},
     beforeskip = 20bp plus 1ex minus .2ex,
     afterskip = 18bp plus .2ex,
-    aftername = \hspace{10bp},
     fixskip = true,
   }
 }
 
 % 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{subsection={
+    number = {\thechapter.\hspace{3bp}\arabic{section}.\hspace{3bp}\arabic{subsection}},
     format = {\heiti \bfseries \raggedright \zihao{-4}},
+    aftername = \hspace{7bp},
     beforeskip = 17bp plus 1ex minus .2ex,
     afterskip = 14bp plus .2ex,
     fixskip = true,
