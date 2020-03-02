@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Zip files under ./graduation-thesis
+    - name: Zip files under ./${{ matrix.template }}
       uses: montudor/action-zip@v0.1.0
       with:
         args: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
