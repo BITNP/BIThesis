@@ -4,7 +4,13 @@
 \usepackage{hyperref}
 \usepackage{hologo}
 \usepackage{fontspec}
+\usepackage{dirtree}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{minted}
+\usemintedstyle{tango}
 
 \newcommand{\version}{v0.0.2}
 
@@ -40,6 +46,10 @@
    }
 }
 \makeatother
+
+% create solid round numbers
+% \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+%             \node[shape=circle,fill,scale=0.4] (char) {\textcolor{white}{#1}};}}
 
 \begin{document}
 \title{

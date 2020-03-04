@@ -1,1 +1,106 @@
 \section{计算机学院本科生开题报告使用指南}
+
+\subsection{熟悉项目}
+% 输出文件数，第一行百分号 % 不能删，详见：http://tug.ctan.org/macros/generic/dirtree/dirtree.pdf
+\dirtree{%
+.1 / 计算机学院本科生开题报告项目包含内容：.
+.2 README.md.
+.2 main.pdf.
+.2 main.tex.
+.2 merge-sort-recursion-tree.png.
+.2 misc.
+.3 cover.tex.
+.3 refs.bib.
+.3 reviewTableBlank.pdf.
+}
+
+本项目由四个主要文件编译而成：\texttt{main.tex}、\texttt{cover.tex}、\texttt{refs.bib} 与\\ \texttt{reviewTableBlank.pdf}（也包括文档中所涉及到的图片等素材文件，比如：\\ \texttt{merge-sort-recursion-tree.png}）。请大家重点关注这四个文件的功能与作用：
+
+\begin{itemize}
+  \item[\color{RubineRed}\textbf{\texttt{main.tex}}] 开题报告的开始文件（主文件），你的报告内容应该从此文件开始撰写。\texttt{main.tex} 中有详细的注释，介绍了每一部分内容都有什么作用，请仔细阅读后进行相应的修改、
+  \item[\color{RubineRed}\textbf{\texttt{main.pdf}}] 开题报告编译得到的 PDF 文件
+  \item[\color{RubineRed}\textbf{\texttt{./misc}}] 开题报告中所需要的杂项所在文件夹，其中包含有：
+  \begin{itemize}
+    \item[\color{RoyalBlue}\texttt{cover.tex}] 开题报告封面，按照教务部提供的封面设计，如无特殊需要请不要修改
+    \item[\color{RoyalBlue}\texttt{reviewTableBlank.pdf}] 开题报告 PDF 格式的“评审表”，由于考虑到评审表后期由评委老师填写，因此本部分如无需要也无需改动
+    \item[\color{RoyalBlue}\texttt{refs.bib}] 开题报告的参考文献 {\hologo{BibTeX}} 数据库，你应该向其中加入开题报告中所需要的所有参考文献的 {\hologo{BibTeX}} 格式引用（详见下文）
+  \end{itemize}
+\end{itemize}
+
+\subsection{使用与编译方式}
+\subsubsection{使用 Overleaf 直接打开}
+
+\subsubsection{在本地撰写}
+\paragraph{使用 {\hologo{XeLaTeX}} 编译}
+整个项目的编译工具链的顺序为：
+\begin{center}
+  \begin{tikzpicture}[
+    bib/.style={rectangle, draw=green!60, fill=green!5, very thick, minimum size=8mm},
+    xe/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=8mm},
+    ]
+  % Nodes
+  \node[xe] (xelatex1) {xelatex};
+  \node[bib] (biber) [right=of xelatex1] {biber};
+  \node[xe] (xelatex2) [right=of biber] {xelatex};
+  \node[xe] (xelatex3) [right=of xelatex2] {xelatex};
+
+  % Arrows
+  \draw[->] (xelatex1.east) -- (biber.west);
+  \draw[->] (biber.east) -- (xelatex2.west);
+  \draw[->] (xelatex2.east) -- (xelatex3.west);
+  \end{tikzpicture}
+\end{center}
+
+
+其中，按照 VS Code 的 LaTeX Workshop 设置格式：
+
+\begin{itemize}
+  \item {\hologo{XeLaTeX}} 的编译命令为：
+  \begin{minted}[frame=single]{json}
+  {
+    "name": "xelatex",
+    "command": "xelatex",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "-pdf",
+      "-outdir=%OUTDIR%",
+      "-cd",
+      "%DOC%"
+    ],
+    "env": {}
+  }
+  \end{minted}
+  \item {\hologo{biber}} 的编译命令为：
+  \begin{minted}[frame=single]{json}
+  {
+    "name": "biber",
+    "command": "biber",
+    "args": [
+        "%DOCFILE%"
+    ],
+    "env": {}
+  }
+  \end{minted}
+\end{itemize}
+
+那么，整个编译的 recipe 即为：
+
+\begin{minted}[frame=single]{json}
+{
+  "name": "xelatex -> biber -> xelatex * 2",
+  "tools": [
+      "xelatex",
+      "biber",
+      "xelatex",
+      "xelatex"
+  ]
+}
+\end{minted}
+
+\paragraph{使用 latexmk 编译}
+
+\subsection{你的内容从哪里开始？}
+
+\subsection{其他注意事项}
