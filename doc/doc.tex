@@ -6,11 +6,20 @@
 \usepackage{fontspec}
 \usepackage{dirtree}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{awesomebox}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{menukeys}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 
+% 设置代码高亮
 \usepackage{minted}
 \usemintedstyle{tango}
+
+% 设置列表无间隔
+\usepackage{enumitem}
+\setlist{nosep}
 
 \newcommand{\version}{v0.0.2}
 
@@ -30,6 +39,22 @@
   }
 }
 
+% 设置 caption 与 figure 之间的距离
+\setlength{\abovecaptionskip}{11pt}
+\setlength{\belowcaptionskip}{9pt}
+
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+% % 设置表格的 caption 与 table 之间的垂直距离
+% \captionsetup[table]{skip=2pt}
+
+% % 设置表格的 caption 格式
+% \renewcommand{\thetable}{\thesection-\arabic{table}}
+% \captionsetup[table]{font=small,labelsep=space}
+
+% 定义 BIThesis \LaTeX 风格的 Logo
 \usepackage{relsize}
 \makeatletter
 \def\matex@ssize{\larger[-1]\scshape}
@@ -42,14 +67,10 @@
     {\matex@ssize {E}}\kern-0.05em
     \raisebox{-0.38ex}{\matex@ssize {S}}\kern-0.05em
     {\matex@ssize {I}}\kern-0.05em
-    \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.3em
+    \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.5em
    }
 }
 \makeatother
-
-% create solid round numbers
-% \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-%             \node[shape=circle,fill,scale=0.4] (char) {\textcolor{white}{#1}};}}
 
 \begin{document}
 \title{
@@ -81,6 +102,7 @@
 \input{chapters/4-graduation-thesis.tex}
 \input{chapters/5-lab-report.tex}
 \input{chapters/6-converting-to-word.tex}
-\input{chapters/7-acknowledgements.tex}
+\input{chapters/7-troubleshooting.tex}
+\input{chapters/8-acknowledgements.tex}
 
 \end{document}
