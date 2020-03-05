@@ -4,6 +4,8 @@
 \usepackage{hyperref}
 \usepackage{hologo}
 \usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{multirow}
 \usepackage{dirtree}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{awesomebox}
@@ -47,12 +49,12 @@
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
-% % 设置表格的 caption 与 table 之间的垂直距离
-% \captionsetup[table]{skip=2pt}
+% 设置表格的 caption 与 table 之间的垂直距离
+\captionsetup[table]{skip=2pt}
 
-% % 设置表格的 caption 格式
-% \renewcommand{\thetable}{\thesection-\arabic{table}}
-% \captionsetup[table]{font=small,labelsep=space}
+% 设置表格的 caption 格式
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space}
 
 % 定义 BIThesis \LaTeX 风格的 Logo
 \usepackage{relsize}
@@ -97,12 +99,19 @@
 \setlength{\parskip}{0.8ex}
 
 \input{chapters/1-how-to-begin.tex}
+\clearpage
 \input{chapters/2-downloading-templates.tex}
+\clearpage
 \input{chapters/3-proposal-report.tex}
+\clearpage
 \input{chapters/4-graduation-thesis.tex}
+\clearpage
 \input{chapters/5-lab-report.tex}
+\clearpage
 \input{chapters/6-converting-to-word.tex}
+\clearpage
 \input{chapters/7-troubleshooting.tex}
+\clearpage
 \input{chapters/8-acknowledgements.tex}
 
 \end{document}
