@@ -193,6 +193,21 @@ VS Code 的设置项目可以通过快捷键 \keys{\ctrl + ,}（macOS \keys{\cmd
 
 默认情况下 \TeX studio 的编译工具链均已经配置完毕，基本开箱即用。我们只需要在 \TeX studio 的设置中定义编译所用的编译器即可。
 
+\subsubsection{徒手编译}
+
+当然，你完全可以不借助任何编辑器，直接使用“命令行”编译 {\LaTeX} 文档。以我们模板中比较常见的四步走 \texttt{xelatex -> biber -> xelatex -> xelatex} 为例子，你可以用下面的命令编译主文档为 \texttt{main.tex} 的 {\LaTeX} 项目：
+
+\begin{minted}[frame=single]{bash}
+# 第一步 xelatex
+xelatex -no-pdf --interaction=nonstopmode main
+# 第二步 biber
+biber main
+# 第三步 xelatex
+xelatex -no-pdf --interaction=nonstopmode main
+# 第四步 xelatex
+xelatex --interaction=nonstopmode main
+\end{minted}
+
 \tipbox{另外，如果你是特别不差钱的 Mac 用户，希望用最好用最牛逼的 {\LaTeX} 编辑器，你也可以去购买目前售价 \$29.99 美元（约合人民币 209.69 元）的 Texpad。使用 macOS、iOS 原生技术栈开发，Texpad 可能是目前使用体验最顺滑的 {\LaTeX} 编辑器，另外由于 Texpad 使用私有 {\LaTeX} 发行版，使得 Texpad 支持实时预览成果 PDF 与双向同步滚动支持。有这方面需要（与金钱）的同学可以考虑入手。}
 
 准备就绪后，我们就可以开始使用 {\BIThesis} 提供的模板进行 {\LaTeX} 文档的撰写啦！
