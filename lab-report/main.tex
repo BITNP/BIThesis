@@ -16,10 +16,12 @@
 \usepackage{setspace}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{float}
 \usepackage{caption}
 
+
 % 将你的相关信息替换如下示例
-\newcommand{\reportName}{多体制数字移动通信技术实验报告}
+\newcommand{\reportName}{通信课程实验报告}
 \newcommand{\deptName}{计算机学院}
 \newcommand{\majorName}{计算机科学与技术}
 \newcommand{\className}{07xxxxxx}
@@ -91,11 +93,11 @@
 
 波形图如下图\ref{波形图}。
 
-% 插入图片，htbp 代表图片插入位置的设置
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
-  \includegraphics[width= .8\textwidth]{assets/p1.jpg}
-  \caption{波形图}\label{波形图}
+  \includegraphics[width=0.63\textwidth]{assets/p1.jpg}
+  \caption{波形图}
+  \label{波形图}
 \end{figure}
 
 \subsection{理想抽样信号重建观察}
