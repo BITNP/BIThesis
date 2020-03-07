@@ -108,15 +108,15 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此�
 那么，整个编译的 recipe 即为：
 
 \begin{minted}[frame=single]{json}
-{
-  "name": "xelatex -> biber -> xelatex * 2",
-  "tools": [
-      "xelatex",
-      "biber",
-      "xelatex",
-      "xelatex"
-  ]
-}
+  {
+    "name": "xelatex -> biber -> xelatex * 2",
+    "tools": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+    ]
+  }
 \end{minted}
 
 \paragraph{使用 latexmk 编译}
@@ -144,12 +144,12 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此�
 
 那么，整个编译的 recipe 即为：
 \begin{minted}[frame=single]{json}
-{
-  "name": "latexmk 🔃",
-  "tools": [
-      "latexmk"
-  ]
-}
+  {
+    "name": "latexmk 🔃",
+    "tools": [
+        "latexmk"
+    ]
+  }
 \end{minted}
 
 \subsection{你的内容从哪里开始？}
@@ -182,12 +182,12 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此�
 如果你希望加入图片，可以将图片直接放在根目录（比如此处的\\ \texttt{merge-sort-recursion-tree.png}），或者统一将图片安置在一个文件夹下，在正文里按照相对路径进行引用。模板中有一处插入图片的参考样例，位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L138}{第 138 行}，可以进行参考。比如，我填入一个放在 \texttt{images/BIT\_Name.jpg} 处的图片：
 
 \begin{minted}[frame=single,linenos,breaklines]{latex}
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=0.6\linewidth]{images/BIT_Name.jpg}
-  \caption{北京理工大学（一张示意图）}
-  \label{fig:BITName}
-\end{figure}
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/BIT_Name.jpg}
+    \caption{北京理工大学（一张示意图）}
+    \label{fig:BITName}
+  \end{figure}
 \end{minted}
 
 这样就会渲染如图 \ref{fig:BITName} 的效果：
@@ -203,19 +203,19 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此�
 如果你希望插入表格，可以统一使用 \href{https://www.tablesgenerator.com/}{LaTeX Tables Generator} 进行生成，再粘贴进入模板之中。模板中有两处表格的参考样例，分别位于 \href{https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L151}{第 151 行} 和 \href{https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L176}{第 176 行}，可以进行参考。比如：
 
 \begin{minted}[frame=single,linenos,breaklines]{latex}
-\begin{table}[!ht]
-  \centering
-  \caption{硬件、软件环境}
-  \label{tab:soft-hardware}
-  \begin{tabular}{@{}lcl@{}}
-    \toprule
-                              & 指标     & \multicolumn{1}{c}{版本参数} \\ \midrule
-    \multirow{2}{*}{硬件环境} & CPU      & Intel i7-6500U               \\ \cmidrule(l){2-3}
-                              & RAM      & 8 GB                         \\ \midrule
-    \multirow{2}{*}{软件环境} & 操作系统 & \begin{tabular}[c]{@{}l@{}}Windows 10 Pro x86\_64\\  Ubuntu 18.04.3 LTS\end{tabular}    \\ \cmidrule(l){2-3}
-                              & Python   & Python 3.7.6                 \\ \bottomrule
-  \end{tabular}
-\end{table}
+  \begin{table}[!ht]
+    \centering
+    \caption{硬件、软件环境}
+    \label{tab:soft-hardware}
+    \begin{tabular}{@{}lcl@{}}
+      \toprule
+                                & 指标     & \multicolumn{1}{c}{版本参数} \\ \midrule
+      \multirow{2}{*}{硬件环境} & CPU      & Intel i7-6500U               \\ \cmidrule(l){2-3}
+                                & RAM      & 8 GB                         \\ \midrule
+      \multirow{2}{*}{软件环境} & 操作系统 & \begin{tabular}[c]{@{}l@{}}Windows 10 Pro x86\_64\\  Ubuntu 18.04.3 LTS\end{tabular}    \\ \cmidrule(l){2-3}
+                                & Python   & Python 3.7.6                 \\ \bottomrule
+    \end{tabular}
+  \end{table}
 \end{minted}
 
 渲染效果如表 \ref{tab:proposalreport} 所示：
