@@ -191,24 +191,277 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 
 \subsection{你的内容从哪里开始？}
 
+熟悉项目之后，你应该发现，我们毕业设计论文共分为如下的几个模块：封面、原创性声明、中英文摘要、目录、正文（多个章节）、结论、参考文献、附录与致谢。我们的整个毕业设计论文 {\LaTeX} 项目将每个模块单独提取出来，成为单独的 {\LaTeX} 文件，使用 \texttt{main.tex} 主文件统一引用，方便各位进行分模块的修改。你需要重点关注的地方有如下几个。
+
 \subsubsection{开始}
+
+首先，你需要定义毕业设计论文的“中文标题”和“英文标题”，这两个“变量”将影响模板封面的渲染，以及后续摘要中出现的标题的渲染。
+
+中英文标题的定义位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L65-L67}{第 65 至第 67 行}：
+
+\begin{itemize}
+  \item 你可以通过控制 \texttt{\textbackslash thesisTitle} 这一变量来控制整个论文的“中文标题”
+  \item 你可以通过控制 \texttt{\textbackslash thesisTitleEN} 这一变量来控制整个项目的“英文标题”
+\end{itemize}
+
+接下来，你需要定义你的个人信息，这些信息将被渲染在毕业设计论文的封面。个人信息包括你所在学院，你的专业、学号、姓名和指导教师。
+
+个人信息的定义位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74}{第 69 行至第 74 行}：
+
+\begin{itemize}
+  \item \texttt{\textbackslash deptName}：你所在学院
+  \item \texttt{\textbackslash majorName}：你所就读的专业
+  \item \texttt{\textbackslash yourName}：你的姓名
+  \item \texttt{\textbackslash yourStudentID}：你的学号
+  \item \texttt{\textbackslash mentorName}：你的指导教师
+\end{itemize}
 
 \subsubsection{中英摘要}
 
+接下来，你需要撰写论文的摘要。模板中英文摘要位于\\ \texttt{chapters/0\_abstract.tex}：
+
+\begin{itemize}
+  \item 中文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L41-L48}{第 41 行至第 48 行}。其中 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L48}{第 48 行} 定义摘要的中文关键词
+  \item 英文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L71-L76}{第 71 行至第 76 行}。其中 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76}{第 76 行} 定义摘要的英文关键词
+\end{itemize}
+
 \subsubsection{正文}
+
+正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：\texttt{chapters/1\_chapter1.tex}，你可以将它作为正文章节的“模板”，继续在 \texttt{./chapters} 目录下自行创建第二章节 \texttt{2\_chapter2.tex}、第三章节 \texttt{3\_chapter3.tex} 等等，并需要在 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L199-L203}{第 199 行} 处添加对应章节文件的相对路径引用：
+
+\begin{minted}[frame=single]{tex}
+  % 第一章
+  \input{chapters/1_chapter1.tex}
+  % 在这里添加第二章、第三章……TeX 文件的引用
+  \input{chapters/2_chapter2.tex}
+  \input{chapters/3_chapter3.tex}
+\end{minted}
+
+之后，你可以分别在每个章节独立的 \TeX 文件中撰写每一章节的内容。
 
 \subsubsection{后续模块}
 
+在正文之后，我们的论文还剩下：结论、参考文献、附录与致谢这四个模块。它们依次位于：
+
+\begin{itemize}
+  \item Conclusion 结论：\texttt{misc/3\_conclusion.tex}
+  \item Reference 参考文献：\texttt{misc/4\_reference.tex}
+  \item Appendix 附录：\texttt{misc/5\_appendix.tex}
+  \item Acknowledgements 致谢：\texttt{misc/6\_acknowledgements.tex}
+\end{itemize}
+
+其中，你不需要手动编辑“参考文献”这一文件，只需要撰写“结论”、“附录”和“致谢”即可。这三个模块的撰写逻辑与前面正文章节的撰写逻辑是一致的。
+
 \subsection{参考文献管理}
+
+为了保证你的毕业论文的参考文献格式标准，你需要将参考文献的 \hologo{BibTeX} 引用复制进入 \texttt{./misc/refs.bib}，并在正文中用 \verb|\cite{xxx}| 的方法进行引用。
+
+\hologo{BibTeX} 是一种表示、存储与引用参考文献的语法，谷歌学术中搜索文章直接复制得到，如图 \ref{google_scholar} 所示：
+
+\begin{figure}[H]
+  \center
+  \includegraphics[width=\textwidth]{images/google_scholar.png}
+  \caption{谷歌学术搜索并复制文献的 \hologo{BibTeX} 格式}
+  \label{google_scholar}
+\end{figure}
+
+复制得到的参考文献 \hologo{BibTeX} 类似：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  @inproceedings{szegedy2016rethinking,
+    title={Rethinking the inception architecture for computer vision},
+    author={Szegedy, Christian and Vanhoucke, Vincent and Ioffe, Sergey and Shlens, Jon and Wojna, Zbigniew},
+    booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+    pages={2818--2826},
+    year={2016}
+  }
+\end{minted}
+
+将上面的内容复制进入 \texttt{misc/ref.bib} 即可，之后你就可以直接在文章中使用这一参考文献的地方用类似下面的方法引用这一标签为 szegedy2016rethinking 的参考文献：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  正文，正文正文 \cite{szegedy2016rethinking} 正文正文……
+\end{minted}
+
+另外，你也可以考虑使用 Zotero 等专业文献管理工具批量生成。参考：\href{https://sspai.com/post/56724}{文献管理神器 Zotero 学习路径指南}。
+
+\begin{figure}[H]
+  \center
+  \includegraphics[width=\textwidth]{images/zotero.png}
+  \caption{专业文献管理工具 Zotero}
+\end{figure}
 
 \subsection{图片素材}
 
+整个模板的图片素材都整理在图片文件夹中：\texttt{./images}。你可以将论文中使用到的图片统一放在这一目录下进行管理，在论文中使用“相对路径”进行引用。你可以用类似下面的语法引用图片：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  \begin{figure}[htbp]
+    \vspace{13pt} % 调整图片与上文的垂直距离
+    \centering
+    \includegraphics[0.8\textwidth]{images/bit_logo.png}
+    \caption{标题序号}
+    \label{标题序号} % label 用来在文中索引
+  \end{figure}
+\end{minted}
+
+可以看到：
+
+\begin{itemize}
+  \item 我们首先将图片放置在了一个 \verb|\begin{figure} ... \end{figure}| 的环境中，其中 \texttt{[htbp]} 是用于定位图片。
+  \item 之后，在环境中，我们首先使用 \verb|\centering| 保证图片水平居中
+  \item 之后用 \verb|\includegraphics[图片大小]{图片路径}| 的格式引用了图片本身
+  \item 最后我们定义了图片的说明文字 \verb|\caption{图片说明}| 和图片的标签编号 \verb|\label{图片编号}|，前者显示在图片下方起到说明注释的作用，后者让我们可以用 \verb|\ref{图片编号}| 的语法来在正文中引用图片
+\end{itemize}
+
+请注意，为了保证图片引用的格式和 Word 模板完全一致，我们手动设置了 \verb|\vspace{13pt}| 的垂直空白，你引用新图片时，也需要添加这一垂直空白。
+
+在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43}{第 38 行至第 43 行} 是一个示范。
+
 \subsection{表格插入}
+
+表格一直是 {\LaTeX} 排版系统非常强大又非常不好实现的一个模块，如果你希望方便的插入表格，可以统一使用 \href{https://www.tablesgenerator.com/}{LaTeX Tables Generator} 进行生成，再粘贴进入模板之中。
+
+在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L47-L60}{第 47 行至第 60 行} 是一个示范。
 
 \subsection{公式插入}
 
+{\LaTeX} 的行内数学符号和公式等，使用 \verb|\( ... \)| 的语法进行定义。比如类似如下的正文：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  The well known Pythagorean theorem \(x^2 + y^2 = z^2\) was
+  proved to be invalid for other exponents.
+  Meaning the next equation has no integer solutions:
+
+  \[ x^n + y^n = z^n \]
+\end{minted}
+
+即可非常简单的渲染如下的公式效果：
+
+The well known Pythagorean theorem \(x^2 + y^2 = z^2\) was proved to be invalid for other exponents. Meaning the next equation has no integer solutions:
+
+\[ x^n + y^n = z^n \]
+
+另外，行内数学环境也可以用 \verb|$ ... $| 的语法进行定义：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  In physics, the mass-energy equivalence is stated
+  by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+\end{minted}
+
+In physics, the mass-energy equivalence is stated
+by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+
+复杂的独立模块数学公式可以用如下的语法进行定义：
+
+\begin{minted}[frame=single,linenos,breaklines]{tex}
+  \begin{equation}
+    LRI=1\ ∕\ \sqrt{1+{\left(\frac{{\mu }_{R}}{{\mu }_{s}}\right)}^{2}{\left(\frac{{\delta }_{R}}{{\delta }_{s}}\right)}^{2}}
+  \end{equation}
+\end{minted}
+
+\begin{equation}
+  LRI=1\ ∕\ \sqrt{1+{\left(\frac{{\mu }_{R}}{{\mu }_{s}}\right)}^{2}{\left(\frac{{\delta }_{R}}{{\delta }_{s}}\right)}^{2}}
+\end{equation}
+
+为了保证与 Word 模板中的数学公式要求一致，我们的 {\LaTeX} 模板中的公式默认会进行相应的编号（比如上面的例子）。在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L67-L69}{第 67 行至第 69 行} 是一个示范。
+
 \subsection{其他}
+
+以下模块的使用可能需要你手动在 \texttt{main.tex} 的开头用 \verb|\usepackage{ ... }| 的方法引入其他 {\LaTeX} 宏包。
 
 \subsubsection{代码高亮}
 
+你可以使用 \texttt{minted} 宏包来进行代码块的渲染。比如：
+
+\begin{itemize}
+  \item 在文档开题引入宏包：
+  \begin{minted}[frame=single]{tex}
+    \usepackage{minted}
+  \end{minted}
+  \item 渲染代码块：
+  \begin{minted}[frame=single]{tex}
+    \begin{minted}{python}
+      import numpy as np
+
+      def incmatrix(genl1,genl2):
+          m = len(genl1)
+          n = len(genl2)
+          M = None #to become the incidence matrix
+          VT = np.zeros((n*m,1), int)  #dummy variable
+
+          #compute the bitwise xor matrix
+          M1 = bitxormatrix(genl1)
+          M2 = np.triu(bitxormatrix(genl2),1)
+      \end{mintd}
+  \end{minted}
+\end{itemize}
+
+你就会得到类似下面的渲染效果：
+
+\begin{minted}[frame=single]{python}
+import numpy as np
+
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1)
+\end{minted}
+
+有关 \texttt{minted} 的更多使用方法，请阅读：\href{https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted}{Code Highlighting with minted。}
+
+如果你在使用 \texttt{minted} 的过程中遇到了任何问题，请阅读：\href{https://github.com/spencerwooo/BIThesis/wiki/Troubleshooting}{疑难杂症 Troubleshooting}。
+
 \subsubsection{算法模块}
+
+你可以使用 algorithm2e 宏包来渲染一个“伪代码算法”模块。比如：
+
+\begin{itemize}
+  \item 在文档开头引入宏包：
+  \begin{minted}[frame=single]{tex}
+    \usepackage[ruled,vlined]{algorithm2e}
+  \end{minted}
+  \item 渲染伪代码模块：
+  \begin{minted}[frame=single]{tex}
+    \begin{algorithm}[H]
+    \SetAlgoLined
+    \KwResult{Write here the result }
+      initialization\;
+      \While{While condition}{
+      instructions\;
+      \eIf{condition}{
+        instructions1\;
+        instructions2\;
+        }{
+        instructions3\;
+        }
+      }
+    \caption{How to write algorithms}
+    \end{algorithm}
+  \end{minted}
+\end{itemize}
+
+这样，你就会得到类似如下的渲染效果：
+
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \KwResult{Write here the result }
+  initialization\;
+  \While{While condition}{
+  instructions\;
+  \eIf{condition}{
+    instructions1\;
+    instructions2\;
+    }{
+    instructions3\;
+    }
+  }
+  \caption{How to write algorithms}
+\end{algorithm}
+
+有关更多伪代码算法模块的使用，请阅读：\href{https://www.overleaf.com/learn/latex/algorithms}{Algorithms}。
