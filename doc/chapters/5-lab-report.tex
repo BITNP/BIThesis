@@ -1,6 +1,6 @@
 \section{通用北京理工大学本科生实验报告模板使用指南}
 
-\textbf{说明：这个实验报告模板是一个通用的报告模板，不适用所有实验报告要求。实验课程未提供实验报告模板时可以使用该模板。当前本实验报告模板只包含一个封面，欢迎大家往项目仓库 PR 制作更多的封面。}
+\tipbox{说明：这个实验报告模板是一个通用的报告模板，不适用所有实验报告要求。实验课程未提供实验报告模板时可以使用该模板。当前本实验报告模板只包含一个封面，欢迎大家往项目仓库 PR 制作更多的封面。}
 
 \subsection{熟悉项目}
 \dirtree{%
@@ -50,20 +50,20 @@
 
 {\hologo{XeLaTeX}} 的编译命令为：
 \begin{minted}[frame=single]{json}
-{
-  "name": "xelatex",
-  "command": "xelatex",
-  "args": [
-    "-synctex=1",
-    "-interaction=nonstopmode",
-    "-file-line-error",
-    "-pdf",
-    "-outdir=%OUTDIR%",
-    "-cd",
-    "%DOC%"
-  ],
-  "env": {}
-}
+  {
+    "name": "xelatex",
+    "command": "xelatex",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "-pdf",
+      "-outdir=%OUTDIR%",
+      "-cd",
+      "%DOC%"
+    ],
+    "env": {}
+  }
 \end{minted}
 
 那么，整个编译的 recipe 即为：
@@ -79,6 +79,6 @@
   }
 \end{minted}
 
-\paragraph{使用} 
+\paragraph{使用}
 
 各种内容的插入请参考源文件。
