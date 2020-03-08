@@ -11,7 +11,7 @@
 
 <h2>Welcome</h2>
 
-BIThesis is an unofficial LaTeX template(s) for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *Office of Academic Affairs* at the *School of Computer Science*.
+BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)* of *[Beijing Institute of Technology](http://*.
 
 <h2>Table of Contents</h2>
 
@@ -33,13 +33,15 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 ## How do I use BIThesis?
 
-**For a comprehensive explanation on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
+**For a comprehensive guide on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
 
 Specifically, detailed guides on how to use and compile a single one of the templates are available at:
 
 - [BIThesis Wiki: Proposal report](https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report)
 - [BIThesis Wiki: Graduation thesis](https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis)
 - [BIThesis Wiki: Lab report](https://github.com/spencerwooo/BIThesis/wiki/Lab-Report)
+
+**Also, you can download the PDF version of the BIThesis handbook here: [BIThesis - doc.](doc/doc.pdf)**
 
 ## Similar Projects
 
@@ -56,7 +58,7 @@ Specifically, detailed guides on how to use and compile a single one of the temp
 
 ## Disclaimer
 
-This project is not validated by the BIT Office of Academic Affairs, nor is it affiliated with BIT. Use this template at your own risk. 笔芯 (´▽`ʃ♡ƪ)
+This project is not validated by the *Department of Undergraduate Academic Affairs* of *Beijing Institute of Technology*, nor is it affiliated with *Beijing Institute of Technology*. Use this template at your own risk. 笔芯 (´▽`ʃ♡ƪ)
 
 ---
 
