@@ -11,7 +11,7 @@
 
 <h2>Welcome</h2>
 
-BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)* of *[Beijing Institute of Technology](http://*.
+BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)* of *[Beijing Institute of Technology](http://http://www.bit.edu.cn/)*.
 
 <h2>Table of Contents</h2>
 
