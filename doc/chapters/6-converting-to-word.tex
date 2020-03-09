@@ -11,11 +11,15 @@ Pandoc 详细的安装说明请见官方文档：\href{https://pandoc.org/instal
 简单来说：
 
 \begin{itemize}
-  \item 在 Windows 上你可以使用 scoop 包管理工具安装 pandoc（为了方便设置命令行工具的环境变量，推荐使用 scoop 进行安装）：
-  \begin{minted}[frame=single]{bash}
-  scoop install pandoc
-  \end{minted}
-  \textbf{关联阅读：}\href{https://sspai.com/post/52496}{“一行代码”搞定软件安装卸载，用 Scoop 管理你的 Windows 软件}
+  \item 在 Windows 上：
+  \begin{itemize}
+    \item 你可以使用 scoop 包管理工具安装 pandoc（为了方便设置命令行工具的环境变量，推荐使用 scoop 进行安装）：
+    \begin{minted}[frame=single]{bash}
+    scoop install pandoc
+    \end{minted}
+    \textbf{关联阅读：}\href{https://sspai.com/post/52496}{“一行代码”搞定软件安装卸载，用 Scoop 管理你的 Windows 软件}
+    \item 当然你也可以直接在 \href{https://github.com/jgm/pandoc/releases/latest}{Pandoc 的 GitHub Release 页面} 下载 Windows MSI 安装文件手动安装
+  \end{itemize}
   \item 在 macOS 上你可以使用 Homebrew 包管理工具安装 pandoc：
   \begin{minted}[frame=single]{bash}
   brew install pandoc

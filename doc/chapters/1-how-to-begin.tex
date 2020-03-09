@@ -1,7 +1,7 @@
 \section{如何开始}
 {\BIThesis} 为各位在北京理工大学就读的本科同学提供了基于北京理工大学计算机学院教务部给出的“北京理工大学计算机学院本科生毕业论文：开题报告”与北京理工大学教务部提供的“北京理工大学本科生毕业设计：论文模板（目前是 2019 届版本）”的 \LaTeX 样版。借助于 {\BIThesis} 的 \LaTeX 模板，你可以在保证论文格式整齐、完美、符合要求的前提下，专注于学术研究、项目实现，从而顺利完成你的学术项目。
 
-本“使用手册”希望为大家全面的介绍 {\LaTeX} 环境的搭建方法、{\BIThesis} 的使用方法，从而快速掌握使用 {\LaTeX} 排版引擎进行基本的论文撰写的方法，完成符合学校要求的学位论文。{\BIThesis} 目前使用 GitHub 进行维护，官方项目地址位于：
+本“使用手册”希望为大家全面地介绍 {\LaTeX} 环境的搭建方法、{\BIThesis} 的使用方法，从而快速掌握使用 {\LaTeX} 排版引擎进行基本的论文撰写的方法，完成符合学校要求的学位论文。{\BIThesis} 目前使用 GitHub 进行维护，官方项目地址位于：
 
 \begin{center}
 \color{ForestGreen}\href{https://github.com/spencerwooo/BIThesis}{\texttt{https://github.com/spencerwooo/BIThesis}}
@@ -28,8 +28,8 @@
 首先，在使用模板之前，你需要在本机安装 \LaTeX 环境。一个完整的 \LaTeX 环境包括：
 
 \begin{itemize}
-  \item 开源免费的 \LaTeX 发行版（包含有必备的 \LaTeX 编译器与有用的宏包），与……
-  \item 一个得心应手的 \LaTeX 编辑器
+  \item 开源免费的 \LaTeX 发行版（包含有必备的 \LaTeX 编译器与有用的宏包）
+  \item 以及一个得心应手的 \LaTeX 编辑器
 \end{itemize}
 
 我们在 Windows、macOS 与 Linux 环境中均可以使用 \LaTeX 进行文档撰写。按照操作系统的不同，我们分别进行介绍。
@@ -53,10 +53,8 @@
 
 \paragraph{使用包管理工具进行安装} 使用 Linux 系统的同学也可以选择使用合适的包管理工具进行 \TeX Live 的安装。以 Ubuntu 为例子，只需要运行下面命令，即可下载安装整个 \TeX Live 发行版。
 
-\begin{minted}[
-  frame=single
-]{bash}
-sudo apt install texlive
+\begin{minted}[frame=single]{bash}
+  sudo apt install texlive
 \end{minted}
 
 \subsubsection{macOS 系统}
@@ -64,14 +62,12 @@ sudo apt install texlive
 
 另外，使用 Homebrew 包管理的同学，也可以通过 Homebrew Cask 直接安装 Mac\TeX：
 
-\begin{minted}[
-  frame=single
-]{bash}
-# 加载 Homebrew Cask
-brew tap caskroom/cask
+\begin{minted}[frame=single]{bash}
+  # 加载 Homebrew Cask
+  brew tap caskroom/cask
 
-# 利用 Cask 安装 MacTeX
-brew cask install mactex
+  # 利用 Cask 安装 MacTeX
+  brew cask install mactex
 \end{minted}
 
 \subsubsection{确认安装}
@@ -138,51 +134,11 @@ VS Code 是微软开发的基于 Electron 跨平台技术的新晋代码编辑�
   \end{itemize}
 \end{itemize}
 
-使用 VS Code 作为 {\LaTeX} 编辑器时，我们需要特别配置编译工具 \texttt{tools} 与编译工具链 \texttt{recipes}。对于包含有目录、参考文献、图片与表格引用的 {\LaTeX} 文档，我们往往需要使用多个编译工具串联编译，VS Code 就是在这里定义我们编译所使用的工具。
-
-VS Code 的设置项目可以通过快捷键 \keys{\ctrl + ,}（macOS \keys{\cmd + ,}）打开 UI 设置界面，之后点击右上角 \texttt{Open Settings (JSON)} 按钮即可打开相应的 JSON 格式配置文件，我们在这里即可定义 {\LaTeX} 编译工具。其中：
-
-\begin{itemize}
-  \item “编译工具”是在 \texttt{"latex-workshop.latex.tools": [ ... ]} 处进行定义，比如我们定义使用 \texttt{latexmk} 编译，即可在这里声明：
-  \begin{minted}[
-  frame=single
-  ]{json}
-  "latex-workshop.latex.tools": [
-    {
-      "name": "latexmk",
-      "command": "latexmk",
-      "args": [
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-pdf",
-        "-outdir=%OUTDIR%",
-        "-cd",
-        "%DOC%"
-      ],
-      "env": {}
-    }
-  ]
-  \end{minted}
-  \item “编译工具链”是在 \texttt{"latex-workshop.latex.recipes": [ ... ]} 处进行定义，比如我们为了正确生成目录，需要调用两次 \texttt{xelatex}，那么我们即可这样定义：
-  \begin{minted}[
-  frame=single
-  ]{json}
-  "latex-workshop.latex.recipes": [
-    {
-      "name": "xelatex * 2",
-      "tools": [
-          "xelatex",
-          "xelatex"
-      ]
-    }
-  ]
-  \end{minted}
-\end{itemize}
-
-有关编译命令与编译工具链的更多配置，请参考每一种模板的编译方法，具体问题、具体分析。
+使用 VS Code 作为 {\LaTeX} 编辑器时，我们需要特别配置编译工具 \texttt{tools} 与编译工具链 \texttt{recipes}。对于包含有目录、参考文献、图片与表格引用的 {\LaTeX} 文档，我们往往需要使用多个编译工具串联编译。具体的 VS Code 编译方法，请继续阅读下一章《第 \ref{sec:downloading-templates} 章：下载与使用模板》。
 
 \subsubsection{使用 \TeX studio 编辑 \LaTeX 文档}
+\importantbox{注意：使用 macOS 的同学，请谨慎使用 \TeX studio，据反映 \TeX studio 有比较复杂难以解决的问题，因此请使用 Mac 的同学尽量使用 VS Code（或下文提到的付费 Texpad）来使用本模板。}
+
 \TeX studio 是老牌 {\LaTeX} 编辑器，使用跨平台技术 Qt 编写而成。虽然界面相对老旧，但是依旧可靠。我们可以去 \href{https://www.texstudio.org/}{\TeX studio 的官网}下载安装各个系统版本的 \TeX studio。
 
 \begin{figure}[H]
@@ -191,22 +147,7 @@ VS Code 的设置项目可以通过快捷键 \keys{\ctrl + ,}（macOS \keys{\cmd
   \caption{\TeX studio 老牌 {\LaTeX} 编辑器}
 \end{figure}
 
-默认情况下 \TeX studio 的编译工具链均已经配置完毕，基本开箱即用。我们只需要在 \TeX studio 的设置中定义编译所用的编译器即可。
-
-\subsubsection{徒手编译}
-
-当然，你完全可以不借助任何编辑器，直接使用“命令行”编译 {\LaTeX} 文档。以我们模板中比较常见的四步走 \texttt{xelatex -> biber -> xelatex -> xelatex} 为例子，你可以用下面的命令编译主文档为 \texttt{main.tex} 的 {\LaTeX} 项目：
-
-\begin{minted}[frame=single]{bash}
-  # 第一步 xelatex
-  xelatex -no-pdf --interaction=nonstopmode main
-  # 第二步 biber
-  biber main
-  # 第三步 xelatex
-  xelatex -no-pdf --interaction=nonstopmode main
-  # 第四步 xelatex
-  xelatex --interaction=nonstopmode main
-\end{minted}
+默认情况下 \TeX studio 的编译工具链均已经配置完毕，基本开箱即用。对于如何用 \TeX studio 编译本模板，请继续阅读下一章《第 \ref{sec:downloading-templates} 章：下载与使用模板》。
 
 \tipbox{另外，如果你是特别不差钱的 Mac 用户，希望用最好用最牛逼的 {\LaTeX} 编辑器，你也可以去购买目前售价 \$29.99 美元（约合人民币 209.69 元）的 Texpad。使用 macOS、iOS 原生技术栈开发，Texpad 可能是目前使用体验最顺滑的 {\LaTeX} 编辑器，另外由于 Texpad 使用私有 {\LaTeX} 发行版，使得 Texpad 支持实时预览成果 PDF 与双向同步滚动支持。有这方面需要（与金钱）的同学可以考虑入手。}
 

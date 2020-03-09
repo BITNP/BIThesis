@@ -1,4 +1,19 @@
-\section{计算机学院本科生开题报告使用指南}
+\section{计算机学院本科生开题报告使用指南} \label{proposal}
+
+本模板已经发布在 Overleaf 上，你可以打开直接使用（点击下图 \ref{overleaf-proposal} 所示中的 Open as Template）即可：
+
+\begin{center}
+  \color{ForestGreen}\href{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn}{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn}
+\end{center}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/overleaf.png}
+  \caption{Overleaf 在线版本的开题报告模板}
+  \label{overleaf-proposal}
+\end{figure}
+
+Overleaf 缺少一些微软版权字体（比如宋体、黑体等），\textbf{因此如果你希望格式完全准确，请使用本机进行编辑。}
 
 \subsection{熟悉项目}
 % 输出文件数，第一行百分号 % 不能删，详见：http://tug.ctan.org/macros/generic/dirtree/dirtree.pdf
@@ -27,131 +42,6 @@
   \end{itemize}
 \end{itemize}
 
-\subsection{使用与编译方式}
-\subsubsection{使用 Overleaf 直接打开}
-本模板已经发布在 Overleaf 上，你可以打开直接使用：
-
-\begin{center}
-  \color{ForestGreen}\href{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn}{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn}
-\end{center}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{images/overleaf.png}
-  \caption{Overleaf 在线版本的开题报告模板}
-\end{figure}
-
-Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此如果你希望格式完全准确，请使用本机进行编辑。
-
-\subsubsection{在本地撰写}
-由于：
-
-\begin{itemize}
-  \item {\BIThesis} 文章主体部分是中文，使用了 \texttt{ctex} 宏包，因此需要使用 \texttt{xelatex} 进行全文编译
-  \item 参考文献部分使用了 {Bib\LaTeX}，因此需要使用 \hologo{biber} 进行参考文献的编译
-\end{itemize}
-
-\paragraph{使用 {\hologo{XeLaTeX}} 编译}
-整个项目的编译工具链的顺序为：
-\begin{center}
-  \begin{tikzpicture}[
-    bib/.style={rectangle, draw=ForestGreen!60, fill=ForestGreen!5, very thick, minimum size=8mm},
-    xe/.style={rectangle, draw=RubineRed!60, fill=RubineRed!5, very thick, minimum size=8mm},
-    ]
-  % Nodes
-  \node[xe] (xelatex1) {xelatex};
-  \node[bib] (biber) [right=of xelatex1] {biber};
-  \node[xe] (xelatex2) [right=of biber] {xelatex};
-  \node[xe] (xelatex3) [right=of xelatex2] {xelatex};
-
-  % Arrows
-  \draw[->] (xelatex1.east) -- (biber.west);
-  \draw[->] (biber.east) -- (xelatex2.west);
-  \draw[->] (xelatex2.east) -- (xelatex3.west);
-  \end{tikzpicture}
-\end{center}
-
-
-其中，按照 VS Code 的 LaTeX Workshop 设置格式：
-
-\begin{itemize}
-  \item {\hologo{XeLaTeX}} 的编译命令为：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "xelatex",
-    "command": "xelatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "-pdf",
-      "-outdir=%OUTDIR%",
-      "-cd",
-      "%DOC%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-  \item {\hologo{biber}} 的编译命令为：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "biber",
-    "command": "biber",
-    "args": [
-        "%DOCFILE%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-\end{itemize}
-
-那么，整个编译的 recipe 即为：
-
-\begin{minted}[frame=single]{json}
-  {
-    "name": "xelatex -> biber -> xelatex * 2",
-    "tools": [
-        "xelatex",
-        "biber",
-        "xelatex",
-        "xelatex"
-    ]
-  }
-\end{minted}
-
-\paragraph{使用 latexmk 编译}
-如果你使用 \texttt{latexmk}，也可以使用如下的编译方法：
-
-\begin{itemize}
-  \item \texttt{latexmk} 的编译命令：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "latexmk",
-    "command": "latexmk",
-    "args": [
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-xelatex",
-        "-outdir=%OUTDIR%",
-        "-cd",
-        "%DOC%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-\end{itemize}
-
-那么，整个编译的 recipe 即为：
-\begin{minted}[frame=single]{json}
-  {
-    "name": "latexmk 🔃",
-    "tools": [
-        "latexmk"
-    ]
-  }
-\end{minted}
-
 \subsection{你的内容从哪里开始？}
 开题报告项目结构相对来说比较简单，因此你只需要重点关注 \texttt{main.tex} 这一文件 —— 项目的主文件。你的内容应该从 \texttt{main.tex} 第 127 行 的 \texttt{\%内容开始} 开始。你需要重点关注的部分有：
 
@@ -178,6 +68,8 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），因此�
 以及最后的“参考文献”。你应该将参考文献的 {\hologo{BibTeX}} 引用复制进入 \texttt{./misc/refs.bib}，并在正文中用 \verb|\cite{}| 的方法进行引用。其中 {\hologo{BibTeX}} 格式的引用内容可以在谷歌学术中搜索文章直接复制得到，也可以考虑使用 Zotero 等文献管理工具批量生成。
 
 \subsection{其他注意事项}
+\tipbox{有关具体的 {\LaTeX} 语法，请参考前文中《第二章 \ref{subsec:latex-grammar}》给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。}
+
 \subsubsection{插入图片}
 如果你希望加入图片，可以将图片直接放在根目录（比如此处的\\ \texttt{merge-sort-recursion-tree.png}），或者统一将图片安置在一个文件夹下，在正文里按照相对路径进行引用。模板中有一处插入图片的参考样例，位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L138}{第 138 行}，可以进行参考。比如，我填入一个放在 \texttt{images/BIT\_Name.jpg} 处的图片：
 

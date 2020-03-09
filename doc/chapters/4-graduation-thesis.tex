@@ -1,6 +1,21 @@
-\section{北京理工大学本科生毕业设计论文模板使用指南}
+\section{北京理工大学本科生毕业设计论文模板使用指南} \label{grad-thesis}
 
 \tipbox{注意：目前版本的毕业设计论文是按照北京理工大学计算机学院 2015 级毕业论文模板进行的设计与排版，如果 2016 级毕业论文模板有任何格式更新，我们会及时在这里更新。}
+
+本模板已经发布在 Overleaf 上，你可以打开直接使用（点击下图 \ref{overleaf-grad-thesis} 所示中的 Open as Template）即可：
+
+\begin{center}
+  \color{ForestGreen}\href{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg}{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg}
+\end{center}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/overleaf_grad_thesis.png}
+  \caption{Overleaf 在线版本的毕业论文模板}
+  \label{overleaf-grad-thesis}
+\end{figure}
+
+Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文细黑”，导致封面的毕业论文中文大标题无法用 Word 模板中规定的字体渲染，使得最终呈现样式与要求有些出入，如果希望保证 {\LaTeX} 模板输出和学校模板一致，那么还是推荐在本地进行撰写和编译。
 
 \subsection{熟悉项目}
 
@@ -57,137 +72,6 @@
   \caption{毕业论文模板主模块与各个分支之间的关系}
   \label{grad_thesis_main_submodule}
 \end{figure}
-
-具体编译和使用，请见下文详细描述。
-
-\subsection{使用与编译方式}
-
-\subsubsection{使用 Overleaf 直接打开}
-
-本模板已经发布在 Overleaf 上，你可以打开直接使用：
-
-\begin{center}
-  \color{ForestGreen}\href{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg}{https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg}
-\end{center}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{images/overleaf_grad_thesis.png}
-  \caption{Overleaf 在线版本的毕业论文模板}
-\end{figure}
-
-Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文细黑”，导致封面的毕业论文中文大标题无法用 Word 模板中规定的字体渲染，使得最终呈现样式与要求有些出入，如果希望保证 {\LaTeX} 模板输出和学校模板一致，那么还是推荐在本地进行撰写和编译。
-
-\subsubsection{在本地撰写}
-
-由于：
-
-\begin{itemize}
-  \item {\BIThesis} 文章主体部分是中文，使用了 \texttt{ctex} 宏包，因此需要使用 \texttt{xelatex} 进行全文编译
-  \item 参考文献部分使用了 {Bib\LaTeX}，因此需要使用 \hologo{biber} 进行参考文献的编译
-\end{itemize}
-
-\paragraph{使用 {\hologo{XeLaTeX}} 编译}
-整个项目的编译工具链的顺序为：
-
-\begin{center}
-  \begin{tikzpicture}[
-    bib/.style={rectangle, draw=ForestGreen!60, fill=ForestGreen!5, very thick, minimum size=8mm},
-    xe/.style={rectangle, draw=RubineRed!60, fill=RubineRed!5, very thick, minimum size=8mm},
-    ]
-  % Nodes
-  \node[xe] (xelatex1) {xelatex};
-  \node[bib] (biber) [right=of xelatex1] {biber};
-  \node[xe] (xelatex2) [right=of biber] {xelatex};
-  \node[xe] (xelatex3) [right=of xelatex2] {xelatex};
-
-  % Arrows
-  \draw[->] (xelatex1.east) -- (biber.west);
-  \draw[->] (biber.east) -- (xelatex2.west);
-  \draw[->] (xelatex2.east) -- (xelatex3.west);
-  \end{tikzpicture}
-\end{center}
-
-
-其中，按照 VS Code 的 LaTeX Workshop 设置格式：
-
-\begin{itemize}
-  \item {\hologo{XeLaTeX}} 的编译命令为：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "xelatex",
-    "command": "xelatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "-pdf",
-      "-outdir=%OUTDIR%",
-      "-cd",
-      "%DOC%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-  \item {\hologo{biber}} 的编译命令为：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "biber",
-    "command": "biber",
-    "args": [
-        "%DOCFILE%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-\end{itemize}
-
-那么，整个编译的 recipe 即为：
-
-\begin{minted}[frame=single]{json}
-  {
-    "name": "xelatex -> biber -> xelatex * 2",
-    "tools": [
-        "xelatex",
-        "biber",
-        "xelatex",
-        "xelatex"
-    ]
-  }
-\end{minted}
-
-\paragraph{使用 latexmk 编译}
-如果你使用 \texttt{latexmk}，也可以使用如下的编译方法：
-
-\begin{itemize}
-  \item \texttt{latexmk} 的编译命令：
-  \begin{minted}[frame=single]{json}
-  {
-    "name": "latexmk",
-    "command": "latexmk",
-    "args": [
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-xelatex",
-        "-outdir=%OUTDIR%",
-        "-cd",
-        "%DOC%"
-    ],
-    "env": {}
-  }
-  \end{minted}
-\end{itemize}
-
-那么，整个编译的 recipe 即为：
-\begin{minted}[frame=single]{json}
-  {
-    "name": "latexmk 🔃",
-    "tools": [
-        "latexmk"
-    ]
-  }
-\end{minted}
 
 \subsection{你的内容从哪里开始？}
 
@@ -252,6 +136,8 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 
 其中，你不需要手动编辑“参考文献”这一文件，只需要撰写“结论”、“附录”和“致谢”即可。这三个模块的撰写逻辑与前面正文章节的撰写逻辑是一致的。
 
+\tipbox{有关具体的 {\LaTeX} 语法，请参考前文中《第二章 \ref{subsec:latex-grammar}》给出的参考链接与学习文档。接下来是模板中提供的一些示例性代码的使用方法。}
+
 \subsection{参考文献管理}
 
 为了保证你的毕业论文的参考文献格式标准，你需要将参考文献的 \hologo{BibTeX} 引用复制进入 \texttt{./misc/refs.bib}，并在正文中用 \verb|\cite{xxx}| 的方法进行引用。
@@ -299,7 +185,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
   \begin{figure}[htbp]
     \vspace{13pt} % 调整图片与上文的垂直距离
     \centering
-    \includegraphics[0.8\textwidth]{images/bit_logo.png}
+    \includegraphics[width=0.8\textwidth]{images/bit_logo.png}
     \caption{标题序号}
     \label{标题序号} % label 用来在文中索引
   \end{figure}
@@ -310,7 +196,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 \begin{itemize}
   \item 我们首先将图片放置在了一个 \verb|\begin{figure} ... \end{figure}| 的环境中，其中 \texttt{[htbp]} 是用于定位图片。
   \item 之后，在环境中，我们首先使用 \verb|\centering| 保证图片水平居中
-  \item 之后用 \verb|\includegraphics[图片大小]{图片路径}| 的格式引用了图片本身
+  \item 之后用 \verb|\includegraphics[图片大小]{图片路径}| 的格式引用了图片本身（图片大小的语法 \verb|width=0.8\textwidth| 表示图片宽度是整个页宽的 0.8 倍）
   \item 最后我们定义了图片的说明文字 \verb|\caption{图片说明}| 和图片的标签编号 \verb|\label{图片编号}|，前者显示在图片下方起到说明注释的作用，后者让我们可以用 \verb|\ref{图片编号}| 的语法来在正文中引用图片
 \end{itemize}
 
@@ -385,15 +271,15 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
       import numpy as np
 
       def incmatrix(genl1,genl2):
-          m = len(genl1)
-          n = len(genl2)
-          M = None #to become the incidence matrix
-          VT = np.zeros((n*m,1), int)  #dummy variable
+        m = len(genl1)
+        n = len(genl2)
+        M = None #to become the incidence matrix
+        VT = np.zeros((n*m,1), int)  #dummy variable
 
-          #compute the bitwise xor matrix
-          M1 = bitxormatrix(genl1)
-          M2 = np.triu(bitxormatrix(genl2),1)
-      \end{mintd}
+        #compute the bitwise xor matrix
+        M1 = bitxormatrix(genl1)
+        M2 = np.triu(bitxormatrix(genl2),1)
+    \end{mintd}
   \end{minted}
 \end{itemize}
 
@@ -403,19 +289,19 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 import numpy as np
 
 def incmatrix(genl1,genl2):
-    m = len(genl1)
-    n = len(genl2)
-    M = None #to become the incidence matrix
-    VT = np.zeros((n*m,1), int)  #dummy variable
+  m = len(genl1)
+  n = len(genl2)
+  M = None #to become the incidence matrix
+  VT = np.zeros((n*m,1), int)  #dummy variable
 
-    #compute the bitwise xor matrix
-    M1 = bitxormatrix(genl1)
-    M2 = np.triu(bitxormatrix(genl2),1)
+  #compute the bitwise xor matrix
+  M1 = bitxormatrix(genl1)
+  M2 = np.triu(bitxormatrix(genl2),1)
 \end{minted}
 
 有关 \texttt{minted} 的更多使用方法，请阅读：\href{https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted}{Code Highlighting with minted。}
 
-如果你在使用 \texttt{minted} 的过程中遇到了任何问题，请阅读：\href{https://github.com/spencerwooo/BIThesis/wiki/Troubleshooting}{疑难杂症 Troubleshooting}。
+如果你在使用 \texttt{minted} 的过程中遇到了任何问题，请阅读：《第 \ref{sec:troubleshooting} 章：疑难杂症 Troubleshooting》。
 
 \subsubsection{算法模块}
 
