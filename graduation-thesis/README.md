@@ -1,4 +1,4 @@
-# Graduation Thesis 毕业设计（论文）![](https://raw.githubusercontent.com/spencerwooo/BIThesis/master/assets/bithesis_badge.svg?sanitize=true)
+# Graduation Thesis 毕业设计（论文）![](https://raw.githubusercontent.com/spencerwooo/BIThesis/master/assets/bithesis_badge_solid.svg?sanitize=true)
 
 <h6>🚩 注意：目前版本的毕业设计论文是按照北京理工大学计算机学院 2015 级毕业论文模板进行的设计与排版，如果 2016 级毕业论文模板有任何格式更新，我们会及时在这里更新。</h6>
 

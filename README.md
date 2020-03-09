@@ -3,10 +3,10 @@
 
   📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
 
-  ![BIThesis](./assets/bithesis_badge.svg)
-  ![XeLaTeX](https://flat.badgen.net/badge/compiler/XeLaTeX?color=blue)
-  [![License](https://flat.badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
-  ![Experimental](https://flat.badgen.net/badge/experimental/🚧?color=fce100)
+  ![BIThesis](./assets/bithesis_badge_solid.svg)
+  ![XeLaTeX](https://badgen.net/badge/compiler/XeLaTeX?color=blue)
+  [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
+  ![Experimental](https://badgen.net/badge/experimental/🚧?color=fce100)
 </div>
 
 <h2>Welcome</h2>
