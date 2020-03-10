@@ -33,7 +33,9 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 ## How do I use BIThesis?
 
-**For a comprehensive guide on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to [BIThesis' Wiki.](https://github.com/spencerwooo/BIThesis/wiki)**
+**For a comprehensive guide on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to BIThesis' Wiki. 👇**
+
+[![](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&style=for-the-badge)](https://github.com/spencerwooo/BIThesis/wiki)
 
 Specifically, detailed guides on how to use and compile a single one of the templates are available at:
 
