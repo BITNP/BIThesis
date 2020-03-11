@@ -2,4 +2,23 @@
 
 本目录中包含有北京理工大学课程实验报告模板，有关模板的使用方法更为详细的介绍，请参考：[BIThesis Wiki - 本科生实验报告：Lab report](https://github.com/spencerwooo/BIThesis/wiki/Lab-Report)。
 
-<h6>🚧 README 正在完善。</h6>
+## 项目结构
+
+```
+.
+├── README.md
+├── main.tex
+├── main.pdf
+├── misc
+│   └── cover_v1.tex
+└── assets
+    └── ……
+```
+
+## 编译方式
+
+```
+-> xelatex
+-> xelatex
+-> xelatex
+```
