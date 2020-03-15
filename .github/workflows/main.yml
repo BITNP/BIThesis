@@ -27,3 +27,10 @@ jobs:
         file: ${{ matrix.template }}.zip
         asset_name: ${{ matrix.template }}.zip
         tag: ${{ github.ref }}
+    - name: Upload PDF documentation to release
+      uses: svenstaro/upload-release-action@1.0.1
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./doc/doc.pdf
+        asset_name: bithesis-documentation.pdf
+        tag: ${{ github.ref }}
