@@ -27,6 +27,14 @@ jobs:
         file: ${{ matrix.template }}.zip
         asset_name: ${{ matrix.template }}.zip
         tag: ${{ github.ref }}
+
+  release-doc:
+    name: Release documentation
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
     - name: Upload PDF documentation to release
       uses: svenstaro/upload-release-action@1.0.1
       with:
