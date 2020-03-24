@@ -47,23 +47,23 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 \begin{itemize}
   \item[\color{RubineRed}\textbf{\texttt{main.tex}}] 毕业论文模板的主文件
   \item[\color{RubineRed}\textbf{\texttt{./chapters}}] 文件夹：包含有整个毕业论文的“摘要”和正文的全部“章节”
-  \begin{itemize}
-    \item[\color{RoyalBlue}\texttt{0\_abstract.tex}] 毕业论文的“摘要”（中文摘要与英文摘要）
-    \item[\color{RoyalBlue}\texttt{1\_chapter1.tex}] 毕业论文正文“第一章”（示例章节）
-    \item[\color{RoyalBlue}\texttt{...}] （你可以继续添加第二章 \texttt{2\_chapter2.tex}、第三章 \texttt{3\_chapter3.tex}……，并在主文件 \texttt{main.tex} 中引用（详见下文）
-  \end{itemize}
+        \begin{itemize}
+          \item[\color{RoyalBlue}\texttt{0\_abstract.tex}] 毕业论文的“摘要”（中文摘要与英文摘要）
+          \item[\color{RoyalBlue}\texttt{1\_chapter1.tex}] 毕业论文正文“第一章”（示例章节）
+          \item[\color{RoyalBlue}\texttt{...}] （你可以继续添加第二章 \texttt{2\_chapter2.tex}、第三章 \texttt{3\_chapter3.tex}……，并在主文件 \texttt{main.tex} 中引用（详见下文）
+        \end{itemize}
   \item[\color{RubineRed}\textbf{\texttt{./misc}}] 文件夹：包含有毕业论文模板中的封面、后置章节与参考文献
-  \begin{itemize}
-    \item[\color{RoyalBlue}\textbf{\texttt{0\_cover.tex}}] 毕业论文的“封面”，一般情况无需更改
-    \item[\color{RoyalBlue}\textbf{\texttt{1\_originality.tex}}] 毕业论文的“原创性声明”，一般情况无需更改（签字和日期后期手动添加）
-    \item[\color{RoyalBlue}\textbf{\texttt{1\_originality.pdf}}] 毕业论文的「原创性声明」，是由原 Word 模板导出的一页 PDF 文档，插入到毕业论文中的（如果上一行中的 tex 版本格式无法满足你的需要，可以用 Word 将这一单页导出为 PDF 插入。详见源 LaTeX 代码）
-    \item[\color{RoyalBlue}\textbf{\texttt{2\_toc.tex}}] 毕业论文的“目录”，一般情况无需更改（由 {\LaTeX} 自动生成）
-    \item[\color{RoyalBlue}\textbf{\texttt{3\_conclusion.tex}}] 毕业论文的“结论”，按照一般章节文件对待
-    \item[\color{RoyalBlue}\textbf{\texttt{4\_reference.tex}}] 毕业论文的“参考文献”，一般情况无需更改（由 {\LaTeX} 根据你文档中的 \verb|\cite{}| 自动生成）
-    \item[\color{RoyalBlue}\textbf{\texttt{5\_appendix.tex}}] 毕业论文的“附录”，按照一般章节文件对待
-    \item[\color{RoyalBlue}\textbf{\texttt{6\_acknow...ments.tex}}] 毕业论文的“致谢”，按照一般章节文件对待
-    \item[\color{RoyalBlue}\textbf{\texttt{ref.bib}}] 参考文献 \hologo{BibTeX} 数据库
-  \end{itemize}
+        \begin{itemize}
+          \item[\color{RoyalBlue}\textbf{\texttt{0\_cover.tex}}] 毕业论文的“封面”，一般情况无需更改
+          \item[\color{RoyalBlue}\textbf{\texttt{1\_originality.tex}}] 毕业论文的“原创性声明”，一般情况无需更改（签字和日期后期手动添加）
+          \item[\color{RoyalBlue}\textbf{\texttt{1\_originality.pdf}}] 毕业论文的“原创性声明”，是由原 Word 模板导出的一页 PDF 文档，插入到毕业论文中的（如果上一行中的 tex 版本格式无法满足你的需要，可以用 Word 将这一单页导出为 PDF 插入。详见源 LaTeX 代码）
+          \item[\color{RoyalBlue}\textbf{\texttt{2\_toc.tex}}] 毕业论文的“目录”，一般情况无需更改（由 {\LaTeX} 自动生成）
+          \item[\color{RoyalBlue}\textbf{\texttt{3\_conclusion.tex}}] 毕业论文的“结论”，按照一般章节文件对待
+          \item[\color{RoyalBlue}\textbf{\texttt{4\_reference.tex}}] 毕业论文的“参考文献”，一般情况无需更改（由 {\LaTeX} 根据你文档中的 \verb|\cite{}| 自动生成）
+          \item[\color{RoyalBlue}\textbf{\texttt{5\_appendix.tex}}] 毕业论文的“附录”，按照一般章节文件对待
+          \item[\color{RoyalBlue}\textbf{\texttt{6\_acknow...ments.tex}}] 毕业论文的“致谢”，按照一般章节文件对待
+          \item[\color{RoyalBlue}\textbf{\texttt{ref.bib}}] 参考文献 \hologo{BibTeX} 数据库
+        \end{itemize}
 \end{itemize}
 
 主文件与其余文件之间的引用关系大致如下图 \ref{grad_thesis_main_submodule} 所示：
@@ -264,11 +264,11 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
 \begin{itemize}
   \item 在文档开题引入宏包：
-  \begin{minted}[frame=single]{tex}
+        \begin{minted}[frame=single]{tex}
     \usepackage{minted}
   \end{minted}
   \item 渲染代码块：
-  \begin{minted}[frame=single]{tex}
+        \begin{minted}[frame=single]{tex}
     \begin{minted}{python}
       import numpy as np
 
@@ -311,11 +311,11 @@ def incmatrix(genl1,genl2):
 
 \begin{itemize}
   \item 在文档开头引入宏包：
-  \begin{minted}[frame=single]{tex}
+        \begin{minted}[frame=single]{tex}
     \usepackage[ruled,vlined]{algorithm2e}
   \end{minted}
   \item 渲染伪代码模块：
-  \begin{minted}[frame=single]{tex}
+        \begin{minted}[frame=single]{tex}
     \begin{algorithm}[H]
     \SetAlgoLined
     \KwResult{Write here the result }
@@ -341,12 +341,12 @@ def incmatrix(genl1,genl2):
   \KwResult{Write here the result }
   initialization\;
   \While{While condition}{
-  instructions\;
-  \eIf{condition}{
-    instructions1\;
-    instructions2\;
+    instructions\;
+    \eIf{condition}{
+      instructions1\;
+      instructions2\;
     }{
-    instructions3\;
+      instructions3\;
     }
   }
   \caption{How to write algorithms}
