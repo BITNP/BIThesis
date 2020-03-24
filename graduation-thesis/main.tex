@@ -42,6 +42,7 @@
 \usepackage{array}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{pdfpages}
 
 % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
 % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
@@ -185,7 +186,10 @@
 % 前置页面定义
 \frontmatter
 % 原创性声明：如无特殊需要，本部分无需改动
-\input{misc/1_originality.tex}
+% 更改为pdf页面插入
+\includepdf{misc/1_originality.pdf} 
+\newpage
+%\input{misc/1_originality.tex}
 % 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
 \input{chapters/0_abstract.tex}
 % 目录：如无特殊需要，本部分无需改动
