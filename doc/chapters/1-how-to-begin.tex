@@ -1,11 +1,20 @@
 \section{如何开始}
-{\BIThesis} 为各位在北京理工大学就读的本科同学提供了基于北京理工大学计算机学院给出的“北京理工大学计算机学院本科生毕业论文：开题报告”与北京理工大学教务部提供的“北京理工大学本科生毕业设计：论文模板（目前是 2019 届版本）”的 \LaTeX 样版。借助于 {\BIThesis} 的 \LaTeX 模板，你可以在保证论文格式整齐、完美、符合要求的前提下，专注于学术研究、项目实现，从而顺利完成你的学术项目。
+ {\BIThesis} 为各位在北京理工大学就读的本科同学提供了基于北京理工大学计算机学院给出的“北京理工大学计算机学院本科生毕业论文：开题报告”与北京理工大学教务部提供的“北京理工大学本科生毕业设计：论文模板（目前是 2019 届版本）”的 \LaTeX 样版。借助于 {\BIThesis} 的 \LaTeX 模板，你可以在保证论文格式整齐、完美、符合要求的前提下，专注于学术研究、项目实现，从而顺利完成你的学术项目。
 
 本“使用手册”希望为大家全面地介绍 {\LaTeX} 环境的搭建方法、{\BIThesis} 的使用方法，从而快速掌握使用 {\LaTeX} 排版引擎进行基本的论文撰写的方法，完成符合学校要求的学位论文。{\BIThesis} 目前使用 GitHub 进行维护，官方项目地址位于：
 
 \begin{center}
-\color{ForestGreen}\href{https://github.com/spencerwooo/BIThesis}{\texttt{https://github.com/spencerwooo/BIThesis}}
+  \color{ForestGreen}\href{https://github.com/spencerwooo/BIThesis}{\texttt{https://github.com/spencerwooo/BIThesis}}
 \end{center}
+
+下面，你可以按照如下图 \ref{flowchart} 所示的顺序开始阅读本文档，并使用 {\BIThesis} 进行你的论文撰写工作：
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/flowchart.png}
+  \caption{使用本文档与 {\BIThesis} 的顺序}
+  \label{flowchart}
+\end{figure}
 
 \subsection{在线说明文档：Wiki}
 和本手册的目标类似，{\BIThesis} 项目同样维护了一个在线版本的说明文档，位于：{\href{https://github.com/spencerwooo/BIThesis/wiki}{BIThesis - wiki}}，二者的目的、内容、功能类似，且会随着模板的开发与维护同步更新。
@@ -13,13 +22,13 @@
 {\BIThesis} 在线说明文档目前拥有与本手册一致的如下模块：
 
 \begin{enumerate}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki}{主页：Home}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/First-things-first}{如何开始：First things first }
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/Using-one-of-the-templates}{使用其中一个模板：Using one of the templates}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report}{本科生开题报告：Proposal report}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis}{本科生毕业论文：Graduation thesis}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/Lab-Report}{本科生实验报告：Lab report}
-\item \href{https://github.com/spencerwooo/BIThesis/wiki/Converting-to-Word}{将 LaTeX 文档转换为 Word：Converting to Word}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki}{主页：Home}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/First-things-first}{如何开始：First things first }
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Using-one-of-the-templates}{使用其中一个模板：Using one of the templates}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report}{本科生开题报告：Proposal report}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis}{本科生毕业论文：Graduation thesis}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Lab-Report}{本科生实验报告：Lab report}
+  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Converting-to-Word}{将 LaTeX 文档转换为 Word：Converting to Word}
 \end{enumerate}
 
 接下来，我们正式开始介绍 {\LaTeX} 与 {\BIThesis} 的使用方法。
@@ -75,29 +84,29 @@
 
 \begin{itemize}
   \item 验证 \texttt{xelatex} {\LaTeX} 编译器的安装情况：
-  \begin{minted}[
+        \begin{minted}[
     frame=single
   ]{bash}
   xelatex --version
   \end{minted}
-  \begin{figure}[H]
-    \flushright
-    \includegraphics[width=0.93\textwidth]{images/xelatex.png}
-    \caption{\hologo{XeLaTeX} 安装成功输出}
-    \label{xelatex}
-  \end{figure}
+        \begin{figure}[H]
+          \flushright
+          \includegraphics[width=0.93\textwidth]{images/xelatex.png}
+          \caption{\hologo{XeLaTeX} 安装成功输出}
+          \label{xelatex}
+        \end{figure}
   \item 验证 \texttt{biber} 参考文献编译器的安装情况：
-  \begin{minted}[
+        \begin{minted}[
     frame=single
   ]{bash}
   biber --version
   \end{minted}
-  \begin{figure}[H]
-    \flushright
-    \includegraphics[width=0.93\textwidth]{images/biber.png}
-    \caption{\hologo{biber} 安装成功输出}
-    \label{biber}
-  \end{figure}
+        \begin{figure}[H]
+          \flushright
+          \includegraphics[width=0.93\textwidth]{images/biber.png}
+          \caption{\hologo{biber} 安装成功输出}
+          \label{biber}
+        \end{figure}
 \end{itemize}
 
 出现如图 \ref{xelatex} 与 \ref{biber} 类似的输出，说明我们编译器安装应该是没有问题的。
@@ -117,21 +126,21 @@ VS Code 是微软开发的基于 Electron 跨平台技术的新晋代码编辑�
 \begin{itemize}
   \item 安装 VS Code 编辑器：\href{https://code.visualstudio.com/}{Visual Studio Code - Code editing. Redefined.}
   \item 安装插件：
-  \begin{itemize}
-    \item 安装 {\LaTeX} Workshop 插件：\href{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}{Visual Studio Code LaTeX Workshop Extension}
-    \begin{itemize}
-      \item 提供基本的浏览、编辑、自动补全、自动格式化 {\LaTeX} 文档的功能
-      \item 提供在 VS Code 内直接预览 {\LaTeX} 文档编译得到的 PDF 的功能
-      \item 提供编译工具链、自定义编译方法等功能
-      提供 SyncTeX 双向定位功能（{\LaTeX} 源码 $\longleftrightarrow$ PDF）
+        \begin{itemize}
+          \item 安装 {\LaTeX} Workshop 插件：\href{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}{Visual Studio Code LaTeX Workshop Extension}
+                \begin{itemize}
+                  \item 提供基本的浏览、编辑、自动补全、自动格式化 {\LaTeX} 文档的功能
+                  \item 提供在 VS Code 内直接预览 {\LaTeX} 文档编译得到的 PDF 的功能
+                  \item 提供编译工具链、自定义编译方法等功能
+                        提供 SyncTeX 双向定位功能（{\LaTeX} 源码 $\longleftrightarrow$ PDF）
 
-    \end{itemize}
-    \item （可选）安装 {\LaTeX} Utilities 插件：\href{https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities}{Visual Studio Code LaTeX Utilities}
-    \begin{itemize}
-      \item 提供实时 {\LaTeX} 文档字数统计的功能
-      \item 提供与参考文献管理工具 Zotero 连接的功能
-    \end{itemize}
-  \end{itemize}
+                \end{itemize}
+          \item （可选）安装 {\LaTeX} Utilities 插件：\href{https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities}{Visual Studio Code LaTeX Utilities}
+                \begin{itemize}
+                  \item 提供实时 {\LaTeX} 文档字数统计的功能
+                  \item 提供与参考文献管理工具 Zotero 连接的功能
+                \end{itemize}
+        \end{itemize}
 \end{itemize}
 
 使用 VS Code 作为 {\LaTeX} 编辑器时，我们需要特别配置编译工具 \texttt{tools} 与编译工具链 \texttt{recipes}。对于包含有目录、参考文献、图片与表格引用的 {\LaTeX} 文档，我们往往需要使用多个编译工具串联编译。具体的 VS Code 编译方法，请继续阅读下一章《第 \ref{sec:downloading-templates} 章：下载与使用模板》。
