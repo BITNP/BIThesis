@@ -1,18 +1,19 @@
 <div align="center">
   <img src="assets/bithesis_icon.svg" alt="BIThesis Icon">
 
-  📖 *Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more).*
+📖 _Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more)._
 
-  ![BIThesis](./assets/bithesis_badge_solid.svg)
-  [![Chinese version](assets/chinese.svg)](./README-zh.md)
-  ![XeLaTeX](https://badgen.net/badge/compiler/XeLaTeX?color=blue)
-  [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
-  ![Experimental](https://badgen.net/badge/experimental/🚧?color=fce100)
+![BIThesis](./assets/bithesis_badge_solid.svg)
+[![Chinese version](assets/chinese.svg)](./README-zh.md)
+![XeLaTeX](https://badgen.net/badge/compiler/XeLaTeX?color=blue)
+[![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
+![Experimental](https://badgen.net/badge/experimental/🚧?color=fce100)
+
 </div>
 
 <h2>Welcome</h2>
 
-BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the *[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)* of *[Beijing Institute of Technology](http://http://www.bit.edu.cn/)*.
+BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the _[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)_ of _[Beijing Institute of Technology](http://http://www.bit.edu.cn/)_.
 
 <h2>Table of Contents</h2>
 
@@ -29,7 +30,7 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 | Template                                                            | Preview                                                                                         | Features                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Maintainer                                     |
 | :------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
 | **[Proposal Report](./proposal-report)**<br>（开题报告）            | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" />    | <ul><li>Graduation Thesis Proposal Report</li><li>Part I of the Graduation Thesis</li><li>Includes cover page and (non-editable) review table</li><li>Includes bibliography and corresponding styles</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)</li></ul>                                                                                                                                                                       | [@SpencerWoo](https://github.com/spencerwooo)  |
-| **[Graduation Thesis](./graduation-thesis)**<br>（毕业设计 · 论文） | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>The one and only! **Graduation Thesis**</li><li>With full cover page, abstract, reference and appendix support</li><li>Full equation, tabular and figure caption support</li><li>Bibliography formatted following the specifications of GBT7714-2015</li><li>Compatible with the specifications of BIT School of CS Class 2019. (We'll be releasing a newer version ASAP.)</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@SpencerWoo](https://github.com/spencerwooo)  |
+| **[Graduation Thesis](./graduation-thesis)**<br>（毕业设计 · 论文） | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>The one and only! **Graduation Thesis**</li><li>With full cover page, abstract, reference and appendix support</li><li>Full equation, tabular and figure caption support</li><li>Bibliography formatted following the specifications of GBT7714-2015</li><li>Compatible with the specifications of BIT School of CS Class 2020. (We'll be releasing a newer version ASAP.)</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@SpencerWoo](https://github.com/spencerwooo)  |
 | **[Lab Report](./lab-report)**<br>（实验报告）                      | <img src="https://i.loli.net/2020/03/08/txzGcKv9YSel3IX.png" width="300px" alt="lab_report" />  | <ul><li>Basic Lab Report Template</li><li>Includes cover page, BIT logo and assets folder</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [@Silverster](https://github.com/Silverster98) |
 
 ## How do I use BIThesis?
@@ -59,9 +60,9 @@ Specifically, detailed guides on how to use and compile a single one of the temp
 | :------------: | :-------------------------------------------------------------------------------------------: |
 | GitHub Release | ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master) |
 
-## Disclaimer
+<!-- ## Disclaimer
 
-This project is not validated by the *Department of Undergraduate Academic Affairs* of *Beijing Institute of Technology*, nor is it affiliated with *Beijing Institute of Technology*. Use this template at your own risk. 笔芯 (´▽`ʃ♡ƪ)
+This project is not validated by the _Department of Undergraduate Academic Affairs_ of _Beijing Institute of Technology_, nor is it affiliated with _Beijing Institute of Technology_. Use this template at your own risk. 笔芯 (´▽`ʃ♡ƪ) -->
 
 ---
 
