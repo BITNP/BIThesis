@@ -15,7 +15,7 @@
 
 BIThesis 是针对北理工毕业设计报告而制作的一个非官方的 LaTeX 模板，同时包括其他相关报告模板。本项目根据北京理工大学教务部发布的毕业论文格式要求手工打造而成。
 
-**本项目获得了[北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/)的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://github.com/spencerwooo/BIThesis/wiki/Acknowledgements#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).**
+> 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://github.com/spencerwooo/BIThesis/wiki/Acknowledgements#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
 <h2>内容</h2>
 
