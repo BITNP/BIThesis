@@ -15,6 +15,8 @@
 
 BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the _[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)_ of _[Beijing Institute of Technology](http://http://www.bit.edu.cn/)_.
 
+**This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](http://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](http://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://github.com/spencerwooo/BIThesis/wiki/Acknowledgements#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).**
+
 <h2>Table of Contents</h2>
 
 - [What's inside?](#whats-inside)
