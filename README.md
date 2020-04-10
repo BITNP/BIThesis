@@ -23,7 +23,6 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 - [How do I use BIThesis?](#how-do-i-use-bithesis)
 - [Similar Projects](#similar-projects)
 - [Release status](#release-status)
-- [Disclaimer](#disclaimer)
 
 ## What's inside?
 
@@ -58,9 +57,10 @@ Specifically, detailed guides on how to use and compile a single one of the temp
 
 ## Release status
 
-|       CI       |                                         Build status                                          |
-| :------------: | :-------------------------------------------------------------------------------------------: |
-| GitHub Release | ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master) |
+|       CI       |                                                                         Build status                                                                          |
+| :------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| GitHub Release |                                 ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                 |
+| Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/49eafe70-8cf0-41f8-9f3d-f1f0dab45412/deploy-status)](https://app.netlify.com/sites/bithesis/deploys) |
 
 <!-- ## Disclaimer
 
