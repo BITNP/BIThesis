@@ -3,11 +3,10 @@
 
 📖 _Unofficial LaTeX templates for your bachelor graduation thesis (and maybe more)._
 
-![BIThesis](./assets/bithesis_badge_solid.svg)
-[![Chinese version](assets/chinese.svg)](./README-zh.md)
-![XeLaTeX](https://badgen.net/badge/compiler/XeLaTeX?color=blue)
+[![BIThesis](./assets/bithesis_badge_solid.svg)](https://bithesis.spencerwoo.com/)
+[![Chinese version](./assets/chinese.svg)](./README-zh.md)
+[![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080)](./LICENSE)
-![Experimental](https://badgen.net/badge/experimental/🚧?color=fce100)
 
 </div>
 
@@ -15,7 +14,7 @@
 
 BIThesis is an unofficial LaTeX template set for your **bachelor graduation thesis** and corresponding reports here at BIT. Hand-crafted following the specifications made by the _[Dept. of Undergraduate Academic Affairs](http://jwc.bit.edu.cn/)_ of _[Beijing Institute of Technology](http://http://www.bit.edu.cn/)_.
 
-> This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](http://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](http://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://github.com/spencerwooo/BIThesis/wiki/Acknowledgements#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
+> This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](http://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](http://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.spencerwoo.com/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
 
 <h2>Table of Contents</h2>
 
@@ -38,13 +37,13 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 **For a comprehensive guide on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to BIThesis' Wiki. 👇**
 
-[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&style=for-the-badge)](https://github.com/spencerwooo/BIThesis/wiki)
+[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&style=for-the-badge)](https://bithesis.spencerwoo.com/)
 
 Specifically, detailed guides on how to use and compile a single one of the templates are available at:
 
-- [BIThesis Wiki: Proposal report](https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report)
-- [BIThesis Wiki: Graduation thesis](https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis)
-- [BIThesis Wiki: Lab report](https://github.com/spencerwooo/BIThesis/wiki/Lab-Report)
+- [BIThesis Wiki: Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)
+- [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
+- [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
 
 **Also, you can download the PDF version of the BIThesis handbook here: [BIThesis - doc.](doc/doc.pdf)**
 
@@ -57,10 +56,10 @@ Specifically, detailed guides on how to use and compile a single one of the temp
 
 ## Release status
 
-|       CI       |                                                                         Build status                                                                          |
-| :------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| GitHub Release |                                 ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                 |
-| Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/49eafe70-8cf0-41f8-9f3d-f1f0dab45412/deploy-status)](https://app.netlify.com/sites/bithesis/deploys) |
+|       CI       |                                                                                          Build status                                                                                           |
+| :------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| GitHub Release |                                                  ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                  |
+| Netlify Deploy | [![Netlify Status](https://img.shields.io/netlify/49eafe70-8cf0-41f8-9f3d-f1f0dab45412?color=01ad9f&labelColor=31383e&label=Wiki&logo=netlify)](https://app.netlify.com/sites/bithesis/deploys) |
 
 <!-- ## Disclaimer
 

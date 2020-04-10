@@ -17,18 +17,19 @@
 \end{figure}
 
 \subsection{在线说明文档：Wiki}
-和本手册的目标类似，{\BIThesis} 项目同样维护了一个在线版本的说明文档，位于：{\href{https://github.com/spencerwooo/BIThesis/wiki}{BIThesis - wiki}}，二者的目的、内容、功能类似，且会随着模板的开发与维护同步更新。
+和本手册的目标类似，{\BIThesis} 项目同样维护了一个在线版本的说明文档，位于：{\href{https://bithesis.spencerwoo.com/}{BIThesis - wiki}}，二者的目的、内容、功能类似，且会随着模板的开发与维护同步更新。
 
 {\BIThesis} 在线说明文档目前拥有与本手册一致的如下模块：
 
 \begin{enumerate}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki}{主页：Home}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/First-things-first}{如何开始：First things first }
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Using-one-of-the-templates}{使用其中一个模板：Using one of the templates}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Proposal-Report}{本科生开题报告：Proposal report}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Final-Graduation-Thesis}{本科生毕业论文：Graduation thesis}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Lab-Report}{本科生实验报告：Lab report}
-  \item \href{https://github.com/spencerwooo/BIThesis/wiki/Converting-to-Word}{将 LaTeX 文档转换为 Word：Converting to Word}
+  \item \href{https://bithesis.spencerwoo.com/Guide/}{主页：Home}
+  \item \href{https://bithesis.spencerwoo.com/Guide/1-Intro/First-things-first}{如何开始：First things first }
+  \item \href{https://bithesis.spencerwoo.com/Guide/2-Usage/Downloading-and-using-templates}{使用其中一个模板：Using one of the templates}
+  \item \href{https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report}{本科生开题报告：Proposal report}
+  \item \href{https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis}{本科生毕业论文：Graduation thesis}
+  \item \href{https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report}{本科生实验报告：Lab report}
+  \item \href{https://bithesis.spencerwoo.com/Guide/4-Others/Converting-to-Word}{将 LaTeX 文档转换为 Word：Converting to Word}
+  \item \href{https://bithesis.spencerwoo.com/Guide/4-Others/Troubleshooting}{疑难杂症：Troubleshooting}
 \end{enumerate}
 
 接下来，我们正式开始介绍 {\LaTeX} 与 {\BIThesis} 的使用方法。
@@ -83,10 +84,13 @@
 为了保证我们 \LaTeX 发行版的安装没有问题，我们需要验证一下 \LaTeX 编译工具的安装情况。我们打开终端（Windows 打开 PowerShell、macOS 打开 Terminal、Linux 打开你所使用的终端模拟器），在其中输入下面的命令：
 
 \begin{itemize}
-  \item 验证 \texttt{xelatex} {\LaTeX} 编译器的安装情况：
+  \item 验证 \texttt{latexmk} 和 \texttt{xelatex} {\LaTeX} 编译器的安装情况：
         \begin{minted}[
     frame=single
   ]{bash}
+  # 验证 latexmk 的安装
+  latexmk --version
+  # 验证 xelatex 的安装
   xelatex --version
   \end{minted}
         \begin{figure}[H]

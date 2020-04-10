@@ -17,7 +17,7 @@ footer: 2020 ©Spencer Woo. Released under the LaTeX Project Public License.
 
 ## BIThesis 是什么？
 
-BIThesis 是针对北京理工大学本科同学毕业设计论文、报告等制作的一个非官方的 LaTeX 模板，同时也包括其他相关的文献综述、实验报告等的 LaTeX 模板。
+BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制作的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
 ## Q&A
 

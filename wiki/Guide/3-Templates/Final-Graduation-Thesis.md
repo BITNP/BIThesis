@@ -118,7 +118,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体「华文�
 
 其中，**你不需要手动编辑「参考文献」这一文件**，只需要撰写「结论」、「附录」和「致谢」即可。这三个模块的撰写逻辑与前面正文章节的撰写逻辑是一致的。
 
-有关具体的 LaTeX 语法，请参考前文中 [使用其中一个模板：Using one of the templates - 熟悉简单的 LaTeX 语法](https://github.com/spencerwooo/BIThesis/wiki/Using-one-of-the-templates#%E7%86%9F%E6%82%89%E7%AE%80%E5%8D%95%E7%9A%84-latex-%E8%AF%AD%E6%B3%95) 给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。
+有关具体的 LaTeX 语法，请参考前文中 [使用其中一个模板：Using one of the templates - 熟悉简单的 LaTeX 语法](/Guide/2-Usage/Downloading-and-using-templates.html#%E7%86%9F%E6%82%89%E7%AE%80%E5%8D%95%E7%9A%84-latex-%E8%AF%AD%E6%B3%95)) 给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。
 
 ## 参考文献管理
 
@@ -255,7 +255,7 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
 有关 `minted` 的更多使用方法，请阅读：[Code Highlighting with minted](https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted)。
 
-如果你在使用 `minted` 的过程中遇到了任何问题，请阅读：[疑难杂症 Troubleshooting](https://github.com/spencerwooo/BIThesis/wiki/Troubleshooting)。
+如果你在使用 `minted` 的过程中遇到了任何问题，请阅读：[疑难杂症 Troubleshooting](/Guide/4-Others/Troubleshooting)。
 
 ### 算法模块
 
