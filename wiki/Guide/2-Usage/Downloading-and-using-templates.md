@@ -196,6 +196,6 @@ TeXstudio 的编译工具大部分已经为我们配置完毕，我们只需要�
 
 接下来，请继续阅读各个模板的详细模块介绍与用模板撰写论文的具体实施方法。
 
-- [本科生毕业设计 · 开题报告：Proposal report](/Guide/3-Templates/Proposal-Report)
-- [本科生毕业设计 · 毕业论文：Graduation thesis](/Guide/3-Templates/Final-Graduation-Thesis)
-- [本科生实验报告：Lab report](/Guide/3-Templates/Lab-Report)
+- [本科生毕业设计 - 开题报告：Proposal report](/Guide/3-Templates/Proposal-Report.md)
+- [本科生毕业设计 - 毕业论文：Graduation thesis](/Guide/3-Templates/Final-Graduation-Thesis.md)
+- [本科生实验报告：Lab report](/Guide/3-Templates/Lab-Report.md)

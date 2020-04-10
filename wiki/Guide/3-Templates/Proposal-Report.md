@@ -55,7 +55,7 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），**因此
 
 ## 其他
 
-有关具体的 LaTeX 语法，请参考前文中 [使用其中一个模板：Using one of the templates - 熟悉简单的 LaTeX 语法](/Guide/2-Usage/Downloading-and-using-templates.html#%E7%86%9F%E6%82%89%E7%AE%80%E5%8D%95%E7%9A%84-latex-%E8%AF%AD%E6%B3%95) 给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。
+有关具体的 LaTeX 语法，请参考前文中 [使用其中一个模板：Using one of the templates - 熟悉简单的 LaTeX 语法](/Guide/2-Usage/Downloading-and-using-templates.md#%E7%86%9F%E6%82%89%E7%AE%80%E5%8D%95%E7%9A%84-latex-%E8%AF%AD%E6%B3%95) 给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。
 
 如果你希望加入图片，可以将图片直接放在根目录（比如此处的 `merge-sort-recursion-tree.png`），或者统一将图片安置在一个文件夹下，在正文里按照**相对路径**进行引用。模板中有一处插入图片的参考样例，位于 `main.tex` 的 [第 138 行](https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L138)，可以进行参考。
 
