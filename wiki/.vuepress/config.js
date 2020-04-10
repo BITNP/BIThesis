@@ -34,7 +34,7 @@ module.exports = {
     logo: "/favicon-32x32.png",
     nav: [
       { text: "文档指南", link: "/Guide/" },
-      { text: "系列视频指导", link: "/Video/" },
+      // { text: "系列视频指导", link: "/Video/" },
       { text: "模板下载", link: "https://github.com/spencerwooo/BIThesis/releases/latest" },
       { text: "GitHub", link: "https://github.com/spencerwooo/BIThesis" }
     ],
@@ -60,7 +60,12 @@ module.exports = {
         },
         ["5-Acknowledgements/Acknowledgements", "致谢"]
       ],
-      "/video/": [""],
+      "/Video/": [
+        ["", "系列视频"],
+        ["Episode-1", "第一集"],
+        ["Episode-2", "第二集"],
+        ["Episode-3", "第三集"]
+      ],
       "/": [""]
     },
     sidebarDepth: 3,
@@ -75,6 +80,7 @@ module.exports = {
         before: '<pre class="vue-container"><code>',
         after: "</code></pre>"
       }
-    ]
+    ],
+    ["dplayer"]
   ]
 };
