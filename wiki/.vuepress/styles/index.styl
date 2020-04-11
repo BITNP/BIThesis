@@ -1,34 +1,50 @@
 pre.vue-container
-  border-left-width: .5rem;
-  border-left-style: solid;
-  border-color: #009944;
-  border-radius: 0px;
+  border-left-width 0.5rem
+  border-left-style solid
+  border-color #009944
+  border-radius 0px
+
   & > code
-    font-size: 14px !important;
+    font-size 14px !important
+
     & > p
-      margin: -5px 0 -20px 0;
+      margin -5px 0 -20px 0
+
     code
-      background-color: #009944 !important;
-      padding: 3px 5px;
-      border-radius: 3px;
+      background-color #009944 !important
+      padding 3px 5px
+      border-radius 3px
       color #000
+
     em
       color #808080
       font-weight light
 
 .custom-block.tip
-  background-color: #f8fafa
-  border-color: #009944
+  background-color #f8fafa
+  border-color #009944
 
 .home .hero img
-    width 320px
-    max-width 60% !important
-    margin 3rem auto 2rem auto !important
-  .description
-    font-size 1.3rem !important
+  width 320px
+  max-width 60% !important
+  margin 3rem auto 2rem auto !important
+
+.description
+  font-size 1.3rem !important
 
 table img
-    max-width none !important
+  max-width none !important
 
 .dplayer
   margin 1rem 0 1rem 0
+
+#embed-video
+  position relative
+  padding-top 56.25%
+
+  iframe
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
