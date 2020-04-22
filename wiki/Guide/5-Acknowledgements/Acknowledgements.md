@@ -2,7 +2,7 @@
 
 **BIThesis 项目的实现离不开以下单位、领导、老师和同学们的大力支持与卓越贡献。**
 
-## 维护者 Maintainers
+## 主创、模板制作与项目开源维护 Maintainers
 
 <table>
   <tr>
@@ -12,6 +12,23 @@
   <tr>
     <td align="center"><a href="https://github.com/spencerwooo">Spencer Woo</a><br>首席维护者 / Lead Maintainer<br>💻🚧📆💬📖🎨</td>
     <td align="center"><a href="https://github.com/Silverster98">Silvester</a><br>开发者 / Developer<br>💻🚧📖🌍</td>
+  </tr>
+</table>
+
+## 视频教程创作团队 Tutorial editing and voice
+
+> 视频教程由「京工拾光工作室」制作、配音与剪辑，感谢。
+
+<table>
+  <tr>
+    <td align="center"><img src="https://i.loli.net/2020/04/22/1REvcJuP4iLYfQp.jpg" width="100px" alt=""></td>
+    <td align="center"><img src="https://i.loli.net/2020/04/22/d93DQvqIABJcPOm.jpg" width="100px" alt=""></td>
+    <td align="center"><img src="https://i.loli.net/2020/04/22/81cFkyVpwQZq4O5.jpg" width="100px" alt=""></td>
+  </tr>
+  <tr>
+    <td align="center">🎞 </td>
+    <td align="center">🎙 </td>
+    <td align="center">🎙 </td>
   </tr>
 </table>
 
@@ -40,13 +57,15 @@
 
 <h4>附录：Emoji 索引</h4>
 
-| Emoji |        代表         |                注释                |
-| :---: | :-----------------: | :--------------------------------: |
-|  💻   |        Code         |          撰写项目代码内容          |
-|  🚧   |     Maintenance     |           日常项目维护者           |
-|  📆   | Project Management  |         项目日程管理与规划         |
-|  💬   | Answering Questions |     对 issue 中的问题进行解答      |
-|  📖   |    Documentation    |      撰写项目文档、手册、Wiki      |
-|  🎨   |       Design        |     项目 logo、图标等素材设计      |
-|  🌍   |     Translation     | 国际化，文档、注释与参考资料的翻译 |
-|  📓   |    User Testing     |              参与测试              |
+| Emoji |          代表          |                注释                |
+| :---: | :--------------------: | :--------------------------------: |
+|   💻   |          Code          |          撰写项目代码内容          |
+|   🚧   |      Maintenance       |           日常项目维护者           |
+|   📆   |   Project Management   |         项目日程管理与规划         |
+|   💬   |  Answering Questions   |     对 issue 中的问题进行解答      |
+|   📖   |     Documentation      |      撰写项目文档、手册、Wiki      |
+|   🎨   |         Design         |     项目 logo、图标等素材设计      |
+|   🌍   |      Translation       | 国际化，文档、注释与参考资料的翻译 |
+|   📓   |      User Testing      |              参与测试              |
+|   🎞   | Video Tutorial Editing |         视频教程文案、剪辑         |
+|   🎙   |      Voice/Sound       |         视频教程配音、调音         |
