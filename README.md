@@ -20,6 +20,10 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 
 - [What's inside?](#whats-inside)
 - [How do I use BIThesis?](#how-do-i-use-bithesis)
+  - [Detailed online Wiki](#detailed-online-wiki)
+  - [PDF handbook](#pdf-handbook)
+  - [Online Video Tutorials](#online-video-tutorials)
+- [Contributors](#contributors)
 - [Similar Projects](#similar-projects)
 - [Release status](#release-status)
 
@@ -35,6 +39,8 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 ## How do I use BIThesis?
 
+### Detailed online Wiki
+
 **For a comprehensive guide on how to install LaTeX, compile BIThesis, and use a single one of BIThesis' template, please refer to BIThesis' Wiki. 👇**
 
 [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&style=for-the-badge)](https://bithesis.spencerwoo.com/)
@@ -45,7 +51,22 @@ Specifically, detailed guides on how to use a single one of the templates are av
 - [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
 - [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
 
-**Also, you can download the PDF version of the BIThesis handbook here: [`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest).**
+### PDF handbook
+
+We also provide a PDF handbook on how to use BIThesis. You can download the PDF version of the BIThesis handbook here: [`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest).
+
+### Online Video Tutorials
+
+You can watch online video tutorials here:
+
+- Bilibili: [BIThesis —— 教你优雅地撰写论文 | LaTeX 毕设模板系列教程](https://www.bilibili.com/video/BV1GT4y1V78d/)
+- BIThesis documentation videos (including some code which are referenced in the videos): [BIThesis - Videos](https://bithesis.spencerwoo.com/Video/)
+
+## Contributors
+
+> This project exists thanks to all the contributors. For more information, please see: [Acknowledgements](https://bithesis.spencerwoo.com/Guide/5-Acknowledgements/Acknowledgements.html).
+
+[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/0)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/0)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/1)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/1)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/2)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/2)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/3)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/3)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/4)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/4)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/5)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/5)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/6)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/6)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/7)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/7)
 
 ## Similar Projects
 

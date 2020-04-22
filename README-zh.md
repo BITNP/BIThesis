@@ -20,6 +20,10 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 - [项目内容](#%e9%a1%b9%e7%9b%ae%e5%86%85%e5%ae%b9)
 - [如何使用 BIThesis](#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-bithesis)
+  - [详细的在线参考文档](#%e8%af%a6%e7%bb%86%e7%9a%84%e5%9c%a8%e7%ba%bf%e5%8f%82%e8%80%83%e6%96%87%e6%a1%a3)
+  - [PDF 使用手册](#pdf-%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c)
+  - [在线视频教程](#%e5%9c%a8%e7%ba%bf%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b)
+- [贡献者](#%e8%b4%a1%e7%8c%ae%e8%80%85)
 - [相关项目](#%e7%9b%b8%e5%85%b3%e9%a1%b9%e7%9b%ae)
 - [发布状态](#%e5%8f%91%e5%b8%83%e7%8a%b6%e6%80%81)
 
@@ -35,17 +39,34 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 ## 如何使用 BIThesis
 
+### 详细的在线参考文档
+
 **有关如何安装 Latex、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
 [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&style=for-the-badge)](https://bithesis.spencerwoo.com/)
 
-具体而言，有关如何使用和编译单个模板的详细指南，请访问：
+具体的，有关如何使用和编译单个模板的详细指南，请访问：
 
 - [BIThesis Wiki: 开题报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)
 - [BIThesis Wiki: 毕业设计论文](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
 - [BIThesis Wiki: 实验报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
 
-**另外，您可以在这里下载 BIThesis 手册的 PDF 版本：[`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest)**
+### PDF 使用手册
+
+另外，我们也提供一个撰写详细的 PDF 使用手册。你可以在这里下载 BIThesis 手册的 PDF 版本：[`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest)
+
+### 在线视频教程
+
+你也可以在这里观看在线的视频教程：
+
+- 哔哩哔哩弹幕网：[BIThesis —— 教你优雅地撰写论文 | LaTeX 毕设模板系列教程](https://www.bilibili.com/video/BV1GT4y1V78d/)
+- BIThesis 文档视频部分（包含有一些视频中提到的代码）：[BIThesis - Videos](https://bithesis.spencerwoo.com/Video/)
+
+## 贡献者
+
+> 本项目的存在离不开以下所有贡献者的辛勤贡献。更多信息请访问：[BIThesis - 致谢](https://bithesis.spencerwoo.com/Guide/5-Acknowledgements/Acknowledgements.html)。
+
+[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/0)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/0)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/1)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/1)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/2)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/2)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/3)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/3)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/4)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/4)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/5)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/5)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/6)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/6)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/7)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/7)
 
 ## 相关项目
 
@@ -63,7 +84,7 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 <!-- ## 免责声明
 
-本项目尚未经由 _北京理工大学教务部_ 确认（但即将会被官方授权）。使用此模板的风险由您自己承担。笔芯 (´▽`ʃ♡ƪ) -->
+本项目尚未经由 _北京理工大学教务部_ 确认（但即将会被官方授权）。使用此模板的风险由你自己承担。笔芯 (´▽`ʃ♡ƪ) -->
 
 ---
 
