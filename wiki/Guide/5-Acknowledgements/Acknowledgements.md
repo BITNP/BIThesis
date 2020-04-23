@@ -26,9 +26,9 @@
     <td align="center"><img src="https://i.loli.net/2020/04/22/81cFkyVpwQZq4O5.jpg" width="100px" alt=""></td>
   </tr>
   <tr>
-    <td align="center">🎞 </td>
-    <td align="center">🎙 </td>
-    <td align="center">🎙 </td>
+    <td align="center"><a href="https://github.com/ZIJIN-Evan">🎞 子衿</a></td>
+    <td align="center">🎙 甲²级的胖头鱼</td>
+    <td align="center">🎙 乌鸢</td>
   </tr>
 </table>
 
