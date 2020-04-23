@@ -34,7 +34,7 @@ module.exports = {
     logo: "/favicon-32x32.png",
     nav: [
       { text: "文档指南", link: "/Guide/" },
-      // { text: "系列视频指导", link: "/Video/" },
+      { text: "系列视频指导", link: "/Video/" },
       { text: "模板下载", link: "https://github.com/spencerwooo/BIThesis/releases/latest" },
       { text: "GitHub", link: "https://github.com/spencerwooo/BIThesis" }
     ],
@@ -61,10 +61,13 @@ module.exports = {
         ["5-Acknowledgements/Acknowledgements", "致谢"]
       ],
       "/Video/": [
-        ["", "系列视频"],
-        ["Episode-1", "第一集"],
-        ["Episode-2", "第二集"],
-        ["Episode-3", "第三集"]
+        ["", "预告"],
+        ["Episode-1", "第一节 综述"],
+        ["Episode-2", "第二节 LaTeX 的下载和安装"],
+        ["Episode-3", "第三节 LaTeX 基本介绍"],
+        ["Episode-4", "第四节 模板的下载与使用"],
+        ["Episode-5", "第五节 格式转化"],
+        ["Episode-6", "第六节 项目介绍与疑难解惑"]
       ],
       "/": [""]
     },
