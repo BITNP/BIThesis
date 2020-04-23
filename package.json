@@ -4,7 +4,6 @@
     "wiki:build": "vuepress build wiki"
   },
   "devDependencies": {
-    "vuepress": "^1.4.0",
-    "vuepress-plugin-dplayer": "^1.0.0"
+    "vuepress": "^1.4.0"
   }
 }
