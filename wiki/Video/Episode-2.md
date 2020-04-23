@@ -1,17 +1,36 @@
-# 第二集
+# 第二节 LaTeX的下载和安装
 
-:::tip 正在制作
-BIThesis 系列视频教程正在紧张制作中。
-:::
+* 官方的安装指南\- [Installing TeX Live over the Internet](https://www.tug.org/texlive/acquire-netinstall.html)。
+* 我校镜像网站 [/CTAN/systems/texlive/Images](https://mirrors.bit.edu.cn/CTAN/systems/texlive/Images/)，
+* 以 Ubuntu 为例子，安装 TeX Live 发行版。
 
-## B 站视频
+```
+sudo apt install texlive
+```
 
-:::tip 使用哔哩哔哩进行视频托管
-直接使用 B 站进行视频托管，只能通过嵌入 `iframe` 的方式引入视频，视频播放界面不可控，视频上方有广告。
-:::
+* macOS 系统下载使用 [MacTeX 发行版](https://www.tug.org/mactex/)
+*  [MaxTeX 的下载页面](https://www.tug.org/mactex/mactex-download.html)
 
-<div id="embed-video">
-  <iframe src="//player.bilibili.com/player.html?aid=57588999&bvid=BV1wx41197vS&cid=100555535&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" ></iframe>
-</div>
+* 使用 Homebrew 包管理的同学，通过 Homebrew Cask 直接安装 MacTeX：
 
-一些内容。
+```
+# 加载 Homebrew Cask
+brew tap caskroom/cask
+
+# 利用 Cask 安装 MacTeX
+brew cask install mactex
+```
+
+* 验证 `xelatex` LaTeX 编译器的安装情况：
+
+```powershell
+xelatex --version
+```
+
+* 验证 `biber` 参考文献编译器的安装情况：
+
+```powershell
+biber --version
+```
+
+* VS Code 编辑器：[Visual Studio Code - Code editing. Redefined.](https://code.visualstudio.com/)
