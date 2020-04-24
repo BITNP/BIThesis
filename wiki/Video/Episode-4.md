@@ -11,16 +11,11 @@
 - 本项目的 [GitHub Release 页面](https://github.com/spencerwooo/BIThesis/releases/)
 - [BIThesis 项目首页](https://github.com/spencerwooo/BIThesis)
 - 个人信息的定义位于 `main.tex` 的 [第 69 行至第 74 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74)
-
-  :::vue
-  .
-  ├── `\deptName`：你所在学院
-  ├── `\majorName`：你所就读的专业
-  ├── `\yourName`：你的姓名
-  ├── `\yourStudentID`：你的学号
-  └── `\mentorName`：你的指导教师
-  :::
-
+  - `\deptName`：你所在学院
+  - `\majorName`：你所就读的专业
+  - `\yourName`：你的姓名
+  - `\yourStudentID`：你的学号
+  - `\mentorName`：你的指导教师
 - 章节文件的相对路径引用：
 
   ```latex
@@ -60,5 +55,5 @@
 - 引用这一标签为 `szegedy2016rethinking` 的参考文献：
 
 ```latex
-正文，正文正文 \cite {szegedy2016rethinking} 正文正文……
+正文，正文正文 \cite{szegedy2016rethinking} 正文正文……
 ```
