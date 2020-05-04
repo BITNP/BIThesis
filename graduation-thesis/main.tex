@@ -177,6 +177,12 @@
 % 设置数学公式编号格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
+\newcommand{\unnumchapter}[1]{
+  \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
+  \addcontentsline{toc}{chapter}{#1}
+  \stepcounter{chapter}
+}
+
 % 文档开始
 \begin{document}
 
