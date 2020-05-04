@@ -22,7 +22,24 @@
 \chapter*{\vskip 10bp \textmd{附~~~~录} \vskip -6bp}
 \addcontentsline{toc}{chapter}{附~~~~录}
 
+% 设置附录编号格式
+\ctexset{
+  section/number = 附录\Alph{section}
+}
+% 由于附录章节为无编号章节，因此节编号需要手动重置
+\setcounter{section}{0}
+% 以下语句保证 hyperref 宏包能正确地为附录中的章节生成目录引用
+\renewcommand*{\theHsection}{appendix.\the\value{section}}
+
 附录相关内容…
+
+\section{\LaTeX 环境的安装}
+
+\LaTeX 环境的安装。
+
+\section{BIThesis使用说明}
+
+BIThesis使用说明。
 
 \textcolor{blue}{附录是毕业设计（论文）主体的补充项目，为了体现整篇文章的完整性，写入正文又可能有损于论文的条理性、逻辑性和精炼性，这些材料可以写入附录段，但对于每一篇文章并不是必须的。附录依次用大写正体英文字母 A、B、C……编序号，如附录 A、附录 B。阅后删除此段。}
 
