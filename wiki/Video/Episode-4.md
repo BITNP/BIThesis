@@ -42,7 +42,7 @@
 
 复制得到的参考文献 BibTeX 类似：
 
-```bibtex
+```
 @inproceedings {szegedy2016rethinking,
   title={Rethinking the inception architecture for computer vision},
   author={Szegedy, Christian and Vanhoucke, Vincent and Ioffe, Sergey and Shlens, Jon and Wojna, Zbigniew},

@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "wiki:dev": "vuepress dev wiki",
-    "wiki:build": "vuepress build wiki"
-  },
-  "devDependencies": {
-    "vuepress": "^1.4.0"
-  }
-}
