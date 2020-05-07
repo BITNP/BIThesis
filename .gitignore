@@ -276,3 +276,4 @@ TSWLatexianTemp*
 *.lpz
 
 node_modules
+wiki/.vuepress/dist
