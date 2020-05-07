@@ -77,10 +77,11 @@ You can watch online video tutorials here:
 
 ## Release status
 
-| CI             | Build status                                                                                                                                                                |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                               |
-| Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?labelColor=black&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
+| CI             | Build status                                                                                                                                                                             |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub Release | ![GitHub Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                     |
+| Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?label=Vercel&labelColor=black&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
+
 
 <!-- ## Disclaimer
 

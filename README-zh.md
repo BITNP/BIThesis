@@ -77,10 +77,10 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 ## 发布状态
 
-| CI             | Build status                                                                                                                                                                |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | ![Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                               |
-| Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?labelColor=black&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
+| CI             | Build status                                                                                                                                                                             |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub Release | ![GitHub Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                     |
+| Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?label=Vercel&labelColor=black&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
 
 <!-- ## 免责声明
 
