@@ -295,16 +295,17 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
 ### 定理插入
 
-你可以使用 `\newtheorem` 命令来定义不同的「序数环境」，从而实现渲染定理等模块。例如：
+你可以使用 `\newtheorem` 命令来定义不同的「定理环境」，从而实现渲染定理等模块。例如：
 
 - 在文档开头定义环境：
 
   ```tex
   \newtheorem{theorem}{\hspace{2em}定理}[chapter]
   \newtheorem{corollary}{\hspace{2em}推论}[theorem]
-  %上述每行命令第一个大括号中为环境名称，
-  %第二个大括号中为该环境渲染的模块标题，
-  %方括号中选项用来设置编号逻辑，如[chapter]表示第n章节中定理编号依次为 n.1, n.2, ...。
+  
+  % 上述每行命令第一个大括号中为环境名称，
+  % 第二个大括号中为该环境渲染的模块标题，
+  % 方括号中选项用来设置编号逻辑，如 [chapter] 表示第 n 章节中定理编号依次为 n.1, n.2, …… 。
   ```
 
 - 渲染定理及推论模块：
@@ -312,19 +313,19 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
   ```tex
   \begin{theorem}[均值不等式] 
   \label{thm-1} 
-  设$A,B$是两个实数, 则$2AB\leq A^2+B^2$。
+  设 $A,B$ 是两个实数, 则 $2AB\leq A^2+B^2$。
   \end{theorem}
   
-  由定理\ref{thm-1}可得以下推论。
+  由定理 \ref{thm-1} 可得以下推论。
   
   \begin{corollary} 
-  设$A,B$是两个实数, 则$2AB\leq (A+B)^2/2$。
+  设 $A,B$ 是两个实数, 则 $2AB\leq (A+B)^2/2$。
   \end{corollary}
   ```
 
 这样，你就会得到类似如下的渲染效果：
 
-![](https://i.loli.net/2020/05/13/z2hjNrcOD4PUK35.png)
+![1.png](https://i.loli.net/2020/05/13/nqLB2J4zPoWVObM.png)
 
 - 类似的，你还可以定义引理、定义、命题等环境：
 
@@ -334,21 +335,22 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
   \newtheorem{proposition}{\hspace{2em}命题}[chapter]
   ```
 
-有关序数环境的更多使用方法，请阅读：[Theorems and proofs](https://www.overleaf.com/learn/latex/Theorems_and_proofs)。
+有关定理环境的更多使用方法，请阅读：[Theorems and proofs](https://www.overleaf.com/learn/latex/Theorems_and_proofs)。
 
-如果你需要更改序数环境中文字字体，可以考虑使用 `ntheorem` 宏包。比如对于上述例子：
+如果你需要更改定理环境中文字字体，可以考虑使用 `ntheorem` 宏包。比如对于上述例子：
 
-- 在文档开头引入宏包，并指定字体格式：
+- 在文档开头引入宏包，并指定定理环境的字体格式：
 
   ```tex
   \usepackage{ntheorem}
-  \theoremheaderfont{\heiti} %改变序数环境中标题字体为黑体
-  \theorembodyfont{\songti} %改变序数环境中正文字体为宋体
+  \theoremstyle{plain}
+  \theoremheaderfont{\heiti} % 改变定理环境中标题字体为黑体
+  \theorembodyfont{\songti} % 改变定理环境中正文字体为宋体
   ```
   
 这样，你就会得到类似如下的渲染效果：  
 
-![](https://i.loli.net/2020/05/13/SrpYizfZG5W6VPx.png)
+![](https://i.loli.net/2020/05/13/QgvLxduSm5czTV1.png)
 
 有关 `ntheorem` 的更多使用方法，请阅读：[ntheorem](https://mirrors.tuna.tsinghua.edu.cn/CTAN/macros/latex/contrib/ntheorem/ntheorem.pdf)。
 

@@ -15,10 +15,23 @@
 \usepackage{menukeys}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage{framed}
 
 % 设置代码高亮
 \usepackage{minted}
 \usemintedstyle{tango}
+
+% 设置定理环境
+\usepackage{ntheorem}
+\theoremstyle{plain}
+\newtheorem{theorem}{\hspace{2em}定理}[section]
+\newtheorem{corollary}{\hspace{2em}推论}[theorem]
+
+\theoremstyle{plain}
+\theoremheaderfont{\heiti} 
+\theorembodyfont{\songti}
+\newtheorem{theo}{\hspace{2em}定理}[section]
+\newtheorem{coro}{\hspace{2em}推论}[theo]
 
 % 设置列表无间隔
 \usepackage{enumitem}
