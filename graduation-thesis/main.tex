@@ -167,12 +167,9 @@
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
-% 设置表格的 caption 与 table 之间的垂直距离
-\captionsetup[table]{skip=2pt}
-
-% 设置表格的 caption 格式
+% 设置表格的 caption 格式和 caption 与 table 之间的垂直距离
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
-\captionsetup[table]{font=small,labelsep=space}
+\captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
 % 设置数学公式编号格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
@@ -206,6 +203,11 @@
 % 正文 22 磅的行距
 \setlength{\parskip}{0em}
 \renewcommand{\baselinestretch}{1.53}
+% 修复公式环境上下距离不一致的问题
+\setlength{\abovedisplayskip}{-8pt}
+\setlength{\abovedisplayshortskip}{-8pt}
+% 修复脚注出现跨页的问题
+\interfootnotelinepenalty=10000
 
 % 第一章
 \input{chapters/1_chapter1.tex}
