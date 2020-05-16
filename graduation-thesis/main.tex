@@ -51,8 +51,11 @@
   style=gb7714-2015,
   gbalign=gb7714-2015,
   gbnamefmt=lowercase,
+  gbpub=false,
   doi=false,
-  url=false
+  url=false,
+  eprint=false,
+  isbn=false,
 ]{biblatex}
 
 % 参考文献引用文件位于 misc/ref.bib
@@ -61,7 +64,7 @@
 % 西文字体默认为 Times New Roman
 \setromanfont{Times New Roman}
 % 论文题目字体为华文细黑
-\setCJKfamilyfont{xihei}{STXihei}
+\setCJKfamilyfont{xihei}{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
 \newcommand{\xihei}{\CJKfamily{xihei}}
 
 % 在这里填写你的论文中英文题目
