@@ -31,7 +31,7 @@ module.exports = {
     ["link", { rel: "manifest", href: "/site.webmanifest" }]
   ],
   themeConfig: {
-    logo: "/favicon-32x32.png",
+    logo: "/apple-touch-icon.png",
     nav: [
       { text: "文档指南", link: "/Guide/" },
       { text: "系列视频指导", link: "/Video/" },
