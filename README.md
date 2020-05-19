@@ -54,9 +54,9 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 Specifically, detailed guides on how to use a single one of the templates are available at:
 
-- [BIThesis Wiki: Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)
-- [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
-- [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
+- [BIThesis Wiki: Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report.html)
+- [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis.html)
+- [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report.html)
 
 ### PDF handbook
 
@@ -98,6 +98,6 @@ This project is not validated by the _Department of Undergraduate Academic Affai
 
 📖 **BIThesis** ©Spencer Woo. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored and maintained by Spencer Woo.
+Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/spencerwooo/BIThesis/graphs/contributors).
 
 [@Portfolio](https://spencerwoo.com/) · [@Blog](https://blog.spencerwoo.com/) · [@GitHub](https://github.com/spencerwooo)

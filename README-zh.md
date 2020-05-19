@@ -54,9 +54,9 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 具体的，有关如何使用和编译单个模板的详细指南，请访问：
 
-- [BIThesis Wiki: 开题报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)
-- [BIThesis Wiki: 毕业设计论文](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
-- [BIThesis Wiki: 实验报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
+- [BIThesis Wiki: 开题报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report.html)
+- [BIThesis Wiki: 毕业设计论文](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis.html)
+- [BIThesis Wiki: 实验报告](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report.html)
 
 ### PDF 使用手册
 
@@ -97,6 +97,6 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 📖 **BIThesis** ©Spencer Woo. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored and maintained by Spencer Woo.
+Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/spencerwooo/BIThesis/graphs/contributors).
 
 [@Portfolio](https://spencerwoo.com/) · [@Blog](https://blog.spencerwoo.com/) · [@GitHub](https://github.com/spencerwooo)
