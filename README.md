@@ -7,6 +7,7 @@
 [![Chinese version](./assets/chinese.svg)](./README-zh.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
+[![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 </div>
 
@@ -16,9 +17,11 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 
 > This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](http://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](http://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.spencerwoo.com/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
 
-<!-- <h2>Slack Community</h2>
+<h2>Slack Community</h2>
 
-[![Join on Slack]()](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw) -->
+> Subscribe to new releases, ask questions, request features, etc. Come join our official community on Slack!
+
+[![Join on Slack](./assets/slack.svg)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 <h2>Table of Contents</h2>
 
