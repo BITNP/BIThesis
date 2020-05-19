@@ -7,6 +7,7 @@
 [![Chinese version](./assets/chinese.svg)](./README-zh.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
+[![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 </div>
 
@@ -16,9 +17,11 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 
 > This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](http://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](http://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.spencerwoo.com/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
 
-<!-- <h2>Slack Community</h2>
+<h2>Slack Community</h2>
 
-[![Join on Slack]()](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw) -->
+> Subscribe to new releases, ask questions, request features, etc. Come join our official community on Slack!
+
+[![Join on Slack](./assets/slack.svg)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 <h2>Table of Contents</h2>
 
@@ -51,9 +54,9 @@ This project aims to cover all of your essays, lab reports ... all the way to yo
 
 Specifically, detailed guides on how to use a single one of the templates are available at:
 
-- [BIThesis Wiki: Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)
-- [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis)
-- [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report)
+- [BIThesis Wiki: Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report.html)
+- [BIThesis Wiki: Graduation thesis](https://bithesis.spencerwoo.com/Guide/3-Templates/Final-Graduation-Thesis.html)
+- [BIThesis Wiki: Lab report](https://bithesis.spencerwoo.com/Guide/3-Templates/Lab-Report.html)
 
 ### PDF handbook
 
@@ -95,6 +98,6 @@ This project is not validated by the _Department of Undergraduate Academic Affai
 
 📖 **BIThesis** ©Spencer Woo. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored and maintained by Spencer Woo.
+Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/spencerwooo/BIThesis/graphs/contributors).
 
 [@Portfolio](https://spencerwoo.com/) · [@Blog](https://blog.spencerwoo.com/) · [@GitHub](https://github.com/spencerwooo)

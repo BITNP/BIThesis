@@ -1,7 +1,7 @@
 # 📕 本科生毕业设计：开题报告
 
-[![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github)](https://github.com/spencerwooo)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex)](https://github.com/spencerwooo/BIThesis/releases/latest)
+[![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github&labelColor=2b2b2b)](https://github.com/spencerwooo)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/spencerwooo/BIThesis/releases/latest)
 
 本文档介绍了北京理工大学本科生毕业设计（论文）计算机学院的开题报告模板使用方法。
 
@@ -11,7 +11,7 @@
 
 本模板已经发布在 Overleaf 上，你可以打开直接使用。点击下图所示中的 Open as Template 即可：
 
-[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&style=for-the-badge)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)
+[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&style=for-the-badge&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)
 
 ![](https://i.loli.net/2020/03/02/eLVlF3XsZfpoYkd.png)
 

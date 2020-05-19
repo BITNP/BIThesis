@@ -1,7 +1,7 @@
 # 📒 本科生毕业设计：毕业论文
 
-[![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github)](https://github.com/spencerwooo)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex)](https://github.com/spencerwooo/BIThesis/releases/latest)
+[![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github&labelColor=2b2b2b)](https://github.com/spencerwooo)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/spencerwooo/BIThesis/releases/latest)
 
 :::tip 🚀 更新提示
 目前版本的毕业设计论文已经按照北京理工大学 2016 级（2020 届）毕业论文模板进行了设计与排版的更新。
@@ -11,7 +11,7 @@
 
 本模板已经发布在 Overleaf 上，你可以打开直接使用。点击下图所示中的 Open as Template 即可：
 
-[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&style=for-the-badge)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)
+[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b&style=for-the-badge)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)
 
 ![](https://i.loli.net/2020/03/03/cXdPRAlI4BUErZ9.png)
 
@@ -302,7 +302,7 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
   ```tex
   \newtheorem{theorem}{\hspace{2em}定理}[chapter]
   \newtheorem{corollary}{\hspace{2em}推论}[theorem]
-  
+
   % 上述每行命令第一个大括号中为环境名称，
   % 第二个大括号中为该环境渲染的模块标题，
   % 方括号中选项用来设置编号逻辑，如 [chapter] 表示第 n 章节中定理编号依次为 n.1, n.2, …… 。
@@ -311,14 +311,14 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 - 渲染定理及推论模块：
 
   ```tex
-  \begin{theorem}[均值不等式] 
-  \label{thm-1} 
+  \begin{theorem}[均值不等式]
+  \label{thm-1}
   设 $A,B$ 是两个实数, 则 $2AB\leq A^2+B^2$。
   \end{theorem}
-  
+
   由定理 \ref{thm-1} 可得以下推论。
-  
-  \begin{corollary} 
+
+  \begin{corollary}
   设 $A,B$ 是两个实数, 则 $2AB\leq (A+B)^2/2$。
   \end{corollary}
   ```
@@ -347,8 +347,8 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
   \theoremheaderfont{\heiti} % 改变定理环境中标题字体为黑体
   \theorembodyfont{\songti} % 改变定理环境中正文字体为宋体
   ```
-  
-这样，你就会得到类似如下的渲染效果：  
+
+这样，你就会得到类似如下的渲染效果：
 
 ![](https://i.loli.net/2020/05/13/QgvLxduSm5czTV1.png)
 
