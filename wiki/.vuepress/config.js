@@ -36,6 +36,7 @@ module.exports = {
       { text: "文档指南", link: "/Guide/" },
       { text: "系列视频指导", link: "/Video/" },
       { text: "模板下载", link: "https://github.com/spencerwooo/BIThesis/releases/latest" },
+      { text: "Slack Channel", link: "https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw" },
       { text: "GitHub", link: "https://github.com/spencerwooo/BIThesis" }
     ],
     sidebar: {
