@@ -2,12 +2,12 @@
 
 :tada:First off, thanks for taking the time to contribute!:tada:
 
-The following is a set of guidelines for contributing to BIThesis. 
+The following is a set of guidelines for contributing to BIThesis.
 
-These are mostly guidelines, not rules. Use your best judgment, 
+These are mostly guidelines, not rules. Use your best judgment,
 and feel free to propose changes to this document in a pull request.
 
-## Guidence
+## Guidance
 
 **[I don't want to read this whole thing, I just have a small question!!!](#join-our-slack-channel)**
 
@@ -20,7 +20,7 @@ and feel free to propose changes to this document in a pull request.
 
 ## Join Our Slack Channel
 
-We provide an [offical Slack channel][slack channel invitation]
+We provide an [official Slack channel][slack channel invitation]
 with **a bunch of active maintainers** and **a friendly community**
 to give helpful advice **if you have any questions**.
 
@@ -28,9 +28,9 @@ to give helpful advice **if you have any questions**.
 
 - use `#community` channel to **report a bug**, **feature request** and **asking for help**.
 - use `#random` channel to have **unrelated discussion**:laughing:!
-- use `#annoucnment` channel if you don't want to miss the **updated news and features**!
+- use `#announcement` channel if you don't want to miss the **updated news and features**!
 
-> note: there is no detailed rules about how to ask question, just provide enough information and 
+> note: there is no detailed rules about how to ask question, just provide enough information and
 rethink before write.
 
 ## Bug Report on Github
@@ -50,9 +50,9 @@ The following steps will help you finish a pull request.
 3. make small changes until bug fixed.
 4. commit changes.
 5. create a pull request with related information.
-6. keep in touch with further disccusion and refine. 
+6. keep in touch with further discussion and refine.
 
-for more information, refer to the 
+for more information, refer to the
 _[Github Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)_.
 
 [slack channel invitation]: https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw
