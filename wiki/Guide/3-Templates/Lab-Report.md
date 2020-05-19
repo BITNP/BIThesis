@@ -1,7 +1,7 @@
 # 🧪 实验报告 Lab Report 模板
 
-[![](https://img.shields.io/badge/maintainer-@Silvester-6e5773?logo=github)](https://github.com/Silverster98)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex)](https://github.com/spencerwooo/BIThesis/releases/latest)
+[![](https://img.shields.io/badge/maintainer-@Silvester-6e5773?logo=github&labelColor=2b2b2b)](https://github.com/Silverster98)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/spencerwooo/BIThesis/releases/latest)
 
 :::tip 🎈 说明
 这个实验报告模板是一个通用的报告模板，不适用所有实验报告要求。实验课程未提供实验报告模板时可以使用该模板。**当前本实验报告模板只包含一个封面，欢迎大家 PR 制作更多的封面。**
