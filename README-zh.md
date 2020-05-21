@@ -30,6 +30,7 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
   - [详细的在线参考文档](#%e8%af%a6%e7%bb%86%e7%9a%84%e5%9c%a8%e7%ba%bf%e5%8f%82%e8%80%83%e6%96%87%e6%a1%a3)
   - [PDF 使用手册](#pdf-%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c)
   - [在线视频教程](#%e5%9c%a8%e7%ba%bf%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b)
+- [贡献者指南](#%e8%b4%a1%e7%8c%ae%e8%80%85%e6%8c%87%e5%8d%97)
 - [贡献者](#%e8%b4%a1%e7%8c%ae%e8%80%85)
 - [相关项目](#%e7%9b%b8%e5%85%b3%e9%a1%b9%e7%9b%ae)
 - [发布状态](#%e5%8f%91%e5%b8%83%e7%8a%b6%e6%80%81)
@@ -68,6 +69,10 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 - 哔哩哔哩弹幕网：[BIThesis —— 教你优雅地撰写论文 | LaTeX 毕设模板系列教程](https://www.bilibili.com/video/BV1GT4y1V78d/)
 - BIThesis 文档视频部分（包含有一些视频中提到的代码）：[BIThesis - Videos](https://bithesis.spencerwoo.com/Video/)
+
+## 贡献者指南
+
+详情请查看[贡献者指南](./contributing-zh.md)。
 
 ## 贡献者
 
