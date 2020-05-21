@@ -30,6 +30,7 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
   - [Detailed online Wiki](#detailed-online-wiki)
   - [PDF handbook](#pdf-handbook)
   - [Online Video Tutorials](#online-video-tutorials)
+- [Contributing](#contributing)
 - [Contributors](#contributors)
 - [Similar Projects](#similar-projects)
 - [Release status](#release-status)
@@ -68,6 +69,10 @@ You can watch online video tutorials here:
 
 - Bilibili: [BIThesis —— 教你优雅地撰写论文 | LaTeX 毕设模板系列教程](https://www.bilibili.com/video/BV1GT4y1V78d/)
 - BIThesis documentation videos (including some code which are referenced in the videos): [BIThesis - Videos](https://bithesis.spencerwoo.com/Video/)
+
+## Contributing
+
+For details, please see the [contributing doc](./contributing.md).
 
 ## Contributors
 
