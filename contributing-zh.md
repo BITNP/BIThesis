@@ -1,5 +1,7 @@
 # 贡献者指南
 
+[![English version](assets/english.svg)](./contributing.md)
+
 :tada: 首先，感谢你为本项目付出的宝贵时间！:tada:
 
 以下是有关如何为本项目贡献力量的一些指导建议。
