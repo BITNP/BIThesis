@@ -184,7 +184,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 整个模板的图片素材都整理在图片文件夹中：\texttt{./images}。你可以将论文中使用到的图片统一放在这一目录下进行管理，在论文中使用“相对路径”进行引用。你可以用类似下面的语法引用图片：
 
 \begin{minted}[frame=single,linenos,breaklines]{tex}
-  \begin{figure}[htbp]
+  \begin{figure}[H]
     \vspace{13pt} % 调整图片与上文的垂直距离
     \centering
     \includegraphics[width=0.8\textwidth]{images/bit_logo.png}
@@ -196,7 +196,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 可以看到：
 
 \begin{itemize}
-  \item 我们首先将图片放置在了一个 \verb|\begin{figure} ... \end{figure}| 的环境中，其中 \texttt{[htbp]} 是用于定位图片。
+  \item 我们首先将图片放置在了一个 \verb|\begin{figure} ... \end{figure}| 的环境中，其中 \texttt{[H]} 是用于定位图片。
   \item 之后，在环境中，我们首先使用 \verb|\centering| 保证图片水平居中
   \item 之后用 \verb|\includegraphics[图片大小]{图片路径}| 的格式引用了图片本身（图片大小的语法 \verb|width=0.8\textwidth| 表示图片宽度是整个页宽的 0.8 倍）
   \item 最后我们定义了图片的说明文字 \verb|\caption{图片说明}| 和图片的标签编号 \verb|\label{图片编号}|，前者显示在图片下方起到说明注释的作用，后者让我们可以用 \verb|\ref{图片编号}| 的语法来在正文中引用图片
@@ -363,7 +363,7 @@ def incmatrix(genl1,genl2):
         \begin{minted}[frame=single]{tex}
     \newtheorem{theorem}{\hspace{2em}定理}[chapter]
     \newtheorem{corollary}{\hspace{2em}推论}[theorem]
-  
+
     % 上述每行命令第一个大括号中为环境名称，
     % 第二个大括号中为该环境渲染的模块标题，
     % 方括号中选项用来设置编号逻辑，如 [chapter] 表示
@@ -371,14 +371,14 @@ def incmatrix(genl1,genl2):
   \end{minted}
   \item 渲染定理及推论模块：
         \begin{minted}[frame=single]{tex}
-    \begin{theorem}[均值不等式] 
-    \label{thm-1} 
+    \begin{theorem}[均值不等式]
+    \label{thm-1}
     设 $A,B$ 是两个实数, 则 $2AB\leq A^2+B^2$。
     \end{theorem}
-  
+
     由定理 \ref{thm-1} 可得以下推论。
-  
-    \begin{corollary} 
+
+    \begin{corollary}
     设 $A,B$ 是两个实数, 则 $2AB\leq (A+B)^2/2$。
     \end{corollary}
   \end{minted}
@@ -387,14 +387,14 @@ def incmatrix(genl1,genl2):
 这样，你就会得到类似如下的渲染效果：
 
 \begin{framed}
-\begin{theorem}[均值不等式] 
-  \label{thm-1} 
+\begin{theorem}[均值不等式]
+  \label{thm-1}
   设 $A,B$ 是两个实数, 则 $2AB\leq A^2+B^2$。
 \end{theorem}
-  
+
 由定理 \ref{thm-1} 可得以下推论。
-  
-\begin{corollary} 
+
+\begin{corollary}
   设 $A,B$ 是两个实数, 则 $2AB\leq (A+B)^2/2$。
 \end{corollary}
 \end{framed}
@@ -425,14 +425,14 @@ def incmatrix(genl1,genl2):
 这样，你就会得到类似如下的渲染效果：
 
 \begin{framed}
-\begin{theo}[均值不等式] 
-  \label{thm-2} 
+\begin{theo}[均值不等式]
+  \label{thm-2}
   设 $A,B$ 是两个实数, 则 $2AB\leq A^2+B^2$。
 \end{theo}
-  
+
 由定理 \ref{thm-2} 可得以下推论。
-  
-\begin{coro} 
+
+\begin{coro}
   设 $A,B$ 是两个实数, 则 $2AB\leq (A+B)^2/2$。
 \end{coro}
 \end{framed}

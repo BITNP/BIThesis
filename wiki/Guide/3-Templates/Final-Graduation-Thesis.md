@@ -155,7 +155,7 @@ BibTeX 是一种表示、存储与引用参考文献的语法，谷歌学术中�
 整个模板的图片素材都整理在图片文件夹中：`./images`。你可以将论文中使用到的图片统一放在这一目录下进行管理，在论文中使用「相对路径」进行引用。你可以用类似下面的语法引用图片：
 
 ```tex
-\begin{figure}[htbp]
+\begin{figure}[H]
   \vspace{13pt} % 调整图片与上文的垂直距离
   \centering
   \includegraphics[width=0.8\textwidth]{images/bit_logo.png}
@@ -165,7 +165,7 @@ BibTeX 是一种表示、存储与引用参考文献的语法，谷歌学术中�
 
 可以看到：
 
-- 我们首先将图片放置在了一个 `\begin{figure} ... \end{figure}` 的环境中，其中 `[htbp]` 是用于定位图片。
+- 我们首先将图片放置在了一个 `\begin{figure} ... \end{figure}` 的环境中，其中 `[H]` 是用于定位图片。
 - 之后，在环境中，我们首先使用 `\centering` 保证图片水平居中
 - 之后用 `\includegraphics[图片大小]{图片路径}` 的格式引用了图片本身（图片大小的语法`width=0.8\textwidth` 表示图片宽度是整个页宽的 0.8 倍）
 - 最后我们定义了图片的说明文字 `\caption{图片说明}` 和图片的标签编号 `\label{图片编号}`，前者显示在图片下方起到说明注释的作用，后者让我们可以用 `\ref{图片编号}` 的语法来在正文中引用图片
