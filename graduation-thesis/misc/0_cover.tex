@@ -29,7 +29,14 @@
 
 % Cover Page
 \begin{titlepage}
-  \vspace*{19mm}
+  \makeatletter
+  \@ifundefined{externalMentorName}{
+    % 校内毕设封面顶部间距
+    \vspace*{19mm}
+  }{
+    % 校外毕设封面顶部间距
+    \vspace*{13mm}
+  }
   \centering
 
   \includegraphics[width=9.87cm]{images/header.png}
@@ -51,20 +58,41 @@
   \vspace{15mm}
 
   \flushleft
-  \begin{spacing}{1.8}
-    \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\deptName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\majorName}}}
+  \makeatletter
+  \@ifundefined{externalMentorName}{
+    % 生成校内毕设封面字段
+    \makeatother
+    \begin{spacing}{1.8}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\deptName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourName}}}
+      \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\majorName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourStudentID}}}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\mentorName}}}
-  \end{spacing}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourStudentID}}}
+
+      \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\mentorName}}}
+    \end{spacing}
+  }{
+    % 生成校外毕设封面字段
+    \makeatother
+    \begin{spacing}{1.8}
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\deptName}}}
+
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\majorName}}}
+
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\yourName}}}
+
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\yourStudentID}}}
+
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\mentorName}}}
+
+      \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\externalMentorName}}}
+    \end{spacing}
+  }
 
   \vspace{25mm}
-
   \centering
   \zihao{3}\ziju{0.5}\songti{\today}
 \end{titlepage}
