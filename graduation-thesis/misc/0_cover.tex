@@ -51,17 +51,39 @@
   \vspace{15mm}
 
   \flushleft
-  \begin{spacing}{1.8}
-    \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\deptName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\majorName}}}
+  \makeatletter
+  \@ifundefined{externalMentorName}{
+    % 生成校内毕设封面字段
+    \makeatother
+    \begin{spacing}{1.8}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\deptName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourName}}}
+      \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\majorName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourStudentID}}}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourName}}}
 
-    \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\mentorName}}}
-  \end{spacing}
+      \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourStudentID}}}
+
+      \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\mentorName}}}
+    \end{spacing}
+  }{
+    % 生成校外毕设封面字段
+    \makeatother
+    \begin{spacing}{1.8}
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{学\hspace{22mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\deptName}}}
+
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{专\hspace{22mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\majorName}}}
+
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{学\hspace{3.67mm}生\hspace{3.67mm}姓\hspace{3.67mm}名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourName}}}
+
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{学\hspace{22mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\yourStudentID}}}
+
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{指\hspace{3.67mm}导\hspace{3.67mm}教\hspace{3.67mm}师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\mentorName}}}
+
+      \hspace{21.5mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\externalMentorName}}}
+    \end{spacing}
+  }
 
   \vspace{25mm}
 
