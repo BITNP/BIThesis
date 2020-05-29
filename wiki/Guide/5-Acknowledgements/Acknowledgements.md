@@ -11,8 +11,6 @@
     <td align="center"><img src="https://i.loli.net/2020/05/29/SL6KApDxuYqPjk3.png" width="100px" alt="Lancern"></td>
     <td align="center"><img src="https://i.loli.net/2020/03/10/rRogJdmUFv7iDx3.png" width="100px" alt="Felinae"></td>
     <td align="center"><img src="https://i.loli.net/2020/05/29/Z1YFSty6LRJl8Oc.png" width="100px" alt="FKY"></td>
-    <td align="center"><img src="https://i.loli.net/2020/03/10/fTCIvEurgi5ezWA.png" width="100px" alt="1s Zhan"></td>
-    <td align="center"><img src="https://i.loli.net/2020/03/27/w2EyRtAsxpivJMO.png" width="100px" alt="mwl0811"></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/spencerwooo">Spencer Woo</a><br>💻🚧📆💬📖🎨</td>
@@ -20,6 +18,12 @@
     <td align="center"><a href="https://github.com/Lancern">Lancern</a><br>💻🚧📖💬</td>
     <td align="center"><a href="https://github.com/felinae98">Felinae</a><br>📓💻💬</td>
     <td align="center"><a href="https://github.com/fky2015">FKY</a><br>🚧📖</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://i.loli.net/2020/03/10/fTCIvEurgi5ezWA.png" width="100px" alt="1s Zhan"></td>
+    <td align="center"><img src="https://i.loli.net/2020/03/27/w2EyRtAsxpivJMO.png" width="100px" alt="mwl0811"></td>
+  </tr>
+  <tr>
     <td align="center"><a href="https://github.com/Zephyr1106">Zephyr</a><br>📓</td>
     <td align="center"><a href="https://github.com/mwl0811">mwl0811</a><br>💻</td>
   </tr>
