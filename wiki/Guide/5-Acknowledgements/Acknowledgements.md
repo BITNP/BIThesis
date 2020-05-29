@@ -2,20 +2,30 @@
 
 **BIThesis 项目的实现离不开以下单位、领导、老师和同学们的大力支持与卓越贡献。**
 
-## 主创、模板制作与项目开源维护 Maintainers
+## Maintainers
 
 <table>
   <tr>
     <td align="center"><img src="https://i.loli.net/2020/03/10/KqToYeg1buLGwsh.png" width="100px" alt="Spencer Woo"></td>
     <td align="center"><img src="https://i.loli.net/2020/03/10/pYkbBwm3nRrhzcT.png" width="100px" alt="Silverster"></td>
+    <td align="center"><img src="https://i.loli.net/2020/05/29/SL6KApDxuYqPjk3.png" width="100px" alt="Lancern"></td>
+    <td align="center"><img src="https://i.loli.net/2020/03/10/rRogJdmUFv7iDx3.png" width="100px" alt="Felinae"></td>
+    <td align="center"><img src="https://i.loli.net/2020/05/29/Z1YFSty6LRJl8Oc.png" width="100px" alt="FKY"></td>
+    <td align="center"><img src="https://i.loli.net/2020/03/10/fTCIvEurgi5ezWA.png" width="100px" alt="1s Zhan"></td>
+    <td align="center"><img src="https://i.loli.net/2020/03/27/w2EyRtAsxpivJMO.png" width="100px" alt="mwl0811"></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/spencerwooo">Spencer Woo</a><br>首席维护者 / Lead Maintainer<br>💻🚧📆💬📖🎨</td>
-    <td align="center"><a href="https://github.com/Silverster98">Silvester</a><br>开发者 / Developer<br>💻🚧📖🌍</td>
+    <td align="center"><a href="https://github.com/spencerwooo">Spencer Woo</a><br>💻🚧📆💬📖🎨</td>
+    <td align="center"><a href="https://github.com/Silverster98">Silvester</a><br>💻🚧📖🌍</td>
+    <td align="center"><a href="https://github.com/Lancern">Lancern</a><br>💻🚧📖💬</td>
+    <td align="center"><a href="https://github.com/felinae98">Felinae</a><br>📓💻💬</td>
+    <td align="center"><a href="https://github.com/fky2015">FKY</a><br>🚧📖</td>
+    <td align="center"><a href="https://github.com/Zephyr1106">Zephyr</a><br>📓</td>
+    <td align="center"><a href="https://github.com/mwl0811">mwl0811</a><br>💻</td>
   </tr>
 </table>
 
-## 视频教程创作团队 Tutorial editing and voice
+## Video Tutorials
 
 > 视频教程由「京工拾光工作室」制作、配音与剪辑，感谢。
 
@@ -29,21 +39,6 @@
     <td align="center"><a href="https://github.com/ZIJIN-Evan">🎞 子衿</a></td>
     <td align="center">🎙 甲²级的胖头鱼</td>
     <td align="center">🎙 乌鸢</td>
-  </tr>
-</table>
-
-## 贡献者、测试者 Contributors and reviewers
-
-<table>
-  <tr>
-    <td align="center"><img src="https://i.loli.net/2020/03/10/rRogJdmUFv7iDx3.png" width="100px" alt="Felinae"></td>
-    <td align="center"><img src="https://i.loli.net/2020/03/10/fTCIvEurgi5ezWA.png" width="100px" alt="1s Zhan"></td>
-    <td align="center"><img src="https://i.loli.net/2020/03/27/w2EyRtAsxpivJMO.png" width="100px" alt="mwl0811"></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/felinae98">📓 Felinae</a></td>
-    <td align="center"><a href="https://github.com/Zephyr1106">📓 Zephyr</a></td>
-    <td align="center"><a href="https://github.com/mwl0811">💻 mwl0811</a></td>
   </tr>
 </table>
 
