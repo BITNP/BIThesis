@@ -71,14 +71,14 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体「华文�
 
 首先，你需要定义毕业设计论文的「中文标题」和「英文标题」，这两个「变量」将影响模板封面的渲染，以及后续摘要中出现的标题的渲染。
 
-中英文标题的定义位于 `main.tex` 的 [第 65 至第 67 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L65-L67)：
+中英文标题的定义位于 `main.tex` 的 [第 70 至第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L70-L72)：
 
 - 你可以通过控制 `\thesisTitle` 这一变量来控制整个论文的「中文标题」
 - 你可以通过控制 `\thesisTitleEN` 这一变量来控制整个项目的「英文标题」
 
 接下来，你需要定义你的个人信息，这些信息将被渲染在毕业设计论文的封面。个人信息包括你所在学院，你的专业、学号、姓名和指导教师。
 
-个人信息的定义位于 `main.tex` 的 [第 69 行至第 74 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74)：
+个人信息的定义位于 `main.tex` 的 [第 74 行至第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L74-L81)：
 
 - `\deptName`：你所在学院
 - `\majorName`：你所就读的专业
@@ -86,16 +86,23 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体「华文�
 - `\yourStudentID`：你的学号
 - `\mentorName`：你的指导教师
 
+如果你的毕设为校外毕设，你还需要填写位于 [第 80 行至第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L80-L81) 的校外指导教师信息：
+- `\externalMentorName`：你的校外指导教师
+
+填写校外指导教师信息时，请先将 [第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L81) 解除注释，即删除行首的百分号字符，然后在第二组花括号中填写你的校外指导教师名称。一旦 `\externalMentorName` 被填写，LaTeX 模板将为你生成校外毕设封面。
+
+如果你的毕设不是校外毕设，请不要修改 [第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L81) 的任何内容。
+
 ### 中英摘要
 
 接下来，你需要撰写论文的摘要。模板中英文摘要位于 `chapters/0_abstract.tex`：
 
-- **中文摘要**位于 `0_abstract.tex` 的 [第 41 行至第 48 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L41-L48)。其中 [第 48 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L48) 定义**摘要的中文关键词**
-- **英文摘要**位于 `0_abstract.tex` 的 [第 71 行至第 76 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L71-L76)。其中 [第 76 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76) 定义**摘要的英文关键词**
+- **中文摘要**位于 `0_abstract.tex` 的 [第 39 行至第 46 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L39-L46)。其中 [第 46 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L46) 定义**摘要的中文关键词**
+- **英文摘要**位于 `0_abstract.tex` 的 [第 67 行至第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L67-L72)。其中 [第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76) 定义**摘要的英文关键词**
 
 ### 正文
 
-正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：`chapters/1_chapter1.tex`，你可以将它作为正文章节的「模板」，继续在 `./chapters` 目录下自行创建第二章节 `2_chapter2.tex`、第三章节 `3_chapter3.tex` 等等，并需要在 `main.tex` 的 [第 199 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L199-L203) 处添加对应章节文件的相对路径引用：
+正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：`chapters/1_chapter1.tex`，你可以将它作为正文章节的「模板」，继续在 `./chapters` 目录下自行创建第二章节 `2_chapter2.tex`、第三章节 `3_chapter3.tex` 等等，并需要在 `main.tex` 的 [第 217 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L217) 处添加对应章节文件的相对路径引用：
 
 ```tex
 % 第一章
@@ -173,6 +180,27 @@ BibTeX 是一种表示、存储与引用参考文献的语法，谷歌学术中�
 请注意，为了保证图片引用的格式和 Word 模板完全一致，我们手动设置了 `\vspace{13pt}` 的垂直空白，**你引用新图片时，也需要添加这一垂直空白。**
 
 在第一章节 `chapters/1_chapter1.tex` 中的 [第 38 行至第 43 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43) 是一个示范。
+
+上述插入图片的方法无法处理 SVG 格式的矢量图片。如果你希望插入 SVG 格式的矢量图片，请按照如下的步骤进行插入：
+
+第一步，将 `.svg` 格式的图片文件放入 `./images` 文件夹中，假设文件名为 `bit_logo.svg`；
+
+第二步，在 `main.tex` 的 [第 26 行至第 45 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L26-L45) 中的任意位置，插入对 `svg` 宏包以及 `adjustbox` 宏包的引用：`\usepackage{svg}`、`\usepackage{adjustbox}`；
+
+第三步，在需要插入图片的位置，使用类似于下面的语法插入 SVG 图片：
+```tex
+\begin{figure}[htbp]
+  \vspace{13pt} % 调整图片与上文的垂直距离
+  \centering
+  \adjustbox{width=0.8\textwidth}{\includesvg{images/bit_logo}}
+  \caption{标题序号}\label{标题序号} % label 用来在文中索引
+\end{figure}
+```
+
+需要注意以下几点：
+
+- 在 `\includesvg` 宏内引用 SVG 图片的文件名称时，不需要携带 `.svg` 扩展名，而是直接引用文件名称；
+- 请务必使用 `\adjustbox` 宏来对 SVG 图片的大小进行调整，而**不要使用** `\includesvg[width=0.8\textwidth]` 这样的方式对图片大小进行调整，因为后者无法很好地处理 SVG 图片中文字的缩放。
 
 ## 表格插入
 
