@@ -176,6 +176,12 @@
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
+% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
 % 设置数学公式编号格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
