@@ -176,6 +176,23 @@
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
+% 设置浮动对象和文字之间的距离
+\makeatletter 
+  \setlength{\floatsep}{12bp \@plus 2bp \@minus 4bp}
+  \setlength{\textfloatsep}{12bp}
+  \setlength{\intextsep}{12bp}
+  \setlength{\@fptop}{0bp \@plus1.0fil}
+  \setlength{\@fpsep}{12bp \@plus2.0fil}
+  \setlength{\@fpbot}{0bp \@plus1.0fil}
+\makeatother
+
+% 下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度对象占据过多的文本页面，
+% 也可以防止在很大空白的浮动页上放置很小的图形。
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+
 % 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
 \tolerance=1
 \emergencystretch=\maxdimen
