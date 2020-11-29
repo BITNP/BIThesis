@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="assets/bithesis_icon.svg" alt="BIThesis Icon">
+  <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
 📖 _非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_
 
 ![BIThesis](./assets/bithesis_badge_solid.svg)
 [![English version](assets/english.svg)](./README-en.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
-[![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
+[![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 </div>
@@ -41,11 +41,11 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 BIThesis 为各位在北京理工大学就读的本科同学提供了基于北京理工大学计算机学院给出的「北京理工大学计算机学院本科生毕业论文：开题报告」与北京理工大学教务部提供的「北京理工大学本科生毕业设计：论文模板」的 LaTeX 模板等。**借助于 BIThesis 的 LaTeX 模板，你可以在保证论文格式整齐、完美、符合要求的前提下，专注于学术研究、项目实现，从而顺利完成你的学术项目。**
 
-| 模板                                        | 预览                                                                                            | 特性                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 维护人                                         |
-| :------------------------------------------ | :---------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
-| **[开题报告](./proposal-report)**<br>       | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" />    | <ul><li>毕业设计开题报告</li><li>毕设第一部分内容</li><li>包括封面（不可编辑）和评审表</li><li>包括参考文献和相关样式</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)</li></ul>                                                                                               | [@SpencerWoo](https://github.com/spencerwooo)  |
-| **[毕业设计论文](./graduation-thesis)**<br> | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>**毕业设计论文模板**</li><li>包括封面，摘要，参考文献和附录等支持</li><li>包括公式，表格和图片等支持</li><li>按 GBT7714-2015 规范编排的书目</li><li>符合北京理工大学毕业设计论文 2016 级（2020 届）版本的格式要求。</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@SpencerWoo](https://github.com/spencerwooo)  |
-| **[实验报告](./lab-report)**<br>            | <img src="https://i.loli.net/2020/03/08/txzGcKv9YSel3IX.png" width="300px" alt="lab_report" />  | <ul><li>基本实验报告模板</li><li>包括封面，BIT logo 和资源文件夹</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                          | [@Silverster](https://github.com/Silverster98) |
+| 模板                                        | 预览                                                                                            | 特性                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 维护人                                                                  |
+| :------------------------------------------ | :---------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------                          |
+| **[开题报告](./proposal-report)**<br>       | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" />    | <ul><li>毕业设计开题报告</li><li>毕设第一部分内容</li><li>包括封面（不可编辑）和评审表</li><li>包括参考文献和相关样式</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)</li></ul>                                                                                               | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
+| **[毕业设计论文](./graduation-thesis)**<br> | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>**毕业设计论文模板**</li><li>包括封面，摘要，参考文献和附录等支持</li><li>包括公式，表格和图片等支持</li><li>按 GBT7714-2015 规范编排的书目</li><li>符合北京理工大学毕业设计论文 2016 级（2020 届）版本的格式要求。</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
+| **[实验报告](./lab-report)**<br>            | <img src="https://i.loli.net/2020/03/08/txzGcKv9YSel3IX.png" width="300px" alt="lab_report" />  | <ul><li>基本实验报告模板</li><li>包括封面，BIT logo 和资源文件夹</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                          | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
 
 ## 如何使用 BIThesis
 
@@ -63,7 +63,7 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 ### PDF 使用手册
 
-另外，我们也提供一个撰写详细的 PDF 使用手册。你可以在这里下载 BIThesis 手册的 PDF 版本：[`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest)
+另外，我们也提供一个撰写详细的 PDF 使用手册。你可以在这里下载 BIThesis 手册的 PDF 版本：[`bithesis-documentation.pdf`](https://github.com/BITNP/BIThesis/releases/latest)
 
 ### 在线视频教程
 
@@ -93,7 +93,7 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | ![GitHub Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                      |
+| GitHub Release | ![GitHub Release](https://github.com/BITNP/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                            |
 | Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/81f7b49b-59a1-46bc-ba52-02f8be71d247/deploy-status)](https://app.netlify.com/sites/vigorous-hoover-a697eb/deploys)               |
 
 <!-- ## 免责声明
@@ -102,8 +102,6 @@ BIThesis 为各位在北京理工大学就读的本科同学提供了基于北�
 
 ---
 
-📖 **BIThesis** ©BITNP. Released under the [LaTeX Project Public License](LICENSE).
+📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/spencerwooo/BIThesis/graphs/contributors).
-
-[@Portfolio](https://bitnp.net/) · [@Blog](https://blog.bitnp.net/) · [@GitHub](https://github.com/spencerwooo)
+Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
