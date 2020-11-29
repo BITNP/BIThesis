@@ -1,0 +1,745 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2020 by Feng Kaiyu
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%     http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2020/11/27 or later.
+%
+% \fi
+%
+% \iffalse
+%<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<book>\ProvidesClass{bitbook}
+%<article>\ProvidesClass{bitart}
+%<cls> [2020/11/27 v1.0.0 BIT Thesis Templates] 
+%
+%<*driver>
+\ProvidesFile{bithesis.dtx}[2020/11/27 1.0.0 BIT Thesis Templates]
+\documentclass{ltxdoc}
+\usepackage{dtx-style}
+
+\EnableCrossrefs
+\CodelineIndex
+
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \DoNotIndex{\newenvironment,\@bsphack,\@empty,\@esphack,\sfcode}
+% \DoNotIndex{\addtocounter,\label,\let,\linewidth,\newcounter}
+% \DoNotIndex{\noindent,\normalfont,\par,\parskip,\phantomsection}
+% \DoNotIndex{\providecommand,\ProvidesPackage,\refstepcounter}
+% \DoNotIndex{\RequirePackage,\setcounter,\setlength,\string,\strut}
+% \DoNotIndex{\textbackslash,\texttt,\ttfamily,\usepackage}
+% \DoNotIndex{\begin,\end,\begingroup,\endgroup,\par,\\}
+% \DoNotIndex{\if,\ifx,\ifdim,\ifnum,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\let,\def,\xdef,\edef,\newcommand,\renewcommand}
+% \DoNotIndex{\expandafter,\csname,\endcsname,\relax,\protect}
+% \DoNotIndex{\Huge,\huge,\LARGE,\Large,\large,\normalsize}
+% \DoNotIndex{\small,\footnotesize,\scriptsize,\tiny}
+% \DoNotIndex{\normalfont,\bfseries,\slshape,\sffamily,\interlinepenalty}
+% \DoNotIndex{\textbf,\textit,\textsf,\textsc}
+% \DoNotIndex{\hfil,\par,\hskip,\vskip,\vspace,\quad}
+% \DoNotIndex{\centering,\raggedright,\ref}
+% \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
+% \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
+% \DoNotIndex{\@@par,\DeclareOperation,\RequirePackage,\LoadClass}
+% \DoNotIndex{\AtBeginDocument,\AtEndDocument}
+%
+% \GetFileInfo{\jobname.dtx} %
+% 
+% \def\indexname{索引}
+% \IndexPrologue{\section{\indexname}}
+%
+% \title{\includegraphics[width=0.3\textwidth]{images/icon.png}
+% \\[1cm]
+% \bfseries 北京理工大学本科生{\LaTeX}学位论文及报告模板 }
+% \author{北京理工大学网络开拓者协会 \\ \texttt{webmaster@bitnp.net}} %
+% \date{\zihao{-4} \today\quad \color{RubineRed}{\kaishu {\BIThesis} 版本 \version}}
+% \maketitle\thispagestyle{empty}
+%
+% \def\abstractname{}
+% \begin{abstract}\noindent
+%   此宏包旨在建立一个简单易用的北京理工大学学位论文模板，包括本科综合论文训练、硕士
+%   论文、博士论文以及博士后出站报告。
+% \end{abstract}
+%
+% \vspace{5mm}
+%
+% \begin{center}
+% \noindent\rule[0.25\baselineskip]{0.5\textwidth}{0.7pt}
+% \end{center}
+% \def\abstractname{免责声明}
+% \begin{abstract}
+% \noindent
+% \begin{enumerate}
+% \item 本模板的发布遵守 \href{https://www.latex-project.org/lppl/lppl-1-3c.txt}{\LaTeX{} Project Public License (1.3.c)}，使用前请认真阅读协议内
+%   容。
+% \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵
+%   守 \LaTeX{} Project Public License 协议。由于违犯协议而引起的任何纠纷争端均与
+%   本模板作者无关。
+% \end{enumerate}
+% \end{abstract}
+%
+%
+% \vspace{5mm}
+%
+% \def\abstractname{简介}
+% \begin{abstract}
+% \BIThesisLaTeX 是北京理工大学本科生毕业设计开题报告、总论文，以及其他课程报告、实验报告等重要论文、报告的 {\LaTeX} 模板集合。如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
+%
+% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，符合《信息与文献参考文献著录规则》（\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）的标准。目前主要设计完成了计算机学院本科生毕业论文开题报告、毕业设计毕业论文与通用实验报告的 {\LaTeX} 模板。
+%
+% \end{abstract}
+% \newpage
+%
+% \tableofcontents
+% \clearpage
+% \setlength{\parskip}{0.8ex}
+%
+% \section{模板介绍}
+% \section{贡献者}
+% \section{安装}
+% \section{使用说明}
+%
+% \DescribeMacro{\YOURMACRO}
+% Put description of |\YOURMACRO| here.
+%
+% \DescribeEnv{YOURENV}
+% Put description of |YOURENV| here.
+%
+% \StopEventually{\PrintIndex}
+%
+% \section{致谢}
+% \section{实现细节}
+%
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \begin{macro}{\YOURMACRO}
+% Put explanation of |\YOURMACRO|’s implementation here.
+%    \begin{macrocode}
+\newcommand{\YOURMACRO}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{YOURENV}
+% Put explanation of |YOURENV|’s implementation here.
+%    \begin{macrocode}
+\newenvironment{YOURENV}{}{}
+%    \end{macrocode}
+% \end{environment}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%<*book>
+%    \end{macrocode}
+%    \begin{macrocode}
+\newif\if@bit@bachelor
+\newif\if@bit@master
+\newif\if@bit@docter
+
+\DeclareOption{bachelor}{\@bit@bachelortrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
+\ExecuteOptions{lab-report}
+
+\ProcessOptions\relax
+
+\LoadClass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4,oneside,openany]{ctexbook}
+
+\RequirePackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
+% 目前 29mm 最接近 Word 排版
+\RequirePackage{xeCJK}
+\RequirePackage{titletoc}
+\RequirePackage{fontspec}
+\RequirePackage{setspace}
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{pdfpages}
+\RequirePackage{setspace}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{caption}
+\RequirePackage{tikz}
+\RequirePackage{etoolbox}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{caption}
+\RequirePackage{array}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{pdfpages}
+
+% 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
+% 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
+\RequirePackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
+
+% 西文字体默认为 Times New Roman
+\setromanfont{Times New Roman}
+% 论文题目字体为华文细黑
+\setCJKfamilyfont{xihei}{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
+\newcommand{\xihei}{\CJKfamily{xihei}}
+
+% 主题页面格式：BIThesis
+\fancypagestyle{BIThesis}{
+  % 页眉高度
+  \setlength{\headheight}{20pt}
+  % 页码高度（不完美，比规定稍微靠下 2mm）
+  \setlength{\footskip}{14pt}
+
+  \fancyhf{}
+  % 定义页眉、页码
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
+  \fancyfoot[C]{\songti\zihao{5} \thepage}
+  % 页眉分割线稍微粗一些
+  \renewcommand{\headrulewidth}{0.6pt}
+}
+
+% 设置章节格式
+% 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
+\ctexset{chapter={
+    name = {第,章},
+    number = {\arabic{chapter}},
+    format = {\heiti \bfseries \centering \zihao{3}},
+    aftername = \hspace{9bp},
+    pagestyle = BIThesis,
+    beforeskip = 8bp,
+    afterskip = 32bp,
+    fixskip = true,
+  }
+}
+
+% 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
+\ctexset{section={
+    number = {\thechapter.\hspace{4bp}\arabic{section}},
+    format = {\heiti \raggedright \bfseries \zihao{4}},
+    aftername = \hspace{8bp},
+    beforeskip = 20bp plus 1ex minus .2ex,
+    afterskip = 18bp plus .2ex,
+    fixskip = true,
+  }
+}
+
+% 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
+\ctexset{subsection={
+    number = {\thechapter.\hspace{3bp}\arabic{section}.\hspace{3bp}\arabic{subsection}},
+    format = {\heiti \bfseries \raggedright \zihao{-4}},
+    aftername = \hspace{7bp},
+    beforeskip = 17bp plus 1ex minus .2ex,
+    afterskip = 14bp plus .2ex,
+    fixskip = true,
+  }
+}
+
+% 设置目录样式
+% 添加 PDF 链接
+\addtocontents{toc}{\protect\hypersetup{hidelinks}}
+
+% 解决「目录」二字的格式问题
+\renewcommand{\contentsname}{
+  \fontsize{16pt}{\baselineskip}
+  \normalfont\heiti{目~~~~录}
+  \vspace{-8pt}
+}
+% 定义目录样式
+\titlecontents{chapter}[0pt]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+
+% 前置页面（原创性声明、中英文摘要、目录等）
+\renewcommand{\frontmatter}{
+  \pagenumbering{Roman}
+  \pagestyle{BIThesis}
+}
+
+% 正文页面
+\renewcommand{\mainmatter}{
+  \pagenumbering{arabic}
+  \pagestyle{BIThesis}
+}
+
+% 设置 caption 与 figure 之间的距离
+\setlength{\abovecaptionskip}{11pt}
+\setlength{\belowcaptionskip}{9pt}
+
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+% 设置表格的 caption 格式和 caption 与 table 之间的垂直距离
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space,skip=2pt}
+
+% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% 设置数学公式编号格式
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+
+\newcommand{\unnumchapter}[1]{
+  \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
+  \addcontentsline{toc}{chapter}{#1}
+  \stepcounter{chapter}
+}
+
+
+
+%    \end{macrocode}
+%    \begin{macrocode}
+%</book>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*article>
+%    \end{macrocode}
+%    \begin{macrocode}
+
+\newif\if@bit@labreport
+\newif\if@bit@proposalreport
+
+\DeclareOption{lab-report}{\@bit@labreporttrue\@bit@proposalreportfalse}
+\DeclareOption{proposal-report}{\@bit@labreportfalse\@bit@proposalreporttrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
+\ExecuteOptions{lab-report}
+\ProcessOptions\relax
+
+\LoadClass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4]{ctexart}%
+
+\if@bit@labreport
+  \RequirePackage[a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm,includeheadfoot]{geometry}%
+\else
+  \RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\fi
+
+\RequirePackage{fontspec}%
+\RequirePackage{setspace}%
+\RequirePackage{graphicx}%
+\RequirePackage{fancyhdr}%
+\RequirePackage{titlesec}%
+\RequirePackage{pdfpages}%
+\RequirePackage{setspace}%
+\RequirePackage{booktabs}%
+\RequirePackage{multirow}%
+\RequirePackage{float}%
+\RequirePackage{caption}%
+\RequirePackage{etoolbox}
+
+\if@bit@proposalreport
+  % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
+  % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
+  \usepackage[style=gb7714-2015,backend=biber]{biblatex}
+
+  % 参考文献引用文件 refs.bib
+  \addbibresource{misc/refs.bib}
+\fi
+
+
+\if@bit@labreport
+  % 将西文字体设置为 Times New Roman
+  \setromanfont{Times New Roman}%
+
+  % 设置引用位于右上角
+  \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}%
+
+  % 设置文档标题深度
+  \setcounter{tocdepth}{3}%
+  \setcounter{secnumdepth}{3}%
+
+  %%
+  % 设置一级标题、二级标题格式
+  \ctexset{section={%
+    format={\raggedright \bfseries \songti \zihao{-3}},%
+    name = {,.},%
+    number = \chinese{section}%
+    }%
+  }%
+  \ctexset{subsection={%
+    format = {\bfseries \songti \raggedright \zihao{-4}},%
+    }%
+  }%
+
+  % 页眉和页脚（页码）的格式设定
+  \fancyhf{}%
+  \fancyhead[L]{\fontsize{10.5pt}{10.5pt}\selectfont\kaishu{\reportName}}%
+  \fancyfoot[C]{\fontsize{9pt}{9pt}\selectfont\kaishu{\thepage}}%
+  \renewcommand{\headrulewidth}{0.5pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+
+  \AtBeginDocument{
+  }
+\fi
+
+\if@bit@proposalreport
+  % 定义 caption 字体为楷体
+  \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
+
+  % 设置图片的 caption 格式
+  \renewcommand{\thefigure}{\thesection-\arabic{figure}}
+  \captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+
+  % 设置表格的 caption 格式
+  \renewcommand{\thetable}{\thesection-\arabic{table}}
+  \captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+
+  % 输出大写数字日期
+  \CTEXoptions[today=big]
+
+  % 将西文字体设置为 Times New Roman
+  \setromanfont{Times New Roman}
+
+  %% 将中文楷体设置为 SIMKAI.TTF（如果需要）
+  % \setCJKfamilyfont{zhkai}{[SIMKAI.TTF]}
+  % \newcommand*{\kaiti}{\CJKfamily{zhkai}}
+
+  % 设置文档标题深度
+  \setcounter{tocdepth}{3}
+  \setcounter{secnumdepth}{3}
+
+  %%
+  % 设置一级标题、二级标题格式
+  % 一级标题：小三，宋体，加粗，段前段后各半行
+  \ctexset{section={
+    format={\raggedright \bfseries \songti \zihao{-3}},
+    beforeskip = 24bp plus 1ex minus .2ex,
+    afterskip = 24bp plus .2ex,
+    fixskip = true,
+    name = {,.\quad}
+    }
+  }
+  % 二级标题：小四，宋体，加粗，段前段后各半行
+  \ctexset{subsection={
+    format = {\bfseries \songti \raggedright \zihao{4}},
+    beforeskip =24bp plus 1ex minus .2ex,
+    afterskip = 24bp plus .2ex,
+    fixskip = true,
+    }
+  }
+  % 页眉和页脚（页码）的格式设定
+  \fancyhf{}
+  \fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{北京理工大学本科生毕业设计（论文）开题报告}}
+  \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
+  \renewcommand{\headrulewidth}{1pt}
+  \renewcommand{\footrulewidth}{0pt}
+\fi
+
+
+\AtBeginDocument{
+  \if@bit@labreport
+    \input{../lab-report/misc/cover_v1.tex}
+    % 正文开始
+    \pagestyle{fancy}
+    \setcounter{page}{1}%
+  \fi
+  \if@bit@proposalreport
+    % 报告封面
+    \input{misc/cover.tex}
+  \fi
+
+}
+
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</article>
+%    \end{macrocode}
+%
+% \iffalse
+%<*dtx-style>
+\ProvidesPackage{dtx-style}
+\RequirePackage{hypdoc}
+\RequirePackage{ifthen}
+\RequirePackage{fontspec}[2017/01/20]
+\RequirePackage{amsmath}
+\RequirePackage{unicode-math}
+\RequirePackage[UTF8,scheme=chinese,heading]{ctex}
+\RequirePackage[
+  top=2.5cm, bottom=2.5cm,
+  left=4cm, right=2cm,
+  headsep=3mm]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{multirow}
+\RequirePackage[ruled,vlined]{algorithm2e}
+\RequirePackage{wrapfig}
+\RequirePackage{hologo}
+\RequirePackage{array,longtable,booktabs}
+\RequirePackage{listings}
+\RequirePackage{fancyhdr}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{awesomebox}
+\RequirePackage{etoolbox}
+\RequirePackage{dirtree}
+\RequirePackage{metalogo}
+\RequirePackage[tightLists=false]{markdown}
+\RequirePackage{caption}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning}
+\RequirePackage{framed}
+\RequirePackage{menukeys}
+
+  % 设置代码高亮
+\RequirePackage{minted}
+\usemintedstyle{tango}
+
+  % 设置列表无间隔
+\usepackage{enumitem}
+\setlist{nosep}
+
+\markdownSetup{
+  renderers = {
+    link = {\href{#2}{#1}},
+  }
+}
+
+\hypersetup{
+  pdflang     = zh-CN,
+  pdftitle    = {BIThesis：北京理工大学学位论文及报告模板},
+  pdfauthor   = {冯开宇},
+  pdfsubject  = {北京理工大学学位论文及报告模板使用说明},
+  pdfkeywords = {论文模板; 北京理工大学; 使用说明},
+  pdfdisplaydoctitle = true
+}%
+
+\newcommand{\BIThesisLaTeX}{{\BIThesis} 北京理工大学学位论文及报告{\LaTeX}模板}
+\newcommand{\version}{v2.0 BirthdayCake}
+
+\ctexset{
+  today=big,
+  abstractname=简介
+}
+
+\ctexset{section={
+  format={\raggedright \bfseries \zihao{-3}},
+  name = {第,章}
+  }
+}
+
+\ctexset{subsection={
+  format = {\bfseries \raggedright \zihao{4}}
+  }
+}
+
+
+
+\ifthenelse{\equal{\@nameuse{g__ctex_fontset_tl}}{mac}}{
+  \setmainfont{Palatino}
+  \setsansfont[Scale=MatchLowercase]{Helvetica}
+  \setmonofont[Scale=MatchLowercase]{Menlo}
+  \xeCJKsetwidth{‘’“”}{1em}
+}{
+  \setmainfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyrepagella}
+  \setsansfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmonofont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
+    Ligatures      = CommonOff,
+  ]{texgyrecursor}
+}
+\unimathsetup{
+  math-style=ISO,
+  bold-style=ISO,
+}
+\IfFontExistsTF{XITSMath-Regular.otf}{
+  \setmathfont[
+    Extension    = .otf,
+    BoldFont     = XITSMath-Bold,
+    StylisticSet = 8,
+  ]{XITSMath-Regular}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
+}{
+  \setmathfont[
+    Extension    = .otf,
+    BoldFont     = *bold,
+    StylisticSet = 8,
+  ]{xits-math}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
+}
+
+\colorlet{bit@macro}{blue!60!black}
+\colorlet{bit@env}{blue!70!black}
+\colorlet{bit@option}{purple}
+\patchcmd{\PrintMacroName}{\MacroFont}{\MacroFont\bfseries\color{bit@macro}}{}{}
+\patchcmd{\PrintDescribeMacro}{\MacroFont}{\MacroFont\bfseries\color{bit@macro}}{}{}
+\patchcmd{\PrintDescribeEnv}{\MacroFont}{\MacroFont\bfseries\color{bit@env}}{}{}
+\patchcmd{\PrintEnvName}{\MacroFont}{\MacroFont\bfseries\color{bit@env}}{}{}
+
+\def\DescribeOption{%
+  \leavevmode\@bsphack\begingroup\MakePrivateLetters%
+  \Describe@Option}
+\def\Describe@Option#1{\endgroup
+  \marginpar{\raggedleft\PrintDescribeOption{#1}}%
+  \bit@special@index{option}{#1}\@esphack\ignorespaces}
+\def\PrintDescribeOption#1{\strut \MacroFont\bfseries\sffamily\color{bit@option} #1\ }
+\def\bit@special@index#1#2{\@bsphack
+  \begingroup
+    \HD@target
+    \let\HDorg@encapchar\encapchar
+    \edef\encapchar usage{%
+      \HDorg@encapchar hdclindex{\the\c@HD@hypercount}{usage}%
+    }%
+    \index{#2\actualchar{\string\ttfamily\space#2}
+           (#1)\encapchar usage}%
+    \index{#1:\levelchar#2\actualchar
+           {\string\ttfamily\space#2}\encapchar usage}%
+  \endgroup
+  \@esphack}
+
+\lstdefinestyle{lstStyleBase}{%
+   basicstyle=\small\ttfamily,
+   aboveskip=\medskipamount,
+   belowskip=\medskipamount,
+   lineskip=0pt,
+   boxpos=c,
+   showlines=false,
+   extendedchars=true,
+   upquote=true,
+   tabsize=2,
+   showtabs=false,
+   showspaces=false,
+   showstringspaces=false,
+   numbers=none,
+   linewidth=\linewidth,
+   xleftmargin=4pt,
+   xrightmargin=0pt,
+   resetmargins=false,
+   breaklines=true,
+   breakatwhitespace=false,
+   breakindent=0pt,
+   breakautoindent=true,
+   columns=flexible,
+   keepspaces=true,
+   gobble=4,
+   framesep=3pt,
+   rulesep=1pt,
+   framerule=1pt,
+   backgroundcolor=\color{gray!5},
+   stringstyle=\color{green!40!black!100},
+   keywordstyle=\bfseries\color{blue!50!black},
+   commentstyle=\slshape\color{black!60}}
+
+\lstdefinestyle{lstStyleShell}{%
+   style=lstStyleBase,
+   frame=l,
+   rulecolor=\color{purple},
+   language=bash}
+
+\lstdefinestyle{lstStyleLaTeX}{%
+   style=lstStyleBase,
+   frame=l,
+   rulecolor=\color{violet},
+   language=[LaTeX]TeX}
+
+\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
+\lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
+
+\setlist{nosep}
+
+\DeclareDocumentCommand{\option}{m}{\textsf{#1}}
+\DeclareDocumentCommand{\env}{m}{\texttt{#1}}
+\newcommand{\myentry}[1]{%
+  \marginpar{\raggedleft\color{purple}\bfseries\strut #1}}
+\newcommand{\note}[2][Note]{{%
+  \color{magenta}{\bfseries #1}\emph{#2}}}
+
+\DeclareDocumentCommand{\githubuser}{m}{\href{https://github.com/#1}{@#1}}
+
+
+  % 设置 caption 与 figure 之间的距离
+\setlength{\abovecaptionskip}{11pt}
+\setlength{\belowcaptionskip}{9pt}
+
+  % 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+  % 设置表格的 caption 与 table 之间的垂直距离
+\captionsetup[table]{skip=2pt}
+
+  % 设置表格的 caption 格式
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space}
+
+  % 定义 BIThesis \LaTeX 风格的 Logo
+\usepackage{relsize}
+\makeatletter
+\def\matex@ssize{\larger[-1]\scshape}
+\DeclareRobustCommand{\BIThesis}{
+  \mbox{
+    \kern-0.5em{B}\kern-0.05em
+    {I}\kern-0.05em
+    {T}\kern-0.1em
+    \raisebox{-0.38ex}{\matex@ssize {H}}\kern-0.1em
+    {\matex@ssize {E}}\kern-0.05em
+    \raisebox{-0.38ex}{\matex@ssize {S}}\kern-0.05em
+    {\matex@ssize {I}}\kern-0.05em
+    \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.5em
+   }
+}
+\makeatother
+
+
+
+%</dtx-style>
+% \fi
+%
+%
+% \Finale
+\endinput
+% \iffalse
+%  Local Variables:
+%  mode: doctex
+%  TeX-master: t
+%  End:
+% \fi
