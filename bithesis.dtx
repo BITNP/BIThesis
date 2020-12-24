@@ -151,13 +151,14 @@
 %<*book>
 %    \end{macrocode}
 %    \begin{macrocode}
+
 \newif\if@bit@bachelor
 \newif\if@bit@master
 \newif\if@bit@docter
 
 \DeclareOption{bachelor}{\@bit@bachelortrue}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
-\ExecuteOptions{lab-report}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\ExecuteOptions{bachelor}
 
 \ProcessOptions\relax
 
@@ -167,7 +168,7 @@
 % 目前 29mm 最接近 Word 排版
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
-\RequirePackage{fontspec}
+  % \RequirePackage{fontspec}
 \RequirePackage{setspace}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
@@ -200,11 +201,16 @@
   isbn=false,
 ]{biblatex}
 
+% 参考文献引用文件位于 misc/ref.bib
+\addbibresource{./misc/ref.bib}
+
 % 西文字体默认为 Times New Roman
 \setromanfont{Times New Roman}
 % 论文题目字体为华文细黑
-\setCJKfamilyfont{xihei}{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
+\setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
 \newcommand{\xihei}{\CJKfamily{xihei}}
+
+
 
 % 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{
@@ -349,22 +355,23 @@
 \RequirePackage{setspace}%
 \RequirePackage{graphicx}%
 \RequirePackage{fancyhdr}%
-\RequirePackage{titlesec}%
 \RequirePackage{pdfpages}%
 \RequirePackage{setspace}%
 \RequirePackage{booktabs}%
 \RequirePackage{multirow}%
-\RequirePackage{float}%
 \RequirePackage{caption}%
-\RequirePackage{etoolbox}
+
+\if@bit@labreport
+  \RequirePackage{titlesec}%
+  \RequirePackage{float}%
+  \RequirePackage{etoolbox}
+\fi
 
 \if@bit@proposalreport
   % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
   % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
   \usepackage[style=gb7714-2015,backend=biber]{biblatex}
 
-  % 参考文献引用文件 refs.bib
-  \addbibresource{misc/refs.bib}
 \fi
 
 
