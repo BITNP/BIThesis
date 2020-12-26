@@ -19,7 +19,7 @@ endif
 .PHONY: all cls doc clean FORCE_MAKE copy
 
 $(PACKAGE).pdf: cls FORCE_MAKE
-	$(LATEXMK) $(PACKAGE).dtx
+	yes -y y | $(LATEXMK) $(PACKAGE).dtx
 
 $(CLSFILE): $(SOURCES)
 	xetex $(PACKAGE).ins
@@ -48,3 +48,7 @@ copy:
 
 dev:
 	ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
+
+
+pkg: doc
+	zip -r bithesis.zip bithesis.{ins,dtx,pdf} README.md
