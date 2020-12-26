@@ -45,3 +45,6 @@ copy:
 	cp bitbook.cls $(SCAFFOLDDIR)/graduation-thesis
 	cp bitart.cls $(SCAFFOLDDIR)/lab-report
 	cp bitart.cls $(SCAFFOLDDIR)/proposal-report
+
+dev:
+	ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'

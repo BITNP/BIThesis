@@ -36,6 +36,18 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 ## 开发者指南
 
+### 生成 .cls 文件
+
+```Bash
+make cls
+```
+
+### 生成宏包手册
+
+```Bash
+make doc
+```
+
 ### 与 scaffold 联调开发
 
 将 `BITNP/BIThesis` 与 `BITNP/BIThesis-scaffold` 放在同一级目录下，
