@@ -49,6 +49,8 @@ copy:
 dev:
 	ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
 
+dev-doc:
+	ls bithesis.dtx | entr -s 'make clean-all && yes -y y | make doc && open bithesis.pdf'
 
 pkg: doc
 	zip -r bithesis.zip bithesis.{ins,dtx,pdf} README.md
