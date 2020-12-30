@@ -55,4 +55,4 @@
 _[Github Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)_。
 
 [slack channel invitation]: https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw
-[issue reporting link]: https://github.com/spencerwooo/BIThesis/issues/new
+[issue reporting link]: https://github.com/BITNP/BIThesis/issues/new

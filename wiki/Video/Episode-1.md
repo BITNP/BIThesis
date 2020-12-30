@@ -6,4 +6,4 @@
 
 ## 视频相关说明
 
-为获得更多内容，同学们可以前往查阅[官方 GitHub 项目](https://github.com/spencerwooo/BIThesis)。
+为获得更多内容，同学们可以前往查阅[官方 GitHub 项目](https://github.com/BITNP/BIThesis)。

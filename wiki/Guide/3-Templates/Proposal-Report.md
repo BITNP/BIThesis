@@ -1,7 +1,7 @@
 # 📕 本科生毕业设计：开题报告
 
 [![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github&labelColor=2b2b2b)](https://github.com/spencerwooo)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/spencerwooo/BIThesis/releases/latest)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/BITNP/BIThesis/releases/latest)
 
 本文档介绍了北京理工大学本科生毕业设计（论文）计算机学院的开题报告模板使用方法。
 
@@ -42,7 +42,7 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），**因此
 
 ## 你的内容从哪开始？
 
-开题报告项目结构相对来说比较简单，因此你只需要重点关注 `main.tex` 这一文件 —— 项目的主文件。你的内容应该从 `main.tex` [第 127 行](https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L127) 的 `%内容开始` 开始。你需要重点关注的部分有：
+开题报告项目结构相对来说比较简单，因此你只需要重点关注 `main.tex` 这一文件 —— 项目的主文件。你的内容应该从 `main.tex` [第 127 行](https://github.com/BITNP/BIThesis/blob/master/proposal-report/main.tex#L127) 的 `%内容开始` 开始。你需要重点关注的部分有：
 
 | 文章部分                                                              | 内容主旨                                                                                                             | 对应 LaTeX 模板 section                                                                                                                                                                                                                   |
 | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -57,8 +57,8 @@ Overleaf 缺少一些微软版权字体（比如宋体、黑体等），**因此
 
 有关具体的 LaTeX 语法，请参考前文中 [使用其中一个模板：Using one of the templates - 熟悉简单的 LaTeX 语法](/Guide/2-Usage/Downloading-and-using-templates.md#%E7%86%9F%E6%82%89%E7%AE%80%E5%8D%95%E7%9A%84-latex-%E8%AF%AD%E6%B3%95) 给出的参考链接与学习文档。以下是模板中提供的一些示例性代码。
 
-如果你希望加入图片，可以将图片直接放在根目录（比如此处的 `merge-sort-recursion-tree.png`），或者统一将图片安置在一个文件夹下，在正文里按照**相对路径**进行引用。模板中有一处插入图片的参考样例，位于 `main.tex` 的 [第 138 行](https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L138)，可以进行参考。
+如果你希望加入图片，可以将图片直接放在根目录（比如此处的 `merge-sort-recursion-tree.png`），或者统一将图片安置在一个文件夹下，在正文里按照**相对路径**进行引用。模板中有一处插入图片的参考样例，位于 `main.tex` 的 [第 138 行](https://github.com/BITNP/BIThesis/blob/master/proposal-report/main.tex#L138)，可以进行参考。
 
-如果你希望插入表格，可以统一使用 [LaTeX Tables Generator](https://www.tablesgenerator.com/) 进行生成，再粘贴进入模板之中。模板中有两处表格的参考样例，分别位于 [第 151 行](https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L151) 和 [第 176 行](https://github.com/spencerwooo/BIThesis/blob/master/proposal-report/main.tex#L176)，可以进行参考。
+如果你希望插入表格，可以统一使用 [LaTeX Tables Generator](https://www.tablesgenerator.com/) 进行生成，再粘贴进入模板之中。模板中有两处表格的参考样例，分别位于 [第 151 行](https://github.com/BITNP/BIThesis/blob/master/proposal-report/main.tex#L151) 和 [第 176 行](https://github.com/BITNP/BIThesis/blob/master/proposal-report/main.tex#L176)，可以进行参考。
 
 如果你对「开题报告」模板有任何疑问，请在本项目的 issue 区域进行提问。
