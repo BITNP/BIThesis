@@ -8,9 +8,9 @@
 
 ### 初步配置
 
-- 本项目的 [GitHub Release 页面](https://github.com/spencerwooo/BIThesis/releases/)
-- [BIThesis 项目首页](https://github.com/spencerwooo/BIThesis)
-- 个人信息的定义位于 `main.tex` 的 [第 69 行至第 74 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74)
+- 本项目的 [GitHub Release 页面](https://github.com/BITNP/BIThesis/releases/)
+- [BIThesis 项目首页](https://github.com/BITNP/BIThesis)
+- 个人信息的定义位于 `main.tex` 的 [第 69 行至第 74 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74)
   - `\deptName`：你所在学院
   - `\majorName`：你所就读的专业
   - `\yourName`：你的姓名
