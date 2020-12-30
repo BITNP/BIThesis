@@ -1,6 +1,6 @@
-# Proposal Report 开题报告 ![](https://raw.githubusercontent.com/spencerwooo/BIThesis/master/assets/bithesis_badge_solid.svg?sanitize=true)
+# Proposal Report 开题报告 ![](https://raw.githubusercontent.com/BITNP/BIThesis/master/assets/bithesis_badge_solid.svg?sanitize=true)
 
-本目录中包含有北京理工大学本科生毕业设计（论文）的开题报告模板，有关模板的使用方法更为详细的介绍，请参考：[BIThesis Wiki - 本科生开题报告：Proposal report](https://bithesis.spencerwoo.com/Guide/3-Templates/Proposal-Report)。
+本目录中包含有北京理工大学本科生毕业设计（论文）的开题报告模板，有关模板的使用方法更为详细的介绍，请参考：[BIThesis Wiki - 本科生开题报告：Proposal report](https://bithesis.bitnp.net/Guide/3-Templates/Proposal-Report)。
 
 ## 项目结构
 

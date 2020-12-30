@@ -1,7 +1,7 @@
 # 📒 本科生毕业设计：毕业论文
 
 [![](https://img.shields.io/badge/maintainer-@SpencerWoo-F80000?logo=github&labelColor=2b2b2b)](https://github.com/spencerwooo)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/spencerwooo/BIThesis/releases/latest)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/spencerwooo/BIThesis?color=008080&logo=latex&labelColor=2b2b2b)](https://github.com/BITNP/BIThesis/releases/latest)
 
 :::tip 🚀 更新提示
 目前版本的毕业设计论文已经按照北京理工大学 2016 级（2020 届）毕业论文模板进行了设计与排版的更新。
@@ -71,14 +71,14 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体「华文�
 
 首先，你需要定义毕业设计论文的「中文标题」和「英文标题」，这两个「变量」将影响模板封面的渲染，以及后续摘要中出现的标题的渲染。
 
-中英文标题的定义位于 `main.tex` 的 [第 70 至第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L70-L72)：
+中英文标题的定义位于 `main.tex` 的 [第 70 至第 72 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L70-L72)：
 
 - 你可以通过控制 `\thesisTitle` 这一变量来控制整个论文的「中文标题」
 - 你可以通过控制 `\thesisTitleEN` 这一变量来控制整个项目的「英文标题」
 
 接下来，你需要定义你的个人信息，这些信息将被渲染在毕业设计论文的封面。个人信息包括你所在学院，你的专业、学号、姓名和指导教师。
 
-个人信息的定义位于 `main.tex` 的 [第 74 行至第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L74-L81)：
+个人信息的定义位于 `main.tex` 的 [第 74 行至第 81 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L74-L81)：
 
 - `\deptName`：你所在学院
 - `\majorName`：你所就读的专业
@@ -86,23 +86,23 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体「华文�
 - `\yourStudentID`：你的学号
 - `\mentorName`：你的指导教师
 
-如果你的毕设为校外毕设，你还需要填写位于 [第 80 行至第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L80-L81) 的校外指导教师信息：
+如果你的毕设为校外毕设，你还需要填写位于 [第 80 行至第 81 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L80-L81) 的校外指导教师信息：
 - `\externalMentorName`：你的校外指导教师
 
-填写校外指导教师信息时，请先将 [第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L81) 解除注释，即删除行首的百分号字符，然后在第二组花括号中填写你的校外指导教师名称。一旦 `\externalMentorName` 被填写，LaTeX 模板将为你生成校外毕设封面。
+填写校外指导教师信息时，请先将 [第 81 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L81) 解除注释，即删除行首的百分号字符，然后在第二组花括号中填写你的校外指导教师名称。一旦 `\externalMentorName` 被填写，LaTeX 模板将为你生成校外毕设封面。
 
-如果你的毕设不是校外毕设，请不要修改 [第 81 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L81) 的任何内容。
+如果你的毕设不是校外毕设，请不要修改 [第 81 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L81) 的任何内容。
 
 ### 中英摘要
 
 接下来，你需要撰写论文的摘要。模板中英文摘要位于 `chapters/0_abstract.tex`：
 
-- **中文摘要**位于 `0_abstract.tex` 的 [第 39 行至第 46 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L39-L46)。其中 [第 46 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L46) 定义**摘要的中文关键词**
-- **英文摘要**位于 `0_abstract.tex` 的 [第 67 行至第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L67-L72)。其中 [第 72 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76) 定义**摘要的英文关键词**
+- **中文摘要**位于 `0_abstract.tex` 的 [第 39 行至第 46 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L39-L46)。其中 [第 46 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L46) 定义**摘要的中文关键词**
+- **英文摘要**位于 `0_abstract.tex` 的 [第 67 行至第 72 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L67-L72)。其中 [第 72 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76) 定义**摘要的英文关键词**
 
 ### 正文
 
-正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：`chapters/1_chapter1.tex`，你可以将它作为正文章节的「模板」，继续在 `./chapters` 目录下自行创建第二章节 `2_chapter2.tex`、第三章节 `3_chapter3.tex` 等等，并需要在 `main.tex` 的 [第 217 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L217) 处添加对应章节文件的相对路径引用：
+正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：`chapters/1_chapter1.tex`，你可以将它作为正文章节的「模板」，继续在 `./chapters` 目录下自行创建第二章节 `2_chapter2.tex`、第三章节 `3_chapter3.tex` 等等，并需要在 `main.tex` 的 [第 217 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L217) 处添加对应章节文件的相对路径引用：
 
 ```tex
 % 第一章
@@ -179,13 +179,13 @@ BibTeX 是一种表示、存储与引用参考文献的语法，谷歌学术中�
 
 请注意，为了保证图片引用的格式和 Word 模板完全一致，我们手动设置了 `\vspace{13pt}` 的垂直空白，**你引用新图片时，也需要添加这一垂直空白。**
 
-在第一章节 `chapters/1_chapter1.tex` 中的 [第 38 行至第 43 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43) 是一个示范。
+在第一章节 `chapters/1_chapter1.tex` 中的 [第 38 行至第 43 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43) 是一个示范。
 
 上述插入图片的方法无法处理 SVG 格式的矢量图片。如果你希望插入 SVG 格式的矢量图片，请按照如下的步骤进行插入：
 
 第一步，将 `.svg` 格式的图片文件放入 `./images` 文件夹中，假设文件名为 `bit_logo.svg`；
 
-第二步，在 `main.tex` 的 [第 26 行至第 45 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L26-L45) 中的任意位置，插入对 `svg` 宏包以及 `adjustbox` 宏包的引用：`\usepackage{svg}`、`\usepackage{adjustbox}`；
+第二步，在 `main.tex` 的 [第 26 行至第 45 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L26-L45) 中的任意位置，插入对 `svg` 宏包以及 `adjustbox` 宏包的引用：`\usepackage{svg}`、`\usepackage{adjustbox}`；
 
 第三步，在需要插入图片的位置，使用类似于下面的语法插入 SVG 图片：
 ```tex
@@ -206,7 +206,7 @@ BibTeX 是一种表示、存储与引用参考文献的语法，谷歌学术中�
 
 表格一直是 LaTeX 排版系统非常强大又非常不好实现的一个模块，如果你希望方便的插入表格，可以统一使用 [LaTeX Tables Generator](https://www.tablesgenerator.com/) 进行生成，再粘贴进入模板之中。
 
-在第一章节 `chapters/1_chapter1.tex` 中的 [第 47 行至第 60 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L47-L60) 是一个示范。
+在第一章节 `chapters/1_chapter1.tex` 中的 [第 47 行至第 60 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L47-L60) 是一个示范。
 
 ## 公式插入
 
@@ -243,7 +243,7 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
 ![](https://i.loli.net/2020/03/07/vkPeVtWIjFiNGLY.png)
 
-为了保证与 Word 模板中的数学公式要求一致，我们的 LaTeX 模板中的公式默认会进行相应的编号（比如上面的例子）。在第一章节 `chapters/1_chapter1.tex` 中的 [第 67 行至第 69 行](https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L67-L69) 是一个示范。
+为了保证与 Word 模板中的数学公式要求一致，我们的 LaTeX 模板中的公式默认会进行相应的编号（比如上面的例子）。在第一章节 `chapters/1_chapter1.tex` 中的 [第 67 行至第 69 行](https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L67-L69) 是一个示范。
 
 ## 其他
 

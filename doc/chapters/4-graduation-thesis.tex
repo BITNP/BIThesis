@@ -83,7 +83,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 
 首先，你需要定义毕业设计论文的“中文标题”和“英文标题”，这两个“变量”将影响模板封面的渲染，以及后续摘要中出现的标题的渲染。
 
-中英文标题的定义位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L65-L67}{第 65 至第 67 行}：
+中英文标题的定义位于 \texttt{main.tex} 的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L65-L67}{第 65 至第 67 行}：
 
 \begin{itemize}
   \item 你可以通过控制 \texttt{\textbackslash thesisTitle} 这一变量来控制整个论文的“中文标题”
@@ -92,7 +92,7 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 
 接下来，你需要定义你的个人信息，这些信息将被渲染在毕业设计论文的封面。个人信息包括你所在学院，你的专业、学号、姓名和指导教师。
 
-个人信息的定义位于 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74}{第 69 行至第 74 行}：
+个人信息的定义位于 \texttt{main.tex} 的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L69-L74}{第 69 行至第 74 行}：
 
 \begin{itemize}
   \item \texttt{\textbackslash deptName}：你所在学院
@@ -107,13 +107,13 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 接下来，你需要撰写论文的摘要。模板中英文摘要位于\\ \texttt{chapters/0\_abstract.tex}：
 
 \begin{itemize}
-  \item 中文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L41-L48}{第 41 行至第 48 行}。其中 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L48}{第 48 行} 定义摘要的中文关键词
-  \item 英文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L71-L76}{第 71 行至第 76 行}。其中 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76}{第 76 行} 定义摘要的英文关键词
+  \item 中文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L41-L48}{第 41 行至第 48 行}。其中 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L48}{第 48 行} 定义摘要的中文关键词
+  \item 英文摘要位于 \texttt{0\_abstract.tex} 的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L71-L76}{第 71 行至第 76 行}。其中 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/0_abstract.tex#L76}{第 76 行} 定义摘要的英文关键词
 \end{itemize}
 
 \subsubsection{正文}
 
-正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：\texttt{chapters/1\_chapter1.tex}，你可以将它作为正文章节的“模板”，继续在 \texttt{./chapters} 目录下自行创建第二章节 \texttt{2\_chapter2.tex}、第三章节 \texttt{3\_chapter3.tex} 等等，并需要在 \texttt{main.tex} 的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/main.tex#L199-L203}{第 199 行} 处添加对应章节文件的相对路径引用：
+正文是一篇论文中最为重要的部分，是一篇论文的核心。正文部分可以分为多个章节，模板中仅创建了第一章节的示范性文件：\texttt{chapters/1\_chapter1.tex}，你可以将它作为正文章节的“模板”，继续在 \texttt{./chapters} 目录下自行创建第二章节 \texttt{2\_chapter2.tex}、第三章节 \texttt{3\_chapter3.tex} 等等，并需要在 \texttt{main.tex} 的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/main.tex#L199-L203}{第 199 行} 处添加对应章节文件的相对路径引用：
 
 \begin{minted}[frame=single]{tex}
   % 第一章
@@ -204,13 +204,13 @@ Overleaf 版本的毕业论文模板中由于没有微软版权字体“华文�
 
 请注意，为了保证图片引用的格式和 Word 模板完全一致，我们手动设置了 \verb|\vspace{13pt}| 的垂直空白，你引用新图片时，也需要添加这一垂直空白。
 
-在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43}{第 38 行至第 43 行} 是一个示范。
+在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L38-L43}{第 38 行至第 43 行} 是一个示范。
 
 \subsection{表格插入}
 
 表格一直是 {\LaTeX} 排版系统非常强大又非常不好实现的一个模块，如果你希望方便的插入表格，可以统一使用 \href{https://www.tablesgenerator.com/}{LaTeX Tables Generator} 进行生成，再粘贴进入模板之中。
 
-在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L47-L60}{第 47 行至第 60 行} 是一个示范。
+在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L47-L60}{第 47 行至第 60 行} 是一个示范。
 
 \subsection{公式插入}
 
@@ -252,7 +252,7 @@ by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
   LRI=1\ ∕\ \sqrt{1+{\left(\frac{{\mu }_{R}}{{\mu }_{s}}\right)}^{2}{\left(\frac{{\delta }_{R}}{{\delta }_{s}}\right)}^{2}}
 \end{equation}
 
-为了保证与 Word 模板中的数学公式要求一致，我们的 {\LaTeX} 模板中的公式默认会进行相应的编号（比如上面的例子）。在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/spencerwooo/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L67-L69}{第 67 行至第 69 行} 是一个示范。
+为了保证与 Word 模板中的数学公式要求一致，我们的 {\LaTeX} 模板中的公式默认会进行相应的编号（比如上面的例子）。在第一章节 \texttt{chapters/1\_chapter1.tex} 中的 \href{https://github.com/BITNP/BIThesis/blob/master/graduation-thesis/chapters/1_chapter1.tex#L67-L69}{第 67 行至第 69 行} 是一个示范。
 
 \subsection{其他}
 

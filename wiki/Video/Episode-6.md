@@ -6,13 +6,13 @@
 
 ## 视频相关说明
 
-- BIThesis 疑难解答页面：[BIThesis - Troubleshooting](https://github.com/spencerwooo/BIThesis/wiki/Troubleshooting)
-- 项目提问：[BIThesis GitHub issues](https://github.com/spencerwooo/BIThesis/issues)
+- BIThesis 疑难解答页面：[BIThesis - Troubleshooting](https://github.com/BITNP/BIThesis/wiki/Troubleshooting)
+- 项目提问：[BIThesis GitHub issues](https://github.com/BITNP/BIThesis/issues)
 - 项目首席维护者 [Spencer Woo](https://github.com/spencerwooo)，开发者 [Silvester](https://github.com/Silverster98)
 - 贡献者、测试者 [Felinae](https://github.com/felinae98)，[Zephyr](https://github.com/Zephyr1106)，[mwl0811](https://github.com/mwl0811)
 
 ## 相关参考文献
 
-- [BIThesis - Wiki](https://github.com/spencerwooo/BIThesis/wiki)
+- [BIThesis - Wiki](https://github.com/BITNP/BIThesis/wiki)
 - [配置 VS Code 作为 LaTeX 编辑器](https://www.jianshu.com/p/dc0ffa4368e3)
 - [Overleaf - Learn LaTeX in 30 minutes](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
