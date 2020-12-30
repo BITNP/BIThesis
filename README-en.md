@@ -61,7 +61,7 @@ Specifically, detailed guides on how to use a single one of the templates are av
 
 ### PDF handbook
 
-We also provide a PDF handbook on how to use BIThesis. You can download the PDF version of the BIThesis handbook here: [`bithesis-documentation.pdf`](https://github.com/spencerwooo/BIThesis/releases/latest).
+We also provide a PDF handbook on how to use BIThesis. You can download the PDF version of the BIThesis handbook here: [`bithesis-documentation.pdf`](https://github.com/BITNP/BIThesis/releases/latest).
 
 ### Online Video Tutorials
 
@@ -91,7 +91,7 @@ For details, please see the [contributing doc](./contributing.md).
 
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | ![GitHub Release](https://github.com/spencerwooo/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                      |
+| GitHub Release | ![GitHub Release](https://github.com/BITNP/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                      |
 | Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?label=Vercel&labelColor=2b2b2b&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
 
 
@@ -103,6 +103,6 @@ This project is not validated by the _Department of Undergraduate Academic Affai
 
 📖 **BIThesis** ©Spencer Woo. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/spencerwooo/BIThesis/graphs/contributors).
+Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
 
 [@Portfolio](https://spencerwoo.com/) · [@Blog](https://blog.spencerwoo.com/) · [@GitHub](https://github.com/spencerwooo)
