@@ -1,6 +1,7 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2020 by Feng Kaiyu
+% Copyright (C) 2020
+% Association of Bit Network Pioneer and any individual authors listed elsewhere in this file.
 % -----------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -92,7 +93,6 @@
 % \end{enumerate}
 % \end{abstract}
 %
-%
 % \vspace{5mm}
 %
 % \def\abstractname{简介}
@@ -141,20 +141,28 @@
 %
 % 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
 % 
-% \section{安装}
 % \section{使用说明}
 % \subsection{\BIThesis 宏包的组成}
+% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{@{}lll@{}}
+% \toprule
+% 类别                   & 文件          & 说明                             \\ \midrule
+% \multirow{2}{*}{文档类} & bitart.cls  & 对应 ctxart.cls，提供实验报告模板、开题报告模板。 \\
+%                      & bitbook.cls & 对应 ctexbook.cls ，提供本科毕业模板。     \\ \cmidrule(l){2-3} 
+% \end{tabular}
+% \label{tab:classes}
+% \end{table}
 % \subsection{\BIThesis 宏包的安装和更新}
+% 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
+%
+% 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
+% \begin{minted}{bash}
+  tlmgr update --self --all
+% \end{minted}
 % \subsection{使用 \BIThesis 文档类}
-%
-% \DescribeMacro{\YOURMACRO}
-% Put description of |\YOURMACRO| here.
-%
-% \DescribeEnv{YOURENV}
-% Put description of |YOURENV| here.
-%
-% \StopEventually{\PrintIndex}
-%
+% 推荐使用 \BIThesisScaffold 来进行具体的项目编写。\BIThesisScaffold 提供了多种最常用的模板，你可以在 \href{https://github.com/BITNP/BIThesis}{主项目的 Releases}中找到它们。 
 % \section{致谢}
 % \section{软件许可证}
 % \begin{itemize}
@@ -163,7 +171,6 @@
 %   \item \BIThesisLaTeX 文档及其他附属文件通过 \LPPL 授权。
 % \end{itemize}
 % \section{实现细节}
-%
 %
 %    \begin{macrocode}
 %<*package>
