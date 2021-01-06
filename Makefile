@@ -19,10 +19,10 @@ endif
 .PHONY: all cls doc clean FORCE_MAKE copy
 
 $(PACKAGE).pdf: cls FORCE_MAKE
-	yes -y y | $(LATEXMK) $(PACKAGE).dtx
+	yes -y y | $(LATEXMK) -xelatex $(PACKAGE).dtx
 
 $(CLSFILE): $(SOURCES)
-	xetex $(PACKAGE).ins
+	yes -y y | xetex $(PACKAGE).ins
 
 cls: $(CLSFILE)
 

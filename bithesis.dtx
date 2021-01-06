@@ -97,9 +97,14 @@
 %
 % \def\abstractname{简介}
 % \begin{abstract}
-% \BIThesisLaTeX 是北京理工大学本科生毕业设计开题报告、总论文，以及其他课程报告、实验报告等重要论文、报告的 {\LaTeX} 模板集合。如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
+% \BIThesisLaTeX 是北京理工大学本科生毕业设计开题报告、总论文，以及其他课程报告、实验报告等重要论文、报告的 {\LaTeX} 模板集合。
+% 如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。
+% 专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
 %
-% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，符合《信息与文献参考文献著录规则》（\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）的标准。目前主要设计完成了计算机学院本科生毕业论文开题报告、毕业设计毕业论文与通用实验报告的 {\LaTeX} 模板。
+% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，
+% 符合《信息与文献参考文献著录规则》
+% （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）的标准。
+% 目前主要设计完成了计算机学院本科生毕业论文开题报告、毕业设计毕业论文与通用实验报告的 {\LaTeX} 模板。
 %
 % \end{abstract}
 % \newpage
@@ -143,24 +148,23 @@
 % 
 % \section{使用说明}
 % \subsection{\BIThesis 宏包的组成}
-% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}
+% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 % \begin{table}[H]
 % \centering
+% \caption{测试}
+% \label{tab:classes}
 % \begin{tabular}{@{}lll@{}}
 % \toprule
 % 类别                   & 文件          & 说明                             \\ \midrule
 % \multirow{2}{*}{文档类} & bitart.cls  & 对应 ctxart.cls，提供实验报告模板、开题报告模板。 \\
 %                      & bitbook.cls & 对应 ctexbook.cls ，提供本科毕业模板。     \\ \cmidrule(l){2-3} 
 % \end{tabular}
-% \label{tab:classes}
 % \end{table}
 % \subsection{\BIThesis 宏包的安装和更新}
 % 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
 %
 % 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
-% \begin{minted}{bash}
-  tlmgr update --self --all
-% \end{minted}
+% \mint{bash}|tlmgr update --self --all|
 % \subsection{使用 \BIThesis 文档类}
 % 推荐使用 \BIThesisScaffold 来进行具体的项目编写。\BIThesisScaffold 提供了多种最常用的模板，你可以在 \href{https://github.com/BITNP/BIThesis}{主项目的 Releases}中找到它们。 
 % \section{致谢}
@@ -223,7 +227,6 @@
 \RequirePackage{setspace}
 \RequirePackage{booktabs}
 \RequirePackage{multirow}
-\RequirePackage{caption}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 \RequirePackage{hyperref}
