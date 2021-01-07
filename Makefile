@@ -19,10 +19,10 @@ endif
 .PHONY: all cls doc clean FORCE_MAKE copy
 
 $(PACKAGE).pdf: cls FORCE_MAKE
-	yes -y y | $(LATEXMK) -xelatex $(PACKAGE).dtx
+	$(LATEXMK) -xelatex $(PACKAGE).dtx
 
 $(CLSFILE): $(SOURCES)
-	yes -y y | xetex $(PACKAGE).ins
+	yes y | xetex $(PACKAGE).ins
 
 cls: $(CLSFILE)
 
@@ -47,10 +47,10 @@ copy:
 	cp bitart.cls $(SCAFFOLDDIR)/proposal-report
 
 dev:
-	ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
+	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
 
 dev-doc:
-	ls bithesis.dtx | entr -s 'make clean-all && yes -y y | make doc && open bithesis.pdf'
+	ls bithesis.dtx | entr -s 'make clean-all && yes y | make doc && open bithesis.pdf'
 
 pkg: doc
 	zip -r bithesis.zip bithesis.{ins,dtx,pdf} README.md
