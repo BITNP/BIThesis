@@ -4,7 +4,6 @@
 📖 _非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_
 
 ![BIThesis](./assets/bithesis_badge_solid.svg)
-[![English version](assets/english.svg)](./README-en.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
@@ -27,50 +26,37 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 <h2>内容</h2>
 
-- [项目内容](#%e9%a1%b9%e7%9b%ae%e5%86%85%e5%ae%b9)
-- [如何使用 BIThesis](#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-bithesis)
-  - [详细的在线参考文档](#%e8%af%a6%e7%bb%86%e7%9a%84%e5%9c%a8%e7%ba%bf%e5%8f%82%e8%80%83%e6%96%87%e6%a1%a3)
-  - [PDF 使用手册](#pdf-%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c)
-  - [在线视频教程](#%e5%9c%a8%e7%ba%bf%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b)
+- [开发者指南](#开发者指南)
 - [贡献者指南](#%e8%b4%a1%e7%8c%ae%e8%80%85%e6%8c%87%e5%8d%97)
 - [贡献者](#%e8%b4%a1%e7%8c%ae%e8%80%85)
 - [相关项目](#%e7%9b%b8%e5%85%b3%e9%a1%b9%e7%9b%ae)
 - [发布状态](#%e5%8f%91%e5%b8%83%e7%8a%b6%e6%80%81)
 
-## 项目内容
 
-BIThesis 为各位在北京理工大学就读的本科同学提供了基于北京理工大学计算机学院给出的「北京理工大学计算机学院本科生毕业论文：开题报告」与北京理工大学教务部提供的「北京理工大学本科生毕业设计：论文模板」的 LaTeX 模板等。**借助于 BIThesis 的 LaTeX 模板，你可以在保证论文格式整齐、完美、符合要求的前提下，专注于学术研究、项目实现，从而顺利完成你的学术项目。**
 
-| 模板                                        | 预览                                                                                            | 特性                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 维护人                                                                  |
-| :------------------------------------------ | :---------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------                          |
-| **[开题报告](./proposal-report)**<br>       | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" />    | <ul><li>毕业设计开题报告</li><li>毕设第一部分内容</li><li>包括封面（不可编辑）和评审表</li><li>包括参考文献和相关样式</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)</li></ul>                                                                                               | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
-| **[毕业设计论文](./graduation-thesis)**<br> | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>**毕业设计论文模板**</li><li>包括封面，摘要，参考文献和附录等支持</li><li>包括公式，表格和图片等支持</li><li>按 GBT7714-2015 规范编排的书目</li><li>符合北京理工大学毕业设计论文 2016 级（2020 届）版本的格式要求。</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
-| **[实验报告](./lab-report)**<br>            | <img src="https://i.loli.net/2020/03/08/txzGcKv9YSel3IX.png" width="300px" alt="lab_report" />  | <ul><li>基本实验报告模板</li><li>包括封面，BIT logo 和资源文件夹</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                          | [@北京理工大学网络开拓者协会 BIThesis 工作组](https://github.com/BITNP) |
+## 开发者指南
 
-## 如何使用 BIThesis
+### 生成 .cls 文件
 
-### 详细的在线参考文档
+```Bash
+make cls
+```
 
-**有关如何安装 Latex、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
+### 生成宏包手册
 
-[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
+```Bash
+make doc
+```
 
-具体的，有关如何使用和编译单个模板的详细指南，请访问：
+### 与 scaffold 联调开发
 
-- [BIThesis Wiki: 开题报告](https://bithesis.bitnp.net/Guide/3-Templates/Proposal-Report.html)
-- [BIThesis Wiki: 毕业设计论文](https://bithesis.bitnp.net/Guide/3-Templates/Final-Graduation-Thesis.html)
-- [BIThesis Wiki: 实验报告](https://bithesis.bitnp.net/Guide/3-Templates/Lab-Report.html)
+将 `BITNP/BIThesis` 与 `BITNP/BIThesis-scaffold` 放在同一级目录下，
+然后进入 `BIThesis` 目录。
 
-### PDF 使用手册
-
-另外，我们也提供一个撰写详细的 PDF 使用手册。你可以在这里下载 BIThesis 手册的 PDF 版本：[`bithesis-documentation.pdf`](https://github.com/BITNP/BIThesis/releases/latest)
-
-### 在线视频教程
-
-你也可以在这里观看在线的视频教程：
-
-- 哔哩哔哩弹幕网：[BIThesis —— 教你优雅地撰写论文 | LaTeX 毕设模板系列教程](https://www.bilibili.com/video/BV1GT4y1V78d/)
-- BIThesis 文档视频部分（包含有一些视频中提到的代码）：[BIThesis - Videos](https://bithesis.bitnp.net/Video/)
+```Bash
+# 请首先确保 entr 正确安装
+ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
+```
 
 ## 贡献者指南
 

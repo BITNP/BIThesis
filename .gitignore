@@ -11,6 +11,10 @@
 *.cb
 *.cb2
 .*.lb
+*.cls
+*.pdf
+*.hd
+*.sty
 
 ## Intermediate documents:
 *.dvi
@@ -277,3 +281,4 @@ TSWLatexianTemp*
 
 node_modules
 wiki/.vuepress/dist
+bithesis.zip
