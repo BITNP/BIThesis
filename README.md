@@ -4,6 +4,7 @@
 📖 _非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_
 
 ![BIThesis](./assets/bithesis_badge_solid.svg)
+[![English version](./assets/english.svg)](./README-en.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
@@ -64,9 +65,7 @@ ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
 
 ## 贡献者
 
-> 本项目的存在离不开以下所有贡献者的辛勤贡献。更多信息请访问：[BIThesis - 致谢](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html)。
-
-[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/0)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/0)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/1)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/1)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/2)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/2)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/3)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/3)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/4)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/4)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/5)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/5)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/6)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/6)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/7)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/7)
+参见[Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html)。
 
 ## 相关项目
 
@@ -81,10 +80,6 @@ ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GitHub Release | ![GitHub Release](https://github.com/BITNP/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                            |
 | Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/81f7b49b-59a1-46bc-ba52-02f8be71d247/deploy-status)](https://app.netlify.com/sites/vigorous-hoover-a697eb/deploys)               |
-
-<!-- ## 免责声明
-
-本项目尚未经由 _北京理工大学教务部_ 确认（但即将会被官方授权）。使用此模板的风险由你自己承担。笔芯 (´▽`ʃ♡ƪ) -->
 
 ---
 

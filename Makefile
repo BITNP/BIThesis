@@ -53,4 +53,7 @@ dev-doc:
 	ls bithesis.dtx | entr -s 'make clean-all && yes y | make doc && open bithesis.pdf'
 
 pkg: doc
-	zip -r bithesis.zip bithesis.{ins,dtx,pdf} README.md
+	rm -rf ./bithesis
+	mkdir bithesis
+	cp bithesis.{ins,dtx,pdf} *.md ./bithesis
+	zip -r bithesis.zip bithesis

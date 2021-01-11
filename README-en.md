@@ -6,7 +6,7 @@
 [![BIThesis](./assets/bithesis_badge_solid.svg)](https://bithesis.bitnp.net/)
 [![Chinese version](./assets/chinese.svg)](./README-zh.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
-[![License](https://badgen.net/github/license/spencerwooo/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
+[![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
 
 </div>
@@ -25,7 +25,6 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 
 <h2>Table of Contents</h2>
 
-- [What's inside?](#whats-inside)
 - [How do I use BIThesis?](#how-do-i-use-bithesis)
   - [Detailed online Wiki](#detailed-online-wiki)
   - [PDF handbook](#pdf-handbook)
@@ -34,16 +33,6 @@ BIThesis is an unofficial LaTeX template set for your **bachelor graduation thes
 - [Contributors](#contributors)
 - [Similar Projects](#similar-projects)
 - [Release status](#release-status)
-
-## What's inside?
-
-This project aims to cover all of your essays, lab reports ... all the way to your final graduation thesis for your undergraduate studies. Currently the project is under heavy maintanence, and we aim to bring you the most reusable LaTeX templates that you can use directly for most of your works.
-
-| Template                                                         | Preview                                                                                         | Features                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Maintainer                                     |
-| :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
-| **[Proposal Report](./proposal-report)**<br>（开题报告）         | <img src="https://i.loli.net/2020/02/05/HfZUaGqWSjrATbe.png" width="300px" alt="proposal" />    | <ul><li>Graduation Thesis Proposal Report</li><li>Part I of the Graduation Thesis</li><li>Includes cover page and (non-editable) review table</li><li>Includes bibliography and corresponding styles</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-lun-wen-kai-ti-bao-gao-mo-ban/dgqdjptfqtrn)</li></ul>                                                                                                                            | [@SpencerWoo](https://github.com/spencerwooo)  |
-| **[Graduation Thesis](./graduation-thesis)**<br>（毕业设计论文） | <img src="https://i.loli.net/2020/03/01/hISQql1W6oFgKsC.png" width="300px" alt="grad_thesis" /> | <ul><li>The one and only! **Graduation Thesis**</li><li>With full cover page, abstract, reference and appendix support</li><li>Full equation, tabular and figure caption support</li><li>Bibliography formatted following the specifications of GBT7714-2015</li><li>Compatible with the specifications of BIT School of CS Class 2020.</li><li>[![open in overleaf](https://img.shields.io/badge/open%20in-Overleaf-46a247?logo=overleaf&logoColor=white&labelColor=2b2b2b)](https://www.overleaf.com/latex/templates/bei-jing-li-gong-da-xue-ben-ke-sheng-bi-ye-she-ji-lun-wen-mo-ban/mwhjgqsncxxg)</li></ul> | [@SpencerWoo](https://github.com/spencerwooo)  |
-| **[Lab Report](./lab-report)**<br>（实验报告）                   | <img src="https://i.loli.net/2020/03/08/txzGcKv9YSel3IX.png" width="300px" alt="lab_report" />  | <ul><li>Basic Lab Report Template</li><li>Includes cover page, BIT logo and assets folder</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [@Silverster](https://github.com/Silverster98) |
 
 ## How do I use BIThesis?
 
@@ -76,9 +65,7 @@ For details, please see the [contributing doc](./contributing.md).
 
 ## Contributors
 
-> This project exists thanks to all the contributors. For more information, please see: [Acknowledgements](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html).
-
-[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/0)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/0)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/1)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/1)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/2)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/2)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/3)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/3)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/4)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/4)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/5)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/5)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/6)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/6)[![](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/images/7)](https://sourcerer.io/fame/spencerwooo/spencerwooo/BIThesis/links/7)
+For more information, please see: [Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) and [Acknowledgements](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html).
 
 ## Similar Projects
 
@@ -92,17 +79,11 @@ For details, please see the [contributing doc](./contributing.md).
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GitHub Release | ![GitHub Release](https://github.com/BITNP/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                      |
-| Vercel Build   | [![Vercel Build Status](https://badgen.net/https/now.swoo.workers.dev/dpl_JAAPnJYBFWWqVLjtNXcxaU8FJDk6?label=Vercel&labelColor=2b2b2b&icon=zeit)](https://vercel.com/spencerwoo/bithesis) |
+| Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/81f7b49b-59a1-46bc-ba52-02f8be71d247/deploy-status)](https://app.netlify.com/sites/vigorous-hoover-a697eb/deploys)               |
 
-
-<!-- ## Disclaimer
-
-This project is not validated by the _Department of Undergraduate Academic Affairs_ of _Beijing Institute of Technology_, nor is it affiliated with _Beijing Institute of Technology_. Use this template at your own risk. 笔芯 (´▽`ʃ♡ƪ) -->
 
 ---
 
 📖 **BIThesis** ©Spencer Woo. Released under the [LaTeX Project Public License](LICENSE).
 
 Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
-
-[@Portfolio](https://spencerwoo.com/) · [@Blog](https://blog.spencerwoo.com/) · [@GitHub](https://github.com/spencerwooo)
