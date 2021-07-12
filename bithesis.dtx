@@ -206,8 +206,10 @@
 \newif\if@bit@bachelor
 \newif\if@bit@master
 \newif\if@bit@docter
+\newif\if@bit@docTranslation
 
 \DeclareOption{bachelor}{\@bit@bachelortrue}
+\DeclareOption{translation}{\@bit@docTranslationtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ExecuteOptions{bachelor}
 
@@ -261,7 +263,6 @@
 \newcommand{\xihei}{\CJKfamily{xihei}}
 
 
-
 % 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{
   % 页眉高度
@@ -277,6 +278,24 @@
   \renewcommand{\headrulewidth}{0.6pt}
 }
 
+\if@bit@docTranslation
+% 主题页面格式：BIThesis
+\fancypagestyle{BIThesis}{
+  % 页眉高度
+  \setlength{\headheight}{20pt}
+  % 页码高度（不完美，比规定稍微靠下 2mm）
+  \setlength{\footskip}{14pt}
+
+  \fancyhf{}
+  % 定义页码
+  \fancyfoot[C]{\songti\zihao{5} \thepage}
+  % 页眉分割线稍微粗一些
+  \renewcommand{\headrulewidth}{0.6pt}
+
+  % 定义页眉
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）外文翻译}}
+}
+\fi
 % 设置章节格式
 % 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
 \ctexset{chapter={
