@@ -41,7 +41,7 @@ clean-dist:
 clean-all: clean clean-dist FORCE_MAKE
 
 
-copy:
+copy: cls
 	cp bitbook.cls $(SCAFFOLDDIR)/graduation-thesis
 	cp bitart.cls $(SCAFFOLDDIR)/lab-report
 	cp bitart.cls $(SCAFFOLDDIR)/proposal-report

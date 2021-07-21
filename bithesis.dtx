@@ -208,12 +208,25 @@
 \newif\if@bit@docter
 \newif\if@bit@docTranslation
 
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+  family=BIThesis,
+  prefix=BIThesis@
+}
+
+\DeclareStringOption[14pt]{footskip}
+\ProcessKeyvalOptions*
+
+
 \DeclareOption{bachelor}{\@bit@bachelortrue}
 \DeclareOption{translation}{\@bit@docTranslationtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+
 \ExecuteOptions{bachelor}
 
 \ProcessOptions\relax
+
 
 \LoadClass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4,oneside,openany]{ctexbook}
 
@@ -238,6 +251,8 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{pdfpages}
+
+%\PackageError{zzzz}{Main \BIThesis@footskip  hellp}{test}
 
 % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
 % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
@@ -268,7 +283,7 @@
   % 页眉高度
   \setlength{\headheight}{20pt}
   % 页码高度（不完美，比规定稍微靠下 2mm）
-  \setlength{\footskip}{14pt}
+  \setlength{\footskip}{\BIThesis@footskip}
 
   \fancyhf{}
   % 定义页眉、页码
@@ -284,7 +299,7 @@
   % 页眉高度
   \setlength{\headheight}{20pt}
   % 页码高度（不完美，比规定稍微靠下 2mm）
-  \setlength{\footskip}{14pt}
+  \setlength{\footskip}{\BIThesis@footskip}
 
   \fancyhf{}
   % 定义页码
