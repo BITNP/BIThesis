@@ -203,10 +203,11 @@
 %    \end{macrocode}
 %    \begin{macrocode}
 
+% 目前只有本科的模板，但仍旧要为可能预留空间。
 \newif\if@bit@bachelor
+\newif\if@bit@docTranslation
 \newif\if@bit@master
 \newif\if@bit@docter
-\newif\if@bit@docTranslation
 
 \RequirePackage{kvoptions}
 
@@ -251,6 +252,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{pdfpages}
+\RequirePackage{listings}
 
 %\PackageError{zzzz}{Main \BIThesis@footskip  hellp}{test}
 
@@ -387,6 +389,37 @@
 % 设置图片的 caption 格式
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
+
+% 设置 listings 源代码高亮的格式
+\AtBeginDocument{
+  \renewcommand{\lstlistingname}{代码}
+  \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{examplestyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=examplestyle}
+
 
 % 设置表格的 caption 格式和 caption 与 table 之间的垂直距离
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
