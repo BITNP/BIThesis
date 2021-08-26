@@ -1,13 +1,19 @@
 <div align="center">
   <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
-📖 _非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_
+📖 [_非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
 
 ![BIThesis](./assets/bithesis_badge_solid.svg)
 [![English version](./assets/english.svg)](./README-en.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on Slack](https://img.shields.io/badge/Slack%20Community-BIThesis-black?logo=slack&style=social&logoColor=2eb67d)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
+
+</div>
+
+<div align="center">
+
+:raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
 
 </div>
 
@@ -36,6 +42,8 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 
 ## 开发者指南
+
+> 以下内容供宏集的开发者使用，如果你是普通用户的话，请参考我们的[在线文档](https://bithesis.bitnp.net) 。
 
 ### 生成 .cls 文件
 
