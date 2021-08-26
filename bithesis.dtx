@@ -217,6 +217,7 @@
 }
 
 \DeclareStringOption[14pt]{footskip}
+\DeclareBoolOption{titleNumberHeiti}
 \ProcessKeyvalOptions*
 
 
@@ -279,6 +280,13 @@
 \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
 \newcommand{\xihei}{\CJKfamily{xihei}}
 
+\ifBIThesis@titleNumberHeiti
+  \newcommand{\arabicHeiti}[1]{\xeCJKsetup{CJKspace=true}\xeCJKDeclareCharClass{CJK}{`0 -> `9}{\heiti\raisebox{-0.1ex}{#1}}\normalspacedchars{0,1,2,3,4,5,6,7,8,9}\xeCJKsetup{CJKspace=false}}
+\else
+  \newcommand{\arabicHeiti}[1]{#1}
+\fi
+
+
 
 % 主题页面格式：BIThesis
 \fancypagestyle{BIThesis}{
@@ -317,7 +325,7 @@
 % 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
 \ctexset{chapter={
     name = {第,章},
-    number = {\arabic{chapter}},
+    number = {\arabicHeiti{ \arabic{chapter} }},
     format = {\heiti \bfseries \centering \zihao{3}},
     aftername = \hspace{9bp},
     pagestyle = BIThesis,
@@ -329,7 +337,7 @@
 
 % 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{section={
-    number = {\thechapter.\hspace{4bp}\arabic{section}},
+    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
     format = {\heiti \raggedright \bfseries \zihao{4}},
     aftername = \hspace{8bp},
     beforeskip = 20bp plus 1ex minus .2ex,
@@ -340,7 +348,7 @@
 
 % 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{subsection={
-    number = {\thechapter.\hspace{3bp}\arabic{section}.\hspace{3bp}\arabic{subsection}},
+    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
     format = {\heiti \bfseries \raggedright \zihao{-4}},
     aftername = \hspace{7bp},
     beforeskip = 17bp plus 1ex minus .2ex,
