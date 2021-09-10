@@ -57,4 +57,6 @@ pkg: doc
 	rm -rf ./bithesis
 	mkdir bithesis
 	cp bithesis.{ins,dtx,pdf} *.md ./bithesis
+	mv ./bithesis/README.md ./bithesis/README-zh.md
+	mv ./bithesis/README-en.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
