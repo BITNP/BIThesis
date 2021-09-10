@@ -20,10 +20,10 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<book>\ProvidesClass{bitbook}
 %<article>\ProvidesClass{bitart}
-%<cls> [2021/01/06 v1.0.1 BIT Thesis Templates]
+%<cls> [2021/09/07 v1.1.0 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2021/01/06 1.0.1 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2021/09/07 1.1.0 BIT Thesis Templates]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -126,6 +126,7 @@
 %     \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 CTAN 上。
 %     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，\BIThesisWiki 和 \BIThesisScaffold。
 %   \end{itemize}
+% \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021 年毕业季收到的反馈对该项目进行维护升级（前向兼容）。
 % \end{itemize}
 % \subsection{\BIThesis 是什么？}
 % \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
@@ -203,15 +204,32 @@
 %    \end{macrocode}
 %    \begin{macrocode}
 
+% 目前只有本科的模板，但仍旧要为可能预留空间。
 \newif\if@bit@bachelor
+\newif\if@bit@docTranslation
 \newif\if@bit@master
 \newif\if@bit@docter
 
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+  family=BIThesis,
+  prefix=BIThesis@
+}
+
+\DeclareStringOption[14pt]{footskip}
+\DeclareBoolOption{titleNumberHeiti}
+\ProcessKeyvalOptions*
+
+
 \DeclareOption{bachelor}{\@bit@bachelortrue}
+\DeclareOption{translation}{\@bit@docTranslationtrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+
 \ExecuteOptions{bachelor}
 
 \ProcessOptions\relax
+
 
 \LoadClass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4,oneside,openany]{ctexbook}
 
@@ -236,6 +254,9 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{pdfpages}
+\RequirePackage{listings}
+
+%\PackageError{zzzz}{Main \BIThesis@footskip  hellp}{test}
 
 % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
 % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
@@ -260,6 +281,12 @@
 \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
 \newcommand{\xihei}{\CJKfamily{xihei}}
 
+\ifBIThesis@titleNumberHeiti
+  \newcommand{\arabicHeiti}[1]{\xeCJKsetup{CJKspace=true}\xeCJKDeclareCharClass{CJK}{`0 -> `9}{\heiti\raisebox{-0.1ex}{#1}}\normalspacedchars{0,1,2,3,4,5,6,7,8,9}\xeCJKsetup{CJKspace=false}}
+\else
+  \newcommand{\arabicHeiti}[1]{#1}
+\fi
+
 
 
 % 主题页面格式：BIThesis
@@ -267,7 +294,7 @@
   % 页眉高度
   \setlength{\headheight}{20pt}
   % 页码高度（不完美，比规定稍微靠下 2mm）
-  \setlength{\footskip}{14pt}
+  \setlength{\footskip}{\BIThesis@footskip}
 
   \fancyhf{}
   % 定义页眉、页码
@@ -277,11 +304,29 @@
   \renewcommand{\headrulewidth}{0.6pt}
 }
 
+\if@bit@docTranslation
+% 主题页面格式：BIThesis
+\fancypagestyle{BIThesis}{
+  % 页眉高度
+  \setlength{\headheight}{20pt}
+  % 页码高度（不完美，比规定稍微靠下 2mm）
+  \setlength{\footskip}{\BIThesis@footskip}
+
+  \fancyhf{}
+  % 定义页码
+  \fancyfoot[C]{\songti\zihao{5} \thepage}
+  % 页眉分割线稍微粗一些
+  \renewcommand{\headrulewidth}{0.6pt}
+
+  % 定义页眉
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）外文翻译}}
+}
+\fi
 % 设置章节格式
 % 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
 \ctexset{chapter={
     name = {第,章},
-    number = {\arabic{chapter}},
+    number = {\arabicHeiti{ \arabic{chapter} }},
     format = {\heiti \bfseries \centering \zihao{3}},
     aftername = \hspace{9bp},
     pagestyle = BIThesis,
@@ -293,7 +338,7 @@
 
 % 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{section={
-    number = {\thechapter.\hspace{4bp}\arabic{section}},
+    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
     format = {\heiti \raggedright \bfseries \zihao{4}},
     aftername = \hspace{8bp},
     beforeskip = 20bp plus 1ex minus .2ex,
@@ -304,7 +349,7 @@
 
 % 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
 \ctexset{subsection={
-    number = {\thechapter.\hspace{3bp}\arabic{section}.\hspace{3bp}\arabic{subsection}},
+    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
     format = {\heiti \bfseries \raggedright \zihao{-4}},
     aftername = \hspace{7bp},
     beforeskip = 17bp plus 1ex minus .2ex,
@@ -353,6 +398,37 @@
 % 设置图片的 caption 格式
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
+
+% 设置 listings 源代码高亮的格式
+\AtBeginDocument{
+  \renewcommand{\lstlistingname}{代码}
+  \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{examplestyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=examplestyle}
+
 
 % 设置表格的 caption 格式和 caption 与 table 之间的垂直距离
 \renewcommand{\thetable}{\thechapter-\arabic{table}}

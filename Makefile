@@ -41,10 +41,11 @@ clean-dist:
 clean-all: clean clean-dist FORCE_MAKE
 
 
-copy:
+copy: cls
 	cp bitbook.cls $(SCAFFOLDDIR)/graduation-thesis
 	cp bitart.cls $(SCAFFOLDDIR)/lab-report
 	cp bitart.cls $(SCAFFOLDDIR)/proposal-report
+	cp bitbook.cls $(SCAFFOLDDIR)/paper-translation
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
@@ -56,4 +57,6 @@ pkg: doc
 	rm -rf ./bithesis
 	mkdir bithesis
 	cp bithesis.{ins,dtx,pdf} *.md ./bithesis
+	mv ./bithesis/README.md ./bithesis/README-zh.md
+	mv ./bithesis/README-en.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
