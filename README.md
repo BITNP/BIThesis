@@ -3,7 +3,7 @@
 
 📖 _非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_
 
-![BIThesis](./assets/bithesis_badge_solid.svg)
+![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)
 [![English version](./assets/english.svg)](./README-en.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
@@ -14,8 +14,6 @@
 <h2>欢迎</h2>
 
 BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制作的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
-
-**我们正在对项目持续更新！目前，你完全可以使用现有的版本开始你的毕业设计开题报告的写作；不过与此同时，我们也在持续推进代码的升级和更新（主要是不影响使用的底层逻辑）。更多开发计划请访问我们的 [Roadmap](https://github.com/BITNP/BIThesis/projects)。想帮助这个项目持续前进？参见我们的[贡献者指南](./contributing-zh.md)。**
 
 > 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
@@ -78,11 +76,12 @@ ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
 
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | ![GitHub Release](https://github.com/BITNP/BIThesis/workflows/Release/badge.svg?branch=master)                                                                                            |
-| Netlify Deploy | [![Netlify Status](https://api.netlify.com/api/v1/badges/81f7b49b-59a1-46bc-ba52-02f8be71d247/deploy-status)](https://app.netlify.com/sites/vigorous-hoover-a697eb/deploys)               |
+| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)](https://github.com/BITNP/BIThesis/releases)                                |
+| Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
+
 
 ---
 
 📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
 
-Authored by Spencer Woo. Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
+Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
