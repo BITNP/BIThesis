@@ -11,26 +11,22 @@ and feel free to propose changes to this document in a pull request.
 
 ## Guidance
 
-**[I don't want to read this whole thing, I just have a small question!!!](#join-our-slack-channel)**
+**[I don't want to read this whole thing, I just have a small question!!!](#join-our-QQ-chat-group)**
 
 |                 | For Users                        | For Developers                                 |
 | --------------- | -------------------------------- | ---------------------------------------------- |
-| Have a Question | [Slack](#join-our-slack-channel) | [Slack](#join-our-slack-channel)               |
-| Bug Report      | [Slack](#join-our-slack-channel) | [Github - Issues](#bug-report-on-github)       |
-| Feature Request | [Slack](#join-our-slack-channel) | [Slack](#join-our-slack-channel)               |
+| Have a Question | [QQ Chat Group](#join-our-QQ-chat-group) | [QQ Chat Group](#join-our-QQ-chat-group)               |
+| Bug Report      | [QQ Chat Group](#join-our-QQ-chat-group) | [Github - Issues](#bug-report-on-github)       |
+| Feature Request | [QQ Chat Group](#join-our-QQ-chat-group) | [QQ Chat Group](#join-our-QQ-chat-group)               |
 | Pull Request    |                                  | [Github - Pull Request](#pull-request-process) |
 
-## Join Our Slack Channel
+## Join Our QQ Chat Group
 
-We provide an [official Slack channel][slack channel invitation]
+We provide an [QQ Chat Group][QQ chat group invitation]
 with **a bunch of active maintainers** and **a friendly community**
 to give helpful advice **if you have any questions**.
 
-[![Join on Slack](/assets/slack.svg)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
-
-- use `#community` channel to **report a bug**, **feature request** and **asking for help**.
-- use `#random` channel to have **unrelated discussion**:laughing:!
-- use `#announcement` channel if you don't want to miss the **updated news and features**!
+[![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 
 > note: there is no detailed rules about how to ask question, just provide enough information and
 rethink before write.
@@ -56,5 +52,5 @@ The following steps will help you finish a pull request.
 For more information, refer to the
 _[Github Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)_.
 
-[slack channel invitation]: https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw
+[QQ chat group invitation]: https://jq.qq.com/?_wv=1027&k=KYDrmS5z
 [issue reporting link]: https://github.com/BITNP/BIThesis/issues/new

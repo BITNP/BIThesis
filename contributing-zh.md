@@ -12,25 +12,21 @@
 
 ## Guidance
 
-**[我不想看下面的内容，我只是想问个小问题!!!](#加入我们的-slack-频道)**
+**[我不想看下面的内容，我只是想问个小问题!!!](#加入我们的-QQ-群)**
 
 |                | 普通使用者                      | 开发者                                          |
 | ----------     | ------------------------------- | -------------------------------------------     |
-| 提出问题       | [Slack](#加入我们的-slack-频道) | [Slack](#加入我们的-slack-频道)                 |
-| 提交 Bug       | [Slack](#加入我们的-slack-频道) | [Github - Issues](#在-github-上提交-bug)        |
-| 有好的想法     | [Slack](#加入我们的-slack-频道) | [Slack](#加入我们的-slack-频道)                 |
+| 提出问题       | [QQ 群](#加入我们的-qq-群) | [QQ 群](#加入我们的-qq-群)                 |
+| 提交 Bug       | [QQ 群](#加入我们的-qq-群) | [Github - Issues](#在-github-上提交-bug)        |
+| 有好的想法     | [QQ 群](#加入我们的-qq-群) | Github - Issues                 |
 | 提交 PR        |                                 | [Github - Pull Request](#提交-pull-request)     |
-| 有信心维护代码 |                                 | [加入 Slack 并联系我们](#加入我们的-slack-频道) |
+| 有信心维护代码 |                                 | [加入QQ 群并联系我们](#加入我们的-qq-群) |
 
-## 加入我们的 Slack 频道
+## 加入我们的 QQ 群
 
-在我们提供的[官方 Slack 频道][slack channel invitation]中有**很多活跃的维护者**和**友好的社区氛围**。在这里你能获得很多与本项目有关的帮助。
+在我们提供的[QQ 群(737548118)][QQ chat group invitation]中有**很多活跃的维护者**和**友好的社区氛围**。在这里你能获得很多与本项目有关的帮助。
 
-[![点击这里加入 Slack](/assets/slack.svg)](https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw)
-
-- 使用 `#community` 频道来**讨论问题**、**提出你的建议**或者**寻求帮助**。
-- 使用 `#random` 频道来**水群**:laughing:!
-- 使用 `#announcement` 频道获取和本项目相关的**最新资讯和使用方法**!
+[![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 
 > 提示：关于具体如何提出问题并没有明确的要求。总之请提供尽可能详细的信息，并且思考一下这个问题是不是已经被解决了。
 
@@ -54,5 +50,5 @@
 寻找更细致的流程请参考
 _[Github Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)_。
 
-[slack channel invitation]: https://join.slack.com/t/bithesis/shared_invite/zt-epmzkyk0-fJRsUS36AlwMNB2AI_Q~Vw
+[QQ chat group invitation]: https://jq.qq.com/?_wv=1027&k=KYDrmS5z
 [issue reporting link]: https://github.com/BITNP/BIThesis/issues/new
