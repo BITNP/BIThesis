@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        template: [graduation-thesis, proposal-report, lab-report, paper-translation]
+        template: [graduation-thesis, proposal-report, lab-report, paper-translation, presentation-slide]
 
     steps:
       - name: Checkout to BIThesis-scaffold
