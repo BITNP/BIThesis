@@ -3,7 +3,7 @@ PACKAGE = bithesis
 LATEX = xelatex
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty bitart.cls bitbook.cls
+CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgraduate.cls
 
 LATEXMK = latexmk
 
@@ -46,6 +46,7 @@ copy: cls
 	cp bitart.cls $(SCAFFOLDDIR)/lab-report
 	cp bitart.cls $(SCAFFOLDDIR)/proposal-report
 	cp bitbook.cls $(SCAFFOLDDIR)/paper-translation
+	cp bitgrad.cls $(SCAFFOLDDIR)/master-thesis
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
