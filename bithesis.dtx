@@ -618,13 +618,14 @@
 %    \begin{macrocode}
 %<*graduate>
 %    \end{macrocode}
+%    \begin{macrocode}
 
-%==================================================
+%% ==================================================
 %% BIT-thesis-grd.cls for BIT Thesis
 %% modified by yang yating
 %% version: 1.4
 %% last update: Mar 25th, 2018
-%%==================================================
+%% ==================================================
 
 %% math packages -- conflict with xunicode
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
@@ -689,13 +690,12 @@
 \def\BIT@value@advisor{（姓名、专业技术职务、学位）}
 \def\BIT@value@advisorinstitute{（单位）}
 \def\BIT@value@major{}
-\def\BIT@value@studentnumber{} %_ added by wei.jianwen@gmail.com
+\def\BIT@value@studentnumber{} % _ added by wei.jianwen@gmail.com
 \def\BIT@value@submitdate{}
 \def\BIT@value@defenddate{}
 \def\BIT@value@institute{}
 \def\BIT@value@chairman{}
 \def\BIT@label@statement{}
-
 
 %% 设置圆圈的格式 或使用\textcircled
 \usepackage{tikz}
@@ -714,7 +714,6 @@
 \def\BIT@label@originalDate{签字日期：}
 \def\BIT@label@originalcontent{\BITspace\BITspace 本人郑重声明：所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。尽我所知，文中除特别标注和致谢的地方外，学位论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。与我一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。\par 特此申明。}
 \def\BIT@label@authorizationcontent{\BITspace\BITspace 本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1} 学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2} 学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3} 学校可允许学位论文被查阅或借阅；\circled{4} 学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5} 学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。}
-
 
 %%
 %% 英语封面标题
@@ -768,8 +767,8 @@
 %% 当前模板的版本
 \newcommand{\version}{\BIT@value@templateversion}
 
-%%==============引用geometry 宏包设置纸张和页面========================
-%设置版面:上3.5cm，下2.5cm，左2.7cm，右2.7cm，页眉2.5cm，页脚1.8cm，装订线0cm
+%% ==============引用geometry 宏包设置纸张和页面========================
+% 设置版面:上3.5cm，下2.5cm，左2.7cm，右2.7cm，页眉2.5cm，页脚1.8cm，装订线0cm
 \usepackage[%
 paper=a4paper,%
 top=3.5cm,% 上 3.5cm %
@@ -779,14 +778,13 @@ right=2.7cm,% 右 2.7cm %
 headheight=1.0cm,% 页眉 2.5cm %
 footskip=0.7cm% 页脚 1.8cm %
 ]{geometry} % 页面设置 %
-%% =========================================================
 
 \parskip 0.5ex plus 0.25ex minus 0.25ex
 %% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \thispagestyle{empty}%
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-%设置行距，大概为22榜
+% 设置行距，大概为22榜
 \RequirePackage{setspace}
 \setstretch{1.523}
 
@@ -823,7 +821,6 @@ footskip=0.7cm% 页脚 1.8cm %
    fixskip = true,
    }
 }
-
 
 % 设置三节标题格式
 
@@ -872,7 +869,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \fancypagestyle{BIT@empty}{%
   \fancyhf{}}
 
-%======正文页眉页脚=================
+% ======正文页眉页脚=================
 \fancypagestyle{BIT@headings}{%
   \fancyhf{}
   \fancyfoot[C]{\songti\zihao{5} \thepage}
@@ -880,20 +877,20 @@ footskip=0.7cm% 页脚 1.8cm %
                 \else\zihao{5}{\songti 北京理工大学博士学位论文}\fi}
   }
 
-%==================================对于openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。===================
+% ==================================对于openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。===================
 \let\BIT@cleardoublepage\cleardoublepage
 \newcommand{\BIT@clearemptydoublepage}{%
 	\clearpage{\pagestyle{BIT@empty}\BIT@cleardoublepage}}
 \let\cleardoublepage\BIT@clearemptydoublepage
 
- %================修该frontmatter 的页码为大写罗马格式，并调整页面风格===============
+ % ================修该frontmatter 的页码为大写罗马格式，并调整页面风格===============
 \renewcommand{\frontmatter}{
  \if@openright\cleardoublepage\else\clearpage\fi
   \@mainmatterfalse
   \pagenumbering{Roman}
   \pagestyle{BIT@headings}
 }
-%=======================修改mainmatter 的页码为阿拉伯格式，并调整页面风格========================
+% =======================修改mainmatter 的页码为阿拉伯格式，并调整页面风格========================
 \renewcommand{\mainmatter}{
   \if@openright\cleardoublepage\else\clearpage\fi
   \@mainmattertrue
@@ -911,7 +908,7 @@ footskip=0.7cm% 页脚 1.8cm %
 
 
 %% 定义几个常用的数学常量符号
-\newcommand{\me}{\mathrm{e}} %定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
+\newcommand{\me}{\mathrm{e}} % 定义 对数常数e，虚数符号i,j以及微分算子d为直立体。
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\,\mathrm{d}} 
@@ -943,7 +940,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage{subfigure}
 
 \RequirePackage{wrapfig}
-%%===========================设置图表标题选项==========================
+%% ===========================设置图表标题选项==========================
 \RequirePackage{amsmath}
 \RequirePackage{caption}
 \DeclareCaptionLabelSeparator{zhspace}{\hspace{1\ccwd}}
@@ -967,10 +964,10 @@ footskip=0.7cm% 页脚 1.8cm %
 %% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 % ccaption -- bicaption
-%\RequirePackage{ccaption}
-%\captiondelim{\ }
-%\captionnamefont{\songti\zihao{5}}
-%\captiontitlefont{\songti\zihao{5}}
+% \RequirePackage{ccaption}
+% \captiondelim{\ }
+% \captionnamefont{\songti\zihao{5}}
+% \captiontitlefont{\songti\zihao{5}}
 
 
 %% sort and compress citations
@@ -1001,24 +998,24 @@ footskip=0.7cm% 页脚 1.8cm %
 % listings 源代码显示宏包
 \RequirePackage{listings}
 \lstset{tabsize=4, %
-  frame=shadowbox, %把代码用带有阴影的框圈起来
-  commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
-  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
-  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
-  showstringspaces=false,%不显示代码字符串中间的空格标记
+  frame=shadowbox, % 把代码用带有阴影的框圈起来
+  commentstyle=\color{red!50!green!50!blue!50},% 浅灰色的注释
+  rulesepcolor=\color{red!20!green!20!blue!20},% 代码块边框为淡青色
+  keywordstyle=\color{blue!90}\bfseries, % 代码关键字的颜色为蓝色，粗体
+  showstringspaces=false,% 不显示代码字符串中间的空格标记
   stringstyle=\ttfamily, % 代码字符串的特殊格式
   keepspaces=true, %
   breakindent=22pt, %
-  numbers=left,%左侧显示行号
+  numbers=left,% 左侧显示行号
   stepnumber=1,%
-  numberstyle=\tiny, %行号字体用小号
+  numberstyle=\tiny, % 行号字体用小号
   basicstyle=\footnotesize, %
   showspaces=false, %
   flexiblecolumns=true, %
-  breaklines=true, %对过长的代码自动换行
+  breaklines=true, % 对过长的代码自动换行
   breakautoindent=true,%
   breakindent=4em, %
-  aboveskip=1em, %代码块边框
+  aboveskip=1em, % 代码块边框
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
   captionpos=t,
@@ -1030,7 +1027,6 @@ footskip=0.7cm% 页脚 1.8cm %
   numbersep=-1em
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
-
 
 %% hyperref package
 \definecolor{navyblue}{RGB}{0,0,128} 
@@ -1054,11 +1050,11 @@ footskip=0.7cm% 页脚 1.8cm %
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 
-%_  参考文献风格 added by wei.jianwen@gmail.com
+% _  参考文献风格 added by wei.jianwen@gmail.com
 \bibliographystyle{GBT7714-2005NLang}
 
-%_ BITspace
-%\newcommand\BITspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
+% _ BITspace
+% \newcommand\BITspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 \newcommand{\BITspace}[1][1]{\hspace{#1\ccwd}}
 
 \def\BIT@getfileinfo#1 #2 #3\relax#4\relax{%
@@ -1075,7 +1071,7 @@ footskip=0.7cm% 页脚 1.8cm %
   \underline{\hbox to #1{\hfill#2\hfill}}}
 \def\BITunderline{\@ifnextchar[\BIT@underline\underline}
 
-%%%%中文标题页的可用命令
+% 中文标题页的可用命令
 \newcommand\classification[1]{\def\BIT@value@classification{#1}}
 \newcommand\studentnumber[1]{\def\BIT@value@studentnumber{#1}}
 \newcommand\confidential[1]{\def\BIT@value@confidential{#1}}
@@ -1097,9 +1093,8 @@ footskip=0.7cm% 页脚 1.8cm %
 \newcommand\institute[1]{\def\BIT@value@institute{#1}}
 \newcommand\chairman[1]{\def\BIT@value@chairman{#1}}
 
-
 %% 第一页和第二页
-%_ “绘制”BIT中文标题页
+%  “绘制”BIT中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -1107,9 +1102,9 @@ footskip=0.7cm% 页脚 1.8cm %
     \vspace*{60mm}
     {\heiti\zihao{-2} \BIT@value@title}
     \vskip 40mm
-    {\heiti \zihao{-3} \BIT@value@author} %黑体 小三
+    {\heiti \zihao{-3} \BIT@value@author} % 黑体 小三
      \vskip 4mm
-    {\heiti \zihao{-3} \BIT@value@defenddate} %黑体 小三
+    {\heiti \zihao{-3} \BIT@value@defenddate} % 黑体 小三
   \end{center}
   \clearpage
   \if@twoside
@@ -1124,7 +1119,7 @@ footskip=0.7cm% 页脚 1.8cm %
   \cleardoublepage
   \thispagestyle{empty}
 
-%udc ltz 
+% udc ltz 
 { %
   {\heiti \zihao{5} \noindent \BIT@label@classification} \BIT@value@classification \\
   {\heiti \zihao{5} \BIT@label@UDC}  \BIT@value@UDC
@@ -1140,7 +1135,7 @@ footskip=0.7cm% 页脚 1.8cm %
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
 
-	%黑体 小三
+	% 黑体 小三
     {\heiti\zihao{-3}
      \begin{tabular}{l p{3mm} c}
       \BIT@label@author & &\BITunderline[180pt]{\BIT@value@author}
@@ -1170,7 +1165,6 @@ footskip=0.7cm% 页脚 1.8cm %
   \fi
 }
 
-
 % English Title Page
 % 英文标题页可用命令
 \newcommand\englishtitle[1]{\def\BIT@value@englishtitle{#1}}
@@ -1192,9 +1186,9 @@ footskip=0.7cm% 页脚 1.8cm %
 
 
    \vspace*{10em}
-%论文题目	  Times New Roman 小二 加粗
+% 论文题目	  Times New Roman 小二 加粗
    {\zihao{-2}\textbf{\BIT@value@englishtitle}}
-   %\bfseries
+   % \bfseries
    \vskip \stretch{1}
    
 % Times New Roman 小三
@@ -1227,7 +1221,7 @@ footskip=0.7cm% 页脚 1.8cm %
   \fi
 }
 
-%绘制树立排放的论文题目和学校名称
+% 绘制树立排放的论文题目和学校名称
 
 \newcommand\makeVerticalTitle{
    \cleardoublepage
@@ -1293,7 +1287,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
   \fancyhf{}%
   \fancyfoot[C]{\songti \zihao{5} \BIT@label@headschoolname}
-  \fancyfoot[C]{\songti \zihao{5} ~---~{\thepage}~---~} %%首页页脚格式
+  \fancyfoot[C]{\songti \zihao{5} ~---~{\thepage}~---~} % 首页页脚格式
 }
 
 
@@ -1304,7 +1298,7 @@ footskip=0.7cm% 页脚 1.8cm %
   \chapter{\BIT@label@abstract}
  }
  {}
-%下一页从偶数页开始
+% 下一页从偶数页开始
  \newcommand\beginatevenpage{
  \clearpage
   \if@twoside
@@ -1329,14 +1323,14 @@ footskip=0.7cm% 页脚 1.8cm %
   \vspace{2ex}\noindent{\bf \BIT@label@englishkeywords} #1}
 
 
-%_ 目录
+% 目录
 \renewcommand\tableofcontents{%
   \if@twocolumn
   \@restonecoltrue\onecolumn
   \else
   \@restonecolfalse
   \fi
-  \chapter*{\contentsname}%目录里显示“目录”，否则\chapter*
+  \chapter*{\contentsname}% 目录里显示“目录”，否则\chapter*
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
   \pdfbookmark[0]{目录}{bittoc}
   \@starttoc{toc}%
@@ -1344,7 +1338,7 @@ footskip=0.7cm% 页脚 1.8cm %
 }
 
 
-%_ 参考文献环境
+% 参考文献环境
 \renewenvironment{thebibliography}[1]
      {\zihao{5}
       \chapter*{\bibname}
@@ -1460,7 +1454,7 @@ footskip=0.7cm% 页脚 1.8cm %
   \fangsong}
   {}
 
-  %%%============================术语=====================
+  %% ===========================术语=====================
   \newcommand{\bit@denotation@name}{主要符号对照表}
   \newenvironment{denotation}[1][2.5cm]{
       \chapter{\bit@denotation@name} % no tocline
@@ -1477,18 +1471,17 @@ footskip=0.7cm% 页脚 1.8cm %
       \setlength{\listparindent}{0cm} % 段落缩进量
       \setlength{\topsep}{0pt} % 标签与上文的间距
      }}{\end{list}}
-%====增加化学、国际单位宏包
+% ====增加化学、国际单位宏包
      \RequirePackage[version=4]{mhchem}
      \RequirePackage{siunitx}
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
 
-
-\endinput
-%%
 %% End of file `bitmaster-xetex.cls'.
 
+%% =========================================================
 
+%    \end{macrocode}
 %    \begin{macrocode}
 %</graduate>
 %    \end{macrocode}

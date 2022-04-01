@@ -1,0 +1,136 @@
+%%
+% The BIThesis Template for Bachelor Graduation Thesis
+%
+% 北京理工大学毕业设计（论文）参考文献 —— 使用 XeLaTeX 编译
+%
+% Copyright 2020-2021 BITNP
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Feng Kaiyu.
+%
+% Compile with: xelatex -> biber -> xelatex -> xelatex
+%
+% 如无特殊需要，本页面无需更改
+
+% 参考文献开始
+\unnumchapter{参考文献}
+\renewcommand{\thechapter}{参考文献}
+
+% 设置参考文献字号为 5 号
+\renewcommand*{\bibfont}{\zihao{5}}
+% 设置参考文献各个项目之间的垂直距离为 0
+\setlength{\bibitemsep}{0ex}
+\setlength{\bibnamesep}{0ex}
+\setlength{\bibinitsep}{0ex}
+% 设置单倍行距
+\renewcommand{\baselinestretch}{1.2}
+% 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+\setlength{\biblabelsep}{0.5mm}
+% 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+\renewcommand{\itemcmd}{
+  \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
+  \mkgbnumlabel{\printfield{labelnumber}}
+  \hspace{\biblabelsep}}
+% 删除默认的「参考文献 / Reference」标题，使用上面定义的 section 标题
+
+% -------------------------------- 示例内容 ------------------------------------- %
+\textcolor{blue}{参考文献书写规范}
+
+\textcolor{blue}{参考国家标准《信息与文献参考文献著录规则》【GB/T 7714—2015】，参考文献书写规范如下：}
+
+\textcolor{blue}{\textbf{1. 文献类型和标识代码}}
+
+\textcolor{blue}{普通图书：M}\qquad\textcolor{blue}{会议录：C}\qquad\textcolor{blue}{汇编：G}\qquad\textcolor{blue}{报纸：N}
+
+\textcolor{blue}{期刊：J}\qquad\textcolor{blue}{学位论文：D}\qquad\textcolor{blue}{报告：R}\qquad\textcolor{blue}{标准：S}
+
+\textcolor{blue}{专利：P}\qquad\textcolor{blue}{数据库：DB}\qquad\textcolor{blue}{计算机程序：CP}\qquad\textcolor{blue}{电子公告：EB}
+
+\textcolor{blue}{档案：A}\qquad\textcolor{blue}{舆图：CM}\qquad\textcolor{blue}{数据集：DS}\qquad\textcolor{blue}{其他：Z}
+
+\textcolor{blue}{\textbf{2. 不同类别文献书写规范要求}}
+
+\textcolor{blue}{\textbf{期刊}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 文献题名[J]. 刊名, 出版年份, 卷号(期号): 起止页码. }
+
+\printbibliography [type=article,heading=none] 
+
+\textcolor{blue}{\textbf{普通图书}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 文献题名[M]. 出版地: 出版者, 出版年. 起止页码. }
+\cite{Raymer1992Aircraft}
+
+\printbibliography [keyword={book},heading=none] 
+
+\textcolor{blue}{\textbf{会议论文集}}
+
+\noindent\textcolor{blue}{[序号]析出责任者. 析出题名[A]. 见(英文用In): 主编. 论文集名[C]. (供选择项: 会议名, 会址, 开会年)出版地: 出版者, 出版年. 起止页码. }
+\cite{sunpinyi}
+
+\printbibliography [type=inproceedings,heading=none] 
+
+\textcolor{blue}{\textbf{专著中析出的文献}}
+
+\noindent\textcolor{blue}{[序号]析出责任者. 析出题名[A]. 见(英文用In): 专著责任者. 书名[M]. 出版地: 出版者, 出版年.起止页码. }
+\cite{luoyun}
+
+\printbibliography [type=inbook,heading=none] 
+
+\textcolor{blue}{\textbf{学位论文}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 文献题名[D]. 保存地: 保存单位, 年份. }
+\cite{zhanghesheng}
+\cite{Sobieski}
+
+\printbibliography [keyword={thesis},heading=none] 
+
+\textcolor{blue}{\textbf{报告}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 文献题名[R]. 报告地: 报告会主办单位, 年份. }
+\cite{fengxiqiao}
+\cite{Sobieszczanski}
+
+\printbibliography [keyword={techreport},heading=none] 
+
+\textcolor{blue}{\textbf{专利文献}}
+
+\noindent\textcolor{blue}{[序号]专利所有者. 专利题名[P]. 专利国别: 专利号, 发布日期. }
+\cite{jiangxizhou}
+
+\printbibliography [type=patent,heading=none] 
+
+\textcolor{blue}{\textbf{国际、国家标准}}
+
+\noindent\textcolor{blue}{[序号]标准代号. 标准名称[S]. 出版地: 出版者, 出版年. }
+\cite{GB/T16159—1996}
+
+\printbibliography [keyword={standard},heading=none] 
+
+\textcolor{blue}{\textbf{报纸文章}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 文献题名[N]. 报纸名, 出版年, 月(日): 版次. }
+\cite{xiexide}
+
+\printbibliography [keyword={newspaper},heading=none] 
+
+\textcolor{blue}{\textbf{电子文献}}
+
+\noindent\textcolor{blue}{[序号]主要责任者. 电子文献题名[文献类型/载体类型]. 电子文献的出版或可获得地址(电子文献地址用文字表述), 发表或更新日期/引用日期(任选). }
+\cite{yaoboyuan}
+
+\printbibliography [keyword={online},heading=none] 
+
+\textcolor{blue}{关于参考文献的未尽事项可参考国家标准《信息与文献参考文献著录规则》（GB/T 7714—2015）}
+
+% 在使用时，请删除/注释上方示例内容，并启用下方语句以输出所有的参考文献
+% \printbibliography[heading=none]

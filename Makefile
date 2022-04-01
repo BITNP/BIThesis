@@ -3,11 +3,11 @@ PACKAGE = bithesis
 LATEX = xelatex
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgraduate.cls
+CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls
 
 LATEXMK = latexmk
 
-SCAFFOLDDIR = ../BIThesis-scaffold
+SCAFFOLDDIR = ./templates
 
 # make deletion work on Windows
 ifdef SystemRoot
@@ -40,11 +40,20 @@ clean-dist:
 
 clean-all: clean clean-dist FORCE_MAKE
 
+test: doc copy FORCE_MAKE
+	cd $(SCAFFOLDDIR)/undergraduate-thesis && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/master-thesis && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/undergraduate-proposal-report && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/paper-translation && latexmk && cd ..
+
+regression-test: cls
+	zsh ./scripts/regression-testing.zsh
 
 copy: cls
-	cp bitbook.cls $(SCAFFOLDDIR)/graduation-thesis
+	cp bitbook.cls $(SCAFFOLDDIR)/undergraduate-thesis
 	cp bitart.cls $(SCAFFOLDDIR)/lab-report
-	cp bitart.cls $(SCAFFOLDDIR)/proposal-report
+	cp bitart.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
 	cp bitbook.cls $(SCAFFOLDDIR)/paper-translation
 	cp bitgrad.cls $(SCAFFOLDDIR)/master-thesis
 
@@ -58,6 +67,5 @@ pkg: doc
 	rm -rf ./bithesis
 	mkdir bithesis
 	cp bithesis.{ins,dtx,pdf} *.md ./bithesis
-	mv ./bithesis/README.md ./bithesis/README-zh.md
-	mv ./bithesis/README-en.md ./bithesis/README.md
+	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
