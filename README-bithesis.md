@@ -1,3 +1,4 @@
+<!-- This README aims to be packed into bithesis LaTeX package -->
 <div align="center">
   <img src="assets/bithesis_icon.svg" alt="BIThesis Icon">
 
