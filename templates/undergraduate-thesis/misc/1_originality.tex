@@ -1,0 +1,89 @@
+%%
+% The BIThesis Template for Bachelor Graduation Thesis
+%
+% 北京理工大学毕业设计（论文）原创性声明页 —— 使用 XeLaTeX 编译
+%
+% Copyright 2020-2021 BITNP
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Feng Kaiyu.
+%
+% 如无特殊需要，本页面无需更改
+
+% 原创性声明页无页码页面格式
+\fancypagestyle{originality}{
+  % 页眉高度
+  \setlength{\headheight}{20pt}
+
+  % 页眉和页脚（页码）的格式设定
+  \fancyhf{}
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
+
+  % 页眉分割线稍微粗一些
+  \renewcommand{\headrulewidth}{0.6pt}
+}
+
+\pagestyle{originality}
+\topskip=0pt
+
+% 圆形数字编号定义
+\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
+  {\node[shape = circle, draw, inner sep = 1pt]
+  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+  \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+
+% 设置行间距
+\setlength{\parskip}{0.4em}
+\renewcommand{\baselinestretch}{1.41}
+
+% 顶部空白
+\vspace*{-6mm}
+
+% 原创性声明部分
+\begin{center}
+  \heiti\zihao{2}\textbf{原创性声明}
+\end{center}
+
+% 本部分字号为小三
+\zihao{-3}
+
+本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。
+
+特此申明。
+
+\vspace{13mm}
+
+\begin{flushright}
+  本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
+\end{flushright}
+
+\vspace{17mm}
+
+% 使用授权声明部分
+\begin{center}
+  \heiti\zihao{2}\textbf{关于使用授权的声明}
+\end{center}
+
+本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。
+
+\vspace*{1mm}
+
+\begin{flushright}
+  \begin{spacing}{1.65}
+    \zihao{-3}
+    本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\\
+    指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
+  \end{spacing}
+\end{flushright}
+
+\newpage

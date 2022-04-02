@@ -1,13 +1,17 @@
 <div align="center">
   <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
-📖 [_非官方本科生毕业设计毕业论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
+📖 [_非官方本科生毕业设计论文/研究生学位论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
 
 ![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)
-[![English version](./assets/english.svg)](./README-en.md)
+[![English version](./assets/english.svg)](./README-bithesis.md)
 [![Latexmk](https://badgen.net/badge/compiler/Latexmk?color=blue&labelColor=2b2b2b)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
+
+**有关如何安装 Latex、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
+
+[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
 
 </div>
 
@@ -19,7 +23,7 @@
 
 <h2>欢迎</h2>
 
-BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制作的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
+BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
 > 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
@@ -32,19 +36,22 @@ BIThesis 是针对北京理工大学本科同学毕业设计、毕业论文制�
 
 <h2>内容</h2>
 
+- [项目内容](#项目内容)
 - [开发者指南](#开发者指南)
 - [贡献者指南](#%e8%b4%a1%e7%8c%ae%e8%80%85%e6%8c%87%e5%8d%97)
 - [贡献者](#%e8%b4%a1%e7%8c%ae%e8%80%85)
 - [相关项目](#%e7%9b%b8%e5%85%b3%e9%a1%b9%e7%9b%ae)
 - [发布状态](#%e5%8f%91%e5%b8%83%e7%8a%b6%e6%80%81)
 
+## 项目内容
 
+详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
 
 ## 开发者指南
 
 > 以下内容供宏集的开发者使用，如果你是普通用户的话，请参考我们的[在线文档](https://bithesis.bitnp.net) 。
 
-### 生成 .cls 文件
+### 生成 `.cls` 文件
 
 ```Bash
 make cls

@@ -1,0 +1,134 @@
+
+%%==================================================
+%% demo.tex for BIT Thesis
+%% modified by yang yating
+%% version: 1.2
+%% last update: Jan. 4th, 2018
+%%==================================================
+
+% 默认单面打印 oneside 、硕士论文模板 master
+
+\documentclass[oneside, master]{bitgrad}
+
+% 模板选项： 硕士论文 master； 博士论文 doctor
+
+%==============更改数学字体设置，Latin Modern Math 默认的的确有点细，看个人需要，下面提供一种方法，需要的可以取消注释=========%
+
+% \usepackage[bold-style=ISO]{unicode-math} %采用unicode-math，可以直接输入Unicode公式，当然传统的输入就行
+% \setmathfont{XITS Math}  %目前unicode-math 支持几种数学字体，具体用法可以查看帮助文档，这里采用类似times字体科学数学字体，可以取消注释对比
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 封面
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 中文封面内容(关注内容而不是表现形式)
+\classification{TQ028.1}
+\UDC{540}
+
+\title{形状记忆聚氨酯的合成及其在织物中的应用}
+\vtitle{形状记忆聚氨酯的合成及其在织物中的应用}
+\author{***}
+\institute{**学院}
+\advisor{**教授}
+\chairman{**教授}
+\degree{工学硕士（博士）}
+\major{*****}
+\school{北京理工大学}
+\defenddate{****年*月}
+%\studentnumber{**********}
+
+
+% 英文封面内容(关注内容而不是表现形式)
+\englishtitle{Synthesis and Application on textile of the Shape\\Memory Polyurethane}
+\englishauthor{***}
+\englishadvisor{Prof. **}
+\englishchairman{Prof. **}
+\englishschool{Beijing Institute of Technology}
+\englishinstitute{****}
+\englishdegree{****}
+\englishmajor{****}
+\englishdate{*，****}
+
+% 封面绘制
+\maketitle
+
+% 中文信息
+\makeInfo
+
+% 英文信息
+\makeEnglishInfo
+
+%打印竖排论文题目
+\makeVerticalTitle
+
+% 论文原创性声明和使用授权
+\makeDeclareOriginal
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 前置部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+% 摘要
+\include{chapters/abstract}
+%% 符号对照表，可选，如不用可注释掉
+\input{chapters/denotation}
+% 加入目录
+\tableofcontents
+
+
+%加入图、表索引(同时取消图表索引中章之间的垂直间隔)
+\let\origaddvspace\addvspace
+\renewcommand{\addvspace}[1]{}
+\listoffigures
+\listoftables
+\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 正主体部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+%% 各章正文内容
+\include{chapters/chapter1}
+%\include{chapters/chapter2}
+%\include{chapters/chapter3}
+
+\include{chapters/conclusion}
+
+%% 参考文献，五号字，使用 BibTeX，包含参考文献文件.bib
+
+%\bibliography{reference/chap1,reference/chap2} %多个章节的参考文献
+\bibliography{reference/chap1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 后置部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% 附录(章节编号重新计算，使用字母进行编号)
+\appendix
+\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
+\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
+\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+
+\include{chapters/app1} 
+\include{chapters/app2} 
+
+%(其后部分无编号)
+\backmatter
+
+% 发表文章目录
+\include{chapters/pub}
+% 致谢
+\include{chapters/thanks}
+% 作者简介（博士论文需要）
+\include{chapters/resume}
+
+
+\end{document}

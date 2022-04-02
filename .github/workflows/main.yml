@@ -12,17 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        template: [graduation-thesis, proposal-report, lab-report, paper-translation, presentation-slide, master-thesis]
+        template: [undergraduate-thesis, undergraduate-proposal-report, lab-report, paper-translation, presentation-slide, master-thesis]
 
     steps:
-      - name: Checkout to BIThesis-scaffold
-        uses: actions/checkout@v2
-        with:
-          repository: 'BITNP/BIThesis-scaffold'
+      - uses: actions/checkout@v2
       - name: Zip files under ./${{ matrix.template }}
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
+          args: zip -qq -r ./${{ matrix.template }}.zip ./templates/${{ matrix.template }}
       - name: Upload ${{ matrix.template }}.zip to release
         uses: svenstaro/upload-release-action@1.0.1
         with:

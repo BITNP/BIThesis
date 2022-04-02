@@ -283,3 +283,6 @@ node_modules
 wiki/.vuepress/dist
 bithesis.zip
 bithesis
+
+!templates/*.pdf
+overleaf
