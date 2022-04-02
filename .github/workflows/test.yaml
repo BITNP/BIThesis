@@ -14,5 +14,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            apk add make ttf-mscorefonts-installer
+            apk add make msttcorefonts-installer fontconfig
+            update-ms-fonts
+            fc-cache -f
             make test
