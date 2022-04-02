@@ -57,6 +57,19 @@ copy: cls
 	cp bitbook.cls $(SCAFFOLDDIR)/paper-translation
 	cp bitgrad.cls $(SCAFFOLDDIR)/master-thesis
 
+# Generate scaffolds for overleaf
+overleaf: FORCE_MAKE
+	git clean -fdx ./templates/
+	rm -rf overleaf
+	make copy
+	mkdir overleaf
+	ls templates | xargs -I {} bash -c "cp -r ./templates/{} overleaf && zip -r ./overleaf/{}.zip ./overleaf/{}"
+	# cp -r ./templates/undergraduate-thesis overleaf/
+	# cp -r ./templates/master-thesis overleaf/
+	# cp -r ./templates/lab-report overleaf/
+	# cp -r ./templates/undergraduate-proposal-report overleaf/
+	# cp -r ./templates/paper-translation overleaf/
+
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
 
