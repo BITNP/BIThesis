@@ -79,6 +79,6 @@ dev-doc:
 pkg: doc
 	rm -rf ./bithesis
 	mkdir bithesis
-	cp bithesis.{ins,dtx,pdf} *.md ./bithesis
+	cp bithesis.{ins,dtx,pdf} ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
