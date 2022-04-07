@@ -8,8 +8,12 @@ on:
 jobs:
   publish:
     name: Publish ${{ matrix.template }}
-
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: templates
+
     strategy:
       matrix:
         template: [undergraduate-thesis, undergraduate-proposal-report, lab-report, paper-translation, presentation-slide, master-thesis]
@@ -17,9 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Zip files under ./${{ matrix.template }}
-        uses: montudor/action-zip@v0.1.0
+        uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r ./${{ matrix.template }}.zip ./templates/${{ matrix.template }}
+          args: zip -qq -r ${{ matrix.template }}.zip ./${{ matrix.template }}
       - name: Upload ${{ matrix.template }}.zip to release
         uses: svenstaro/upload-release-action@1.0.1
         with:
