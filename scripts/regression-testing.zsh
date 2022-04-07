@@ -50,10 +50,11 @@ if [[ $VERSION != $CUR_VERSION ]] {
 }
 
 ORI_PWD=`pwd`
-echo $PWD
+echo current dir: $PWD
 
 for i ($ZIP_URL){
   if [[ $i == *.zip ]] {
+    echo "============== start $i ==============="
     file_name=${i:t}
     unzip -o $file_name
     dir_name=${file_name%.zip}
@@ -66,5 +67,6 @@ for i ($ZIP_URL){
     latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex main.tex
     cd $ORI_PWD
     diff-pdf --view ./$dir_name/main.pdf ../templates/$dir_name/main.pdf
+    echo "============== end $i ==============="
   }
 }
