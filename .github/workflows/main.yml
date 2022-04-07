@@ -9,10 +9,6 @@ jobs:
   publish:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: templates
 
     strategy:
       matrix:
@@ -23,7 +19,8 @@ jobs:
       - name: Zip files under ./${{ matrix.template }}
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r ${{ matrix.template }}.zip ./${{ matrix.template }}
+          args: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
+          working-directory: ./templates
       - name: Upload ${{ matrix.template }}.zip to release
         uses: svenstaro/upload-release-action@1.0.1
         with:
@@ -31,3 +28,4 @@ jobs:
           file: ${{ matrix.template }}.zip
           asset_name: ${{ matrix.template }}.zip
           tag: ${{ github.ref }}
+          working-directory: ./templates
