@@ -1,4 +1,4 @@
-# Graduation Thesis 毕业设计（论文）外文翻译![](https://raw.githubusercontent.com/BITNP/BIThesis/master/assets/bithesis_badge_solid.svg?sanitize=true)
+# Graduation Thesis 毕业设计（论文）外文翻译![](https://raw.githubusercontent.com/BITNP/BIThesis/main/assets/bithesis_badge_solid.svg?sanitize=true)
 
 本模板由毕设模板修改而来，因此使用方式请参考：[BIThesis Wiki - 本科生毕业论文：P](https://bithesis.bitnp.net/guide/3-templates/final-graduation-thesis)。
 

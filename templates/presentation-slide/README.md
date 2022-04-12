@@ -1,4 +1,4 @@
-# 演示文档模板![](https://raw.githubusercontent.com/BITNP/BIThesis/master/assets/bithesis_badge_solid.svg?sanitize=true)
+# 演示文档模板![](https://raw.githubusercontent.com/BITNP/BIThesis/main/assets/bithesis_badge_solid.svg?sanitize=true)
 
 ## 项目结构
 
