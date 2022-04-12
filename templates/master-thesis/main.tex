@@ -17,6 +17,9 @@
 % \usepackage[bold-style=ISO]{unicode-math} %采用unicode-math，可以直接输入Unicode公式，当然传统的输入就行
 % \setmathfont{XITS Math}  %目前unicode-math 支持几种数学字体，具体用法可以查看帮助文档，这里采用类似times字体科学数学字体，可以取消注释对比
 
+\addbibresource{reference/main.bib} % 添加参考文献
+% \addbibresource{reference/chap1.bib} % 取消注释以添加其他章节的参考文献（请先创建相应的 bib 文件）
+
 
 \begin{document}
 
@@ -101,11 +104,8 @@
 
 \include{chapters/conclusion}
 
-%% 参考文献，五号字，使用 BibTeX，包含参考文献文件.bib
-
-%\bibliography{reference/chap1,reference/chap2} %多个章节的参考文献
-\bibliography{reference/chap1}
-
+%% 参考文献
+\include{chapters/reference}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 后置部分

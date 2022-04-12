@@ -49,22 +49,28 @@ if [[ $VERSION != $CUR_VERSION ]] {
   echo $VERSION already downloaded.
 }
 
-ORI_PWD=`pwd`
-echo $PWD
+echo current dir: $PWD
 
 for i ($ZIP_URL){
   if [[ $i == *.zip ]] {
+    echo "============== start $i ==============="
     file_name=${i:t}
     unzip -o $file_name
     dir_name=${file_name%.zip}
+
+    # build latest release version on github
     cd $dir_name
     rm -f '*.pdf *.aux'
-    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex main.tex
-    cd ../
-    cd ../$dir_name
+    latexmk
+    cd -
+
+    # build current version
+    cd ../templates/$dir_name
     rm -f '*.pdf *.aux'
-    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex main.tex
-    cd $ORI_PWD
+    latexmk
+    cd -
+
     diff-pdf --view ./$dir_name/main.pdf ../templates/$dir_name/main.pdf
+    echo "============== end $i ==============="
   }
 }

@@ -973,12 +973,17 @@ footskip=0.7cm% 页脚 1.8cm %
 % \captionnamefont{\songti\zihao{5}}
 % \captiontitlefont{\songti\zihao{5}}
 
-
-%% sort and compress citations
-\RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
-% 上标引用
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
-
+\RequirePackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
 
 % 将浮动参数设为较宽松的值
 \renewcommand{\textfraction}{0.15}
@@ -1053,9 +1058,6 @@ footskip=0.7cm% 页脚 1.8cm %
 % \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 % \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
 % \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-
-% _  参考文献风格 added by wei.jianwen@gmail.com
-\bibliographystyle{GBT7714-2005NLang}
 
 % _ BITspace
 % \newcommand\BITspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
