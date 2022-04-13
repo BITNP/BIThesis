@@ -53,10 +53,16 @@ echo current dir: $PWD
 
 for i ($ZIP_URL){
   if [[ $i == *.zip ]] {
-    echo "============== start $i ==============="
     file_name=${i:t}
     unzip -o $file_name
     dir_name=${file_name%.zip}
+
+    if [[ -n $FILTER ]] && [[ $FILTER != $dir_name ]] {
+      # skip this file
+      continue
+    }
+
+    echo "============== start $i ==============="
 
     # build latest release version on github
     cd $dir_name
