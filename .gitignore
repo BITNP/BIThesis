@@ -287,3 +287,7 @@ bithesis
 !templates/*.pdf
 overleaf
 *.zip
+
+scripts
+!scripts/*.sh
+!scripts/*.zsh
