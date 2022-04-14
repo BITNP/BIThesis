@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.1] - 2022-04-13
+
+### Bug Fixes
+
+- Resolve statement issue when uploading CTAN.
+- Clean zip before package, defensively.
+- Fix regression-testing scripts.
+- Remove bst file.
+- Remove redundancy space.
+
+### Features
+
+- Add .gitignore that empower version control.
+- Use biblatex in favor of natbib.
+- Add filter to regression-testing.
+- Improve spine styles.
+
+### Refactor
+
+- Rename master branch to main.
+
+### WIP
+
+- Do not push
+
+## [2.2.0-4] - 2022-04-07
+
+### Bug Fixes
+
+- Change working dir to ./templates.
+
+## [2.2.0-3] - 2022-04-07
+
+### Bug Fixes
+
+- Change working dir to ./templates.
+
+## [2.2.0-1] - 2022-04-07
+
+### Bug Fixes
+
+- Change working dir to ./templates.
+
 ## [2.2.0] - 2022-04-02
 
 ### Bug Fixes
@@ -13,6 +56,10 @@ All notable changes to this project will be documented in this file.
 - Fix depends
 - CI.
 - Remove Noto Serif CJK SC dependency.
+
+### Documentation
+
+- Add changelog.
 
 ### Features
 
