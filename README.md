@@ -27,6 +27,8 @@ BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学�
 
 > 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
+> **研究生模板暂未与官方进行沟通。但是我们的代码从[BIT-thesis](https://github.com/BIT-thesis/LaTeX-template)迁移而来，而它曾得到了研究生院和北京理工大学学生事务中心的支持。**
+
 <h2>交流社区</h2>
 
 > 订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方社区！
