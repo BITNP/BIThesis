@@ -74,6 +74,13 @@ make doc
 make dev
 ```
 
+### 单元测试和回归测试
+
+运行 `make test` 将对所有的模板进行编译测试（同样被用于 Github Action）。
+
+运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
+使用前请确保 `diff-pdf`、`zsh` 已经安装。
+
 ## 贡献者指南
 
 详情请查看[贡献者指南](./contributing-zh.md)。
