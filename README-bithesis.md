@@ -4,6 +4,8 @@
 
 $\LaTeX$ thesis template for Beijing Institute of Technology.
 
+The current maintainer of this project is [Feng Kaiyu](https://github.com/fky2015).
+
 [![BIThesis](./assets/bithesis_badge_solid.svg)](https://bithesis.bitnp.net/)
 [![Latexmk](https://badgen.net/badge/compiler/latexmk/blue)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
