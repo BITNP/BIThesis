@@ -65,14 +65,13 @@ make cls
 make doc
 ```
 
-### 与 scaffold 联调开发
+### 本地开发
 
-将 `BITNP/BIThesis` 与 `BITNP/BIThesis-scaffold` 放在同一级目录下，
-然后进入 `BIThesis` 目录。
+运行以下命令，系统将会在 `bithesis.dtx` 更新后自动编译新的 `.cls` 文件，并拷贝到 `templates` 目录下的相应模板中。
 
 ```Bash
 # 请首先确保 entr 正确安装
-ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
+make dev
 ```
 
 ## 贡献者指南
