@@ -8,6 +8,8 @@
 [![Latexmk](https://badgen.net/badge/compiler/latexmk/blue)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 [![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
+[![Github Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
+[![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
 
 **有关如何安装 Latex、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
@@ -65,15 +67,21 @@ make cls
 make doc
 ```
 
-### 与 scaffold 联调开发
+### 本地开发
 
-将 `BITNP/BIThesis` 与 `BITNP/BIThesis-scaffold` 放在同一级目录下，
-然后进入 `BIThesis` 目录。
+运行以下命令，系统将会在 `bithesis.dtx` 更新后自动编译新的 `.cls` 文件，并拷贝到 `templates` 目录下的相应模板中。
 
 ```Bash
 # 请首先确保 entr 正确安装
-ls bithesis.dtx | entr -s 'yes -y y | make doc && make copy'
+make dev
 ```
+
+### 单元测试和回归测试
+
+运行 `make test` 将对所有的模板进行编译测试（同样被用于 Github Action）。
+
+运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
+使用前请确保 `diff-pdf`、`zsh` 已经安装。
 
 ## 贡献者指南
 
