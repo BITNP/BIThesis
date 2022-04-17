@@ -1,3 +1,5 @@
+<!-- This file should not be packed into bithesis.zip. -->
+
 <div align="center">
   <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
@@ -82,6 +84,10 @@ make dev
 
 运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
 使用前请确保 `diff-pdf`、`zsh` 已经安装。
+
+## Release 工作流
+
+![Release Workflow](./assets/release_workflow.png)
 
 ## 贡献者指南
 
