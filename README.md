@@ -89,6 +89,13 @@ make dev
 
 ![Release Workflow](./assets/release_workflow.png)
 
+### 参考规范
+
+- 本科生
+  - [北京理工大学教务部 - 关于2022届本科生毕业设计（论文）工作安排的通知](https://jwc.bit.edu.cn/sjjx/bysj/e06605ca60ec480d80bd6497560f70f7.htm) 
+- 研究生
+  - [北京理工大学研究生院 - 研究生学位论文模版](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b119746.htm) 
+
 ## 贡献者指南
 
 详情请查看[贡献者指南](./contributing-zh.md)。
