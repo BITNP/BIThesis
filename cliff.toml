@@ -5,6 +5,14 @@
 header = """
 # Changelog\n
 All notable changes to this project will be documented in this file.\n
+Acronyms:
+- LB: lab-report
+- MT: master-thesis
+- PT: paper-translation
+- PS: presentation-slide
+- UPR: undergraduate-proposal-report
+- UT: undergraduate-thesis\n
+**Bolded text highlight its importance.**\n
 """
 # template for the changelog body
 # https://tera.netlify.app/docs/#introduction
@@ -14,10 +22,16 @@ body = """
 {% else %}\
     ## [unreleased]
 {% endif %}\
+{% if previous %}\
+    {% if previous.commit_id %}
+        [{{ previous.commit_id | truncate(length=7, end="") }}]({{ previous.commit_id }})...\
+            [{{ commit_id | truncate(length=7, end="") }}]({{ commit_id }})
+    {% endif %}\
+{% endif %}\
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | upper_first }}
     {% for commit in commits %}
-        - {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}\
+        - {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}]({{ commit.id }}))\
     {% endfor %}
 {% endfor %}\n
 """
@@ -51,7 +65,7 @@ filter_commits = false
 # glob pattern for matching git tags
 tag_pattern = "v[0-9]*"
 # regex for skipping tags
-skip_tags = "v0.1.0-beta.1"
+# skip_tags = "v0.1.0-beta.1"
 # regex for ignoring tags
 ignore_tags = ""
 # sort the tags chronologically
