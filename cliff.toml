@@ -12,7 +12,7 @@ Acronyms:
 - PS: presentation-slide
 - UPR: undergraduate-proposal-report
 - UT: undergraduate-thesis\n
-**Bolded text highlight its importance.**\n
+**Bolded text highlights its importance.**\n
 """
 # template for the changelog body
 # https://tera.netlify.app/docs/#introduction

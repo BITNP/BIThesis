@@ -10,7 +10,7 @@ Acronyms:
 - UPR: undergraduate-proposal-report
 - UT: undergraduate-thesis
 
-**Bolded text highlight its importance.**
+**Bolded text highlights its importance.**
 
 ## [2.2.2] - 2022-04-22
 
