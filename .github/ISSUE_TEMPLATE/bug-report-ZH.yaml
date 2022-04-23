@@ -16,7 +16,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: what-happened
+    id: what-is-expected
     attributes:
       label: 你期望的结果 
       description: 提供一下你期望的结果。
