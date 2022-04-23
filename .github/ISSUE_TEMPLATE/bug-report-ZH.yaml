@@ -61,14 +61,14 @@ body:
     validations:
       required: false
   - type: input
-    id: software-version
+    id: software
     attributes:
       label: LaTeX 发行版以及发行年份
       placeholder: TexLive 2021
     validations:
       required: false
   - type: dropdown
-    id: os
+    id: templates
     attributes:
       label: BIThesis 模板
       description: 你遇到问题的模板有哪些？
