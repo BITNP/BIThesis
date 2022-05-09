@@ -20,7 +20,9 @@
 
     \songti\fontsize{16pt}{16pt}\selectfont{\textbf{姓\hspace{11mm}名：}\underline{\makebox[51mm][c]{\yourName}}}
 
-    \songti\fontsize{16pt}{16pt}\selectfont{\textbf{任课教师：}\underline{\makebox[51mm][c]{\teacherName}}}
+    \ifdefined\teacherName
+      \songti\fontsize{16pt}{16pt}\selectfont{\textbf{任课教师：}\underline{\makebox[51mm][c]{\teacherName}}}
+    \fi
   \end{spacing}
 
   \vspace*{\fill}
