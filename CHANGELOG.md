@@ -12,6 +12,36 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [2.2.3] - 2022-05-09
+
+### Bug Fixes
+
+- Remove conflict definition. ([fc6b3f4](fc6b3f4291a9a4ccc28795f60c276c523219bc5b))
+
+### Documentation
+
+- Fix typo. ([8ec3db3](8ec3db397e9615590455c18ece20a4cfbf1978aa))
+- Add ISSUE_TEMPLATE config.yaml ([5519740](55197409790aaa70bdac2ac232a67bdd975b634a))
+- Add formated issue template. ([7dfc517](7dfc517dc195ddfc7bffa28a16f9d226cedb7e0e))
+
+### Features
+
+- Make teacherName optional. ([f8e4379](f8e4379b5c568457fb175e8029534b7a12fb47fb))
+- Custom date. ([510e367](510e367e20e7e0d56699fe8a495185db923d13c6))
+- Add bibliography. ([8c34533](8c345331006d9e1087ba110765b75b552390c940))
+
+### Miscellaneous Tasks
+
+- Fix emoji. ([c64620d](c64620d9fc3da5f8409b9305cc97988badb11849))
+
+### Refactor
+
+- Remove theorem. ([9805f5d](9805f5d7bd21278bfcb49c4946a99852c2696a56))
+
+### Dev
+
+- Add release issue tracker template. ([afe4a73](afe4a73b0c1cccf14622ac24872a9ed83d821e6b))
+
 ## [2.2.2] - 2022-04-22
 
 [bb4e1de](bb4e1de2aa7996aeb3a7d839e4988ce1568df174)...[2ce7e8c](2ce7e8c51c0dac1b5158d702d400b81423b939ff)
