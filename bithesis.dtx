@@ -500,13 +500,9 @@
   \RequirePackage{etoolbox}
 \fi
 
-\if@bit@proposalreport
-  % 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
-  % 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
-  \usepackage[style=gb7714-2015,backend=biber]{biblatex}
-
-\fi
-
+% 设置参考文献编译后端为 biber，引用格式为 GB/T7714-2015 格式
+% 参考文献使用宏包见 https://github.com/hushidong/biblatex-gb7714-2015
+\usepackage[style=gb7714-2015,backend=biber]{biblatex}
 
 \if@bit@labreport
   % 将西文字体设置为 Times New Roman
