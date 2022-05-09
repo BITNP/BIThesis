@@ -1,5 +1,5 @@
 ---
-name: 🐞 Release Tracker
+name: Release Tracker
 about: A tracker for release process. 
 title: '[Release Tracker] <vx.x.x>'
 labels: Release
