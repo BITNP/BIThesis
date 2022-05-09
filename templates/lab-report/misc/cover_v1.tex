@@ -28,5 +28,11 @@
   \vspace*{\fill}
 
   \centering
-  \songti\fontsize{12pt}{12pt}\selectfont{\today}
+  \songti\fontsize{12pt}{12pt}\selectfont{
+    \ifdefined\coverDate
+      \coverDate
+    \else
+      \today
+    \fi
+  }
 \end{titlepage}
