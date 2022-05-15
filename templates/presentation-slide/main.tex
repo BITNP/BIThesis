@@ -20,144 +20,43 @@
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
 % 修改 `aspectratio` 可以修改画布比例 比如 `43` 或者 `169`
-\documentclass[UTF8,aspectratio=43,presentation]{ctexbeamer}
+\documentclass[
+  UTF8,
+  aspectratio=169,
+  presentation,
+  % 设置封面的图片
+  titlegraphic=./images/bit.png,
+  % 设置每页标题的 logo
+  framelogo=./images/bit.png
+]{bitbeamer}
+
+%% --> 基本信息设置
+\title{键入你的标题}
+\author{Feng Kaiyu \and Jiang Yingqi}
+\institute{北京理工大学}
+\date{\zhtoday}
 
 \usetheme{Madrid}
 \usefonttheme{serif}              % 使用衬线字体
 \usefonttheme{professionalfonts}  % 数学公式字体
 
 \usepackage{zhnumber}
-\usepackage{soul}
-\usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage[overload]{empheq}
-\usepackage{tikz}
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{color}
-\usepackage[ruled,lined,noend]{algorithm2e}
 \usepackage{fontspec}
-\usepackage{xeCJKfntef}
 
 \setbeamertemplate{caption}[numbered]
 
 % 设置主题色
 \colorlet{beamer@blendedblue}{green!40!black}
 
-% BIT Logo
-\titlegraphic{
-    \includegraphics[width=2cm]{images/bit.png}
-}
-
-%\newtheorem{lemma}{引理}
-
-% 以下内容定义了 `\cjkhl` 宏。
-\newcommand*{\cjkhl}[2]{{\def\xcjklhcolorbox{\colorbox{#1}}\xcjkhl#2\relax}}
-
-\makeatletter
-
-%look ahhead for the next character
-\def\xcjkhl{\futurelet\tmp\xxcjkhl}
-
-%helper macro to make leaders with a highlight box.
-\def\xcjkhlleaders{\leavevmode\leaders\hbox{%
-  \fboxsep\z@\xcjklhcolorbox{\strut\kern.1pt%
-  \ifx\cjkhlbleeda\relax\else\kern\cjkhlbleeda\fi\relax}%
-\ifx\cjkhlbleeda\relax\else\kern-\cjkhlbleeda\fi\relax}}
-
-% leaders with a 1pt of stretch/shrink to put before or after punctuation
-\def\@@yhlstretch{\leavevmode\xcjkhlleaders\hskip\z@\@plus.1em \@minus.1em }
-
-\def\@chkhlpar#1\fi\fi#2{\par\noindent\xcjkhl}
-
-\def\@cjkhl@beforeafter#1{%
-  \ifx\tmp#1%
-    \@@yhlstretch
-    \let\@chkhlstretch\@@yhlstretch
-    \let\cjkhlpenalty\@highpenalty
-  \fi}
-
-\def\@cjkhl@after#1{%
-  \ifx\tmp#1%
-    \let\@chkhlstretch\@@yhlstretch
-    \let\cjkhlpenalty\@highpenalty
-  \fi}
-
-\def\@cjkhl@before#1{%
-  \ifx\tmp#1%
-    \@@yhlstretch
-    \let\cjkhlpenalty\@highpenalty
-  \fi}
-
-\def\xxcjkhl{%
-%look for a \par (from \obeylines)
-\ifx\tmp\par\expandafter\@chkhlpar\fi
-%look for a \relax to finish
-\ifx\tmp\relax
-\else
-%by default do no stretch leaders after the character
-\let\@chkhlstretch\relax
-\let\cjkhlpenalty\z@
-%these stretch before and after
-\@cjkhl@beforeafter？%
-\@cjkhl@beforeafter；%
-% these stretch after
-\@cjkhl@after，%
-\@cjkhl@after。%
-\@cjkhl@after）%
-\@cjkhl@after》%
-\@cjkhl@after”%
-%these stretch before
-\@cjkhl@before（%
-\@cjkhl@before《%
-\@cjkhl@before“%
-% look for a space
-\ifx\tmp\@sptoken
-\xxxcjkhlsp
-\else
-%default case stick the current character in a box
-\xxxcjkhl
-\fi\fi}
-
-%make a highlight leaders stretch/shrink as much as a normal word space.
-\def\xxxcjkhlsp#1\fi\fi#2{%
-\fi\fi
-\xcjkhlleaders\hskip \fontdimen2\font  plus \fontdimen3\font minus \fontdimen4\font\relax
-\xcjkhl#2}
-
-%get out of a double \if test
-\def\xxxcjkhl\fi\fi{%
-\fi\fi
-\@chkhl}
-
-%The simple case box the current character and start looking for the next.
-% bleed slightly on the right to avoid gaps showing
-\let\cjkhlbleeda\relax
-\def\cjkhlbleeda{.07pt}
-\def\@chkhl#1{{%
-\fboxsep\z@
-\leavevmode\penalty\cjkhlpenalty
-  \xcjklhcolorbox{%
-   \strut#1\ifx\cjkhlbleeda\relax\else\kern\cjkhlbleeda\fi}}%
-\ifx\cjkhlbleeda\relax\else\kern-\cjkhlbleeda\fi\relax
-\@chkhlstretch
-\xcjkhl}%
-
-\makeatother
-
-
-% 以下内容定义了 `\hl` 的宏。
-\makeatletter
-\let\HL\hl
-\renewcommand\hl{%
-  \let\set@color\beamerorig@set@color
-  \let\reset@color\beamerorig@reset@color
-  \HL}
-\makeatother
-
+% 使用 bibtex
 \usepackage[
   backend=biber,
   style=gb7714-2015,
@@ -170,28 +69,17 @@
   isbn=false,
 ]{biblatex}
 
-\usetheme{default}
-
 \addbibresource{ref.bib}
 
+% 设置段落间距
 \parindent2em
 
 \begin{document}
 
-%% --> 导言页
-\title{键入你的标题}
-\author{Feng Kaiyu}
-\institute{北京理工大学}
-\date{\zhtoday}
+% 封面
 \frame{\titlepage}
 
-
-
-\addtobeamertemplate{frametitle}{}{%
-\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=0.8cm]{images/bit.png}};
-\end{tikzpicture}}
-
+%
 %% --> 目录结构
 %
 \begin{frame}{目录}
@@ -205,10 +93,10 @@
 %
 \section{使用示例}    % 第 1 节
 
-\begin{frame}[t]
+\begin{frame}[t] % 第一页
   \frametitle{使用示例}
 
- 苏子愀然，\textbf{正襟危坐}，而问客曰：“\CJKunderline{何为其然也}？”客曰：“‘月明星稀，乌鹊南飞。’此非曹孟德之诗乎？西望夏口，东望武昌，山川相缪，郁乎苍苍，此非孟德之困于周郎者乎？方其破荆州，下江陵，顺流而东也，舳舻千里，旌旗蔽空，酾酒临江，横槊赋诗，固一世之雄也，而今安在哉？况吾与子渔樵于江渚之上，侣鱼虾而友麋鹿，驾一叶之扁舟，举匏樽以相属。\textsl{寄蜉蝣于天地，渺沧海之一粟。}哀吾生之\footnote{之：助词，取独。}须臾，羡长江之无穷。挟飞仙以遨游，抱明月而长终。\cjkhl{yellow}{知不可乎骤得，托遗响于悲风。}” 
+  苏子愀然，\textbf{正襟危坐}，而问客曰：“\CJKunderline{何为其然也}？”客曰：“‘月明星稀，乌鹊南飞。’此非曹孟德之诗乎？西望夏口，东望武昌，山川相缪，\CJKunderdot[textformat=\bfseries]{郁乎苍苍}，此非孟德之困于周郎者乎？方其破荆州，下江陵，顺流而东也，舳舻千里，旌旗蔽空，酾酒临江，横槊赋诗，固一世之雄也，而今安在哉？况吾与子渔樵于江渚之上，侣鱼虾而友麋鹿，驾一叶之扁舟，举匏樽以相属。\textsl{寄蜉蝣于天地，渺沧海之一粟。}哀吾生之\footnote{之：助词，取独。}须臾，羡长江之无穷。挟飞仙以遨游，抱明月而长终。\CJKhl{yellow}{知不可乎骤得，托遗响于悲风。}” 
 
 \end{frame}
 
@@ -226,7 +114,7 @@
 
 \begin{frame}[t]
   \frametitle{使用示例}
-  \framesubtitle{引理1的策略证明}
+  \framesubtitle{插入图片}
 
 \begin{figure}
     \centering
@@ -246,7 +134,7 @@
   
 \end{frame}
 
-\section{空白章节}
+\section{总结}
 
 \begin{frame}[t]
   \frametitle{参考文献}
