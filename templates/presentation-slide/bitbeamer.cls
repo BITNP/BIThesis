@@ -24,10 +24,6 @@
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
 
-\cs_new:Npn \SayHello #1
-  { \prg_replicate:nn {#1} { Hello~World!~ } }
-
-
 \cs_new:Npn \CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
 
