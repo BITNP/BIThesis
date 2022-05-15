@@ -24,6 +24,9 @@
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
 
+% 设置主题色
+\colorlet{beamer@blendedblue}{green!40!black}
+
 \cs_new:Npn \CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
 
