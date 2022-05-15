@@ -24,6 +24,7 @@
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
 
+\usetheme{Madrid}
 % 设置主题色
 \colorlet{beamer@blendedblue}{green!40!black}
 
