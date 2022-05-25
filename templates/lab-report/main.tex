@@ -17,7 +17,7 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-\documentclass[lab-report]{bitart}
+\documentclass[]{bitreport}
 
 
 % 将你的相关信息替换如下示例
@@ -29,9 +29,19 @@
 \newcommand{\teacherName}{张哈希}
 % \newcommand{\coverDate}{2022年5月9日} % 注释此行以使用自定义日期
 
+%% usepackage
+\usepackage[style=gb7714-2015,backend=biber]{biblatex}
+% used by figure.
+\usepackage{float,graphicx}
+
 \addbibresource{misc/refs.bib}
 
+% TODO
+\RequirePackage{setspace}%
+
 \begin{document}
+% TODO: \MakeCover[option1=1,option2=2]
+\input{misc/cover_v1.tex}
 
 \section{实验目的}
 \begin{enumerate}
