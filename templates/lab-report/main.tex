@@ -21,13 +21,22 @@
 
 
 % 将你的相关信息替换如下示例
-\newcommand{\reportName}{通信课程实验报告}
-\newcommand{\deptName}{计算机学院}
-\newcommand{\majorName}{计算机科学与技术}
-\newcommand{\className}{07xxxxxx}
-\newcommand{\yourName}{惠计算}
-\newcommand{\teacherName}{张哈希}
-% \newcommand{\coverDate}{2022年5月9日} % 注释此行以使用自定义日期
+\BITLabReportSetup{
+  cover = {
+    imagePath = { assets/logo_bit.png },
+    %% 使用以下参数来自定义封面日期
+    % date = {2022年5月9日}
+  },
+  info = {
+    title = {通信课程实验报告},
+    dept = {计算机学院},
+    major = {计算机科学与技术},
+    classNumber = {07111701},
+    studentNumber = {1120171224},
+    name = {惠计算},
+    teacherName = {张哈希},
+  }
+}
 
 %% usepackage
 \usepackage[style=gb7714-2015,backend=biber]{biblatex}
@@ -36,12 +45,9 @@
 
 \addbibresource{misc/refs.bib}
 
-% TODO
-\RequirePackage{setspace}%
-
 \begin{document}
-% TODO: \MakeCover[option1=1,option2=2]
-\input{misc/cover_v1.tex}
+
+\MakeCover
 
 \section{实验目的}
 \begin{enumerate}
