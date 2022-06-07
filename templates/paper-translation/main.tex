@@ -29,7 +29,7 @@
 % 从原有主题继承自定义主题
 \fancypagestyle{BIThesisCustom}[BIThesis]{
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）外文翻译覆盖}}
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）外文翻译}}
 }
 % 设置章节格式
 \ctexset{chapter={
@@ -52,8 +52,10 @@
 \addbibresource{misc/ref.bib}
 
 % 在这里填写你的外文翻译中英文题目
-\newcommand{\paperTransOriginTitle}{\strut{}填写你的外文翻译原英文题目\\文本超过一行请换行}
+\newcommand{\paperTransOriginTitle}{填写你的外文翻译原英文题目}
+\newcommand{\paperTransOriginTitleExtra}{文本超过一行请换行}
 \newcommand{\paperTransTitle}{填写你的外文翻译中文题目}
+% \newcommand{\paperTransTitleExtra}{文本超过一行请换行}
 
 % 在这里填写你的论文中英文题目
 \newcommand{\thesisTitle}{北京理工大学本科生毕业设计（论文）题目}
