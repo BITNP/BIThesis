@@ -22,41 +22,52 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-\documentclass[proposal-report]{bitart}
+\documentclass[]{bitproposal}
+
+%% TODO: Setup
+\BITProposalSetup{
+  cover = {
+    % TODO: date = 2022-08-08
+  },
+  info = {
+    name = 惠计算,
+    dept = 计算机学院,
+    major = 计算机科学与技术,
+    class = 07xxxxxx,
+    mentor = 张哈希,
+    offCampusMentor = 刘阿贝尔
+  },
+  misc = {
+    reviewTable = misc/reviewTableBlank.pdf
+  }
+}
+
+%% usepackage
+\usepackage[style=gb7714-2015,backend=biber]{biblatex}
+% required by figure.
+\usepackage{float,graphicx}
+% required by `\includepdf`
+\usepackage{pdfpages}
+\usepackage{multirow}
 
 % 参考文献引用文件 refs.bib
 \addbibresource{misc/refs.bib}
 
-\newcommand{\deptName}{计算机学院}
-\newcommand{\majorName}{计算机科学与技术}
-\newcommand{\className}{07xxxxxx}
-\newcommand{\yourName}{惠计算}
-\newcommand{\mentorName}{张哈希}
-\newcommand{\offCampusMentorName}{刘阿贝尔}
-
-% 定义一个概念
-\newtheorem{definition}{概念}[section]
-
-
-
 %%
 % 文档开始
 \begin{document}
+
+\MakeCover
+
 % 评审表
-\includepdf[pages=-]{misc/reviewTableBlank.pdf}
+\MakeReviewTable
 
-%%
-% 正文开始
-\pagestyle{fancy}
-% 正文从第一页开始计算页码
-\setcounter{page}{1}
-
-
+% TODO:
 % 正文 22 磅的行距，段前段后间距为 0
-\setlength{\parskip}{0em}
+% \setlength{\parskip}{0em}
 \renewcommand{\baselinestretch}{1.53}
 % 正文首行悬挂 1.02cm
-\setlength{\parindent}{1.02cm}
+% \setlength{\parindent}{1.02cm}
 
 % 内容开始
 \section{毕业设计（论文）选题的内容}
