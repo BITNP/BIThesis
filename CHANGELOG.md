@@ -12,6 +12,34 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [2.2.4] - 2022-06-08
+
+[25b2625](25b262598f4cf32f147489ab5b72474b1676a77b)...[702ec6b](702ec6bf907637170f4657ae078ec3f0c16fe50c)
+
+### Bug Fixes
+
+- Use \RequirePackage in favor of \usepackage. ([6bc9b17](6bc9b17a1668ea498561b6df1bb216e775ac504f))
+- Fix bib date format. ([21ea984](21ea98408ef7daea963512e5cd5fa4bc26f568d5))
+- Remove unused package. ([a7847ed](a7847ed8bc36f0a852aec6a16016dfbce4ead300))
+- Cover fix #144 ([df76cba](df76cbaa8cd8c2b725a635d469c6ff38f1e50401))
+
+### Features
+
+- Extract a latex3 class file. ([c29bae2](c29bae2366c77f996c3a8dc74faf1a7f6bba875c))
+
+### Refactor
+
+- \upcite -> \cite ([ad36f48](ad36f484c0d8d6f9b4af2f911e6b4d1548f85736))
+- Remove test control sequence. ([aeecf84](aeecf84b5bb9bd53d1c7a341f1ed42cbc81dd661))
+- Move main color theme definition to cls. ([3ad7d3e](3ad7d3e4ab3ee90d1c01ae436859cad2ddafce0b))
+- Move \usetheme to cls. ([d4e2b3d](d4e2b3d7304242e6b496d925a344d60c5f715b5a))
+- Docs and warning fix. ([61b2a42](61b2a42f0757163c1e98d48b8eabea7517dc49db))
+- Copyright header in tex. ([3933684](39336847580653d678de903c29864abe36127521))
+- Update copyright file header. ([63fb411](63fb411d191cb19e4e33b0f8f1022fc7a92c85a6))
+- [**breaking**] Extract the lab-report into new cls. ([b8993ef](b8993ef453f376cea13194c92a0a9248ff8c7fbf))
+- Use built-in figure. ([f15704b](f15704b0a0d43e699bab537e7085e4928f6d1450))
+- Use \ctexset instead of deprecated \CTEXoptions. ([702ec6b](702ec6bf907637170f4657ae078ec3f0c16fe50c))
+
 ## [2.2.3] - 2022-05-09
 
 ### Bug Fixes
