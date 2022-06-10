@@ -20,7 +20,7 @@
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
 % 章节支持、单面打印：ctexbook
-\documentclass[bachelor,footskip=24pt]{bitbook}
+\documentclass[]{bitundergrad}
 % 如果想要修改样式，但无法找到样式在哪里定义：请参考 https://bithesis.bitnp.net/Guide/4-Others/Troubleshooting.html#%E6%83%B3%E8%A6%81%E4%BF%AE%E6%94%B9%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F-%E4%BD%86%E6%98%AF%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A0%B7%E5%BC%8F%E5%9C%A8%E5%93%AA%E9%87%8C%E5%AE%9A%E4%B9%89
 
 % 另一个临时的“修改页眉文字”的解决方法（非常不优雅，只作为临时措施）。
@@ -52,6 +52,18 @@
 % 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的建议性考虑，我们没有提供 minted 进行代码块书写的示例。
 % 但是，我们仍旧非常建议你使用 minted。
 \usepackage{listings}
+
+\usepackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
 
 % 参考文献引用文件位于 misc/ref.bib
 \addbibresource{misc/ref.bib}
