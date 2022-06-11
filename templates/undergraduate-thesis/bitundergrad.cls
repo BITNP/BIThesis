@@ -36,39 +36,46 @@
 \RequirePackage{listings}
 
 % key-value interface definition.
-% \keys_define:nn { bitundergrad }
-%   {
-%     cover .meta:nn = { bitundergrad / cover  } {#1},
-%     info .meta:nn = { bitundergrad / info } {#1},
-%     misc .meta:nn = { bitundergrad / misc } {#1}
-%   }
-%
-% \keys_define:nn { bitundergrad / cover }
-%   {
-%     date .tl_set:N = \l_bit_coverdate_tl,
-%   }
-%
-% \keys_define:nn { bitundergrad / info }
-%   {
-%     dept .tl_set:N = \l_bit_dept_tl,
-%     major .tl_set:N = \l_bit_major_tl,
-%     class .tl_set:N = \l_bit_class_tl,
-%     name .tl_set:N = \l_bit_name_tl,
-%     mentor .tl_set:N = \l_bit_mentor_tl,
-%     offCampusMentor .tl_set:N = \l_bit_offcampusmentor_tl,
-%   }
-%
-% \keys_define:nn { bitundergrad / misc }
-%   {
-%     reviewTable .tl_set:N = \l_bit_reviewtable_tl,
-%   }
+\keys_define:nn { bitundergrad }
+  {
+    info .meta:nn = { bitundergrad / info } {#1},
+    misc .meta:nn = { bitundergrad / misc } {#1},
+    style .meta:nn = { bitundergrad / style } {#1}
+  }
+
+\keys_define:nn { bitundergrad / cover }
+  {
+    date .tl_set:N = \l_bit_coverdate_tl,
+    headerImage .tl_set:N = \l_bit_coverheaderimage_tl,
+  }
+
+\keys_define:nn { bitundergrad / info }
+  {
+    title .tl_set:N = \l_bit_title_tl,
+    TITLE .tl_set:N = \l_bit_titleen_tl,
+    dept .tl_set:N = \l_bit_dept_tl,
+    major .tl_set:N = \l_bit_major_tl,
+    name .tl_set:N = \l_bit_name_tl,
+    studentId .tl_set:N = \l_bit_studentid_tl,
+    mentor .tl_set:N = \l_bit_mentor_tl,
+  }
+
+\keys_define:nn { bitundergrad / misc }
+  {
+    date .tl_set:N = \l_bit_date_tl,
+  }
+
+\keys_define:nn { bitundergrad / style }
+  {
+  }
 
 \setromanfont{Times~New~Roman}
 % TODO: set optional or remove this
 \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
-\newcommand{\xihei}{\CJKfamily{xihei}}
+% \cs_set:Npn \xihei {} {\CJKfamily{xihei}}
+\DeclareDocumentCommand \xihei {} {\CJKfamily{xihei}}
 
-\newcommand{\arabicHeiti}[1]{#1}
+\cs_set:Npn \arabicHeiti #1 {#1}
 
 % TODO: custom title
 \fancypagestyle{BIThesis}{
@@ -82,7 +89,7 @@
   \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
-  \renewcommand{\headrulewidth}{0.6pt}
+  \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
 
 \ctexset{chapter={
@@ -117,13 +124,15 @@
   }
 }
 
+% TOC
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
-\renewcommand{\contentsname}{
+\RenewDocumentCommand \contentsname {} {
   \fontsize{16pt}{\baselineskip}
   \normalfont\heiti{目\hspace{1em}录}
   \vspace{-8pt}
 }
+
 \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
@@ -134,12 +143,12 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
-\renewcommand{\frontmatter}{
+\RenewDocumentCommand \frontmatter {} {
   \pagenumbering{Roman}
   \pagestyle{BIThesis}
 }
 
-\renewcommand{\mainmatter}{
+\RenewDocumentCommand \mainmatter {} {
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
 }
@@ -147,9 +156,32 @@
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
 
+% figure
+\RenewDocumentCommand \thefigure {} {\thechapter-\arabic{figure}}
+% \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+
+% table
+\RenewDocumentCommand \thetable {} {\thechapter-\arabic{table}}
+% \renewcommand{\thetable}{\thechapter-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space,skip=2pt}
+
+% equation
+\RenewDocumentCommand \theequation {} {\arabic{chapter}-\arabic{equation}}
+% \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% code snippet
 \AtBeginDocument{
-  \renewcommand{\lstlistingname}{代码}
-  \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
+  % \renewcommand{\lstlistingname}{代码}
+  \RenewDocumentCommand \lstlistingname {} {代码}
+  \RenewDocumentCommand \thelstlisting {} {\arabic{chapter}-\arabic{lstlisting}}
+  % \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
 }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -174,38 +206,27 @@
     showtabs=false,
     tabsize=2
 }
+% TODO: optional
 \lstset{style=examplestyle}
 
-% figure
+% \newcommand{\unnumchapter}[1]{
+%   \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
+%   \addcontentsline{toc}{chapter}{#1}
+%   \stepcounter{chapter}
+% }
 
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
-\captionsetup[figure]{font=small,labelsep=space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% user interface.
+\DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
+  { \keys_set:nn { bitundergrad } { #1 }}
 
-% table
-\renewcommand{\thetable}{\thechapter-\arabic{table}}
-\captionsetup[table]{font=small,labelsep=space,skip=2pt}
-
-% equation
-\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
-
-\tolerance=1
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
-
-
-\newcommand{\unnumchapter}[1]{
+\DeclareDocumentCommand \unnumchapter {m} {
   \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
   \addcontentsline{toc}{chapter}{#1}
   \stepcounter{chapter}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% user interface.
-\DeclareDocumentCommand \BITProposalSetup { m }
-  { \keys_set:nn { bitundergrad } { #1 }}
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
