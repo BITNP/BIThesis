@@ -40,6 +40,7 @@
   {
     info .meta:nn = { bitundergrad / info } {#1},
     misc .meta:nn = { bitundergrad / misc } {#1},
+    cover .meta:nn = { bitundergrad / cover } {#1},
     style .meta:nn = { bitundergrad / style } {#1}
   }
 
@@ -58,6 +59,7 @@
     name .tl_set:N = \l_bit_name_tl,
     studentId .tl_set:N = \l_bit_studentid_tl,
     mentor .tl_set:N = \l_bit_mentor_tl,
+    externalMentor .tl_set:N = \l_bit_externalmentor_tl,
   }
 
 \keys_define:nn { bitundergrad / misc }
@@ -227,9 +229,87 @@
   \stepcounter{chapter}
 }
 
+% Usage: \dunderline{<line_thickness>}{<text>}
+% \cs_set:Npn \dunderline #1#2 {
+%   {
+%     \setbox0=\hbox{-10pt}
+%     \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}
+%   }
+% }
+\newcommand\dunderline[3][-1pt]{{%
+  \setbox0=\hbox{#3}
+  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
+
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
+
+      \begin{titlepage}
+        % \tl_new:N \l_bit_externalmentor_tl
+        \tl_if_blank:VTF \l_bit_externalmentor_tl {
+          \vspace*{19mm}
+        }{
+          \vspace*{13mm}
+        }
+
+        \centering
+
+        \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+          \includegraphics[width=9.87cm]{images/header.png}\\
+        }
+
+        \vspace*{-3mm}
+
+        \zihao{-0}\textbf{\ziju{0.12}\songti{本科生毕业设计（论文）}}\par
+
+        \vspace{16mm}
+
+        \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
+
+        \vspace{3mm}
+
+        \begin{spacing}{1.2}
+          \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
+        \end{spacing}
+
+        \vspace{15mm}
+
+        \flushleft
+
+        \tl_if_blank:VTF \l_bit_externalmentor_tl {
+          % 生成校内毕设封面字段
+          \begin{spacing}{1.8}
+            \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
+
+            \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
+
+            \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
+
+            \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
+
+            \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
+          \end{spacing}
+        }{
+          % 生成校外毕设封面字段
+          \begin{spacing}{1.8}
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_dept_tl}}}\par
+
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_major_tl}}}\par
+
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_name_tl}}}\par
+
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_studentid_tl}}}\par
+
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_mentor_tl}}}\par
+
+            \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
+          \end{spacing}
+        }
+
+        \vspace*{\fill}
+        \centering
+        \zihao{3}\ziju{0.5}\songti{\today}
+      \end{titlepage}
     \group_end:
   }
 
