@@ -211,12 +211,6 @@
 % TODO: optional
 \lstset{style=examplestyle}
 
-% \newcommand{\unnumchapter}[1]{
-%   \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
-%   \addcontentsline{toc}{chapter}{#1}
-%   \stepcounter{chapter}
-% }
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % user interface.
@@ -228,6 +222,12 @@
   \addcontentsline{toc}{chapter}{#1}
   \stepcounter{chapter}
 }
+% \newcommand{\unnumchapter}[1]{
+%   \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
+%   \addcontentsline{toc}{chapter}{#1}
+%   \stepcounter{chapter}
+% }
+
 
 % Usage: \dunderline{<line_thickness>}{<text>}
 % \cs_set:Npn \dunderline #1#2 {
@@ -312,6 +312,67 @@
       \end{titlepage}
     \group_end:
   }
+
+\DeclareDocumentCommand \MakeTOC {}
+  {
+    {
+      \renewcommand{\baselinestretch}{1.35}
+      % 目录
+      \tableofcontents
+      \newpage
+    }
+  }
+
+  \NewDocumentEnvironment {abstract} {}
+  {
+    \zihao{-4}
+    \vspace*{-11mm}
+
+    \begin{center}
+      \heiti\zihao{-2}\textbf{\l_bit_title_tl}
+    \end{center}
+
+    \vspace*{2mm}
+
+    {\let\clearpage\relax \chapter*{\textmd{摘\hspace{1em}要}}}
+    \addcontentsline{toc}{chapter}{摘\hspace{1em}要}
+    \setcounter{page}{1}
+
+    \vspace*{1mm}
+
+    \setstretch{1.53}
+    \setlength{\parskip}{0em}\par
+  }
+  {
+    \vspace{4ex}\noindent\textbf{\heiti 关键词：北京理工大学；本科生；毕业设计（论文）}\par
+    \newpage
+  }
+
+  \NewDocumentEnvironment {abstract*} {}
+  {
+    \zihao{-4}
+    \vspace*{-2mm}
+
+    \begin{spacing}{0.95}
+      \centering
+      \heiti\zihao{3}\textbf{\l_bit_titleen_tl}
+    \end{spacing}
+
+    \setstretch{1.53}
+    \vspace*{17mm}
+
+    {\let\clearpage\relax \chapter*{
+      \zihao{-3}\textmd{Abstract}}}
+    \addcontentsline{toc}{chapter}{Abstract}
+    \setcounter{page}{2}
+
+    \setlength{\parskip}{0em}\par
+  }
+  {
+    \par\vspace{3ex}\noindent\textbf{Key Words: BIT； Undergraduate； Graduation Project (Thesis)}
+    \newpage
+  }
+
 
 \DeclareDocumentCommand \MakeReviewTable {} 
   {

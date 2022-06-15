@@ -113,14 +113,18 @@
 %\input{misc/1_originality.tex}
 % 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
 \input{chapters/0_abstract.tex}
+
 % 目录：如无特殊需要，本部分无需改动
-\input{misc/2_toc.tex}
+% \input{misc/2_toc.tex}
+
+\MakeTOC
 
 % 正文开始
 \mainmatter
 % 正文 22 磅的行距
 \setlength{\parskip}{0em}
-\renewcommand{\baselinestretch}{1.53}
+\setstretch{1.53}
+% \renewcommand{\baselinestretch}{1.53}
 % 修复脚注出现跨页的问题
 \interfootnotelinepenalty=10000
 
