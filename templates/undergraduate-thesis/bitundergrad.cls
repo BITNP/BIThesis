@@ -86,6 +86,8 @@
 
 \keys_define:nn { bitundergrad / style }
   {
+    head .tl_set:N = \l_@@_style_head_tl,
+    head .initial:n = {北京理工大学本科生毕业设计（论文）},
   }
 
 \setromanfont{Times~New~Roman}
@@ -105,7 +107,7 @@
 
   \fancyhf{}
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）}}
+  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
@@ -462,5 +464,6 @@
     }
     \chapter{致\quad 谢}
     \renewcommand{\thechapter}{致谢}
+    \tl_use:N \l_@@_style_head_tl
   }
   {}
