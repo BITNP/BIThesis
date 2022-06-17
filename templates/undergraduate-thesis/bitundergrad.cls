@@ -35,14 +35,27 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 
+\int_new:N \g_@@_thesis_type_int
+
 % key-value interface definition.
 \keys_define:nn { bitundergrad }
   {
     info .meta:nn = { bitundergrad / info } {#1},
     misc .meta:nn = { bitundergrad / misc } {#1},
     cover .meta:nn = { bitundergrad / cover } {#1},
-    style .meta:nn = { bitundergrad / style } {#1}
+    style .meta:nn = { bitundergrad / style } {#1},
+    option .meta:nn = { bitundergrad / option } {#1},
   }
+
+\keys_define:nn { bitundergrad / option }
+{
+  type .choice:,
+  type .value_required:n = true,
+  type .choices:nn =
+    { bachelor, translation, english }
+    { \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int },
+  type .initial:n = bachelor,
+}
 
 \keys_define:nn { bitundergrad / cover }
   {

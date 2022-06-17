@@ -37,32 +37,10 @@
     mentor = 张哈希,
     keywords = {北京理工大学；本科生；毕业设计（论文）},
     keywordsEn = {BIT； Undergraduate； Graduation Project (Thesis)},
+    % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
+    % externalMentor = 左偏树,
   }
 }
-
-% 另一个临时的“修改页眉文字”的解决方法（非常不优雅，只作为临时措施）。
-% 请注释掉以下 20 行内容使用。
-% % 从原有主题继承自定义主题
-% \fancypagestyle{BIThesisCustom}[BIThesis]{
-%   % 定义页眉、页码
-%   \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）覆盖}}
-% }
-% % 设置章节格式
-% \ctexset{chapter={
-%     pagestyle = BIThesisCustom,
-%   }
-% }
-% % 前置页面（原创性声明、中英文摘要、目录等）
-% \renewcommand{\frontmatter}{
-%   \pagenumbering{Roman}
-%   \pagestyle{BIThesisCustom}
-% }
-% % 正文页面
-% \renewcommand{\mainmatter}{
-%   \pagenumbering{arabic}
-%   \pagestyle{BIThesisCustom}
-% }
-% ------------------------------------------------------------------
 
 % 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
 % 你也可以选用自己的喜欢的其他宏包，如 minted；
@@ -85,18 +63,6 @@
 % 参考文献引用文件位于 misc/ref.bib
 \addbibresource{misc/ref.bib}
 
-% 在这里填写你的论文中英文题目
-\newcommand{\thesisTitle}{北京理工大学本科生毕业设计（论文）题目}
-\newcommand{\thesisTitleEN}{The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology}
-
-% 在这里填写你的相关信息
-\newcommand{\deptName}{计算机学院}
-\newcommand{\majorName}{计算机科学与技术}
-\newcommand{\yourName}{惠计算}
-\newcommand{\yourStudentID}{11xxxxxxxx}
-\newcommand{\mentorName}{张哈希}
-% 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并在第二组花括号中填写你的校外毕设导师名字
-% \newcommand{\externalMentorName}{左偏树}
 
 % 文档开始
 \begin{document}
