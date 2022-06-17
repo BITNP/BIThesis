@@ -26,6 +26,15 @@
 \ctexset{
   section/number = 附录\Alph{section}
 }
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{lstlisting}{section}
+\renewcommand{\thefigure}{附录\Alph{section}-\arabic{figure}}
+\renewcommand{\thetable}{附录\Alph{section}-\arabic{table}}
+\renewcommand{\thelstlisting}{附录\Alph{section}-\arabic{lstlisting}}
+% 如果要为其他项目设置编号格式，参考如下注释行，这两行为算法块修改编号格式
+% \numberwithin{algorithm}{section}
+% \renewcommand{\thealgorithm}{附录\Alph{section}-\arabic{algorithm}}
 
 附录相关内容…
 
