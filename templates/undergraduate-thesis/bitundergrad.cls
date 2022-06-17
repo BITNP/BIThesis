@@ -76,7 +76,9 @@
     keywords .tl_set:N = \l_@@_info_keywords_tl,
     keywords .default:n = {北京理工大学；本科生；毕业设计（论文）},
     keywordsEn .tl_set:N = \l_@@_info_keywords_en_tl,
-    keywordsEn .default:n = {BIT； Undergraduate； Graduation Project (Thesis)}
+    keywordsEn .default:n = {BIT； Undergraduate； Graduation Project (Thesis)},
+    translationTitle .tl_set:N = \l_@@_info_trans_title_tl,
+    translationOriginTitle .tl_set:N = \l_@@_info_trans_origin_title_tl,
   }
 
 \keys_define:nn { bitundergrad / misc }
@@ -85,10 +87,16 @@
   }
 
 \keys_define:nn { bitundergrad / style }
-  {
-    head .tl_set:N = \l_@@_style_head_tl,
-    head .initial:n = {北京理工大学本科生毕业设计（论文）},
+{
+  head .tl_set:N = \l_@@_style_head_tl,
+  head .initial:n = {
+    \int_case:nn {\g_@@_thesis_type_int}
+    {
+      {1} {北京理工大学本科生毕业设计（论文）}
+      {2} {北京理工大学本科生毕业设计（论文）外文翻译}
+    }
   }
+}
 
 \setromanfont{Times~New~Roman}
 % TODO: set optional or remove this
@@ -256,72 +264,156 @@
   {
     \group_begin:
 
-      \begin{titlepage}
-        % \tl_new:N \l_bit_externalmentor_tl
-        \tl_if_blank:VTF \l_bit_externalmentor_tl {
-          \vspace*{19mm}
-        }{
-          \vspace*{13mm}
-        }
+    \int_case:nn {\g_@@_thesis_type_int}
+    {
+      {1}
+      {
+        \begin{titlepage}
+          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+            \vspace*{19mm}
+          }{
+            \vspace*{13mm}
+          }
 
-        \centering
+          \centering
 
-        \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
-          \includegraphics[width=9.87cm]{images/header.png}\\
-        }
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=9.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
 
-        \vspace*{-3mm}
+          \vspace*{-3mm}
 
-        \zihao{-0}\textbf{\ziju{0.12}\songti{本科生毕业设计（论文）}}\par
+          \zihao{-0}\textbf{\ziju{0.12}\songti{本科生毕业设计（论文）}}\par
 
-        \vspace{16mm}
+          \vspace{16mm}
 
-        \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
+          \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
 
-        \vspace{3mm}
+          \vspace{3mm}
 
-        \begin{spacing}{1.2}
-          \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
-        \end{spacing}
-
-        \vspace{15mm}
-
-        \flushleft
-
-        \tl_if_blank:VTF \l_bit_externalmentor_tl {
-          % 生成校内毕设封面字段
-          \begin{spacing}{1.8}
-            \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
-
-            \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
-
-            \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
-
-            \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
-
-            \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
+          \begin{spacing}{1.2}
+            \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
           \end{spacing}
-        }{
-          % 生成校外毕设封面字段
+
+          \vspace{15mm}
+
+          \flushleft
+
+          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+            % 生成校内毕设封面字段
+            \begin{spacing}{1.8}
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
+            \end{spacing}
+          }{
+            % 生成校外毕设封面字段
+            \begin{spacing}{1.8}
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_dept_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_major_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_name_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_studentid_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_mentor_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
+            \end{spacing}
+          }
+
+          \vspace*{\fill}
+          \centering
+          \zihao{3}\ziju{0.5}\songti{\today}
+        \end{titlepage}
+      }
+      {2}
+      {
+        \begin{titlepage}
+          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+            % 校内毕设封面顶部间距
+            \vspace*{0mm}
+          }{
+            % 校外毕设封面顶部间距
+            \vspace*{8mm}
+          }
+          \centering
+
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=6.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
+
+          \vspace{1mm}
+
+          \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
+
+          \vspace{8mm}
+
+          {
+
+          \flushleft
           \begin{spacing}{1.8}
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_dept_tl}}}\par
-
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_major_tl}}}\par
-
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_name_tl}}}\par
-
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_studentid_tl}}}\par
-
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_mentor_tl}}}\par
-
-            \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
+            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 外文原文题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_info_trans_origin_title_tl}}}}\par
+            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 中文翻译题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_info_trans_title_tl}}}}\par
           \end{spacing}
-        }
 
-        \vspace*{\fill}
-        \centering
-        \zihao{3}\ziju{0.5}\songti{\today}
-      \end{titlepage}
+          }
+
+          \vspace{14mm}
+
+          \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
+
+          \vspace{3mm}
+
+          \begin{spacing}{1.2}
+            \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
+          \end{spacing}
+
+          \vspace{9mm}
+
+          \flushleft
+
+          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+            % 生成校内毕设封面字段
+            \begin{spacing}{1.8}
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
+
+              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
+            \end{spacing}
+          }{
+            % 生成校外毕设封面字段
+            \begin{spacing}{1.8}
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_dept_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_major_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_name_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_studentid_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_mentor_tl}}}\par
+
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
+            \end{spacing}
+          }
+
+          \vspace*{\fill}
+        \end{titlepage}
+      }
+    }
     \group_end:
   }
 
@@ -342,7 +434,13 @@
     \vspace*{-11mm}
 
     \begin{center}
-      \heiti\zihao{-2}\textbf{\l_bit_title_tl}
+      \heiti\zihao{-2}\textbf{
+        \int_case:nn {\g_@@_thesis_type_int}
+        {
+          {1} {\l_bit_title_tl}
+          {2} {\l_@@_info_trans_title_tl}
+        }
+      }
     \end{center}
 
     \vspace*{2mm}
@@ -464,6 +562,5 @@
     }
     \chapter{致\quad 谢}
     \renewcommand{\thechapter}{致谢}
-    \tl_use:N \l_@@_style_head_tl
   }
   {}

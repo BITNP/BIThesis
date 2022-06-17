@@ -21,77 +21,67 @@
 
 
 % 章节支持、单面打印：ctexbook
-\documentclass[bachelor,translation]{bitbook}
+\documentclass[]{bitundergrad}
 % 如果想要修改样式，但无法找到样式在哪里定义：请参考 https://bithesis.bitnp.net/Guide/4-Others/Troubleshooting.html#%E6%83%B3%E8%A6%81%E4%BF%AE%E6%94%B9%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F-%E4%BD%86%E6%98%AF%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A0%B7%E5%BC%8F%E5%9C%A8%E5%93%AA%E9%87%8C%E5%AE%9A%E4%B9%89
 
-% 另一个临时的“修改页眉文字”的解决方法（非常不优雅，只作为临时措施）。
-% 请注释掉以下 20 行内容使用。
-% 从原有主题继承自定义主题
-\fancypagestyle{BIThesisCustom}[BIThesis]{
-  % 定义页眉、页码
-  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{北京理工大学本科生毕业设计（论文）外文翻译}}
-}
-% 设置章节格式
-\ctexset{chapter={
-    pagestyle = BIThesisCustom,
+\BITUndergraduateThesisSetup{
+  option = {
+    type = translation,
+  },
+  cover = {
+    headerImage = images/header.png,
+  },
+  info = {
+    title = 北京理工大学本科生毕业设计（论文）题目,
+    TITLE = {The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology},
+    dept = 计算机学院,
+    major = 计算机科学与技术,
+    name = 惠计算,
+    studentId = 11xxxxxxxx,
+    mentor = 张哈希,
+    translationTitle = 填写你的外文翻译中文题目,
+    translationOriginTitle = 填写你的外文翻译原英文题目,
+    keywords = {北京理工大学；本科生；毕业设计（外文翻译）},
+    % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
+    % externalMentor = 左偏树,
+  },
+  style = {
+    % head = {自定义页眉文字}
   }
 }
-% 前置页面（原创性声明、中英文摘要、目录等）
-\renewcommand{\frontmatter}{
-  \pagenumbering{Roman}
-  \pagestyle{BIThesisCustom}
-}
-% 正文页面
-\renewcommand{\mainmatter}{
-  \pagenumbering{arabic}
-  \pagestyle{BIThesisCustom}
-}
-% ------------------------------------------------------------------
+
+\usepackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
 
 % 参考文献引用文件位于 misc/ref.bib
 \addbibresource{misc/ref.bib}
-
-% 在这里填写你的外文翻译中英文题目
-\newcommand{\paperTransOriginTitle}{填写你的外文翻译原英文题目}
-\newcommand{\paperTransOriginTitleExtra}{文本超过一行请换行}
-\newcommand{\paperTransTitle}{填写你的外文翻译中文题目}
-% \newcommand{\paperTransTitleExtra}{文本超过一行请换行}
-
-% 在这里填写你的论文中英文题目
-\newcommand{\thesisTitle}{北京理工大学本科生毕业设计（论文）题目}
-\newcommand{\thesisTitleEN}{The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology}
-
-% 在这里填写你的相关信息
-\newcommand{\deptName}{计算机学院}
-\newcommand{\majorName}{计算机科学与技术}
-\newcommand{\yourName}{惠计算}
-\newcommand{\yourStudentID}{11xxxxxxxx}
-\newcommand{\mentorName}{张哈希}
-% 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并在第二组花括号中填写你的校外毕设导师名字
-% \newcommand{\externalMentorName}{左偏树}
 
 % 文档开始
 \begin{document}
 
 % 标题页面：如无特殊需要，本部分无需改动
-\input{misc/0_cover.tex}
+% \input{misc/0_cover.tex}
+\MakeCover
 
 % 前置页面定义
 \frontmatter
-\newpage
 %\input{misc/1_originality.tex}
 % 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
 \input{chapters/0_abstract.tex}
-% 目录：如无特殊需要，本部分无需改动
-\input{misc/2_toc.tex}
+% 目录
+\MakeTOC
 
 % 正文开始
 \mainmatter
-% 正文 22 磅的行距
-\setlength{\parskip}{0em}
-\renewcommand{\baselinestretch}{1.53}
-% 修复脚注出现跨页的问题
-\interfootnotelinepenalty=10000
 
 % 第一章
 \input{chapters/1_chapter1.tex}
@@ -106,7 +96,5 @@
 \input{misc/4_reference.tex}
 % 附录：在附录相应的 TeX 文件处进行附录部分的撰写
 \input{misc/5_appendix.tex}
-% 致谢：在致谢相应的 TeX 文件处进行致谢部分的撰写
-%\input{misc/6_acknowledgements.tex}
 
 \end{document}
