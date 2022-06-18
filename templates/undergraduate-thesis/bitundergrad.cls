@@ -33,6 +33,7 @@
   {
     date .tl_set:N = \l_bit_coverdate_tl,
     headerImage .tl_set:N = \l_bit_coverheaderimage_tl,
+    xiheiFont .tl_set:N = \l_@@_cover_xihei_font_path_tl,
   }
 
 \keys_define:nn { bitundergrad / info }
@@ -117,9 +118,28 @@
 
 \setromanfont{Times~New~Roman}
 % TODO: set optional or remove this
-\setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
-% \cs_set:Npn \xihei {} {\CJKfamily{xihei}}
-\DeclareDocumentCommand \xihei {} {\CJKfamily{xihei}}
+
+\ctex_at_end_preamble:n {
+  \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
+    \IfFontExistsTF{STXihei}{
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXihei}
+    }{
+      \IfFontExistsTF{STXIHEI.TTF} {
+        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXIHEI.TTF}
+      }
+    }
+  } {
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[\l_@@_cover_xihei_font_path_tl]}
+  }
+}
+
+\cs_new:Npn \xihei:n #1 {
+  \xeCJK_family_if_exist:nTF {xihei} {
+    \CJKfamily{xihei} #1
+  }{
+    \heiti #1
+  }
+}
 
 \cs_set:Npn \arabicHeiti #1 {#1}
 
@@ -307,7 +327,7 @@
 
           \vspace{16mm}
 
-          \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
+          \zihao{2}\textbf{\xihei:n \l_bit_title_tl}\par
 
           \vspace{3mm}
 
@@ -372,7 +392,7 @@
 
           \vspace{14mm}
 
-          \zihao{2}\textbf{\xihei\l_bit_title_tl}\par
+          \zihao{2}\textbf{\xihei:n \l_bit_title_tl}\par
 
           \vspace{3mm}
 
