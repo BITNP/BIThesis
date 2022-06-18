@@ -5,36 +5,6 @@
 
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
 
-% Pass every option not explicitly defined to `ctexbeamer`.
-\DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexbook}
-}
-% Executes the code for each option.
-\ProcessOptions\relax
-% Load
-\LoadClass[zihao=-4,oneside,openany]{ctexbook}
-
-\RequirePackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
-\RequirePackage{xeCJK}
-\RequirePackage{titletoc}
-\RequirePackage{setspace}
-\RequirePackage{graphicx}
-\RequirePackage{fancyhdr}
-\RequirePackage{pdfpages}
-\RequirePackage{setspace}
-\RequirePackage{booktabs}
-\RequirePackage{multirow}
-\RequirePackage{tikz}
-\RequirePackage{etoolbox}
-\RequirePackage{hyperref}
-\RequirePackage{xcolor}
-\RequirePackage{caption}
-\RequirePackage{array}
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{pdfpages}
-\RequirePackage{listings}
-
 \int_new:N \g_@@_thesis_type_int
 
 % key-value interface definition.
@@ -53,7 +23,9 @@
   type .value_required:n = true,
   type .choices:nn =
     { bachelor, translation, english }
-    { \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int },
+    { 
+      \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int 
+    },
   type .initial:n = bachelor,
 }
 
@@ -94,8 +66,50 @@
     {
       {1} {北京理工大学本科生毕业设计（论文）}
       {2} {北京理工大学本科生毕业设计（论文）外文翻译}
+      {3} {Beijing~Institute~of~Technology~Bachelor's~Thesis}
     }
   }
+}
+
+% Pass every option not explicitly defined to `ctexbeamer`.
+\DeclareOption*{
+  \PassOptionsToClass{\CurrentOption}{ctexbook}
+}
+% Executes the code for each option.
+\ProcessOptions\relax
+% Load
+\LoadClass[zihao=-4,oneside,openany]{ctexbook}
+
+\RequirePackage{geometry}
+\RequirePackage{xeCJK}
+\RequirePackage{titletoc}
+\RequirePackage{setspace}
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{pdfpages}
+\RequirePackage{setspace}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{tikz}
+\RequirePackage{etoolbox}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{caption}
+\RequirePackage{array}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{pdfpages}
+\RequirePackage{listings}
+
+\geometry{
+  a4paper,
+  left=3cm,
+  bottom=2.6cm + 7bp,
+  top=3.5cm + 7bp,
+  right=2.6cm,
+  headsep = 3.5cm + 7bp - 2.4cm - 20bp,
+  headheight = 20 bp,
+  footskip = 2.6cm + 7bp - 2cm,
 }
 
 \setromanfont{Times~New~Roman}
@@ -108,11 +122,6 @@
 
 % TODO: custom title
 \fancypagestyle{BIThesis}{
-  % 页眉高度
-  \setlength{\headheight}{20pt}
-  % 页码高度（不完美，比规定稍微靠下 2mm）
-  \setlength{\footskip}{24pt}
-
   \fancyhf{}
   % 定义页眉、页码
   \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
@@ -122,7 +131,6 @@
 }
 
 \ctexset{chapter={
-    name = {第,章},
     number = {\arabicHeiti{ \arabic{chapter} }},
     format = {\heiti \bfseries \centering \zihao{3}},
     aftername = \hspace{9bp},
