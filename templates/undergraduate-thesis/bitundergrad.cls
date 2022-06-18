@@ -112,6 +112,9 @@
   footskip = 2.6cm + 7bp - 2cm,
 }
 
+% One blank line before the figure and after the caption.
+\setlength{\intextsep}{1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+
 \setromanfont{Times~New~Roman}
 % TODO: set optional or remove this
 \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[STXIHEI.TTF]} % 若希望使用本机字体，也可以用 {STXihei} 来调用
