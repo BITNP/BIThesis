@@ -117,19 +117,21 @@
 \setlength{\intextsep}{1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 
 \setromanfont{Times~New~Roman}
-% TODO: set optional or remove this
 
 \ctex_at_end_preamble:n {
-  \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
-    \IfFontExistsTF{STXihei}{
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXihei}
-    }{
-      \IfFontExistsTF{STXIHEI.TTF} {
-        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXIHEI.TTF}
+  \int_compare:nNnT {\g_@@_thesis_type_int} < {3} 
+  {
+    \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
+      \IfFontExistsTF{STXihei}{
+        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXihei}
+      }{
+        \IfFontExistsTF{STXIHEI.TTF} {
+          \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXIHEI.TTF}
+        }
       }
+    } {
+        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[\l_@@_cover_xihei_font_path_tl]}
     }
-  } {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[\l_@@_cover_xihei_font_path_tl]}
   }
 }
 
