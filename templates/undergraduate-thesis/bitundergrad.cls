@@ -260,6 +260,19 @@
 \DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
   { \keys_set:nn { bitundergrad } { #1 }}
 
+% 35mm
+% key
+% 78mm
+% value
+\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4 {
+  \songti\zihao{3}\selectfont{\makebox[#1][r]{#2：}}\hspace{1ex} \dunderline[-10pt]{1pt}{\makebox[#3][c]{#4}}\par
+}
+
+\cs_new:Npn \l_@@_make_cover_entry_a_cs:nn #1#2 {
+  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2}
+}
+
+
 % Usage: \dunderline{<line_thickness>}{<text>}
 % \cs_set:Npn \dunderline #1#2 {
 %   {
@@ -304,23 +317,21 @@
 
           \vspace{15mm}
 
-          \flushleft
 
-            \begin{spacing}{1.8}
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\qquad 院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
+          \begin{spacing}{1.8}
+            \begin{center}
+              \l_@@_make_cover_entry_a_cs:nn {学\qquad 院} {\l_bit_dept_tl}
+              \l_@@_make_cover_entry_a_cs:nn {专\qquad 业} {\l_bit_major_tl}
+              \l_@@_make_cover_entry_a_cs:nn {学生姓名} {\l_bit_name_tl}
+              \l_@@_make_cover_entry_a_cs:nn {学\qquad 号} {\l_bit_studentid_tl}
+              \l_@@_make_cover_entry_a_cs:nn {指导教师} {\l_bit_mentor_tl}
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{专\qquad 业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
-
-              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
-
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\qquad 号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
-
-              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
               \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
                 % 生成校外毕设封面字段
-                  \hspace{27mm-2em}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
-                }
-            \end{spacing}
+                  \l_@@_make_cover_entry_a_cs:nn {校外指导教师} {\l_bit_externalmentor_tl}
+              }
+            \end{center}
+          \end{spacing}
 
           \vspace*{\fill}
           \centering
