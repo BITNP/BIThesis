@@ -1,0 +1,103 @@
+%%
+% The BIThesis Template for Bachelor Graduation Thesis
+%
+% 北京理工大学毕业设计（论文） —— 使用 XeLaTeX 编译
+%
+% Copyright 2021-2022 BITNP
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Feng Kaiyu.
+%
+% Compile with: xelatex -> biber -> xelatex -> xelatex
+
+\documentclass[scheme=plain]{bitundergrad}
+% 如果想要修改样式，但无法找到样式在哪里定义：请参考 https://bithesis.bitnp.net/Guide/4-Others/Troubleshooting.html#%E6%83%B3%E8%A6%81%E4%BF%AE%E6%94%B9%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F-%E4%BD%86%E6%98%AF%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A0%B7%E5%BC%8F%E5%9C%A8%E5%93%AA%E9%87%8C%E5%AE%9A%E4%B9%89
+
+\BITUndergraduateThesisSetup{
+  option = {
+    type = english
+  },
+  cover = {
+    headerImage = images/header.png,
+  },
+  info = {
+    TITLE = Your Thesis Title,
+    dept = School of Mechanical Engineering,
+    major = Bechelor of Science in Mechanical Engineering,
+    name = Feng Kaiyu,
+    studentId = 11xxxxxxxx,
+    mentor = Alex Zhang,
+    keywordsEn = {Computer-Aided Design; FEM; CAM},
+    % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
+    % externalMentor = 左偏树,
+  },
+  style = {
+    % head = {自定义页眉文字}
+  }
+}
+
+% 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
+% 你也可以选用自己的喜欢的其他宏包，如 minted；
+% 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的建议性考虑，我们没有提供 minted 进行代码块书写的示例。
+% 但是，我们仍旧非常建议你使用 minted。
+\usepackage{listings}
+
+\usepackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
+
+% 参考文献引用文件位于 misc/ref.bib
+\addbibresource{misc/ref.bib}
+
+
+% 文档开始
+\begin{document}
+
+% 标题页面：如无特殊需要，本部分无需改动
+% \input{misc/0_cover.tex}
+\MakeCover
+
+% 前置页面定义
+\frontmatter
+% 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
+\input{chapters/0_abstract.tex}
+
+\MakeTOC
+
+% 正文开始
+\mainmatter
+
+% 第一章
+\input{chapters/1_chapter1.tex}
+% 在这里添加第二章、第三章……TeX 文件的引用
+\input{chapters/2_chapter2.tex}
+% \input{chapters/3_chapter3.tex}
+
+% 结论：在结论相应的 TeX 文件处进行结论部分的撰写
+\input{misc/3_conclusions.tex}
+% 参考文献：如无特殊需要，参考文献相应的 TeX 文件无需改动，添加参考文献请使用 BibTeX 的格式
+%   添加至 misc/ref.bib 中，并在正文的相应位置使用 \cite{xxj} 的格式引用参考文献
+\input{misc/4_references.tex}
+% 附录：在附录相应的 TeX 文件处进行附录部分的撰写
+\input{misc/5_appendices.tex}
+% 致谢：在致谢相应的 TeX 文件处进行致谢部分的撰写
+\input{misc/6_acknowledgements.tex}
+
+\end{document}

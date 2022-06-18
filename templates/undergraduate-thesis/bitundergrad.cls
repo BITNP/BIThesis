@@ -6,6 +6,7 @@
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
 
 \int_new:N \g_@@_thesis_type_int
+\tl_new:N \g_@@_toc_title_tl
 
 % key-value interface definition.
 \keys_define:nn { bitundergrad }
@@ -57,6 +58,7 @@
 \keys_define:nn { bitundergrad / misc }
   {
     date .tl_set:N = \l_bit_date_tl,
+    arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
   }
 
 \keys_define:nn { bitundergrad / style }
@@ -119,19 +121,33 @@
 \setromanfont{Times~New~Roman}
 
 \ctex_at_end_preamble:n {
-  \int_compare:nNnT {\g_@@_thesis_type_int} < {3} 
+  \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
   {
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
       \IfFontExistsTF{STXihei}{
         \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXihei}
       }{
-        \IfFontExistsTF{STXIHEI.TTF} {
+        \IfFontExistsTF{STXIHEI.TTF}{
           \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXIHEI.TTF}
-        }
+        }{}
       }
     } {
         \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[\l_@@_cover_xihei_font_path_tl]}
     }
+
+    \tl_set:Nn \g_@@_toc_title_tl {目\quad 录}
+  } {
+    % English
+    % font Arial needed
+    \newfontfamily\arialfamily{Arial}
+    \tl_set:Nn \g_@@_toc_title_tl {Table~of~Contents}
+  }
+
+  \int_compare:nNnT {\g_@@_thesis_type_int} = {3} 
+  {
+    \RequirePackage[en-US]{datetime2}
+    \RequirePackage{indentfirst}
+    \DTMlangsetup[en-US]{dayyearsep={\space}}
   }
 }
 
@@ -140,6 +156,24 @@
     \CJKfamily{xihei} #1
   }{
     \heiti #1
+  }
+}
+
+\cs_new:Npn \l_@@_title_font_cs:n #1 {
+  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  {
+    \arialfamily #1
+  } {
+    \heiti #1
+  }
+}
+
+\cs_new:Npn \l_@@_unnumchapter_style_cs:n #1 {
+  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  {
+    \bfseries #1
+  } {
+    \mdseries #1
   }
 }
 
@@ -157,7 +191,9 @@
 
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
-    format = {\heiti \bfseries \centering \zihao{3}},
+    format = { \l_@@_title_font_cs:n \bfseries \centering \zihao{3}},
+    nameformat = {},
+    titleformat = {},
     aftername = \hspace{9bp},
     pagestyle = BIThesis,
     beforeskip = 8bp,
@@ -168,7 +204,9 @@
 
 \ctexset{section={
     number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
-    format = {\heiti \raggedright \bfseries \zihao{4}},
+    format = {\l_@@_title_font_cs:n \raggedright \bfseries \zihao{4}},
+    nameformat = {},
+    titleformat = {},
     aftername = \hspace{8bp},
     beforeskip = 20bp plus 1ex minus .2ex,
     afterskip = 18bp plus .2ex,
@@ -178,7 +216,9 @@
 
 \ctexset{subsection={
     number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
-    format = {\heiti \bfseries \raggedright \zihao{-4}},
+    format = {\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
+    nameformat = {},
+    titleformat = {},
     aftername = \hspace{7bp},
     beforeskip = 17bp plus 1ex minus .2ex,
     afterskip = 14bp plus .2ex,
@@ -191,7 +231,7 @@
 
 \RenewDocumentCommand \contentsname {} {
   \fontsize{16pt}{\baselineskip}
-  \normalfont\heiti{目\quad 录}
+  \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\g_@@_toc_title_tl}
   \vspace{-8pt}
 }
 
@@ -206,7 +246,13 @@
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
 \RenewDocumentCommand \frontmatter {} {
-  \pagenumbering{Roman}
+
+  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  {
+    \pagenumbering{roman}
+  } {
+    \pagenumbering{Roman}
+  }
   \pagestyle{BIThesis}
 }
 
@@ -286,14 +332,19 @@
 % key
 % 78mm
 % value
-\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4 {
-  \songti\zihao{3}\selectfont{\makebox[#1][r]{#2：}}\hspace{1ex} \dunderline[-10pt]{1pt}{\makebox[#3][c]{#4}}\par
+% colon
+% zihao
+\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6 {
+  \songti\zihao{#6}\selectfont{\makebox[#1][r]{#2#5}}\hspace{1ex} \dunderline[-10pt]{1pt}{\makebox[#3][c]{#4}}\par
 }
 
 \cs_new:Npn \l_@@_make_cover_entry_a_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2}
+  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3}
 }
 
+\cs_new:Npn \l_@@_make_cover_entry_eng_cs:nn #1#2 {
+  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4}
+}
 
 % Usage: \dunderline{<line_thickness>}{<text>}
 % \cs_set:Npn \dunderline #1#2 {
@@ -439,6 +490,47 @@
           \vspace*{\fill}
         \end{titlepage}
       }
+      {3} {
+        \begin{titlepage}
+          \vspace*{16mm}
+
+          \centering
+
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=9.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
+
+          \vspace*{-3mm}
+
+          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+
+          \vspace{18mm}
+
+          \zihao{2}\textbf{\xihei:n \l_bit_titleen_tl}\par
+
+          \vspace{10mm}
+
+
+          \begin{spacing}{1.8}
+            \begin{center}
+              \l_@@_make_cover_entry_eng_cs:nn {School} {\l_bit_dept_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {Degree} {\l_bit_major_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {Author} {\l_bit_name_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {Student~ID} {\l_bit_studentid_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {Supervisor} {\l_bit_mentor_tl}
+
+              \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
+                % 生成校外毕设封面字段
+                  \l_@@_make_cover_entry_eng_cs:nn {Co-Supervisor} {\l_bit_externalmentor_tl}
+              }
+            \end{center}
+          \end{spacing}
+
+          \vspace*{\fill}
+          \centering
+          \zihao{3}\ziju{0.5}\songti{\today}
+        \end{titlepage}
+      }
     }
     \group_end:
   }
@@ -449,6 +541,11 @@
       \renewcommand{\baselinestretch}{1.35}
       % 目录
       \tableofcontents
+
+      \int_compare:nNnT {\g_@@_thesis_type_int} = {3}
+      {
+        \addcontentsline{toc}{chapter}{Table~of~Contents}
+      }
       \newpage
     }
   }
@@ -465,6 +562,7 @@
         {
           {1} {\l_bit_title_tl}
           {2} {\l_@@_info_trans_title_tl}
+          {3} {\l_bit_title_tl}
         }
       }
     \end{center}
@@ -487,26 +585,49 @@
 
   \NewDocumentEnvironment {abstract*} {}
   {
-    \zihao{-4}
+    % \zihao{-4}
     \vspace*{-2mm}
 
+    \setstretch{1.53}
     \begin{spacing}{0.95}
       \centering
-      \heiti\zihao{3}\textbf{\l_bit_titleen_tl}
+
+      \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+      {
+        \arialfamily\zihao{-2}\textbf\l_bit_titleen_tl\\
+      } {
+        \heiti\zihao{3}\textbf\l_bit_titleen_tl\\
+      }
     \end{spacing}
 
-    \setstretch{1.53}
-    \vspace*{17mm}
+    \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+    {
+      \ctexset{
+        chapter = {
+          numbering = false,
+          titleformat = {\heiti\zihao{3}\centering\textbf},
+        }
+      }
+    } {
+      \ctexset{
+        chapter = {
+          numbering = false,
+          titleformat = {\heiti\zihao{-3}\centering\textmd},
+        }
+      }
+    }
 
-    {\let\clearpage\relax \chapter*{
-      \zihao{-3}\textmd{Abstract}}}
-    \addcontentsline{toc}{chapter}{Abstract}
-    \setcounter{page}{2}
+    \vspace*{10mm}
+
+    {
+      \let\clearpage\relax
+      \chapter{Abstract}
+    }
 
     \setlength{\parskip}{0em}\par
   }
   {
-    \par\vspace{3ex}\noindent\textbf{Key Words:~\l_@@_info_keywords_en_tl}
+    \par\vspace{3ex}\noindent\textbf{Key~Words:~\l_@@_info_keywords_en_tl}
     \newpage
   }
 
@@ -516,15 +637,20 @@
       chapter = {
         numbering = false,
         beforeskip = 18bp,
-        format = {\heiti \mdseries \centering \zihao{3}},
+        format = {\heiti \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
         afterskip = 26bp,
       },
       section/number = \arabic{section}
     }
 
     \stepcounter{chapter}
-    \chapter{结\quad 论}
-    \renewcommand{\thechapter}{结论}
+    \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
+    {
+      \chapter{结\quad 论}
+      \renewcommand{\thechapter}{结论}
+    } {
+      \chapter{Conclusions}
+    }
   }
   {}
 
@@ -534,7 +660,7 @@
       chapter = {
         numbering = false,
         beforeskip = 18bp,
-        format = {\heiti \mdseries \centering \zihao{3}},
+        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
         afterskip = 26bp,
       },
     }
@@ -559,18 +685,30 @@
 
   \NewDocumentEnvironment {appendices} {}
   {
+    \tl_new:N \l_@@_appendix_plain_name_tl
+    \tl_new:N \l_@@_appendix_title_tl
+
+    \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
+    {
+      \tl_set:Nn \l_@@_appendix_plain_name_tl {Appendix}
+      \tl_set:Nn \l_@@_appendix_title_tl {Appendices}
+    } {
+      \tl_set:Nn \l_@@_appendix_plain_name_tl {附录}
+      \tl_set:Nn \l_@@_appendix_title_tl {附\quad 录}
+    }
+
     \ctexset{
       chapter = {
         numbering = false,
         beforeskip = 18bp,
-        format = {\heiti \mdseries \centering \zihao{3}},
+        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
         afterskip = 26bp,
       },
-      section/number = 附录\Alph{section},
+      section/number = \l_@@_appendix_plain_name_tl\hspace{1ex}\Alph{section},
       subsection/number = \Alph{section}. \arabic{subsection},
     }
-    \chapter{附\quad 录}
-    \renewcommand{\thechapter}{附录}
+
+    \chapter{\l_@@_appendix_title_tl}
   }
   {}
 
@@ -580,13 +718,18 @@
       chapter = {
         numbering = false,
         beforeskip = 18bp,
-        format = {\heiti \mdseries \centering \zihao{3}},
+        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
         afterskip = 26bp,
       },
       section/number = \arabic{section},
       subsection/number = \arabic{section}. \arabic{subsection},
     }
-    \chapter{致\quad 谢}
-    \renewcommand{\thechapter}{致谢}
+    \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
+    {
+      \chapter{Acknowledgement}
+    } {
+      \chapter{致\quad 谢}
+      \renewcommand{\thechapter}{致谢}
+    }
   }
   {}
