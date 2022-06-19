@@ -25,7 +25,7 @@
 %
 %<*driver>
 \ProvidesFile{bithesis.dtx}[2022/05/09 2.1.1 BIT Thesis Templates]
-\documentclass{ltxdoc}
+\documentclass[a4paper,full]{l3doc}
 \usepackage{dtx-style}
 
 \EnableCrossrefs
@@ -241,7 +241,7 @@
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
 \LoadClass[UTF8,zihao=-4,oneside,openany]{ctexbook}
 
-\RequirePackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
+% \RequirePackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
 % 目前 29mm 最接近 Word 排版
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
@@ -1503,7 +1503,7 @@ footskip=0.7cm% 页脚 1.8cm %
   headsep=3mm]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{multirow}
-\RequirePackage[ruled,vlined]{algorithm2e}
+% \RequirePackage[ruled,vlined]{algorithm2e}
 \RequirePackage{wrapfig}
 \RequirePackage{hologo}
 \RequirePackage{array,longtable,booktabs}
