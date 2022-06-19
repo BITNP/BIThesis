@@ -266,6 +266,20 @@
   \interfootnotelinepenalty=10000
 }
 
+\RenewDocumentCommand \backmatter {} {
+  \setcounter{section}{0}
+  \setcounter{subsection}{0}
+  \setcounter{subsubsection}{0}
+  \ctexset{
+    chapter = {
+      numbering = false,
+      beforeskip = 18bp,
+      format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
+      afterskip = 26bp,
+    }
+  }
+}
+
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
 
@@ -535,6 +549,68 @@
     \group_end:
   }
 
+% 圆形数字编号定义
+\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
+  {\node[shape = circle, draw, inner~sep = 1pt]
+  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+  \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+
+\NewDocumentCommand \MakeOriginality {} 
+{
+  \group_begin:
+    \pagestyle{BIThesis}
+    \pagenumbering{gobble}
+
+    % 原创性声明部分
+    \begin{center}
+      \vspace*{-2bp}
+      \let\clearpage\relax
+      \chapter*{\heiti\zihao{2}原创性声明}
+    \end{center}~\par
+
+    % 本部分字号为小三
+    \zihao{-3}
+    本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par
+
+    特此申明。
+
+    \vspace{17mm}
+
+    \begin{flushright}
+      本人签名：
+      \hspace{40mm}
+      日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\par
+    \end{flushright}
+
+    \vspace{16mm}
+
+    % 使用授权声明部分
+    \begin{center}
+      \let\clearpage\relax
+      \chapter*{\heiti\zihao{2}关于使用授权的声明}
+    \end{center}~\par
+
+本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。
+
+    \vspace*{3mm}
+
+    \begin{flushright}
+      \begin{spacing}{1.65}
+        \zihao{-3}
+        本人签名：% \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+        \hspace{40mm}
+        日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\\
+        指导老师签名：
+        \hspace{40mm}
+        日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
+      \end{spacing}
+    \end{flushright}
+
+    \newpage
+  \group_end:
+}
+
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
@@ -553,10 +629,10 @@
   % TODO:
   \NewDocumentEnvironment {abstract} {}
   {
-    \zihao{-4}
-    \vspace*{-11mm}
+    \setstretch{1.53}
 
     \begin{center}
+      \vspace*{-17bp}
       \heiti\zihao{-2}\textbf{
         \int_case:nn {\g_@@_thesis_type_int}
         {
@@ -575,8 +651,7 @@
 
     \vspace*{1mm}
 
-    \setstretch{1.53}
-    \setlength{\parskip}{0em}\par
+    \par
   }
   {
     \vspace{4ex}\noindent\textbf{\heiti 关键词：\l_@@_info_keywords_tl}\par
@@ -585,12 +660,10 @@
 
   \NewDocumentEnvironment {abstract*} {}
   {
-    % \zihao{-4}
-    \vspace*{-2mm}
-
     \setstretch{1.53}
     \begin{spacing}{0.95}
       \centering
+      \vspace*{-2bp}
 
       \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
       {
@@ -624,46 +697,32 @@
       \chapter{Abstract}
     }
 
-    \setlength{\parskip}{0em}\par
+    % \setlength{\parskip}{0em}\par
   }
   {
     \par\vspace{3ex}\noindent\textbf{Key~Words:~\l_@@_info_keywords_en_tl}
     \newpage
   }
 
+% after \backmatter
   \NewDocumentEnvironment {conclusion} {}
   {
     \ctexset{
-      chapter = {
-        numbering = false,
-        beforeskip = 18bp,
-        format = {\heiti \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
-        afterskip = 26bp,
-      },
       section/number = \arabic{section}
     }
 
-    \stepcounter{chapter}
     \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
     {
       \chapter{结\quad 论}
-      \renewcommand{\thechapter}{结论}
     } {
       \chapter{Conclusions}
     }
   }
   {}
 
+% after backmatter
   \NewDocumentEnvironment {bibprint} {}
   {
-    \ctexset{
-      chapter = {
-        numbering = false,
-        beforeskip = 18bp,
-        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
-        afterskip = 26bp,
-      },
-    }
     % 设置参考文献字号为 5 号
     \renewcommand*{\bibfont}{\zihao{5}}
     % 设置参考文献各个项目之间的垂直距离为 0
@@ -698,12 +757,6 @@
     }
 
     \ctexset{
-      chapter = {
-        numbering = false,
-        beforeskip = 18bp,
-        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
-        afterskip = 26bp,
-      },
       section/number = \l_@@_appendix_plain_name_tl\hspace{1ex}\Alph{section},
       subsection/number = \Alph{section}. \arabic{subsection},
     }
@@ -715,12 +768,6 @@
   \NewDocumentEnvironment {acknowledgements} {}
   {
     \ctexset{
-      chapter = {
-        numbering = false,
-        beforeskip = 18bp,
-        format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
-        afterskip = 26bp,
-      },
       section/number = \arabic{section},
       subsection/number = \arabic{section}. \arabic{subsection},
     }
@@ -729,7 +776,6 @@
       \chapter{Acknowledgement}
     } {
       \chapter{致\quad 谢}
-      \renewcommand{\thechapter}{致谢}
     }
   }
   {}
