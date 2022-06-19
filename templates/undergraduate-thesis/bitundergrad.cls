@@ -35,6 +35,7 @@
     date .tl_set:N = \l_bit_coverdate_tl,
     headerImage .tl_set:N = \l_bit_coverheaderimage_tl,
     xiheiFont .tl_set:N = \l_@@_cover_xihei_font_path_tl,
+    xiheiFont .default:n = {STXihei},
   }
 
 \keys_define:nn { bitundergrad / info }
@@ -124,15 +125,9 @@
   \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
   {
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
-      \IfFontExistsTF{STXihei}{
-        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXihei}
-      }{
-        \IfFontExistsTF{STXIHEI.TTF}{
-          \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{STXIHEI.TTF}
-        }{}
-      }
+
     } {
-        \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{[\l_@@_cover_xihei_font_path_tl]}
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
     }
 
     \tl_set:Nn \g_@@_toc_title_tl {目\quad 录}
