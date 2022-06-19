@@ -559,55 +559,104 @@
 \NewDocumentCommand \MakeOriginality {} 
 {
   \group_begin:
-    \pagestyle{BIThesis}
-    \pagenumbering{gobble}
+    \int_case:nn {\g_@@_thesis_type_int}
+    {
+      {1} 
+      {
+        \pagestyle{BIThesis}
+        \pagenumbering{gobble}
 
-    % 原创性声明部分
-    \begin{center}
-      \vspace*{-2bp}
-      \let\clearpage\relax
-      \chapter*{\heiti\zihao{2}原创性声明}
-    \end{center}~\par
+        % 原创性声明部分
+        \begin{center}
+          \vspace*{-2bp}
+          \let\clearpage\relax
+          \chapter*{\heiti\zihao{2}原创性声明}
+        \end{center}~\par
 
-    % 本部分字号为小三
-    \zihao{-3}
-    本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par
-
-    特此申明。
-
-    \vspace{17mm}
-
-    \begin{flushright}
-      本人签名：
-      \hspace{40mm}
-      日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\par
-    \end{flushright}
-
-    \vspace{16mm}
-
-    % 使用授权声明部分
-    \begin{center}
-      \let\clearpage\relax
-      \chapter*{\heiti\zihao{2}关于使用授权的声明}
-    \end{center}~\par
-
-本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。
-
-    \vspace*{3mm}
-
-    \begin{flushright}
-      \begin{spacing}{1.65}
+        % 本部分字号为小三
         \zihao{-3}
-        本人签名：% \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-        \hspace{40mm}
-        日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\\
-        指导老师签名：
-        \hspace{40mm}
-        日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
-      \end{spacing}
-    \end{flushright}
+        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par
 
-    \newpage
+        特此申明。
+
+        \vspace{17mm}
+
+        \begin{flushright}
+          本人签名：
+          \hspace{40mm}
+          日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\par
+        \end{flushright}
+
+        \vspace{16mm}
+
+        % 使用授权声明部分
+        \begin{center}
+          \let\clearpage\relax
+          \chapter*{\heiti\zihao{2}关于使用授权的声明}
+        \end{center}~\par
+
+    本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。
+
+        \vspace*{3mm}
+
+        \begin{flushright}
+          \begin{spacing}{1.65}
+            \zihao{-3}
+            本人签名：% \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+            \hspace{40mm}
+            日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\\
+            指导老师签名：
+            \hspace{40mm}
+            日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
+          \end{spacing}
+        \end{flushright}
+
+        \newpage
+      }
+      {3} {
+        \setstretch{1.26}
+        % 原创性声明部分
+        \begin{center}
+          \vspace*{-2bp}
+          \let\clearpage\relax
+          \chapter*{\heiti\zihao{-2}原创性声明~Statement~of~Originality}
+        \end{center}~\par
+
+        % 本部分字号为小三
+        \zihao{-4}
+        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par
+
+        \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
+        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
+        under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
+        any~research~published~or~written~by~any~other~individual~or~group,~
+        except~as~already~referenced~in~this~paper.~Individuals~and~groups~
+        that~have~made~important~contributions~to~the~study~of~this~paper~
+        are~clearly~indicated~and~cited~in~the~paper.\par
+
+        \bigbreak
+
+        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
+
+        \vspace{6mm}
+
+        % 使用授权声明部分
+        \begin{center}
+          \let\clearpage\relax
+          \chapter*{\heiti\zihao{-2}关于使用授权的声明~State~of~Use~Authorization}
+        \end{center}~\par
+
+    本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
+I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+
+        \bigbreak
+        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
+        Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
+
+
+        \newpage
+      }
+    }
   \group_end:
 }
 
