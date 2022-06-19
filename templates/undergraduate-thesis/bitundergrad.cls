@@ -116,7 +116,7 @@
 }
 
 % One blank line before the figure and after the caption.
-\setlength{\intextsep}{1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 
 \setromanfont{Times~New~Roman}
 
@@ -284,32 +284,26 @@
 \setlength{\belowcaptionskip}{9pt}
 
 % figure
-\RenewDocumentCommand \thefigure {} {\thechapter-\arabic{figure}}
-% \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\cs_set:Npn \thefigure {\thechapter-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
 
 % table
-\RenewDocumentCommand \thetable {} {\thechapter-\arabic{table}}
-% \renewcommand{\thetable}{\thechapter-\arabic{table}}
+\cs_set:Npn \thetable {\thechapter-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
 % equation
-\RenewDocumentCommand \theequation {} {\arabic{chapter}-\arabic{equation}}
-% \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+\cs_set:Npn \theequation {\thechapter-\arabic{equation}}
 
+% code snippet
+\cs_set:Npn \lstlistingname {代码}
+\cs_set:Npn \thelstlisting {\thechapter-\arabic{lstlisting}}
+
+% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
-
-% code snippet
-\AtBeginDocument{
-  % \renewcommand{\lstlistingname}{代码}
-  \RenewDocumentCommand \lstlistingname {} {代码}
-  \RenewDocumentCommand \thelstlisting {} {\arabic{chapter}-\arabic{lstlisting}}
-  % \renewcommand{\thelstlisting}{\arabic{chapter}-\arabic{lstlisting}}
-}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -696,7 +690,6 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
     {\let\clearpage\relax \chapter*{\textmd{摘\quad 要}}}
     \addcontentsline{toc}{chapter}{摘\quad 要}
-    \setcounter{page}{1}
 
     \vspace*{1mm}
 
@@ -791,9 +784,13 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
   }
   {}
 
-  \NewDocumentEnvironment {appendices} {}
+  % #1: The name that used as chapter title
+  % #2: The name that used in ToC.
+  \NewDocumentEnvironment {appendices} { oo }
   {
+    % Used in chapter, ToC.
     \tl_new:N \l_@@_appendix_plain_name_tl
+    % Used before reference label.
     \tl_new:N \l_@@_appendix_title_tl
 
     \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
@@ -810,7 +807,21 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
       subsection/number = \Alph{section}. \arabic{subsection},
     }
 
-    \chapter{\l_@@_appendix_title_tl}
+    \IfValueTF {#1} {
+      \chapter*{#1}
+      \stepcounter{chapter}
+      \IfValueTF {#2} {
+        \addcontentsline{toc}{chapter}{#2}
+      } {
+        \addcontentsline{toc}{chapter}{\l_@@_appendix_title_tl}
+      }
+    } {
+      \chapter{\l_@@_appendix_title_tl}
+    }
+
+    \cs_set:Npn \thechapter {
+      \Alph{section}
+    }
   }
   {}
 
