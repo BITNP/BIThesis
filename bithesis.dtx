@@ -17,7 +17,7 @@
 % \fi
 %
 % \iffalse
-%<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<cls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
 %<article>\ProvidesClass{bitart}
 %<graduate>\ProvidesClass{bitgrad}
@@ -171,7 +171,9 @@
 % 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
 %
 % 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
-% \mint{bash}|tlmgr update --self --all|
+% \begin{shell}[morekeywords={tlmgr,install}]
+%   tlmgr install fduthesis
+% \end{shell}
 % \subsection{使用 \BIThesis 文档类}
 % 推荐使用 \BIThesisScaffold 来进行具体的项目编写。\BIThesisScaffold 提供了多种最常用的模板，你可以在 \href{https://github.com/BITNP/BIThesis}{主项目的 Releases}中找到它们。 
 % \section{致谢}
@@ -1491,7 +1493,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \ProvidesPackage{dtx-style}
 \RequirePackage{hypdoc}
 \RequirePackage{ifthen}
-\RequirePackage{fontspec}[2017/01/20]
+\RequirePackage{fontspec}
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \RequirePackage[UTF8,scheme=chinese,heading]{ctex}
@@ -1518,12 +1520,9 @@ footskip=0.7cm% 页脚 1.8cm %
 \usetikzlibrary{positioning}
 \RequirePackage{framed}
 \RequirePackage{menukeys}
+\RequirePackage{float}
 
-  % 设置代码高亮
-\RequirePackage{minted}
-\usemintedstyle{tango}
-
-  % 设置列表无间隔
+ % 设置列表无间隔
 \usepackage{enumitem}
 \setlist{nosep}
 
