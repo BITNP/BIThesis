@@ -8,6 +8,93 @@
 \int_new:N \g_@@_thesis_type_int
 \tl_new:N \g_@@_toc_title_tl
 
+\clist_const:Nn \c_@@_thesis_type_clist
+    { bachelor, bachelor_translation, bachelor_english, master, docter}
+
+\cs_new_protected:Npn \@@_define_name:nn #1#2
+  { \tl_const:cn { c_@@_name_ #1 _tl } {#2} }
+
+\cs_new_protected:Npn \@@_define_name_by_thesis_type:nnn #1#2#3 
+  {
+    \tl_const:cn { c_@@_ #1 _name_ #2 _tl } {#3}
+  }
+
+\cs_new_protected:Npn \@@_define_name:nnn #1#2#3
+  {
+    \tl_const:cn { c_@@_name_ #1    _tl } {#2}
+    \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
+  }
+
+\clist_map_inline:nn
+  {
+    {code} {代码},
+  }
+  {\@@_define_name:nn #1}
+
+% bachelor
+\clist_map_inline:nn
+  {
+    {title} {本科生毕业设计（论文）},
+    {originality} {原创性声明},
+    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
+    {authorization} {关于使用授权的声明},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
+    {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+  } {\@@_define_name_by_thesis_type:nnn {bachelor} #1}
+
+% % bachelor english
+\clist_map_inline:nn
+  {
+    {title} {},
+    {originality} {原创性声明~Statement~of~Originality},
+    {originality_clause} {
+        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par 
+        \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
+        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
+        under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
+        any~research~published~or~written~by~any~other~individual~or~group,~
+        except~as~already~referenced~in~this~paper.~Individuals~and~groups~
+        that~have~made~important~contributions~to~the~study~of~this~paper~
+        are~clearly~indicated~and~cited~in~the~paper.\par
+    },
+    {authorization} {关于使用授权的声明~State~of~Use~Authorization},
+    {authorization_clause} {
+      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
+  I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+    },
+  } {\@@_define_name_by_thesis_type:nnn {bachelor_english} #1}
+
+\clist_map_inline:nn 
+  {
+    {school} {学\qquad 院} {School},
+    {major} {专\qquad 业} {Degree},
+    {author} {学生姓名} {Author},
+    {student_id} {学\qquad 号} {Student~ID},
+    {supervisor} {指导教师} {Supervisor},
+    {co_supervisor} {校外指导教师} {Co-Supervisor},
+    {toc} {目\quad 录} {Table~of~Contents},
+    {abstract} {摘\quad 要} {Abstract},
+    {keywords} {关键词：} {Key~Words:~},
+    {conclusion} {结\quad 论} {Conclusions},
+    {appendix} {附\quad 录} {Appendices},
+    {appendix_prefix} {附录} {Appendix},
+    {ack} {致\quad 谢} {Acknowledgement},
+  }
+  {\@@_define_name:nnn #1}
+
+% TODO: \clist_item:Nn
+\clist_const:Nn \c_@@_bachelor_thesis_header_clist
+  {北京理工大学本科生毕业设计（论文）, 北京理工大学本科生毕业设计（论文）外文翻译, Beijing~Institute~of~Technology~Bachelor's~Thesis }
+\clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
+  {
+    本科生毕业设计（论文）,
+    本科生毕业设计（论文）外文翻译,
+    Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
+  }
+
+
+
 % key-value interface definition.
 \keys_define:nn { bitundergrad }
   {
@@ -22,8 +109,8 @@
 {
   type .choice:,
   type .value_required:n = true,
-  type .choices:nn =
-    { bachelor, translation, english }
+  type .choices:Vn =
+    \c_@@_thesis_type_clist
     { 
       \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int 
     },
@@ -49,9 +136,7 @@
     mentor .tl_set:N = \l_bit_mentor_tl,
     externalMentor .tl_set:N = \l_bit_externalmentor_tl,
     keywords .tl_set:N = \l_@@_info_keywords_tl,
-    keywords .default:n = {北京理工大学；本科生；毕业设计（论文）},
     keywordsEn .tl_set:N = \l_@@_info_keywords_en_tl,
-    keywordsEn .default:n = {BIT； Undergraduate； Graduation Project (Thesis)},
     translationTitle .tl_set:N = \l_@@_info_trans_title_tl,
     translationOriginTitle .tl_set:N = \l_@@_info_trans_origin_title_tl,
   }
@@ -130,12 +215,12 @@
       \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
     }
 
-    \tl_set:Nn \g_@@_toc_title_tl {目\quad 录}
+    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_tl}
   } {
     % English
     % font Arial needed
     \newfontfamily\arialfamily{Arial}
-    \tl_set:Nn \g_@@_toc_title_tl {Table~of~Contents}
+    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_en_tl}
   }
 
   \int_compare:nNnT {\g_@@_thesis_type_int} = {3} 
@@ -291,7 +376,7 @@
 \cs_set:Npn \theequation {\thechapter-\arabic{equation}}
 
 % code snippet
-\cs_set:Npn \lstlistingname {代码}
+\cs_set:Npn \lstlistingname {\c_@@_name_code_tl}
 \cs_set:Npn \thelstlisting {\thechapter-\arabic{lstlisting}}
 
 % 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
@@ -379,7 +464,7 @@
 
           \vspace*{-3mm}
 
-          \zihao{-0}\textbf{\ziju{0.12}\songti{本科生毕业设计（论文）}}\par
+          \zihao{-0}\textbf{\ziju{0.12}\songti{\c_@@_bachelor_name_title_tl}}\par
 
           \vspace{16mm}
 
@@ -396,15 +481,15 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_a_cs:nn {学\qquad 院} {\l_bit_dept_tl}
-              \l_@@_make_cover_entry_a_cs:nn {专\qquad 业} {\l_bit_major_tl}
-              \l_@@_make_cover_entry_a_cs:nn {学生姓名} {\l_bit_name_tl}
-              \l_@@_make_cover_entry_a_cs:nn {学\qquad 号} {\l_bit_studentid_tl}
-              \l_@@_make_cover_entry_a_cs:nn {指导教师} {\l_bit_mentor_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_school_tl} {\l_bit_dept_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_major_tl} {\l_bit_major_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_author_tl} {\l_bit_name_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_student_id_tl} {\l_bit_studentid_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_supervisor_tl} {\l_bit_mentor_tl}
 
               \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
                 % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_a_cs:nn {校外指导教师} {\l_bit_externalmentor_tl}
+                  \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_co_supervisor_tl} {\l_bit_externalmentor_tl}
               }
             \end{center}
           \end{spacing}
@@ -424,6 +509,7 @@
             % 校外毕设封面顶部间距
             \vspace*{8mm}
           }
+
           \centering
 
           \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
@@ -516,15 +602,15 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_eng_cs:nn {School} {\l_bit_dept_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {Degree} {\l_bit_major_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {Author} {\l_bit_name_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {Student~ID} {\l_bit_studentid_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {Supervisor} {\l_bit_mentor_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_school_en_tl} {\l_bit_dept_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_major_en_tl} {\l_bit_major_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_author_en_tl} {\l_bit_name_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_student_id_en_tl} {\l_bit_studentid_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_supervisor_en_tl} {\l_bit_mentor_tl}
 
               \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
                 % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_eng_cs:nn {Co-Supervisor} {\l_bit_externalmentor_tl}
+                  \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_co_supervisor_en_tl} {\l_bit_externalmentor_tl}
               }
             \end{center}
           \end{spacing}
@@ -559,21 +645,17 @@
         \begin{center}
           \vspace*{-2bp}
           \let\clearpage\relax
-          \chapter*{\heiti\zihao{2}原创性声明}
+          \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_originality_tl}
         \end{center}~\par
 
         % 本部分字号为小三
         \zihao{-3}
-        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par
-
-        特此申明。
+        \c_@@_bachelor_name_originality_clause_tl
 
         \vspace{17mm}
 
         \begin{flushright}
-          本人签名：
-          \hspace{40mm}
-          日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\par
+          \c_@@_bachelor_name_originality_author_signature_tl\par
         \end{flushright}
 
         \vspace{16mm}
@@ -581,22 +663,19 @@
         % 使用授权声明部分
         \begin{center}
           \let\clearpage\relax
-          \chapter*{\heiti\zihao{2}关于使用授权的声明}
+          \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_authorization_tl}
         \end{center}~\par
 
-    本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。
+        \c_@@_bachelor_name_authorization_clause_tl
 
         \vspace*{3mm}
 
         \begin{flushright}
           \begin{spacing}{1.65}
             \zihao{-3}
-            本人签名：% \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-            \hspace{40mm}
-            日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日\\
-            指导老师签名：
-            \hspace{40mm}
-            日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日
+            % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+            \c_@@_bachelor_name_originality_author_signature_tl\par
+            \c_@@_bachelor_name_originality_supervisor_signature_tl\par
           \end{spacing}
         \end{flushright}
 
@@ -608,20 +687,12 @@
         \begin{center}
           \vspace*{-2bp}
           \let\clearpage\relax
-          \chapter*{\heiti\zihao{-2}原创性声明~Statement~of~Originality}
+          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_originality_tl}
         \end{center}~\par
 
         % 本部分字号为小三
         \zihao{-4}
-        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par
-
-        \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
-        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
-        under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
-        any~research~published~or~written~by~any~other~individual~or~group,~
-        except~as~already~referenced~in~this~paper.~Individuals~and~groups~
-        that~have~made~important~contributions~to~the~study~of~this~paper~
-        are~clearly~indicated~and~cited~in~the~paper.\par
+        \c_@@_bachelor_english_name_originality_clause_tl
 
         \bigbreak
 
@@ -632,11 +703,10 @@
         % 使用授权声明部分
         \begin{center}
           \let\clearpage\relax
-          \chapter*{\heiti\zihao{-2}关于使用授权的声明~State~of~Use~Authorization}
+          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_authorization_tl}
         \end{center}~\par
 
-    本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
-I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+        \c_@@_bachelor_english_name_authorization_clause_tl
 
         \bigbreak
         Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
@@ -658,7 +728,7 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
       \int_compare:nNnT {\g_@@_thesis_type_int} = {3}
       {
-        \addcontentsline{toc}{chapter}{Table~of~Contents}
+        \addcontentsline{toc}{chapter}{\c_@@_name_toc_en_tl}
       }
       \newpage
     }
@@ -683,15 +753,15 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
     \vspace*{2mm}
 
-    {\let\clearpage\relax \chapter*{\textmd{摘\quad 要}}}
-    \addcontentsline{toc}{chapter}{摘\quad 要}
+    {\let\clearpage\relax \chapter*{\textmd{\c_@@_name_abstract_tl}}}
+    \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
 
     \vspace*{1mm}
 
     \par
   }
   {
-    \vspace{4ex}\noindent\textbf{\heiti 关键词：\l_@@_info_keywords_tl}\par
+    \vspace{4ex}\noindent\textbf{\heiti \c_@@_name_keywords_tl \l_@@_info_keywords_tl}\par
     \newpage
   }
 
@@ -731,13 +801,13 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
     {
       \let\clearpage\relax
-      \chapter{Abstract}
+      \chapter{\c_@@_name_abstract_en_tl}
     }
 
     % \setlength{\parskip}{0em}\par
   }
   {
-    \par\vspace{3ex}\noindent\textbf{Key~Words:~\l_@@_info_keywords_en_tl}
+    \par\vspace{3ex}\noindent\textbf{\c_@@_name_keywords_en_tl \l_@@_info_keywords_en_tl}
     \newpage
   }
 
@@ -750,9 +820,9 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
     \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
     {
-      \chapter{结\quad 论}
+      \chapter{\c_@@_name_conclusion_tl}
     } {
-      \chapter{Conclusions}
+      \chapter{\c_@@_name_conclusion_en_tl}
     }
   }
   {}
@@ -790,11 +860,11 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
 
     \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
     {
-      \tl_set:Nn \l_@@_appendix_plain_name_tl {Appendix}
-      \tl_set:Nn \l_@@_appendix_title_tl {Appendices}
+      \tl_set:Nn \l_@@_appendix_plain_name_tl {\c_@@_name_appendix_prefix_en_tl}
+      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_name_appendix_en_tl}
     } {
-      \tl_set:Nn \l_@@_appendix_plain_name_tl {附录}
-      \tl_set:Nn \l_@@_appendix_title_tl {附\quad 录}
+      \tl_set:Nn \l_@@_appendix_plain_name_tl {\c_@@_name_appendix_prefix_tl}
+      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_name_appendix_tl}
     }
 
     \ctexset{
@@ -826,11 +896,12 @@ I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(the
       section/number = \arabic{section},
       subsection/number = \arabic{section}. \arabic{subsection},
     }
+
     \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
     {
-      \chapter{Acknowledgement}
+      \chapter{\c_@@_name_ack_en_tl}
     } {
-      \chapter{致\quad 谢}
+      \chapter{\c_@@_name_ack_tl}
     }
   }
   {}
