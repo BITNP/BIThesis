@@ -3,11 +3,11 @@
   2022-06-10
 }{0.0.1}{BIThesis Undergraduate Thesis class}
 
-\PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
-
+% Define Global Variables
 \int_new:N \g_@@_thesis_type_int
 \tl_new:N \g_@@_toc_title_tl
 
+% Define Consts.
 \clist_const:Nn \c_@@_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, docter}
 
@@ -160,7 +160,16 @@
   }
 }
 
-% Pass every option not explicitly defined to `ctexbeamer`.
+\ProcessKeysOptions { bitundergrad / option }
+
+\int_case:nn {\g_@@_thesis_type_int} 
+  {
+    {3}{
+      \PassOptionsToClass{scheme=plain}{ctexbook}
+    }
+  }
+
+% Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{ctexbook}
 }
