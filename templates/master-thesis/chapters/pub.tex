@@ -15,9 +15,24 @@
 %
 % The Current Maintainer of this work is Feng Kaiyu.
 
-\begin{publications}{99}
+\begin{publications}
+  \nocite{myCiteKey}
+  \nocite{myCiteKey2}
+  \addtocategory{mypub}{myCiteKey}
+  \addtocategory{mypub}{myCiteKey2}
 
-    \item\textsc{高凌}. {交联型与线形水性聚氨酯的形状记忆性能比较}[J].
-      化工进展, 2006, 532－535.（核心期刊）
+  \renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1)}}
+    {#1}}
+
+  \renewcommand*{\mkbibnamefamily}[1]{%
+    \ifitemannotation{highlight}
+      {\textbf{#1}}
+      {#1}}
+
+  \printbibliography[heading=none,category=mypub,resetnumbers=true]{}
+    % \item\textsc{高凌}. {交联型与线形水性聚氨酯的形状记忆性能比较}[J].
+      % 化工进展, 2006, 532－535.（核心期刊）
     
 \end{publications}

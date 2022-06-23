@@ -18,28 +18,7 @@
 %
 % 如无特殊需要，本页面无需更改
 
-% 参考文献开始
-\chapter*{参考文献}
-% 删除默认的「参考文献 / Reference」标题，使用上面定义的标题
-\renewcommand{\thechapter}{参考文献}
-% 添加到 TOC
-\addcontentsline{toc}{chapter}{\thechapter}
 
-% 设置参考文献字号为 5 号
-\renewcommand*{\bibfont}{\zihao{5}}
-
-% % 设置参考文献各个项目之间的垂直距离为 0
-% \setlength{\bibitemsep}{1.1\itemsep}
-\setlength{\bibnamesep}{0ex}
-\setlength{\bibinitsep}{0ex}
-
-% % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
-\setlength{\biblabelsep}{0.5mm}
-
-% % 设置参考文献后文缩进为 0
-\renewcommand{\itemcmd}{
-  \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-  \mkgbnumlabel{\printfield{labelnumber}}
-  \hspace{\biblabelsep}}
-
-\printbibliography[heading=none]
+\begin{bibprint}
+  \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
+\end{bibprint}

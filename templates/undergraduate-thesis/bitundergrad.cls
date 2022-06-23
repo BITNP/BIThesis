@@ -6,6 +6,9 @@
 % Define Global Variables
 \int_new:N \g_@@_thesis_type_int
 \tl_new:N \g_@@_toc_title_tl
+\int_new:N \g_@@_head_zihao_int
+\bool_new:N \g_@@_twoside_bool
+\bool_new:N \g_@@_thesis_type_english_bool
 
 % Define Consts.
 \clist_const:Nn \c_@@_thesis_type_clist
@@ -25,9 +28,17 @@
     \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
   }
 
+\cs_new_protected:Npn \@@_define_name_by_thesis_type:nnnn #1#2#3#4
+  {
+    \tl_const:cn { c_@@_ #1 _name_ #2 _tl } {#3}
+    \tl_const:cn { c_@@_ #1 _name_ #2 _en_tl } {#4}
+  }
+
 \clist_map_inline:nn
   {
     {code} {代码},
+    {udc} {UDC分类号：},
+    {classification} {中国分类号：},
   }
   {\@@_define_name:nn #1}
 
@@ -65,6 +76,33 @@
     },
   } {\@@_define_name_by_thesis_type:nnn {bachelor_english} #1}
 
+\cs_new:Npn \smallgap {
+  \hspace{0.45ex}
+}
+
+% graduate
+\clist_map_inline:nn
+  {
+    {originality} {研究成果声明},
+    {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。尽我所知，文中除特别标注和致谢的地方外，学位论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。与我一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
+    {authorization} {关于学位论文使用权的说明},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
+    {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+  } {\@@_define_name_by_thesis_type:nnn {graduate} #1}
+
+\clist_map_inline:nn
+  {
+    {author} {作\quad 者\quad 姓\quad 名} {Candiate~Name},
+    {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
+    {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
+    {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
+    {degree} {申\smallgap 请\smallgap 学\smallgap 位\smallgap 级\smallgap 别} {Degree~Applied},
+    {major} {学\quad 科\quad 专\quad 业} {Major},
+    {institute} {学\smallgap 位\smallgap 授\smallgap 予\smallgap 单\smallgap 位} {Degree~by},
+    {defense_date} {论\smallgap 文\smallgap 答\smallgap 辩\smallgap 日\smallgap 期} {The~Date~of~Defence},
+  } {\@@_define_name_by_thesis_type:nnnn {graduate} #1}
+
 \clist_map_inline:nn 
   {
     {school} {学\qquad 院} {School},
@@ -80,6 +118,14 @@
     {appendix} {附\quad 录} {Appendices},
     {appendix_prefix} {附录} {Appendix},
     {ack} {致\quad 谢} {Acknowledgement},
+    {reference} {参考文献} {References},
+    {figure} {插\quad 图} {Illustrations},
+    {table} {表\quad 格} {Tables},
+    {university} {北京理工大学} {BEIJING~INSTITUTE~OF~TECHNOLOGY},
+    {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
+    % TODO: Not so sure about the translation.
+    {resume} {作者简介} {},
+    {symbols} {主要符号对照表} {},
   }
   {\@@_define_name:nnn #1}
 
@@ -92,6 +138,24 @@
     本科生毕业设计（论文）外文翻译,
     Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
   }
+
+% helper functions
+
+% 是否为研究生学位论文
+\cs_new:Npn \@@_if_graduate:TF #1#2 {
+    \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
+      {#1}
+      {#2}
+  }
+
+% 是否某一特定模板
+\cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
+\cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
+
+% 是否为英文模板，这里包括全英文专业和研究生模板的英文模式。
+\cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
+\cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
+
 
 
 
@@ -113,6 +177,10 @@
     \c_@@_thesis_type_clist
     { 
       \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int 
+      \int_case:nn {\l_keys_choice_int} {
+        % 本科全英文也是英文模板。
+        {3} {\bool_set_true:N \g_@@_thesis_type_english_bool}
+      }
     },
   type .initial:n = bachelor,
 }
@@ -128,17 +196,39 @@
 \keys_define:nn { bitundergrad / info }
   {
     title .tl_set:N = \l_bit_title_tl,
+    % TODO: rename
     TITLE .tl_set:N = \l_bit_titleen_tl,
+    % TODO: rename to school.
     dept .tl_set:N = \l_bit_dept_tl,
     major .tl_set:N = \l_bit_major_tl,
+    % TODO: rename to author.
     name .tl_set:N = \l_bit_name_tl,
     studentId .tl_set:N = \l_bit_studentid_tl,
+    % TODO: rename to supervisor
     mentor .tl_set:N = \l_bit_mentor_tl,
     externalMentor .tl_set:N = \l_bit_externalmentor_tl,
     keywords .tl_set:N = \l_@@_info_keywords_tl,
     keywordsEn .tl_set:N = \l_@@_info_keywords_en_tl,
     translationTitle .tl_set:N = \l_@@_info_trans_title_tl,
     translationOriginTitle .tl_set:N = \l_@@_info_trans_origin_title_tl,
+    % 中国分类号，研究生学位论文使用
+    classification .tl_set:N = \l_@@_info_classification_tl,
+    % UDC 分类号，研究生学位论文使用
+    UDC .tl_set:N = \l_@@_info_udc_tl,
+    chairman .tl_set:N = \l_@@_info_chairman_tl,
+    degree .tl_set:N = \l_@@_info_degree_tl,
+    degreeEn .tl_set:N = \l_@@_info_degree_en_tl,
+    institute .tl_set:N = \l_@@_info_institute_tl,
+    institute .initial:n = {\c_@@_name_university_tl},
+    defense_date .tl_set:N = \l_@@_info_defense_date_tl,
+    authorEn .tl_set:N = \l_@@_info_author_en_tl,
+    schoolEn .tl_set:N = \l_@@_info_school_en_tl,
+    supervisorEn .tl_set:N = \l_@@_info_supervisor_en_tl,
+    chairmanEn .tl_set:N = \l_@@_info_chairman_en_tl,
+    majorEn .tl_set:N = \l_@@_info_major_en_tl,
+    instituteEn .tl_set:N = \l_@@_info_institute_en_tl,
+    instituteEn .initial:n = {\c_@@_name_university_en_tl},
+    defenseDateEn .tl_set:N = \l_@@_info_defense_date_en_tl,
   }
 
 \keys_define:nn { bitundergrad / misc }
@@ -156,18 +246,17 @@
       {1} {北京理工大学本科生毕业设计（论文）}
       {2} {北京理工大学本科生毕业设计（论文）外文翻译}
       {3} {Beijing~Institute~of~Technology~Bachelor's~Thesis}
+      {4} {北京理工大学硕士学位论文}
+      {5} {北京理工大学博士学位论文}
     }
   }
 }
 
 \ProcessKeysOptions { bitundergrad / option }
 
-\int_case:nn {\g_@@_thesis_type_int} 
-  {
-    {3}{
-      \PassOptionsToClass{scheme=plain}{ctexbook}
-    }
-  }
+\@@_if_thesis_english:T {
+  \PassOptionsToClass{scheme=plain}{ctexbook}
+}
 
 % Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
@@ -199,15 +288,30 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 
-\geometry{
-  a4paper,
-  left=3cm,
-  bottom=2.6cm + 7bp,
-  top=3.5cm + 7bp,
-  right=2.6cm,
-  headsep = 3.5cm + 7bp - 2.4cm - 20bp,
-  headheight = 20 bp,
-  footskip = 2.6cm + 7bp - 2cm,
+\@@_if_graduate:TF {
+  \int_set:Nn \g_@@_head_zihao_int {5}
+  \geometry{
+    a4paper,
+    left=2.7cm,
+    bottom=2.5cm + 7bp,
+    top=3.5cm + 7bp,
+    right=2.7cm,
+    headsep = 3.5cm + 7bp - 2.5cm - 15bp,
+    headheight = 15 bp,
+    footskip = 2.5cm + 7bp - 1.8cm,
+  }
+} {
+  \int_set:Nn \g_@@_head_zihao_int {4}
+  \geometry{
+    a4paper,
+    left=3cm,
+    bottom=2.6cm + 7bp,
+    top=3.5cm + 7bp,
+    right=2.6cm,
+    headsep = 3.5cm + 7bp - 2.4cm - 20bp,
+    headheight = 20 bp,
+    footskip = 2.6cm + 7bp - 2cm,
+  }
 }
 
 % One blank line before the figure and after the caption.
@@ -216,27 +320,32 @@
 \setromanfont{Times~New~Roman}
 
 \ctex_at_end_preamble:n {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
-  {
-    \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {
-
-    } {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
+  \@@_if_thesis_english:TF {
+    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_en_tl}
+    \@@_if_thesis_int_type:nT {3} {
+      % font Arial needed
+      \newfontfamily\arialfamily{Arial}
     }
 
-    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_tl}
   } {
-    % English
-    % font Arial needed
-    \newfontfamily\arialfamily{Arial}
-    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_en_tl}
+    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_tl}
+
+    \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {} 
+    {
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
+    }
   }
 
-  \int_compare:nNnT {\g_@@_thesis_type_int} = {3} 
-  {
+  \@@_if_thesis_int_type:nT {3} {
     \RequirePackage[en-US]{datetime2}
     \RequirePackage{indentfirst}
     \DTMlangsetup[en-US]{dayyearsep={\space}}
+  }
+
+  % Define biblatex category if it was imported.
+  \cs_if_exist:NT \DeclareBibliographyCategory {
+    % \int_show:N \g_@@_thesis_type_int
+    \DeclareBibliographyCategory{mypub}
   }
 }
 
@@ -258,7 +367,8 @@
 }
 
 \cs_new:Npn \l_@@_unnumchapter_style_cs:n #1 {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  % 本科全英文、研究生学位论文需要加粗
+  \int_compare:nNnTF {\g_@@_thesis_type_int} > {2}
   {
     \bfseries #1
   } {
@@ -272,7 +382,7 @@
 \fancypagestyle{BIThesis}{
   \fancyhf{}
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{4}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
+  \fancyhead[C]{\zihao{\int_use:N \g_@@_head_zihao_int}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
@@ -342,10 +452,20 @@
   } {
     \pagenumbering{Roman}
   }
+  \ctexset{
+    chapter = {
+      numbering = false,
+    }
+  }
   \pagestyle{BIThesis}
 }
 
 \RenewDocumentCommand \mainmatter {} {
+  \ctexset{
+    chapter = {
+      numbering = true,
+    }
+  }
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
   % 正文 22 磅的行距
@@ -419,6 +539,10 @@
 % TODO: optional
 \lstset{style=examplestyle}
 
+% 调整插图目录与表格目录的标题
+\cs_set:Npn \listfigurename {\c_@@_name_figure_tl}
+\cs_set:Npn \listtablename {\c_@@_name_table_tl}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % user interface.
@@ -431,16 +555,28 @@
 % value
 % colon
 % zihao
-\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6 {
-  \songti\zihao{#6}\selectfont{\makebox[#1][r]{#2#5}}\hspace{1ex} \dunderline[-10pt]{1pt}{\makebox[#3][c]{#4}}\par
+% underline position
+% TODO: refactor name.
+\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6#7 {
+  \zihao{#6}\selectfont{\makebox[#1][r]{#2#5}}\hspace{1ex} \dunderline[#7]{1pt}{\makebox[#3][c]{#4}}\par
 }
 
+% TODO: refactor name.
 \cs_new:Npn \l_@@_make_cover_entry_a_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3}
+  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3} {-10pt}
 }
 
+% TODO: refactor name.
 \cs_new:Npn \l_@@_make_cover_entry_eng_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4}
+  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4} {-10pt}
+}
+
+\cs_new:Npn \@@_master_make_cover_entry:nn #1#2 {
+  \g_@@_make_cover_entry_cs:nnnn {40mm} {#1} {60mm} {#2} {\quad} {-3} {-5pt}
+}
+
+\cs_new:Npn \@@_master_make_cover_entry_en:nn #1#2 {
+  \g_@@_make_cover_entry_cs:nnnn {50mm} {#1} {95mm} {#2} {} {-3} {-5pt}
 }
 
 % Usage: \dunderline{<line_thickness>}{<text>}
@@ -450,9 +586,138 @@
 %     \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}
 %   }
 % }
+
+% #1: position
+% #2: line_thickness
+% #3: token list
+\cs_new:Npn \@@_dunderline:nnn #1#2#3 {
+  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
+}
+
+\cs_new:Npn \@@_dunderline:nn #1#2 {
+  \@@_dunderline:nnn {#1} {1pt} {#2}
+}
+
+\cs_new:Npn \@@_dunderline:n #1 {
+  \@@_dunderline:nnn {-10pt} {1pt} {#1}
+}
+
 \newcommand\dunderline[3][-1pt]{{%
   \setbox0=\hbox{#3}
   \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
+
+% 重定义 \tn{cleardoublepage}，使得偶数页面在没有内容时也不显示页眉页脚，见
+% \url{https://tex.stackexchange.com/a/1683}。
+\RenewDocumentCommand \cleardoublepage { }
+  {
+    \clearpage
+    \bool_if:NT \g_@@_twoside_bool
+      {
+        \int_if_odd:nF \c@page
+          { \hbox:n { } \thispagestyle { empty } \newpage }
+      }
+  }
+
+\cs_new:Npn \make_graduate_cover: {
+  \cleardoublepage
+  \begin{titlepage}
+    \centering
+    \vspace*{65mm}
+    {\heiti\zihao{-2} \l_bit_title_tl}
+    \vskip 60mm
+    {\heiti \zihao{-3} \l_bit_name_tl} % 黑体 小三
+    \vskip 10mm
+    {\heiti \zihao{-3} \l_bit_coverdate_tl} % 黑体 小三
+  \end{titlepage}
+}
+
+\cs_new:Npn \make_paper_back: {
+  \cleardoublepage
+  \begin{titlepage}
+   \vskip 5cm
+   \begin{center}
+    \setstretch{1.1}
+    \begin{minipage}[t][19.7cm]{2em}
+      \begin{center}
+        {\heiti\zihao{3}\l_bit_title_tl}
+          \vfill
+        {\heiti\zihao{3}\l_bit_name_tl}
+          \vfill
+        {\heiti\zihao{3}\c_@@_name_university_tl}
+      \end{center}
+    \end{minipage}
+   \end{center}
+   % \vskip 5cm
+  \end{titlepage}
+}
+
+\cs_new:Npn \@@_make_chinese_title_page: {
+  \cleardoublepage
+  \begin{titlepage}
+      { %
+        {\heiti \zihao{5} \noindent \c_@@_name_classification_tl} \l_@@_info_classification_tl\\
+        {\heiti \zihao{5} \c_@@_name_udc_tl}  \l_@@_info_udc_tl
+      }
+     \begin{center}
+
+      \vskip \stretch{1}
+         {\heiti\zihao{-2} \l_bit_title_tl}
+      \vskip \stretch{1}
+
+      % TODO: delete this?
+      {\fangsong\zihao{4}}
+      \def\tabcolsep{1pt}
+      \def\arraystretch{1.5}
+
+      {\heiti\zihao{-3}
+      \clist_map_inline:nn 
+        {
+          {\c_@@_graduate_name_author_tl} {\l_bit_name_tl},
+          {\c_@@_graduate_name_school_tl} {\l_bit_dept_tl},
+          {\c_@@_graduate_name_supervisor_tl} {\l_bit_mentor_tl},
+          {\c_@@_graduate_name_chairman_tl} {\l_@@_info_chairman_tl},
+          {\c_@@_graduate_name_degree_tl} {\l_@@_info_degree_tl},
+          {\c_@@_graduate_name_major_tl} {\l_bit_major_tl},
+          {\c_@@_graduate_name_institute_tl} {\l_@@_info_institute_tl},
+          {\c_@@_graduate_name_defense_date_tl} {\l_@@_info_defense_date_tl},
+         }
+        {\@@_master_make_cover_entry:nn ##1}
+      }
+    \end{center}
+    \vskip \stretch{0.5}
+  \end{titlepage}
+}
+
+\cs_new:Npn \@@_make_english_title_page: {
+  \begin{titlepage}
+    \begin{center}
+
+    \vspace*{10em}
+    {\zihao{-2}\textbf{\l_bit_titleen_tl}}
+    % \bfseries
+    \vskip \stretch{1}
+
+    {
+      \zihao{-3}
+      \clist_map_inline:nn 
+        {
+          {\c_@@_graduate_name_author_en_tl} {\l_@@_info_author_en_tl},
+          {\c_@@_graduate_name_school_en_tl} {\l_@@_info_school_en_tl},
+          {\c_@@_graduate_name_supervisor_en_tl} {\l_@@_info_supervisor_en_tl},
+          {\c_@@_graduate_name_chairman_en_tl} {\l_@@_info_chairman_en_tl},
+          {\c_@@_graduate_name_degree_en_tl} {\l_@@_info_degree_en_tl},
+          {\c_@@_graduate_name_major_en_tl} {\l_@@_info_major_en_tl},
+          {\c_@@_graduate_name_institute_en_tl} {\l_@@_info_institute_en_tl},
+          {\c_@@_graduate_name_defense_date_en_tl} {\l_@@_info_defense_date_en_tl},
+         }
+        {\@@_master_make_cover_entry_en:nn ##1}
+      }
+
+    \end{center}
+
+    \vskip \stretch{0.5}
+  \end{titlepage}
+}
 
 \DeclareDocumentCommand \MakeCover {}
   {
@@ -629,6 +894,12 @@
           \zihao{3}\ziju{0.5}\songti{\today}
         \end{titlepage}
       }
+      {4} {
+        \make_graduate_cover:
+      }
+      {5} {
+        \make_graduate_cover:
+      }
     }
     \group_end:
   }
@@ -639,6 +910,54 @@
   (char) {\phantom{\ifblank{#1}{#2}{#1}}};
   \node at (char.center) {\makebox[0pt][c]{#2}};}}
 \robustify{\circled}
+
+\cs_new:Npn \@@_graduate_originality: {
+  \ctexset {
+    chapter / pagestyle = plain,
+  }
+
+  \begin{titlepage}
+    \pagenumbering{gobble}
+
+    % 原创性声明部分
+    \begin{center}
+      \let\clearpage\relax
+      % TODO: 这里
+      \chapter*{\heiti\zihao{3}\c_@@_graduate_name_originality_tl}
+    \end{center}~\par
+
+    % 本部分字号为小三
+    \zihao{4}
+    \c_@@_graduate_name_originality_clause_tl
+
+    \vspace{17mm}
+
+    \begin{flushright}
+      \c_@@_graduate_name_originality_author_signature_tl\par
+    \end{flushright}
+
+    \vspace{16mm}
+
+    % 使用授权声明部分
+    \begin{center}
+      \let\clearpage\relax
+      \chapter*{\heiti\zihao{3}\c_@@_graduate_name_authorization_tl}
+    \end{center}~\par
+
+    \c_@@_graduate_name_authorization_clause_tl
+
+    \vspace*{15mm}
+
+    \begin{flushright}
+      \begin{spacing}{1.65}
+        \zihao{4}
+        % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+        \c_@@_graduate_name_originality_author_signature_tl\par
+        \c_@@_graduate_name_originality_supervisor_signature_tl\par
+      \end{spacing}
+    \end{flushright}
+  \end{titlepage}
+}
 
 \NewDocumentCommand \MakeOriginality {} 
 {
@@ -724,9 +1043,22 @@
 
         \newpage
       }
+      {4} {\@@_graduate_originality:}
+      {5} {\@@_graduate_originality:}
     }
   \group_end:
 }
+
+\NewDocumentCommand \MakePaperBack {}
+  {
+    \make_paper_back:
+  }
+
+\NewDocumentCommand \MakeTitle {}
+  {
+    \@@_make_chinese_title_page:
+    \@@_make_english_title_page:
+  }
 
 \DeclareDocumentCommand \MakeTOC {}
   {
@@ -735,10 +1067,11 @@
       % 目录
       \tableofcontents
 
-      \int_compare:nNnT {\g_@@_thesis_type_int} = {3}
-      {
+      % 在本科生全英文模板中，添加「目录」本身到目录中。
+      \@@_if_thesis_int_type:nT {3} {
         \addcontentsline{toc}{chapter}{\c_@@_name_toc_en_tl}
       }
+
       \newpage
     }
   }
@@ -845,8 +1178,11 @@
     \setlength{\bibitemsep}{0ex}
     \setlength{\bibnamesep}{0ex}
     \setlength{\bibinitsep}{0ex}
-    % 设置单倍行距
-    \renewcommand{\baselinestretch}{1.2}
+    \@@_if_graduate:TF {
+    } {
+      % 「本科生」设置单倍行距
+      \renewcommand{\baselinestretch}{1.2}
+    }
     % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
     \setlength{\biblabelsep}{1.7mm}
     % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
@@ -855,6 +1191,7 @@
       \mkgbnumlabel{\printfield{labelnumber}}
       \hspace{\biblabelsep}
     }
+    \chapter{\c_@@_name_reference_tl}
   }
   {}
 
@@ -912,5 +1249,41 @@
     } {
       \chapter{\c_@@_name_ack_tl}
     }
+  }
+  {}
+
+  \NewDocumentEnvironment {publications} {}
+  {
+    % 设置参考文献字号为 5 号
+    \renewcommand*{\bibfont}{\zihao{5}}
+    % 设置参考文献各个项目之间的垂直距离为 0
+    \setlength{\bibitemsep}{0ex}
+    \setlength{\bibnamesep}{0ex}
+    \setlength{\bibinitsep}{0ex}
+    % 设置单倍行距
+    \renewcommand{\baselinestretch}{1.2}
+    % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+    \setlength{\biblabelsep}{1.7mm}
+    % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+    \RenewDocumentCommand \itemcmd {} {
+      \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
+      \mkgbnumlabel{\printfield{labelnumber}}
+      \hspace{\biblabelsep}
+    }
+    % ===== 上方定义与「参考文献」部分相同
+    \newrefcontext[sorting=ynt]
+    \chapter{\c_@@_name_publications_tl}
+  }
+  {}
+
+  \NewDocumentEnvironment {resume} {}
+  {
+    \chapter{\c_@@_name_resume_tl}
+  }
+  {}
+
+  \NewDocumentEnvironment {symbols} {}
+  {
+    \chapter{\c_@@_name_symbols_tl}
   }
   {}
