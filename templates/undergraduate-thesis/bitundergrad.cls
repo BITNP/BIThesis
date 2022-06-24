@@ -287,6 +287,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
 
 \@@_if_graduate:TF {
   \int_set:Nn \g_@@_head_zihao_int {5}
@@ -1280,10 +1281,16 @@
   {
     \chapter{\c_@@_name_resume_tl}
   }
-  {}
+  {
+  }
 
   \NewDocumentEnvironment {symbols} {}
   {
     \chapter{\c_@@_name_symbols_tl}
+    \zihao{-4}
+    \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
+    \cs_set:Npn \makelabel ##1 {##1\hfil}
   }
-  {}
+  {
+    \end{itemize}
+  }
