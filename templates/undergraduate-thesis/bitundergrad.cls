@@ -121,7 +121,7 @@
     {reference} {参考文献} {References},
     {figure} {插\quad 图} {Illustrations},
     {table} {表\quad 格} {Tables},
-    {university} {北京理工大学} {BEIJING~INSTITUTE~OF~TECHNOLOGY},
+    {university} {北京理工大学} {Beijing~Institute~of~Technology},
     {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {},
@@ -557,27 +557,28 @@
 % colon
 % zihao
 % underline position
+% #8: r|l|c
 % TODO: refactor name.
-\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6#7 {
-  \zihao{#6}\selectfont{\makebox[#1][r]{#2#5}}\hspace{1ex} \dunderline[#7]{1pt}{\makebox[#3][c]{#4}}\par
+\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6#7#8 {
+  \zihao{#6}\selectfont{\makebox[#1][#8]{#2#5}}\hspace{1ex} \dunderline[#7]{1pt}{\makebox[#3][c]{#4}}\par
 }
 
 % TODO: refactor name.
 \cs_new:Npn \l_@@_make_cover_entry_a_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3} {-10pt}
+  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3} {-10pt} {r}
 }
 
 % TODO: refactor name.
 \cs_new:Npn \l_@@_make_cover_entry_eng_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4} {-10pt}
+  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4} {-10pt} {r}
 }
 
 \cs_new:Npn \@@_master_make_cover_entry:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {40mm} {#1} {60mm} {#2} {\quad} {-3} {-5pt}
+  \g_@@_make_cover_entry_cs:nnnn {40mm} {#1} {60mm} {#2} {\quad} {-3} {-5pt} {r}
 }
 
 \cs_new:Npn \@@_master_make_cover_entry_en:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {50mm} {#1} {95mm} {#2} {} {-3} {-5pt}
+  \g_@@_make_cover_entry_cs:nnnn {55mm} {#1} {85mm} {#2} {:} {-3} {-5pt} {l}
 }
 
 % Usage: \dunderline{<line_thickness>}{<text>}
@@ -670,7 +671,9 @@
       \def\tabcolsep{1pt}
       \def\arraystretch{1.5}
 
-      {\heiti\zihao{-3}
+      {
+      \renewcommand{\baselinestretch}{2}
+        \heiti\zihao{-3}
       \clist_map_inline:nn 
         {
           {\c_@@_graduate_name_author_tl} {\l_bit_name_tl},
