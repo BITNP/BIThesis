@@ -1103,10 +1103,10 @@
     \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
 
     \vspace*{1mm}
-
     \par
   }
   {
+    \par
     \vspace{4ex}\noindent\textbf{\heiti \c_@@_name_keywords_tl \l_@@_info_keywords_tl}\par
     \newpage
   }
@@ -1149,8 +1149,6 @@
       \let\clearpage\relax
       \chapter{\c_@@_name_abstract_en_tl}
     }
-
-    % \setlength{\parskip}{0em}\par
   }
   {
     \par\vspace{3ex}\noindent\textbf{\c_@@_name_keywords_en_tl \l_@@_info_keywords_en_tl}
@@ -1164,11 +1162,10 @@
       section/number = \arabic{section}
     }
 
-    \int_compare:nNnTF {\g_@@_thesis_type_int} < {3} 
-    {
-      \chapter{\c_@@_name_conclusion_tl}
-    } {
+    \@@_if_thesis_english:TF {
       \chapter{\c_@@_name_conclusion_en_tl}
+    } {
+      \chapter{\c_@@_name_conclusion_tl}
     }
   }
   {}
