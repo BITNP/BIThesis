@@ -10,6 +10,7 @@
 \int_new:N \g_@@_head_zihao_int
 \bool_new:N \g_@@_twoside_bool
 \bool_new:N \g_@@_thesis_type_english_bool
+\tl_new:N \g_@@_label_devide_char_tl
 
 % Define Consts.
 \clist_const:Nn \c_@@_thesis_type_clist
@@ -40,6 +41,8 @@
     {code} {代码},
     {udc} {UDC分类号：},
     {classification} {中国分类号：},
+    {classified_level} {密级},
+    {type} {种类},
   }
   {\@@_define_name:nn #1}
 
@@ -240,6 +243,7 @@
     instituteEn .tl_set:N = \l_@@_info_institute_en_tl,
     instituteEn .initial:n = {\c_@@_name_university_en_tl},
     defenseDateEn .tl_set:N = \l_@@_info_defense_date_en_tl,
+    classified_level .tl_set:N = \l_@@_info_classified_level_tl,
   }
 
 \keys_define:nn { bitundergrad / misc }
@@ -441,6 +445,20 @@
   }
 }
 
+\ctexset{
+  secnumdepth = 3,
+  subsubsection={
+    numbering = true,
+    number = {\arabicHeiti{\arabic{chapter}.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}.\hspace{1bp}\arabic{subsubsection}}},
+    format={\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
+    nameformat = {},
+    titleformat = {},
+    beforeskip=28bp plus 1ex minus .2ex,
+    afterskip=24bp plus .2ex,
+    fixskip=true,
+  }
+}
+
 % TOC
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
@@ -450,9 +468,16 @@
   \vspace{-8pt}
 }
 
-\titlecontents{chapter}[0pt]{\songti \zihao{-4}}
-{\thecontentslabel\hspace{\ccwd}}{}
-{\hspace{.5em}\titlerule*{.}\contentspage}
+\@@_if_graduate:TF {
+  % 各章标题，宋体四号
+  \titlecontents{chapter}[0pt]{\songti \zihao{4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
+} {
+  \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
+}
 \titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
@@ -508,21 +533,27 @@
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
 
+\@@_if_graduate:TF {
+  \tl_set:Nn \g_@@_label_devide_char_tl {.}
+} {
+  \tl_set:Nn \g_@@_label_devide_char_tl {-}
+}
+
 % figure
-\cs_set:Npn \thefigure {\thechapter-\arabic{figure}}
+\cs_set:Npn \thefigure {\thechapter\g_@@_label_devide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
-
 % table
-\cs_set:Npn \thetable {\thechapter-\arabic{table}}
+\cs_set:Npn \thetable {\thechapter\g_@@_label_devide_char_tl\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
 % equation
-\cs_set:Npn \theequation {\thechapter-\arabic{equation}}
+\cs_set:Npn \theequation {\thechapter\g_@@_label_devide_char_tl\arabic{equation}}
 
 % code snippet
+\cs_set:Npn \thelstlisting {\thechapter\g_@@_label_devide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c_@@_name_code_tl}
-\cs_set:Npn \thelstlisting {\thechapter-\arabic{lstlisting}}
+
 
 % 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
 \tolerance=1
@@ -638,6 +669,16 @@
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
   \begin{titlepage}
+    {
+      \heiti\zihao{5}
+      \tl_if_blank:VTF \l_@@_info_classified_level_tl {} {
+        \flushright
+        \c_@@_name_classified_level_tl：~
+        \l_@@_info_classified_level_tl \par
+      }
+      %   \flushright
+      % \c_@@_name_type_tl：~ \@@_if_master_thesis:TF {博士} {硕士} 学位论文\par
+    }
     \centering
     \vspace*{65mm}
     {\heiti\zihao{-2} \l_bit_title_tl}
@@ -1079,7 +1120,11 @@
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
-      \renewcommand{\baselinestretch}{1.35}
+      \@@_if_bachelor_thesis:TF {
+        \renewcommand{\baselinestretch}{1.35}
+      } {
+        \renewcommand{\baselinestretch}{1.56}
+      }
       % 目录
       \tableofcontents
 
