@@ -19,7 +19,7 @@
 
 % 默认单面打印 oneside 、硕士论文模板 master
 
-\documentclass[type=master]{bitundergrad}
+\documentclass[type=master,twoside=false]{bitundergrad}
 
 \BITUndergraduateThesisSetup{
   cover = {
@@ -70,65 +70,23 @@
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 封面
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% 中文封面内容(关注内容而不是表现形式)
-% \classification{TQ028.1}
-% \UDC{540}
-%
-% \title{形状记忆聚氨酯的合成及其在织物中的应用}
-% \vtitle{形状记忆聚氨酯{P } {D } {F } {A }\rotatebox[origin=c]{-90}{~\LaTeX{}~} 的合成及其在织物中的应用}
-% \author{***}
-% \institute{**学院}
-% \advisor{**教授}
-% \chairman{**教授}
-% \degree{工学硕士（博士）}
-% \major{*****}
-% \school{北京理工大学}
-% \defenddate{****年*月}
-% %\studentnumber{**********}
-%
-%
-% % 英文封面内容(关注内容而不是表现形式)
-% \englishtitle{Synthesis and Application on textile of the Shape\\Memory Polyurethane}
-% \englishauthor{***}
-% \englishadvisor{Prof. **}
-% \englishchairman{Prof. **}
-% \englishschool{Beijing Institute of Technology}
-% \englishinstitute{****}
-% \englishdegree{****}
-% \englishmajor{****}
-% \englishdate{*，****}
-
 % 封面绘制
 \MakeCover
 
+% 打印书脊
 \MakePaperBack
 
+% 中文信息与英文信息
 \MakeTitle
 
+% 论文原创性声明和使用授权
 \MakeOriginality
-
-%
-% % 中文信息
-% \makeInfo
-%
-% % 英文信息
-% \makeEnglishInfo
-%
-% %打印竖排论文题目
-% \makeVerticalTitle
-%
-% % 论文原创性声明和使用授权
-% \makeDeclareOriginal
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 前置部分
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter
+
 
 \input{./chapters/abstract.tex}
 
