@@ -5,6 +5,7 @@
 
 % Define Global Variables
 \int_new:N \g_@@_thesis_type_int
+% TODO: refactor this var
 \tl_new:N \g_@@_toc_title_tl
 \int_new:N \g_@@_head_zihao_int
 \bool_new:N \g_@@_twoside_bool
@@ -141,6 +142,11 @@
 
 % helper functions
 
+\cs_new:Npn \@@_same_page: {
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+}
+
 % 是否为研究生学位论文
 \cs_new:Npn \@@_if_graduate:TF #1#2 {
     \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
@@ -156,6 +162,10 @@
 \cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
 \cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
 
+\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
+\cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
+\cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
+\cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
 
 
 
@@ -183,6 +193,7 @@
       }
     },
   type .initial:n = bachelor,
+  twoside .bool_gset:N = \g_@@_twoside_bool,
 }
 
 \keys_define:nn { bitundergrad / cover }
@@ -258,6 +269,10 @@
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
 
+\bool_if:NTF \g_@@_twoside_bool {} {
+  \PassOptionsToClass{oneside,openany}{ctexbook}
+}
+
 % Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{ctexbook}
@@ -265,7 +280,7 @@
 % Executes the code for each option.
 \ProcessOptions\relax
 % Load
-\LoadClass[zihao=-4,oneside,openany]{ctexbook}
+\LoadClass[zihao=-4,]{ctexbook}
 
 \RequirePackage{geometry}
 \RequirePackage{xeCJK}
@@ -925,8 +940,7 @@
 
     % 原创性声明部分
     \begin{center}
-      \let\clearpage\relax
-      % TODO: 这里
+      \@@_same_page:
       \chapter*{\heiti\zihao{3}\c_@@_graduate_name_originality_tl}
     \end{center}~\par
 
@@ -944,7 +958,7 @@
 
     % 使用授权声明部分
     \begin{center}
-      \let\clearpage\relax
+      \@@_same_page:
       \chapter*{\heiti\zihao{3}\c_@@_graduate_name_authorization_tl}
     \end{center}~\par
 
@@ -961,6 +975,7 @@
       \end{spacing}
     \end{flushright}
   \end{titlepage}
+  \cleardoublepage
 }
 
 \NewDocumentCommand \MakeOriginality {} 
@@ -976,7 +991,7 @@
         % 原创性声明部分
         \begin{center}
           \vspace*{-2bp}
-          \let\clearpage\relax
+          \@@_same_page:
           \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_originality_tl}
         \end{center}~\par
 
@@ -994,7 +1009,7 @@
 
         % 使用授权声明部分
         \begin{center}
-          \let\clearpage\relax
+          \@@_same_page:
           \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_authorization_tl}
         \end{center}~\par
 
@@ -1018,7 +1033,7 @@
         % 原创性声明部分
         \begin{center}
           \vspace*{-2bp}
-          \let\clearpage\relax
+          \@@_same_page:
           \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_originality_tl}
         \end{center}~\par
 
@@ -1034,7 +1049,7 @@
 
         % 使用授权声明部分
         \begin{center}
-          \let\clearpage\relax
+          \@@_same_page:
           \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_authorization_tl}
         \end{center}~\par
 
@@ -1043,9 +1058,6 @@
         \bigbreak
         Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
         Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
-
-
-        \newpage
       }
       {4} {\@@_graduate_originality:}
       {5} {\@@_graduate_originality:}
@@ -1075,32 +1087,45 @@
       \@@_if_thesis_int_type:nT {3} {
         \addcontentsline{toc}{chapter}{\c_@@_name_toc_en_tl}
       }
-
-      \newpage
     }
   }
 
   % TODO:
   \NewDocumentEnvironment {abstract} {}
   {
+    \cleardoublepage
     \setstretch{1.53}
 
-    \begin{center}
-      \vspace*{-17bp}
-      \heiti\zihao{-2}\textbf{
-        \int_case:nn {\g_@@_thesis_type_int}
-        {
-          {1} {\l_bit_title_tl}
-          {2} {\l_@@_info_trans_title_tl}
-          {3} {\l_bit_title_tl}
+    \@@_if_bachelor_thesis:T {
+      \begin{center}
+        \vspace*{-17bp}
+        \heiti\zihao{-2}\textbf{
+          \int_case:nn {\g_@@_thesis_type_int}
+          {
+            {1} {\l_bit_title_tl}
+            {2} {\l_@@_info_trans_title_tl}
+            {3} {\l_bit_title_tl}
+          }
         }
+      \end{center}
+
+      \vspace*{2mm}
+    }
+
+    \ctexset{
+      chapter/numbering = false,
+    }
+
+    \@@_if_bachelor_thesis:TF {
+      \ctexset{
+        chapter/titleformat = {\textmd}
       }
-    \end{center}
+    } {}
 
-    \vspace*{2mm}
-
-    {\let\clearpage\relax \chapter*{\textmd{\c_@@_name_abstract_tl}}}
-    \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
+    {
+      \@@_same_page:
+      \chapter{\c_@@_name_abstract_tl}
+    }
 
     \vspace*{1mm}
     \par
@@ -1113,40 +1138,50 @@
 
   \NewDocumentEnvironment {abstract*} {}
   {
+    \cleardoublepage
     \setstretch{1.53}
-    \begin{spacing}{0.95}
-      \centering
-      \vspace*{-2bp}
 
+    \@@_if_bachelor_thesis:T {
+      \begin{spacing}{0.95}
+        \centering
+        \vspace*{-2bp}
+
+        \@@_if_thesis_int_type {3} {
+          \arialfamily\zihao{-2}\textbf\l_bit_titleen_tl\\
+        } {
+          \heiti\zihao{3}\textbf\l_bit_titleen_tl\\
+        }
+      \end{spacing}
+      \vspace*{10mm}
+    }
+    
+    \ctexset{
+      chapter/numbering = false,
+    }
+
+    \@@_if_bachelor_thesis:TF {
       \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
       {
-        \arialfamily\zihao{-2}\textbf\l_bit_titleen_tl\\
+        \ctexset{
+          chapter = {
+            titleformat = {\heiti\zihao{3}\centering\textbf},
+          }
+        }
       } {
-        \heiti\zihao{3}\textbf\l_bit_titleen_tl\\
-      }
-    \end{spacing}
-
-    \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
-    {
-      \ctexset{
-        chapter = {
-          numbering = false,
-          titleformat = {\heiti\zihao{3}\centering\textbf},
+        \ctexset{
+          chapter = {
+            titleformat = {\heiti\zihao{-3}\centering\textmd},
+          }
         }
       }
     } {
-      \ctexset{
-        chapter = {
-          numbering = false,
-          titleformat = {\heiti\zihao{-3}\centering\textmd},
-        }
+      \ctexset {
+        chapter/titleformat = {\heiti\zihao{3}\centering\textbf} 
       }
     }
 
-    \vspace*{10mm}
-
     {
-      \let\clearpage\relax
+      \@@_same_page:
       \chapter{\c_@@_name_abstract_en_tl}
     }
   }
@@ -1244,8 +1279,7 @@
       subsection/number = \arabic{section}. \arabic{subsection},
     }
 
-    \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
-    {
+    \@@_if_thesis_english:TF {
       \chapter{\c_@@_name_ack_en_tl}
     } {
       \chapter{\c_@@_name_ack_tl}
