@@ -174,13 +174,13 @@
 
 % key-value interface definition.
 \keys_define:nn { bitundergrad }
-  {
-    info .meta:nn = { bitundergrad / info } {#1},
-    misc .meta:nn = { bitundergrad / misc } {#1},
-    cover .meta:nn = { bitundergrad / cover } {#1},
-    style .meta:nn = { bitundergrad / style } {#1},
-    option .meta:nn = { bitundergrad / option } {#1},
-  }
+{
+  info .meta:nn = { bitundergrad / info } {#1},
+  misc .meta:nn = { bitundergrad / misc } {#1},
+  cover .meta:nn = { bitundergrad / cover } {#1},
+  style .meta:nn = { bitundergrad / style } {#1},
+  option .meta:nn = { bitundergrad / option } {#1},
+}
 
 \keys_define:nn { bitundergrad / option }
 {
@@ -485,6 +485,31 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
+
+\bool_new:N \l_@@_add_to_toc_bool
+\bool_set_true:N \l_@@_add_to_toc_bool
+
+\keys_define:nn { bit }
+  {
+    abstract .meta:nn = { bit / abstract } {#1},
+    abstract_en .meta:nn = { bit / abstract_en } {#1},
+  }
+
+\keys_define:nn { bit / abstract }
+  {
+    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+  }
+
+\keys_define:nn { bit / abstract_en }
+  {
+    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+  }
+
+\keys_define:nn { bit / symbols }
+  {
+    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+  }
+
 \RenewDocumentCommand \frontmatter {} {
 
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
@@ -502,6 +527,8 @@
 }
 
 \RenewDocumentCommand \mainmatter {} {
+  \cleardoublepage
+
   \ctexset{
     chapter = {
       numbering = true,
@@ -1136,8 +1163,13 @@
   }
 
   % TODO:
-  \NewDocumentEnvironment {abstract} {}
+  \NewDocumentEnvironment {abstract} {o}
   {
+
+    \IfValueT {#1} {
+      \keys_set:nn { bit / abstract } {#1}
+    }
+
     \cleardoublepage
     \setstretch{1.53}
 
@@ -1161,17 +1193,20 @@
       chapter/numbering = false,
     }
 
-    \@@_if_bachelor_thesis:TF {
+    \@@_if_bachelor_thesis:T {
       \ctexset{
         chapter/titleformat = {\textmd}
       }
-    } {}
+    }
 
     {
       \@@_same_page:
-      \chapter{\c_@@_name_abstract_tl}
+      \bool_if:NTF \l_@@_add_to_toc_bool {
+        \chapter{\c_@@_name_abstract_tl}
+      } {
+        \chapter*{\c_@@_name_abstract_tl}
+      }
     }
-
     \vspace*{1mm}
     \par
   }
@@ -1181,8 +1216,12 @@
     \newpage
   }
 
-  \NewDocumentEnvironment {abstract*} {}
+  \NewDocumentEnvironment {abstract*} {o}
   {
+    \IfValueT {#1} {
+      \keys_set:nn { bit / abstract_en } {#1}
+    }
+
     \cleardoublepage
     \setstretch{1.53}
 
@@ -1227,7 +1266,11 @@
 
     {
       \@@_same_page:
-      \chapter{\c_@@_name_abstract_en_tl}
+      \bool_if:nTF {\l_@@_add_to_toc_bool} {
+        \chapter{\c_@@_name_abstract_en_tl}
+      } {
+        \chapter*{\c_@@_name_abstract_en_tl}
+      }
     }
   }
   {
@@ -1363,9 +1406,17 @@
   {
   }
 
-  \NewDocumentEnvironment {symbols} {}
+  \NewDocumentEnvironment {symbols} {o}
   {
-    \chapter{\c_@@_name_symbols_tl}
+    \IfValueT {#1} {
+      \keys_set:nn { bit / symbols } {#1}
+    }
+
+    \bool_if:NTF \l_@@_add_to_toc_bool {
+      \chapter{\c_@@_name_symbols_tl}
+    } {
+      \chapter*{\c_@@_name_symbols_tl}
+    }
     \zihao{-4}
     \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
     \cs_set:Npn \makelabel ##1 {##1\hfil}
