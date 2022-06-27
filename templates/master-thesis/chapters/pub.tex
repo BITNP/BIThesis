@@ -15,21 +15,16 @@
 %
 % The Current Maintainer of this work is Feng Kaiyu.
 
+% 1. 在 `./reference/pub.tex` 中添加数据。
+% 2. 在 `./reference/pub.tex` 的数据中添加 `author+an` 字段表示你处于第几作者（参考示例）。
+% 3. 在下方使用 `\nocite` 引用该文献（参考下方示例）。
+% 4. 在下方使用 `\addtocategory` 将该文献添加至 `mypub` 类别（参考下方示例）。
+
 \begin{publications}
   \nocite{myCiteKey}
   \nocite{myCiteKey2}
   \addtocategory{mypub}{myCiteKey}
   \addtocategory{mypub}{myCiteKey2}
-
-  \renewcommand*{\mkbibnamegiven}[1]{%
-  \ifitemannotation{highlight}
-    {\textbf{#1)}}
-    {#1}}
-
-  \renewcommand*{\mkbibnamefamily}[1]{%
-    \ifitemannotation{highlight}
-      {\textbf{#1}}
-      {#1}}
 
   \printbibliography[heading=none,category=mypub,resetnumbers=true]{}
     % \item\textsc{高凌}. {交联型与线形水性聚氨酯的形状记忆性能比较}[J].

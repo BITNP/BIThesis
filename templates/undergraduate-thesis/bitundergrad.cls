@@ -1393,7 +1393,17 @@
       \mkgbnumlabel{\printfield{labelnumber}}
       \hspace{\biblabelsep}
     }
+
     % ===== 上方定义与「参考文献」部分相同
+    \cs_set:Npn \mkbibnamegiven ##1 {
+      \ifitemannotation{myself}{\textbf{##1}}{##1}
+    }
+
+    \cs_set:Npn \mkbibnamefamily ##1 {
+      \ifitemannotation{myself}{\textbf{##1}}{##1}
+    }
+
+    % Sorting by year, name, type.
     \newrefcontext[sorting=ynt]
     \chapter{\c_@@_name_publications_tl}
   }
