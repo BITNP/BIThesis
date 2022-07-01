@@ -1,5 +1,5 @@
 \RequirePackage{expl3, l3keys2e}
-\ProvidesExplClass{bitundergrad}{
+\ProvidesExplClass{bithesis}{
   2022-06-10
 }{0.0.1}{BIThesis Undergraduate Thesis class}
 
@@ -41,24 +41,24 @@
 \clist_const:Nn \c_@@_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, docter}
 
-\cs_new_protected:Npn \@@_define_name:nn #1#2
-  { \tl_const:cn { c_@@_name_ #1 _tl } {#2} }
+\cs_new_protected:Npn \@@_define_label:nn #1#2
+  { \tl_const:cn { c_@@_label_ #1 _tl } {#2} }
 
-\cs_new_protected:Npn \@@_define_name_by_thesis_type:nnn #1#2#3 
+\cs_new_protected:Npn \@@_define_label_by_thesis_type:nnn #1#2#3 
   {
-    \tl_const:cn { c_@@_ #1 _name_ #2 _tl } {#3}
+    \tl_const:cn { c_@@_ #1 _label_ #2 _tl } {#3}
   }
 
-\cs_new_protected:Npn \@@_define_name:nnn #1#2#3
+\cs_new_protected:Npn \@@_define_label:nnn #1#2#3
   {
-    \tl_const:cn { c_@@_name_ #1    _tl } {#2}
-    \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
+    \tl_const:cn { c_@@_label_ #1    _tl } {#2}
+    \tl_const:cn { c_@@_label_ #1 _en_tl } {#3}
   }
 
-\cs_new_protected:Npn \@@_define_name_by_thesis_type:nnnn #1#2#3#4
+\cs_new_protected:Npn \@@_define_label_by_thesis_type:nnnn #1#2#3#4
   {
-    \tl_const:cn { c_@@_ #1 _name_ #2 _tl } {#3}
-    \tl_const:cn { c_@@_ #1 _name_ #2 _en_tl } {#4}
+    \tl_const:cn { c_@@_ #1 _label_ #2 _tl } {#3}
+    \tl_const:cn { c_@@_ #1 _label_ #2 _en_tl } {#4}
   }
 
 \clist_map_inline:nn
@@ -69,7 +69,7 @@
     {classified_level} {密级},
     {type} {种类},
   }
-  {\@@_define_name:nn #1}
+  {\@@_define_label:nn #1}
 
 % bachelor
 \clist_map_inline:nn
@@ -81,7 +81,7 @@
     {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
     {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
     {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
-  } {\@@_define_name_by_thesis_type:nnn {bachelor} #1}
+  } {\@@_define_label_by_thesis_type:nnn {bachelor} #1}
 
 % % bachelor english
 \clist_map_inline:nn
@@ -103,7 +103,7 @@
       本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
   I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
-  } {\@@_define_name_by_thesis_type:nnn {bachelor_english} #1}
+  } {\@@_define_label_by_thesis_type:nnn {bachelor_english} #1}
 
 \cs_new:Npn \smallgap: {
   \hspace{0.45ex}
@@ -124,7 +124,7 @@
     {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
     {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
     {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
-  } {\@@_define_name_by_thesis_type:nnn {graduate} #1}
+  } {\@@_define_label_by_thesis_type:nnn {graduate} #1}
 
 \clist_map_inline:nn
   {
@@ -136,7 +136,7 @@
     {major} {学\quad 科\quad 专\quad 业} {Major},
     {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
     {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
-  } {\@@_define_name_by_thesis_type:nnnn {graduate} #1}
+  } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 
 \clist_map_inline:nn 
   {
@@ -162,7 +162,7 @@
     {resume} {作者简介} {},
     {symbols} {主要符号对照表} {},
   }
-  {\@@_define_name:nnn #1}
+  {\@@_define_label:nnn #1}
 
 % TODO: \clist_item:Nn
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
@@ -176,16 +176,16 @@
 
 
 % key-value interface definition.
-\keys_define:nn { bitundergrad }
+\keys_define:nn { bithesis }
 {
-  info .meta:nn = { bitundergrad / info } {#1},
-  misc .meta:nn = { bitundergrad / misc } {#1},
-  cover .meta:nn = { bitundergrad / cover } {#1},
-  style .meta:nn = { bitundergrad / style } {#1},
-  option .meta:nn = { bitundergrad / option } {#1},
+  info .meta:nn = { bithesis / info } {#1},
+  misc .meta:nn = { bithesis / misc } {#1},
+  cover .meta:nn = { bithesis / cover } {#1},
+  style .meta:nn = { bithesis / style } {#1},
+  option .meta:nn = { bithesis / option } {#1},
 }
 
-\keys_define:nn { bitundergrad / option }
+\keys_define:nn { bithesis / option }
 {
   type .choice:,
   type .value_required:n = true,
@@ -202,7 +202,7 @@
   twoside .bool_gset:N = \g_@@_twoside_bool,
 }
 
-\keys_define:nn { bitundergrad / cover }
+\keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l_bit_coverdate_tl,
     headerImage .tl_set:N = \l_bit_coverheaderimage_tl,
@@ -210,52 +210,48 @@
     xiheiFont .default:n = {STXihei},
   }
 
-\keys_define:nn { bitundergrad / info }
+\keys_define:nn { bithesis / info }
   {
-    title .tl_set:N = \l_bit_title_tl,
-    % TODO: rename
-    TITLE .tl_set:N = \l_bit_titleen_tl,
-    % TODO: rename to school.
-    dept .tl_set:N = \l_bit_dept_tl,
-    major .tl_set:N = \l_bit_major_tl,
-    % TODO: rename to author.
-    name .tl_set:N = \l_bit_name_tl,
-    studentId .tl_set:N = \l_bit_studentid_tl,
-    % TODO: rename to supervisor
-    mentor .tl_set:N = \l_bit_mentor_tl,
-    externalMentor .tl_set:N = \l_bit_externalmentor_tl,
-    keywords .tl_set:N = \l_@@_info_keywords_tl,
-    keywordsEn .tl_set:N = \l_@@_info_keywords_en_tl,
-    translationTitle .tl_set:N = \l_@@_info_trans_title_tl,
-    translationOriginTitle .tl_set:N = \l_@@_info_trans_origin_title_tl,
+    title .tl_set:N = \l_@@_value_title_tl,
+    titleEn .tl_set:N = \l_@@_value_title_en_tl,
+    school .tl_set:N = \l_@@_value_school_tl,
+    major .tl_set:N = \l_@@_value_major_tl,
+    author .tl_set:N = \l_@@_value_author_tl,
+    studentId .tl_set:N = \l_@@_value_student_id_tl,
+    supervisor .tl_set:N = \l_@@_value_supervisor_tl,
+    externalSupervisor .tl_set:N = \l_@@_value_external_supervisor_tl,
+    keywords .tl_set:N = \l_@@_value_keywords_tl,
+    keywordsEn .tl_set:N = \l_@@_value_keywords_en_tl,
+    translationTitle .tl_set:N = \l_@@_value_trans_title_tl,
+    translationOriginTitle .tl_set:N = \l_@@_value_trans_origin_title_tl,
     % 中国分类号，研究生学位论文使用
-    classification .tl_set:N = \l_@@_info_classification_tl,
+    classification .tl_set:N = \l_@@_value_classification_tl,
     % UDC 分类号，研究生学位论文使用
-    UDC .tl_set:N = \l_@@_info_udc_tl,
-    chairman .tl_set:N = \l_@@_info_chairman_tl,
-    degree .tl_set:N = \l_@@_info_degree_tl,
-    degreeEn .tl_set:N = \l_@@_info_degree_en_tl,
-    institute .tl_set:N = \l_@@_info_institute_tl,
-    institute .initial:n = {\c_@@_name_university_tl},
-    defense_date .tl_set:N = \l_@@_info_defense_date_tl,
-    authorEn .tl_set:N = \l_@@_info_author_en_tl,
-    schoolEn .tl_set:N = \l_@@_info_school_en_tl,
-    supervisorEn .tl_set:N = \l_@@_info_supervisor_en_tl,
-    chairmanEn .tl_set:N = \l_@@_info_chairman_en_tl,
-    majorEn .tl_set:N = \l_@@_info_major_en_tl,
-    instituteEn .tl_set:N = \l_@@_info_institute_en_tl,
-    instituteEn .initial:n = {\c_@@_name_university_en_tl},
-    defenseDateEn .tl_set:N = \l_@@_info_defense_date_en_tl,
-    classified_level .tl_set:N = \l_@@_info_classified_level_tl,
+    UDC .tl_set:N = \l_@@_value_udc_tl,
+    chairman .tl_set:N = \l_@@_value_chairman_tl,
+    degree .tl_set:N = \l_@@_value_degree_tl,
+    degreeEn .tl_set:N = \l_@@_value_degree_en_tl,
+    institute .tl_set:N = \l_@@_value_institute_tl,
+    institute .initial:n = {\c_@@_label_university_tl},
+    defenseDate .tl_set:N = \l_@@_value_defense_date_tl,
+    authorEn .tl_set:N = \l_@@_value_author_en_tl,
+    schoolEn .tl_set:N = \l_@@_value_school_en_tl,
+    supervisorEn .tl_set:N = \l_@@_value_supervisor_en_tl,
+    chairmanEn .tl_set:N = \l_@@_value_chairman_en_tl,
+    majorEn .tl_set:N = \l_@@_value_major_en_tl,
+    instituteEn .tl_set:N = \l_@@_value_institute_en_tl,
+    instituteEn .initial:n = {\c_@@_label_university_en_tl},
+    defenseDateEn .tl_set:N = \l_@@_value_defense_date_en_tl,
+    classified_level .tl_set:N = \l_@@_value_classified_level_tl,
   }
 
-\keys_define:nn { bitundergrad / misc }
+\keys_define:nn { bithesis / misc }
   {
     date .tl_set:N = \l_bit_date_tl,
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
   }
 
-\keys_define:nn { bitundergrad / style }
+\keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
   head .initial:n = {
@@ -270,7 +266,7 @@
   }
 }
 
-\ProcessKeysOptions { bitundergrad / option }
+\ProcessKeysOptions { bithesis / option }
 
 \@@_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
@@ -579,7 +575,7 @@
 
 % code snippet
 \cs_set:Npn \thelstlisting {\thechapter\g_@@_label_devide_char_tl\arabic{lstlisting}}
-\cs_set:Npn \lstlistingname {\c_@@_name_code_tl}
+\cs_set:Npn \lstlistingname {\c_@@_label_code_tl}
 
 
 % 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
@@ -614,14 +610,14 @@
 \lstset{style=examplestyle}
 
 % 调整插图目录与表格目录的标题
-\cs_set:Npn \listfigurename {\c_@@_name_figure_tl}
-\cs_set:Npn \listtablename {\c_@@_name_table_tl}
+\cs_set:Npn \listfigurename {\c_@@_label_figure_tl}
+\cs_set:Npn \listtablename {\c_@@_label_table_tl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % user interface.
 \DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
-  { \keys_set:nn { bitundergrad } { #1 }}
+  { \keys_set:nn { bithesis } { #1 }}
 
 % 35mm
 % key
@@ -698,19 +694,19 @@
   \begin{titlepage}
     {
       \heiti\zihao{5}
-      \tl_if_blank:VTF \l_@@_info_classified_level_tl {} {
+      \tl_if_blank:VTF \l_@@_value_classified_level_tl {} {
         \flushright
-        \c_@@_name_classified_level_tl：~
-        \l_@@_info_classified_level_tl \par
+        \c_@@_label_classified_level_tl：~
+        \l_@@_value_classified_level_tl \par
       }
       %   \flushright
-      % \c_@@_name_type_tl：~ \@@_if_master_thesis:TF {博士} {硕士} 学位论文\par
+      % \c_@@_label_type_tl：~ \@@_if_master_thesis:TF {博士} {硕士} 学位论文\par
     }
     \centering
     \vspace*{65mm}
-    {\heiti\zihao{-2} \l_bit_title_tl}
+    {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
-    {\heiti \zihao{-3} \l_bit_name_tl} % 黑体 小三
+    {\heiti \zihao{-3} \l_@@_value_author_tl} % 黑体 小三
     \vskip 10mm
     {\heiti \zihao{-3} \l_bit_coverdate_tl} % 黑体 小三
   \end{titlepage}
@@ -724,11 +720,11 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3}\l_bit_title_tl}
+        {\heiti\zihao{3}\l_@@_value_title_tl}
           \vfill
-        {\heiti\zihao{3}\l_bit_name_tl}
+        {\heiti\zihao{3}\l_@@_value_author_tl}
           \vfill
-        {\heiti\zihao{3}\c_@@_name_university_tl}
+        {\heiti\zihao{3}\c_@@_label_university_tl}
       \end{center}
     \end{minipage}
    \end{center}
@@ -740,13 +736,13 @@
   \cleardoublepage
   \begin{titlepage}
       { %
-        {\heiti \zihao{5} \noindent \c_@@_name_classification_tl} \l_@@_info_classification_tl\\
-        {\heiti \zihao{5} \c_@@_name_udc_tl}  \l_@@_info_udc_tl
+        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl} \l_@@_value_classification_tl\\
+        {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
       }
      \begin{center}
 
       \vskip \stretch{1}
-         {\heiti\zihao{-2} \l_bit_title_tl}
+         {\heiti\zihao{-2} \l_@@_value_title_tl}
       \vskip \stretch{1}
 
       % TODO: delete this?
@@ -759,14 +755,14 @@
         \heiti\zihao{-3}
       \clist_map_inline:nn 
         {
-          {\c_@@_graduate_name_author_tl} {\l_bit_name_tl},
-          {\c_@@_graduate_name_school_tl} {\l_bit_dept_tl},
-          {\c_@@_graduate_name_supervisor_tl} {\l_bit_mentor_tl},
-          {\c_@@_graduate_name_chairman_tl} {\l_@@_info_chairman_tl},
-          {\c_@@_graduate_name_degree_tl} {\l_@@_info_degree_tl},
-          {\c_@@_graduate_name_major_tl} {\l_bit_major_tl},
-          {\c_@@_graduate_name_institute_tl} {\l_@@_info_institute_tl},
-          {\c_@@_graduate_name_defense_date_tl} {\l_@@_info_defense_date_tl},
+          {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
+          {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
+          {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
+          {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
+          {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
+          {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
+          {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
+          {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
          }
         {\@@_master_make_cover_entry:nn ##1}
       }
@@ -780,7 +776,7 @@
     \begin{center}
 
     \vspace*{10em}
-    {\zihao{-2}\textbf{\l_bit_titleen_tl}}
+    {\zihao{-2}\textbf{\l_@@_value_title_en_tl}}
     % \bfseries
     \vskip \stretch{1}
 
@@ -788,14 +784,14 @@
       \zihao{-3}
       \clist_map_inline:nn 
         {
-          {\c_@@_graduate_name_author_en_tl} {\l_@@_info_author_en_tl},
-          {\c_@@_graduate_name_school_en_tl} {\l_@@_info_school_en_tl},
-          {\c_@@_graduate_name_supervisor_en_tl} {\l_@@_info_supervisor_en_tl},
-          {\c_@@_graduate_name_chairman_en_tl} {\l_@@_info_chairman_en_tl},
-          {\c_@@_graduate_name_degree_en_tl} {\l_@@_info_degree_en_tl},
-          {\c_@@_graduate_name_major_en_tl} {\l_@@_info_major_en_tl},
-          {\c_@@_graduate_name_institute_en_tl} {\l_@@_info_institute_en_tl},
-          {\c_@@_graduate_name_defense_date_en_tl} {\l_@@_info_defense_date_en_tl},
+          {\c_@@_graduate_label_author_en_tl} {\l_@@_value_author_en_tl},
+          {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
+          {\c_@@_graduate_label_supervisor_en_tl} {\l_@@_value_supervisor_en_tl},
+          {\c_@@_graduate_label_chairman_en_tl} {\l_@@_value_chairman_en_tl},
+          {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
+          {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
+          {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
+          {\c_@@_graduate_label_defense_date_en_tl} {\l_@@_value_defense_date_en_tl},
          }
         {\@@_master_make_cover_entry_en:nn ##1}
       }
@@ -825,16 +821,16 @@
 
           \vspace*{-3mm}
 
-          \zihao{-0}\textbf{\ziju{0.12}\songti{\c_@@_bachelor_name_title_tl}}\par
+          \zihao{-0}\textbf{\ziju{0.12}\songti{\c_@@_bachelor_label_title_tl}}\par
 
           \vspace{16mm}
 
-          \zihao{2}\textbf{\xihei:n \l_bit_title_tl}\par
+          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
 
           \vspace{3mm}
 
           \begin{spacing}{1.2}
-            \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
+            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
           \end{spacing}
 
           \vspace{15mm}
@@ -842,15 +838,15 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_school_tl} {\l_bit_dept_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_major_tl} {\l_bit_major_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_author_tl} {\l_bit_name_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_student_id_tl} {\l_bit_studentid_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_supervisor_tl} {\l_bit_mentor_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_school_tl} {\l_@@_value_school_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_major_tl} {\l_@@_value_major_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_author_tl} {\l_@@_value_author_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl}
+              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl}
 
-              \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
+              \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {} {
                 % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_a_cs:nn {\c_@@_name_co_supervisor_tl} {\l_bit_externalmentor_tl}
+                  \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_co_supervisor_tl} {\l_@@_value_external_supervisor_tl}
               }
             \end{center}
           \end{spacing}
@@ -863,7 +859,7 @@
       {2}
       {
         \begin{titlepage}
-          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+          \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {
             % 校内毕设封面顶部间距
             \vspace*{0mm}
           }{
@@ -887,53 +883,53 @@
 
           \flushleft
           \begin{spacing}{1.8}
-            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 外文原文题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_info_trans_origin_title_tl}}}}\par
-            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 中文翻译题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_info_trans_title_tl}}}}\par
+            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 外文原文题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_value_trans_origin_title_tl}}}}\par
+            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 中文翻译题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_value_trans_title_tl}}}}\par
           \end{spacing}
 
           }
 
           \vspace{14mm}
 
-          \zihao{2}\textbf{\xihei:n \l_bit_title_tl}\par
+          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
 
           \vspace{3mm}
 
           \begin{spacing}{1.2}
-            \zihao{3}\selectfont{\textbf{\l_bit_titleen_tl}}\par
+            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
           \end{spacing}
 
           \vspace{9mm}
 
           \flushleft
 
-          \tl_if_blank:VTF \l_bit_externalmentor_tl {
+          \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {
             % 生成校内毕设封面字段
             \begin{spacing}{1.8}
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_dept_tl}}}\par
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_school_tl}}}\par
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_major_tl}}}\par
+              \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_major_tl}}}\par
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_name_tl}}}\par
+              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_author_tl}}}\par
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_studentid_tl}}}\par
+              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_student_id_tl}}}\par
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_bit_mentor_tl}}}\par
+              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_supervisor_tl}}}\par
             \end{spacing}
           }{
             % 生成校外毕设封面字段
             \begin{spacing}{1.8}
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_dept_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_school_tl}}}\par
 
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_major_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_major_tl}}}\par
 
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_name_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_author_tl}}}\par
 
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_studentid_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_student_id_tl}}}\par
 
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_mentor_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_supervisor_tl}}}\par
 
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_bit_externalmentor_tl}}}\par
+              \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_external_supervisor_tl}}}\par
             \end{spacing}
           }
 
@@ -956,22 +952,22 @@
 
           \vspace{18mm}
 
-          \zihao{2}\textbf{\xihei:n \l_bit_titleen_tl}\par
+          \zihao{2}\textbf{\xihei:n \l_@@_value_title_en_tl}\par
 
           \vspace{10mm}
 
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_school_en_tl} {\l_bit_dept_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_major_en_tl} {\l_bit_major_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_author_en_tl} {\l_bit_name_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_student_id_en_tl} {\l_bit_studentid_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_supervisor_en_tl} {\l_bit_mentor_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_school_en_tl} {\l_@@_value_school_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_major_en_tl} {\l_@@_value_major_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_author_en_tl} {\l_@@_value_author_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_student_id_en_tl} {\l_@@_value_student_id_tl}
+              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_supervisor_en_tl} {\l_@@_value_supervisor_tl}
 
-              \tl_if_blank:VTF \l_bit_externalmentor_tl {} {
+              \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {} {
                 % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_eng_cs:nn {\c_@@_name_co_supervisor_en_tl} {\l_bit_externalmentor_tl}
+                  \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_co_supervisor_en_tl} {\l_@@_value_external_supervisor_tl}
               }
             \end{center}
           \end{spacing}
@@ -1009,17 +1005,17 @@
     % 原创性声明部分
     \begin{center}
       \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_name_originality_tl}
+      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_originality_tl}
     \end{center}~\par
 
     % 本部分字号为小三
     \zihao{4}
-    \c_@@_graduate_name_originality_clause_tl
+    \c_@@_graduate_label_originality_clause_tl
 
     \vspace{17mm}
 
     \begin{flushright}
-      \c_@@_graduate_name_originality_author_signature_tl\par
+      \c_@@_graduate_label_originality_author_signature_tl\par
     \end{flushright}
 
     \vspace{16mm}
@@ -1027,10 +1023,10 @@
     % 使用授权声明部分
     \begin{center}
       \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_name_authorization_tl}
+      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_authorization_tl}
     \end{center}~\par
 
-    \c_@@_graduate_name_authorization_clause_tl
+    \c_@@_graduate_label_authorization_clause_tl
 
     \vspace*{15mm}
 
@@ -1038,8 +1034,8 @@
       \begin{spacing}{1.65}
         \zihao{4}
         % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-        \c_@@_graduate_name_originality_author_signature_tl\par
-        \c_@@_graduate_name_originality_supervisor_signature_tl\par
+        \c_@@_graduate_label_originality_author_signature_tl\par
+        \c_@@_graduate_label_originality_supervisor_signature_tl\par
       \end{spacing}
     \end{flushright}
   \end{titlepage}
@@ -1060,17 +1056,17 @@
         \begin{center}
           \vspace*{-2bp}
           \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_originality_tl}
+          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
         \end{center}~\par
 
         % 本部分字号为小三
         \zihao{-3}
-        \c_@@_bachelor_name_originality_clause_tl
+        \c_@@_bachelor_label_originality_clause_tl
 
         \vspace{17mm}
 
         \begin{flushright}
-          \c_@@_bachelor_name_originality_author_signature_tl\par
+          \c_@@_bachelor_label_originality_author_signature_tl\par
         \end{flushright}
 
         \vspace{16mm}
@@ -1078,10 +1074,10 @@
         % 使用授权声明部分
         \begin{center}
           \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_name_authorization_tl}
+          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_authorization_tl}
         \end{center}~\par
 
-        \c_@@_bachelor_name_authorization_clause_tl
+        \c_@@_bachelor_label_authorization_clause_tl
 
         \vspace*{3mm}
 
@@ -1089,8 +1085,8 @@
           \begin{spacing}{1.65}
             \zihao{-3}
             % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-            \c_@@_bachelor_name_originality_author_signature_tl\par
-            \c_@@_bachelor_name_originality_supervisor_signature_tl\par
+            \c_@@_bachelor_label_originality_author_signature_tl\par
+            \c_@@_bachelor_label_originality_supervisor_signature_tl\par
           \end{spacing}
         \end{flushright}
 
@@ -1102,12 +1098,12 @@
         \begin{center}
           \vspace*{-2bp}
           \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_originality_tl}
+          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_originality_tl}
         \end{center}~\par
 
         % 本部分字号为小三
         \zihao{-4}
-        \c_@@_bachelor_english_name_originality_clause_tl
+        \c_@@_bachelor_english_label_originality_clause_tl
 
         \bigbreak
 
@@ -1118,10 +1114,10 @@
         % 使用授权声明部分
         \begin{center}
           \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_name_authorization_tl}
+          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_authorization_tl}
         \end{center}~\par
 
-        \c_@@_bachelor_english_name_authorization_clause_tl
+        \c_@@_bachelor_english_label_authorization_clause_tl
 
         \bigbreak
         Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
@@ -1154,9 +1150,9 @@
       }
 
       \@@_if_thesis_english:TF {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_name_toc_en_tl}
+        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_en_tl}
       } {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_name_toc_tl}
+        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_tl}
       }
 
       % 自定义目录样式
@@ -1171,7 +1167,7 @@
 
       % 在本科生全英文模板中，添加「目录」本身到目录中。
       \@@_if_thesis_int_type:nT {3} {
-        \addcontentsline{toc}{chapter}{\c_@@_name_toc_en_tl}
+        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
       }
     }
   }
@@ -1193,9 +1189,9 @@
         \heiti\zihao{-2}\textbf{
           \int_case:nn {\g_@@_thesis_type_int}
           {
-            {1} {\l_bit_title_tl}
-            {2} {\l_@@_info_trans_title_tl}
-            {3} {\l_bit_title_tl}
+            {1} {\l_@@_value_title_tl}
+            {2} {\l_@@_value_trans_title_tl}
+            {3} {\l_@@_value_title_tl}
           }
         }
       \end{center}
@@ -1216,9 +1212,9 @@
     {
       \@@_same_page:
       \bool_if:NTF \l_@@_add_to_toc_bool {
-        \chapter{\c_@@_name_abstract_tl}
+        \chapter{\c_@@_label_abstract_tl}
       } {
-        \chapter*{\c_@@_name_abstract_tl}
+        \chapter*{\c_@@_label_abstract_tl}
       }
     }
     \vspace*{1mm}
@@ -1226,7 +1222,7 @@
   }
   {
     \par
-    \vspace{4ex}\noindent\textbf{\heiti \c_@@_name_keywords_tl \l_@@_info_keywords_tl}\par
+    \vspace{4ex}\noindent\textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
     \newpage
   }
 
@@ -1245,9 +1241,9 @@
         \vspace*{-2bp}
 
         \@@_if_thesis_int_type:nTF {3} {
-          \arialfamily\zihao{-2}\textbf\l_bit_titleen_tl\\
+          \arialfamily\zihao{-2}\textbf\l_@@_value_title_en_tl\\
         } {
-          \heiti\zihao{3}\textbf\l_bit_titleen_tl\\
+          \heiti\zihao{3}\textbf\l_@@_value_title_en_tl\\
         }
       \end{spacing}
       \vspace*{10mm}
@@ -1281,14 +1277,14 @@
     {
       \@@_same_page:
       \bool_if:nTF {\l_@@_add_to_toc_bool} {
-        \chapter{\c_@@_name_abstract_en_tl}
+        \chapter{\c_@@_label_abstract_en_tl}
       } {
-        \chapter*{\c_@@_name_abstract_en_tl}
+        \chapter*{\c_@@_label_abstract_en_tl}
       }
     }
   }
   {
-    \par\vspace{3ex}\noindent\textbf{\c_@@_name_keywords_en_tl \l_@@_info_keywords_en_tl}
+    \par\vspace{3ex}\noindent\textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
     \newpage
   }
 
@@ -1300,9 +1296,9 @@
     }
 
     \@@_if_thesis_english:TF {
-      \chapter{\c_@@_name_conclusion_en_tl}
+      \chapter{\c_@@_label_conclusion_en_tl}
     } {
-      \chapter{\c_@@_name_conclusion_tl}
+      \chapter{\c_@@_label_conclusion_tl}
     }
   }
   {}
@@ -1329,7 +1325,7 @@
       \mkgbnumlabel{\printfield{labelnumber}}
       \hspace{\biblabelsep}
     }
-    \chapter{\c_@@_name_reference_tl}
+    \chapter{\c_@@_label_reference_tl}
   }
   {}
 
@@ -1338,21 +1334,21 @@
   \NewDocumentEnvironment {appendices} { oo }
   {
     % Used in chapter, ToC.
-    \tl_new:N \l_@@_appendix_plain_name_tl
+    \tl_new:N \l_@@_appendix_plain_label_tl
     % Used before reference label.
     \tl_new:N \l_@@_appendix_title_tl
 
     \int_compare:nNnTF {\g_@@_thesis_type_int} = {3} 
     {
-      \tl_set:Nn \l_@@_appendix_plain_name_tl {\c_@@_name_appendix_prefix_en_tl}
-      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_name_appendix_en_tl}
+      \tl_set:Nn \l_@@_appendix_plain_label_tl {\c_@@_label_appendix_prefix_en_tl}
+      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_label_appendix_en_tl}
     } {
-      \tl_set:Nn \l_@@_appendix_plain_name_tl {\c_@@_name_appendix_prefix_tl}
-      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_name_appendix_tl}
+      \tl_set:Nn \l_@@_appendix_plain_label_tl {\c_@@_label_appendix_prefix_tl}
+      \tl_set:Nn \l_@@_appendix_title_tl {\c_@@_label_appendix_tl}
     }
 
     \ctexset{
-      section/number = \l_@@_appendix_plain_name_tl\hspace{1ex}\Alph{section},
+      section/number = \l_@@_appendix_plain_label_tl\hspace{1ex}\Alph{section},
       subsection/number = \Alph{section}. \arabic{subsection},
     }
 
@@ -1382,9 +1378,9 @@
     }
 
     \@@_if_thesis_english:TF {
-      \chapter{\c_@@_name_ack_en_tl}
+      \chapter{\c_@@_label_ack_en_tl}
     } {
-      \chapter{\c_@@_name_ack_tl}
+      \chapter{\c_@@_label_ack_tl}
     }
   }
   {}
@@ -1419,13 +1415,13 @@
 
     % Sorting by year, name, type.
     \newrefcontext[sorting=ynt]
-    \chapter{\c_@@_name_publications_tl}
+    \chapter{\c_@@_label_publications_tl}
   }
   {}
 
   \NewDocumentEnvironment {resume} {}
   {
-    \chapter{\c_@@_name_resume_tl}
+    \chapter{\c_@@_label_resume_tl}
   }
   {
   }
@@ -1437,9 +1433,9 @@
     }
 
     \bool_if:NTF \l_@@_add_to_toc_bool {
-      \chapter{\c_@@_name_symbols_tl}
+      \chapter{\c_@@_label_symbols_tl}
     } {
-      \chapter*{\c_@@_name_symbols_tl}
+      \chapter*{\c_@@_label_symbols_tl}
     }
     \zihao{-4}
     \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
