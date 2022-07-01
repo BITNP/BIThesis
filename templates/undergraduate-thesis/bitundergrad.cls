@@ -5,12 +5,37 @@
 
 % Define Global Variables
 \int_new:N \g_@@_thesis_type_int
-% TODO: refactor this var
-\tl_new:N \g_@@_toc_title_tl
 \int_new:N \g_@@_head_zihao_int
 \bool_new:N \g_@@_twoside_bool
 \bool_new:N \g_@@_thesis_type_english_bool
 \tl_new:N \g_@@_label_devide_char_tl
+
+% helper functions
+
+\cs_new:Npn \@@_same_page: {
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+}
+
+% 是否为研究生学位论文
+\cs_new:Npn \@@_if_graduate:TF #1#2 {
+    \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
+      {#1}
+      {#2}
+  }
+
+% 是否某一特定模板
+\cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
+\cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
+
+% 是否为英文模板，这里包括全英文专业和研究生模板的英文模式。
+\cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
+\cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
+
+\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
+\cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
+\cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
+\cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
 
 % Define Consts.
 \clist_const:Nn \c_@@_thesis_type_clist
@@ -80,8 +105,14 @@
     },
   } {\@@_define_name_by_thesis_type:nnn {bachelor_english} #1}
 
-\cs_new:Npn \smallgap {
+\cs_new:Npn \smallgap: {
   \hspace{0.45ex}
+}
+
+\cs_new:Npn \label_space: {
+  \@@_if_bachelor_thesis:T {
+    \quad
+  }
 }
 
 % graduate
@@ -101,10 +132,10 @@
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
-    {degree} {申\smallgap 请\smallgap 学\smallgap 位\smallgap 级\smallgap 别} {Degree~Applied},
+    {degree} {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别} {Degree~Applied},
     {major} {学\quad 科\quad 专\quad 业} {Major},
-    {institute} {学\smallgap 位\smallgap 授\smallgap 予\smallgap 单\smallgap 位} {Degree~by},
-    {defense_date} {论\smallgap 文\smallgap 答\smallgap 辩\smallgap 日\smallgap 期} {The~Date~of~Defence},
+    {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
+    {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
   } {\@@_define_name_by_thesis_type:nnnn {graduate} #1}
 
 \clist_map_inline:nn 
@@ -115,16 +146,16 @@
     {student_id} {学\qquad 号} {Student~ID},
     {supervisor} {指导教师} {Supervisor},
     {co_supervisor} {校外指导教师} {Co-Supervisor},
-    {toc} {目\quad 录} {Table~of~Contents},
-    {abstract} {摘\quad 要} {Abstract},
     {keywords} {关键词：} {Key~Words:~},
-    {conclusion} {结\quad 论} {Conclusions},
-    {appendix} {附\quad 录} {Appendices},
-    {appendix_prefix} {附录} {Appendix},
-    {ack} {致\quad 谢} {Acknowledgement},
-    {reference} {参考文献} {References},
+    {toc} {目\label_space: 录} {Table~of~Contents},
+    {abstract} {摘\label_space: 要} {Abstract},
+    {conclusion} {结\label_space: 论} {Conclusions},
+    {appendix} {附\label_space: 录} {Appendices},
+    {ack} {致\label_space: 谢} {Acknowledgement},
     {figure} {插\quad 图} {Illustrations},
     {table} {表\quad 格} {Tables},
+    {appendix_prefix} {附录} {Appendix},
+    {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
     {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
     % TODO: Not so sure about the translation.
@@ -142,34 +173,6 @@
     本科生毕业设计（论文）外文翻译,
     Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
   }
-
-% helper functions
-
-\cs_new:Npn \@@_same_page: {
-  \let\clearpage\relax
-  \let\cleardoublepage\relax
-}
-
-% 是否为研究生学位论文
-\cs_new:Npn \@@_if_graduate:TF #1#2 {
-    \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
-      {#1}
-      {#2}
-  }
-
-% 是否某一特定模板
-\cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
-\cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
-
-% 是否为英文模板，这里包括全英文专业和研究生模板的英文模式。
-\cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
-\cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
-
-\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
-\cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
-\cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
-\cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
-
 
 
 % key-value interface definition.
@@ -341,15 +344,12 @@
 
 \ctex_at_end_preamble:n {
   \@@_if_thesis_english:TF {
-    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_en_tl}
     \@@_if_thesis_int_type:nT {3} {
       % font Arial needed
       \newfontfamily\arialfamily{Arial}
     }
 
   } {
-    \tl_set:Nn \g_@@_toc_title_tl {\c_@@_name_toc_tl}
-
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {} 
     {
       \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
@@ -462,11 +462,11 @@
 % TOC
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
-\RenewDocumentCommand \contentsname {} {
-  \fontsize{16pt}{\baselineskip}
-  \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\g_@@_toc_title_tl}
-  \vspace{-8pt}
-}
+% \RenewDocumentCommand \contentsname {} {
+%   \fontsize{16pt}{\baselineskip}
+%   \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\l_@@_toc_title_tl}
+%   \vspace{-8pt}
+% }
 
 \@@_if_graduate:TF {
   % 各章标题，宋体四号
@@ -1152,7 +1152,21 @@
       } {
         \renewcommand{\baselinestretch}{1.56}
       }
-      % 目录
+
+      \@@_if_thesis_english:TF {
+        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_name_toc_en_tl}
+      } {
+        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_name_toc_tl}
+      }
+
+      % 自定义目录样式
+      \cs_set:Npn \contentsname {
+        \fontsize{16pt}{\baselineskip}
+        \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\l_@@_toc_title_tl}
+        \vspace{-8pt}
+      }
+
+      % 制作目录
       \tableofcontents
 
       % 在本科生全英文模板中，添加「目录」本身到目录中。
@@ -1230,7 +1244,7 @@
         \centering
         \vspace*{-2bp}
 
-        \@@_if_thesis_int_type {3} {
+        \@@_if_thesis_int_type:nTF {3} {
           \arialfamily\zihao{-2}\textbf\l_bit_titleen_tl\\
         } {
           \heiti\zihao{3}\textbf\l_bit_titleen_tl\\
