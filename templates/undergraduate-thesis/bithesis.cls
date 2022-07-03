@@ -1,7 +1,7 @@
 \RequirePackage{expl3, l3keys2e}
 \ProvidesExplClass{bithesis}{
   2022-06-10
-}{0.0.1}{BIThesis Undergraduate Thesis class}
+}{0.0.1}{BIThesis Thesis Class for both  Undergraduate and Graduate}
 
 % Define Global Variables
 \int_new:N \g_@@_thesis_type_int
@@ -639,8 +639,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % user interface.
-% TODO:
-\DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
+\DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
 
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
