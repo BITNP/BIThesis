@@ -46,10 +46,14 @@
 \generate
   {
     \usedir{tex/latex/bithesis}
-    \file{bitart.cls}              {\from{\jobname.dtx}{cls,article}}
-    \file{bitbook.cls}             {\from{\jobname.dtx}{cls,book}}
-    \file{bitgrad.cls}         {\from{\jobname.dtx}{cls,graduate}}
-    \file{dtx-style.sty}           {\from{\jobname.dtx}{dtx-style}}
+    \file{bitart.cls}             {\from{\jobname.dtx}{oldcls,article}}
+    \file{bitbook.cls}            {\from{\jobname.dtx}{oldcls,book}}
+    \file{bitgrad.cls}            {\from{\jobname.dtx}{oldcls,graduate}}
+    \file{bithesis.cls}           {\from{\jobname.dtx}{cls,thesis}}
+    \file{bitbeamer.cls}          {\from{\jobname.dtx}{cls,beamer}}
+    \file{bitreport.cls}          {\from{\jobname.dtx}{cls,report}}
+    \file{bitproposal.cls}        {\from{\jobname.dtx}{cls,proposal}}
+    \file{dtx-style.sty}          {\from{\jobname.dtx}{dtx-style}}
   }
 
 \obeyspaces
@@ -60,11 +64,15 @@
 \Msg{*                                                           *}
 \Msg{* The recommended directory is TDS:tex/latex/bithesis       *}
 \Msg{*                                                           *}
-\Msg{*     bitart.cls                                            *}
-\Msg{*     bitbook.cls                                           *}
-\Msg{*     bitgrad.cls                                           *}
+\Msg{*     bithesis.cls                                          *}
+\Msg{*     bitreport.cls                                         *}
+\Msg{*     bitproposal.cls                                         *}
+\Msg{*     bitbeamer.cls                                         *}
+\Msg{*     bitart.cls (deprecated)                               *}
+\Msg{*     bitbook.cls (deprecated)                              *}
+\Msg{*     bitgrad.cls (deprecated)                              *}
 \Msg{*                                                           *}
-\Msg{* To produce the documentation run the file ctex.dtx        *}
+\Msg{* To produce the documentation run the file bithesis.dtx    *}
 \Msg{* through XeLaTeX.                                          *}
 \Msg{*                                                           *}
 \Msg{* Happy BIThesis!                                           *}
