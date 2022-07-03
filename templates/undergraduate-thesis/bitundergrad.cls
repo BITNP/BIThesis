@@ -1452,7 +1452,11 @@
       \mkgbnumlabel{\printfield{labelnumber}}
       \hspace{\biblabelsep}
     }
-    \chapter{\c_@@_label_reference_tl}
+    \@@_if_thesis_english:TF {
+      \chapter{\c_@@_label_reference_en_tl}
+    } {
+      \chapter{\c_@@_label_reference_tl}
+    }
   }
   {}
 
