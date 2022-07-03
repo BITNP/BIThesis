@@ -10,7 +10,17 @@
 \bool_new:N \g_@@_thesis_type_english_bool
 \tl_new:N \g_@@_label_devide_char_tl
 
+% \bool_new:N \l_@@_cover_auto_width_bool
+% \bool_set_true:N \l_@@_cover_auto_width_bool
+%
+% Define tmp Variables
+\seq_new:N \l_@@_right_seq
+\seq_new:N \l_@@_left_seq
+
 % helper functions
+
+\cs_generate_variant:Nn \tl_if_empty:nTF {e}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nne}
 
 \cs_new:Npn \@@_same_page: {
   \let\clearpage\relax
@@ -208,6 +218,20 @@
     headerImage .tl_set:N = \l_bit_coverheaderimage_tl,
     xiheiFont .tl_set:N = \l_@@_cover_xihei_font_path_tl,
     xiheiFont .default:n = {STXihei},
+    %% cover entry
+    dilimiter .tl_set:N = \l_@@_cover_dilimiter_tl,
+    labelAlign .tl_set:N = \l_@@_cover_label_align_tl,
+    labelAlign .initial:n = {r},
+    valueAlign .tl_set:N = \l_@@_cover_value_align_tl,
+    valueAlign .initial:n = {c},
+    labelMaxWidth .dim_set:N = \l_@@_cover_label_max_width_dim,
+    valueMaxWidth .dim_set:N = \l_@@_cover_value_max_width_dim,
+    autoWidth .bool_set:N = \l_@@_cover_auto_width_bool,
+    autoWidth .initial:n = {true},
+    underlineThickness .dim_set:N = \l_@@_cover_underline_thickness_dim,
+    underlineThickness .initial:n = {1pt},
+    underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
+    underlineOffset .initial:n = { -10pt },
   }
 
 \keys_define:nn { bithesis / info }
@@ -360,7 +384,6 @@
 
   % Define biblatex category if it was imported.
   \cs_if_exist:NT \DeclareBibliographyCategory {
-    % \int_show:N \g_@@_thesis_type_int
     \DeclareBibliographyCategory{mypub}
   }
 }
@@ -616,47 +639,81 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % user interface.
+% TODO:
 \DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
 
-% 35mm
-% key
-% 78mm
-% value
-% colon
-% zihao
-% underline position
-% #8: r|l|c
-% TODO: refactor name.
-\cs_new:Npn \g_@@_make_cover_entry_cs:nnnn #1#2#3#4#5#6#7#8 {
-  \zihao{#6}\selectfont{\makebox[#1][#8]{#2#5}}\hspace{1ex} \dunderline[#7]{1pt}{\makebox[#3][c]{#4}}\par
+\cs_new:Npn \@@_render_cover_entry:nn #1#2 {
+  \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
+    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
+  }
+  \hspace{1ex}
+  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
+    \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
+  }\par
 }
 
-% TODO: refactor name.
-\cs_new:Npn \l_@@_make_cover_entry_a_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {35mm} {#1} {78mm} {#2} {：} {3} {-10pt} {r}
+% Get text with from #2, then set to #1.
+\cs_new:Npn \@@_get_text_width:Nn #1#2
+  {
+    \hbox_set:Nn \l_tmpa_box {#2}
+    \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
+  }
+\cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
+
+% Get max text width from seq #2, then set to #1.
+\cs_new:Npn \@@_get_max_text_width:NN #1#2
+  {
+% 这里用 |group| 确保局部变量不会被污染。
+    \group_begin:
+      \seq_set_eq:NN \l_@@_tmpa_seq #2
+      \dim_zero_new:N \l_@@_tmpa_dim
+      \bool_until_do:nn { \seq_if_empty_p:N \l_@@_tmpa_seq }
+        {
+          \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
+          \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
+        }
+    \group_end:
+  }
+
+% process label (#1) and value #2 seperately
+\cs_new:Npn \@@_parse_entry #1 #2 {
+  \seq_set_split:Nne \l_@@_tmp_right_seq {//} {#2}
+  \seq_clear:N \l_@@_tmp_left_seq
+  \seq_map_inline:Nn \l_@@_tmp_right_seq {
+    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  }
+  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
+  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 
-% TODO: refactor name.
-\cs_new:Npn \l_@@_make_cover_entry_eng_cs:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {20mm} {#1} {105mm} {#2} {:} {4} {-10pt} {r}
-}
+\cs_new:Npn \@@_render_cover_entry:n #1 {
+  \seq_set_from_clist:NN \l_@@_input_seq #1
+  % parse newline //
+  \seq_map_inline:Nn \l_@@_input_seq {
+    \@@_parse_entry ##1
+    \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
+    \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
+  }
 
-\cs_new:Npn \@@_master_make_cover_entry:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {40mm} {#1} {60mm} {#2} {\quad} {-3} {-5pt} {r}
-}
+  \bool_if:NT \l_@@_cover_auto_width_bool {
+    \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
+    \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
+  }
+  
 
-\cs_new:Npn \@@_master_make_cover_entry_en:nn #1#2 {
-  \g_@@_make_cover_entry_cs:nnnn {55mm} {#1} {85mm} {#2} {:} {-3} {-5pt} {l}
+  \group_begin:
+    \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
+      {
+        \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
+        \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
+        \tl_if_empty:eTF \l_@@_tmpb_tl {} {
+          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
+        }
+      }
+  \group_end:
 }
-
-% Usage: \dunderline{<line_thickness>}{<text>}
-% \cs_set:Npn \dunderline #1#2 {
-%   {
-%     \setbox0=\hbox{-10pt}
-%     \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}
-%   }
-% }
 
 % #1: position
 % #2: line_thickness
@@ -752,9 +809,22 @@
 
       {
       \renewcommand{\baselinestretch}{2}
-        \heiti\zihao{-3}
-      \clist_map_inline:nn 
-        {
+
+        \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
+          \tl_set:Nn \l_@@_cover_dilimiter_tl {\qquad}
+        }
+        \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+        % if not auto width, try override width
+        \bool_if:NF \l_@@_cover_auto_width_bool {
+          \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+            \dim_set:Nn \l_@@_cover_label_max_width_dim {45mm}
+          } 
+          \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+            \dim_set:Nn \l_@@_cover_value_max_width_dim {60mm}
+          } 
+        }
+
+      \clist_set:Nn \l_@@_input_clist {
           {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
           {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
           {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
@@ -763,8 +833,10 @@
           {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
           {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
           {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
-         }
-        {\@@_master_make_cover_entry:nn ##1}
+       }
+
+      \heiti\zihao{-3}
+      \@@_render_cover_entry:n \l_@@_input_clist
       }
     \end{center}
     \vskip \stretch{0.5}
@@ -781,9 +853,24 @@
     \vskip \stretch{1}
 
     {
-      \zihao{-3}
-      \clist_map_inline:nn 
-        {
+      \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
+        \tl_set:Nn \l_@@_cover_dilimiter_tl {:~}
+      }
+
+      \tl_set:Nn \l_@@_cover_label_align_tl {l}
+      \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+
+      % if not auto width, try override width
+      \bool_if:NF \l_@@_cover_auto_width_bool {
+        \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+          \dim_set:Nn \l_@@_cover_label_max_width_dim {55mm}
+        } 
+        \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+          \dim_set:Nn \l_@@_cover_value_max_width_dim {85mm}
+        } 
+      }
+
+      \clist_set:Nn \l_@@_input_clist {
           {\c_@@_graduate_label_author_en_tl} {\l_@@_value_author_en_tl},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
           {\c_@@_graduate_label_supervisor_en_tl} {\l_@@_value_supervisor_en_tl},
@@ -792,9 +879,11 @@
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
           {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
           {\c_@@_graduate_label_defense_date_en_tl} {\l_@@_value_defense_date_en_tl},
-         }
-        {\@@_master_make_cover_entry_en:nn ##1}
-      }
+       }
+
+      \zihao{-3}
+      \@@_render_cover_entry:n \l_@@_input_clist
+    }
 
     \end{center}
 
@@ -838,16 +927,32 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_school_tl} {\l_@@_value_school_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_major_tl} {\l_@@_value_major_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_author_tl} {\l_@@_value_author_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl}
-              \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl}
+            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
+              \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
+            }
+            % if not auto width, try override width
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+              } 
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {78mm}
+              } 
+            }
 
-              \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {} {
-                % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_a_cs:nn {\c_@@_label_co_supervisor_tl} {\l_@@_value_external_supervisor_tl}
-              }
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_school_tl} {\l_@@_value_school_tl},
+              {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_author_tl} {\l_@@_value_author_tl},
+              {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl},
+              {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl},
+              {\c_@@_label_co_supervisor_tl} {\l_@@_value_external_supervisor_tl},
+            }
+
+            \zihao{3}
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+            
             \end{center}
           \end{spacing}
 
@@ -859,14 +964,6 @@
       {2}
       {
         \begin{titlepage}
-          \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {
-            % 校内毕设封面顶部间距
-            \vspace*{0mm}
-          }{
-            % 校外毕设封面顶部间距
-            \vspace*{8mm}
-          }
-
           \centering
 
           \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
@@ -881,10 +978,23 @@
 
           {
 
-          \flushleft
           \begin{spacing}{1.8}
-            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 外文原文题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_value_trans_origin_title_tl}}}}\par
-            \songti\zihao{-3}\selectfont{{\zihao{4}\textbf{\parbox[b]{7em}{\flushright 中文翻译题目：\hspace{1em}}}}\dunderline[-10pt]{1pt}{\makebox[118mm][c]{\strut{}\shortstack{\l_@@_value_trans_title_tl}}}}\par
+            
+            \tl_set:Nn \l_@@_cover_dilimiter_tl {\textbf{：}}
+            \bool_set_false:N \l_@@_cover_auto_width_bool
+            \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+            \dim_set:Nn \l_@@_cover_value_max_width_dim {115mm}
+
+            \clist_set:Nn \l_@@_input_clist {
+              {\zihao{4}\textbf{外文原文题目}} {\l_@@_value_trans_origin_title_tl},
+              {\zihao{4}\textbf{中文翻译题目}} {\l_@@_value_trans_title_tl},
+            }
+
+            \zihao{-3}
+            \centering
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+
           \end{spacing}
 
           }
@@ -903,35 +1013,35 @@
 
           \flushleft
 
-          \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {
-            % 生成校内毕设封面字段
-            \begin{spacing}{1.8}
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}院：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_school_tl}}}\par
+          \begin{spacing}{1.8}
+            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
+              \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
+            }
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{专\hspace{11mm}业：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_major_tl}}}\par
+            % if not auto width, try override width
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+              } 
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {78mm}
+              } 
+            }
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{学生姓名：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_author_tl}}}\par
+            \zihao{3}
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{学\hspace{11mm}号：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_student_id_tl}}}\par
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_school_tl} {\l_@@_value_school_tl},
+              {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_author_tl} {\l_@@_value_author_tl},
+              {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl},
+              {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl},
+              {\c_@@_label_co_supervisor_tl} {\l_@@_value_external_supervisor_tl},
+            }
 
-              \hspace{27mm}\songti\zihao{3}\selectfont{指导教师：\dunderline[-10pt]{1pt}{\makebox[78mm][c]{\l_@@_value_supervisor_tl}}}\par
-            \end{spacing}
-          }{
-            % 生成校外毕设封面字段
-            \begin{spacing}{1.8}
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}院\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_school_tl}}}\par
-
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{专\hspace{19.6mm}业\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_major_tl}}}\par
-
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{2.8mm}生\hspace{2.8mm}姓\hspace{2.8mm}名\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_author_tl}}}\par
-
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{学\hspace{19.6mm}号\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_student_id_tl}}}\par
-
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{指\hspace{2.8mm}导\hspace{2.8mm}教\hspace{2.8mm}师\hspace{3mm}：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_supervisor_tl}}}\par
-
-              \hspace{19.4mm}\songti\zihao{3}\selectfont{校外指导教师：\dunderline[-10pt]{1pt}{\makebox[77.4mm][c]{\l_@@_value_external_supervisor_tl}}}\par
-            \end{spacing}
-          }
+            \@@_render_cover_entry:n \l_@@_input_clist
+            
+          \end{spacing}
 
           \vspace*{\fill}
         \end{titlepage}
@@ -959,16 +1069,33 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_school_en_tl} {\l_@@_value_school_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_major_en_tl} {\l_@@_value_major_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_author_en_tl} {\l_@@_value_author_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_student_id_en_tl} {\l_@@_value_student_id_tl}
-              \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_supervisor_en_tl} {\l_@@_value_supervisor_tl}
+            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
+              \tl_set:Nn \l_@@_cover_dilimiter_tl {:}
+            }
 
-              \tl_if_blank:VTF \l_@@_value_external_supervisor_tl {} {
-                % 生成校外毕设封面字段
-                  \l_@@_make_cover_entry_eng_cs:nn {\c_@@_label_co_supervisor_en_tl} {\l_@@_value_external_supervisor_tl}
-              }
+            % if not auto width, try override width
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {20mm}
+              } 
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {105mm}
+              } 
+            }
+
+            \zihao{4}
+
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_school_en_tl} {\l_@@_value_school_tl},
+              {\c_@@_label_major_en_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_author_en_tl} {\l_@@_value_author_tl},
+              {\c_@@_label_student_id_en_tl} {\l_@@_value_student_id_tl},
+              {\c_@@_label_supervisor_en_tl} {\l_@@_value_supervisor_tl},
+              {\c_@@_label_co_supervisor_en_tl} {\l_@@_value_external_supervisor_tl},
+            }
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+
             \end{center}
           \end{spacing}
 
