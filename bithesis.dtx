@@ -41,6 +41,9 @@
 \RecordChanges
 \begin{document}
   \DocInput{\jobname.dtx}
+  \PrintChanges
+  \def\indexname{代码索引}
+  \PrintIndex
 \end{document}
 %</driver>
 % \fi
@@ -64,7 +67,7 @@
 % \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
 % \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
 % \DoNotIndex{\@@par,\DeclareOperation,\RequirePackage,\LoadClass}
-% \DoNotIndex{\AtBeginDocument,\AtEndDocument}
+% \DoNotIndex{\AtBeginDocument,\AtEndDocument,\AtBeginEnvironment}
 %
 % \GetFileInfo{\jobname.dtx} %
 % 
@@ -73,15 +76,14 @@
 %
 % \title{\includegraphics[width=0.3\textwidth]{images/icon.png}
 % \\[1cm]
-% \bfseries 北京理工大学本科生{\LaTeX}学位论文及报告模板 }
+% \bfseries 北京理工大学{\LaTeX}学位论文及报告模板 }
 % \author{北京理工大学网络开拓者协会 \\ \texttt{webmaster@bitnp.net}} %
 % \date{\zihao{-4} \today\quad \color{RubineRed}{\kaishu {\BIThesis}版本\version}}
 % \maketitle\thispagestyle{empty}
 %
 % \def\abstractname{}
 % \begin{abstract}\noindent
-%   此宏包旨在建立一个简单易用的北京理工大学学位论文模板，包括本科综合论文训练、硕士
-%   论文、博士论文以及博士后出站报告。
+%   此宏包旨在建立一个简单易用的北京理工大学学位论文模板（以及其他模板），包括本科毕业设计与研究生论文。
 % \end{abstract}
 %
 % \vspace{5mm}
@@ -95,6 +97,7 @@
 % \noindent
 % \begin{enumerate}
 % \item 本模板的发布遵守 \LPPL ，使用前请认真阅读协议内容。
+% \item 与\BIThesis 相关的文档内容采用 \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
 % \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵
 %   守 \LaTeX{} Project Public License 协议。由于违犯协议而引起的任何纠纷争端均与
 %   本模板作者无关。
@@ -105,7 +108,7 @@
 %
 % \def\abstractname{简介}
 % \begin{abstract}
-% \BIThesisLaTeX 是北京理工大学本科生毕业设计开题报告、总论文，以及其他课程报告、实验报告等重要论文、报告的 {\LaTeX} 模板集合。
+% \BIThesisLaTeX 是北京理工大学本科生毕业设计与研究生学位论文，以及其他课程报告、实验报告的 {\LaTeX} 模板集合。
 % 如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。
 % 专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
 %
@@ -124,6 +127,7 @@
 % \section{项目简介}
 % \subsection{历史与贡献者们}
 % \begin{itemize}
+%   \item 2017 - 2018 年，杨雅婷等人受研究生院委托，制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 研究生学位论文模板。
 %   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
 %   \begin{itemize}
 %     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、在线文档和开箱即用的模板。
@@ -134,10 +138,12 @@
 %     \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 CTAN 上。
 %     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，\BIThesisWiki 和 \BIThesisScaffold。
 %   \end{itemize}
-%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、2022 毕业季收到的反馈对该项目进行维护升级（前向兼容）。
+%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、2022 毕业季收到的反馈对该项目进行维护升级。
 %   \begin{itemize}
 %      \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
 %      \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
+%      \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，向用户提供了简易易用的接口。
+%      \item 同时，也增加了本科全英文专业的毕设论文模板样式。
 %   \end{itemize}
 % \end{itemize}
 % \subsection{\BIThesis 是什么？}
@@ -145,19 +151,20 @@
 %
 % \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板，包括本科综合论文训练。
 % \subsubsection{\BIThesisLaTeX 的组成}
-% 我们将 \BIThesisLaTeX 划分为了三个主要仓库：
+% 我们将 \BIThesisLaTeX 划分为了两个主要仓库：
 % \begin{table}[H]
 % \centering
 % \begin{tabular}{@{}l l p{6cm} @{}}
 % \toprule
 % 项目                & 项目地址 & 主要目的 \\ \midrule
-% BIThesis          &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   &  主要存储 \BIThesis  宏包 \\
-% BIThesis-wiki     &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  &  存储 \BIThesisLaTeX 项目在线文档   \\
-% BIThesis-scaffold &   \href{https://github.com/BITNP/BIThesis-scaffold}{BITNP/BIThesis-scaffold}   &  存储开箱即用的论文模板样式，便于使用者快速开始写作  \\ \bottomrule
+% BIThesis          &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
+% BIThesis-wiki     &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
 % \end{tabular}
 % \end{table}
 %
 % 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
+%
+% 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 % 
 % \section{使用说明}
 % \subsection{\BIThesis 宏包的组成}
@@ -169,9 +176,10 @@
 % \begin{tabular}{@{}lll@{}}
 % \toprule
 % 类别                   & 文件          & 说明                             \\ \midrule
-% \multirow{2}{*}{文档类} & bitart.cls  & 对应 ctxart.cls，提供实验报告模板、开题报告模板。 \\
-%                      & bitbook.cls & 对应 ctexbook.cls ，提供本科生毕业设计模板。     \\ \cmidrule(l){2-3} 
-%                    & bitgrad.cls & 对应 ctexbook.cls ，提供研究生毕业设计模板。（全体硕士及2020级以前博士适用）     \\ \cmidrule(l){2-3}
+% \multirow{2}{*}{文档类} & \cls{bithesis.cls}  & 封装本科生与研究生的毕业论文样式。 \\
+%                      & \cls{bitproposal.cls} & 封装本科生开题报告样式。     \\ \cmidrule(l){2-3} 
+%                    & \cls{bitreport.cls} & 对应 封装了一个北理工实验报告样式。     \\ \cmidrule(l){2-3}
+%                    & \cls{bitbeamer.cls} & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     \\ \cmidrule(l){2-3}
 % \end{tabular}
 % \end{table}
 % \subsection{\BIThesis 宏包的安装和更新}
@@ -182,13 +190,49 @@
 %   tlmgr install fduthesis
 % \end{shell}
 % \subsection{使用 \BIThesis 文档类}
-% 推荐使用 \BIThesisScaffold 来进行具体的项目编写。\BIThesisScaffold 提供了多种最常用的模板，你可以在 \href{https://github.com/BITNP/BIThesis}{主项目的 Releases}中找到它们。 
+% 推荐使用\BIThesisRelease （开箱即用）。\BIThesisRelease 提供了多种最常用的模板，你可以在\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。 
+% 
+% \subsection{\cls{bithesis} 使用与配置}
+% 
+% 使用此文档类的模板有：
+% \begin{itemize}
+%  \item \BIThesisTemplates{UT}
+%  \item \BIThesisTemplates{UTE}
+%  \item \BIThesisTemplates{PT}
+%  \item \BIThesisTemplates{GT}
+% \end{itemize}
+%
+% \subsubsection{最小用例}
+% 
+% \begin{latex}
+%   \documentclass[type=bachelor]{bithesis}
+%   \BITSetup{
+%     info = {
+%       author = FKY,
+%       ......
+%     }
+%   }
+%   \begin{document}
+%   \end{document}
+% \end{latex}
+% \subsubsection{模板选项}
+% % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
+% \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
+%   \documentclass(*\oarg{模板选项}*){bithesis}
+% \end{latex}
+% \begin{function}{type}
+%   \begin{bitsyntax}[emph={[1]type}]
+%     type = (*<(bachelor)|bachelor_translation|bachelor_english|master|docter>*)
+%   \end{bitsyntax}
+%   选择论文类型
+% \end{function}
+% 
 % \section{致谢}
 % \section{软件许可证}
 % \begin{itemize}
 %   \item 北京理工大学校徽校名图片的版权归北京理工大学所有。
 %   \item \BIThesisLaTeX 宏包以及相关文档类使用 \LPPL 授权。
-%   \item \BIThesisLaTeX 文档及其他附属文件通过 \LPPL 授权。
+%   \item \BIThesisLaTeX 文档及其他附属文件通过 CC0-1.0 授权。
 % \end{itemize}
 % \section{实现细节}
 %
@@ -3466,7 +3510,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage{fancyhdr}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{awesomebox}
-\RequirePackage{etoolbox}
+% \RequirePackage{etoolbox}
 \RequirePackage{dirtree}
 \RequirePackage{metalogo}
 \RequirePackage[tightLists=false]{markdown}
@@ -3500,8 +3544,36 @@ footskip=0.7cm% 页脚 1.8cm %
 \newcommand{\BIThesisMacroPackage}{{\BIThesis}宏集}
 \newcommand{\BIThesisWiki}{{\BIThesis}在线文档}
 \newcommand{\BIThesisScaffold}{{\BIThesis}模板}
+\newcommand{\BIThesisRelease}{{\BIThesis}模板}
 \newcommand{\LPPL}{{\href{https://www.latex-project.org/lppl/lppl-1-3c.txt}{\LaTeX{} Project Public License (1.3.c)}}}
-\newcommand{\version}{v2.0 BirthdayCake}
+\newcommand{\versionold}{v2.0 BirthdayCake}
+\newcommand{\version}{v3 Summer Time}
+\ExplSyntaxOn
+
+\AtBeginEnvironment { bitsyntax } {
+  \cs_set:Npn \lparen { \textup { ( } }
+  \cs_set:Npn \rparen { \textup { ) } }
+  \char_set_catcode_active:N |
+  \char_set_catcode_active:N <
+  \char_set_catcode_active:N (
+  \char_set_active_eq:NN | \orbar
+  \char_set_active_eq:NN < \syntaxopt@aux
+  \char_set_active_eq:NN ( \defaultval@aux
+}
+
+\NewDocumentCommand \BIThesisTemplates {m} {
+  \str_case:nn {#1} {
+    {UT}{本科生毕业论文模板（undergraduate-thesis）}
+    {UTE}{本科生全英文专业毕业论文模板（undergraduate-thesis-en）}
+    {GT}{研究生学位论文模板（graduate-thesis）}
+    {LR}{简易使用报告模板（lab-report）}
+    {PT}{本科生毕业设计外文翻译模板（paper-translation）}
+    {PS}{北理工主题的 Beamer 模板（presentation-slide）}
+    {UP}{本科生毕业设计开题报告（undergraduate-proposal）}
+  }
+}
+
+\ExplSyntaxOff
 
 \ctexset{
   today=big,
@@ -3608,6 +3680,7 @@ footskip=0.7cm% 页脚 1.8cm %
    boxpos=c,
    showlines=false,
    extendedchars=true,
+   escapeinside  = {(*}{*)},
    upquote=true,
    tabsize=2,
    showtabs=false,
@@ -3645,8 +3718,24 @@ footskip=0.7cm% 页脚 1.8cm %
    rulecolor=\color{violet},
    language=[LaTeX]TeX}
 
+\lstdefinestyle{lstStyleSyntax}{%
+   style=lstStyleBase,
+   frame=l,
+   rulecolor=\color{violet},
+   language=[LaTeX]TeX,
+   emphstyle=[1]\color{teal},
+}
+
 \lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
 \lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
+\lstnewenvironment{bitsyntax}[1][]{\lstset{style=lstStyleSyntax, #1}}{}
+
+\def\orbar{\textup{\textbar}}
+\def\syntaxopt#1{\textit{#1}}
+\def\defaultval#1{\textbf{\textup{#1}}}
+\def\syntaxopt@aux#1>{\syntaxopt{#1}}
+\def\defaultval@aux#1){\defaultval{#1}}
+
 
 \setlist{nosep}
 
@@ -3692,9 +3781,8 @@ footskip=0.7cm% 页脚 1.8cm %
     \kern 1ex
    }
 }
+
 \makeatother
-
-
 
 %</dtx-style>
 % \fi
