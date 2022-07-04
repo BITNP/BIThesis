@@ -35,7 +35,8 @@
     name = 惠计算,
     studentId = 11xxxxxxxx,
     mentor = 张哈希,
-    % externalMentor = 左偏树,
+    keywords = {北京理工大学；本科生；毕业设计（论文）},
+    keywordsEn = {BIT； Undergraduate； Graduation Project (Thesis)},
   }
 }
 
@@ -114,19 +115,10 @@
 % 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
 \input{chapters/0_abstract.tex}
 
-% 目录：如无特殊需要，本部分无需改动
-% \input{misc/2_toc.tex}
-
 \MakeTOC
 
 % 正文开始
 \mainmatter
-% 正文 22 磅的行距
-\setlength{\parskip}{0em}
-\setstretch{1.53}
-% \renewcommand{\baselinestretch}{1.53}
-% 修复脚注出现跨页的问题
-\interfootnotelinepenalty=10000
 
 % 第一章
 \input{chapters/1_chapter1.tex}

@@ -60,6 +60,10 @@
     studentId .tl_set:N = \l_bit_studentid_tl,
     mentor .tl_set:N = \l_bit_mentor_tl,
     externalMentor .tl_set:N = \l_bit_externalmentor_tl,
+    keywords .tl_set:N = \l_@@_info_keywords_tl,
+    keywords .default:n = {北京理工大学；本科生；毕业设计（论文）},
+    keywordsEn .tl_set:N = \l_@@_info_keywords_en_tl,
+    keywordsEn .default:n = {BIT； Undergraduate； Graduation Project (Thesis)}
   }
 
 \keys_define:nn { bitundergrad / misc }
@@ -131,7 +135,7 @@
 
 \RenewDocumentCommand \contentsname {} {
   \fontsize{16pt}{\baselineskip}
-  \normalfont\heiti{目\hspace{1em}录}
+  \normalfont\heiti{目\quad 录}
   \vspace{-8pt}
 }
 
@@ -153,6 +157,11 @@
 \RenewDocumentCommand \mainmatter {} {
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
+  % 正文 22 磅的行距
+  \setlength{\parskip}{0em}
+  \setstretch{1.53}
+  % 修复脚注出现跨页的问题
+  \interfootnotelinepenalty=10000
 }
 
 \setlength{\abovecaptionskip}{11pt}
@@ -216,18 +225,6 @@
 % user interface.
 \DeclareDocumentCommand \BITUndergraduateThesisSetup { m }
   { \keys_set:nn { bitundergrad } { #1 }}
-
-\DeclareDocumentCommand \unnumchapter {m} {
-  \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
-  \addcontentsline{toc}{chapter}{#1}
-  \stepcounter{chapter}
-}
-% \newcommand{\unnumchapter}[1]{
-%   \chapter*{\vskip 10bp\textmd{#1} \vskip -6bp}
-%   \addcontentsline{toc}{chapter}{#1}
-%   \stepcounter{chapter}
-% }
-
 
 % Usage: \dunderline{<line_thickness>}{<text>}
 % \cs_set:Npn \dunderline #1#2 {
@@ -323,6 +320,7 @@
     }
   }
 
+  % TODO:
   \NewDocumentEnvironment {abstract} {}
   {
     \zihao{-4}
@@ -334,8 +332,8 @@
 
     \vspace*{2mm}
 
-    {\let\clearpage\relax \chapter*{\textmd{摘\hspace{1em}要}}}
-    \addcontentsline{toc}{chapter}{摘\hspace{1em}要}
+    {\let\clearpage\relax \chapter*{\textmd{摘\quad 要}}}
+    \addcontentsline{toc}{chapter}{摘\quad 要}
     \setcounter{page}{1}
 
     \vspace*{1mm}
@@ -344,7 +342,7 @@
     \setlength{\parskip}{0em}\par
   }
   {
-    \vspace{4ex}\noindent\textbf{\heiti 关键词：北京理工大学；本科生；毕业设计（论文）}\par
+    \vspace{4ex}\noindent\textbf{\heiti 关键词：\l_@@_info_keywords_tl}\par
     \newpage
   }
 
@@ -369,13 +367,87 @@
     \setlength{\parskip}{0em}\par
   }
   {
-    \par\vspace{3ex}\noindent\textbf{Key Words: BIT； Undergraduate； Graduation Project (Thesis)}
+    \par\vspace{3ex}\noindent\textbf{Key Words:~\l_@@_info_keywords_en_tl}
     \newpage
   }
 
-
-\DeclareDocumentCommand \MakeReviewTable {} 
+  \NewDocumentEnvironment {conclusion} {}
   {
-    \group_begin:
-    \group_end:
+    \ctexset{
+      chapter = {
+        numbering = false,
+        beforeskip = 18bp,
+        format = {\heiti \mdseries \centering \zihao{3}},
+        afterskip = 26bp,
+      },
+      section/number = \arabic{section}
+    }
+
+    \stepcounter{chapter}
+    \chapter{结\quad 论}
+    \renewcommand{\thechapter}{结论}
   }
+  {}
+
+  \NewDocumentEnvironment {bibprint} {}
+  {
+    \ctexset{
+      chapter = {
+        numbering = false,
+        beforeskip = 18bp,
+        format = {\heiti \mdseries \centering \zihao{3}},
+        afterskip = 26bp,
+      },
+    }
+    % 设置参考文献字号为 5 号
+    \renewcommand*{\bibfont}{\zihao{5}}
+    % 设置参考文献各个项目之间的垂直距离为 0
+    \setlength{\bibitemsep}{0ex}
+    \setlength{\bibnamesep}{0ex}
+    \setlength{\bibinitsep}{0ex}
+    % 设置单倍行距
+    \renewcommand{\baselinestretch}{1.2}
+    % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+    \setlength{\biblabelsep}{1.7mm}
+    % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+    \RenewDocumentCommand \itemcmd {} {
+      \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
+      \mkgbnumlabel{\printfield{labelnumber}}
+      \hspace{\biblabelsep}
+    }
+  }
+  {}
+
+  \NewDocumentEnvironment {appendices} {}
+  {
+    \ctexset{
+      chapter = {
+        numbering = false,
+        beforeskip = 18bp,
+        format = {\heiti \mdseries \centering \zihao{3}},
+        afterskip = 26bp,
+      },
+      section/number = 附录\Alph{section},
+      subsection/number = \Alph{section}. \arabic{subsection},
+    }
+    \chapter{附\quad 录}
+    \renewcommand{\thechapter}{附录}
+  }
+  {}
+
+  \NewDocumentEnvironment {acknowledgements} {}
+  {
+    \ctexset{
+      chapter = {
+        numbering = false,
+        beforeskip = 18bp,
+        format = {\heiti \mdseries \centering \zihao{3}},
+        afterskip = 26bp,
+      },
+      section/number = \arabic{section},
+      subsection/number = \arabic{section}. \arabic{subsection},
+    }
+    \chapter{致\quad 谢}
+    \renewcommand{\thechapter}{致谢}
+  }
+  {}
