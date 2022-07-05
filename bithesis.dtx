@@ -273,6 +273,7 @@
 \int_new:N \g_@@_head_zihao_int
 \bool_new:N \g_@@_twoside_bool
 \bool_new:N \g_@@_thesis_type_english_bool
+\bool_new:N \g_@@_blind_mode_bool
 \tl_new:N \g_@@_label_devide_char_tl
 
 % \bool_new:N \l_@@_cover_auto_width_bool
@@ -475,6 +476,7 @@
     },
   type .initial:n = bachelor,
   twoside .bool_gset:N = \g_@@_twoside_bool,
+  blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
 }
 
 \keys_define:nn { bithesis / cover }
@@ -595,6 +597,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage{environ}
 
 \@@_if_graduate:TF {
   \int_set:Nn \g_@@_head_zihao_int {5}
@@ -998,6 +1001,12 @@
   \setbox0=\hbox{#3}
   \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
 
+\NewEnviron{blindPeerReview}{
+  \bool_if:NTF \g_@@_blind_mode_bool {} {
+    \BODY
+  }
+}
+
 % 重定义 \tn{cleardoublepage}，使得偶数页面在没有内容时也不显示页眉页脚，见
 % \url{https://tex.stackexchange.com/a/1683}。
 \RenewDocumentCommand \cleardoublepage { }
@@ -1157,6 +1166,7 @@
 
 \DeclareDocumentCommand \MakeCover {}
   {
+    \begin{blindPeerReview}
     \group_begin:
 
     \int_case:nn {\g_@@_thesis_type_int}
@@ -1374,6 +1384,7 @@
       }
     }
     \group_end:
+    \end{blindPeerReview}
   }
 
 % 圆形数字编号定义
@@ -1434,6 +1445,7 @@
 \NewDocumentCommand \MakeOriginality {} 
 {
   \group_begin:
+    \begin{blindPeerReview}
     \int_case:nn {\g_@@_thesis_type_int}
     {
       {1} 
@@ -1515,18 +1527,23 @@
       {4} {\@@_graduate_originality:}
       {5} {\@@_graduate_originality:}
     }
+  \end{blindPeerReview}
   \group_end:
 }
 
 \NewDocumentCommand \MakePaperBack {}
   {
-    \make_paper_back:
+    \begin{blindPeerReview}
+      \make_paper_back:
+    \end{blindPeerReview}
   }
 
 \NewDocumentCommand \MakeTitle {}
   {
-    \@@_make_chinese_title_page:
-    \@@_make_english_title_page:
+    \begin{blindPeerReview}
+      \@@_make_chinese_title_page:
+      \@@_make_english_title_page:
+    \end{blindPeerReview}
   }
 
 \DeclareDocumentCommand \MakeTOC {}
@@ -1763,58 +1780,66 @@
   }
   {}
 
-  \NewDocumentEnvironment {acknowledgements} {}
+  \NewDocumentEnvironment {acknowledgements} {+b}
   {
-    \ctexset{
-      section/number = \arabic{section},
-      subsection/number = \arabic{section}. \arabic{subsection},
-    }
+    \begin{blindPeerReview}
+      \ctexset{
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+      }
 
-    \@@_if_thesis_english:TF {
-      \chapter{\c_@@_label_ack_en_tl}
-    } {
-      \chapter{\c_@@_label_ack_tl}
-    }
+      \@@_if_thesis_english:TF {
+        \chapter{\c_@@_label_ack_en_tl}
+      } {
+        \chapter{\c_@@_label_ack_tl}
+      }
+      #1
+    \end{blindPeerReview}
+  } {}
+
+  \NewDocumentEnvironment {publications} {+b}
+  {
+    \begin{blindPeerReview}
+      % 设置参考文献字号为 5 号
+      \renewcommand*{\bibfont}{\zihao{5}}
+      % 设置参考文献各个项目之间的垂直距离为 0
+      \setlength{\bibitemsep}{0ex}
+      \setlength{\bibnamesep}{0ex}
+      \setlength{\bibinitsep}{0ex}
+      % 设置单倍行距
+      \renewcommand{\baselinestretch}{1.2}
+      % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+      \setlength{\biblabelsep}{1.7mm}
+      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+      \RenewDocumentCommand \itemcmd {} {
+        \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
+        \mkgbnumlabel{\printfield{labelnumber}}
+        \hspace{\biblabelsep}
+      }
+
+      % ===== 上方定义与「参考文献」部分相同
+      \cs_set:Npn \mkbibnamegiven ##1 {
+        \ifitemannotation{myself}{\textbf{##1}}{##1}
+      }
+
+      \cs_set:Npn \mkbibnamefamily ##1 {
+        \ifitemannotation{myself}{\textbf{##1}}{##1}
+      }
+
+      % Sorting by year, name, type.
+      \newrefcontext[sorting=ynt]
+      \chapter{\c_@@_label_publications_tl}
+      #1
+    \end{blindPeerReview}
   }
   {}
 
-  \NewDocumentEnvironment {publications} {}
+  \NewDocumentEnvironment {resume} {+b}
   {
-    % 设置参考文献字号为 5 号
-    \renewcommand*{\bibfont}{\zihao{5}}
-    % 设置参考文献各个项目之间的垂直距离为 0
-    \setlength{\bibitemsep}{0ex}
-    \setlength{\bibnamesep}{0ex}
-    \setlength{\bibinitsep}{0ex}
-    % 设置单倍行距
-    \renewcommand{\baselinestretch}{1.2}
-    % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
-    \setlength{\biblabelsep}{1.7mm}
-    % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-    \RenewDocumentCommand \itemcmd {} {
-      \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-      \mkgbnumlabel{\printfield{labelnumber}}
-      \hspace{\biblabelsep}
-    }
-
-    % ===== 上方定义与「参考文献」部分相同
-    \cs_set:Npn \mkbibnamegiven ##1 {
-      \ifitemannotation{myself}{\textbf{##1}}{##1}
-    }
-
-    \cs_set:Npn \mkbibnamefamily ##1 {
-      \ifitemannotation{myself}{\textbf{##1}}{##1}
-    }
-
-    % Sorting by year, name, type.
-    \newrefcontext[sorting=ynt]
-    \chapter{\c_@@_label_publications_tl}
-  }
-  {}
-
-  \NewDocumentEnvironment {resume} {}
-  {
+    \begin{blindPeerReview}
     \chapter{\c_@@_label_resume_tl}
+    #1
+    \end{blindPeerReview}
   }
   {
   }
