@@ -58,7 +58,7 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
-	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
+	cp bitproposal.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
 # Generate scaffolds for overleaf
