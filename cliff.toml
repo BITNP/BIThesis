@@ -6,12 +6,13 @@ header = """
 # Changelog\n
 All notable changes to this project will be documented in this file.\n
 Acronyms:
-- LB: lab-report
-- MT: master-thesis
-- PT: paper-translation
-- PS: presentation-slide
-- UPR: undergraduate-proposal-report
-- UT: undergraduate-thesis\n
+- LB: lab-report (实验报告模板)
+- GT: graduate-thesis (研究生学位论文模板)
+- PT: paper-translation (本科生毕业设计外文翻译模板)
+- PS: presentation-slide (演讲幻灯片模板)
+- UPR: undergraduate-proposal-report (本科生毕业设计开题报告模板)
+- UTE: undergraduate-thesis-en (本科生毕业设计论文模板（全英文专业）)
+- UT: undergraduate-thesis (本科生毕业设计论文模板)\n
 **Bolded text highlights its importance.**\n
 """
 # template for the changelog body
