@@ -3,7 +3,7 @@ PACKAGE = bithesis
 LATEX = xelatex
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls bitreport.cls bitproposal.cls bithesis.cls bitbeamer.cls
+CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls bitreport.cls bithesis.cls bitbeamer.cls
 
 LATEXMK = latexmk
 
@@ -53,12 +53,12 @@ regression-test: cls
 	zsh ./scripts/regression-testing.zsh
 
 copy: cls
-	cp bitproposal.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
-	cp bitproposal.cls $(SCAFFOLDDIR)/lab-report
+	cp bitreport.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
+	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
 # Generate scaffolds for overleaf

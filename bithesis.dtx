@@ -19,7 +19,6 @@
 % \iffalse
 %<cls>\RequirePackage{expl3,l3keys2e}
 %<thesis>\ProvidesExplClass{bithesis}
-%<proposal>\ProvidesExplClass{bitproposal}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
 %<cls>{2022-06-10}{3.0.0}{BIT Thesis Templates}
@@ -1866,7 +1865,7 @@
 %    \end{macrocode}
 
 %    \begin{macrocode}
-%<*proposal>
+%<*report>
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -1897,14 +1896,6 @@
 \RequirePackage{setspace}%
 \RequirePackage{caption}%
 \RequirePackage{booktabs}%
-
-% \RequirePackage{fontspec}%
-% \RequirePackage{setspace}%
-% \RequirePackage{graphicx}%
-% \RequirePackage{fancyhdr}%
-% \RequirePackage{pdfpages}%
-% \RequirePackage{setspace}%
-% \RequirePackage{caption}%
 
 % TODO: to be deleted
 % \RequirePackage{fontspec}%
@@ -2051,7 +2042,7 @@
   \group_end:
 }
 
-\DeclareDocumentCommand \BITProposalSetup { m }
+\DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitproposal } { #1 }}
 \DeclareDocumentCommand \MakeCover {}
   {
@@ -2203,97 +2194,6 @@
 % \renewcommand{\baselinestretch}{1.53}
 % 正文首行悬挂 1.02cm
 % \setlength{\parindent}{1.02cm}
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-%</proposal>
-%    \end{macrocode}
-%    \begin{macrocode}
-%<*report>
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
-% Pass every option not explicitly defined to `ctexbeamer`.
-\DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexart}
-}
-% Executes the code for each option.
-\ProcessOptions\relax
-% Load
-\LoadClass[zihao=-4]{ctexart}
-
-\RequirePackage{fancyhdr}%
-
-\RequirePackage{titlesec}%
-\RequirePackage{fontspec}%
-\RequirePackage{setspace}%
-
-\RequirePackage[a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm,includeheadfoot]{geometry}%
-
-\keys_define:nn { bitreport }
-  {
-    cover .meta:nn = { bitreport / cover  } {#1},
-    info .meta:nn = { bitreport / info } {#1}
-  }
-
-\keys_define:nn { bitreport / cover }
-  {
-    imagePath .tl_set:N = \l_bit_coverimagepath_tl,
-    date .tl_set:N = \l_bit_coverdate_tl,
-  }
-
-\keys_define:nn { bitreport / info }
-  {
-    title .tl_set:N = \l_bit_title_tl,
-    dept .tl_set:N = \l_bit_depart_tl,
-    major .tl_set:N = \l_bit_major_tl,
-    classNumber .tl_set:N = \l_bit_classnumber_tl,
-    studentNumber .tl_set:N = \l_bit_studentnumber_tl,
-    name .tl_set:N = \l_bit_name_tl,
-    teacherName .tl_set:N = \l_bit_teachername_tl,
-  }
-
-\DeclareDocumentCommand \BITLabReportSetup { m }
-  { \keys_set:nn { bitreport } { #1 }}
-\DeclareDocumentCommand \MakeCover {}
-  {
-    \group_begin:
-      % Main code for \MakeCover
-    \group_end:
-  }
-
-
-% 将西文字体设置为 Times New Roman
-% \setromanfont{Times~New~Roman}%
-
-% 设置文档标题深度
-\setcounter{tocdepth}{3}%
-\setcounter{secnumdepth}{3}%
-
-%%
-% 设置一级标题、二级标题格式
-\ctexset{section={%
-  format={\raggedright \bfseries \songti \zihao{-3}},%
-  name = {,.},%
-  number = \chinese{section}%
-  }%
-}%
-\ctexset{subsection={%
-  format = {\bfseries \songti \raggedright \zihao{-4}},%
-  }%
-}%
-
-% 页眉和页脚（页码）的格式设定
-\fancyhf{}%
-\fancyhead[L]{\fontsize{10.5pt}{10.5pt}\selectfont\kaishu{\l_bit_title_tl}}%
-\fancyfoot[C]{\fontsize{9pt}{9pt}\selectfont\kaishu{\thepage}}%
-\renewcommand{\headrulewidth}{0.5pt}%
-\renewcommand{\footrulewidth}{0pt}%
-
-% 正文 pagestyle
-\pagestyle{fancy}
-\setcounter{page}{1}%
 %    \end{macrocode}
 %
 %    \begin{macrocode}
