@@ -19,24 +19,20 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-\unnumchapter{附~~~~录}
-\renewcommand{\thechapter}{附录}
+\begin{appendices}
+  附录相关内容…
 
-% 设置附录编号格式
-\ctexset{
-  section/number = 附录\Alph{section}
-}
+  % 这里示范一下添加多个附录的方法：
 
-附录相关内容…
+  \section{\LaTeX 环境的安装}
+  \LaTeX 环境的安装。
 
-% 这里示范一下添加多个附录的方法：
+  \section{BIThesis 使用说明}
+  BIThesis 使用说明。
 
-\section{\LaTeX 环境的安装}
-\LaTeX 环境的安装。
+  \textcolor{blue}{附录是毕业设计（论文）主体的补充项目，为了体现整篇文章的完整性，写入正文又可能有损于论文的条理性、逻辑性和精炼性，这些材料可以写入附录段，但对于每一篇文章并不是必须的。附录依次用大写正体英文字母 A、B、C……编序号，如附录 A、附录 B。阅后删除此段。}
 
-\section{BIThesis 使用说明}
-BIThesis 使用说明。
+  \textcolor{blue}{附录正文样式与文章正文相同：宋体、小四；行距：22 磅；间距段前段后均为 0 行。阅后删除此段。}
 
-\textcolor{blue}{附录是毕业设计（论文）主体的补充项目，为了体现整篇文章的完整性，写入正文又可能有损于论文的条理性、逻辑性和精炼性，这些材料可以写入附录段，但对于每一篇文章并不是必须的。附录依次用大写正体英文字母 A、B、C……编序号，如附录 A、附录 B。阅后删除此段。}
+\end{appendices}
 
-\textcolor{blue}{附录正文样式与文章正文相同：宋体、小四；行距：22 磅；间距段前段后均为 0 行。阅后删除此段。}

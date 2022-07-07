@@ -3,7 +3,7 @@ PACKAGE = bithesis
 LATEX = xelatex
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls
+CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls bitreport.cls bithesis.cls bitbeamer.cls
 
 LATEXMK = latexmk
 
@@ -41,21 +41,25 @@ clean-dist:
 clean-all: clean clean-dist FORCE_MAKE
 
 test: doc copy FORCE_MAKE
-	cd $(SCAFFOLDDIR)/undergraduate-thesis && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/master-thesis && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/undergraduate-proposal-report && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/undergraduate-thesis && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/paper-translation && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/undergraduate-thesis-en && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
 
 regression-test: cls
 	zsh ./scripts/regression-testing.zsh
 
 copy: cls
-	cp bitbook.cls $(SCAFFOLDDIR)/undergraduate-thesis
-	cp bitart.cls $(SCAFFOLDDIR)/lab-report
-	cp bitart.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
-	cp bitbook.cls $(SCAFFOLDDIR)/paper-translation
-	cp bitgrad.cls $(SCAFFOLDDIR)/master-thesis
+	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis
+	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
+	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
+	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
+	cp bitreport.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
+	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
+	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
 # Generate scaffolds for overleaf
 overleaf: FORCE_MAKE
@@ -64,11 +68,6 @@ overleaf: FORCE_MAKE
 	make copy
 	mkdir overleaf
 	ls templates | xargs -I {} bash -c "cp -r ./templates/{} overleaf && zip -r ./overleaf/{}.zip ./overleaf/{}"
-	# cp -r ./templates/undergraduate-thesis overleaf/
-	# cp -r ./templates/master-thesis overleaf/
-	# cp -r ./templates/lab-report overleaf/
-	# cp -r ./templates/undergraduate-proposal-report overleaf/
-	# cp -r ./templates/paper-translation overleaf/
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
