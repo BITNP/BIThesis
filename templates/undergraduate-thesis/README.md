@@ -11,20 +11,19 @@
 ├── README.md
 ├── chapters
 │   ├── 0_abstract.tex
-│   └── 1_chapter1.tex
+│   ├── 1_chapter1.tex
+│   └── 2_chapter2.tex
 ├── images
 │   ├── bit_logo.png
 │   └── header.png
 ├── main.pdf
 ├── main.tex
 └── misc
-    ├── 0_cover.tex
     ├── 1_originality.tex
-    ├── 2_toc.tex
-    ├── 3_conclusion.tex
-    ├── 4_reference.tex
-    ├── 5_appendix.tex
-    ├── 6_acknowledgements.tex
+    ├── 2_conclusion.tex
+    ├── 3_reference.tex
+    ├── 4_appendix.tex
+    ├── 5_acknowledgements.tex
     └── ref.bib
 ```
 

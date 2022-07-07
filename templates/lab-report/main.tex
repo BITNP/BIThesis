@@ -19,7 +19,6 @@
 
 \documentclass[]{bitreport}
 
-
 % 将你的相关信息替换如下示例
 \BITSetup{
   cover = {
@@ -28,6 +27,9 @@
     % date = {2022年5月9日}
   },
   info = {
+    % 想要删除某项封面信息，直接删除该项即可。
+    % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
+    % 如需要换行，则用 “\\” 符号分割。
     title = {通信课程实验报告},
     school = {计算机学院},
     major = {计算机科学与技术},
@@ -38,7 +40,7 @@
   }
 }
 
-%% usepackage
+%% 参考文献
 \usepackage[style=gb7714-2015,backend=biber]{biblatex}
 % used by figure.
 \usepackage{float,graphicx}

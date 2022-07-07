@@ -20,15 +20,19 @@
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
 \documentclass[type=bachelor]{bithesis}
-% 如果想要修改样式，但无法找到样式在哪里定义：请参考 https://bithesis.bitnp.net/Guide/4-Others/Troubleshooting.html#%E6%83%B3%E8%A6%81%E4%BF%AE%E6%94%B9%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F-%E4%BD%86%E6%98%AF%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A0%B7%E5%BC%8F%E5%9C%A8%E5%93%AA%E9%87%8C%E5%AE%9A%E4%B9%89
 
 \BITSetup{
   cover = {
     headerImage = images/header.png,
     % 在封面标题中使用思源黑体，使用此选项可以保证与 Word 封面标题的字体一致。
     xiheiFont = STXIHEI.TTF,
+    %% 使用以下参数来自定义封面日期
+    % date = 2022年6月,
   },
   info = {
+    % 想要删除某项封面信息，直接删除该项即可。
+    % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
+    % 如需要换行，则用 “\\” 符号分割。
     title = 北京理工大学本科生毕业设计（论文）题目,
     titleEn = {The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology},
     school = 计算机学院,
@@ -37,13 +41,10 @@
     studentId = 11xxxxxxxx,
     supervisor = 张哈希,
     keywords = {北京理工大学；本科生；毕业设计（论文）},
-    keywordsEn = {BIT； Undergraduate； Graduation Project (Thesis)},
+    keywordsEn = {BIT; Undergraduate; Graduation Project (Thesis)},
     % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
     % externalSupervisor = 左偏树,
   },
-  style = {
-    % head = {自定义页眉文字}
-  }
 }
 
 % 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
@@ -77,10 +78,14 @@
 
 % 原创性声明：如无特殊需要，本部分无需改动
 % 更改为 PDF 页面插入，如需要添加内容，可考虑先用 Word 制作再覆盖 misc/1_originality.pdf
+% ====== 原创性声明（PDF 格式）======
 \begin{blindPeerReview}
   \includepdf{misc/1_originality.pdf}\newpage
 \end{blindPeerReview}
+% ====== 原创性声明（PDF 格式）======
+% ====== 原创性声明（LaTeX 格式）======
 % \input{./misc/1_originality.tex}
+% ====== 原创性声明（LaTeX 格式）======
 
 % 前置页面定义
 \frontmatter
@@ -98,6 +103,7 @@
 \input{chapters/2_chapter2.tex}
 % \input{chapters/3_chapter3.tex}
 
+% 后置部分
 \backmatter
 
 % 结论：在结论相应的 TeX 文件处进行结论部分的撰写

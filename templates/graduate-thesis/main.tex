@@ -17,15 +17,20 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-% 默认单面打印 oneside 、硕士论文模板 master
+% 硕士论文模板 type=master
+% 博士论文模板 type=doctor
 
 \documentclass[type=master]{bithesis}
 
 \BITSetup{
   cover = {
-    date = 2022年6月,
+    %% 使用以下参数来自定义封面日期
+    % date = 2022年6月,
   },
   info = {
+    % 想要删除某项封面信息，直接删除该项即可。
+    % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
+    % 如需要换行，则用 “\\” 符号分割。
     classification = TQ028.1,
     UDC = 540,
     title = 形状记忆聚氨酯的合成及其在织物中的应用,
@@ -51,7 +56,7 @@
   }
 }
 
-\RequirePackage[
+\usepackage[
   defernumbers=true,
   backend=biber,
   style=gb7714-2015,
@@ -91,13 +96,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter
 
+% 摘要
 \input{./chapters/abstract.tex}
 
+% 制作目录
 \MakeTOC
 
+% 插图目录
 \listoffigures
+% 表格目录
 \listoftables
 
+% 主要符号对照表
 \input{./chapters/symbols.tex}
 
 \mainmatter
@@ -107,12 +117,20 @@
 
 \backmatter
 
+% 结论
 \input{./chapters/conclusion.tex}
+% 参考文献
 \input{./chapters/reference.tex}
 
+% 附录
 \input{./chapters/appendices.tex}
+
+% 个人成果
 \input{./chapters/pub.tex}
+
+% 致谢
 \input{./chapters/acknoledgements.tex}
+% 个人简介（仅博士生需要此项）
 \input{./chapters/resume.tex}
 
 % 加入目录
