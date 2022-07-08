@@ -1,6 +1,6 @@
-# Proposal Report 开题报告 ![](https://raw.githubusercontent.com/BITNP/BIThesis/main/assets/bithesis_badge_solid.svg?sanitize=true)
+# Proposal Report 本科生毕业设计开题报告 ![](https://raw.githubusercontent.com/BITNP/BIThesis/main/assets/bithesis_badge_solid.svg?sanitize=true)
 
-本目录中包含有北京理工大学本科生毕业设计（论文）的开题报告模板，有关模板的使用方法更为详细的介绍，请参考：[BIThesis Wiki - 本科生开题报告：Proposal report](https://bithesis.bitnp.net/Guide/3-Templates/Proposal-Report)。
+本目录中包含有北京理工大学本科生毕业设计的开题报告模板，有关模板的使用方法更为详细的介绍，请参考：[BIThesis Wiki - 本科生开题报告：Proposal report](https://bithesis.bitnp.net/Guide/3-Templates/Proposal-Report)。
 
 ## 项目结构
 
@@ -10,7 +10,6 @@
 ├── ……
 ├── main.pdf：开题报告编译得到的 PDF 文件
 └── misc：开题报告中所需要的杂项目录
-    ├── cover.tex：开题报告封面
     ├── refs.bib：开题报告的参考文献 BibTeX 数据库
     └── reviewTableBlank.pdf：开题报告 PDF 格式的「评审表」
 ```
@@ -19,6 +18,12 @@
 
 ## 编译方式
 
+方式一（推荐）：
+```
+latexmk
+```
+
+方式二：
 ```
 -> xelatex
 -> biber
