@@ -2013,13 +2013,12 @@
 \LoadClass[zihao=-4]{ctexart}
 
 \RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
-\RequirePackage{fancyhdr}%
-\RequirePackage{setspace}%
-\RequirePackage{caption}%
-\RequirePackage{booktabs}%
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{pdfpages}
 
-% TODO: to be deleted
-% \RequirePackage{fontspec}%
 
 \keys_define:nn { bitproposal }
   {
@@ -2312,7 +2311,7 @@
 
 % 正文 22 磅的行距，段前段后间距为 0
 % \setlength{\parskip}{0em}
-% \renewcommand{\baselinestretch}{1.53}
+\cs_set:Npn \baselinestretch {1.53}
 % 正文首行悬挂 1.02cm
 % \setlength{\parindent}{1.02cm}
 %    \end{macrocode}
