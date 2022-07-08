@@ -31,7 +31,7 @@
 %
 %<*driver>
 \ProvidesFile{bithesis.dtx}[2022/05/09 2.1.1 BIT Thesis Templates]
-\documentclass[a4paper,full]{l3doc}
+\documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
 \EnableCrossrefs
@@ -165,7 +165,6 @@
 %
 % 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 % 
-% \section{使用说明}
 % \subsection{\BIThesis 宏包的组成}
 % 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 % \begin{table}[H]
@@ -180,6 +179,8 @@
 %                    & \cls{bitbeamer.cls} & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     \\ \cmidrule(l){2-3}
 % \end{tabular}
 % \end{table}
+%
+% \section{安装}
 % \subsection{\BIThesis 宏包的安装和更新}
 % 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
 %
@@ -187,10 +188,18 @@
 % \begin{shell}[morekeywords={tlmgr,install}]
 %   tlmgr install fduthesis
 % \end{shell}
-% \subsection{使用 \BIThesis 文档类}
-% 推荐使用\BIThesisRelease （开箱即用）。\BIThesisRelease 提供了多种最常用的模板，你可以在\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。 
+%
+% 更新可以通过图形界面进行，或者通过命令行：
+% \begin{shell}[morekeywords={tlmgr,install}]
+%   tlmgr update fduthesis
+% \end{shell}
+%
+% \section{\cls{bithesis} 使用与配置}
 % 
-% \subsection{\cls{bithesis} 使用与配置}
+% 推荐使用\BIThesisRelease （开箱即用）。
+% 
+% \BIThesisRelease 提供了多种最常用的模板，你可以在
+% \href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。 
 % 
 % 使用此文档类的模板有：
 % \begin{itemize}
@@ -200,7 +209,7 @@
 %  \item \BIThesisTemplates{GT}
 % \end{itemize}
 %
-% \subsubsection{最小用例}
+% \subsection{最小用例}
 % 
 % \begin{latex}
 %   \documentclass[type=bachelor]{bithesis}
@@ -213,14 +222,18 @@
 %   \begin{document}
 %   \end{document}
 % \end{latex}
-% \subsubsection{模板选项}
-% % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
+%
+% \subsection{模板选项}
+%
+% 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
+%
 % \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
 %   \documentclass(*\oarg{模板选项}*){bithesis}
 % \end{latex}
+%
 % \begin{function}{type}
 %   \begin{bitsyntax}[emph={[1]type}]
-%     type = (*<(bachelor)|bachelor_translation|bachelor_english|master|docter>*)
+%     type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|docter>*)
 %   \end{bitsyntax}
 %   选择论文类型，它们分别对应：
 %   \begin{itemize}
@@ -236,7 +249,8 @@
 %   \begin{bitsyntax}[emph={[1]blindPeerReview}]
 %     blindPeerReview = (*<(false)|true>*)
 %   \end{bitsyntax}
-%   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，比如封面、信息页、原创性声明、个人简介、致谢等等。
+%   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，
+%   比如封面、信息页、原创性声明、个人简介、致谢等等。
 % \end{function}
 %
 % \begin{function}{twoside}
@@ -245,7 +259,7 @@
 %   \end{bitsyntax}
 % \end{function}
 %  
-% \subsubsection{参数设置}
+% \subsection{参数设置}
 %   
 % \begin{function}{\BITSetup}
 %   \begin{bitsyntax}[emph={[1]BITSetup}]
@@ -264,6 +278,7 @@
 % 表中，“=”左右的空格不影响设置；但需注意，参数列表中不可以出现空行。
 % 与模板选项相同，布尔型的参数可以省略 〈选项〉 = true 中的“= true”。
 % 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
+%
 % \begin{latex}
 %   \BITSetup{
 %     cover = {
@@ -275,6 +290,7 @@
 %     }
 %   }
 % \end{latex}
+%
 % 或者
 % 
 % \begin{latex}[morekeywords={\BITSetup},emph={[1]cover,date,info,title,author}]
@@ -285,36 +301,41 @@
 %   }
 % \end{latex}
 %
-% \textbf{请注意：以下选项根据模板的不同，可能会有不同的默认值。有些模板可能不会使用某些选项。使用与否以及使用方式是根据学校的论文撰写要求实现的。}
+% \textbf{请注意：以下选项根据模板的不同，可能会有不同的默认值。
+%  有些模板可能不会使用某些选项。使用与否以及使用方式是根据学校的论文撰写要求实现的。}
 %  
-% \paragraph{封面选项}
+% \subsubsection{封面选项}
 % 
 % \begin{function}{cover}
 %   \begin{bitsyntax}[emph={[1]cover}]
 %     cover = (*\marg{键值列表}*)
 %     cover/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
+%
 %   该选项包含许多子项目，用于设置论文格式。具体内容见下。
 % \end{function}
 %
 % \begin{function}{cover/date}
 %   \begin{bitsyntax}[emph={[1]date}]
-%     cover/date = (*\marg{任意字符串}*)
+%     date = (*\marg{任意字符串}*)
 %   \end{bitsyntax}
+%
 %   覆盖封面的日期。
 % \end{function}
 %
 % \begin{function}{cover/headerImage}
 %   \begin{bitsyntax}[emph={[1]headerImage}]
-%     cover/headerImage = (*\marg{图片路径}*)
+%     headerImage = (*\marg{图片路径}*)
 %   \end{bitsyntax}
+%
 %   设置封面顶部的“北京理工大学”字样图片。
 % \end{function}
 %
 % \begin{function}{cover/xiheiFont}
 %   \begin{bitsyntax}[emph={[1]xiheiFont}]
-%     cover/xiheiFont = (*\marg{字体路径}*)
+%     xiheiFont = (*\marg{字体路径}*)
 %   \end{bitsyntax}
+%
 %   配置此选项以在部分模板封面中使用“华文细黑”，保证与 Word 模板中的字体一致。
 %
 %   在 Windows 和 MacOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装。
@@ -322,22 +343,274 @@
 %
 % \begin{function}{cover/dilimiter}
 %   \begin{bitsyntax}[emph={[1]dilimiter}]
-%     cover/dilimiter = (*\marg{任意字符串}*)
+%     dilimiter = (*\marg{任意字符串}*)
 %   \end{bitsyntax}
+%
 %   \textit{此选项一般不需要用户自行修改。}
+%
 %   设置封面信息中标签和值的分隔符。一般为全角或者半角的冒号。
 % \end{function}
 %
 % \begin{function}{cover/autoWidth}
 %   \begin{bitsyntax}[emph={[1]autoWidth}]
-%     cover/autoWidth = (*<(true)|false>*)
+%     autoWidth = (*<(true)|false>*)
 %   \end{bitsyntax}
+%
 %   \textit{此选项一般不需要用户自行修改。}
+%
 %   自动计算封面中下划线的长度。
+%   
+%   如果关闭了该选项，则建议配合\kvopt{cover/labelMaxWidth}{\meta{长度}}\\
+%   和\kvopt{cover/valueMaxWidth}{\meta{长度}}使用来控制下划线的长度。
 % \end{function}
+%
+% \begin{function}{cover/labelMaxWidth}
+%   \begin{bitsyntax}[emph={[1]labelMaxWidth}]
+%     labelMaxWidth = (*\marg{任意长度}*)
+%   \end{bitsyntax}
+%   
+%   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
+%
+%   设置封面信息中标签的占位长度。
+% \end{function}
+%
+% \begin{function}{cover/valueMaxWidth}
+%   \begin{bitsyntax}[emph={[1]valueMaxWidth}]
+%     valueMaxWidth = (*<c|l|r>*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   设置封面信息中值的占位长度。\textbf{同时也会影响下划线的长度。}
+% \end{function}
+%
+% \begin{function}{cover/labelAlign}
+%   \begin{bitsyntax}[emph={[1]labelAlign}]
+%     labelAlign = (*\marg{任意长度}*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   设置封面信息中值的对其方式（居中，左对齐、右对齐）。
+% \end{function}
+%
+% \begin{function}{cover/valueAlign}
+%   \begin{bitsyntax}[emph={[1]valueAlign}]
+%     valueAlign = (*\marg{任意长度}*)
+%   \end{bitsyntax}
+%
+%   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
+%
+%   设置封面信息中标签的对其方式（居中，左对齐、右对齐）。
+% \end{function}
+%
+% \begin{function}{cover/underlineThickness}
+%   \begin{bitsyntax}[emph={[1]underlineThickness}]
+%     underlineThickness = (*\marg{任意长度}*)
+%   \end{bitsyntax}
+%
+%   设置封面信息中下划线的厚度。
+% \end{function}
+%
+% \begin{function}{cover/underlineOffset}
+%   \begin{bitsyntax}[emph={[1]underlineOffset}]
+%     underlineOffset = (*(-10pt)|\marg{任意长度}*)
+%   \end{bitsyntax}
+%
+%   设置封面信息中下划线的偏移量。
+% \end{function}
+%
+% \subsubsection{论文基本信息}
+%
+% \begin{function}{info}
+%   \begin{bitsyntax}[emph={[1]info}]
+%     info = (*\marg{键值列表}*)
+%     info/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%  该选项包含许多子项目，用于录入论文信息。具体内容见下。
+%  一般以「En」结尾的项目表示对应的英文字段。
+% \end{function}
+%
+% \begin{function}{info/title,info/titleEn}
+%   \begin{bitsyntax}[emph={[1]title,titleEn}]
+%     title = (*\marg{字符串}*)
+%     titleEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   论文标题。
+% \end{function}
+%
+% \begin{function}{info/school,info/schoolEn}
+%   \begin{bitsyntax}[emph={[1]school,schoolEn}]
+%     school = (*\marg{字符串}*)
+%     schoolEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   学院名称。
+% \end{function}
+%
+% \begin{function}{info/major,info/majorEn}
+%   \begin{bitsyntax}[emph={[1]majorEn}]
+%     major = (*\marg{字符串}*)
+%     majorEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   专业名称。
+% \end{function}
+%
+% \begin{function}{info/author,info/authorEn}
+%   \begin{bitsyntax}[emph={[1]author,authorEn}]
+%     author = (*\marg{字符串}*)
+%     authorEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   作者姓名。
+% \end{function}
+%
+% \begin{function}{info/studentId}
+%   \begin{bitsyntax}[emph={[1]studentId}]
+%     studentId = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   学号。
+% \end{function}
+%
+% \begin{function}{info/supervisor,info/supervisorEn}
+%   \begin{bitsyntax}[emph={[1]supervisor,supervisorEn}]
+%     supervisor = (*\marg{字符串}*)
+%     supervisorEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   指导教师。
+% \end{function}
+%
+% \begin{function}{info/externalSupervisor}
+%   \begin{bitsyntax}[emph={[1]externalSupervisor}]
+%     externalSupervisor = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   校外指导教师。
+% \end{function}
+%
+% \begin{function}{info/keywords,info/keywordsEn}
+%   \begin{bitsyntax}[emph={[1]keywords,keywordsEn}]
+%     keywords = (*\marg{字符串；以全角分号分割}*)
+%     keywordsEn = (*\marg{字符串;以分号分割}*)
+%   \end{bitsyntax}
+%
+%   摘要关键词。
+% \end{function}
+%
+% \begin{function}{info/translationTitle}
+%   \begin{bitsyntax}[emph={[1]translationTitle}]
+%     translationTitle = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   文献翻译中，翻译后的论文名称。
+% \end{function}
+%
+% \begin{function}{info/translationOriginTitleEn}
+%   \begin{bitsyntax}[emph={[1]translationOriginTitleEn}]
+%     translationOriginTitleEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   文献翻译中，翻译前的论文名称。
+% \end{function}
+%
+% \begin{function}{info/classification}
+%   \begin{bitsyntax}[emph={[1]classification}]
+%     classification = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   中国分类号。
+% \end{function}
+%
+% \begin{function}{info/UDC}
+%   \begin{bitsyntax}[emph={[1]UDC}]
+%     UDC = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   UDC分类号。
+% \end{function}
+%
+% \begin{function}{info/chairman,info/chairmanEn}
+%   \begin{bitsyntax}[emph={[1]chairman,chairmanEn}]
+%     chairman = (*\marg{字符串}*)
+%     chairmanEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   答辩委员会主席。
+% \end{function}
+%
+% \begin{function}{info/degree,info/degreeEn}
+%   \begin{bitsyntax}[emph={[1]degree,degreeEn}]
+%     degree = (*\marg{字符串}*)
+%     degreeEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   申请学位。
+% \end{function}
+%
+% \begin{function}{info/institute,info/instituteEn}
+%   \begin{bitsyntax}[emph={[1]institute,instituteEn}]
+%     institute = (*(北京理工大学)|\marg{字符串}*)
+%     instituteEn = (*(Beijing~Institute~of~Technology)|\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   学位授予单位。
+% \end{function}
+%
+% \begin{function}{info/defenseDate,info/defenseDateEn}
+%   \begin{bitsyntax}[emph={[1]defenseDate,defenseDateEn}]
+%     defenseDate = (*\marg{字符串}*)
+%     defenseDateEn = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   答辩日期。
+% \end{function}
+%
+% \begin{function}{info/classifiedLevel}
+%   \begin{bitsyntax}[emph={[1]classifiedLevel}]
+%     classifiedLevel = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   密级。
+% \end{function}
+%
+% \subsubsection{样式信息}
+% 
+% \begin{function}{style}
+%   \begin{bitsyntax}[emph={[1]style}]
+%     style = (*\marg{键值列表}*)
+%     style/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于录入论文信息。具体内容见下。
+% \end{function}
+%
+% \begin{function}{style/head}
+%   \begin{bitsyntax}[emph={[1]head}]
+%     head = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   页眉文字。
+% \end{function}
+%
+% \begin{function}{info/xx}
+%   \begin{bitsyntax}[emph={[1]xx}]
+%     xx = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   专业名称。
+% \end{function}
+%
 %
 % \section{致谢}
 % \section{软件许可证}
+%
 % \begin{itemize}
 %   \item 北京理工大学校徽校名图片的版权归北京理工大学所有。
 %   \item \BIThesisLaTeX 宏包以及相关文档类使用 \LPPL 授权。
@@ -353,20 +626,6 @@
 %    \begin{macrocode}
 %<@@=bithesis>
 %    \end{macrocode}
-%
-% \begin{macro}{\YOURMACRO}
-% Put explanation of |\YOURMACRO|’s implementation here.
-%    \begin{macrocode}
-\newcommand{\YOURMACRO}{}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{environment}{YOURENV}
-% Put explanation of |YOURENV|’s implementation here.
-%    \begin{macrocode}
-\newenvironment{YOURENV}{}{}
-%    \end{macrocode}
-% \end{environment}
 %
 %    \begin{macrocode}
 %</package>
@@ -642,7 +901,7 @@
     instituteEn .tl_set:N = \l_@@_value_institute_en_tl,
     instituteEn .initial:n = {\c_@@_label_university_en_tl},
     defenseDateEn .tl_set:N = \l_@@_value_defense_date_en_tl,
-    classified_level .tl_set:N = \l_@@_value_classified_level_tl,
+    classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
   }
 
 \keys_define:nn { bithesis / misc }
@@ -3186,8 +3445,7 @@ footskip=0.7cm% 页脚 1.8cm %
   showspaces=false, %
   flexiblecolumns=true, %
   breaklines=true, % 对过长的代码自动换行
-  breakautoindent=true,%
-  breakindent=4em, %
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
   aboveskip=1em, % 代码块边框
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
@@ -3668,7 +3926,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage[UTF8,scheme=chinese,heading,sub3section]{ctex}
 \RequirePackage[
   top=2.5cm, bottom=2.5cm,
-  left=4cm, right=2cm,
+  left=5cm, right=2cm,
   headsep=3mm]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{multirow}
@@ -3717,6 +3975,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \newcommand{\LPPL}{{\href{https://www.latex-project.org/lppl/lppl-1-3c.txt}{\LaTeX{} Project Public License (1.3.c)}}}
 \newcommand{\versionold}{v2.0 BirthdayCake}
 \newcommand{\version}{v3 Summer Time}
+
 \ExplSyntaxOn
 
 \AtBeginEnvironment { bitsyntax } {
@@ -3742,12 +4001,18 @@ footskip=0.7cm% 页脚 1.8cm %
   }
 }
 
+% 允许换行的细间距。
+\def\breakablethinspace{\hskip 0.16667em\relax}
+
+
+\DeclareDocumentCommand\kvopt{mm}
+  {\texttt{#1\breakablethinspace=\breakablethinspace#2}}
+
 \ExplSyntaxOff
 
 \ctexset{
   today=big,
   abstractname=简介,
-  section / numbering = false,
 }
 
 \ctexset{section={
