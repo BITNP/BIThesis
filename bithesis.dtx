@@ -1016,6 +1016,7 @@
   type .initial:n = bachelor,
   twoside .bool_gset:N = \g_@@_twoside_bool,
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
+  ctex .tl_set:N = \l_@@_options_to_ctex_tl,
 }
 
 \keys_define:nn { bithesis / cover }
@@ -1105,9 +1106,10 @@
   \PassOptionsToClass{oneside,openany}{ctexbook}
 }
 
+
 % Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexbook}
+  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexbook}
 }
 % Executes the code for each option.
 \ProcessOptions\relax

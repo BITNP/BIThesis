@@ -224,6 +224,7 @@
   type .initial:n = bachelor,
   twoside .bool_gset:N = \g__bithesis_twoside_bool,
   blindPeerReview .bool_gset:N = \g__bithesis_blind_mode_bool,
+  ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
 }
 
 \keys_define:nn { bithesis / cover }
@@ -314,7 +315,7 @@
 }
 
 \DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexbook}
+  \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexbook}
 }
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
