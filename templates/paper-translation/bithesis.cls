@@ -343,6 +343,10 @@
 \RequirePackage{enumitem}
 \RequirePackage{environ}
 
+\pdfstringdefDisableCommands{%
+  \let\quad\empty
+}
+
 \__bithesis_if_graduate:TF {
   \int_set:Nn \g__bithesis_head_zihao_int {5}
   \geometry{

@@ -1139,6 +1139,11 @@
 \RequirePackage{enumitem}
 \RequirePackage{environ}
 
+% Suppress warning for \hskip by hyperref.
+\pdfstringdefDisableCommands{%
+  \let\quad\empty  
+}
+
 \@@_if_graduate:TF {
   \int_set:Nn \g_@@_head_zihao_int {5}
   \geometry{
@@ -2435,9 +2440,31 @@
 
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
 
+\keys_define:nn { bitreport }
+  {
+    option .meta:nn = {bitreport / option } {#1},
+    cover .meta:nn = { bitreport / cover  } {#1},
+    info .meta:nn = { bitreport / info } {#1},
+    misc .meta:nn = { bitreport / misc } {#1}
+  }
+
+\keys_define:nn { bitreport / option }
+  {
+    type .choice:,
+    type .value_required:n = true,
+    type .choices:Vn =
+      \c_@@_report_type_clist
+      { 
+        \int_set_eq:NN \g_@@_report_type_int \l_keys_choice_int 
+      },
+    type .initial:n = common,
+    ctex .tl_set:N = \l_@@_options_to_ctex_tl,
+  }
+
+
 % Pass every option not explicitly defined to `ctexbeamer`.
 \DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexart}
+  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
 }
 % Executes the code for each option.
 \ProcessOptions\relax
@@ -2451,14 +2478,6 @@
 \RequirePackage{booktabs}
 \RequirePackage{pdfpages}
 
-
-\keys_define:nn { bitreport }
-  {
-    option .meta:nn = {bitreport / option } {#1},
-    cover .meta:nn = { bitreport / cover  } {#1},
-    info .meta:nn = { bitreport / info } {#1},
-    misc .meta:nn = { bitreport / misc } {#1}
-  }
 
 \keys_define:nn { bitreport / cover }
   {
@@ -2491,19 +2510,6 @@
     externalSupervisor .tl_set:N = \l_@@_value_external_supervisor_tl,
     studentId .tl_set:N = \l_@@_value_student_id_tl,
   }
-
-\keys_define:nn { bitreport / option }
-{
-  type .choice:,
-  type .value_required:n = true,
-  type .choices:Vn =
-    \c_@@_report_type_clist
-    { 
-      \int_set_eq:NN \g_@@_report_type_int \l_keys_choice_int 
-    },
-  type .initial:n = common,
-
-}
 
 \keys_define:nn { bitreport / misc }
   {
