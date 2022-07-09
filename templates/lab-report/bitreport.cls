@@ -41,8 +41,29 @@
 
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
 
+\keys_define:nn { bitreport }
+  {
+    option .meta:nn = {bitreport / option } {#1},
+    cover .meta:nn = { bitreport / cover  } {#1},
+    info .meta:nn = { bitreport / info } {#1},
+    misc .meta:nn = { bitreport / misc } {#1}
+  }
+
+\keys_define:nn { bitreport / option }
+  {
+    type .choice:,
+    type .value_required:n = true,
+    type .choices:Vn =
+      \c__bithesis_report_type_clist
+      {
+        \int_set_eq:NN \g__bithesis_report_type_int \l_keys_choice_int
+      },
+    type .initial:n = common,
+    ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
+  }
+
 \DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{ctexart}
+  \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexart}
 }
 \ProcessOptions\relax
 \LoadClass[zihao=-4]{ctexart}
@@ -53,14 +74,6 @@
 \RequirePackage{caption}
 \RequirePackage{booktabs}
 \RequirePackage{pdfpages}
-
-\keys_define:nn { bitreport }
-  {
-    option .meta:nn = {bitreport / option } {#1},
-    cover .meta:nn = { bitreport / cover  } {#1},
-    info .meta:nn = { bitreport / info } {#1},
-    misc .meta:nn = { bitreport / misc } {#1}
-  }
 
 \keys_define:nn { bitreport / cover }
   {
@@ -93,19 +106,6 @@
     externalSupervisor .tl_set:N = \l__bithesis_value_external_supervisor_tl,
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
   }
-
-\keys_define:nn { bitreport / option }
-{
-  type .choice:,
-  type .value_required:n = true,
-  type .choices:Vn =
-    \c__bithesis_report_type_clist
-    {
-      \int_set_eq:NN \g__bithesis_report_type_int \l_keys_choice_int
-    },
-  type .initial:n = common,
-
-}
 
 \keys_define:nn { bitreport / misc }
   {
