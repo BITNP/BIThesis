@@ -659,10 +659,127 @@
 %   此时页码会使用罗马数字进行计数。
 % \end{function}
 %
+% \begin{function}{abstract}
+%   \begin{bitsyntax}[emph={[1]abstract}]
+%     \begin{abstract}
+%        \meta{中文摘要}
+%     \end{abstract}
+%   \end{bitsyntax}
+% \end{function}
+%
+% \begin{function}{abstractEn}
+%   \begin{bitsyntax}[emph={[1]abstractEn}]
+%     \begin{abstractEn}
+%        \meta{英文摘要}
+%     \end{abstractEn}
+%   \end{bitsyntax}
+% 
+%  摘要。
+%  
+%  摘要的最后会显示关键词，关键词通过 \cs{BITSetup} 录入。
+% \end{function}
+%
+% \begin{function}{\MakeTOC,\listoffigures,\listoftables}
+%
+%  绘制目录、插图目录与表格目录。
+% \end{function}
+%
 % \subsection{正文部分}
+%
+% \begin{function}{\mainmatter}
+%
+%   声明正文部分开始。
+%
+%   此时页码会使用阿拉伯数字进行计数。
+% \end{function}
+%
 % \subsection{后置部分}
 %
+% \begin{function}{\mainmatter}
+%
+%   声明后置部分开始。
+%
+% \end{function}
+%
+% \begin{function}{conclusion}
+%   \begin{bitsyntax}[emph={[1]conclusion}]
+%     \begin{conclusion}
+%        \meta{结论}
+%     \end{conclusion}
+%   \end{bitsyntax}
+% \end{function}
+%
+% \begin{function}{bibprint}
+%   \begin{bitsyntax}[emph={[1]bibprint}]
+%     \begin{bibprint}
+%        \printbibliography[heading=none]
+%     \end{bibprint}
+%   \end{bitsyntax}
+%
+%   打印参考文献。
+%
+%   在使用\BIThesisTemplates{GT}时需要注意，由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，因此 bithesis 同样使用 bibtex 管理其文献。而由于 biblatex 的排序是全局的，因此需要使用 \meta{category} 功能来分割出两个不同的类别。
+%
+%  因此，请使用下列语句输出参考文献：
+% \begin{latex}
+%   \begin{bibprint}
+%     \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
+%   \end{bibprint}
+% \end{latex}
+% \end{function}
+%
+% \begin{function}{appendices}
+%   \begin{bitsyntax}[emph={[1]appendices}]
+%     \begin{appendices}
+%       \section{附录A 题目}
+%          \meta{附录A 内容}
+%       \section{附录B 题目}
+%          \meta{附录B 内容}
+%     \end{appendices}
+%   \end{bitsyntax}
+%
+%  附录。
+% \end{function}
+%
+% \begin{function}{publications}
+%   \begin{bitsyntax}[emph={[1]publications}]
+%     \begin{publications}
+%       \nocite{\meta{引用内容的key}}
+%       \addtocategory{mypub}{\meta{引用内容的key}}
+%       \printbibliography[heading=none,category=mypub,resetnumbers=true]
+%     \end{publications}
+%   \end{bitsyntax}
+%
+%   攻读学位期间发表论文与研究成果清单。
+% \end{function}
+%
+% \begin{function}{acknowledgements}
+%   \begin{bitsyntax}[emph={[1]acknowledgements}]
+%     \begin{acknowledgements}
+%       \meta{致谢内容}
+%     \end{acknowledgements}
+%   \end{bitsyntax}
+%
+%   致谢。
+% \end{function}
+%
+% \begin{function}{resume}
+%   \begin{bitsyntax}[emph={[1]resume}]
+%     \begin{resume}
+%       \meta{个人简介内容}
+%     \end{resume}
+%   \end{bitsyntax}
+%
+%   个人简介。
+% \end{function}
+%
 % \section{致谢}
+% \begin{itemize}
+%   \item 感谢贡献者对 BIThesis 的无私奉献。
+%   \item 感谢学校及相关老师对 BIThesis 的支持。
+%   \item 感谢清华大学和复旦大学的学位论文模板项目，他们为后来者提供了前进的方向。
+% \end{itemize}
+%
 % \section{软件许可证}
 %
 % \begin{itemize}
