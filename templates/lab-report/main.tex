@@ -1,5 +1,5 @@
 %%
-% The BIThesis Template for experiment report
+% The BIThesis Template for Experiment Report
 %
 % Copyright 2020-2022 Silvester Wang, BITNP
 %
@@ -16,12 +16,14 @@
 % The Current Maintainer of this work is Feng Kaiyu.
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
+%%
 
 \documentclass[]{bitreport}
 
 % 将你的相关信息替换如下示例
 \BITSetup{
   cover = {
+    % 在封面中载入有「北京理工大学销毁」的图片，如无必要请勿改动。
     imagePath = { assets/logo_bit.png },
     %% 使用以下参数来自定义封面日期
     % date = {2022年5月9日}
@@ -42,13 +44,14 @@
 
 %% 参考文献
 \usepackage[style=gb7714-2015,backend=biber]{biblatex}
-% used by figure.
+% Required by `figure`.
 \usepackage{float,graphicx}
 
 \addbibresource{misc/refs.bib}
 
 \begin{document}
 
+% 制作封面
 \MakeCover
 
 \section{实验目的}

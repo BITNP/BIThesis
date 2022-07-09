@@ -47,7 +47,7 @@
 5. 创建一个 PR，并添加相应的说明。
 6. 在 PR 被合并之前请保持关注，以便进行修改。
 
-寻找更细致的流程请参考
+更细致的流程请参考
 _[Github Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests)_。
 
 [QQ chat group invitation]: https://jq.qq.com/?_wv=1027&k=KYDrmS5z

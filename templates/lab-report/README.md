@@ -10,15 +10,22 @@
 ├── main.tex
 ├── main.pdf
 ├── misc
-│   └── cover_v1.tex
+│   └── refs.bib
 └── assets
     └── ……
 ```
 
 ## 编译方式
 
+方式一（推荐）：
+```
+latexmk
+```
+
+方式二：
 ```
 -> xelatex
+-> biber
 -> xelatex
 -> xelatex
 ```
