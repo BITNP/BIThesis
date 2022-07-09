@@ -586,7 +586,7 @@
 %     style/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于录入论文信息。具体内容见下。
+%  该选项包含许多子项目，用于调整样式。具体内容见下。
 % \end{function}
 %
 % \begin{function}{style/head}
@@ -599,14 +599,68 @@
 %   页眉文字。
 % \end{function}
 %
-% \begin{function}{info/xx}
-%   \begin{bitsyntax}[emph={[1]xx}]
-%     xx = (*\marg{字符串}*)
+% \subsubsection{样式信息}
+% 
+% \begin{function}{misc}
+%   \begin{bitsyntax}[emph={[1]misc}]
+%     misc = (*\marg{键值列表}*)
+%     misc/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
-%
-%   专业名称。
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
 % \end{function}
 %
+% \begin{function}{misc/arialFont}
+%   \begin{bitsyntax}[emph={[1]arialFont}]
+%     arialFont = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   本科生毕业设计模板（全英文专业）需要设置 Arial 字体。
+%  （Windows 和 MacOS 自带，Linux 需要用户自行安装）
+% \end{function}
+%
+% \section{正文编写}
+% 
+% 请注意，请在\env{document} 之内使用以下命令 。
+% 
+% \subsection{封面及基本信息}
+%
+% \begin{function}{\MakeCover}
+%
+%%%% TODO:
+%   \textit{封面内容会根据模板参数中\meta{type}的值而变化。}
+%
+%   绘制封面。
+% \end{function}
+% 
+% \begin{function}{\MakePaperBack}
+%
+%   绘制书脊。
+% \end{function}
+% 
+% \begin{function}{\MakeTitle}
+%
+%   绘制中英文信息页。
+% \end{function}
+%
+% \begin{function}{\MakeOriginality}
+%
+%   绘制中英文信息页。
+% \end{function}
+%
+% \subsection{前置部分}
+%
+% \begin{function}{\frontmatter}
+%
+%   声明前置部分开始。
+%
+%   此时页码会使用罗马数字进行计数。
+% \end{function}
+%
+% \subsection{正文部分}
+% \subsection{后置部分}
 %
 % \section{致谢}
 % \section{软件许可证}
