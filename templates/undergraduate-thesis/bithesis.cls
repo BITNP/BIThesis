@@ -494,7 +494,6 @@
 
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
-
 \__bithesis_if_graduate:TF {
   % 各章标题，宋体四号
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
@@ -519,6 +518,8 @@
   {
     abstract .meta:nn = { bit / abstract } {#1},
     abstract_en .meta:nn = { bit / abstract_en } {#1},
+    symbols .meta:nn = { bit / symbols } {#1},
+    appendices .meta:nn = { bit / appendices } {#1},
   }
 
 \keys_define:nn { bit / abstract }
@@ -534,6 +535,13 @@
 \keys_define:nn { bit / symbols }
   {
     addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
+  }
+
+\keys_define:nn { bit / appendices }
+  {
+    chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
+    title .tl_set:N = \l__bithesis_appendices_title_tl,
+    TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
   }
 
 \RenewDocumentCommand \frontmatter {} {
@@ -1466,44 +1474,63 @@
 
   % #1: The name that used as chapter title
   % #2: The name that used in ToC.
-  \NewDocumentEnvironment {appendices} { oo }
+  \NewDocumentEnvironment {appendices} {o}
   {
+    \IfValueT {#1} {
+      \keys_set:nn { bit / appendices } {#1}
+    }
+
     % Used in chapter, ToC.
     \tl_new:N \l__bithesis_appendix_plain_label_tl
     % Used before reference label.
-    \tl_new:N \l__bithesis_appendix_title_tl
+    \tl_new:N \l__bithesis_appendix_default_title_tl
 
-    \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
-    {
+    \__bithesis_if_thesis_english:TF {
       \tl_set:Nn \l__bithesis_appendix_plain_label_tl {\c__bithesis_label_appendix_prefix_en_tl}
-      \tl_set:Nn \l__bithesis_appendix_title_tl {\c__bithesis_label_appendix_en_tl}
+      \tl_set:Nn \l__bithesis_appendix_default_title_tl {\c__bithesis_label_appendix_en_tl}
     } {
       \tl_set:Nn \l__bithesis_appendix_plain_label_tl {\c__bithesis_label_appendix_prefix_tl}
-      \tl_set:Nn \l__bithesis_appendix_title_tl {\c__bithesis_label_appendix_tl}
+      \tl_set:Nn \l__bithesis_appendix_default_title_tl {\c__bithesis_label_appendix_tl}
     }
 
-    \ctexset{
-      section/number = \l__bithesis_appendix_plain_label_tl\hspace{1ex}\Alph{section},
-      subsection/number = \Alph{section}. \arabic{subsection},
-    }
+    \bool_if:NTF \l__bithesis_appendices_chapter_level_bool {
+      \setcounter{chapter}{0}
+      \ctexset{
+        chapter/numbering = true,
+        chapter/name = {},
+        chapter/number = \l__bithesis_appendix_plain_label_tl\hspace{1ex}\Alph{chapter},
+        section/number = \Alph{chapter}. \arabic{section},
+        subsection/number = \Alph{chapter}. \arabic{section}. \arabic{subsection},
+      }
 
-    \IfValueTF {#1} {
-      \chapter*{#1}
-      \stepcounter{chapter}
-      \IfValueTF {#2} {
-        \addcontentsline{toc}{chapter}{#2}
-      } {
-        \addcontentsline{toc}{chapter}{\l__bithesis_appendix_title_tl}
+      \cs_set:Npn \thechapter {
+        \Alph{chapter}
       }
     } {
-      \chapter{\l__bithesis_appendix_title_tl}
-    }
+      \ctexset{
+        section/number = \l__bithesis_appendix_plain_label_tl\hspace{1ex}\Alph{section},
+        subsection/number = \Alph{section}. \arabic{subsection},
+      }
 
-    \cs_set:Npn \thechapter {
-      \Alph{section}
+      \cs_set:Npn \thechapter {
+        \Alph{section}
+      }
+
+      \tl_if_blank:VTF \l__bithesis_appendices_title_tl {
+        \chapter{\l__bithesis_appendix_default_title_tl}
+      } {
+        \chapter*{\l__bithesis_appendices_title_tl}
+        \stepcounter{chapter}
+        \tl_if_blank:VTF \l__bithesis_appendix_toc_title_tl {
+          \addcontentsline{toc}{chapter}{\l__bithesis_appendix_default_title_tl}
+        } {
+          \addcontentsline{toc}{chapter}{\l__bithesis_appendix_toc_title_tl}
+        }
+      }
     }
   }
-  {}
+  {
+  }
 
   \NewDocumentEnvironment {acknowledgements} {+b}
   {
