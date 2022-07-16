@@ -1134,6 +1134,8 @@
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
@@ -1453,6 +1455,31 @@
 \cs_set:Npn \listtablename {\c_@@_label_table_tl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 根据 GB 3102.11--93 以及 ISO 80000-2:2009 的规定，数学表达式中
+% 表示变量的拉丁字母和希腊字母均应当使用斜体。
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+}
+
+% 预定义用户常用的证明环境
+\theoremstyle{plain}
+  \newtheorem{algorithm}{算法}[chapter]
+  \newtheorem{theorem}{定理}[chapter]
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{axiom}[theorem]{公理}
+\theoremstyle{definition}
+  \newtheorem{definition}{定义}[chapter]
+  \newtheorem{conjecture}{猜想}[chapter]
+  \newtheorem{example}{例}[chapter]
+  \newtheorem{case}{情形}
+\theoremstyle{remark}
+  \newtheorem{remark}{注}
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}}
+
 
 % user interface.
 \DeclareDocumentCommand \BITSetup { m }

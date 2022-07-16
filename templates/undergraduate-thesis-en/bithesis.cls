@@ -338,6 +338,8 @@
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
@@ -644,6 +646,27 @@
 \cs_set:Npn \listtablename {\c__bithesis_label_table_tl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+}
+
+\theoremstyle{plain}
+  \newtheorem{algorithm}{算法}[chapter]
+  \newtheorem{theorem}{定理}[chapter]
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{axiom}[theorem]{公理}
+\theoremstyle{definition}
+  \newtheorem{definition}{定义}[chapter]
+  \newtheorem{conjecture}{猜想}[chapter]
+  \newtheorem{example}{例}[chapter]
+  \newtheorem{case}{情形}
+\theoremstyle{remark}
+  \newtheorem{remark}{注}
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}}
 
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
