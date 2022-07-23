@@ -693,6 +693,50 @@
 %   此时页码会使用阿拉伯数字进行计数。
 % \end{function}
 %
+% \subsubsection{定理类环境}
+% \paragraph{默认格式}
+%
+% \begin{function}{algorithm,theorem,lemma,proposition,corollary,axiom,definition,conjecture,example,case,remark}
+%   \begin{bitsyntax}[emph={[2]proof}]
+%     \begin{proof}(*\oarg{小标题}*)
+%       (*\meta{证明过程}*)
+%     \end{proof}
+%   \end{bitsyntax}
+%   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
+% \end{function}
+%
+% \begin{table}[]
+% \caption{预定义的数学环境}
+% \centering
+% \subfloat[][plain样式]{
+%   \begin{tabular}{@{}ccccccc@{}}
+%   \toprule
+%   \textbf{名称} & algorithm & theorem & lemma & proposition & corollary & axiom \\ \midrule
+%   \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    \\
+%   \textbf{样式} & \multicolumn{6}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
+%   \end{tabular}
+% }
+%
+% \subfloat[][definition样式]{
+%   \begin{tabular}{@{}ccccc@{}}
+%   \toprule
+%   \textbf{名称} & definition & conjecture & example & case \\ \midrule
+%   \textbf{含义} & 定义        & 猜想      & 例    & 情形          \\
+%   \textbf{样式} & \multicolumn{4}{c}{\textbf{定义2.1.} 定义内容……}       \\ \bottomrule
+%   \end{tabular}
+% }
+%
+% \subfloat[][remark样式]{
+%   \begin{tabular}{@{}cc@{}}
+%   \toprule
+%   \textbf{名称} & remark \\ \midrule
+%   \textbf{含义} & 注        \\
+%   \textbf{样式} & \multicolumn{1}{c}{\textit{注1.} 内容……}       \\ \bottomrule
+%   \end{tabular}
+% }
+% \label{tab:theorem}
+% \end{table}
+%
 % \subsection{后置部分}
 %
 % \begin{function}{\mainmatter}
@@ -4175,6 +4219,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage{framed}
 \RequirePackage{menukeys}
 \RequirePackage{float}
+\RequirePackage{subfig}
 
  % 设置列表无间隔
 \usepackage{enumitem}
