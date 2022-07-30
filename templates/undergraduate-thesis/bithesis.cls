@@ -206,6 +206,8 @@
   cover .meta:nn = { bithesis / cover } {#1},
   style .meta:nn = { bithesis / style } {#1},
   option .meta:nn = { bithesis / option } {#1},
+  TOC .meta:nn = { bithesis / TOC } {#1},
+  appendices .meta:nn = { bithesis / appendices } {#1},
 }
 
 \keys_define:nn { bithesis / option }
@@ -301,7 +303,24 @@
       {4} {北京理工大学硕士学位论文}
       {5} {北京理工大学博士学位论文}
     }
-  }
+  },
+}
+
+\keys_define:nn { bithesis / TOC }
+{
+  abstract .bool_set:N = \l__bithesis_add_abstract_to_toc_bool,
+  abstract .initial:n = {true},
+  abstractEn .bool_set:N = \l__bithesis_add_abstract_en_to_toc_bool,
+  abstractEn .initial:n = {true},
+  symbols .bool_set:N = \l__bithesis_add_symbols_to_toc_bool,
+  symbols .initial:n = {true},
+}
+
+\keys_define:nn { bithesis / appendices }
+{
+  chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
+  title .tl_set:N = \l__bithesis_appendices_title_tl,
+  TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
 }
 
 \ProcessKeysOptions { bithesis / option }
@@ -513,38 +532,6 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
-\bool_new:N \l__bithesis_add_to_toc_bool
-\bool_set_true:N \l__bithesis_add_to_toc_bool
-
-\keys_define:nn { bit }
-  {
-    abstract .meta:nn = { bit / abstract } {#1},
-    abstract_en .meta:nn = { bit / abstract_en } {#1},
-    symbols .meta:nn = { bit / symbols } {#1},
-    appendices .meta:nn = { bit / appendices } {#1},
-  }
-
-\keys_define:nn { bit / abstract }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / abstract_en }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / symbols }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / appendices }
-  {
-    chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
-    title .tl_set:N = \l__bithesis_appendices_title_tl,
-    TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
-  }
 
 \RenewDocumentCommand \frontmatter {} {
 
@@ -1337,12 +1324,8 @@
   }
 
   % TODO:
-  \NewDocumentEnvironment {abstract} {o}
+  \NewDocumentEnvironment {abstract} {}
   {
-
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract } {#1}
-    }
 
     \cleardoublepage
     \setstretch{1.53}
@@ -1375,7 +1358,7 @@
 
     {
       \__bithesis_same_page:
-      \bool_if:NTF \l__bithesis_add_to_toc_bool {
+      \bool_if:NTF \l__bithesis_add_abstract_to_toc_bool {
         \chapter{\c__bithesis_label_abstract_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_tl}
@@ -1390,12 +1373,8 @@
     \newpage
   }
 
-  \NewDocumentEnvironment {abstractEn} {o}
+  \NewDocumentEnvironment {abstractEn} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract_en } {#1}
-    }
-
     \cleardoublepage
     \setstretch{1.53}
 
@@ -1440,7 +1419,7 @@
 
     {
       \__bithesis_same_page:
-      \bool_if:nTF {\l__bithesis_add_to_toc_bool} {
+      \bool_if:nTF {\l__bithesis_add_abstract_en_to_toc_bool} {
         \chapter{\c__bithesis_label_abstract_en_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_en_tl}
@@ -1497,12 +1476,8 @@
 
   % #1: The name that used as chapter title
   % #2: The name that used in ToC.
-  \NewDocumentEnvironment {appendices} {o}
+  \NewDocumentEnvironment {appendices} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / appendices } {#1}
-    }
-
     % Used in chapter, ToC.
     \tl_new:N \l__bithesis_appendix_plain_label_tl
     % Used before reference label.
@@ -1619,13 +1594,9 @@
   {
   }
 
-  \NewDocumentEnvironment {symbols} {o}
+  \NewDocumentEnvironment {symbols} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / symbols } {#1}
-    }
-
-    \bool_if:NTF \l__bithesis_add_to_toc_bool {
+    \bool_if:NTF \l__bithesis_add_symbols_to_toc_bool {
       \chapter{\c__bithesis_label_symbols_tl}
     } {
       \chapter*{\c__bithesis_label_symbols_tl}

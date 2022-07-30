@@ -53,7 +53,15 @@
     keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
     % 必要时置于封面右上角，并按照国家规定进行标记。
     % classifiedLevel = 密级 $\bigstar$ 保密期限,
-  }
+  },
+  % 在目录页中不显示摘要和主要符号对照表的标题。
+  TOC = {
+    abstract = false,
+    abstractEn = false,
+    symbols = false,
+  },
+  % 采用章节标题级别的附录格式
+  appendices / chapterLevel = true,
 }
 
 \usepackage[
