@@ -42,8 +42,8 @@
 \seq_new:N \l__bithesis_left_seq
 
 
-\cs_generate_variant:Nn \tl_if_empty:nTF {e}
-\cs_generate_variant:Nn \seq_set_split:Nnn {Nne}
+\cs_generate_variant:Nn \tl_if_empty:nTF {x}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 
 \cs_new:Npn \__bithesis_same_page: {
   \let\clearpage\relax
@@ -690,7 +690,7 @@
   }
 
 \cs_new:Npn \__bithesis_parse_entry #1 #2 {
-  \seq_set_split:Nne \l__bithesis_tmp_right_seq {//} {#2}
+  \seq_set_split:Nnx \l__bithesis_tmp_right_seq {//} {#2}
   \seq_clear:N \l__bithesis_tmp_left_seq
   \seq_map_inline:Nn \l__bithesis_tmp_right_seq {
     \seq_put_right:Nn \l__bithesis_tmp_left_seq {}
@@ -718,7 +718,7 @@
       {
         \seq_pop_left:NN \l__bithesis_left_seq \l__bithesis_tmpa_tl
         \seq_pop_left:NN \l__bithesis_right_seq \l__bithesis_tmpb_tl
-        \tl_if_empty:eTF \l__bithesis_tmpb_tl {} {
+        \tl_if_empty:xTF \l__bithesis_tmpb_tl {} {
           \__bithesis_render_cover_entry:nn {\l__bithesis_tmpa_tl} {\l__bithesis_tmpb_tl}
         }
       }
