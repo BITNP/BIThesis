@@ -28,7 +28,6 @@
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
 {2022-06-10}{3.0.0}{BIT Thesis Templates}
-%%%% TODO:
 
 
 \int_new:N \g__bithesis_thesis_type_int
@@ -42,8 +41,8 @@
 \seq_new:N \l__bithesis_left_seq
 
 
-\cs_generate_variant:Nn \tl_if_empty:nTF {e}
-\cs_generate_variant:Nn \seq_set_split:Nnn {Nne}
+\cs_generate_variant:Nn \tl_if_empty:nTF {x}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 
 \cs_new:Npn \__bithesis_same_page: {
   \let\clearpage\relax
@@ -206,6 +205,8 @@
   cover .meta:nn = { bithesis / cover } {#1},
   style .meta:nn = { bithesis / style } {#1},
   option .meta:nn = { bithesis / option } {#1},
+  TOC .meta:nn = { bithesis / TOC } {#1},
+  appendices .meta:nn = { bithesis / appendices } {#1},
 }
 
 \keys_define:nn { bithesis / option }
@@ -301,7 +302,24 @@
       {4} {北京理工大学硕士学位论文}
       {5} {北京理工大学博士学位论文}
     }
-  }
+  },
+}
+
+\keys_define:nn { bithesis / TOC }
+{
+  abstract .bool_set:N = \l__bithesis_add_abstract_to_toc_bool,
+  abstract .initial:n = {true},
+  abstractEn .bool_set:N = \l__bithesis_add_abstract_en_to_toc_bool,
+  abstractEn .initial:n = {true},
+  symbols .bool_set:N = \l__bithesis_add_symbols_to_toc_bool,
+  symbols .initial:n = {true},
+}
+
+\keys_define:nn { bithesis / appendices }
+{
+  chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
+  title .tl_set:N = \l__bithesis_appendices_title_tl,
+  TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
 }
 
 \ProcessKeysOptions { bithesis / option }
@@ -338,6 +356,8 @@
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
@@ -511,38 +531,6 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
-\bool_new:N \l__bithesis_add_to_toc_bool
-\bool_set_true:N \l__bithesis_add_to_toc_bool
-
-\keys_define:nn { bit }
-  {
-    abstract .meta:nn = { bit / abstract } {#1},
-    abstract_en .meta:nn = { bit / abstract_en } {#1},
-    symbols .meta:nn = { bit / symbols } {#1},
-    appendices .meta:nn = { bit / appendices } {#1},
-  }
-
-\keys_define:nn { bit / abstract }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / abstract_en }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / symbols }
-  {
-    addTOC .bool_set:N = \l__bithesis_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / appendices }
-  {
-    chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
-    title .tl_set:N = \l__bithesis_appendices_title_tl,
-    TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
-  }
 
 \RenewDocumentCommand \frontmatter {} {
 
@@ -645,6 +633,27 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+}
+
+\theoremstyle{plain}
+  \newtheorem{algorithm}{算法}[chapter]
+  \newtheorem{theorem}{定理}[chapter]
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{axiom}[theorem]{公理}
+\theoremstyle{definition}
+  \newtheorem{definition}{定义}[chapter]
+  \newtheorem{conjecture}{猜想}[chapter]
+  \newtheorem{example}{例}[chapter]
+  \newtheorem{case}{情形}
+\theoremstyle{remark}
+  \newtheorem{remark}{注}
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}}
+
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
 
@@ -680,7 +689,7 @@
   }
 
 \cs_new:Npn \__bithesis_parse_entry #1 #2 {
-  \seq_set_split:Nne \l__bithesis_tmp_right_seq {//} {#2}
+  \seq_set_split:Nnx \l__bithesis_tmp_right_seq {//} {#2}
   \seq_clear:N \l__bithesis_tmp_left_seq
   \seq_map_inline:Nn \l__bithesis_tmp_right_seq {
     \seq_put_right:Nn \l__bithesis_tmp_left_seq {}
@@ -708,7 +717,7 @@
       {
         \seq_pop_left:NN \l__bithesis_left_seq \l__bithesis_tmpa_tl
         \seq_pop_left:NN \l__bithesis_right_seq \l__bithesis_tmpb_tl
-        \tl_if_empty:eTF \l__bithesis_tmpb_tl {} {
+        \tl_if_empty:xTF \l__bithesis_tmpb_tl {} {
           \__bithesis_render_cover_entry:nn {\l__bithesis_tmpa_tl} {\l__bithesis_tmpb_tl}
         }
       }
@@ -1314,12 +1323,8 @@
   }
 
   % TODO:
-  \NewDocumentEnvironment {abstract} {o}
+  \NewDocumentEnvironment {abstract} {}
   {
-
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract } {#1}
-    }
 
     \cleardoublepage
     \setstretch{1.53}
@@ -1352,7 +1357,7 @@
 
     {
       \__bithesis_same_page:
-      \bool_if:NTF \l__bithesis_add_to_toc_bool {
+      \bool_if:NTF \l__bithesis_add_abstract_to_toc_bool {
         \chapter{\c__bithesis_label_abstract_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_tl}
@@ -1367,12 +1372,8 @@
     \newpage
   }
 
-  \NewDocumentEnvironment {abstractEn} {o}
+  \NewDocumentEnvironment {abstractEn} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract_en } {#1}
-    }
-
     \cleardoublepage
     \setstretch{1.53}
 
@@ -1417,7 +1418,7 @@
 
     {
       \__bithesis_same_page:
-      \bool_if:nTF {\l__bithesis_add_to_toc_bool} {
+      \bool_if:nTF {\l__bithesis_add_abstract_en_to_toc_bool} {
         \chapter{\c__bithesis_label_abstract_en_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_en_tl}
@@ -1474,12 +1475,8 @@
 
   % #1: The name that used as chapter title
   % #2: The name that used in ToC.
-  \NewDocumentEnvironment {appendices} {o}
+  \NewDocumentEnvironment {appendices} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / appendices } {#1}
-    }
-
     % Used in chapter, ToC.
     \tl_new:N \l__bithesis_appendix_plain_label_tl
     % Used before reference label.
@@ -1596,13 +1593,9 @@
   {
   }
 
-  \NewDocumentEnvironment {symbols} {o}
+  \NewDocumentEnvironment {symbols} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / symbols } {#1}
-    }
-
-    \bool_if:NTF \l__bithesis_add_to_toc_bool {
+    \bool_if:NTF \l__bithesis_add_symbols_to_toc_bool {
       \chapter{\c__bithesis_label_symbols_tl}
     } {
       \chapter*{\c__bithesis_label_symbols_tl}

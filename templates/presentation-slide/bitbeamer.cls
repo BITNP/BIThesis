@@ -28,7 +28,6 @@
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitbeamer}
 {2022-06-10}{3.0.0}{BIT Thesis Templates}
-%%%% TODO:
 
 
 \keys_define:nn { bitbeamer }

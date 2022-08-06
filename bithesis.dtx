@@ -223,6 +223,37 @@
 %   \end{document}
 % \end{latex}
 %
+% 如您所见，在 \LaTeX 中，用户使用的命令通常以「\\」作为开头，后面依次跟随
+% 命令名称、若干可选参数和若干必需参数。如：
+%
+% \begin{latex}
+%   \MakeCover
+%   \BITSetup{}
+%   \FooBar[]{}
+% \end{latex}
+%
+% 同理，用户使用的环境通常以 begin 和 end 进行包裹，同样可以传入可选参数和必需参数：
+%
+% \begin{latex}
+%   \begin{abstract}
+%   \end{abstract}
+%
+%   \begin{abstract}[addTOC=false]
+%   \end{abstract}
+%
+%   \begin{foo}{param1}
+%   \end{foo}
+% \end{latex}
+%
+% 需要强调的是：以方框号表示的可选参数，在没有参数传入的时候，是可以忽略的。
+% 比如以下两个命令等价：
+% \begin{latex}
+%   \FooBar
+%   \FooBar[]
+% \end{latex}
+%
+% 环境同理。
+%
 % \subsection{模板选项}
 %
 % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
@@ -270,16 +301,16 @@
 % 本模板提供了一系列选项，可由您自行配置。载入文档类之后，以下所有选项均可通过统一的
 % 命令 \cs{BITSetup} 来设置。
 %
-% \cs{BITSetup} 的参数是一组由（英文）逗号隔开的选项列表，列表中的选项通常是 〈key〉 =
-% 〈value〉 的形式。部分选项的 〈value〉 可以省略。对于同一项，后面的设置将会覆盖前面的设
+% \cs{BITSetup} 的参数是一组由（英文）逗号隔开的选项列表，列表中的选项通常是 \meta{key} =
+% \meta{value} 的形式。部分选项的 \meta{value} 可以省略。对于同一项，后面的设置将会覆盖前面的设
 % 置。在下文的说明中，将用粗体表示默认值。
 %
 % \cs{BITSetup} 采用 LATEX3 风格的键值设置，支持不同类型以及多种层次的选项设定。键值列
 % 表中，“=”左右的空格不影响设置；但需注意，参数列表中不可以出现空行。
-% 与模板选项相同，布尔型的参数可以省略 〈选项〉 = true 中的“= true”。
+% 与模板选项相同，布尔型的参数可以省略 \meta{选项} = true 中的“= true”。
 % 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
 %
-% \begin{latex}
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
 %   \BITSetup{
 %     cover = {
 %       date = 2022年6月,
@@ -293,7 +324,7 @@
 %
 % 或者
 % 
-% \begin{latex}[morekeywords={\BITSetup},emph={[1]cover,date,info,title,author}]
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
 %   \BITSetup{
 %     cover / date = 2022年6月,
 %     info / author = Feng Kaiyu,
@@ -451,7 +482,7 @@
 % \end{function}
 %
 % \begin{function}{info/major,info/majorEn}
-%   \begin{bitsyntax}[emph={[1]majorEn}]
+%   \begin{bitsyntax}[emph={[1]major,majorEn}]
 %     major = (*\marg{字符串}*)
 %     majorEn = (*\marg{字符串}*)
 %   \end{bitsyntax}
@@ -599,7 +630,84 @@
 %   页眉文字。
 % \end{function}
 %
-% \subsubsection{样式信息}
+% \subsubsection{目录选项}
+%
+% \begin{function}{TOC}
+%   \begin{bitsyntax}[emph={[1]TOC}]
+%     TOC = (*\marg{键值列表}*)
+%     TOC/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+% \end{function}
+%
+% \begin{function}{TOC/abstract,TOC/abstractEn}
+%   \begin{bitsyntax}[emph={[1]abstract,abstractEn}]
+%     abstract = (*(true)|false*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   是否在目录中索引摘要。
+% \end{function}
+%
+% \begin{function}{TOC/symbols}
+%   \begin{bitsyntax}[emph={[1]symbols}]
+%     abstract = (*(true)|false*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   是否在目录中索引主要符号对照表。
+% \end{function}
+%
+% \subsubsection{附录选项}
+%
+% \begin{function}{appendices}
+%   \begin{bitsyntax}[emph={[1]appendices}]
+%     appendices = (*\marg{键值列表}*)
+%     appendices/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+% \end{function}
+%
+% \begin{function}{appendices/chapterLevel}
+%   \begin{bitsyntax}[emph={[1]chapterLevel}]
+%     chapterLevel = (*<(false)|true>*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   开启后，可以使用以「chapter」为顶层的附录格式。
+%
+%  \begin{latex}[emph={[1]appendices,chapter}]
+%    \begin{appendices}
+%       \chapter{附录A 题目}
+%          (*\meta{附录A 内容}*)
+%       \chapter{附录B 题目}
+%          (*\meta{附录B 内容}*)
+%    \end{appendices}
+%  \end{latex}
+% \end{function}
+%
+% \begin{function}{appendices/title}
+%   \begin{bitsyntax}[emph={[1]title}]
+%     title = (*\meta{字符串}*)
+%   \end{bitsyntax}
+%
+%  可以覆盖附录的标题名称，默认为「附录」。
+% \end{function}
+%
+% \begin{function}{appendices/TOCTitle}
+%   \begin{bitsyntax}[emph={[1]TOCTitle}]
+%     TOCTitle = (*\meta{字符串}*)
+%   \end{bitsyntax}
+%
+%  可以覆盖附录在目录中的名称，默认为「附录」。
+% \end{function}
+%
+% \subsubsection{其他配置}
 % 
 % \begin{function}{misc}
 %   \begin{bitsyntax}[emph={[1]misc}]
@@ -629,7 +737,8 @@
 %
 % \begin{function}{\MakeCover}
 %
-%%%% TODO:
+% %%% TODO:
+%
 %   \textit{封面内容会根据模板参数中\meta{type}的值而变化。}
 %
 %   绘制封面。
@@ -662,26 +771,50 @@
 % \begin{function}{abstract}
 %   \begin{bitsyntax}[emph={[1]abstract}]
 %     \begin{abstract}
-%        \meta{中文摘要}
+%        (*\meta{中文摘要}*)
 %     \end{abstract}
-%   \end{bitsyntax}
 % \end{function}
 %
 % \begin{function}{abstractEn}
 %   \begin{bitsyntax}[emph={[1]abstractEn}]
 %     \begin{abstractEn}
-%        \meta{英文摘要}
+%        (*\meta{英文摘要}*)
 %     \end{abstractEn}
 %   \end{bitsyntax}
 % 
 %  摘要。
 %  
 %  摘要的最后会显示关键词，关键词通过 \cs{BITSetup} 录入。
+%
 % \end{function}
 %
 % \begin{function}{\MakeTOC,\listoffigures,\listoftables}
 %
 %  绘制目录、插图目录与表格目录。
+% \end{function}
+%
+% \begin{function}{symbols}
+%   \begin{bitsyntax}[emph={[1]symbols}]
+%     \begin{symbols}
+%        \item[BIT] 北京理工大学的英文缩写
+%        \item[\LaTeX] 一个很棒的排版系统
+%     \end{symbols}
+%   \end{bitsyntax}
+% 
+%  主要符号对照表。
+%  
+%  主要符号对照表类似于一个列表环境，用以添加文章中使用的关键符号与缩略词。
+%
+% \end{function}
+%
+% \begin{function}{addTOC}
+%   \begin{bitsyntax}[emph={[1]addTOC}]
+%     addTOC = (*<(true)|false>*)
+%   \end{bitsyntax}
+%
+%  主要符号对照表的可选参数。
+%
+%  添加主要符号对照表到目录，默认开启。
 % \end{function}
 %
 % \subsection{正文部分}
@@ -693,18 +826,77 @@
 %   此时页码会使用阿拉伯数字进行计数。
 % \end{function}
 %
+% \subsubsection{定理类环境}
+% \paragraph{默认格式}
+%
+% \begin{function}{algorithm,theorem,lemma,proposition,corollary,axiom,definition,conjecture,example,case,remark}
+%   \begin{bitsyntax}[emph={[2]proof}]
+%     \begin{theorem}[留数定理]
+%       (*\meta{定理内容}*)
+%     \end{theorem}
+%     
+%     \begin{proof}(*\oarg{小标题}*)
+%       (*\meta{证明过程}*)
+%     \end{proof}
+%   \end{bitsyntax}
+%   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
+% \end{function}
+%
+% \begin{table}[]
+% \caption{预定义的数学环境}
+% \centering
+% \subfloat[][plain样式]{
+%   \begin{tabular}{@{}ccccccc@{}}
+%   \toprule
+%   \textbf{名称} & algorithm & theorem & lemma & proposition & corollary & axiom \\ \midrule
+%   \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    \\
+%   \textbf{样式} & \multicolumn{6}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
+%   \end{tabular}
+% }
+%
+% \subfloat[][definition样式]{
+%   \begin{tabular}{@{}ccccc@{}}
+%   \toprule
+%   \textbf{名称} & definition & conjecture & example & case \\ \midrule
+%   \textbf{含义} & 定义        & 猜想      & 例    & 情形          \\
+%   \textbf{样式} & \multicolumn{4}{c}{\textbf{定义2.1.} 定义内容……}       \\ \bottomrule
+%   \end{tabular}
+% }
+%
+% \subfloat[][remark样式]{
+%   \begin{tabular}{@{}cc@{}}
+%   \toprule
+%   \textbf{名称} & remark \\ \midrule
+%   \textbf{含义} & 注        \\
+%   \textbf{样式} & \multicolumn{1}{c}{\textit{注1.} 内容……}       \\ \bottomrule
+%   \end{tabular}
+% }
+%
+% \subfloat[][proof样式]{
+%   \begin{tabular}{@{}cc@{}}
+%   \toprule
+%   \textbf{名称} & proof \\ \midrule
+%   \textbf{含义} & 证明        \\
+%   \textbf{样式} & \multicolumn{1}{c}{\textit{证明. } 内容…… 「证毕符号」}       \\ \bottomrule
+%   \end{tabular}
+% }
+% \label{tab:theorem}
+% \end{table}
+%
 % \subsection{后置部分}
 %
-% \begin{function}{\mainmatter}
+% \begin{function}{\backmatter}
 %
 %   声明后置部分开始。
+%
+%   会取消章节标题的的编号。
 %
 % \end{function}
 %
 % \begin{function}{conclusion}
 %   \begin{bitsyntax}[emph={[1]conclusion}]
 %     \begin{conclusion}
-%        \meta{结论}
+%        (*\meta{结论}*)
 %     \end{conclusion}
 %   \end{bitsyntax}
 % \end{function}
@@ -732,9 +924,9 @@
 %   \begin{bitsyntax}[emph={[1]appendices}]
 %     \begin{appendices}
 %       \section{附录A 题目}
-%          \meta{附录A 内容}
+%          (*\meta{附录A 内容}*)
 %       \section{附录B 题目}
-%          \meta{附录B 内容}
+%          (*\meta{附录B 内容}*)
 %     \end{appendices}
 %   \end{bitsyntax}
 %
@@ -742,7 +934,7 @@
 % \end{function}
 %
 % \begin{function}{publications}
-%   \begin{bitsyntax}[emph={[1]publications}]
+%   \begin{bitsyntax}[emph={[1]publications,addtocategory,printbibliography}]
 %     \begin{publications}
 %       \nocite{\meta{引用内容的key}}
 %       \addtocategory{mypub}{\meta{引用内容的key}}
@@ -756,7 +948,7 @@
 % \begin{function}{acknowledgements}
 %   \begin{bitsyntax}[emph={[1]acknowledgements}]
 %     \begin{acknowledgements}
-%       \meta{致谢内容}
+%       (*\meta{致谢内容}*)
 %     \end{acknowledgements}
 %   \end{bitsyntax}
 %
@@ -766,7 +958,7 @@
 % \begin{function}{resume}
 %   \begin{bitsyntax}[emph={[1]resume}]
 %     \begin{resume}
-%       \meta{个人简介内容}
+%       (*\meta{个人简介内容}*)
 %     \end{resume}
 %   \end{bitsyntax}
 %
@@ -824,8 +1016,8 @@
 
 % helper functions
 
-\cs_generate_variant:Nn \tl_if_empty:nTF {e}
-\cs_generate_variant:Nn \seq_set_split:Nnn {Nne}
+\cs_generate_variant:Nn \tl_if_empty:nTF {x}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 
 \cs_new:Npn \@@_same_page: {
   \let\clearpage\relax
@@ -998,6 +1190,8 @@
   cover .meta:nn = { bithesis / cover } {#1},
   style .meta:nn = { bithesis / style } {#1},
   option .meta:nn = { bithesis / option } {#1},
+  TOC .meta:nn = { bithesis / TOC } {#1},
+  appendices .meta:nn = { bithesis / appendices } {#1},
 }
 
 \keys_define:nn { bithesis / option }
@@ -1093,7 +1287,24 @@
       {4} {北京理工大学硕士学位论文}
       {5} {北京理工大学博士学位论文}
     }
-  }
+  },
+}
+
+\keys_define:nn { bithesis / TOC }
+{
+  abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
+  abstract .initial:n = {true},
+  abstractEn .bool_set:N = \l_@@_add_abstract_en_to_toc_bool,
+  abstractEn .initial:n = {true},
+  symbols .bool_set:N = \l_@@_add_symbols_to_toc_bool,
+  symbols .initial:n = {true},
+}
+
+\keys_define:nn { bithesis / appendices }
+{
+  chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
+  title .tl_set:N = \l_@@_appendices_title_tl,
+  TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
 }
 
 \ProcessKeysOptions { bithesis / option }
@@ -1134,6 +1345,8 @@
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
@@ -1311,39 +1524,38 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 
-
-\bool_new:N \l_@@_add_to_toc_bool
-\bool_set_true:N \l_@@_add_to_toc_bool
-
-\keys_define:nn { bit }
-  {
-    abstract .meta:nn = { bit / abstract } {#1},
-    abstract_en .meta:nn = { bit / abstract_en } {#1},
-    symbols .meta:nn = { bit / symbols } {#1},
-    appendices .meta:nn = { bit / appendices } {#1},
-  }
-
-\keys_define:nn { bit / abstract }
-  {
-    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / abstract_en }
-  {
-    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / symbols }
-  {
-    addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-  }
-
-\keys_define:nn { bit / appendices }
-  {
-    chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
-    title .tl_set:N = \l_@@_appendices_title_tl,
-    TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
-  }
+% \bool_new:N \l_@@_add_to_toc_bool
+% \bool_set_true:N \l_@@_add_to_toc_bool
+%
+% \keys_define:nn { bit }
+%   {
+%     abstract .meta:nn = { bit / abstract } {#1},
+%     abstract_en .meta:nn = { bit / abstract_en } {#1},
+%     symbols .meta:nn = { bit / symbols } {#1},
+%     appendices .meta:nn = { bit / appendices } {#1},
+%   }
+%
+% \keys_define:nn { bit / abstract }
+%   {
+%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+%   }
+%
+% \keys_define:nn { bit / abstract_en }
+%   {
+%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+%   }
+%
+% \keys_define:nn { bit / symbols }
+%   {
+%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
+%   }
+%
+% \keys_define:nn { bit / appendices }
+%   {
+%     chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
+%     title .tl_set:N = \l_@@_appendices_title_tl,
+%     TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
+%   }
 
 \RenewDocumentCommand \frontmatter {} {
 
@@ -1454,6 +1666,31 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% 根据 GB 3102.11--93 以及 ISO 80000-2:2009 的规定，数学表达式中
+% 表示变量的拉丁字母和希腊字母均应当使用斜体。
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+}
+
+% 预定义用户常用的证明环境
+\theoremstyle{plain}
+  \newtheorem{algorithm}{算法}[chapter]
+  \newtheorem{theorem}{定理}[chapter]
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{axiom}[theorem]{公理}
+\theoremstyle{definition}
+  \newtheorem{definition}{定义}[chapter]
+  \newtheorem{conjecture}{猜想}[chapter]
+  \newtheorem{example}{例}[chapter]
+  \newtheorem{case}{情形}
+\theoremstyle{remark}
+  \newtheorem{remark}{注}
+  \renewcommand{\qedsymbol}{\ensuremath{\QED}}
+
+
 % user interface.
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
@@ -1494,7 +1731,7 @@
 
 % process label (#1) and value #2 seperately
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nne \l_@@_tmp_right_seq {//} {#2}
+  \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
   \seq_map_inline:Nn \l_@@_tmp_right_seq {
     \seq_put_right:Nn \l_@@_tmp_left_seq {}
@@ -1523,7 +1760,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:eTF \l_@@_tmpb_tl {} {
+        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
           \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
         }
       }
@@ -2137,12 +2374,8 @@
   }
 
   % TODO:
-  \NewDocumentEnvironment {abstract} {o}
+  \NewDocumentEnvironment {abstract} {}
   {
-
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract } {#1}
-    }
 
     \cleardoublepage
     \setstretch{1.53}
@@ -2175,7 +2408,7 @@
 
     {
       \@@_same_page:
-      \bool_if:NTF \l_@@_add_to_toc_bool {
+      \bool_if:NTF \l_@@_add_abstract_to_toc_bool {
         \chapter{\c_@@_label_abstract_tl}
       } {
         \chapter*{\c_@@_label_abstract_tl}
@@ -2190,12 +2423,8 @@
     \newpage
   }
 
-  \NewDocumentEnvironment {abstractEn} {o}
+  \NewDocumentEnvironment {abstractEn} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / abstract_en } {#1}
-    }
-
     \cleardoublepage
     \setstretch{1.53}
 
@@ -2240,7 +2469,7 @@
 
     {
       \@@_same_page:
-      \bool_if:nTF {\l_@@_add_to_toc_bool} {
+      \bool_if:nTF {\l_@@_add_abstract_en_to_toc_bool} {
         \chapter{\c_@@_label_abstract_en_tl}
       } {
         \chapter*{\c_@@_label_abstract_en_tl}
@@ -2299,12 +2528,8 @@
 
   % #1: The name that used as chapter title
   % #2: The name that used in ToC.
-  \NewDocumentEnvironment {appendices} {o}
+  \NewDocumentEnvironment {appendices} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / appendices } {#1}
-    }
-
     % Used in chapter, ToC.
     \tl_new:N \l_@@_appendix_plain_label_tl
     % Used before reference label.
@@ -2421,13 +2646,9 @@
   {
   }
 
-  \NewDocumentEnvironment {symbols} {o}
+  \NewDocumentEnvironment {symbols} {}
   {
-    \IfValueT {#1} {
-      \keys_set:nn { bit / symbols } {#1}
-    }
-
-    \bool_if:NTF \l_@@_add_to_toc_bool {
+    \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
       \chapter{\c_@@_label_symbols_tl}
     } {
       \chapter*{\c_@@_label_symbols_tl}
@@ -2540,8 +2761,8 @@
 
 \ProcessKeysOptions { bitreport / option }
 
-\cs_generate_variant:Nn \tl_if_empty:nTF {e}
-\cs_generate_variant:Nn \seq_set_split:Nnn {Nne}
+\cs_generate_variant:Nn \tl_if_empty:nTF {x}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 
 % #1: position
 % #2: line_thickness
@@ -2586,7 +2807,7 @@
 
 % process label (#1) and value #2 seperately
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nne \l_@@_tmp_right_seq {//} {#2}
+  \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
   \seq_map_inline:Nn \l_@@_tmp_right_seq {
     \seq_put_right:Nn \l_@@_tmp_left_seq {}
@@ -2615,7 +2836,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:eTF \l_@@_tmpb_tl {} {
+        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
           \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
         }
       }
@@ -4148,6 +4369,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage{framed}
 \RequirePackage{menukeys}
 \RequirePackage{float}
+\RequirePackage{subfig}
 
  % 设置列表无间隔
 \usepackage{enumitem}
@@ -4346,13 +4568,16 @@ footskip=0.7cm% 页脚 1.8cm %
    style=lstStyleBase,
    frame=l,
    rulecolor=\color{purple},
-   language=bash}
+   language=bash,
+}
 
 \lstdefinestyle{lstStyleLaTeX}{%
    style=lstStyleBase,
    frame=l,
    rulecolor=\color{violet},
-   language=[LaTeX]TeX}
+   language=[LaTeX]TeX,
+   emphstyle=[1]\color{teal},
+}
 
 \lstdefinestyle{lstStyleSyntax}{%
    style=lstStyleBase,
@@ -4362,7 +4587,7 @@ footskip=0.7cm% 页脚 1.8cm %
    emphstyle=[1]\color{teal},
 }
 
-\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
+\lstnewenvironment{latex}[1][]{\lstset{style=lstStyleLaTeX, #1}}{}
 \lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
 \lstnewenvironment{bitsyntax}[1][]{\lstset{style=lstStyleSyntax, #1}}{}
 
