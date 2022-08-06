@@ -28,7 +28,6 @@
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitreport}
 {2022-06-10}{3.0.0}{BIT Thesis Templates}
-%%%% TODO:
 
 
 \int_new:N \g__bithesis_report_type_int

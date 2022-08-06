@@ -310,7 +310,7 @@
 % 与模板选项相同，布尔型的参数可以省略 \meta{选项} = true 中的“= true”。
 % 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
 %
-% \begin{latex}
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
 %   \BITSetup{
 %     cover = {
 %       date = 2022年6月,
@@ -324,7 +324,7 @@
 %
 % 或者
 % 
-% \begin{latex}[morekeywords={\BITSetup},emph={[1]cover,date,info,title,author}]
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
 %   \BITSetup{
 %     cover / date = 2022年6月,
 %     info / author = Feng Kaiyu,
@@ -482,7 +482,7 @@
 % \end{function}
 %
 % \begin{function}{info/major,info/majorEn}
-%   \begin{bitsyntax}[emph={[1]majorEn}]
+%   \begin{bitsyntax}[emph={[1]major,majorEn}]
 %     major = (*\marg{字符串}*)
 %     majorEn = (*\marg{字符串}*)
 %   \end{bitsyntax}
@@ -630,7 +630,84 @@
 %   页眉文字。
 % \end{function}
 %
-% \subsubsection{样式信息}
+% \subsubsection{目录选项}
+%
+% \begin{function}{TOC}
+%   \begin{bitsyntax}[emph={[1]TOC}]
+%     TOC = (*\marg{键值列表}*)
+%     TOC/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+% \end{function}
+%
+% \begin{function}{TOC/abstract,TOC/abstractEn}
+%   \begin{bitsyntax}[emph={[1]abstract,abstractEn}]
+%     abstract = (*(true)|false*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   是否在目录中索引摘要。
+% \end{function}
+%
+% \begin{function}{TOC/symbols}
+%   \begin{bitsyntax}[emph={[1]symbols}]
+%     abstract = (*(true)|false*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   是否在目录中索引主要符号对照表。
+% \end{function}
+%
+% \subsubsection{附录选项}
+%
+% \begin{function}{appendices}
+%   \begin{bitsyntax}[emph={[1]appendices}]
+%     appendices = (*\marg{键值列表}*)
+%     appendices/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+% \end{function}
+%
+% \begin{function}{appendices/chapterLevel}
+%   \begin{bitsyntax}[emph={[1]chapterLevel}]
+%     chapterLevel = (*<(false)|true>*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   开启后，可以使用以「chapter」为顶层的附录格式。
+%
+%  \begin{latex}[emph={[1]appendices,chapter}]
+%    \begin{appendices}
+%       \chapter{附录A 题目}
+%          (*\meta{附录A 内容}*)
+%       \chapter{附录B 题目}
+%          (*\meta{附录B 内容}*)
+%    \end{appendices}
+%  \end{latex}
+% \end{function}
+%
+% \begin{function}{appendices/title}
+%   \begin{bitsyntax}[emph={[1]title}]
+%     title = (*\meta{字符串}*)
+%   \end{bitsyntax}
+%
+%  可以覆盖附录的标题名称，默认为「附录」。
+% \end{function}
+%
+% \begin{function}{appendices/TOCTitle}
+%   \begin{bitsyntax}[emph={[1]TOCTitle}]
+%     TOCTitle = (*\meta{字符串}*)
+%   \end{bitsyntax}
+%
+%  可以覆盖附录在目录中的名称，默认为「附录」。
+% \end{function}
+%
+% \subsubsection{其他配置}
 % 
 % \begin{function}{misc}
 %   \begin{bitsyntax}[emph={[1]misc}]
@@ -660,7 +737,8 @@
 %
 % \begin{function}{\MakeCover}
 %
-%%%% TODO:
+% %%% TODO:
+%
 %   \textit{封面内容会根据模板参数中\meta{type}的值而变化。}
 %
 %   绘制封面。
@@ -693,23 +771,14 @@
 % \begin{function}{abstract}
 %   \begin{bitsyntax}[emph={[1]abstract}]
 %     \begin{abstract}
-%        \meta{中文摘要}
+%        (*\meta{中文摘要}*)
 %     \end{abstract}
-%
-%     \begin{abstract}(*\oarg{可选参数}*)
-%        \meta{中文摘要}
-%     \end{abstract}
-%   \end{bitsyntax}
 % \end{function}
 %
 % \begin{function}{abstractEn}
 %   \begin{bitsyntax}[emph={[1]abstractEn}]
 %     \begin{abstractEn}
-%        \meta{英文摘要}
-%     \end{abstractEn}
-%
-%     \begin{abstractEn}(*\oarg{可选参数}*)
-%        \meta{英文摘要}
+%        (*\meta{英文摘要}*)
 %     \end{abstractEn}
 %   \end{bitsyntax}
 % 
@@ -719,16 +788,6 @@
 %
 % \end{function}
 %
-% \begin{function}{addTOC}
-%   \begin{bitsyntax}[emph={[1]addTOC}]
-%     addTOC = (*<(true)|false>*)
-%   \end{bitsyntax}
-%
-%  摘要的可选参数。
-%
-%  添加摘要到目录，默认开启。
-% \end{function}
-%
 % \begin{function}{\MakeTOC,\listoffigures,\listoftables}
 %
 %  绘制目录、插图目录与表格目录。
@@ -736,7 +795,7 @@
 %
 % \begin{function}{symbols}
 %   \begin{bitsyntax}[emph={[1]symbols}]
-%     \begin{symbols}(*\oarg{可选参数}*)
+%     \begin{symbols}
 %        \item[BIT] 北京理工大学的英文缩写
 %        \item[\LaTeX] 一个很棒的排版系统
 %     \end{symbols}
@@ -772,6 +831,10 @@
 %
 % \begin{function}{algorithm,theorem,lemma,proposition,corollary,axiom,definition,conjecture,example,case,remark}
 %   \begin{bitsyntax}[emph={[2]proof}]
+%     \begin{theorem}[留数定理]
+%       (*\meta{定理内容}*)
+%     \end{theorem}
+%     
 %     \begin{proof}(*\oarg{小标题}*)
 %       (*\meta{证明过程}*)
 %     \end{proof}
@@ -833,7 +896,7 @@
 % \begin{function}{conclusion}
 %   \begin{bitsyntax}[emph={[1]conclusion}]
 %     \begin{conclusion}
-%        \meta{结论}
+%        (*\meta{结论}*)
 %     \end{conclusion}
 %   \end{bitsyntax}
 % \end{function}
@@ -859,58 +922,19 @@
 %
 % \begin{function}{appendices}
 %   \begin{bitsyntax}[emph={[1]appendices}]
-%     \begin{appendices}(*\oarg{可选参数}*)
+%     \begin{appendices}
 %       \section{附录A 题目}
-%          \meta{附录A 内容}
+%          (*\meta{附录A 内容}*)
 %       \section{附录B 题目}
-%          \meta{附录B 内容}
+%          (*\meta{附录B 内容}*)
 %     \end{appendices}
 %   \end{bitsyntax}
 %
 %  附录。
 % \end{function}
 %
-% \begin{function}{chapterLevel}
-%   \begin{bitsyntax}[emph={[1]chapterLevel}]
-%     chapterLevel = (*<(false)|true>*)
-%   \end{bitsyntax}
-%
-%  附录的可选参数。
-%
-%  开启后，可以使用以「chapter」为顶层的附录格式。
-%
-%  \begin{latex}
-%    \begin{appendices}[chapterLevel=true]
-%       \chapter{附录A 题目}
-%          \meta{附录A 内容}
-%       \chapter{附录B 题目}
-%          \meta{附录B 内容}
-%    \end{appendices}
-%  \end{latex}
-% \end{function}
-%
-% \begin{function}{title}
-%   \begin{bitsyntax}[emph={[1]title}]
-%     title = (*\meta{字符串}*)
-%   \end{bitsyntax}
-%
-%  附录的可选参数。
-%
-%  可以覆盖附录的标题名称，默认为「附录」。
-% \end{function}
-%
-% \begin{function}{TOCTitle}
-%   \begin{bitsyntax}[emph={[1]TOCTitle}]
-%     TOCTitle = (*\meta{字符串}*)
-%   \end{bitsyntax}
-%
-%  附录的可选参数。
-%
-%  可以覆盖附录在目录中的名称，默认为「附录」。
-% \end{function}
-%
 % \begin{function}{publications}
-%   \begin{bitsyntax}[emph={[1]publications}]
+%   \begin{bitsyntax}[emph={[1]publications,addtocategory,printbibliography}]
 %     \begin{publications}
 %       \nocite{\meta{引用内容的key}}
 %       \addtocategory{mypub}{\meta{引用内容的key}}
@@ -924,7 +948,7 @@
 % \begin{function}{acknowledgements}
 %   \begin{bitsyntax}[emph={[1]acknowledgements}]
 %     \begin{acknowledgements}
-%       \meta{致谢内容}
+%       (*\meta{致谢内容}*)
 %     \end{acknowledgements}
 %   \end{bitsyntax}
 %
@@ -934,7 +958,7 @@
 % \begin{function}{resume}
 %   \begin{bitsyntax}[emph={[1]resume}]
 %     \begin{resume}
-%       \meta{个人简介内容}
+%       (*\meta{个人简介内容}*)
 %     \end{resume}
 %   \end{bitsyntax}
 %
@@ -4544,13 +4568,16 @@ footskip=0.7cm% 页脚 1.8cm %
    style=lstStyleBase,
    frame=l,
    rulecolor=\color{purple},
-   language=bash}
+   language=bash,
+}
 
 \lstdefinestyle{lstStyleLaTeX}{%
    style=lstStyleBase,
    frame=l,
    rulecolor=\color{violet},
-   language=[LaTeX]TeX}
+   language=[LaTeX]TeX,
+   emphstyle=[1]\color{teal},
+}
 
 \lstdefinestyle{lstStyleSyntax}{%
    style=lstStyleBase,
@@ -4560,7 +4587,7 @@ footskip=0.7cm% 页脚 1.8cm %
    emphstyle=[1]\color{teal},
 }
 
-\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
+\lstnewenvironment{latex}[1][]{\lstset{style=lstStyleLaTeX, #1}}{}
 \lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
 \lstnewenvironment{bitsyntax}[1][]{\lstset{style=lstStyleSyntax, #1}}{}
 
