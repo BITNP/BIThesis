@@ -6,9 +6,30 @@ on:
       - "*.*.*"
 
 jobs:
+  build:
+    name: build bithesis manual
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add make msttcorefonts-installer fontconfig
+            update-ms-fonts
+            fc-cache -f
+            make doc
+      - name: Upload bithesis.pdf for later usage.
+        uses: actions/upload-artifact@v3
+        with:
+          name: bithesis
+          path: bithesis.pdf
+
+    
   publish:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
+    needs: build
 
     strategy:
       matrix:
@@ -16,6 +37,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Download bithesis.pdf
+        uses: actions/download-artifact@v3
+        with:
+          name: bithesis
+      - name: Copy manual to the template folder.
+        run: cp bithesis.pdf ./templates/${{ matrix.template }}
       - name: Install zip
         uses: montudor/action-zip@v1
       - name: Zip files under ./${{ matrix.template }}
