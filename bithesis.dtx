@@ -1005,7 +1005,7 @@
 \bool_new:N \g_@@_twoside_bool
 \bool_new:N \g_@@_thesis_type_english_bool
 \bool_new:N \g_@@_blind_mode_bool
-\tl_new:N \g_@@_label_devide_char_tl
+\tl_new:N \g_@@_label_divide_char_tl
 
 % \bool_new:N \l_@@_cover_auto_width_bool
 % \bool_set_true:N \l_@@_cover_auto_width_bool
@@ -1135,7 +1135,7 @@
 
 \clist_map_inline:nn
   {
-    {author} {作\quad 者\quad 姓\quad 名} {Candiate~Name},
+    {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
@@ -1608,24 +1608,24 @@
 \setlength{\belowcaptionskip}{9pt}
 
 \@@_if_graduate:TF {
-  \tl_set:Nn \g_@@_label_devide_char_tl {.}
+  \tl_set:Nn \g_@@_label_divide_char_tl {.}
 } {
-  \tl_set:Nn \g_@@_label_devide_char_tl {-}
+  \tl_set:Nn \g_@@_label_divide_char_tl {-}
 }
 
 % figure
-\cs_set:Npn \thefigure {\thechapter\g_@@_label_devide_char_tl\arabic{figure}}
+\cs_set:Npn \thefigure {\thechapter\g_@@_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
 % table
-\cs_set:Npn \thetable {\thechapter\g_@@_label_devide_char_tl\arabic{table}}
+\cs_set:Npn \thetable {\thechapter\g_@@_label_divide_char_tl\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
 % equation
-\cs_set:Npn \theequation {\thechapter\g_@@_label_devide_char_tl\arabic{equation}}
+\cs_set:Npn \theequation {\thechapter\g_@@_label_divide_char_tl\arabic{equation}}
 
 % code snippet
-\cs_set:Npn \thelstlisting {\thechapter\g_@@_label_devide_char_tl\arabic{lstlisting}}
+\cs_set:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c_@@_label_code_tl}
 
 
@@ -1729,7 +1729,7 @@
     \group_end:
   }
 
-% process label (#1) and value #2 seperately
+% process label (#1) and value #2 separately
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
@@ -2805,7 +2805,7 @@
     \group_end:
   }
 
-% process label (#1) and value #2 seperately
+% process label (#1) and value #2 separately
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
