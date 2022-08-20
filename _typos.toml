@@ -1,0 +1,6 @@
+[default.extend-words]
+ist = "ist"
+acn = "acn"
+
+[files]
+extend-exclude = ["CHANGELOG.md"]

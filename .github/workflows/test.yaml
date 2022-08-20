@@ -20,3 +20,12 @@ jobs:
             update-ms-fonts
             fc-cache -f
             make test
+
+  check typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check spelling of bithesis.dtx
+        uses: crate-ci/typos@master
+        with:
+          files: ./bithesis.dtx
