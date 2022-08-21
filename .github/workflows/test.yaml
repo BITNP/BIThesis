@@ -27,5 +27,3 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check spelling of bithesis.dtx
         uses: crate-ci/typos@master
-        with:
-          files: ./bithesis.dtx
