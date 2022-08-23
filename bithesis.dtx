@@ -254,7 +254,7 @@
 %
 % 环境同理。
 %
-% \subsection{模板选项}
+% \subsection{模板选项} \label{sec:template-options}
 %
 % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
 %
@@ -335,7 +335,7 @@
 % \textbf{请注意：以下选项根据模板的不同，可能会有不同的默认值。
 %  有些模板可能不会使用某些选项。使用与否以及使用方式是根据学校的论文撰写要求实现的。}
 %  
-% \subsubsection{封面选项}
+% \subsubsection{封面选项} \label{sec:cover}
 % 
 % \begin{function}{cover}
 %   \begin{bitsyntax}[emph={[1]cover}]
@@ -392,7 +392,7 @@
 %   自动计算封面中下划线的长度。
 %   
 %   如果关闭了该选项，则建议配合\kvopt{cover/labelMaxWidth}{\meta{长度}}\\
-%   和\kvopt{cover/valueMaxWidth}{\meta{长度}}使用来控制下划线的长度。
+%   和\kvopt{cover/valueMaxWidth}{\meta{长度}}使用，以控制下划线的长度。
 % \end{function}
 %
 % \begin{function}{cover/labelMaxWidth}
@@ -407,7 +407,7 @@
 %
 % \begin{function}{cover/valueMaxWidth}
 %   \begin{bitsyntax}[emph={[1]valueMaxWidth}]
-%     valueMaxWidth = (*<c|l|r>*)
+%     valueMaxWidth = (*\marg{任意长度}*)
 %   \end{bitsyntax}
 %
 %   \textit{此选项一般不需要用户自行修改。}
@@ -417,7 +417,7 @@
 %
 % \begin{function}{cover/labelAlign}
 %   \begin{bitsyntax}[emph={[1]labelAlign}]
-%     labelAlign = (*\marg{任意长度}*)
+%     labelAlign = (*<c|l|r>*)
 %   \end{bitsyntax}
 %
 %   \textit{此选项一般不需要用户自行修改。}
@@ -427,7 +427,7 @@
 %
 % \begin{function}{cover/valueAlign}
 %   \begin{bitsyntax}[emph={[1]valueAlign}]
-%     valueAlign = (*\marg{任意长度}*)
+%     valueAlign = (*<c|l|r>*)
 %   \end{bitsyntax}
 %
 %   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
@@ -737,11 +737,14 @@
 %
 % \begin{function}{\MakeCover}
 %
-% %%% TODO:
-%
-%   \textit{封面内容会根据模板参数中\meta{type}的值而变化。}
+%   \textit{封面内容会根据模板选项（具体参见节\ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
+%   \textit{封面的下划线效果会受到参数设置中封面选项（具体见节\ref{sec:cover}）的影响。}
 %
 %   绘制封面。
+%
+%   在默认配置下，封面中的下划线会自动计算最大宽度。此时，如果用户需要换行，可以通过「//」控制换行。
+%
+%   当关闭自动计算下划线宽度后，可以通过\meta{labelMaxWidth=xxx} 与 \meta{valueMaxWidth=xxx}来指定下划线的宽度。一般情况下，我们不建议您这样做。
 % \end{function}
 % 
 % \begin{function}{\MakePaperBack}
