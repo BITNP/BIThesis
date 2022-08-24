@@ -3,7 +3,7 @@
 <div align="center">
   <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
-📖 [_非官方本科生毕业设计论文/研究生学位论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
+📖 [_非官方本科生毕业设计论文/研究生学位论文 $LaTeX$ 模板（以及更多）_](https://bithesis.bitnp.net)
 
 ![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)
 [![English version](./assets/english.svg)](./README-bithesis.md)
@@ -13,7 +13,7 @@
 [![Github Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
 [![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
 
-**有关如何安装 Latex、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
+**有关如何安装 $LaTeX$、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
 [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
 
@@ -21,17 +21,19 @@
 
 <div align="center">
 
-:raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
+:raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 $LaTeX$ 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
 
 </div>
 
 <h2>欢迎</h2>
 
-BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
+BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学位论文的一个非官方的 $LaTeX$ 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 $LaTeX$ 模板。
 
 > 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
 > **研究生模板暂未与官方进行沟通。但是我们的代码从[BIT-thesis](https://github.com/BIT-thesis/LaTeX-template)迁移而来，而它曾得到了研究生院和北京理工大学学生事务中心的支持。**
+
+> __我们将在 2022-2023 学年与官方进行研究生模板的沟通。__
 
 <h2>交流社区</h2>
 
@@ -106,7 +108,7 @@ make dev
 
 ## 相关项目
 
-- [北京理工大学硕士（博士）学位论文 LaTeX 模板](https://github.com/BIT-thesis/LaTeX-template)
+- [北京理工大学硕士（博士）学位论文 $LaTeX$ 模板](https://github.com/BIT-thesis/LaTeX-template)
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)
 - [上海交通大学 XeLaTeX 学位论文及课程论文模板](https://github.com/sjtug/SJTUThesis)
 - ……
