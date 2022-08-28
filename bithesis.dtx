@@ -255,6 +255,8 @@
 % 环境同理。
 %
 % \subsection{模板选项} \label{sec:template-options}
+% 
+% TODO: add option / ctex
 %
 % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
 %
@@ -968,6 +970,121 @@
 %   个人简介。
 % \end{function}
 %
+% \section{\cls{bitreport} 使用与配置}
+% 
+% 推荐使用\BIThesisRelease （开箱即用）。
+%
+% \BIThesisRelease 提供了多种最常用的模板，你可以在
+% \href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。 
+% 
+% 使用此文档类的模板有：
+% \begin{itemize}
+%  \item \BIThesisTemplates{UP}
+%  \item \BIThesisTemplates{LR}
+% \end{itemize}
+%
+% \subsection{最小用例}
+% 
+% \begin{latex}
+%   \documentclass[]{bitreport}
+%   \BITSetup{
+%     info = {
+%       author = FKY,
+%       ......
+%     }
+%   }
+%   \begin{document}
+%   \end{document}
+% \end{latex}
+%
+% \subsection{模板选项}
+%
+% 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
+%
+% \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
+%   \documentclass(*\oarg{模板选项}*){bithesis}
+% \end{latex}
+%
+% \begin{function}{type}
+%   \begin{bitsyntax}[emph={[1]type}]
+%     type = (*<(common)|\mbox{undergraduate_proposal}>*)
+%   \end{bitsyntax}
+%   选择论文类型，它们分别对应：
+%   \begin{itemize}
+%     \item \BIThesisTemplates{LR}
+%     \item \BIThesisTemplates{UP}
+%   \end{itemize}
+% \end{function}
+% 
+% TODO: option / ctex
+%
+% \subsection{参数设置}
+%   
+% \begin{function}{\BITSetup}
+%   \begin{bitsyntax}[emph={[1]BITSetup}]
+%     \BITSetup = {(*\oarg{键值对}*)}
+%   \end{bitsyntax}
+% \end{function}
+% 
+% 本模板提供了一系列选项，可由您自行配置。载入文档类之后，以下所有选项均可通过统一的
+% 命令 \cs{BITSetup} 来设置。
+%
+% \cs{BITSetup} 的参数是一组由（英文）逗号隔开的选项列表，列表中的选项通常是 \meta{key} =
+% \meta{value} 的形式。部分选项的 \meta{value} 可以省略。对于同一项，后面的设置将会覆盖前面的设
+% 置。在下文的说明中，将用粗体表示默认值。
+%
+% \cs{BITSetup} 采用 LATEX3 风格的键值设置，支持不同类型以及多种层次的选项设定。键值列
+% 表中，“=”左右的空格不影响设置；但需注意，参数列表中不可以出现空行。
+% 与模板选项相同，布尔型的参数可以省略 \meta{选项} = true 中的“= true”。
+% 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
+%
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
+%   \BITSetup{
+%     cover = {
+%       date = 2022年6月,
+%     },
+%     info = {
+%       author = Feng Kaiyu,
+%       title = A Report Title for Your Experiment,
+%     }
+%   }
+% \end{latex}
+%
+% 或者
+% 
+% \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
+%   \BITSetup{
+%     cover / date = 2022年6月,
+%     info / author = Feng Kaiyu,
+%     info / title = A Thesis Title for Your Paper,
+%   }
+% \end{latex}
+%
+% \subsubsection{封面选项}
+% 
+% \begin{function}{cover}
+%   \begin{bitsyntax}[emph={[1]cover}]
+%     cover = (*\marg{键值列表}*)
+%     cover/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%   该选项包含许多子项目，用于设置论文格式。具体内容见下。
+% \end{function}
+%
+% \begin{function}{cover/date}
+%   \begin{bitsyntax}[emph={[1]date}]
+%     date = (*\marg{任意字符串}*)
+%   \end{bitsyntax}
+%
+%   覆盖封面的日期。
+% \end{function}
+%
+% \subsubsection{个人信息}
+%
+% TODO
+% \subsubsection{其他选项}
+%
+% TODO
 % \section{致谢}
 % \begin{itemize}
 %   \item 感谢贡献者对 BIThesis 的无私奉献。
