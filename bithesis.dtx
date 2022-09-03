@@ -2513,9 +2513,18 @@
     % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
     \setlength{\biblabelsep}{1.7mm}
     % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-    \RenewDocumentCommand \itemcmd {} {
-      \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-      \mkgbnumlabel{\printfield{labelnumber}}
+    % See: https://github.com/hushidong/biblatex-gb7714-2015
+    %      如何修参考文献表的缩进？
+    \cs_set:Npn \itemcmd {
+      \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+      %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+      \setlength{\lengthid}{0pt}
+      \addtolength{\lengthid}{-\biblabelsep}
+      \setlength{\lengthlw}{\textwidth}
+      \addtolength{\lengthlw}{-\lengthid}
+      \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+      \hangindent\lengthid
+      \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
       \hspace{\biblabelsep}
     }
     \@@_if_thesis_english:TF {
@@ -2613,9 +2622,18 @@
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
       % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-      \RenewDocumentCommand \itemcmd {} {
-        \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-        \mkgbnumlabel{\printfield{labelnumber}}
+      % See: https://github.com/hushidong/biblatex-gb7714-2015
+      %      如何修参考文献表的缩进？
+      \cs_set:Npn \itemcmd {
+        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+        \setlength{\lengthid}{0pt}
+        \addtolength{\lengthid}{-\biblabelsep}
+        \setlength{\lengthlw}{\textwidth}
+        \addtolength{\lengthlw}{-\lengthid}
+        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+        \hangindent\lengthid
+        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
         \hspace{\biblabelsep}
       }
 
