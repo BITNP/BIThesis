@@ -256,8 +256,6 @@
 %
 % \subsection{模板选项} \label{sec:template-options}
 % 
-% TODO: add option / ctex
-%
 % 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
 %
 % \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
@@ -282,14 +280,23 @@
 %   \begin{bitsyntax}[emph={[1]blindPeerReview}]
 %     blindPeerReview = (*<(false)|true>*)
 %   \end{bitsyntax}
+%
 %   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，
 %   比如封面、信息页、原创性声明、个人简介、致谢等等。
 % \end{function}
-%
+%  
 % \begin{function}{twoside}
 %   \begin{bitsyntax}[emph={[1]twoside}]
 %     twoside = (*<(false)|true>*)
 %   \end{bitsyntax}
+% \end{function}
+%
+% \begin{function}{ctex}
+%   \begin{bitsyntax}[emph={[1]ctex}]
+%     ctex = (*传给 ctexbook 的模板选项*)
+%   \end{bitsyntax}
+%
+%   该选项用于传入模板选项至 ctexbook。
 % \end{function}
 %  
 % \subsection{参数设置}
@@ -778,6 +785,7 @@
 %     \begin{abstract}
 %        (*\meta{中文摘要}*)
 %     \end{abstract}
+%   \end{bitsyntax}
 % \end{function}
 %
 % \begin{function}{abstractEn}
@@ -918,7 +926,7 @@
 %   在使用\BIThesisTemplates{GT}时需要注意，由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，因此 bithesis 同样使用 bibtex 管理其文献。而由于 biblatex 的排序是全局的，因此需要使用 \meta{category} 功能来分割出两个不同的类别。
 %
 %  因此，请使用下列语句输出参考文献：
-% \begin{latex}
+% \begin{latex}[emph={[1]bibprint}]
 %   \begin{bibprint}
 %     \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
 %   \end{bibprint}
@@ -928,10 +936,10 @@
 % \begin{function}{appendices}
 %   \begin{bitsyntax}[emph={[1]appendices}]
 %     \begin{appendices}
-%       \section{附录A 题目}
-%          (*\meta{附录A 内容}*)
-%       \section{附录B 题目}
-%          (*\meta{附录B 内容}*)
+%       \section{附录A题目}
+%          (*\meta{附录A内容}*)
+%       \section{附录B题目}
+%          (*\meta{附录B内容}*)
 %     \end{appendices}
 %   \end{bitsyntax}
 %
@@ -1016,7 +1024,13 @@
 %   \end{itemize}
 % \end{function}
 % 
-% TODO: option / ctex
+% \begin{function}{ctex}
+%   \begin{bitsyntax}[emph={[1]ctex}]
+%     ctex = (*传给 ctexbook 的模板选项*)
+%   \end{bitsyntax}
+%
+%   该选项用于传入模板选项至 ctexbook。
+% \end{function}
 %
 % \subsection{参数设置}
 %   
@@ -1079,12 +1093,100 @@
 %   覆盖封面的日期。
 % \end{function}
 %
-% \subsubsection{个人信息}
+% \subsubsection{文档基本信息}
 %
-% TODO
+% \begin{function}{info}
+%   \begin{bitsyntax}[emph={[1]info}]
+%     info = (*\marg{键值列表}*)
+%     info/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%  该选项包含许多子项目，用于录入论文信息。具体内容见下。
+% \end{function}
+%
+% \begin{function}{info/title}
+%   \begin{bitsyntax}[emph={[1]title}]
+%     title = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   论文或报告标题。
+% \end{function}
+%
+% \begin{function}{info/school}
+%   \begin{bitsyntax}[emph={[1]school}]
+%     school = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   学院名称。
+% \end{function}
+%
+% \begin{function}{info/major}
+%   \begin{bitsyntax}[emph={[1]major}]
+%     major = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   专业名称。
+% \end{function}
+%
+% \begin{function}{info/author}
+%   \begin{bitsyntax}[emph={[1]author}]
+%     author = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   作者姓名。
+% \end{function}
+%
+% \begin{function}{info/studentId}
+%   \begin{bitsyntax}[emph={[1]studentId}]
+%     studentId = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   学号。
+% \end{function}
+%
+% \begin{function}{info/supervisor}
+%   \begin{bitsyntax}[emph={[1]supervisor}]
+%     supervisor = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   指导教师。
+% \end{function}
+%
+% \begin{function}{info/externalSupervisor}
+%   \begin{bitsyntax}[emph={[1]externalSupervisor}]
+%     externalSupervisor = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   校外指导教师。
+% \end{function}
+%
+% \begin{function}{info/class}
+%   \begin{bitsyntax}[emph={[1]class}]
+%     class = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   班级。
+% \end{function}
+% 
 % \subsubsection{其他选项}
 %
-% TODO
+% \begin{function}{misc}
+%   \begin{bitsyntax}[emph={[1]misc}]
+%     misc = (*\marg{键值列表}*)
+%     misc/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%  该选项包含许多子项目，用于额外的控制。具体内容见下。
+% \end{function}
+%
+% \begin{function}{misc/reviewTable}
+%   \begin{bitsyntax}[emph={[1]reviewTable}]
+%     reviewTable = (*\marg{指向评审表的路径}*)
+%   \end{bitsyntax}
+%
+%   用于指定已经填写好的评审表 PDF 文件。
+% \end{function}
+%
 % \section{致谢}
 % \begin{itemize}
 %   \item 感谢贡献者对 BIThesis 的无私奉献。
