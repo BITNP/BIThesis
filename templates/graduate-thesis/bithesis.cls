@@ -35,7 +35,7 @@
 \bool_new:N \g__bithesis_twoside_bool
 \bool_new:N \g__bithesis_thesis_type_english_bool
 \bool_new:N \g__bithesis_blind_mode_bool
-\tl_new:N \g__bithesis_label_devide_char_tl
+\tl_new:N \g__bithesis_label_divide_char_tl
 
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
@@ -153,7 +153,7 @@
 
 \clist_map_inline:nn
   {
-    {author} {作\quad 者\quad 姓\quad 名} {Candiate~Name},
+    {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
@@ -583,20 +583,20 @@
 \setlength{\belowcaptionskip}{9pt}
 
 \__bithesis_if_graduate:TF {
-  \tl_set:Nn \g__bithesis_label_devide_char_tl {.}
+  \tl_set:Nn \g__bithesis_label_divide_char_tl {.}
 } {
-  \tl_set:Nn \g__bithesis_label_devide_char_tl {-}
+  \tl_set:Nn \g__bithesis_label_divide_char_tl {-}
 }
 
-\cs_set:Npn \thefigure {\thechapter\g__bithesis_label_devide_char_tl\arabic{figure}}
+\cs_set:Npn \thefigure {\thechapter\g__bithesis_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
-\cs_set:Npn \thetable {\thechapter\g__bithesis_label_devide_char_tl\arabic{table}}
+\cs_set:Npn \thetable {\thechapter\g__bithesis_label_divide_char_tl\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=2pt}
 
-\cs_set:Npn \theequation {\thechapter\g__bithesis_label_devide_char_tl\arabic{equation}}
+\cs_set:Npn \theequation {\thechapter\g__bithesis_label_divide_char_tl\arabic{equation}}
 
-\cs_set:Npn \thelstlisting {\thechapter\g__bithesis_label_devide_char_tl\arabic{lstlisting}}
+\cs_set:Npn \thelstlisting {\thechapter\g__bithesis_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c__bithesis_label_code_tl}
 
 \tolerance=1
@@ -1460,9 +1460,18 @@
     % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
     \setlength{\biblabelsep}{1.7mm}
     % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-    \RenewDocumentCommand \itemcmd {} {
-      \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-      \mkgbnumlabel{\printfield{labelnumber}}
+    % See: https://github.com/hushidong/biblatex-gb7714-2015
+    %      如何修参考文献表的缩进？
+    \cs_set:Npn \itemcmd {
+      \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+      %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+      \setlength{\lengthid}{0pt}
+      \addtolength{\lengthid}{-\biblabelsep}
+      \setlength{\lengthlw}{\textwidth}
+      \addtolength{\lengthlw}{-\lengthid}
+      \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+      \hangindent\lengthid
+      \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
       \hspace{\biblabelsep}
     }
     \__bithesis_if_thesis_english:TF {
@@ -1560,9 +1569,18 @@
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
       % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-      \RenewDocumentCommand \itemcmd {} {
-        \addvspace{\bibitemsep} % 恢复 \bibitemsep 的作用
-        \mkgbnumlabel{\printfield{labelnumber}}
+      % See: https://github.com/hushidong/biblatex-gb7714-2015
+      %      如何修参考文献表的缩进？
+      \cs_set:Npn \itemcmd {
+        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+        \setlength{\lengthid}{0pt}
+        \addtolength{\lengthid}{-\biblabelsep}
+        \setlength{\lengthlw}{\textwidth}
+        \addtolength{\lengthlw}{-\lengthid}
+        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+        \hangindent\lengthid
+        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
         \hspace{\biblabelsep}
       }
 
