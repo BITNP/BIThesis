@@ -13,9 +13,15 @@
 [![Github Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
 [![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
 
-**有关如何安装 $LaTeX$、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
+**有关如何安装 $LaTeX$、编译 BIThesis 模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
 [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
+
+**有关 BIThesis 提供的配置选项和命令，请参阅 BIThesis 的模板使用手册。👇**
+
+[![bithesis Documentation](https://img.shields.io/badge/bithesis-Documentation-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](http://mirrors.ctan.org/macros/latex/contrib/bithesis/bithesis.pdf)
+
+_（此文档已被包含在 [ Releases ][releases] 的文件中）_
 
 </div>
 
@@ -113,7 +119,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)](https://github.com/BITNP/BIThesis/releases)                                |
+| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)][releases]                                |
 | Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
 
 
@@ -122,3 +128,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
 
 Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
+
+---
+
+[releases]: https://github.com/BITNP/BIThesis/releases/latest
