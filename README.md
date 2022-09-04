@@ -3,7 +3,7 @@
 <div align="center">
   <img src="./assets/bithesis_icon.svg" alt="BIThesis Icon">
 
-📖 [_非官方本科生毕业设计论文/研究生学位论文 $LaTeX$ 模板（以及更多）_](https://bithesis.bitnp.net)
+📖 [_非官方本科生毕业设计论文/研究生学位论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
 
 ![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)
 [![English version](./assets/english.svg)](./README-bithesis.md)
@@ -13,9 +13,15 @@
 [![Github Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
 [![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
 
-**有关如何安装 $LaTeX$、编译 BIThesis 和使用 BIThesis 模板中的单个模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
+**有关如何安装 $LaTeX$、编译 BIThesis 模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
 [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
+
+**有关 BIThesis 提供的配置选项和命令，请参阅 BIThesis 的模板使用手册。👇**
+
+[![bithesis Documentation](https://img.shields.io/badge/bithesis-Documentation-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](http://mirrors.ctan.org/macros/latex/contrib/bithesis/bithesis.pdf)
+
+_（此文档已被包含在 [ Releases ][releases] 的文件中）_
 
 </div>
 
@@ -35,9 +41,22 @@ BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学�
 
 > __我们将在 2022-2023 学年与官方进行研究生模板的沟通。__
 
+<h2>特性</h2>
+
+- 符合学校对毕业论文的要求。
+- 内容和样式分离，所有的配置可以集中管理。
+- 一键导出盲审格式论文。
+- 自适应的封面信息下划线长度。
+- 由社区驱动，在积极地吸纳新功能、修复现有问题。
+
 <h2>交流社区</h2>
 
-> 订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方社区！
+_订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方社区！_
+
+- 最新更新：[Release](https://github.com/BITNP/BIThesis/releases)
+- 新功能请求与问题报告：[Issues](https://github.com/BITNP/BIThesis/issues)
+
+如果你更习惯聊天群，也可以：
 
 [![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 
@@ -55,48 +74,29 @@ BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学�
 
 详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
 
+## 使用方法
+
+1. 安装或升级最新的 LaTeX 套装，详见[wiki](https://bithesis.bitnp.net/Guide/1-Intro/First-things-first.html)。
+2. 根据需要，下载[最新的 Releases](https://github.com/BITNP/BIThesis/releases/latest)。
+3. 开始撰写。
+
+>  或者使用 [Overleaf 模板](https://bithesis.bitnp.net/#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
+
 ## 开发者指南
 
-**以下内容供宏集的开发者使用，如果你是普通用户的话，请参考我们的[在线文档](https://bithesis.bitnp.net) 。**
+**以下内容供开发者使用，如果你是普通用户的话，请参考我们的[在线文档](https://bithesis.bitnp.net) 。**
 
-### 生成 `.cls` 文件
+详见[开发者指南](./DEVELOPMENT.md)
 
-```Bash
-make cls
-```
-
-### 生成宏包手册
-
-```Bash
-make doc
-```
-
-### 本地开发
-
-运行以下命令，系统将会在 `bithesis.dtx` 更新后自动编译新的 `.cls` 文件，并拷贝到 `templates` 目录下的相应模板中。
-
-```Bash
-# 请首先确保 entr 正确安装
-make dev
-```
-
-### 单元测试和回归测试
-
-运行 `make test` 将对所有的模板进行编译测试（同样被用于 Github Action）。
-
-运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
-使用前请确保 `diff-pdf`、`zsh` 已经安装。
-
-### Release 工作流
-
-![Release Workflow](./assets/release_workflow.png)
-
-### 参考规范
+## 参考规范
 
 - 本科生
   - [北京理工大学教务部 - 关于2022届本科生毕业设计（论文）工作安排的通知](https://jwc.bit.edu.cn/sjjx/bysj/e06605ca60ec480d80bd6497560f70f7.htm) 
+  - 《本科-全英文 Thesis Format 2022》
+  - 《本科-全英文 Thesis Sample 2021 with signature》
 - 研究生
   - [北京理工大学研究生院 - 研究生学位论文模版](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b119746.htm) 
+  - 《北京理工大学研究生学位论文撰写规范》
 
 ## 贡献者指南
 
@@ -104,20 +104,22 @@ make dev
 
 ## 贡献者
 
-参见[Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html)。
+参见 [Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html)。
 
-## 相关项目
+## 特别感谢
 
-- [北京理工大学硕士（博士）学位论文 $LaTeX$ 模板](https://github.com/BIT-thesis/LaTeX-template)
-- [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)
-- [上海交通大学 XeLaTeX 学位论文及课程论文模板](https://github.com/sjtug/SJTUThesis)
-- ……
+- [ biblatex-gb7714-2015 ](https://github.com/hushidong/biblatex-gb7714-2015)：提供了易用的国标引用格式和细心指导。
+- [北京理工大学硕士（博士）学位论文 $LaTeX$ 模板](https://github.com/BIT-thesis/LaTeX-template)：提供了研究生论文样式的代码参考。
+- [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)：提供了包编写的最佳实践。
+- [ThuThesis（清华大学论文模板）](https://github.com/tuna/thuthesis)：提供了 dtx 样式的参考。
+
+以及所有参与本项目的开发者、贡献者与使用者。谢谢你们！
 
 ## 发布状态
 
 | CI             | Build status                                                                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)](https://github.com/BITNP/BIThesis/releases)                                |
+| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)][releases]                                |
 | Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
 
 
@@ -126,3 +128,7 @@ make dev
 📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
 
 Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
+
+---
+
+[releases]: https://github.com/BITNP/BIThesis/releases/latest
