@@ -19,6 +19,8 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
+% 开启盲审格式 blindPeerReview=ture (如：[type=bachelor,blindPeerReview=true])
+
 \documentclass[type=bachelor]{bithesis}
 
 \BITSetup{
@@ -50,8 +52,7 @@
 
 % 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
 % 你也可以选用自己的喜欢的其他宏包，如 minted；
-% 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的建议性考虑，我们没有提供 minted 进行代码块书写的示例。
-% 但是，我们仍旧非常建议你使用 minted。
+% 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的简洁程度考虑，我们没有提供 minted 进行代码块书写的示例。
 \usepackage{listings}
 
 \usepackage[
