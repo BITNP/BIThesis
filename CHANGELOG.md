@@ -3,14 +3,137 @@
 All notable changes to this project will be documented in this file.
 
 Acronyms:
-- LB: lab-report
-- MT: master-thesis
-- PT: paper-translation
-- PS: presentation-slide
-- UPR: undergraduate-proposal-report
-- UT: undergraduate-thesis
+- LB: lab-report (实验报告模板)
+- GT: graduate-thesis (研究生学位论文模板)
+- PT: paper-translation (本科生毕业设计外文翻译模板)
+- PS: presentation-slide (演讲幻灯片模板)
+- UPR: undergraduate-proposal-report (本科生毕业设计开题报告模板)
+- UTE: undergraduate-thesis-en (本科生毕业设计论文模板（全英文专业）)
+- UT: undergraduate-thesis (本科生毕业设计论文模板)
 
 **Bolded text highlights its importance.**
+
+## [3.0.0] - 2022-09-04
+
+[145b669](145b6694f130e0af3e5b5fa5d21ce68016c39764)...[a3f4f45](a3f4f4511558d8b042544623ec0c03e9c81a107a)
+
+### Documentation
+
+- Refine docs, add LaTeX syntax. ([9a9b676](9a9b67660f2d97cdaa7e21b2736975209e8eff7a))
+- Add more docs. ([29bf235](29bf235ec333c6330c1721c3a6e8e78677a0bd6e))
+- More details on bitreport. ([939bc03](939bc03815cd9a1294da46623565f7fe22ee8fa8))
+- Add more info in templates' readme. ([286585c](286585ce443f10481c33b9f7b7c3205db692fe6c))
+- Update instruction ([670c3fc](670c3fc40d6d6dfed329977917d2d77f8ab36598))
+- Refactor home page. ([f15faeb](f15faeb3e3505cba9498f17134a2b6e9bc5b8487))
+- Add more instructions for the developers. ([20444a3](20444a3e84b99b020b3d9878936ad61244ed75c7))
+
+### Miscellaneous Tasks
+
+- Update cover converter script ([a3f4f45](a3f4f4511558d8b042544623ec0c03e9c81a107a))
+
+### Ci
+
+- Check whole repos. ([6ad541e](6ad541efcb4112f61884f150ed3350b0173d4e9e))
+- Rename config file. ([755b52f](755b52fec8251bfa8ea8bb816b372882b314f841))
+
+## [3.0.0-beta-1] - 2022-09-03
+
+[317ab38](317ab38cd95f66d272bade227d0f56c0819bef6b)...[145b669](145b6694f130e0af3e5b5fa5d21ce68016c39764)
+
+### Bug Fixes
+
+- Fix typo. ([3855374](385537445fb77d49c9b16c855e7a37b113f70228))
+- Mode issue caused by outdated code. ([62f49bf](62f49bf31275d4e8e129cc8a64270e75b633c9d5))
+
+### Ci
+
+- Add typos check. ([a990994](a990994f0513b4d951cf0941d9d08411165781b8))
+
+### Hotfix
+
+- Typos in gh action workflow. ([a6029ed](a6029ed026abb514c7abbcabea42e6509b0a6412))
+
+## [3.0.0-alpha-4] - 2022-08-13
+
+[4d4fb55](4d4fb5596a9149b4bfee6a2d851090072717a3e1)...[317ab38](317ab38cd95f66d272bade227d0f56c0819bef6b)
+
+### Features
+
+- Copy manual into release pack. ([317ab38](317ab38cd95f66d272bade227d0f56c0819bef6b))
+
+## [3.0.0-alpha-3] - 2022-08-06
+
+[6a4e80e](6a4e80ed95c0b7a86dbd231d9552cffa7255fb73)...[4d4fb55](4d4fb5596a9149b4bfee6a2d851090072717a3e1)
+
+### Documentation
+
+- Add docs for predefined theorem. ([b2753df](b2753df7eafa043eba6bb7be09a08cbe53478893))
+- Add more docs for optional arguments. ([7421bc3](7421bc347f663180f92cf54efa9905edb9739bca))
+- Refine manual. ([2cff7d1](2cff7d1d39c58792c9cd960a2b4ef4f6a9196b45))
+
+### Features
+
+- Support chapter level appendices. ([194ee2c](194ee2c11908111d06f7f810869de1e9942a0c50))
+- Add common math environment with example. ([6d29769](6d29769a6aaf98182e16c8d247823f8028f147c2))
+
+### Refactor
+
+- [**breaking**] Merge environment options to setup. ([3b0fbac](3b0fbac22146484af050177605fb088882c89289))
+- Use variant x instead of e. ([83a76c6](83a76c6a940fb377367e785d5a6763e9cb3bb556))
+
+## [3.0.0-alpha-2] - 2022-07-09
+
+[20a455d](20a455dbc10646b1f972fecb847af6585a8e1123)...[6a4e80e](6a4e80ed95c0b7a86dbd231d9552cffa7255fb73)
+
+### Bug Fixes
+
+- Pass options to ctex in a seperate option. ([9d17ba5](9d17ba55c042084793f67e33cd4bd9e40d87b8bf))
+- Suppress harmless warning. ([17c5cee](17c5cee1ccc01cc4b95d92e02b37516af84024a8))
+
+## [3.0.0-alpha-1] - 2022-07-09
+
+[a4aaef8](a4aaef803b1ec0ce1e156f526112c8b9d5cdfee8)...[20a455d](20a455dbc10646b1f972fecb847af6585a8e1123)
+
+### Bug Fixes
+
+- 修复本科毕设的附录编号格式 ([4d2a76d](4d2a76d1131ddafbbc6edcbab240b5e719a0282f))
+- Remove space in demo. ([61f9ebb](61f9ebb97bf7b732325cf45146a5a6247d69e9ce))
+- Remove minted. ([40cfc68](40cfc687e9b73c73f7a86b5f78f611132e110037))
+- Remove abstract TOC according to inst. ([e8c4b66](e8c4b66ec7aca968d8c0d46e4b469b348ac755f6))
+- Move settings to cls file. ([4a927f7](4a927f7a5953036065bd53e6ef43aa2354e029e8))
+
+### Features
+
+- Finish undergraduate-thesis-en template ([3c42300](3c423007613c37f13df9da2f6461f37c653095a5))
+- Add \environent "symbols". ([80bfc2e](80bfc2e709fc92932a0b69a71ab121d67f14f161))
+- Option to add toc. ([0c1473f](0c1473f4b053fe7b602e6d3331b6a2901092484a))
+- Support auto wrap and auto width cover entry. ([eff8f61](eff8f61c77dbfe71a89937eddb869b91a0167efc))
+- Add blindPeerReview mode to all thesis. ([ac10ffa](ac10ffa7898de5691e75c6d6b9772b73acdecc37))
+
+### Refactor
+
+- 表格方面改为三线表制(#148) ([2c560ad](2c560ade94092b6a5c0a46fb49753c7a431d7320))
+- Refactor UPR using latex3. ([d515600](d5156007cdb2fd80fbe21080d9ac5fc73d031074))
+- Use l3doc as documentclass ([aa50edb](aa50edb60b0e8c351d094b61f311debdcf4a3726))
+- Merge UT originality claim. ([f9fee20](f9fee200382d22f868bc30c2e37ed751f4f99662))
+- [**breaking**] Remove searching for STXihei due to poor performance. ([26d715e](26d715e3b819757e79b764bff732901888cc3044))
+- Extract const name. ([30da6e7](30da6e724559aa6a2713beeb5ab187de407a9f55))
+- Use option. ([d481a5c](d481a5c5e8fabfe6b0fdc8b476e1758e8c8cb9bc))
+- Squash to dtx file. ([2621f7b](2621f7bc7f90aa6c905342291da8dae9c5ebb85a))
+- Abstract* to abstractEn ([05011af](05011af69ac779208d88edea9236c6c271bd1023))
+
+### WIP
+
+- Pack to latex3 ([d3b61d1](d3b61d16077a358c9d1dbb9b934afeb0d788ba57))
+- Use xparse. ([e330458](e33045812dff9d6aa1c3b6f198c574ae73db2b6d))
+- Make cover ([f7a20a8](f7a20a8a7fa71dc12c2ccf15d694c65944659bd1))
+- Add abstract to package. ([045c120](045c12022d0eac902aa6fb1368fc8099b9b1f839))
+- Finish UT migration ([c00f6e4](c00f6e41ea1fddfdad8e6e52e5b2f2e7c7aa3630))
+- Update PT to latex3 ([19b7185](19b7185b61d216ca5d2d09936dea4b1b26d6ceb1))
+
+### Hotfix
+
+- Compile conflict. ([7d577c9](7d577c93255ffc6124fe2dda529160dd10045a86))
 
 ## [2.2.4] - 2022-06-08
 
