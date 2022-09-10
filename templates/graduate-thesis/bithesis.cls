@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2022-06-10}{3.0.0}{BIT Thesis Templates}
+{2022-09-03}{3.0.0}{BIT Thesis Templates}
 
 
 \int_new:N \g__bithesis_thesis_type_int
