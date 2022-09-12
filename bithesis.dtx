@@ -293,10 +293,16 @@
 %
 % \begin{function}{ctex}
 %   \begin{bitsyntax}[emph={[1]ctex}]
-%     ctex = (*传给 ctexbook 的模板选项*)
+%     ctex = (*{传给 ctexbook 的模板选项}*)
 %   \end{bitsyntax}
 %
 %   该选项用于传入模板选项至 ctexbook。
+%   
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%
+%   \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
+%      \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
+%   \end{latex}
 % \end{function}
 %  
 % \subsection{参数设置}
@@ -1030,6 +1036,12 @@
 %   \end{bitsyntax}
 %
 %   该选项用于传入模板选项至 ctexbook。
+%
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%
+%   \begin{latex}[emph={[1]type,common,ctex,fontset,fandol,punct,banjiao,bitreport}]
+%      \documentclass[type=common,ctex={fontset=fandol,punct=banjiao}]{bitreport}
+%   \end{latex}
 % \end{function}
 %
 % \subsection{参数设置}
