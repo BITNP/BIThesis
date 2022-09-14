@@ -36,7 +36,6 @@
 \bool_new:N \g__bithesis_thesis_type_english_bool
 \bool_new:N \g__bithesis_blind_mode_bool
 \tl_new:N \g__bithesis_label_divide_char_tl
-
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
 
