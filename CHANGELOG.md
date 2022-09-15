@@ -13,6 +13,34 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.0.1] - 2022-09-15
+
+[dea1ac9](dea1ac9177bd040d83a8d09c831687a9a8f91881)...[193fa8f](193fa8fdaa5a8c8438f34f08c6c59760dec58b6d)
+
+### Bug Fixes
+
+- Bump cls version in packages. ([930fbd5](930fbd580e43b434b0b0d0e7ff57e3bf071a03af))
+- Refine example. ([329d1ae](329d1aef2c8c94a28043e6845a7b0eeab2a2fb20))
+
+### Documentation
+
+- Add more precise description on `ctex`. ([e2083f0](e2083f0712222a680e56652964506ebccd002fe7))
+- Update manual. ([74a2780](74a27802ad2c8c2f2d4144951f699f303f80d167))
+- Docs on bibliographyIndent. ([193fa8f](193fa8fdaa5a8c8438f34f08c6c59760dec58b6d))
+
+### Features
+
+- Add verticalTitle option in book spine. ([411cedf](411cedfce1ac9ea2f97b1d88a43321dfdb122529))
+- Provide a option to custom the indent for bibliography. ([78c9a85](78c9a85c99de232e57daf4bd81b9b4a33dd441d9))
+
+### Miscellaneous Tasks
+
+- Bump version. ([5470390](5470390075fc6ec7b57e6b4eaabe8274b67a95df))
+
+### Refactor
+
+- Uncomment default value for cover/date. ([5ec5c1e](5ec5c1ec555e828c92232a4875214d69578eeb1e))
+
 ## [3.0.0] - 2022-09-04
 
 [145b669](145b6694f130e0af3e5b5fa5d21ce68016c39764)...[a3f4f45](a3f4f4511558d8b042544623ec0c03e9c81a107a)
