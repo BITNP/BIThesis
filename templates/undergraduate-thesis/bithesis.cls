@@ -300,6 +300,8 @@
       {5} {北京理工大学博士学位论文}
     }
   },
+  bibliographyIndent .bool_set:N = \l__bithesis_style_bibliography_indent_bool,
+  bibliographyIndent .initial:n = {true},
 }
 
 \keys_define:nn { bithesis / TOC }
@@ -1456,21 +1458,25 @@
     }
     % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
     \setlength{\biblabelsep}{1.7mm}
-    % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-    % See: https://github.com/hushidong/biblatex-gb7714-2015
-    %      如何修参考文献表的缩进？
-    \cs_set:Npn \itemcmd {
-      \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
-      %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
-      \setlength{\lengthid}{0pt}
-      \addtolength{\lengthid}{-\biblabelsep}
-      \setlength{\lengthlw}{\textwidth}
-      \addtolength{\lengthlw}{-\lengthid}
-      \addvspace{\bibitemsep}%恢复\bibitemsep的作用
-      \hangindent\lengthid
-      \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
-      \hspace{\biblabelsep}
+
+    \bool_if:NF \l__bithesis_style_bibliography_indent_bool {
+      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+      % See: https://github.com/hushidong/biblatex-gb7714-2015
+      %      如何修参考文献表的缩进？
+      \cs_set:Npn \itemcmd {
+        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+        \setlength{\lengthid}{0pt}
+        \addtolength{\lengthid}{-\biblabelsep}
+        \setlength{\lengthlw}{\textwidth}
+        \addtolength{\lengthlw}{-\lengthid}
+        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+        \hangindent\lengthid
+        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+        \hspace{\biblabelsep}
+      }
     }
+
     \__bithesis_if_thesis_english:TF {
       \chapter{\c__bithesis_label_reference_en_tl}
     } {
@@ -1565,20 +1571,23 @@
       \renewcommand{\baselinestretch}{1.2}
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
-      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-      % See: https://github.com/hushidong/biblatex-gb7714-2015
-      %      如何修参考文献表的缩进？
-      \cs_set:Npn \itemcmd {
-        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
-        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
-        \setlength{\lengthid}{0pt}
-        \addtolength{\lengthid}{-\biblabelsep}
-        \setlength{\lengthlw}{\textwidth}
-        \addtolength{\lengthlw}{-\lengthid}
-        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
-        \hangindent\lengthid
-        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
-        \hspace{\biblabelsep}
+
+      \bool_if:NF \l__bithesis_style_bibliography_indent_bool {
+        % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+        % See: https://github.com/hushidong/biblatex-gb7714-2015
+        %      如何修参考文献表的缩进？
+        \cs_set:Npn \itemcmd {
+          \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+          %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+          \setlength{\lengthid}{0pt}
+          \addtolength{\lengthid}{-\biblabelsep}
+          \setlength{\lengthlw}{\textwidth}
+          \addtolength{\lengthlw}{-\lengthid}
+          \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+          \hangindent\lengthid
+          \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+          \hspace{\biblabelsep}
+        }
       }
 
       % ===== 上方定义与「参考文献」部分相同
