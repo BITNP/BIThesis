@@ -487,6 +487,28 @@
 %   论文标题。
 % \end{function}
 %
+% \begin{function}{info/verticalTitle}
+%   \begin{bitsyntax}[emph={[1]verticalTitle}]
+%     verticalTitle = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   书籍页竖排标题。此选项默认为空。为空时，会被 \kvopt{info/title}{字符串} 替代。
+%
+%   如想要使用竖排英文，可以使用 \lstinline|{X }|。其中 X 为英文字符，每个竖排英文间需要空一格。
+%   比如，想要竖排「LaTeX」，可以使用：
+%
+%   \begin{latex}[emph={[1]}]
+%      verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
+%   \end{latex}
+%
+%   如果想要使用旋转竖排英文，可以使用 \lstinline|\rotatebox[origin=c]{-90}{English text}|。
+%
+%   \begin{latex}[emph={[1]}]
+%      verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
+%   \end{latex}
+%
+% \end{function}
+%
 % \begin{function}{info/school,info/schoolEn}
 %   \begin{bitsyntax}[emph={[1]school,schoolEn}]
 %     school = (*\marg{字符串}*)
@@ -1590,6 +1612,7 @@
   {
     title .tl_set:N = \l_@@_value_title_tl,
     titleEn .tl_set:N = \l_@@_value_title_en_tl,
+    verticalTitle .tl_set:N = \l_@@_value_vertical_title_tl,
     school .tl_set:N = \l_@@_value_school_tl,
     major .tl_set:N = \l_@@_value_major_tl,
     author .tl_set:N = \l_@@_value_author_tl,
@@ -2184,7 +2207,7 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3}\l_@@_value_title_tl}
+        {\heiti\zihao{3} \tl_if_blank:VTF \l_@@_value_vertical_title_tl {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}}
           \vfill
         {\heiti\zihao{3}\l_@@_value_author_tl}
           \vfill
@@ -5026,3 +5049,4 @@ footskip=0.7cm% 页脚 1.8cm %
 %  TeX-master: t
 %  End:
 % \fi
+

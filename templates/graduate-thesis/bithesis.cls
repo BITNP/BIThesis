@@ -39,15 +39,12 @@
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
 
-
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
-
 \cs_new:Npn \__bithesis_same_page: {
   \let\clearpage\relax
   \let\cleardoublepage\relax
 }
-
 \cs_new:Npn \__bithesis_if_graduate:TF #1#2 {
     \int_compare:nNnTF {3} < {\g__bithesis_thesis_type_int}
       {#1}
@@ -87,6 +84,16 @@
     \tl_const:cn { c__bithesis_ #1 _label_ #2 _tl } {#3}
     \tl_const:cn { c__bithesis_ #1 _label_ #2 _en_tl } {#4}
   }
+
+\cs_new:Npn \smallgap: {
+  \hspace{0.45ex}
+}
+
+\cs_new:Npn \label_space: {
+  \__bithesis_if_bachelor_thesis:T {
+    \quad
+  }
+}
 
 \clist_map_inline:nn
   {
@@ -129,16 +136,6 @@
   I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
   } {\__bithesis_define_label_by_thesis_type:nnn {bachelor_english} #1}
-
-\cs_new:Npn \smallgap: {
-  \hspace{0.45ex}
-}
-
-\cs_new:Npn \label_space: {
-  \__bithesis_if_bachelor_thesis:T {
-    \quad
-  }
-}
 
 \clist_map_inline:nn
   {
@@ -253,6 +250,7 @@
   {
     title .tl_set:N = \l__bithesis_value_title_tl,
     titleEn .tl_set:N = \l__bithesis_value_title_en_tl,
+    verticalTitle .tl_set:N = \l__bithesis_value_vertical_title_tl,
     school .tl_set:N = \l__bithesis_value_school_tl,
     major .tl_set:N = \l__bithesis_value_major_tl,
     author .tl_set:N = \l__bithesis_value_author_tl,
@@ -784,7 +782,7 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3}\l__bithesis_value_title_tl}
+        {\heiti\zihao{3} \tl_if_blank:VTF \l__bithesis_value_vertical_title_tl {\l__bithesis_value_title_tl}{\l__bithesis_value_vertical_title_tl}}
           \vfill
         {\heiti\zihao{3}\l__bithesis_value_author_tl}
           \vfill
