@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-09-03}{3.0.0}{BIT Thesis Templates}
+%<cls>{2022-09-15}{3.0.1}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/09/03 3.0.0 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/09/15 3.0.1 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -293,10 +293,16 @@
 %
 % \begin{function}{ctex}
 %   \begin{bitsyntax}[emph={[1]ctex}]
-%     ctex = (*传给 ctexbook 的模板选项*)
+%     ctex = (*{传给 ctexbook 的模板选项}*)
 %   \end{bitsyntax}
 %
 %   该选项用于传入模板选项至 ctexbook。
+%   
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%
+%   \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
+%      \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
+%   \end{latex}
 % \end{function}
 %  
 % \subsection{参数设置}
@@ -481,6 +487,28 @@
 %   论文标题。
 % \end{function}
 %
+% \begin{function}{info/verticalTitle}
+%   \begin{bitsyntax}[emph={[1]verticalTitle}]
+%     verticalTitle = (*\marg{字符串}*)
+%   \end{bitsyntax}
+%
+%   书籍页竖排标题。此选项默认为空。为空时，会被 \kvopt{info/title}{字符串} 替代。
+%
+%   如想要使用竖排英文，可以使用 \lstinline|{X }|。其中 X 为英文字符，每个竖排英文间需要空一格。
+%   比如，想要竖排「LaTeX」，可以使用：
+%
+%   \begin{latex}[emph={[1]}]
+%      verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
+%   \end{latex}
+%
+%   如果想要使用旋转竖排英文，可以使用 \lstinline|\rotatebox[origin=c]{-90}{English text}|。
+%
+%   \begin{latex}[emph={[1]}]
+%      verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
+%   \end{latex}
+%
+% \end{function}
+%
 % \begin{function}{info/school,info/schoolEn}
 %   \begin{bitsyntax}[emph={[1]school,schoolEn}]
 %     school = (*\marg{字符串}*)
@@ -637,6 +665,20 @@
 %   \textit{此选项一般不需要用户自行修改。}
 %
 %   页眉文字。
+% \end{function}
+%
+% \begin{function}{style/bibliographyIndent}
+%   \begin{bitsyntax}[emph={[1]bibliographyIndent}]
+%     bibliographyIndent = (*(true)|false*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   控制参考文献的每一项中，首行之后的行是否缩进。
+%   
+%   之所以提供这个选项，
+%   是因为在 Word 模板中参考文献的格式要求首行之后的行不缩进。
+%   但是国标要求首行之后的行缩进。
 % \end{function}
 %
 % \subsubsection{目录选项}
@@ -1030,6 +1072,12 @@
 %   \end{bitsyntax}
 %
 %   该选项用于传入模板选项至 ctexbook。
+%
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%
+%   \begin{latex}[emph={[1]type,common,ctex,fontset,fandol,punct,banjiao,bitreport}]
+%      \documentclass[type=common,ctex={fontset=fandol,punct=banjiao}]{bitreport}
+%   \end{latex}
 % \end{function}
 %
 % \subsection{参数设置}
@@ -1220,56 +1268,125 @@
 %<*thesis>
 %    \end{macrocode}
 
-% Define Global Variables
+% \subsection{全局变量与临时变量}
+% 定义全局变量。
+% \begin{variable}{\g_@@_thesis_type_int}
+% 论文类型，取值从 1 开始，分别对应: 
+%  \begin{enumerate}
+%      \item 本科生毕业设计（论文）
+%      \item 本科生毕业设计（论文）外文翻译
+%      \item 本科生全英文专业毕业设计（论文）
+%      \item 硕士学位论文
+%      \item 博士学位论文
+%  \end{enumerate}
 %    \begin{macrocode}
 \int_new:N \g_@@_thesis_type_int
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\g_@@_head_zihao_int}
+% 页眉字号。研究生论文使用 5 号字，本科生论文使用 4 号字。
+%    \begin{macrocode}
 \int_new:N \g_@@_head_zihao_int
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\g_@@_twoside_bool}
+% 是否双面打印。默认单面打印。
+%    \begin{macrocode}
 \bool_new:N \g_@@_twoside_bool
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\g_@@_thesis_type_english_bool}
+% 是否为英文模板。目前只有本科生全英文专业的模板会将此变量设置为 true。
+%    \begin{macrocode}
 \bool_new:N \g_@@_thesis_type_english_bool
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\g_@@_blind_mode_bool}
+% 是否为盲审模式。默认为 false。
+%    \begin{macrocode}
 \bool_new:N \g_@@_blind_mode_bool
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\g_@@_label_divide_char_tl}
+% 用于分隔标签的字符。默认为「-」或者「.」。
+%    \begin{macrocode}
 \tl_new:N \g_@@_label_divide_char_tl
-
-% \bool_new:N \l_@@_cover_auto_width_bool
-% \bool_set_true:N \l_@@_cover_auto_width_bool
-%
-% Define tmp Variables
+%    \end{macrocode}
+% \end{variable}
+% \begin{variable}{\l_@@_right_seq, \l_@@_left_seq}
+% 定义临时变量。
+%    \begin{macrocode}
 \seq_new:N \l_@@_right_seq
 \seq_new:N \l_@@_left_seq
+%    \end{macrocode}
+% \end{variable}
 
-% helper functions
-
+% \subsection{辅助函数与常量}
+% \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
+% 生成变体。
+%    \begin{macrocode}
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
-
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@@_same_page:}
+% 取消换页。
+%    \begin{macrocode}
 \cs_new:Npn \@@_same_page: {
   \let\clearpage\relax
   \let\cleardoublepage\relax
 }
-
-% 是否为研究生学位论文
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@@_if_graduate:TF}
+% 是否为研究生学位论文。
+%    \begin{macrocode}
 \cs_new:Npn \@@_if_graduate:TF #1#2 {
     \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
       {#1}
       {#2}
   }
+%    \end{macrocode}
+% \end{macro}
 
-% 是否某一特定模板
+% \begin{macro}{\@@_if_thesis_int_type:nT,\@@_if_thesis_int_type:nTF}
+% 是否某一特定模板。
+%    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
 \cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\@@_if_thesis_english:T,\@@_if_thesis_english:TF}
 % 是否为英文模板，这里包括全英文专业和研究生模板的英文模式。
+%    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
 \cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\@@_if_bachelor_thesis:TF,\@@_if_bachelor_thesis:T,\@@_if_master_thesis:TF,\@@_if_doctor_thesis:TF}
+% 是否为本科、硕士、博士学位论文。
+%    \begin{macrocode}
 \cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
 \cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
 \cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
 \cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
+%    \end{macrocode}
+% \end{macro}
 
-% Define Consts.
+
+% \begin{variable}{\c_@@_thesis_type_clist}
+% 定义论文类型的列表。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, docter}
+%    \end{macrocode}
+% \end{variable}
 
+% \begin{macro}{\@@_define_label:nn,\@@_define_label_by_thesis_type:nnn,\@@_define_label:nnn,\@@_define_label_by_thesis_type:nnnn}
+% 定义常量（标签）的辅助函数。
+%    \begin{macrocode}
 \cs_new_protected:Npn \@@_define_label:nn #1#2
   { \tl_const:cn { c_@@_label_ #1 _tl } {#2} }
 
@@ -1289,7 +1406,33 @@
     \tl_const:cn { c_@@_ #1 _label_ #2 _tl } {#3}
     \tl_const:cn { c_@@_ #1 _label_ #2 _en_tl } {#4}
   }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\smallgap:}
+% 标签文字之间的间距。
+%    \begin{macrocode}
+\cs_new:Npn \smallgap: {
+  \hspace{0.45ex}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\label_space:}
+% 标签与内容之间的空白间距。
+%    \begin{macrocode}
+\cs_new:Npn \label_space: {
+  \@@_if_bachelor_thesis:T {
+    \quad
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{variable}{\c_@@_label_code_tl,\c_@@_label_udc_tl,
+%   \c_@@_label_classification_tl,\c_@@_label_classified_level_tl,\c_@@_label_type_tl}
+% 没有对应英文的常量。
+%    \begin{macrocode}
 \clist_map_inline:nn
   {
     {code} {代码},
@@ -1299,7 +1442,12 @@
     {type} {种类},
   }
   {\@@_define_label:nn #1}
+%    \end{macrocode}
+% \end{variable}
 
+% \begin{variable}{\c_@@_bachelor_label_xxx_tl}
+% 本科毕设的常量。
+%    \begin{macrocode}
 % bachelor
 \clist_map_inline:nn
   {
@@ -1311,8 +1459,12 @@
     {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
     {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
   } {\@@_define_label_by_thesis_type:nnn {bachelor} #1}
+%    \end{macrocode}
+% \end{variable}
 
-% % bachelor english
+% \begin{variable}{\c_@@_bachelor_english_label_xxx_tl}
+% 全英文专业的常量。
+%    \begin{macrocode}
 \clist_map_inline:nn
   {
     {title} {},
@@ -1333,17 +1485,12 @@
   I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
   } {\@@_define_label_by_thesis_type:nnn {bachelor_english} #1}
+%    \end{macrocode}
+% \end{variable}
 
-\cs_new:Npn \smallgap: {
-  \hspace{0.45ex}
-}
-
-\cs_new:Npn \label_space: {
-  \@@_if_bachelor_thesis:T {
-    \quad
-  }
-}
-
+% \begin{variable}{\c_@@_graduate_label_xxx_tl}
+% 研究生模板的常量。
+%    \begin{macrocode}
 % graduate
 \clist_map_inline:nn
   {
@@ -1354,7 +1501,12 @@
     {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
     {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
   } {\@@_define_label_by_thesis_type:nnn {graduate} #1}
+%    \end{macrocode}
+% \end{variable}
 
+% \begin{variable}{\c_@@_graduate_label_xxx_tl,\c_@@_graduate_label_xxx_en_tl}
+% 研究生模板的中英常量。
+%    \begin{macrocode}
 \clist_map_inline:nn
   {
     {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
@@ -1366,7 +1518,12 @@
     {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
     {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
+%    \end{macrocode}
+% \end{variable}
 
+% \begin{variable}{\c_@@_label_xxx_tl,\c_@@_label_xxx_en_tl}
+% 常用的中英常量。
+%    \begin{macrocode}
 \clist_map_inline:nn 
   {
     {school} {学\qquad 院} {School},
@@ -1392,8 +1549,12 @@
     {symbols} {主要符号对照表} {},
   }
   {\@@_define_label:nnn #1}
+%    \end{macrocode}
+% \end{variable}
 
-% TODO: \clist_item:Nn
+% \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_cover_title_clist}
+% 本科生模板的封面标题与页眉标题常量列表。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
   {北京理工大学本科生毕业设计（论文）, 北京理工大学本科生毕业设计（论文）外文翻译, Beijing~Institute~of~Technology~Bachelor's~Thesis }
 \clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
@@ -1402,8 +1563,12 @@
     本科生毕业设计（论文）外文翻译,
     Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
   }
+%    \end{macrocode}
+% \end{variable}
 
 
+% \subsection{l3keys 接口键值对定义}
+%    \begin{macrocode}
 % key-value interface definition.
 \keys_define:nn { bithesis }
 {
@@ -1461,6 +1626,7 @@
   {
     title .tl_set:N = \l_@@_value_title_tl,
     titleEn .tl_set:N = \l_@@_value_title_en_tl,
+    verticalTitle .tl_set:N = \l_@@_value_vertical_title_tl,
     school .tl_set:N = \l_@@_value_school_tl,
     major .tl_set:N = \l_@@_value_major_tl,
     author .tl_set:N = \l_@@_value_author_tl,
@@ -1510,6 +1676,8 @@
       {5} {北京理工大学博士学位论文}
     }
   },
+  bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
+  bibliographyIndent .initial:n = {true},
 }
 
 \keys_define:nn { bithesis / TOC }
@@ -2055,7 +2223,7 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3}\l_@@_value_title_tl}
+        {\heiti\zihao{3} \tl_if_blank:VTF \l_@@_value_vertical_title_tl {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}}
           \vfill
         {\heiti\zihao{3}\l_@@_value_author_tl}
           \vfill
@@ -2734,21 +2902,25 @@
     }
     % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
     \setlength{\biblabelsep}{1.7mm}
-    % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-    % See: https://github.com/hushidong/biblatex-gb7714-2015
-    %      如何修参考文献表的缩进？
-    \cs_set:Npn \itemcmd {
-      \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
-      %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
-      \setlength{\lengthid}{0pt}
-      \addtolength{\lengthid}{-\biblabelsep}
-      \setlength{\lengthlw}{\textwidth}
-      \addtolength{\lengthlw}{-\lengthid}
-      \addvspace{\bibitemsep}%恢复\bibitemsep的作用
-      \hangindent\lengthid
-      \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
-      \hspace{\biblabelsep}
+
+    \bool_if:NF \l_@@_style_bibliography_indent_bool {
+      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+      % See: https://github.com/hushidong/biblatex-gb7714-2015
+      %      如何修参考文献表的缩进？
+      \cs_set:Npn \itemcmd {
+        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+        \setlength{\lengthid}{0pt}
+        \addtolength{\lengthid}{-\biblabelsep}
+        \setlength{\lengthlw}{\textwidth}
+        \addtolength{\lengthlw}{-\lengthid}
+        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+        \hangindent\lengthid
+        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+        \hspace{\biblabelsep}
+      }
     }
+
     \@@_if_thesis_english:TF {
       \chapter{\c_@@_label_reference_en_tl}
     } {
@@ -2843,20 +3015,23 @@
       \renewcommand{\baselinestretch}{1.2}
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
-      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-      % See: https://github.com/hushidong/biblatex-gb7714-2015
-      %      如何修参考文献表的缩进？
-      \cs_set:Npn \itemcmd {
-        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
-        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
-        \setlength{\lengthid}{0pt}
-        \addtolength{\lengthid}{-\biblabelsep}
-        \setlength{\lengthlw}{\textwidth}
-        \addtolength{\lengthlw}{-\lengthid}
-        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
-        \hangindent\lengthid
-        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
-        \hspace{\biblabelsep}
+
+      \bool_if:NF \l_@@_style_bibliography_indent_bool {
+        % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+        % See: https://github.com/hushidong/biblatex-gb7714-2015
+        %      如何修参考文献表的缩进？
+        \cs_set:Npn \itemcmd {
+          \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+          %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+          \setlength{\lengthid}{0pt}
+          \addtolength{\lengthid}{-\biblabelsep}
+          \setlength{\lengthlw}{\textwidth}
+          \addtolength{\lengthlw}{-\lengthid}
+          \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+          \hangindent\lengthid
+          \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+          \hspace{\biblabelsep}
+        }
       }
 
       % ===== 上方定义与「参考文献」部分相同
@@ -4897,3 +5072,4 @@ footskip=0.7cm% 页脚 1.8cm %
 %  TeX-master: t
 %  End:
 % \fi
+
