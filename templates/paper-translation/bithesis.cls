@@ -809,8 +809,6 @@
          {\heiti\zihao{-2} \l__bithesis_value_title_tl}
       \vskip \stretch{1}
 
-      % TODO: delete this?
-      {\fangsong\zihao{4}}
       \def\tabcolsep{1pt}
       \def\arraystretch{1.5}
 
@@ -1554,6 +1552,7 @@
       } {
         \chapter{\c__bithesis_label_ack_tl}
       }
+      \fangsong
       #1
     \end{blindPeerReview}
   } {}
