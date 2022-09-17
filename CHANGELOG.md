@@ -13,6 +13,34 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.0.2] - 2022-09-17
+
+[685afa3](685afa3d8f02fb898ca4fe995a5d89ae935d6fcf)...[0358a58](0358a58dd5e3a5d9084e2d6ef4a910f34c358f27)
+
+### Bug Fixes
+
+- Update link as per new ctan package location. ([e5c5003](e5c5003ef4ab3962541115228de93fe892a65c7f))
+- Use \fangsong in acknowledgements as per specs. ([8b61111](8b611119ed5c20e114b912fb38bb7885b91d1372))
+- Fix broken script. ([c1da9a1](c1da9a17544ce586d7feee3af0d1c69c5d8e0c79))
+
+### Documentation
+
+- Add comment for `twoside`. ([85ee2b9](85ee2b99078e598756557ab4bc5368330feb006d))
+
+### Refactor
+
+- Delete useless code. ([35ce1fa](35ce1fa5c456dd56999c0053be9aba61e6ab1a7f))
+
+### Testing
+
+- Using git diff to check updated cls. ([d68a5ca](d68a5cab40c1a7d7124e18b635b2b2549142c595))
+
+### Hotfix
+
+- Add git. ([8ba8eda](8ba8eda130c072bbc9aeb648226336547ccd0360))
+- Try checkout after make copy. ([ec0000c](ec0000c04a84fc6bb681c740a45312fc67417e47))
+- Flip condition. ([0358a58](0358a58dd5e3a5d9084e2d6ef4a910f34c358f27))
+
 ## [3.0.1] - 2022-09-15
 
 [dea1ac9](dea1ac9177bd040d83a8d09c831687a9a8f91881)...[193fa8f](193fa8fdaa5a8c8438f34f08c6c59760dec58b6d)
