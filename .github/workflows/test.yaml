@@ -31,10 +31,13 @@ jobs:
   ensure_updated_cls:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            apk add make git
+            apk add make
             make copy
+      - uses: actions/checkout@v3
+      - name: Check there is nothing to diff.
+        run: |
             [[ `git status --porcelain` ]]
