@@ -19,7 +19,7 @@
 
 **有关 BIThesis 提供的配置选项和命令，请参阅 BIThesis 的模板使用手册。👇**
 
-[![bithesis Documentation](https://img.shields.io/badge/bithesis-Documentation-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](http://mirrors.ctan.org/macros/latex/contrib/bithesis/bithesis.pdf)
+[![bithesis Documentation](https://img.shields.io/badge/bithesis-Documentation-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](http://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis.pdf)
 
 _（此文档已被包含在 [ Releases ][releases] 的文件中）_
 
