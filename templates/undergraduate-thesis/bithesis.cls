@@ -1552,7 +1552,7 @@
       } {
         \chapter{\c__bithesis_label_ack_tl}
       }
-      \fangsong
+      \__bithesis_if_graduate:TF {\fangsong}{}
       #1
     \end{blindPeerReview}
   } {}
