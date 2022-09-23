@@ -1263,12 +1263,12 @@
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
-
+% \subsection{bithesis.cls 文档类}
 %    \begin{macrocode}
 %<*thesis>
 %    \end{macrocode}
 
-% \subsection{全局变量与临时变量}
+% \subsubsection{全局变量与临时变量}
 % 定义全局变量。
 % \begin{variable}{\g_@@_thesis_type_int}
 % 论文类型，取值从 1 开始，分别对应: 
@@ -1321,7 +1321,7 @@
 %    \end{macrocode}
 % \end{variable}
 
-% \subsection{辅助函数与常量}
+% \subsubsection{辅助函数与常量}
 % \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
 % 生成变体。
 %    \begin{macrocode}
@@ -1565,11 +1565,10 @@
   }
 %    \end{macrocode}
 % \end{variable}
-
-
-% \subsection{l3keys 接口键值对定义}
+%
+% \subsubsection{l3keys 接口键值对定义}
+% 定义 |bithesis| 键值对类。
 %    \begin{macrocode}
-% key-value interface definition.
 \keys_define:nn { bithesis }
 {
   info .meta:nn = { bithesis / info } {#1},
@@ -1580,7 +1579,10 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
 }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/option| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / option }
 {
   type .choice:,
@@ -1599,7 +1601,9 @@
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
 }
-
+%    \end{macrocode}
+% 定义 |bithesis/cover| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l_@@_cover_date_tl,
@@ -1621,7 +1625,9 @@
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
+%    \end{macrocode}
+% 定义 |bithesis/info| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -1657,12 +1663,17 @@
     defenseDateEn .tl_set:N = \l_@@_value_defense_date_en_tl,
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
   }
-
+%    \end{macrocode}
+% 定义 |bithesis/misc| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / misc }
   {
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
   }
 
+%    \end{macrocode}
+% 定义 |bithesis/style| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
@@ -1679,7 +1690,9 @@
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
 }
-
+%    \end{macrocode}
+% 定义 |bithesis/TOC| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / TOC }
 {
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
@@ -1689,34 +1702,49 @@
   symbols .bool_set:N = \l_@@_add_symbols_to_toc_bool,
   symbols .initial:n = {true},
 }
-
+%    \end{macrocode}
+% 定义 |bithesis/appendices| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / appendices }
 {
   chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
   title .tl_set:N = \l_@@_appendices_title_tl,
   TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
 }
-
+%    \end{macrocode}
+% 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
-
+%    \end{macrocode}
+% \subsubsection{处理模板选项}
+% 英文模板需要开启 ctexbook 宏包的英文选项。
+%    \begin{macrocode}
 \@@_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
-
+%    \end{macrocode}
+% 如果没有开启双面打印选项，则在 ctexbook 中开启单面打印选项。
+%    \begin{macrocode}
 \bool_if:NTF \g_@@_twoside_bool {} {
   \PassOptionsToClass{oneside,openany}{ctexbook}
 }
-
-
+%    \end{macrocode}
+% 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
+%    \begin{macrocode}
 % Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
   \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexbook}
 }
-% Executes the code for each option.
+%    \end{macrocode}
+% 加载 ctexbook 模板类。
+%    \begin{macrocode}
 \ProcessOptions\relax
-% Load
 \LoadClass[zihao=-4,]{ctexbook}
-
+%    \end{macrocode}
+%
+% \subsubsection{定义模板类样式}
+% 加载所需的宏包。
+%    \begin{macrocode}
 \RequirePackage{geometry}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
@@ -1741,12 +1769,20 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{environ}
-
-% Suppress warning for \hskip by hyperref.
+%    \end{macrocode}
+% 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
+%    \begin{macrocode}
 \pdfstringdefDisableCommands{%
   \let\quad\empty  
 }
-
+%    \end{macrocode}
+% 设置页眉字号，页边距。
+% 
+% 需要注意的是，根据 \pkg{geometry} 的规则，
+% |headsep| 和 |footskip| 分别受到 |top| 与 |bottom| 的影响。
+% 所以你能看到在计算 |headsep| 与 |footskip| 时，我们
+% 首先计算了相应的偏移量。
+%    \begin{macrocode}
 \@@_if_graduate:TF {
   \int_set:Nn \g_@@_head_zihao_int {5}
   \geometry{
@@ -1772,12 +1808,17 @@
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
-
-% One blank line before the figure and after the caption.
+%    \end{macrocode}
+% 根据学校的要求，在图片前后加上一行空白。
+%    \begin{macrocode}
 \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-
+%    \end{macrocode}
+% 设置 Times New Roman 字体。
+%    \begin{macrocode}
 \setromanfont{Times~New~Roman}
-
+%    \end{macrocode}
+% 在 |preamble| 中，加载各个模板需要的字体。
+%    \begin{macrocode}
 \ctex_at_end_preamble:n {
   \@@_if_thesis_english:TF {
     \@@_if_thesis_int_type:nT {3} {
@@ -1803,7 +1844,11 @@
     \DeclareBibliographyCategory{mypub}
   }
 }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\xihei:n}
+% 定义细黑字体。
+%    \begin{macrocode}
 \cs_new:Npn \xihei:n #1 {
   \xeCJK_family_if_exist:nTF {xihei} {
     \CJKfamily{xihei} #1
@@ -1811,7 +1856,12 @@
     \heiti #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\l_@@_title_font_cs:n}
+% 定义标题字体。
+%    \begin{macrocode}
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
   {
@@ -1820,7 +1870,12 @@
     \heiti #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\l_@@_unnumchapter_style_cs:n}
+% 定义无序章节的样式。
+%    \begin{macrocode}
 \cs_new:Npn \l_@@_unnumchapter_style_cs:n #1 {
   % 本科全英文、研究生学位论文需要加粗
   \int_compare:nNnTF {\g_@@_thesis_type_int} > {2}
@@ -1830,10 +1885,18 @@
     \mdseries #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\arabicHeiti}
+% 遗留下来的黑体字体定义。
+%    \begin{macrocode}
 \cs_set:Npn \arabicHeiti #1 {#1}
-
-% TODO: custom title
+%    \end{macrocode}
+% \end{macro}
+% 
+% 定义 \pkg{fancyhdr} 的页眉页脚。
+%    \begin{macrocode}
 \fancypagestyle{BIThesis}{
   \fancyhf{}
   % 定义页眉、页码
@@ -1842,7 +1905,9 @@
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
-
+%    \end{macrocode}
+%  定义 \pkg{ctex} 的章节标题形式。
+%    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
     format = { \l_@@_title_font_cs:n \bfseries \centering \zihao{3}},
@@ -1893,8 +1958,9 @@
     fixskip=true,
   }
 }
-
-% TOC
+%    \end{macrocode}
+%  定义 TOC 样式。
+%    \begin{macrocode}
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \@@_if_graduate:TF {
@@ -1913,40 +1979,11 @@
 \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
-
-% \bool_new:N \l_@@_add_to_toc_bool
-% \bool_set_true:N \l_@@_add_to_toc_bool
-%
-% \keys_define:nn { bit }
-%   {
-%     abstract .meta:nn = { bit / abstract } {#1},
-%     abstract_en .meta:nn = { bit / abstract_en } {#1},
-%     symbols .meta:nn = { bit / symbols } {#1},
-%     appendices .meta:nn = { bit / appendices } {#1},
-%   }
-%
-% \keys_define:nn { bit / abstract }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / abstract_en }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / symbols }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / appendices }
-%   {
-%     chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
-%     title .tl_set:N = \l_@@_appendices_title_tl,
-%     TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
-%   }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\frontmatter}
+% 定义前置内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \frontmatter {} {
 
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
@@ -1962,7 +1999,12 @@
   }
   \pagestyle{BIThesis}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\mainmatter}
+% 主体内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \mainmatter {} {
   \cleardoublepage
 
@@ -1979,7 +2021,12 @@
   % 修复脚注出现跨页的问题
   \interfootnotelinepenalty=10000
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\backmatter}
+% 后置内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \backmatter {} {
   \setcounter{section}{0}
   \setcounter{subsection}{0}
@@ -1993,16 +2040,27 @@
     }
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% 定义标题的前后间距。
+%    \begin{macrocode}
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
-
+%    \end{macrocode}
+% 
+% 定义分隔字符。
+%    \begin{macrocode}
 \@@_if_graduate:TF {
   \tl_set:Nn \g_@@_label_divide_char_tl {.}
 } {
   \tl_set:Nn \g_@@_label_divide_char_tl {-}
 }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\thefigure,\thetable,\theequation,\thelstlisting,\lstlistingname}
+% 定义各种计数器的格式。
+%    \begin{macrocode}
 % figure
 \cs_set:Npn \thefigure {\thechapter\g_@@_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
@@ -2017,14 +2075,19 @@
 % code snippet
 \cs_set:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c_@@_label_code_tl}
-
-
-% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
+%    \end{macrocode}
+% \end{macro}
+% 
+% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现。
+% 是的，这是祖传代码。
+%    \begin{macrocode}
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
-
+%    \end{macrocode}
+% 自定义一个默认的 lstlisting 样式。
+%    \begin{macrocode}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -2047,23 +2110,27 @@
     showtabs=false,
     tabsize=2
 }
-% TODO: optional
 \lstset{style=examplestyle}
-
-% 调整插图目录与表格目录的标题
+%    \end{macrocode}
+% 
+% 调整插图目录与表格目录的标题。
+%    \begin{macrocode}
 \cs_set:Npn \listfigurename {\c_@@_label_figure_tl}
 \cs_set:Npn \listtablename {\c_@@_label_table_tl}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%    \end{macrocode}
+% 
 % 根据 GB 3102.11--93 以及 ISO 80000-2:2009 的规定，数学表达式中
 % 表示变量的拉丁字母和希腊字母均应当使用斜体。
+%    \begin{macrocode}
 \unimathsetup{
   math-style = ISO,
   bold-style = ISO,
 }
 
-% 预定义用户常用的证明环境
+%    \end{macrocode}
+% 
+% 预定义用户常用的证明环境。
+%    \begin{macrocode}
 \theoremstyle{plain}
   \newtheorem{algorithm}{算法}[chapter]
   \newtheorem{theorem}{定理}[chapter]
@@ -2079,12 +2146,17 @@
 \theoremstyle{remark}
   \newtheorem{remark}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
-
-
-% user interface.
+%    \end{macrocode}
+% 
+% \begin{macro}{\BITSetup}
+%    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{|@@_render_cover_entry:nn}
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
@@ -2094,16 +2166,24 @@
     \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
   }\par
 }
-
-% Get text with from #2, then set to #1.
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% Get text with from \#2, then set to \#1.
+%    \begin{macrocode}
 \cs_new:Npn \@@_get_text_width:Nn #1#2
   {
     \hbox_set:Nn \l_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
-
-% Get max text width from seq #2, then set to #1.
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_get_max_text_width:NN}
+% Get max text width from seq \#2, then set to \#1.
+%    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
   {
 % 这里用 |group| 确保局部变量不会被污染。
@@ -2118,8 +2198,12 @@
         }
     \group_end:
   }
-
-% process label (#1) and value #2 separately
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_parse_entry}
+% process label (\#1) and value \#2 separately
+%    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
@@ -2129,7 +2213,12 @@
   \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:n #1 {
   \seq_set_from_clist:NN \l_@@_input_seq #1
   % parse newline //
@@ -2156,34 +2245,44 @@
       }
   \group_end:
 }
-
-% #1: position
-% #2: line_thickness
-% #3: token list
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:nn,\@@_dunderline:n}
+% \#1: position
+% \#2: line_thickness
+% \#3: token list
+%    \begin{macrocode}
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-
 \cs_new:Npn \@@_dunderline:nn #1#2 {
   \@@_dunderline:nnn {#1} {1pt} {#2}
 }
-
 \cs_new:Npn \@@_dunderline:n #1 {
   \@@_dunderline:nnn {-10pt} {1pt} {#1}
 }
-
 \newcommand\dunderline[3][-1pt]{{%
   \setbox0=\hbox{#3}
   \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
-
+%    \end{macrocode}
+% \end{macro}
+%
+  % \begin{environment}{blindPeerReview}
+%    \begin{macrocode}
 \NewEnviron{blindPeerReview}{
   \bool_if:NTF \g_@@_blind_mode_bool {} {
     \BODY
   }
 }
-
-% 重定义 \tn{cleardoublepage}，使得偶数页面在没有内容时也不显示页眉页脚，见
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\cleardoublepage}
+% 重定义 \tn{cleardoublepage}，
+% 使得偶数页面在没有内容时也不显示页眉页脚。见：
 % \url{https://tex.stackexchange.com/a/1683}。
+%    \begin{macrocode}
 \RenewDocumentCommand \cleardoublepage { }
   {
     \clearpage
@@ -2193,7 +2292,11 @@
           { \hbox:n { } \thispagestyle { empty } \newpage }
       }
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+  % \begin{macro}{\make_graduate_cover:}
+%    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
   \begin{titlepage}
@@ -2214,7 +2317,11 @@
     {\heiti \zihao{-3} \l_@@_cover_date_tl} % 黑体 小三
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\make_paper_back:}
+%    \begin{macrocode}
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
   \begin{titlepage}
@@ -2234,7 +2341,11 @@
    % \vskip 5cm
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_make_chinese_title_page:}
+%    \begin{macrocode}
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
@@ -2286,7 +2397,11 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_make_english_title_page:}
+%    \begin{macrocode}
 \cs_new:Npn \@@_make_english_title_page: {
   \begin{titlepage}
     \begin{center}
@@ -2334,7 +2449,11 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeCover}
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
     \begin{blindPeerReview}
@@ -2569,14 +2688,23 @@
     \group_end:
     \end{blindPeerReview}
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\circled}
 % 圆形数字编号定义
+%    \begin{macrocode}
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
   {\node[shape = circle, draw, inner~sep = 1pt]
   (char) {\phantom{\ifblank{#1}{#2}{#1}}};
   \node at (char.center) {\makebox[0pt][c]{#2}};}}
 \robustify{\circled}
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_graduate_originality:}
+% 研究生原创性声明。
+%    \begin{macrocode}
 \cs_new:Npn \@@_graduate_originality: {
   \ctexset {
     chapter / pagestyle = plain,
@@ -2624,7 +2752,11 @@
   \end{titlepage}
   \cleardoublepage
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeOriginality}
+%    \begin{macrocode}
 \NewDocumentCommand \MakeOriginality {} 
 {
   \group_begin:
@@ -2713,14 +2845,24 @@
   \end{blindPeerReview}
   \group_end:
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{定义用户接口}
+%
+% \begin{macro}{\MakePaperBack}
+%    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
     \begin{blindPeerReview}
       \make_paper_back:
     \end{blindPeerReview}
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+  % \begin{macro}{\MakeTitle}
+%    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
     \begin{blindPeerReview}
@@ -2728,7 +2870,11 @@
       \@@_make_english_title_page:
     \end{blindPeerReview}
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+  % \begin{macro}{\MakeTOC}
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
@@ -2760,8 +2906,11 @@
       }
     }
   }
-
-  % TODO:
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{abstract}
+%    \begin{macrocode}
   \NewDocumentEnvironment {abstract} {}
   {
 
@@ -2810,7 +2959,11 @@
     \vspace{4ex}\noindent\textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
     \newpage
   }
-
+%    \end{macrocode}
+% \end{environment}
+%
+  % \begin{environment}{abstractEn}
+%    \begin{macrocode}
   \NewDocumentEnvironment {abstractEn} {}
   {
     \cleardoublepage
@@ -2869,7 +3022,12 @@
     \newpage
   }
 
-% after \backmatter
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{conclusion}
+% after \cs{backmatter}
+%    \begin{macrocode}
   \NewDocumentEnvironment {conclusion} {}
   {
     \ctexset{
@@ -2883,8 +3041,12 @@
     }
   }
   {}
-
-% after backmatter
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{bibprint}
+% after \cs{backmatter}
+%    \begin{macrocode}
   \NewDocumentEnvironment {bibprint} {}
   {
     % 设置参考文献字号为 5 号
@@ -2926,9 +3088,11 @@
     }
   }
   {}
-
-  % #1: The name that used as chapter title
-  % #2: The name that used in ToC.
+%    \end{macrocode}
+% \end{environment}
+%
+  % \begin{environment}{appendices}
+%    \begin{macrocode}
   \NewDocumentEnvironment {appendices} {}
   {
     % Used in chapter, ToC.
@@ -2983,6 +3147,11 @@
   {
   }
 
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{acknowledgements}
+%    \begin{macrocode}
   \NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
@@ -3000,7 +3169,11 @@
       #1
     \end{blindPeerReview}
   } {}
-
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{publications}
+%    \begin{macrocode}
   \NewDocumentEnvironment {publications} {+b}
   {
     \begin{blindPeerReview}
@@ -3049,7 +3222,11 @@
     \end{blindPeerReview}
   }
   {}
-
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{resume}
+%    \begin{macrocode}
   \NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
@@ -3075,10 +3252,11 @@
     \end{itemize}
   }
 %    \end{macrocode}
+% \end{environment}
 %    \begin{macrocode}
 %</thesis>
 %    \end{macrocode}
-
+% \subsection{bitreport.cls 模板类}
 %    \begin{macrocode}
 %<*report>
 %    \end{macrocode}
@@ -3414,6 +3592,7 @@
 %    \begin{macrocode}
 %</report>
 %    \end{macrocode}
+% \subsection{bitbeamer.cls 文档类}
 %    \begin{macrocode}
 %<*beamer>
 %    \end{macrocode}
@@ -3470,7 +3649,8 @@
 %    \begin{macrocode}
 %</beamer>
 %    \end{macrocode}
-
+% \subsection{已弃用的代码}
+% \subsubsection{bitbook.cls 文档类（已废弃）}
 %    \begin{macrocode}
 %<*book>
 %    \end{macrocode}
@@ -3727,6 +3907,7 @@
 %    \begin{macrocode}
 %</book>
 %    \end{macrocode}
+% \subsubsection{bitart.cls 文档类（已弃用）}
 %    \begin{macrocode}
 %<*article>
 %    \end{macrocode}
@@ -3878,6 +4059,7 @@
 %    \begin{macrocode}
 %</article>
 %    \end{macrocode}
+% \subsubsection{bitgraduate.cls 文档类（已弃用）}
 %    \begin{macrocode}
 %<*graduate>
 %    \end{macrocode}
@@ -4741,11 +4923,7 @@ footskip=0.7cm% 页脚 1.8cm %
      \RequirePackage{siunitx}
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-
-%% End of file `bitmaster-xetex.cls'.
-
 %% =========================================================
-
 %    \end{macrocode}
 %    \begin{macrocode}
 %</graduate>
