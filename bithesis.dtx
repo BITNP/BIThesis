@@ -82,7 +82,8 @@
 %
 % \def\abstractname{}
 % \begin{abstract}\noindent
-%   此宏包旨在建立一个简单易用的北京理工大学学位论文模板（以及其他模板），包括本科毕业设计与研究生论文。
+%   此宏包旨在建立一个简单易用的北京理工大学学位论文 $\LaTeX$ 模板
+%  （以及其他模板），包括本科毕业设计与研究生学位论文。
 % \end{abstract}
 %
 % \vspace{5mm}
@@ -96,10 +97,11 @@
 % \noindent
 % \begin{enumerate}
 % \item 本模板的发布遵守 \LPPL ，使用前请认真阅读协议内容。
-% \item 与\BIThesis 相关的文档内容采用 \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
-% \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵
-%   守 \LaTeX{} Project Public License 协议。由于违犯协议而引起的任何纠纷争端均与
-%   本模板作者无关。
+% \item 与\BIThesis 相关的文档内容采用 
+%  \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
+% \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，
+%  请严格遵守 \LaTeX{} Project Public License 协议。
+%  由于违犯协议而引起的任何纠纷争端均与本模板作者无关。
 % \end{enumerate}
 % \end{abstract}
 %
@@ -107,14 +109,22 @@
 %
 % \def\abstractname{简介}
 % \begin{abstract}
-% \BIThesisLaTeX 是北京理工大学本科生毕业设计与研究生学位论文，以及其他课程报告、实验报告的 {\LaTeX} 模板集合。
-% 如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。
-% 专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
+% \BIThesisLaTeX 是北京理工大学本科生毕业设计与研究生学位论文，
+%   以及其他课程报告、实验报告的 {\LaTeX} 模板集合。
+%   如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、
+%   公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，
+%   来排版你的论文。
+%   专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
 %
-% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，
+% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，
+% 使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，
 % 符合《信息与文献参考文献著录规则》
-% （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）的标准。
-% 目前主要设计完成了计算机学院本科生毕业论文开题报告、毕业设计毕业论文与通用实验报告的 {\LaTeX} 模板。
+% （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）
+% 的标准。
+% 
+% 目前，\BIThesisLaTeX 主要设计完成了计算机学院本科生毕业论文开题报告、
+% 本科生毕业（设计）论文、研究生学位论文、本科生毕业（设计）论文外文翻译、
+% 全英文专业本科生毕业（设计）论文与通用实验报告的 {\LaTeX} 模板。
 %
 % \end{abstract}
 % \newpage
@@ -126,29 +136,47 @@
 % \section{项目简介}
 % \subsection{历史与贡献者们}
 % \begin{itemize}
-%   \item 2017 - 2018 年，杨雅婷等人受研究生院委托，制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 研究生学位论文模板。
-%   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
+%   \item 在 2017 年之前，已经出现一些开源维护的北京理工大学学位论文 \LaTeX 模板。
+%   \item 2017 - 2018 年，杨雅婷等人受研究生院委托，
+%     制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 
+%     研究生学位论文模板。
+%   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的
+%     武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
 %   \begin{itemize}
-%     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、在线文档和开箱即用的模板。
-%     \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX 的视频教程。
+%     \item 此时，\BIThesis 仅支持本科生毕业论文的排版。
+%     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、
+%       在线文档和开箱即用的模板。
+%     \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX 
+%       的视频教程。
 %   \end{itemize}
-%   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人接管了维护开发工作。
+%   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人
+%       接管了维护开发工作。
 %   \begin{itemize}
 %     \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 CTAN 上。
-%     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，\BIThesisWiki 和 \BIThesisScaffold。
+%     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，
+%       \BIThesisWiki 和 \BIThesisScaffold。
+%     \item 此版本是 V2 版本，代号为 Birthday Cake.
 %   \end{itemize}
-%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、2022 毕业季收到的反馈对该项目进行维护升级。
+%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、
+%       2022 毕业季收到的反馈对该项目进行维护升级。
 %   \begin{itemize}
-%      \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
-%      \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
-%      \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，向用户提供了简易易用的接口。
-%      \item 同时，也增加了本科全英文专业的毕设论文模板样式。
+%     \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
+%     \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
+%     \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，
+%       向用户提供了简易易用的接口。
+%     \item 同时，也增加了本科全英文专业的毕设论文模板样式。
+%     \item 此版本是 V3 版本，代号为 Summer Time.
 %   \end{itemize}
 % \end{itemize}
 % \subsection{\BIThesis 是什么？}
-% \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
+% \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）
+% 的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
+% 同理，其 IPA 发音为 |/ˈbiːˈaiˈtiːˈθiː.sis/|。
 %
-% \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板，包括本科综合论文训练。
+% \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。
+% 该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板，
+% 包括本科综合论文训练。
+%
 % \subsubsection{\BIThesisLaTeX 的组成}
 % 我们将 \BIThesisLaTeX 划分为了两个主要仓库：
 % \begin{table}[H]
@@ -161,12 +189,14 @@
 % \end{tabular}
 % \end{table}
 %
-% 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
+% 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，
+% 那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
 %
 % 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 % 
 % \subsection{\BIThesis 宏包的组成}
-% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
+% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 
+% 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 % \begin{table}[H]
 % \centering
 % \caption{测试}
@@ -182,14 +212,18 @@
 %
 % \section{安装}
 % \subsection{\BIThesis 宏包的安装和更新}
-% 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
+% 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录
+% \BIThesisMacroPackage 及其依赖的宏包和宏集。
 %
-% 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
+% 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。
+% 那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
+%
 % \begin{shell}[morekeywords={tlmgr,install}]
 %   tlmgr install fduthesis
 % \end{shell}
 %
 % 更新可以通过图形界面进行，或者通过命令行：
+%
 % \begin{shell}[morekeywords={tlmgr,install}]
 %   tlmgr update fduthesis
 % \end{shell}
@@ -232,7 +266,8 @@
 %   \FooBar[]{}
 % \end{latex}
 %
-% 同理，用户使用的环境通常以 begin 和 end 进行包裹，同样可以传入可选参数和必需参数：
+% 同理，用户使用的环境通常以 begin 和 end 进行包裹，
+% 同样可以传入可选参数和必需参数：
 %
 % \begin{latex}
 %   \begin{abstract}
@@ -298,7 +333,8 @@
 %
 %   该选项用于传入模板选项至 ctexbook。
 %   
-%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式
+%   （更多选项请参考 ctex 手册）。
 %
 %   \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
 %      \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
@@ -788,14 +824,18 @@
 %
 % \begin{function}{\MakeCover}
 %
-%   \textit{封面内容会根据模板选项（具体参见节\ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
-%   \textit{封面的下划线效果会受到参数设置中封面选项（具体见节\ref{sec:cover}）的影响。}
+%   \textit{封面内容会根据模板选项（具体参见节
+%     \ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
+%   \textit{封面的下划线效果会受到参数设置中封面选项
+%      （具体见节\ref{sec:cover}）的影响。}
 %
 %   绘制封面。
 %
-%   在默认配置下，封面中的下划线会自动计算最大宽度。此时，如果用户需要换行，可以通过「//」控制换行。
+%   在默认配置下，封面中的下划线会自动计算最大宽度。
+%   此时，如果用户需要换行，可以通过「//」控制换行。
 %
-%   当关闭自动计算下划线宽度后，可以通过\meta{labelMaxWidth=xxx} 与 \meta{valueMaxWidth=xxx}来指定下划线的宽度。一般情况下，我们不建议您这样做。
+%   当关闭自动计算下划线宽度后，可以通过\meta{labelMaxWidth=xxx} 
+%   与 \meta{valueMaxWidth=xxx}来指定下划线的宽度。一般情况下，我们不建议您这样做。
 % \end{function}
 % 
 % \begin{function}{\MakePaperBack}
@@ -965,9 +1005,14 @@
 %
 %   打印参考文献。
 %
-%   在使用\BIThesisTemplates{GT}时需要注意，由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，因此 bithesis 同样使用 bibtex 管理其文献。而由于 biblatex 的排序是全局的，因此需要使用 \meta{category} 功能来分割出两个不同的类别。
+%   在使用\BIThesisTemplates{GT}时需要注意，
+%   由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，
+%   因此 bithesis 同样使用 bibtex 管理其文献。
+%   而由于 biblatex 的排序是全局的，
+%   因此需要使用 \meta{category} 功能来分割出两个不同的类别。
 %
-%  因此，请使用下列语句输出参考文献：
+%   因此，请使用下列语句输出参考文献：
+%
 % \begin{latex}[emph={[1]bibprint}]
 %   \begin{bibprint}
 %     \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
@@ -1453,11 +1498,20 @@
   {
     {title} {本科生毕业设计（论文）},
     {originality} {原创性声明},
-    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
+    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），
+    是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+    本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+    对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
     {authorization} {关于使用授权的声明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
-    {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+    \circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的，
+    复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
+    {originality_author_signature} 
+      {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {originality_supervisor_signature} 
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
   } {\@@_define_label_by_thesis_type:nnn {bachelor} #1}
 %    \end{macrocode}
 % \end{variable}
@@ -1470,9 +1524,13 @@
     {title} {},
     {originality} {原创性声明~Statement~of~Originality},
     {originality_clause} {
-        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par 
+        本人郑重声明：所呈交的毕业设计（论文），
+        是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+        本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+        对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par 
         \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
-        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
+        declare:~the~submitted~graduation~design~(thesis),~
+        is~the~research~achievement~completed~independently~by~myself~
         under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
         any~research~published~or~written~by~any~other~individual~or~group,~
         except~as~already~referenced~in~this~paper.~Individuals~and~groups~
@@ -1481,8 +1539,22 @@
     },
     {authorization} {关于使用授权的声明~State~of~Use~Authorization},
     {authorization_clause} {
-      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
-  I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+      其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+      \circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+      \circled{3}学校可允许本毕业设计（论文）被查阅或借阅；
+      \circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；
+      \circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
+      I~fully~understand~the~regulations~on~the~storage,~
+      use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~
+      Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~
+      and~to~the~relevant~departments~to~send~the~original~or~copy~
+      of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~
+      graduation~design~(thesis)~by~photocopying,~miniature~or~other~
+      means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~
+      to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~
+      copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~
+      publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
   } {\@@_define_label_by_thesis_type:nnn {bachelor_english} #1}
 %    \end{macrocode}
@@ -1495,11 +1567,24 @@
 \clist_map_inline:nn
   {
     {originality} {研究成果声明},
-    {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。尽我所知，文中除特别标注和致谢的地方外，学位论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。与我一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
+    {originality_clause} {本人郑重声明：
+    所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。
+    尽我所知，文中除特别标注和致谢的地方外，
+    学位论文中不包含其他人已经发表或撰写过的研究成果，
+    也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。
+    与我一同工作的合作者对此研究工作所做的任何贡献均已在
+    学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
     {authorization} {关于学位论文使用权的说明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
-    {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；
+    \circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~
+    学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~
+    学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
+    {originality_author_signature} 
+      {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {originality_supervisor_signature} 
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
   } {\@@_define_label_by_thesis_type:nnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
@@ -1513,10 +1598,16 @@
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
-    {degree} {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别} {Degree~Applied},
+    {degree} 
+      {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别}
+      {Degree~Applied},
     {major} {学\quad 科\quad 专\quad 业} {Major},
-    {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
-    {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
+    {institute}
+      {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位}
+      {Degree~by},
+    {defense_date}
+      {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期}
+      {The~Date~of~Defence},
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
@@ -1543,7 +1634,8 @@
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
-    {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
+    {publications} {攻读学位期间发表论文与研究成果清单} 
+      {Publications~During~Studies},
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {},
     {symbols} {主要符号对照表} {},
@@ -1556,7 +1648,11 @@
 % 本科生模板的封面标题与页眉标题常量列表。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
-  {北京理工大学本科生毕业设计（论文）, 北京理工大学本科生毕业设计（论文）外文翻译, Beijing~Institute~of~Technology~Bachelor's~Thesis }
+  {
+    北京理工大学本科生毕业设计（论文）, 
+    北京理工大学本科生毕业设计（论文）外文翻译, 
+    Beijing~Institute~of~Technology~Bachelor's~Thesis 
+  }
 \clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
   {
     本科生毕业设计（论文）,
@@ -1712,7 +1808,8 @@
   TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
 }
 %    \end{macrocode}
-% 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 宏包的模板选项可以在宏加载时生效。
+% 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
+% 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
 %    \end{macrocode}
@@ -1829,7 +1926,8 @@
   } {
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {} 
     {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
+        {\l_@@_cover_xihei_font_path_tl}
     }
   }
 
@@ -1900,7 +1998,11 @@
 \fancypagestyle{BIThesis}{
   \fancyhf{}
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{\int_use:N \g_@@_head_zihao_int}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
+  \fancyhead[C]{
+    \zihao{\int_use:N \g_@@_head_zihao_int}
+    \ziju{0.08}
+    \songti{\tl_use:N \l_@@_style_head_tl}
+  }
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
@@ -1934,7 +2036,9 @@
 }
 
 \ctexset{subsection={
-    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
+    number = {
+      \arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}
+    },
     format = {\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -1949,7 +2053,14 @@
   secnumdepth = 3,
   subsubsection={
     numbering = true,
-    number = {\arabicHeiti{\arabic{chapter}.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}.\hspace{1bp}\arabic{subsubsection}}},
+    number = {
+      \arabicHeiti{
+        \arabic{chapter}.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}.\hspace{1bp}
+        \arabic{subsubsection}
+      }
+    },
     format={\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -2035,7 +2146,9 @@
     chapter = {
       numbering = false,
       beforeskip = 18bp,
-      format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
+      format = {
+        \l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}
+      },
       afterskip = 26bp,
     }
   }
@@ -2162,7 +2275,8 @@
     \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
   }
   \hspace{1ex}
-  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
+  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
+    {\l_@@_cover_underline_thickness_dim}{
     \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
   }\par
 }
@@ -2330,7 +2444,11 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3} \tl_if_blank:VTF \l_@@_value_vertical_title_tl {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}}
+        {
+          \heiti\zihao{3}
+          \tl_if_blank:VTF \l_@@_value_vertical_title_tl 
+            {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
+        }
           \vfill
         {\heiti\zihao{3}\l_@@_value_author_tl}
           \vfill
@@ -2350,7 +2468,8 @@
   \cleardoublepage
   \begin{titlepage}
       { %
-        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl} \l_@@_value_classification_tl\\
+        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
+        \l_@@_value_classification_tl\\
         {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
       }
      \begin{center}
@@ -2626,7 +2745,8 @@
 
           \vspace*{-3mm}
 
-          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute
+          \nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
 
           \vspace{18mm}
 
