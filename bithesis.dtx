@@ -1663,6 +1663,7 @@
 % \end{variable}
 %
 % \subsubsection{l3keys 接口键值对定义}
+%
 % 定义 |bithesis| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis }
@@ -3376,25 +3377,51 @@
 %    \begin{macrocode}
 %</thesis>
 %    \end{macrocode}
+%
 % \subsection{bitreport.cls 模板类}
+%
 %    \begin{macrocode}
 %<*report>
 %    \end{macrocode}
 %
+% \subsubsection{全局变量与临时变量}
+%
+% \begin{variable}{\g_@@_thesis_type_int}
+% 论文类型，取值从 1 开始，分别对应: 
+%  \begin{enumerate}
+%      \item 课程实验报告
+%      \item （计算机学院）本科生毕业（设计）开题报告
+%  \end{enumerate}
 %    \begin{macrocode}
-% Define global
 \int_new:N \g_@@_report_type_int
-
-% Define Consts.
+%    \end{macrocode}
+% \end{variable}
+% 
+% \begin{variable}{\c_@@_report_type_clist}
+% 定义报告类型的列表。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_report_type_clist
     { common, undergraduate_proposal}
-
-% Define tmp Variables
+%    \end{macrocode}
+% \end{variable}
+% 
+% \begin{variable}{\l_@@_right_seq,\l_@@_left_seq}
+% 临时变量。
+%    \begin{macrocode}
 \seq_new:N \l_@@_right_seq
 \seq_new:N \l_@@_left_seq
-
+%    \end{macrocode}
+% \end{variable}
+% 
+% 手动开启伪粗体、伪斜体。
+%    \begin{macrocode}
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
-
+%    \end{macrocode}
+% 
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitreport| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport }
   {
     option .meta:nn = {bitreport / option } {#1},
@@ -3402,7 +3429,10 @@
     info .meta:nn = { bitreport / info } {#1},
     misc .meta:nn = { bitreport / misc } {#1}
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/option| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / option }
   {
     type .choice:,
@@ -3415,25 +3445,10 @@
     type .initial:n = common,
     ctex .tl_set:N = \l_@@_options_to_ctex_tl,
   }
-
-
-% Pass every option not explicitly defined to `ctexbeamer`.
-\DeclareOption*{
-  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
-}
-% Executes the code for each option.
-\ProcessOptions\relax
-% Load
-\LoadClass[zihao=-4]{ctexart}
-
-\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
-\RequirePackage{caption}
-\RequirePackage{booktabs}
-\RequirePackage{pdfpages}
-
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/cover| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / cover }
   {
     imagePath .tl_set:N = \l_bit_coverimagepath_tl,
@@ -3453,7 +3468,10 @@
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/info| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -3465,24 +3483,61 @@
     externalSupervisor .tl_set:N = \l_@@_value_external_supervisor_tl,
     studentId .tl_set:N = \l_@@_value_student_id_tl,
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/misc| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / misc }
   {
     reviewTable .tl_set:N = \l_bit_reviewtable_tl,
   }
-
+%    \end{macrocode}
+% 
+% 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
+%    \begin{macrocode}
+\DeclareOption*{
+  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
+}
+%    \end{macrocode}
+% 
+% 加载 ctexbook 模板类。
+%    \begin{macrocode}
+\ProcessOptions\relax
+\LoadClass[zihao=-4]{ctexart}
+%    \end{macrocode}
+% 
+% \subsubsection{定义模板类样式}
+% 加载所需的宏包。
+%    \begin{macrocode}
+\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{pdfpages}
+%    \end{macrocode}
+% 
+% 在宏加载时，处理 |bitreport/option| 中的值。使得 |bitreport| 
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bitreport / option }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % #1: position
 % #2: line_thickness
 % #3: token list
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
@@ -3492,7 +3547,9 @@
     \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
   }\par
 }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % Get text with from #2, then set to #1.
 \cs_new:Npn \@@_get_text_width:Nn #1#2
   {
@@ -3500,6 +3557,9 @@
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 
 % Get max text width from seq #2, then set to #1.
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
@@ -3516,6 +3576,9 @@
         }
     \group_end:
   }
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 
 % process label (#1) and value #2 separately
 \cs_new:Npn \@@_parse_entry #1 #2 {
@@ -3527,6 +3590,9 @@
   \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 
 \cs_new:Npn \@@_render_cover_entry:n #1 {
   \seq_set_from_clist:NN \l_@@_input_seq #1
@@ -3554,7 +3620,11 @@
       }
   \group_end:
 }
-
+%    \end{macrocode}
+%
+% \subsubsection{定义用户接口}
+% 
+%    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
 \DeclareDocumentCommand \MakeCover {}
@@ -3634,7 +3704,9 @@
     }
     \group_end:
   }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeReviewTable {} 
   {
     \group_begin:
@@ -3643,32 +3715,44 @@
       \end{titlepage}
     \group_end:
   }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 定义 caption 字体为楷体
 \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 设置图片的 caption 格式
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 设置表格的 caption 格式
 \renewcommand{\thetable}{\thesection-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 
 % 输出大写数字日期
 \ctexset{today=big}
 
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 将西文字体设置为 Times New Roman
 \setromanfont{Times~New~Roman}
-
-%% 将中文楷体设置为 SIMKAI.TTF（如果需要）
-% \setCJKfamilyfont{zhkai}{[SIMKAI.TTF]}
-% \newcommand*{\kaiti}{\CJKfamily{zhkai}}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 设置文档标题深度
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 %%
 % 设置一级标题、二级标题格式
 % 一级标题：小三，宋体，加粗，段前段后各半行
@@ -3688,6 +3772,9 @@
   fixskip = true,
   }
 }
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 页眉和页脚（页码）的格式设定
 \fancyhf{}
 \int_case:nn {\g_@@_report_type_int} {
@@ -3697,11 +3784,15 @@
 \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 正文开始
 \pagestyle{fancy}
 \setcounter{page}{1}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 正文 22 磅的行距，段前段后间距为 0
 % \setlength{\parskip}{0em}
 \cs_set:Npn \baselinestretch {1.53}
@@ -3712,7 +3803,9 @@
 %    \begin{macrocode}
 %</report>
 %    \end{macrocode}
+%
 % \subsection{bitbeamer.cls 文档类}
+%
 %    \begin{macrocode}
 %<*beamer>
 %    \end{macrocode}
@@ -3725,7 +3818,9 @@
     framelogo .tl_set:N = \l_bit_framelogo_tl,
   }
 \ProcessKeysOptions { bitbeamer }
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % Pass every option not explicitly defined to `ctexbeamer`.
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{ctexbeamer}
@@ -3770,7 +3865,9 @@
 %</beamer>
 %    \end{macrocode}
 % \subsection{已弃用的代码}
-% \subsubsection{bitbook.cls 文档类（已废弃）}
+% 来自老版本的代码，但是在新版本中已经不再使用。
+% ，为了保证老版本论文能够正常编译，特此保留。
+% \subsubsection{bitbook.cls 文档类（已弃用）}
 %    \begin{macrocode}
 %<*book>
 %    \end{macrocode}
