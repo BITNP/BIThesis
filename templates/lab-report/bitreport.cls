@@ -34,12 +34,9 @@
 
 \clist_const:Nn \c__bithesis_report_type_clist
     { common, undergraduate_proposal}
-
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
-
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
-
 \keys_define:nn { bitreport }
   {
     option .meta:nn = {bitreport / option } {#1},
@@ -47,7 +44,6 @@
     info .meta:nn = { bitreport / info } {#1},
     misc .meta:nn = { bitreport / misc } {#1}
   }
-
 \keys_define:nn { bitreport / option }
   {
     type .choice:,
@@ -60,20 +56,6 @@
     type .initial:n = common,
     ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
   }
-
-\DeclareOption*{
-  \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexart}
-}
-\ProcessOptions\relax
-\LoadClass[zihao=-4]{ctexart}
-
-\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
-\RequirePackage{caption}
-\RequirePackage{booktabs}
-\RequirePackage{pdfpages}
-
 \keys_define:nn { bitreport / cover }
   {
     imagePath .tl_set:N = \l_bit_coverimagepath_tl,
@@ -93,7 +75,6 @@
     underlineOffset .dim_set:N = \l__bithesis_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
 \keys_define:nn { bitreport / info }
   {
     title .tl_set:N = \l__bithesis_value_title_tl,
@@ -105,21 +86,27 @@
     externalSupervisor .tl_set:N = \l__bithesis_value_external_supervisor_tl,
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
   }
-
 \keys_define:nn { bitreport / misc }
   {
     reviewTable .tl_set:N = \l_bit_reviewtable_tl,
   }
-
+\DeclareOption*{
+  \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexart}
+}
+\ProcessOptions\relax
+\LoadClass[zihao=-4]{ctexart}
+\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{pdfpages}
 \ProcessKeysOptions { bitreport / option }
-
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
-
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-
 \cs_new:Npn \__bithesis_render_cover_entry:nn #1#2 {
   \makebox[\l__bithesis_cover_label_max_width_dim][\l__bithesis_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l__bithesis_cover_dilimiter_tl}
@@ -129,14 +116,12 @@
     \makebox[\l__bithesis_cover_value_max_width_dim][\l__bithesis_cover_value_align_tl]{#2}
   }\par
 }
-
 \cs_new:Npn \__bithesis_get_text_width:Nn #1#2
   {
     \hbox_set:Nn \l_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \__bithesis_get_text_width:Nn { NV }
-
 \cs_new:Npn \__bithesis_get_max_text_width:NN #1#2
   {
     \group_begin:
@@ -150,7 +135,6 @@
         }
     \group_end:
   }
-
 \cs_new:Npn \__bithesis_parse_entry #1 #2 {
   \seq_set_split:Nnx \l__bithesis_tmp_right_seq {//} {#2}
   \seq_clear:N \l__bithesis_tmp_left_seq
@@ -160,7 +144,6 @@
   \seq_put_left:Nn \l__bithesis_tmp_left_seq {#1}
   \seq_pop_right:NN \l__bithesis_tmp_left_seq \g__bithesis_trashcan_tl
 }
-
 \cs_new:Npn \__bithesis_render_cover_entry:n #1 {
   \seq_set_from_clist:NN \l__bithesis_input_seq #1
   % parse newline //
@@ -186,9 +169,9 @@
       }
   \group_end:
 }
-
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
+  % \begin{macro}{\MakeCover}
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
@@ -266,7 +249,6 @@
     }
     \group_end:
   }
-
 \DeclareDocumentCommand \MakeReviewTable {}
   {
     \group_begin:
@@ -275,25 +257,15 @@
       \end{titlepage}
     \group_end:
   }
-
 \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
-
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
-
 \renewcommand{\thetable}{\thesection-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
-
 \ctexset{today=big}
-
 \setromanfont{Times~New~Roman}
-
-%% 将中文楷体设置为 SIMKAI.TTF（如果需要）
-
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
-
-%%
 \ctexset{section={
   format={\raggedright \bfseries \songti \zihao{-3}},
   beforeskip = 24bp plus 1ex minus .2ex,
@@ -317,12 +289,9 @@
 \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
-
 \pagestyle{fancy}
 \setcounter{page}{1}
-
 \cs_set:Npn \baselinestretch {1.53}
-
 \endinput
 %%
 %% End of file `bitreport.cls'.

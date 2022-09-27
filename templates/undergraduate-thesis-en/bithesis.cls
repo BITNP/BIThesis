@@ -38,7 +38,6 @@
 \tl_new:N \g__bithesis_label_divide_char_tl
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
-
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 \cs_new:Npn \__bithesis_same_page: {
@@ -56,12 +55,10 @@
 
 \cs_new:Npn \__bithesis_if_thesis_english:TF #1#2 {\bool_if:nTF {\g__bithesis_thesis_type_english_bool} {#1} {#2}}
 \cs_new:Npn \__bithesis_if_thesis_english:T #1 {\__bithesis_if_thesis_english:TF {#1}{}}
-
 \cs_new:Npn \__bithesis_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} < {4} {#1} {#2}}
 \cs_new:Npn \__bithesis_if_bachelor_thesis:T #1 {\__bithesis_if_bachelor_thesis:TF {#1} {}}
 \cs_new:Npn \__bithesis_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} = {4} {#1} {#2}}
 \cs_new:Npn \__bithesis_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} = {5} {#1} {#2}}
-
 \clist_const:Nn \c__bithesis_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
 
@@ -84,17 +81,14 @@
     \tl_const:cn { c__bithesis_ #1 _label_ #2 _tl } {#3}
     \tl_const:cn { c__bithesis_ #1 _label_ #2 _en_tl } {#4}
   }
-
 \cs_new:Npn \smallgap: {
   \hspace{0.45ex}
 }
-
 \cs_new:Npn \label_space: {
   \__bithesis_if_bachelor_thesis:T {
     \quad
   }
 }
-
 \clist_map_inline:nn
   {
     {code} {代码},
@@ -104,26 +98,37 @@
     {type} {种类},
   }
   {\__bithesis_define_label:nn #1}
-
 \clist_map_inline:nn
   {
     {title} {本科生毕业设计（论文）},
     {originality} {原创性声明},
-    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
+    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），
+    是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+    本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+    对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
     {authorization} {关于使用授权的声明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
-    {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+    \circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的，
+    复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
+    {originality_author_signature}
+      {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {originality_supervisor_signature}
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
   } {\__bithesis_define_label_by_thesis_type:nnn {bachelor} #1}
-
 \clist_map_inline:nn
   {
     {title} {},
     {originality} {原创性声明~Statement~of~Originality},
     {originality_clause} {
-        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par
+        本人郑重声明：所呈交的毕业设计（论文），
+        是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+        本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+        对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par
         \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
-        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
+        declare:~the~submitted~graduation~design~(thesis),~
+        is~the~research~achievement~completed~independently~by~myself~
         under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
         any~research~published~or~written~by~any~other~individual~or~group,~
         except~as~already~referenced~in~this~paper.~Individuals~and~groups~
@@ -132,33 +137,63 @@
     },
     {authorization} {关于使用授权的声明~State~of~Use~Authorization},
     {authorization_clause} {
-      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
-  I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+      其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+      \circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+      \circled{3}学校可允许本毕业设计（论文）被查阅或借阅；
+      \circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；
+      \circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
+      I~fully~understand~the~regulations~on~the~storage,~
+      use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~
+      Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~
+      and~to~the~relevant~departments~to~send~the~original~or~copy~
+      of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~
+      graduation~design~(thesis)~by~photocopying,~miniature~or~other~
+      means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~
+      to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~
+      copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~
+      publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
   } {\__bithesis_define_label_by_thesis_type:nnn {bachelor_english} #1}
-
 \clist_map_inline:nn
   {
     {originality} {研究成果声明},
-    {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。尽我所知，文中除特别标注和致谢的地方外，学位论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。与我一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
+    {originality_clause} {本人郑重声明：
+    所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。
+    尽我所知，文中除特别标注和致谢的地方外，
+    学位论文中不包含其他人已经发表或撰写过的研究成果，
+    也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。
+    与我一同工作的合作者对此研究工作所做的任何贡献均已在
+    学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
     {authorization} {关于学位论文使用权的说明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
-    {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；
+    \circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~
+    学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~
+    学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
+    {originality_author_signature}
+      {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {originality_supervisor_signature}
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
   } {\__bithesis_define_label_by_thesis_type:nnn {graduate} #1}
-
 \clist_map_inline:nn
   {
     {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
-    {degree} {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别} {Degree~Applied},
+    {degree}
+      {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别}
+      {Degree~Applied},
     {major} {学\quad 科\quad 专\quad 业} {Major},
-    {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
-    {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
+    {institute}
+      {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位}
+      {Degree~by},
+    {defense_date}
+      {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期}
+      {The~Date~of~Defence},
   } {\__bithesis_define_label_by_thesis_type:nnnn {graduate} #1}
-
 \clist_map_inline:nn
   {
     {school} {学\qquad 院} {School},
@@ -178,22 +213,25 @@
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
-    {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
+    {publications} {攻读学位期间发表论文与研究成果清单}
+      {Publications~During~Studies},
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {},
     {symbols} {主要符号对照表} {},
   }
   {\__bithesis_define_label:nnn #1}
-
 \clist_const:Nn \c__bithesis_bachelor_thesis_header_clist
-  {北京理工大学本科生毕业设计（论文）, 北京理工大学本科生毕业设计（论文）外文翻译, Beijing~Institute~of~Technology~Bachelor's~Thesis }
+  {
+    北京理工大学本科生毕业设计（论文）,
+    北京理工大学本科生毕业设计（论文）外文翻译,
+    Beijing~Institute~of~Technology~Bachelor's~Thesis
+  }
 \clist_const:Nn \c__bithesis_bachelor_thesis_cover_title_clist
   {
     本科生毕业设计（论文）,
     本科生毕业设计（论文）外文翻译,
     Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
   }
-
 \keys_define:nn { bithesis }
 {
   info .meta:nn = { bithesis / info } {#1},
@@ -204,7 +242,6 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
 }
-
 \keys_define:nn { bithesis / option }
 {
   type .choice:,
@@ -223,7 +260,6 @@
   blindPeerReview .bool_gset:N = \g__bithesis_blind_mode_bool,
   ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
 }
-
 \keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l__bithesis_cover_date_tl,
@@ -245,7 +281,6 @@
     underlineOffset .dim_set:N = \l__bithesis_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l__bithesis_value_title_tl,
@@ -281,7 +316,6 @@
     defenseDateEn .tl_set:N = \l__bithesis_value_defense_date_en_tl,
     classifiedLevel .tl_set:N = \l__bithesis_value_classified_level_tl,
   }
-
 \keys_define:nn { bithesis / misc }
   {
     arialFont .tl_set:N = \l__bithesis_misc_arial_font_path_tl,
@@ -303,7 +337,6 @@
   bibliographyIndent .bool_set:N = \l__bithesis_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
 }
-
 \keys_define:nn { bithesis / TOC }
 {
   abstract .bool_set:N = \l__bithesis_add_abstract_to_toc_bool,
@@ -313,30 +346,24 @@
   symbols .bool_set:N = \l__bithesis_add_symbols_to_toc_bool,
   symbols .initial:n = {true},
 }
-
 \keys_define:nn { bithesis / appendices }
 {
   chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
   title .tl_set:N = \l__bithesis_appendices_title_tl,
   TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
 }
-
 \ProcessKeysOptions { bithesis / option }
-
 \__bithesis_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
-
 \bool_if:NTF \g__bithesis_twoside_bool {} {
   \PassOptionsToClass{oneside,openany}{ctexbook}
 }
-
 \DeclareOption*{
   \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexbook}
 }
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
-
 \RequirePackage{geometry}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
@@ -361,11 +388,9 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{environ}
-
 \pdfstringdefDisableCommands{%
   \let\quad\empty
 }
-
 \__bithesis_if_graduate:TF {
   \int_set:Nn \g__bithesis_head_zihao_int {5}
   \geometry{
@@ -391,11 +416,8 @@
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
-
 \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-
 \setromanfont{Times~New~Roman}
-
 \ctex_at_end_preamble:n {
   \__bithesis_if_thesis_english:TF {
     \__bithesis_if_thesis_int_type:nT {3} {
@@ -406,7 +428,8 @@
   } {
     \tl_if_blank:VTF \l__bithesis_cover_xihei_font_path_tl {}
     {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l__bithesis_cover_xihei_font_path_tl}
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
+        {\l__bithesis_cover_xihei_font_path_tl}
     }
   }
 
@@ -421,7 +444,6 @@
     \DeclareBibliographyCategory{mypub}
   }
 }
-
 \cs_new:Npn \xihei:n #1 {
   \xeCJK_family_if_exist:nTF {xihei} {
     \CJKfamily{xihei} #1
@@ -429,7 +451,6 @@
     \heiti #1
   }
 }
-
 \cs_new:Npn \l__bithesis_title_font_cs:n #1 {
   \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
   {
@@ -438,7 +459,6 @@
     \heiti #1
   }
 }
-
 \cs_new:Npn \l__bithesis_unnumchapter_style_cs:n #1 {
   % 本科全英文、研究生学位论文需要加粗
   \int_compare:nNnTF {\g__bithesis_thesis_type_int} > {2}
@@ -448,18 +468,19 @@
     \mdseries #1
   }
 }
-
 \cs_set:Npn \arabicHeiti #1 {#1}
-
 \fancypagestyle{BIThesis}{
   \fancyhf{}
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{\int_use:N \g__bithesis_head_zihao_int}\ziju{0.08}\songti{\tl_use:N \l__bithesis_style_head_tl}}
+  \fancyhead[C]{
+    \zihao{\int_use:N \g__bithesis_head_zihao_int}
+    \ziju{0.08}
+    \songti{\tl_use:N \l__bithesis_style_head_tl}
+  }
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
-
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
     format = { \l__bithesis_title_font_cs:n \bfseries \centering \zihao{3}},
@@ -486,7 +507,9 @@
 }
 
 \ctexset{subsection={
-    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
+    number = {
+      \arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}
+    },
     format = {\l__bithesis_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -501,7 +524,14 @@
   secnumdepth = 3,
   subsubsection={
     numbering = true,
-    number = {\arabicHeiti{\arabic{chapter}.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}.\hspace{1bp}\arabic{subsubsection}}},
+    number = {
+      \arabicHeiti{
+        \arabic{chapter}.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}.\hspace{1bp}
+        \arabic{subsubsection}
+      }
+    },
     format={\l__bithesis_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -510,7 +540,6 @@
     fixskip=true,
   }
 }
-
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \__bithesis_if_graduate:TF {
@@ -529,8 +558,6 @@
 \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
-
-
 \RenewDocumentCommand \frontmatter {} {
 
   \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
@@ -546,7 +573,6 @@
   }
   \pagestyle{BIThesis}
 }
-
 \RenewDocumentCommand \mainmatter {} {
   \cleardoublepage
 
@@ -563,7 +589,6 @@
   % 修复脚注出现跨页的问题
   \interfootnotelinepenalty=10000
 }
-
 \RenewDocumentCommand \backmatter {} {
   \setcounter{section}{0}
   \setcounter{subsection}{0}
@@ -572,21 +597,20 @@
     chapter = {
       numbering = false,
       beforeskip = 18bp,
-      format = {\l__bithesis_title_font_cs:n \l__bithesis_unnumchapter_style_cs:n \centering \zihao{3}},
+      format = {
+        \l__bithesis_title_font_cs:n \l__bithesis_unnumchapter_style_cs:n \centering \zihao{3}
+      },
       afterskip = 26bp,
     }
   }
 }
-
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
-
 \__bithesis_if_graduate:TF {
   \tl_set:Nn \g__bithesis_label_divide_char_tl {.}
 } {
   \tl_set:Nn \g__bithesis_label_divide_char_tl {-}
 }
-
 \cs_set:Npn \thefigure {\thechapter\g__bithesis_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
@@ -597,12 +621,10 @@
 
 \cs_set:Npn \thelstlisting {\thechapter\g__bithesis_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c__bithesis_label_code_tl}
-
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
-
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -626,12 +648,8 @@
     tabsize=2
 }
 \lstset{style=examplestyle}
-
 \cs_set:Npn \listfigurename {\c__bithesis_label_figure_tl}
 \cs_set:Npn \listtablename {\c__bithesis_label_table_tl}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \unimathsetup{
   math-style = ISO,
   bold-style = ISO,
@@ -652,27 +670,24 @@
 \theoremstyle{remark}
   \newtheorem{remark}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
-
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
-
 \cs_new:Npn \__bithesis_render_cover_entry:nn #1#2 {
   \makebox[\l__bithesis_cover_label_max_width_dim][\l__bithesis_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l__bithesis_cover_dilimiter_tl}
   }
   \hspace{1ex}
-  \__bithesis_dunderline:nnn{\l__bithesis_cover_underline_offset_dim}{\l__bithesis_cover_underline_thickness_dim}{
+  \__bithesis_dunderline:nnn{\l__bithesis_cover_underline_offset_dim}
+    {\l__bithesis_cover_underline_thickness_dim}{
     \makebox[\l__bithesis_cover_value_max_width_dim][\l__bithesis_cover_value_align_tl]{#2}
   }\par
 }
-
 \cs_new:Npn \__bithesis_get_text_width:Nn #1#2
   {
     \hbox_set:Nn \l_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \__bithesis_get_text_width:Nn { NV }
-
 \cs_new:Npn \__bithesis_get_max_text_width:NN #1#2
   {
     \group_begin:
@@ -686,7 +701,6 @@
         }
     \group_end:
   }
-
 \cs_new:Npn \__bithesis_parse_entry #1 #2 {
   \seq_set_split:Nnx \l__bithesis_tmp_right_seq {//} {#2}
   \seq_clear:N \l__bithesis_tmp_left_seq
@@ -696,7 +710,6 @@
   \seq_put_left:Nn \l__bithesis_tmp_left_seq {#1}
   \seq_pop_right:NN \l__bithesis_tmp_left_seq \g__bithesis_trashcan_tl
 }
-
 \cs_new:Npn \__bithesis_render_cover_entry:n #1 {
   \seq_set_from_clist:NN \l__bithesis_input_seq #1
   % parse newline //
@@ -722,29 +735,24 @@
       }
   \group_end:
 }
-
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-
 \cs_new:Npn \__bithesis_dunderline:nn #1#2 {
   \__bithesis_dunderline:nnn {#1} {1pt} {#2}
 }
-
 \cs_new:Npn \__bithesis_dunderline:n #1 {
   \__bithesis_dunderline:nnn {-10pt} {1pt} {#1}
 }
-
 \newcommand\dunderline[3][-1pt]{{%
   \setbox0=\hbox{#3}
   \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
-
+  % \begin{environment}{blindPeerReview}
 \NewEnviron{blindPeerReview}{
   \bool_if:NTF \g__bithesis_blind_mode_bool {} {
     \BODY
   }
 }
-
 \RenewDocumentCommand \cleardoublepage { }
   {
     \clearpage
@@ -754,7 +762,6 @@
           { \hbox:n { } \thispagestyle { empty } \newpage }
       }
   }
-
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
   \begin{titlepage}
@@ -775,7 +782,6 @@
     {\heiti \zihao{-3} \l__bithesis_cover_date_tl} % 黑体 小三
   \end{titlepage}
 }
-
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
   \begin{titlepage}
@@ -784,7 +790,11 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3} \tl_if_blank:VTF \l__bithesis_value_vertical_title_tl {\l__bithesis_value_title_tl}{\l__bithesis_value_vertical_title_tl}}
+        {
+          \heiti\zihao{3}
+          \tl_if_blank:VTF \l__bithesis_value_vertical_title_tl
+            {\l__bithesis_value_title_tl}{\l__bithesis_value_vertical_title_tl}
+        }
           \vfill
         {\heiti\zihao{3}\l__bithesis_value_author_tl}
           \vfill
@@ -795,12 +805,12 @@
    % \vskip 5cm
   \end{titlepage}
 }
-
 \cs_new:Npn \__bithesis_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
       { %
-        {\heiti \zihao{5} \noindent \c__bithesis_label_classification_tl} \l__bithesis_value_classification_tl\\
+        {\heiti \zihao{5} \noindent \c__bithesis_label_classification_tl}
+        \l__bithesis_value_classification_tl\\
         {\heiti \zihao{5} \c__bithesis_label_udc_tl}  \l__bithesis_value_udc_tl
       }
      \begin{center}
@@ -847,7 +857,6 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
-
 \cs_new:Npn \__bithesis_make_english_title_page: {
   \begin{titlepage}
     \begin{center}
@@ -895,7 +904,6 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
-
 \DeclareDocumentCommand \MakeCover {}
   {
     \begin{blindPeerReview}
@@ -1067,7 +1075,8 @@
 
           \vspace*{-3mm}
 
-          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute
+          \nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
 
           \vspace{18mm}
 
@@ -1128,13 +1137,11 @@
     \group_end:
     \end{blindPeerReview}
   }
-
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
   {\node[shape = circle, draw, inner~sep = 1pt]
   (char) {\phantom{\ifblank{#1}{#2}{#1}}};
   \node at (char.center) {\makebox[0pt][c]{#2}};}}
 \robustify{\circled}
-
 \cs_new:Npn \__bithesis_graduate_originality: {
   \ctexset {
     chapter / pagestyle = plain,
@@ -1182,7 +1189,6 @@
   \end{titlepage}
   \cleardoublepage
 }
-
 \NewDocumentCommand \MakeOriginality {}
 {
   \group_begin:
@@ -1271,14 +1277,13 @@
   \end{blindPeerReview}
   \group_end:
 }
-
 \NewDocumentCommand \MakePaperBack {}
   {
     \begin{blindPeerReview}
       \make_paper_back:
     \end{blindPeerReview}
   }
-
+  % \begin{macro}{\MakeTitle}
 \NewDocumentCommand \MakeTitle {}
   {
     \begin{blindPeerReview}
@@ -1286,7 +1291,6 @@
       \__bithesis_make_english_title_page:
     \end{blindPeerReview}
   }
-
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
@@ -1318,8 +1322,6 @@
       }
     }
   }
-
-  % TODO:
   \NewDocumentEnvironment {abstract} {}
   {
 
@@ -1368,7 +1370,6 @@
     \vspace{4ex}\noindent\textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
     \newpage
   }
-
   \NewDocumentEnvironment {abstractEn} {}
   {
     \cleardoublepage
@@ -1440,7 +1441,6 @@
     }
   }
   {}
-
   \NewDocumentEnvironment {bibprint} {}
   {
     % 设置参考文献字号为 5 号
@@ -1482,9 +1482,7 @@
     }
   }
   {}
-
-  % #1: The name that used as chapter title
-  % #2: The name that used in ToC.
+  % \begin{environment}{appendices}
   \NewDocumentEnvironment {appendices} {}
   {
     % Used in chapter, ToC.
@@ -1556,7 +1554,6 @@
       #1
     \end{blindPeerReview}
   } {}
-
   \NewDocumentEnvironment {publications} {+b}
   {
     \begin{blindPeerReview}
@@ -1605,7 +1602,6 @@
     \end{blindPeerReview}
   }
   {}
-
   \NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
@@ -1630,8 +1626,6 @@
   {
     \end{itemize}
   }
-
-
 \endinput
 %%
 %% End of file `bithesis.cls'.

@@ -834,8 +834,16 @@
 %   在默认配置下，封面中的下划线会自动计算最大宽度。
 %   此时，如果用户需要换行，可以通过「//」控制换行。
 %
-%   当关闭自动计算下划线宽度后，可以通过\meta{labelMaxWidth=xxx} 
-%   与 \meta{valueMaxWidth=xxx}来指定下划线的宽度。一般情况下，我们不建议您这样做。
+%   当关闭自动计算下划线宽度后，
+%   可以通过 
+%
+%   \meta{labelMaxWidth=xxx} 
+%
+%   与 
+%
+%   \meta{valueMaxWidth=xxx}
+%
+%   来指定下划线的宽度。一般情况下，我们不建议您这样做。
 % \end{function}
 % 
 % \begin{function}{\MakePaperBack}
@@ -1308,12 +1316,15 @@
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
+%
 % \subsection{bithesis.cls 文档类}
+%
 %    \begin{macrocode}
 %<*thesis>
 %    \end{macrocode}
-
+%
 % \subsubsection{全局变量与临时变量}
+%
 % 定义全局变量。
 % \begin{variable}{\g_@@_thesis_type_int}
 % 论文类型，取值从 1 开始，分别对应: 
@@ -1328,36 +1339,42 @@
 \int_new:N \g_@@_thesis_type_int
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_head_zihao_int}
 % 页眉字号。研究生论文使用 5 号字，本科生论文使用 4 号字。
 %    \begin{macrocode}
 \int_new:N \g_@@_head_zihao_int
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_twoside_bool}
 % 是否双面打印。默认单面打印。
 %    \begin{macrocode}
 \bool_new:N \g_@@_twoside_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_thesis_type_english_bool}
 % 是否为英文模板。目前只有本科生全英文专业的模板会将此变量设置为 true。
 %    \begin{macrocode}
 \bool_new:N \g_@@_thesis_type_english_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_blind_mode_bool}
 % 是否为盲审模式。默认为 false。
 %    \begin{macrocode}
 \bool_new:N \g_@@_blind_mode_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_label_divide_char_tl}
 % 用于分隔标签的字符。默认为「-」或者「.」。
 %    \begin{macrocode}
 \tl_new:N \g_@@_label_divide_char_tl
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\l_@@_right_seq, \l_@@_left_seq}
 % 定义临时变量。
 %    \begin{macrocode}
@@ -1365,8 +1382,9 @@
 \seq_new:N \l_@@_left_seq
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \subsubsection{辅助函数与常量}
+%
 % \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
 % 生成变体。
 %    \begin{macrocode}
@@ -1374,6 +1392,7 @@
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 %    \end{macrocode}
 % \end{macro}
+%
 % \begin{macro}{\@@_same_page:}
 % 取消换页。
 %    \begin{macrocode}
@@ -1409,7 +1428,7 @@
 \cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\@@_if_bachelor_thesis:TF,\@@_if_bachelor_thesis:T,\@@_if_master_thesis:TF,\@@_if_doctor_thesis:TF}
 % 是否为本科、硕士、博士学位论文。
 %    \begin{macrocode}
@@ -1419,8 +1438,7 @@
 \cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
 %    \end{macrocode}
 % \end{macro}
-
-
+%
 % \begin{variable}{\c_@@_thesis_type_clist}
 % 定义论文类型的列表。
 %    \begin{macrocode}
@@ -1428,7 +1446,7 @@
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{macro}{\@@_define_label:nn,\@@_define_label_by_thesis_type:nnn,\@@_define_label:nnn,\@@_define_label_by_thesis_type:nnnn}
 % 定义常量（标签）的辅助函数。
 %    \begin{macrocode}
@@ -1453,7 +1471,7 @@
   }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\smallgap:}
 % 标签文字之间的间距。
 %    \begin{macrocode}
@@ -1462,7 +1480,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\label_space:}
 % 标签与内容之间的空白间距。
 %    \begin{macrocode}
@@ -1473,7 +1491,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{variable}{\c_@@_label_code_tl,\c_@@_label_udc_tl,
 %   \c_@@_label_classification_tl,\c_@@_label_classified_level_tl,\c_@@_label_type_tl}
 % 没有对应英文的常量。
@@ -1489,11 +1507,10 @@
   {\@@_define_label:nn #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_label_xxx_tl}
 % 本科毕设的常量。
 %    \begin{macrocode}
-% bachelor
 \clist_map_inline:nn
   {
     {title} {本科生毕业设计（论文）},
@@ -1515,7 +1532,7 @@
   } {\@@_define_label_by_thesis_type:nnn {bachelor} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_english_label_xxx_tl}
 % 全英文专业的常量。
 %    \begin{macrocode}
@@ -1559,11 +1576,10 @@
   } {\@@_define_label_by_thesis_type:nnn {bachelor_english} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_graduate_label_xxx_tl}
 % 研究生模板的常量。
 %    \begin{macrocode}
-% graduate
 \clist_map_inline:nn
   {
     {originality} {研究成果声明},
@@ -1588,7 +1604,7 @@
   } {\@@_define_label_by_thesis_type:nnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_graduate_label_xxx_tl,\c_@@_graduate_label_xxx_en_tl}
 % 研究生模板的中英常量。
 %    \begin{macrocode}
@@ -1611,7 +1627,7 @@
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_label_xxx_tl,\c_@@_label_xxx_en_tl}
 % 常用的中英常量。
 %    \begin{macrocode}
@@ -1643,7 +1659,7 @@
   {\@@_define_label:nnn #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_cover_title_clist}
 % 本科生模板的封面标题与页眉标题常量列表。
 %    \begin{macrocode}
@@ -1699,6 +1715,7 @@
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
 }
 %    \end{macrocode}
+%
 % 定义 |bithesis/cover| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / cover }
@@ -1723,6 +1740,7 @@
     underlineOffset .initial:n = { -10pt },
   }
 %    \end{macrocode}
+%
 % 定义 |bithesis/info| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / info }
@@ -1761,6 +1779,7 @@
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
   }
 %    \end{macrocode}
+%
 % 定义 |bithesis/misc| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / misc }
@@ -1769,6 +1788,7 @@
   }
 
 %    \end{macrocode}
+%
 % 定义 |bithesis/style| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / style }
@@ -1788,6 +1808,7 @@
   bibliographyIndent .initial:n = {true},
 }
 %    \end{macrocode}
+%
 % 定义 |bithesis/TOC| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / TOC }
@@ -1800,6 +1821,7 @@
   symbols .initial:n = {true},
 }
 %    \end{macrocode}
+%
 % 定义 |bithesis/appendices| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / appendices }
@@ -1809,24 +1831,29 @@
   TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
 }
 %    \end{macrocode}
+%
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
 %    \end{macrocode}
+%
 % \subsubsection{处理模板选项}
+%
 % 英文模板需要开启 ctexbook 宏包的英文选项。
 %    \begin{macrocode}
 \@@_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
 %    \end{macrocode}
+%
 % 如果没有开启双面打印选项，则在 ctexbook 中开启单面打印选项。
 %    \begin{macrocode}
 \bool_if:NTF \g_@@_twoside_bool {} {
   \PassOptionsToClass{oneside,openany}{ctexbook}
 }
 %    \end{macrocode}
+%
 % 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
 %    \begin{macrocode}
 % Any extra option passed by user will be passed to ctexbook.
@@ -1834,6 +1861,7 @@
   \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexbook}
 }
 %    \end{macrocode}
+%
 % 加载 ctexbook 模板类。
 %    \begin{macrocode}
 \ProcessOptions\relax
@@ -1841,6 +1869,7 @@
 %    \end{macrocode}
 %
 % \subsubsection{定义模板类样式}
+%
 % 加载所需的宏包。
 %    \begin{macrocode}
 \RequirePackage{geometry}
@@ -1868,12 +1897,14 @@
 \RequirePackage{enumitem}
 \RequirePackage{environ}
 %    \end{macrocode}
+%
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
 %    \begin{macrocode}
 \pdfstringdefDisableCommands{%
   \let\quad\empty  
 }
 %    \end{macrocode}
+%
 % 设置页眉字号，页边距。
 % 
 % 需要注意的是，根据 \pkg{geometry} 的规则，
@@ -1907,14 +1938,17 @@
   }
 }
 %    \end{macrocode}
+%
 % 根据学校的要求，在图片前后加上一行空白。
 %    \begin{macrocode}
 \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 %    \end{macrocode}
+%
 % 设置 Times New Roman 字体。
 %    \begin{macrocode}
 \setromanfont{Times~New~Roman}
 %    \end{macrocode}
+%
 % 在 |preamble| 中，加载各个模板需要的字体。
 %    \begin{macrocode}
 \ctex_at_end_preamble:n {
@@ -2009,6 +2043,7 @@
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
 %    \end{macrocode}
+%
 %  定义 \pkg{ctex} 的章节标题形式。
 %    \begin{macrocode}
 \ctexset{chapter={
@@ -2071,6 +2106,7 @@
   }
 }
 %    \end{macrocode}
+%
 %  定义 TOC 样式。
 %    \begin{macrocode}
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
@@ -2200,6 +2236,7 @@
 \hyphenpenalty=10000
 \hbadness=10000
 %    \end{macrocode}
+%
 % 自定义一个默认的 lstlisting 样式。
 %    \begin{macrocode}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -2410,7 +2447,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-  % \begin{macro}{\make_graduate_cover:}
+% \begin{macro}{\make_graduate_cover:}
 %    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
@@ -2994,7 +3031,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-  % \begin{macro}{\MakeTOC}
+% \begin{macro}{\MakeTOC}
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeTOC {}
   {
@@ -3083,7 +3120,7 @@
 %    \end{macrocode}
 % \end{environment}
 %
-  % \begin{environment}{abstractEn}
+% \begin{environment}{abstractEn}
 %    \begin{macrocode}
   \NewDocumentEnvironment {abstractEn} {}
   {
@@ -3374,6 +3411,7 @@
   }
 %    \end{macrocode}
 % \end{environment}
+%
 %    \begin{macrocode}
 %</thesis>
 %    \end{macrocode}
@@ -3523,20 +3561,28 @@
 \ProcessKeysOptions { bitreport / option }
 %    \end{macrocode}
 % 
+% \subsubsection{辅助函数与常量}
+%
+% \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
+% 生成变体。
 %    \begin{macrocode}
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{\@@_dunderline:nnn}
+% \#1: position
+% \#2: line_thickness
+% \#3: token list
 %    \begin{macrocode}
-% #1: position
-% #2: line_thickness
-% #3: token list
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{|@@_render_cover_entry:nn}
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
@@ -3548,7 +3594,9 @@
   }\par
 }
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
 %    \begin{macrocode}
 % Get text with from #2, then set to #1.
 \cs_new:Npn \@@_get_text_width:Nn #1#2
@@ -3558,10 +3606,11 @@
   }
 \cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{\@@_get_max_text_width:NN}
+% Get max text width from seq \#2, then set to \#1.
 %    \begin{macrocode}
-
-% Get max text width from seq #2, then set to #1.
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
   {
 % 这里用 |group| 确保局部变量不会被污染。
@@ -3577,10 +3626,11 @@
     \group_end:
   }
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{\@@_parse_entry}
+% process label (\#1) and value \#2 separately
 %    \begin{macrocode}
-
-% process label (#1) and value #2 separately
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
@@ -3591,9 +3641,11 @@
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
+% \end{macro}
 % 
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。
 %    \begin{macrocode}
-
 \cs_new:Npn \@@_render_cover_entry:n #1 {
   \seq_set_from_clist:NN \l_@@_input_seq #1
   % parse newline //
@@ -3621,12 +3673,19 @@
   \group_end:
 }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{定义用户接口}
 % 
+% \begin{macro}{\BITSetup}
 %    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
+%    \end{macrocode}
+% \end{macro}
+%
+  % \begin{macro}{\MakeCover}
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
@@ -3705,7 +3764,9 @@
     \group_end:
   }
 %    \end{macrocode}
-% 
+% \end{macro}
+%
+% \begin{macro}{\MakeReviewTable}
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeReviewTable {} 
   {
@@ -3716,46 +3777,44 @@
     \group_end:
   }
 %    \end{macrocode}
-% 
-%    \begin{macrocode}
+% \end{macro}
+%
 % 定义 caption 字体为楷体
+%    \begin{macrocode}
 \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % 设置图片的 caption 格式
+%    \begin{macrocode}
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % 设置表格的 caption 格式
+%    \begin{macrocode}
 \renewcommand{\thetable}{\thesection-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
-
 % 输出大写数字日期
+%    \begin{macrocode}
 \ctexset{today=big}
-
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % 将西文字体设置为 Times New Roman
+%    \begin{macrocode}
 \setromanfont{Times~New~Roman}
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % 设置文档标题深度
+%    \begin{macrocode}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 %    \end{macrocode}
 % 
+% 设置一级标题、二级标题格式。
+% 一级标题：小三，宋体，加粗，段前段后各半行。
 %    \begin{macrocode}
-%%
-% 设置一级标题、二级标题格式
-% 一级标题：小三，宋体，加粗，段前段后各半行
 \ctexset{section={
   format={\raggedright \bfseries \songti \zihao{-3}},
   beforeskip = 24bp plus 1ex minus .2ex,
@@ -3774,8 +3833,8 @@
 }
 %    \end{macrocode}
 % 
+% 页眉和页脚（页码）的格式设定。
 %    \begin{macrocode}
-% 页眉和页脚（页码）的格式设定
 \fancyhf{}
 \int_case:nn {\g_@@_report_type_int} {
   {1} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{\l_@@_value_title_tl}}}
@@ -3786,8 +3845,8 @@
 \renewcommand{\footrulewidth}{0pt}
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % 正文开始
+%    \begin{macrocode}
 \pagestyle{fancy}
 \setcounter{page}{1}
 %    \end{macrocode}
@@ -3810,46 +3869,72 @@
 %<*beamer>
 %    \end{macrocode}
 %
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitbeamer| 文档类的接口键值对。
 %    \begin{macrocode}
-% Define our keyvalues
 \keys_define:nn { bitbeamer }
   {
     titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
     framelogo .tl_set:N = \l_bit_framelogo_tl,
   }
+%    \end{macrocode}
+% 
+% 在宏加载时，处理 |bitbeamer| 中的值。使得 |bitbeamer| 
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bitbeamer }
 %    \end{macrocode}
 % 
-%    \begin{macrocode}
 % Pass every option not explicitly defined to `ctexbeamer`.
+%    \begin{macrocode}
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{ctexbeamer}
 }
+%    \end{macrocode}
+% 
 % Executes the code for each option.
+% Load.
+%    \begin{macrocode}
 \ProcessOptions\relax
-
-% Load
 \LoadClass{ctexbeamer}
-
+%    \end{macrocode}
+% 
+% \subsubsection{定义模板类样式}
+%
+% 加载所需的宏包。
+%    \begin{macrocode}
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
-
+%    \end{macrocode}
+%
+% 设置主题与主题色。
+%    \begin{macrocode}
 \usetheme{Madrid}
-% 设置主题色
 \colorlet{beamer@blendedblue}{green!40!black}
-
+%    \end{macrocode}
+% 
+%
+% \begin{macro}{\CJKhl:nn}
+% 高亮中文字符。
+%    \begin{macrocode}
 \cs_new:Npn \CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
-
+%    \end{macrocode}
+% \end{macro}
+% 
 % Set header if logo path is provided. 
+%    \begin{macrocode}
 \tl_if_empty:NF \l_bit_titlegraphic_tl {
   % BIT Logo
   \titlegraphic{
       \includegraphics[width=2cm]{\l_bit_titlegraphic_tl}
   }
 }
-
+%    \end{macrocode}
+% 
 % Set title logo if logo path is provided.
+%    \begin{macrocode}
 \tl_if_empty:NF \l_bit_framelogo_tl {
   \addtobeamertemplate{frametitle}{}{%
     \begin{tikzpicture}[remember~picture,overlay]
@@ -3857,17 +3942,25 @@
     \end{tikzpicture}
   }
 }
-
-% Expose command to user.
+%    \end{macrocode}
+% 
+% \subsubsection{定义用户接口}
+%
+%    \begin{macrocode}
 \cs_new_eq:NN \CJKhl \CJKhl:nn
 %    \end{macrocode}
+%
 %    \begin{macrocode}
 %</beamer>
 %    \end{macrocode}
+%
 % \subsection{已弃用的代码}
+%
 % 来自老版本的代码，但是在新版本中已经不再使用。
 % ，为了保证老版本论文能够正常编译，特此保留。
+%
 % \subsubsection{bitbook.cls 文档类（已弃用）}
+%
 %    \begin{macrocode}
 %<*book>
 %    \end{macrocode}
