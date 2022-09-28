@@ -823,7 +823,7 @@
 %
 %   \textit{此选项一般不需要用户自行修改。}
 %
-%   开启后，可以使用以「chapter」为顶层的附录格式。
+%   开启后，可以使用以「chapter」为顶层的附录格式：
 %
 %  \begin{latex}[emph={[1]appendices,chapter}]
 %    \begin{appendices}
@@ -833,11 +833,14 @@
 %          (*\meta{附录B 内容}*)
 %    \end{appendices}
 %  \end{latex}
+%
+%   默认不开启，使用以「section」为顶层的附录格式。
+%
 % \end{function}
 %
 % \begin{function}{appendices/title}
 %   \begin{bitsyntax}[emph={[1]title}]
-%     title = (*\meta{字符串}*)
+%     title = (*(附录)|\meta{字符串}*)
 %   \end{bitsyntax}
 %
 %  可以覆盖附录的标题名称，默认为「附录」。
@@ -845,7 +848,7 @@
 %
 % \begin{function}{appendices/TOCTitle}
 %   \begin{bitsyntax}[emph={[1]TOCTitle}]
-%     TOCTitle = (*\meta{字符串}*)
+%     TOCTitle = (*(附录)|\meta{字符串}*)
 %   \end{bitsyntax}
 %
 %  可以覆盖附录在目录中的名称，默认为「附录」。
@@ -1970,7 +1973,6 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
-\RequirePackage{environ}
 %    \end{macrocode}
 %
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
@@ -2352,7 +2354,6 @@
   math-style = ISO,
   bold-style = ISO,
 }
-
 %    \end{macrocode}
 % 
 % 预定义用户常用的证明环境。
@@ -2374,107 +2375,6 @@
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
 %    \end{macrocode}
 % 
-% \begin{macro}{\BITSetup}
-%    \begin{macrocode}
-\DeclareDocumentCommand \BITSetup { m }
-  { \keys_set:nn { bithesis } { #1 }}
-%    \end{macrocode}
-% \end{macro}
-% 
-% \begin{macro}{|@@_render_cover_entry:nn}
-%    \begin{macrocode}
-\cs_new:Npn \@@_render_cover_entry:nn #1#2 {
-  \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
-  }
-  \hspace{1ex}
-  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
-    {\l_@@_cover_underline_thickness_dim}{
-    \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
-  }\par
-}
-%    \end{macrocode}
-% \end{macro}
-% 
-% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
-% Get text with from \#2, then set to \#1.
-%    \begin{macrocode}
-\cs_new:Npn \@@_get_text_width:Nn #1#2
-  {
-    \hbox_set:Nn \l_tmpa_box {#2}
-    \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
-  }
-\cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
-%    \end{macrocode}
-% \end{macro}
-% 
-% \begin{macro}{\@@_get_max_text_width:NN}
-% Get max text width from seq \#2, then set to \#1.
-%    \begin{macrocode}
-\cs_new:Npn \@@_get_max_text_width:NN #1#2
-  {
-% 这里用 |group| 确保局部变量不会被污染。
-    \group_begin:
-      \seq_set_eq:NN \l_@@_tmpa_seq #2
-      \dim_zero_new:N \l_@@_tmpa_dim
-      \bool_until_do:nn { \seq_if_empty_p:N \l_@@_tmpa_seq }
-        {
-          \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
-          \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
-        }
-    \group_end:
-  }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_parse_entry}
-% process label (\#1) and value \#2 separately
-%    \begin{macrocode}
-\cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
-  \seq_clear:N \l_@@_tmp_left_seq
-  \seq_map_inline:Nn \l_@@_tmp_right_seq {
-    \seq_put_right:Nn \l_@@_tmp_left_seq {}
-  }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
-  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
-}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_render_cover_entry}
-% 渲染封面信息项。
-%    \begin{macrocode}
-\cs_new:Npn \@@_render_cover_entry:n #1 {
-  \seq_set_from_clist:NN \l_@@_input_seq #1
-  % parse newline //
-  \seq_map_inline:Nn \l_@@_input_seq {
-    \@@_parse_entry ##1
-    \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
-    \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
-  }
-
-  \bool_if:NT \l_@@_cover_auto_width_bool {
-    \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
-    \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
-  }
-  
-
-  \group_begin:
-    \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
-      {
-        \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
-        \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
-          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
-        }
-      }
-  \group_end:
-}
-%    \end{macrocode}
-% \end{macro}
-%
 % \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:nn,\@@_dunderline:n}
 % \#1: position
 % \#2: line_thickness
@@ -2495,33 +2395,143 @@
 %    \end{macrocode}
 % \end{macro}
 %
-  % \begin{environment}{blindPeerReview}
+% \begin{macro}{|@@_render_cover_entry:nn}
+% 用于渲染封面的辅助函数。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#2 |{token_list}| 为封面信息条目的内容。
+% \end{itemize}
+%
+% 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
+% 存储已经计算出来的最大宽度。
 %    \begin{macrocode}
-\NewEnviron{blindPeerReview}{
-  \bool_if:NTF \g_@@_blind_mode_bool {} {
-    \BODY
+\cs_new:Npn \@@_render_cover_entry:nn #1#2 {
+  \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
+    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
   }
+  \hspace{1ex}
+  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
+    {\l_@@_cover_underline_thickness_dim}{
+    \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
+  }\par
 }
 %    \end{macrocode}
-% \end{environment}
+% \end{macro}
+% 
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
 %
-% \begin{macro}{\cleardoublepage}
-% 重定义 \tn{cleardoublepage}，
-% 使得偶数页面在没有内容时也不显示页眉页脚。见：
-% \url{https://tex.stackexchange.com/a/1683}。
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |dim| 存储宽度的变量。
+%   \item \#2 |tl| 要计算宽度的文本。
+% \end{itemize}
 %    \begin{macrocode}
-\RenewDocumentCommand \cleardoublepage { }
+\cs_new:Npn \@@_get_text_width:Nn #1#2
   {
-    \clearpage
-    \bool_if:NT \g_@@_twoside_bool
-      {
-        \int_if_odd:nF \c@page
-          { \hbox:n { } \thispagestyle { empty } \newpage }
-      }
+    \hbox_set:Nn \l_tmpa_box {#2}
+    \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
+  }
+\cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_get_max_text_width:NN}
+% 从 \#2 中获取最大的文本宽度，然后设置到 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |dim| 用于存储最大宽度。
+%   \item \#2: |seq| 用于存储文本。
+% \end{itemize}
+%    \begin{macrocode}
+\cs_new:Npn \@@_get_max_text_width:NN #1#2
+  {
+% 这里用 |group| 确保局部变量不会被污染。
+    \group_begin:
+      \seq_set_eq:NN \l_@@_tmpa_seq #2
+      \dim_zero_new:N \l_@@_tmpa_dim
+      \bool_until_do:nn { \seq_if_empty_p:N \l_@@_tmpa_seq }
+        {
+          \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
+          \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
+        }
+    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_parse_entry}
+% 解析封面信息条目。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |tl| 为封面信息条目的名称。
+%   \item \#2: |tl| 为封面信息条目的内容。
+% \end{itemize}
+% |//| 会被视为换行符，从而实现信息条目换行的效果。
+%
+%    \begin{macrocode}
+\cs_new:Npn \@@_parse_entry #1 #2 {
+  \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
+  \seq_clear:N \l_@@_tmp_left_seq
+  \seq_map_inline:Nn \l_@@_tmp_right_seq {
+    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  }
+  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
+  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。此函数为主函数。
+%    \begin{macrocode}
+\cs_new:Npn \@@_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
+  \seq_set_from_clist:NN \l_@@_input_seq #1
+  \seq_map_inline:Nn \l_@@_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
+    \@@_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l_@@_right_seq 
+    % 或者 \l_@@_left_sql 中。
+    % left 就是 label，right 就是 value。
+    \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
+    \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
+  }
+
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
+  \bool_if:NT \l_@@_cover_auto_width_bool {
+    \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
+    \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
+  }
+  
+
+  % 最后，根据宽度渲染 label 和 value 对。
+  \group_begin:
+    \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
+      {
+        \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
+        \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
+        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
+          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
+        }
+      }
+  \group_end:
+}
+%    \end{macrocode}
+% \end{macro}
+% 
 % \begin{macro}{\make_graduate_cover:}
 %    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
@@ -2681,6 +2691,112 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\circled}
+% 圆形数字编号定义
+%    \begin{macrocode}
+\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
+  {\node[shape = circle, draw, inner~sep = 1pt]
+  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+  \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_graduate_originality:}
+% 研究生原创性声明。
+%    \begin{macrocode}
+\cs_new:Npn \@@_graduate_originality:
+  {
+    \ctexset {
+      chapter / pagestyle = plain,
+    }
+
+    \begin{titlepage}
+      \pagenumbering{gobble}
+
+      % 原创性声明部分
+      \begin{center}
+        \@@_same_page:
+        \chapter*{\heiti\zihao{3}\c_@@_graduate_label_originality_tl}
+      \end{center}~\par
+
+      % 本部分字号为小三
+      \zihao{4}
+      \c_@@_graduate_label_originality_clause_tl
+
+      \vspace{17mm}
+
+      \begin{flushright}
+        \c_@@_graduate_label_originality_author_signature_tl\par
+      \end{flushright}
+
+      \vspace{16mm}
+
+      % 使用授权声明部分
+      \begin{center}
+        \@@_same_page:
+        \chapter*{\heiti\zihao{3}\c_@@_graduate_label_authorization_tl}
+      \end{center}~\par
+
+      \c_@@_graduate_label_authorization_clause_tl
+
+      \vspace*{15mm}
+
+      \begin{flushright}
+        \begin{spacing}{1.65}
+          \zihao{4}
+          % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \c_@@_graduate_label_originality_author_signature_tl\par
+          \c_@@_graduate_label_originality_supervisor_signature_tl\par
+        \end{spacing}
+      \end{flushright}
+    \end{titlepage}
+    \cleardoublepage
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{定义用户接口}
+%
+% \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BITSetup { m }
+  { \keys_set:nn { bithesis } { #1 }}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{blindPeerReview}
+% 用于包裹涉及个人信息的内容。
+%
+% 在启用盲审模式时，其中的内容会被隐藏。
+%    \begin{macrocode}
+\NewDocumentEnvironment {blindPeerReview} {+b}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {} {
+      #1
+    }
+  } {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\cleardoublepage}
+% 重定义 \tn{cleardoublepage}，
+% 使得偶数页面在没有内容时也不显示页眉页脚。见：
+% \url{https://tex.stackexchange.com/a/1683}。
+%    \begin{macrocode}
+\RenewDocumentCommand \cleardoublepage { }
+  {
+    \clearpage
+    \bool_if:NT \g_@@_twoside_bool
+      {
+        \int_if_odd:nF \c@page
+          { \hbox:n { } \thispagestyle { empty } \newpage }
+      }
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2924,164 +3040,98 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\circled}
-% 圆形数字编号定义
-%    \begin{macrocode}
-\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
-  {\node[shape = circle, draw, inner~sep = 1pt]
-  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
-  \node at (char.center) {\makebox[0pt][c]{#2}};}}
-\robustify{\circled}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_graduate_originality:}
-% 研究生原创性声明。
-%    \begin{macrocode}
-\cs_new:Npn \@@_graduate_originality: {
-  \ctexset {
-    chapter / pagestyle = plain,
-  }
-
-  \begin{titlepage}
-    \pagenumbering{gobble}
-
-    % 原创性声明部分
-    \begin{center}
-      \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_originality_tl}
-    \end{center}~\par
-
-    % 本部分字号为小三
-    \zihao{4}
-    \c_@@_graduate_label_originality_clause_tl
-
-    \vspace{17mm}
-
-    \begin{flushright}
-      \c_@@_graduate_label_originality_author_signature_tl\par
-    \end{flushright}
-
-    \vspace{16mm}
-
-    % 使用授权声明部分
-    \begin{center}
-      \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_authorization_tl}
-    \end{center}~\par
-
-    \c_@@_graduate_label_authorization_clause_tl
-
-    \vspace*{15mm}
-
-    \begin{flushright}
-      \begin{spacing}{1.65}
-        \zihao{4}
-        % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-        \c_@@_graduate_label_originality_author_signature_tl\par
-        \c_@@_graduate_label_originality_supervisor_signature_tl\par
-      \end{spacing}
-    \end{flushright}
-  \end{titlepage}
-  \cleardoublepage
-}
-%    \end{macrocode}
-% \end{macro}
-%
 % \begin{macro}{\MakeOriginality}
 %    \begin{macrocode}
 \NewDocumentCommand \MakeOriginality {} 
-{
-  \group_begin:
-    \begin{blindPeerReview}
-    \int_case:nn {\g_@@_thesis_type_int}
-    {
-      {1} 
+  {
+    \group_begin:
+      \begin{blindPeerReview}
+      \int_case:nn {\g_@@_thesis_type_int}
       {
-        \pagestyle{BIThesis}
-        \pagenumbering{gobble}
+        {1} 
+        {
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
 
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
-        \end{center}~\par
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
+          \end{center}~\par
 
-        % 本部分字号为小三
-        \zihao{-3}
-        \c_@@_bachelor_label_originality_clause_tl
+          % 本部分字号为小三
+          \zihao{-3}
+          \c_@@_bachelor_label_originality_clause_tl
 
-        \vspace{17mm}
+          \vspace{17mm}
 
-        \begin{flushright}
-          \c_@@_bachelor_label_originality_author_signature_tl\par
-        \end{flushright}
-
-        \vspace{16mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_authorization_tl}
-        \end{center}~\par
-
-        \c_@@_bachelor_label_authorization_clause_tl
-
-        \vspace*{3mm}
-
-        \begin{flushright}
-          \begin{spacing}{1.65}
-            \zihao{-3}
-            % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \begin{flushright}
             \c_@@_bachelor_label_originality_author_signature_tl\par
-            \c_@@_bachelor_label_originality_supervisor_signature_tl\par
-          \end{spacing}
-        \end{flushright}
+          \end{flushright}
 
-        \newpage
+          \vspace{16mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_authorization_tl}
+          \end{center}~\par
+
+          \c_@@_bachelor_label_authorization_clause_tl
+
+          \vspace*{3mm}
+
+          \begin{flushright}
+            \begin{spacing}{1.65}
+              \zihao{-3}
+              % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+              \c_@@_bachelor_label_originality_author_signature_tl\par
+              \c_@@_bachelor_label_originality_supervisor_signature_tl\par
+            \end{spacing}
+          \end{flushright}
+
+          \newpage
+        }
+        {3} {
+          \setstretch{1.26}
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_originality_tl}
+          \end{center}~\par
+
+          % 本部分字号为小三
+          \zihao{-4}
+          \c_@@_bachelor_english_label_originality_clause_tl
+
+          \bigbreak
+
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
+
+          \vspace{6mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_authorization_tl}
+          \end{center}~\par
+
+          \c_@@_bachelor_english_label_authorization_clause_tl
+
+          \bigbreak
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
+          Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
+        }
+        {4} {\@@_graduate_originality:}
+        {5} {\@@_graduate_originality:}
       }
-      {3} {
-        \setstretch{1.26}
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_originality_tl}
-        \end{center}~\par
-
-        % 本部分字号为小三
-        \zihao{-4}
-        \c_@@_bachelor_english_label_originality_clause_tl
-
-        \bigbreak
-
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
-
-        \vspace{6mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_authorization_tl}
-        \end{center}~\par
-
-        \c_@@_bachelor_english_label_authorization_clause_tl
-
-        \bigbreak
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
-        Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
-      }
-      {4} {\@@_graduate_originality:}
-      {5} {\@@_graduate_originality:}
-    }
-  \end{blindPeerReview}
-  \group_end:
-}
+    \end{blindPeerReview}
+    \group_end:
+  }
 %    \end{macrocode}
 % \end{macro}
-%
-% \subsubsection{定义用户接口}
 %
 % \begin{macro}{\MakePaperBack}
 %    \begin{macrocode}
@@ -3144,7 +3194,7 @@
 %
 % \begin{environment}{abstract}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {abstract} {}
+\NewDocumentEnvironment {abstract} {}
   {
 
     \cleardoublepage
@@ -3197,7 +3247,7 @@
 %
 % \begin{environment}{abstractEn}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {abstractEn} {}
+\NewDocumentEnvironment {abstractEn} {}
   {
     \cleardoublepage
     \setstretch{1.53}
@@ -3261,7 +3311,7 @@
 % \begin{environment}{conclusion}
 % after \cs{backmatter}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {conclusion} {}
+\NewDocumentEnvironment {conclusion} {}
   {
     \ctexset{
       section/number = \arabic{section}
@@ -3280,7 +3330,7 @@
 % \begin{environment}{bibprint}
 % after \cs{backmatter}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {bibprint} {}
+\NewDocumentEnvironment {bibprint} {}
   {
     % 设置参考文献字号为 5 号
     \renewcommand*{\bibfont}{\zihao{5}}
@@ -3324,9 +3374,9 @@
 %    \end{macrocode}
 % \end{environment}
 %
-  % \begin{environment}{appendices}
+% \begin{environment}{appendices}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {appendices} {}
+\NewDocumentEnvironment {appendices} {}
   {
     % Used in chapter, ToC.
     \tl_new:N \l_@@_appendix_plain_label_tl
@@ -3385,7 +3435,7 @@
 %
 % \begin{environment}{acknowledgements}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {acknowledgements} {+b}
+\NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
       \ctexset{
@@ -3407,7 +3457,7 @@
 %
 % \begin{environment}{publications}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {publications} {+b}
+\NewDocumentEnvironment {publications} {+b}
   {
     \begin{blindPeerReview}
       % 设置参考文献字号为 5 号
@@ -3460,7 +3510,7 @@
 %
 % \begin{environment}{resume}
 %    \begin{macrocode}
-  \NewDocumentEnvironment {resume} {+b}
+\NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
     \chapter{\c_@@_label_resume_tl}
@@ -3469,8 +3519,12 @@
   }
   {
   }
+%    \end{macrocode}
+% \end{environment}
 
-  \NewDocumentEnvironment {symbols} {}
+% \begin{environment}{resume}
+%    \begin{macrocode}
+\NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
       \chapter{\c_@@_label_symbols_tl}
@@ -3672,6 +3726,13 @@
 % \end{macro}
 % 
 % \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |dim| 存储宽度的变量。
+%   \item \#2 |tl| 要计算宽度的文本。
+% \end{itemize}
 %    \begin{macrocode}
 % Get text with from #2, then set to #1.
 \cs_new:Npn \@@_get_text_width:Nn #1#2
@@ -3684,7 +3745,13 @@
 % \end{macro}
 % 
 % \begin{macro}{\@@_get_max_text_width:NN}
-% Get max text width from seq \#2, then set to \#1.
+% 从 \#2 中获取最大的文本宽度，然后设置到 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |dim| 用于存储最大宽度。
+%   \item \#2: |seq| 用于存储文本。
+% \end{itemize}
 %    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
   {
@@ -3719,23 +3786,36 @@
 % \end{macro}
 % 
 % \begin{macro}{\@@_render_cover_entry}
-% 渲染封面信息项。
+% 渲染封面信息项。此函数为主函数。
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
   \seq_set_from_clist:NN \l_@@_input_seq #1
-  % parse newline //
   \seq_map_inline:Nn \l_@@_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
     \@@_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l_@@_right_seq 
+    % 或者 \l_@@_left_sql 中。
+    % left 就是 label，right 就是 value。
     \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
     \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
   }
 
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
   \bool_if:NT \l_@@_cover_auto_width_bool {
     \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
   }
   
 
+  % 最后，根据宽度渲染 label 和 value 对。
   \group_begin:
     \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
       {
@@ -3753,13 +3833,15 @@
 % \subsubsection{定义用户接口}
 % 
 % \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
 %    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
 %    \end{macrocode}
 % \end{macro}
 %
-  % \begin{macro}{\MakeCover}
+% \begin{macro}{\MakeCover}
+% 渲染封面。
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
@@ -3842,6 +3924,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakeReviewTable}
+% 渲染评阅表。
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeReviewTable {} 
   {
@@ -3888,8 +3971,8 @@
 %    \end{macrocode}
 % 
 % 设置一级标题、二级标题格式。
-% 一级标题：小三，宋体，加粗，段前段后各半行。
 %    \begin{macrocode}
+% 一级标题：小三，宋体，加粗，段前段后各半行。
 \ctexset{section={
   format={\raggedright \bfseries \songti \zihao{-3}},
   beforeskip = 24bp plus 1ex minus .2ex,
@@ -3898,7 +3981,7 @@
   name = {,.\quad}
   }
 }
-% 二级标题：小四，宋体，加粗，段前段后各半行
+% 二级标题：小四，宋体，加粗，段前段后各半行。
 \ctexset{subsection={
   format = {\bfseries \songti \raggedright \zihao{4}},
   beforeskip = 24bp plus 1ex minus .2ex,

@@ -387,7 +387,6 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
-\RequirePackage{environ}
 \pdfstringdefDisableCommands{%
   \let\quad\empty
 }
@@ -654,7 +653,6 @@
   math-style = ISO,
   bold-style = ISO,
 }
-
 \theoremstyle{plain}
   \newtheorem{algorithm}{算法}[chapter]
   \newtheorem{theorem}{定理}[chapter]
@@ -670,8 +668,18 @@
 \theoremstyle{remark}
   \newtheorem{remark}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
-\DeclareDocumentCommand \BITSetup { m }
-  { \keys_set:nn { bithesis } { #1 }}
+\cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
+  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
+}
+\cs_new:Npn \__bithesis_dunderline:nn #1#2 {
+  \__bithesis_dunderline:nnn {#1} {1pt} {#2}
+}
+\cs_new:Npn \__bithesis_dunderline:n #1 {
+  \__bithesis_dunderline:nnn {-10pt} {1pt} {#1}
+}
+\newcommand\dunderline[3][-1pt]{{%
+  \setbox0=\hbox{#3}
+  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
 \cs_new:Npn \__bithesis_render_cover_entry:nn #1#2 {
   \makebox[\l__bithesis_cover_label_max_width_dim][\l__bithesis_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l__bithesis_cover_dilimiter_tl}
@@ -711,19 +719,32 @@
   \seq_pop_right:NN \l__bithesis_tmp_left_seq \g__bithesis_trashcan_tl
 }
 \cs_new:Npn \__bithesis_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
   \seq_set_from_clist:NN \l__bithesis_input_seq #1
-  % parse newline //
   \seq_map_inline:Nn \l__bithesis_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
     \__bithesis_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l__bithesis_right_seq
+    % 或者 \l__bithesis_left_sql 中。
+    % left 就是 label，right 就是 value。
     \seq_concat:NNN \l__bithesis_right_seq \l__bithesis_right_seq \l__bithesis_tmp_right_seq
     \seq_concat:NNN \l__bithesis_left_seq \l__bithesis_left_seq \l__bithesis_tmp_left_seq
   }
 
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
   \bool_if:NT \l__bithesis_cover_auto_width_bool {
     \__bithesis_get_max_text_width:NN \l__bithesis_cover_label_max_width_dim \l__bithesis_left_seq
     \__bithesis_get_max_text_width:NN \l__bithesis_cover_value_max_width_dim \l__bithesis_right_seq
   }
 
+  % 最后，根据宽度渲染 label 和 value 对。
   \group_begin:
     \bool_until_do:nn { \seq_if_empty_p:N \l__bithesis_left_seq }
       {
@@ -735,33 +756,6 @@
       }
   \group_end:
 }
-\cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
-  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
-}
-\cs_new:Npn \__bithesis_dunderline:nn #1#2 {
-  \__bithesis_dunderline:nnn {#1} {1pt} {#2}
-}
-\cs_new:Npn \__bithesis_dunderline:n #1 {
-  \__bithesis_dunderline:nnn {-10pt} {1pt} {#1}
-}
-\newcommand\dunderline[3][-1pt]{{%
-  \setbox0=\hbox{#3}
-  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
-  % \begin{environment}{blindPeerReview}
-\NewEnviron{blindPeerReview}{
-  \bool_if:NTF \g__bithesis_blind_mode_bool {} {
-    \BODY
-  }
-}
-\RenewDocumentCommand \cleardoublepage { }
-  {
-    \clearpage
-    \bool_if:NT \g__bithesis_twoside_bool
-      {
-        \int_if_odd:nF \c@page
-          { \hbox:n { } \thispagestyle { empty } \newpage }
-      }
-  }
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
   \begin{titlepage}
@@ -904,6 +898,76 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
+\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
+  {\node[shape = circle, draw, inner~sep = 1pt]
+  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+  \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+\cs_new:Npn \__bithesis_graduate_originality:
+  {
+    \ctexset {
+      chapter / pagestyle = plain,
+    }
+
+    \begin{titlepage}
+      \pagenumbering{gobble}
+
+      % 原创性声明部分
+      \begin{center}
+        \__bithesis_same_page:
+        \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_originality_tl}
+      \end{center}~\par
+
+      % 本部分字号为小三
+      \zihao{4}
+      \c__bithesis_graduate_label_originality_clause_tl
+
+      \vspace{17mm}
+
+      \begin{flushright}
+        \c__bithesis_graduate_label_originality_author_signature_tl\par
+      \end{flushright}
+
+      \vspace{16mm}
+
+      % 使用授权声明部分
+      \begin{center}
+        \__bithesis_same_page:
+        \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_authorization_tl}
+      \end{center}~\par
+
+      \c__bithesis_graduate_label_authorization_clause_tl
+
+      \vspace*{15mm}
+
+      \begin{flushright}
+        \begin{spacing}{1.65}
+          \zihao{4}
+          % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \c__bithesis_graduate_label_originality_author_signature_tl\par
+          \c__bithesis_graduate_label_originality_supervisor_signature_tl\par
+        \end{spacing}
+      \end{flushright}
+    \end{titlepage}
+    \cleardoublepage
+  }
+\DeclareDocumentCommand \BITSetup { m }
+  { \keys_set:nn { bithesis } { #1 }}
+\NewDocumentEnvironment {blindPeerReview} {+b}
+  {
+    \bool_if:NTF \g__bithesis_blind_mode_bool {} {
+      #1
+    }
+  } {}
+\RenewDocumentCommand \cleardoublepage { }
+  {
+    \clearpage
+    \bool_if:NT \g__bithesis_twoside_bool
+      {
+        \int_if_odd:nF \c@page
+          { \hbox:n { } \thispagestyle { empty } \newpage }
+      }
+  }
 \DeclareDocumentCommand \MakeCover {}
   {
     \begin{blindPeerReview}
@@ -1137,146 +1201,94 @@
     \group_end:
     \end{blindPeerReview}
   }
-\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
-  {\node[shape = circle, draw, inner~sep = 1pt]
-  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
-  \node at (char.center) {\makebox[0pt][c]{#2}};}}
-\robustify{\circled}
-\cs_new:Npn \__bithesis_graduate_originality: {
-  \ctexset {
-    chapter / pagestyle = plain,
-  }
-
-  \begin{titlepage}
-    \pagenumbering{gobble}
-
-    % 原创性声明部分
-    \begin{center}
-      \__bithesis_same_page:
-      \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_originality_tl}
-    \end{center}~\par
-
-    % 本部分字号为小三
-    \zihao{4}
-    \c__bithesis_graduate_label_originality_clause_tl
-
-    \vspace{17mm}
-
-    \begin{flushright}
-      \c__bithesis_graduate_label_originality_author_signature_tl\par
-    \end{flushright}
-
-    \vspace{16mm}
-
-    % 使用授权声明部分
-    \begin{center}
-      \__bithesis_same_page:
-      \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_authorization_tl}
-    \end{center}~\par
-
-    \c__bithesis_graduate_label_authorization_clause_tl
-
-    \vspace*{15mm}
-
-    \begin{flushright}
-      \begin{spacing}{1.65}
-        \zihao{4}
-        % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-        \c__bithesis_graduate_label_originality_author_signature_tl\par
-        \c__bithesis_graduate_label_originality_supervisor_signature_tl\par
-      \end{spacing}
-    \end{flushright}
-  \end{titlepage}
-  \cleardoublepage
-}
 \NewDocumentCommand \MakeOriginality {}
-{
-  \group_begin:
-    \begin{blindPeerReview}
-    \int_case:nn {\g__bithesis_thesis_type_int}
-    {
-      {1}
+  {
+    \group_begin:
+      \begin{blindPeerReview}
+      \int_case:nn {\g__bithesis_thesis_type_int}
       {
-        \pagestyle{BIThesis}
-        \pagenumbering{gobble}
+        {1}
+        {
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
 
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \__bithesis_same_page:
-          \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_originality_tl}
-        \end{center}~\par
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \__bithesis_same_page:
+            \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_originality_tl}
+          \end{center}~\par
 
-        % 本部分字号为小三
-        \zihao{-3}
-        \c__bithesis_bachelor_label_originality_clause_tl
+          % 本部分字号为小三
+          \zihao{-3}
+          \c__bithesis_bachelor_label_originality_clause_tl
 
-        \vspace{17mm}
+          \vspace{17mm}
 
-        \begin{flushright}
-          \c__bithesis_bachelor_label_originality_author_signature_tl\par
-        \end{flushright}
-
-        \vspace{16mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \__bithesis_same_page:
-          \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_authorization_tl}
-        \end{center}~\par
-
-        \c__bithesis_bachelor_label_authorization_clause_tl
-
-        \vspace*{3mm}
-
-        \begin{flushright}
-          \begin{spacing}{1.65}
-            \zihao{-3}
-            % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \begin{flushright}
             \c__bithesis_bachelor_label_originality_author_signature_tl\par
-            \c__bithesis_bachelor_label_originality_supervisor_signature_tl\par
-          \end{spacing}
-        \end{flushright}
+          \end{flushright}
 
-        \newpage
+          \vspace{16mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \__bithesis_same_page:
+            \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_authorization_tl}
+          \end{center}~\par
+
+          \c__bithesis_bachelor_label_authorization_clause_tl
+
+          \vspace*{3mm}
+
+          \begin{flushright}
+            \begin{spacing}{1.65}
+              \zihao{-3}
+              % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+              \c__bithesis_bachelor_label_originality_author_signature_tl\par
+              \c__bithesis_bachelor_label_originality_supervisor_signature_tl\par
+            \end{spacing}
+          \end{flushright}
+
+          \newpage
+        }
+        {3} {
+          \setstretch{1.26}
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \__bithesis_same_page:
+            \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_originality_tl}
+          \end{center}~\par
+
+          % 本部分字号为小三
+          \zihao{-4}
+          \c__bithesis_bachelor_english_label_originality_clause_tl
+
+          \bigbreak
+
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
+
+          \vspace{6mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \__bithesis_same_page:
+            \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_authorization_tl}
+          \end{center}~\par
+
+          \c__bithesis_bachelor_english_label_authorization_clause_tl
+
+          \bigbreak
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
+          Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
+        }
+        {4} {\__bithesis_graduate_originality:}
+        {5} {\__bithesis_graduate_originality:}
       }
-      {3} {
-        \setstretch{1.26}
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \__bithesis_same_page:
-          \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_originality_tl}
-        \end{center}~\par
-
-        % 本部分字号为小三
-        \zihao{-4}
-        \c__bithesis_bachelor_english_label_originality_clause_tl
-
-        \bigbreak
-
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
-
-        \vspace{6mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \__bithesis_same_page:
-          \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_authorization_tl}
-        \end{center}~\par
-
-        \c__bithesis_bachelor_english_label_authorization_clause_tl
-
-        \bigbreak
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
-        Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
-      }
-      {4} {\__bithesis_graduate_originality:}
-      {5} {\__bithesis_graduate_originality:}
-    }
-  \end{blindPeerReview}
-  \group_end:
-}
+    \end{blindPeerReview}
+    \group_end:
+  }
 \NewDocumentCommand \MakePaperBack {}
   {
     \begin{blindPeerReview}
@@ -1322,7 +1334,7 @@
       }
     }
   }
-  \NewDocumentEnvironment {abstract} {}
+\NewDocumentEnvironment {abstract} {}
   {
 
     \cleardoublepage
@@ -1370,7 +1382,7 @@
     \vspace{4ex}\noindent\textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
     \newpage
   }
-  \NewDocumentEnvironment {abstractEn} {}
+\NewDocumentEnvironment {abstractEn} {}
   {
     \cleardoublepage
     \setstretch{1.53}
@@ -1428,7 +1440,7 @@
     \newpage
   }
 
-  \NewDocumentEnvironment {conclusion} {}
+\NewDocumentEnvironment {conclusion} {}
   {
     \ctexset{
       section/number = \arabic{section}
@@ -1441,7 +1453,7 @@
     }
   }
   {}
-  \NewDocumentEnvironment {bibprint} {}
+\NewDocumentEnvironment {bibprint} {}
   {
     % 设置参考文献字号为 5 号
     \renewcommand*{\bibfont}{\zihao{5}}
@@ -1482,8 +1494,7 @@
     }
   }
   {}
-  % \begin{environment}{appendices}
-  \NewDocumentEnvironment {appendices} {}
+\NewDocumentEnvironment {appendices} {}
   {
     % Used in chapter, ToC.
     \tl_new:N \l__bithesis_appendix_plain_label_tl
@@ -1537,7 +1548,7 @@
   {
   }
 
-  \NewDocumentEnvironment {acknowledgements} {+b}
+\NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
       \ctexset{
@@ -1554,7 +1565,7 @@
       #1
     \end{blindPeerReview}
   } {}
-  \NewDocumentEnvironment {publications} {+b}
+\NewDocumentEnvironment {publications} {+b}
   {
     \begin{blindPeerReview}
       % 设置参考文献字号为 5 号
@@ -1602,7 +1613,7 @@
     \end{blindPeerReview}
   }
   {}
-  \NewDocumentEnvironment {resume} {+b}
+\NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
     \chapter{\c__bithesis_label_resume_tl}
@@ -1612,7 +1623,7 @@
   {
   }
 
-  \NewDocumentEnvironment {symbols} {}
+\NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l__bithesis_add_symbols_to_toc_bool {
       \chapter{\c__bithesis_label_symbols_tl}

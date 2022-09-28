@@ -145,19 +145,32 @@
   \seq_pop_right:NN \l__bithesis_tmp_left_seq \g__bithesis_trashcan_tl
 }
 \cs_new:Npn \__bithesis_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
   \seq_set_from_clist:NN \l__bithesis_input_seq #1
-  % parse newline //
   \seq_map_inline:Nn \l__bithesis_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
     \__bithesis_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l__bithesis_right_seq
+    % 或者 \l__bithesis_left_sql 中。
+    % left 就是 label，right 就是 value。
     \seq_concat:NNN \l__bithesis_right_seq \l__bithesis_right_seq \l__bithesis_tmp_right_seq
     \seq_concat:NNN \l__bithesis_left_seq \l__bithesis_left_seq \l__bithesis_tmp_left_seq
   }
 
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
   \bool_if:NT \l__bithesis_cover_auto_width_bool {
     \__bithesis_get_max_text_width:NN \l__bithesis_cover_label_max_width_dim \l__bithesis_left_seq
     \__bithesis_get_max_text_width:NN \l__bithesis_cover_value_max_width_dim \l__bithesis_right_seq
   }
 
+  % 最后，根据宽度渲染 label 和 value 对。
   \group_begin:
     \bool_until_do:nn { \seq_if_empty_p:N \l__bithesis_left_seq }
       {
@@ -171,7 +184,6 @@
 }
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
-  % \begin{macro}{\MakeCover}
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
