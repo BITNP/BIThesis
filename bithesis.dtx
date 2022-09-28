@@ -136,8 +136,9 @@
 % \section{项目简介}
 % \subsection{历史与贡献者们}
 % \begin{itemize}
-%   \item 在 2017 年之前，已经出现一些开源维护的北京理工大学学位论文 \LaTeX 模板。
-%   \item 2017 - 2018 年，杨雅婷等人受研究生院委托，
+%   \item 在 2017 年之前，网络上已经出现一些北京理工大学学位论文 \LaTeX 模板。
+%     它们是“2012大眼小蚂蚁版”和“2016汪卫版”，均以上海交通大学的模板为基础。
+%   \item 2017 - 2018 年，计算机学院 2016 级研究生杨雅婷等人受研究生院委托，
 %     制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 
 %     研究生学位论文模板。
 %   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的
@@ -168,14 +169,30 @@
 %     \item 此版本是 V3 版本，代号为 Summer Time.
 %   \end{itemize}
 % \end{itemize}
+%
 % \subsection{\BIThesis 是什么？}
 % \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）
 % 的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
 % 同理，其 IPA 发音为 |/ˈbiːˈaiˈtiːˈθiː.sis/|。
 %
 % \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。
-% 该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板，
-% 包括本科综合论文训练。
+% 该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板。
+%
+% \subsection{为什么要使用 \BIThesis？}
+% 学位论文通常具有比较严格的格式要求，这是为了方便同行学术交流的起码要求，
+% 同时也是科学研究严谨性的体现。
+% 然而，由于市场各种排版软件混杂，使用者水平不一，学生对格式的重视程度不够，
+% 学生编写标准格式的学位论存在很多问题。
+% \BIThesisLaTeX 为符合北京理工大学硕士（博士）学位论文的LaTeX模板。
+% 通过使用\BIThesisLaTeX 模板，学生可以轻松撰写符合学校格式要求的学位论文，
+% 避免繁琐的论文格式调整；从而将关注点更多地放在高质量的内容本身。
+%
+% 要使用这个模板协助你完成研究生学位论文的创作，下面的条件必须满足：
+% \begin{itemize}
+% \item  操作系统字体目录中有中文字体；
+% \item  \TeX~系统有~\XeTeX~引擎（一般发行版均已经具备）；
+% \item  你有使用~\LaTeX~ 的经验，或者愿意为此学习；
+% \end{itemize}
 %
 % \subsubsection{\BIThesisLaTeX 的组成}
 % 我们将 \BIThesisLaTeX 划分为了两个主要仓库：
@@ -204,31 +221,71 @@
 % \begin{tabular}{@{}lll@{}}
 % \toprule
 % 类别                   & 文件          & 说明                             \\ \midrule
-% \multirow{2}{*}{文档类} & \cls{bithesis.cls}  & 封装本科生与研究生的毕业论文样式。 \\
-%                    & \cls{bitreport.cls} & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
+% \multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  & 封装本科生与研究生的毕业论文样式。 \\
+%                    & \cls{bitreport.cls}\ref{sec:bitreport} & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
 %                    & \cls{bitbeamer.cls} & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     \\ \cmidrule(l){2-3}
 % \end{tabular}
 % \end{table}
 %
 % \section{安装}
+%
 % \subsection{\BIThesis 宏包的安装和更新}
 % 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录
 % \BIThesisMacroPackage 及其依赖的宏包和宏集。
+%
+% \begin{itemize}
+% \item Windows、Linux用户推荐安装 TeX Live 套装，
+%   并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装）
+% \item OSX用户推荐安装 Mac TeX。
+% \item 由于CTeX套装所含宏包比较陈旧，可能会导致编译无法通过，故不推荐安装。
+%   如果已安装 CTeX，\textbf{建议将其卸载}。
+% \end{itemize}
 %
 % 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。
 % 那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
 %
 % \begin{shell}[morekeywords={tlmgr,install}]
-%   tlmgr install fduthesis
+%   tlmgr install bithesis
 % \end{shell}
 %
 % 更新可以通过图形界面进行，或者通过命令行：
 %
 % \begin{shell}[morekeywords={tlmgr,install}]
-%   tlmgr update fduthesis
+%   tlmgr update bithesis
 % \end{shell}
 %
-% \section{\cls{bithesis} 使用与配置}
+% \textbf{在安装完发行版之后，还需要安装编辑 \LaTeX 所需的编辑器，在这里推荐 TexStudio。}
+%
+% \textit{更多安装教程请访问我们的 \href{https://bithesis.bitnp.net}{wiki 网站}，那里收录了使用模板以外的信息。}
+%
+%
+% \section{编译方式}
+%
+% \subsection{使用 Latexmk（推荐）}
+%
+% 在项目模板中，已经预制好了 latexmk 的配置文件 |.latexmkrc|。
+%
+% 因此只需要在命令行里执行，或者在代码编辑器里配置并运行以下命令即可：
+%
+% \begin{shell}
+%   latexmk
+% \end{shell}
+%
+% \subsubsection{手动四次编译}
+%
+% \begin{shell}
+% xelatex -no-pdf --interaction=nonstopmode main
+% biber main
+% xelatex -no-pdf --interaction=nonstopmode main
+% xelatex --interaction=nonstopmode main
+% \end{shell}
+%
+% 运行bibtex的时候会提示一些错误，可能是~{{\sc Bib}\TeX}~对UTF-8支持不充
+% 分，一般不影响最终结果。加入~\verb|--interaction=nonstopmode|~参数是不让错误打断编译过程。
+% \XeTeX~ 仍存在一些宏包兼容性问题，而这些错误通常不会影响最终的编译结果。
+%
+% \section{\cls{bithesis.cls} 使用与配置}
+% \label{sec:bithesis}
 % 
 % 推荐使用\BIThesisRelease （开箱即用）。
 % 
@@ -257,7 +314,7 @@
 %   \end{document}
 % \end{latex}
 %
-% 如您所见，在 \LaTeX 中，用户使用的命令通常以「\\」作为开头，后面依次跟随
+% 如您所见，在 \LaTeX 中，用户使用的命令通常以「|\|」作为开头，后面依次跟随
 % 命令名称、若干可选参数和若干必需参数。如：
 %
 % \begin{latex}
@@ -1073,7 +1130,8 @@
 %   个人简介。
 % \end{function}
 %
-% \section{\cls{bitreport} 使用与配置}
+% \section{\cls{bitreport.cls} 使用与配置}
+% \label{sec:bitreport}
 % 
 % 推荐使用\BIThesisRelease （开箱即用）。
 %
@@ -1290,10 +1348,27 @@
 %
 % \section{致谢}
 % \begin{itemize}
-%   \item 感谢贡献者对 BIThesis 的无私奉献。
-%   \item 感谢学校及相关老师对 BIThesis 的支持。
-%   \item 感谢清华大学和复旦大学的学位论文模板项目，他们为后来者提供了前进的方向。
+%   \item 感谢历届贡献者对 BIThesis 的悉心维护。
+%   \item 感谢学校及老师们对 BIThesis 的支持。
+%   \begin{itemize}
+%     \item 感谢北京理工大学教务部、计算机学院对本科模板的支持。
+%     \item 感谢北京理工大学研究生院对研究生模板的支持。
+%   \end{itemize}
+%   \item 感谢众多优秀的开源 $\LaTeX$ 项目，他们为后来者提供了前进的方向。
+%   \begin{itemize}
+%     \item \href{https://github.com/hushidong/biblatex-gb7714-2015}{biblatex-gb7714-2015}
+%       提供了易用的国标引用格式以及细心指导。
+%     \item \href{https://github.com/BIT-thesis/LaTeX-template}
+%       {北京理工大学硕士（博士）学位论文 $\LaTeX$ 模板} 提供了
+%       研究生模板样式的代码参考。
+%     \item \href{https://github.com/stone-zeng/fduthesis}
+%       {fduthesis（复旦大学学位论文 $\LaTeX$ 模板）} 提供了包编写的最佳实践。
+%     \item \href{https://github.com/tuna/thuthesis}
+%       {ThuThesis（清华大学学位论文 $\LaTeX$ 模板）} 提供了 dtx 文件的编写参考。
+%   \end{itemize}
 % \end{itemize}
+%
+% 最后，感谢你的使用。
 %
 % \section{软件许可证}
 %
@@ -5339,6 +5414,8 @@ footskip=0.7cm% 页脚 1.8cm %
   today=big,
   abstractname=简介,
 }
+
+\pagestyle{fancy}
 
 \ctexset{section={
   format={\raggedright \bfseries \zihao{-3}},
