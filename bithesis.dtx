@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-09-15}{3.0.1}{BIT Thesis Templates}
+%<cls>{2022-09-29}{3.0.3}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/09/15 3.0.1 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/09/29 3.0.3 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -264,7 +264,7 @@
 %
 % \begin{function}{type}
 %   \begin{bitsyntax}[emph={[1]type}]
-%     type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|docter>*)
+%     type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|doctor>*)
 %   \end{bitsyntax}
 %   选择论文类型，它们分别对应：
 %   \begin{itemize}
@@ -1380,7 +1380,7 @@
 % 定义论文类型的列表。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_thesis_type_clist
-    { bachelor, bachelor_translation, bachelor_english, master, docter}
+    { bachelor, bachelor_translation, bachelor_english, master, doctor}
 %    \end{macrocode}
 % \end{variable}
 
@@ -3480,7 +3480,7 @@
 \newif\if@bit@bachelor
 \newif\if@bit@docTranslation
 \newif\if@bit@master
-\newif\if@bit@docter
+\newif\if@bit@doctor
 
 \RequirePackage{kvoptions}
 

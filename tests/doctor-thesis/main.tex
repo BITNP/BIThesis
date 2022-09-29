@@ -1,0 +1,151 @@
+%%
+% The BIThesis Template for Graduate Thesis
+%
+% Copyright 2020-2022 Yang Yating, BITNP
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Feng Kaiyu.
+%
+% Compile with: xelatex -> biber -> xelatex -> xelatex
+
+% 硕士论文模板 type=master
+% 博士论文模板 type=doctor
+% 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
+% 开启双面打印 twoside=true (如：[type=master,twoside=true]）
+
+\documentclass[type=doctor]{bithesis}
+
+\BITSetup{
+  cover = {
+    %% 使用以下参数来自定义封面日期
+    date = 2022年6月,
+  },
+  info = {
+    % 想要删除某项封面信息，直接删除该项即可。
+    % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
+    % 如需要换行，则用 “\\” 符号分割。
+    classification = TQ028.1,
+    UDC = 540,
+    title = 形状记忆聚氨酯的合成及其在织物中的应用,
+    % 如需覆盖竖排标题，请配置以下选项。
+    % 下面的例子展示了如何在竖排标题中使用垂直或者旋转的英文。
+    % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在织物中的应用},
+    titleEn = Synthesisand Application on textile of the Shape Memory Polyurethane,
+    author = 张三,
+    major = 材料科学与工程,
+    school = 材料学院,
+    degree = 工学硕士,
+    chairman = 王五教授,
+    defenseDate = 2022年6月1日,
+    supervisor = 李四教授,
+    authorEn = San Zhang,
+    schoolEn = Materials Science and Engineering,
+    supervisorEn = Prof. Si Li,
+    chairmanEn = Prof. Wang Wu,
+    degreeEn = Master of Philosophy,
+    majorEn = Materials Science and Engineering, 
+    defenseDateEn = {June, 12th, 2022},
+    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。）}},
+    keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
+    % 必要时置于封面右上角，并按照国家规定进行标记。
+    % classifiedLevel = 密级 $\bigstar$ 保密期限,
+  },
+  % 在目录页中不显示摘要和主要符号对照表的标题。
+  TOC = {
+    abstract = false,
+    abstractEn = false,
+    symbols = false,
+  },
+  % 采用章节标题级别的附录格式
+  appendices / chapterLevel = true,
+}
+
+\usepackage[
+  defernumbers=true,
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
+
+% 添加参考文献
+\addbibresource{reference/main.bib}
+% 攻读学位期间发表论文与研究成果清单，详细使用方法见 `chapters/pub.tex`。
+\addbibresource{reference/pub.bib}
+
+
+\usepackage{graphicx}
+
+\begin{document}
+
+% 封面绘制
+\MakeCover
+
+% 打印书脊
+\MakePaperBack
+
+% 中文信息与英文信息
+\MakeTitle
+
+% 论文原创性声明和使用授权
+\MakeOriginality
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 前置部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+% 摘要
+\input{./chapters/abstract.tex}
+
+% 制作目录
+\MakeTOC
+
+% 插图目录
+\listoffigures
+% 表格目录
+\listoftables
+
+% 主要符号对照表
+\input{./misc/0_symbols.tex}
+
+\mainmatter
+
+% 请根据论文内容，按照顺序添加章节。
+\input{./chapters/chapter1.tex}
+\input{./chapters/chapter2.tex}
+
+\backmatter
+
+% 结论
+\input{./misc/1_conclusion.tex}
+% 参考文献
+\input{./misc/2_reference.tex}
+
+% 附录
+\input{./misc/3_appendices.tex}
+
+% 个人成果
+\input{./misc/4_pub.tex}
+
+% 致谢
+\input{./misc/5_acknoledgements.tex}
+% 个人简介（仅博士生需要此项）
+\input{./misc/6_resume.tex}
+
+% 加入目录
+\end{document}

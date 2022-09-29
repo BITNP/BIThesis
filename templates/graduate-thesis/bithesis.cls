@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2022-09-15}{3.0.1}{BIT Thesis Templates}
+{2022-09-29}{3.0.3}{BIT Thesis Templates}
 
 
 \int_new:N \g__bithesis_thesis_type_int
@@ -63,7 +63,7 @@
 \cs_new:Npn \__bithesis_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} = {5} {#1} {#2}}
 
 \clist_const:Nn \c__bithesis_thesis_type_clist
-    { bachelor, bachelor_translation, bachelor_english, master, docter}
+    { bachelor, bachelor_translation, bachelor_english, master, doctor}
 
 \cs_new_protected:Npn \__bithesis_define_label:nn #1#2
   { \tl_const:cn { c__bithesis_label_ #1 _tl } {#2} }

@@ -1,0 +1,54 @@
+%%
+% The BIThesis Template for Graduate Thesis
+%
+% Copyright 2020-2022 Yang Yating, BITNP
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Feng Kaiyu.
+%
+% Compile with: xelatex -> biber -> xelatex -> xelatex
+
+\chapter{具体研究内容}
+
+具体研究内容是学位论文的主要部分，是研究结果及其依据的具体表述，是研究能力的集中体现，一般应包括第2章、第3章至结论前一章。具体研究内容应该结构合理，层次清楚，重点突出，文字简练、通顺。可包括以下各方面：研究对象、研究方法、仪器设备、材料原料、实验和观测结果、理论推导、计算方法和编程原理、数据资料和经过加工整理的图表、理论分析、形成的论点和导出的结论等。具体研究内容各章后可有一节“本章小结”（必要时）。
+
+\begin{theorem}[留数定理]
+\label{thm:res}
+  假设$U$是复平面上的一个单连通开子集，$a_1,\ldots,a_n$是复平面上有限个点，$f$是定义在$U\backslash \{a_1,\ldots,a_n\}$上的全纯函数，
+  如果$\gamma$是一条把$a_1,\ldots,a_n$包围起来的可求长曲线，但不经过任何一个$a_k$，并且其起点与终点重合，那么：
+
+  \begin{equation}
+    \label{eq:res}
+    \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\pi\mathbf{i}\sum^n_{k=1}\mathrm{I}(\gamma,a_k)\mathrm{Res}(f,a_k)
+  \end{equation}
+
+  如果$\gamma$是若尔当曲线，那么$\mathrm{I}(\gamma, a_k)=1$，因此：
+
+  \begin{equation}
+    \label{eq:resthm}
+    \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\pi\mathbf{i}\sum^n_{k=1}\mathrm{Res}(f,a_k)
+  \end{equation}
+
+  在这里，$\mathrm{Res}(f, a_k)$表示$f$在点$a_k$的留数，$\mathrm{I}(\gamma,a_k)$表示$\gamma$关于点$a_k$的卷绕数。
+  卷绕数是一个整数，它描述了曲线$\gamma$绕过点$a_k$的次数。如果$\gamma$依逆时针方向绕着$a_k$移动，卷绕数就是一个正数，
+  如果$\gamma$根本不绕过$a_k$，卷绕数就是零。
+\end{theorem}
+
+\begin{proof}
+  首先，由……
+
+  其次，……
+
+  所以……
+  \qedhere
+\end{proof}
+  
