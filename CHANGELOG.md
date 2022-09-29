@@ -13,6 +13,14 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.0.3] - 2022-09-29
+
+[62f9e8c](62f9e8c8e0ba0450306255e6728543d6213e34d3)...[a21ce51](a21ce5108a19241c1c0b917fe098b4e0498550cc)
+
+### Hotfix
+
+- Typo on doctor ([a21ce51](a21ce5108a19241c1c0b917fe098b4e0498550cc))
+
 ## [3.0.2] - 2022-09-17
 
 [685afa3](685afa3d8f02fb898ca4fe995a5d89ae935d6fcf)...[0358a58](0358a58dd5e3a5d9084e2d6ef4a910f34c358f27)
