@@ -8,6 +8,7 @@ CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls bitreport.cls bithesi
 LATEXMK = latexmk
 
 SCAFFOLDDIR = ./templates
+TESTDIR = ./tests
 
 # make deletion work on Windows
 ifdef SystemRoot
@@ -33,7 +34,7 @@ viewdoc: doc
 
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx
-	-@$(RM) -r *.glo $(CLSFILE) _minted-bithesis
+	-@$(RM) -r *.glo $(CLSFILE)
 
 clean-dist:
 	-@$(RM) -r $(PACKAGE).pdf
@@ -48,6 +49,7 @@ test: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
+	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
 
 regression-test: cls
 	zsh ./scripts/regression-testing.zsh
@@ -57,6 +59,7 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
+	cp bithesis.cls $(TESTDIR)/doctor-thesis
 	cp bitreport.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
 	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
