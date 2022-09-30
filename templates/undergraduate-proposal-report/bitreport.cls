@@ -27,11 +27,8 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitreport}
-{2022-09-29}{3.0.3}{BIT Thesis Templates}
-
-
+{2022-09-30}{3.0.4}{BIT Thesis Templates}
 \int_new:N \g__bithesis_report_type_int
-
 \clist_const:Nn \c__bithesis_report_type_clist
     { common, undergraduate_proposal}
 \seq_new:N \l__bithesis_right_seq
@@ -191,29 +188,39 @@
       {1} {
         \begin{titlepage}
           \centering
+
           \vspace{23mm}
+
           \tl_if_empty:NF \l_bit_coverimagepath_tl {
             \includegraphics[width=.5\textwidth]{\l_bit_coverimagepath_tl}\\
           }
+
           \vspace{10mm}
+
           \heiti\fontsize{24pt}{24pt}\selectfont{\l__bithesis_value_title_tl}\\
+
           \vspace{67mm}
-            \begin{spacing}{2.2}
-              \songti\zihao{3}
-              \clist_set:Nn \l__bithesis_input_clist {
-                  {\textbf{学\qquad 院：}} {\l__bithesis_value_school_tl},
-                  {\textbf{专\qquad 业：}} {\l__bithesis_value_major_tl},
-                  {\textbf{班\qquad 级：}} {\l__bithesis_value_class_tl},
-                  {\textbf{学\qquad 号：}} {\l__bithesis_value_student_id_tl},
-                  {\textbf{姓\qquad 名：}} {\l__bithesis_value_author_tl},
-                  {\textbf{任课教师：}} {\l__bithesis_value_supervisor_tl},
-              }
 
-              \__bithesis_render_cover_entry:n \l__bithesis_input_clist
+          \begin{spacing}{2.2}
+            \songti\zihao{3}
 
-            \end{spacing}
+            \clist_set:Nn \l__bithesis_input_clist {
+                {\textbf{学\qquad 院：}} {\l__bithesis_value_school_tl},
+                {\textbf{专\qquad 业：}} {\l__bithesis_value_major_tl},
+                {\textbf{班\qquad 级：}} {\l__bithesis_value_class_tl},
+                {\textbf{学\qquad 号：}} {\l__bithesis_value_student_id_tl},
+                {\textbf{姓\qquad 名：}} {\l__bithesis_value_author_tl},
+                {\textbf{任课教师：}} {\l__bithesis_value_supervisor_tl},
+            }
+
+            \__bithesis_render_cover_entry:n \l__bithesis_input_clist
+
+          \end{spacing}
+
           \vspace*{\fill}
+
           \centering
+
           \songti\fontsize{12pt}{12pt}\selectfont{
             \tl_if_empty:NTF \l__bithesis_cover_date_tl {
               \today
@@ -229,11 +236,15 @@
           \topskip=0pt
           \vspace*{-16mm}
           \centering
-          \hspace{-6mm}\songti\fontsize{22pt}{22pt}\selectfont{北京理工大学}\par
+          \hspace{-6mm}
+          \songti\fontsize{22pt}{22pt}
+          \selectfont{北京理工大学}\par
 
           \vspace{13mm}
 
-          \hspace{-6mm}\heiti\fontsize{24pt}{24pt}\selectfont{本科生毕业设计（论文）开题报告}\par
+          \hspace{-6mm}
+          \heiti\fontsize{24pt}{24pt}
+          \selectfont{本科生毕业设计（论文）开题报告}\par
 
           \vspace{53mm}
 
@@ -246,7 +257,7 @@
                 {\textbf{姓\qquad 名：}} {\l__bithesis_value_author_tl},
                 {\textbf{指导教师：}} {\l__bithesis_value_supervisor_tl},
                 {\textbf{校外指导教师：}} {\l__bithesis_value_external_supervisor_tl},
-             }
+            }
 
           \__bithesis_render_cover_entry:n \l__bithesis_input_clist
 
@@ -256,6 +267,7 @@
 
           \centering
           \hspace{-6mm}\songti\fontsize{12pt}{12pt}\selectfont{\today}
+
         \end{titlepage}
       }
     }
@@ -279,7 +291,9 @@
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 \ctexset{section={
-  format={\raggedright \bfseries \songti \zihao{-3}},
+  format={
+    \raggedright \bfseries \songti \zihao{-3}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
@@ -287,7 +301,9 @@
   }
 }
 \ctexset{subsection={
-  format = {\bfseries \songti \raggedright \zihao{4}},
+  format = {
+    \bfseries \songti \raggedright \zihao{4}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
@@ -295,8 +311,18 @@
 }
 \fancyhf{}
 \int_case:nn {\g__bithesis_report_type_int} {
-  {1} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{\l__bithesis_value_title_tl}}}
-  {2} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{北京理工大学本科生毕业设计（论文）开题报告}}}
+  {1} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{\l__bithesis_value_title_tl}
+    }
+  }
+  {2} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{北京理工大学本科生毕业设计（论文）开题报告}
+    }
+  }
 }
 \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
 \renewcommand{\headrulewidth}{1pt}

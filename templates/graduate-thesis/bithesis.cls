@@ -27,9 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2022-09-29}{3.0.3}{BIT Thesis Templates}
-
-
+{2022-09-30}{3.0.4}{BIT Thesis Templates}
 \int_new:N \g__bithesis_thesis_type_int
 \int_new:N \g__bithesis_head_zihao_int
 \bool_new:N \g__bithesis_twoside_bool
@@ -61,7 +59,6 @@
 \cs_new:Npn \__bithesis_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} = {5} {#1} {#2}}
 \clist_const:Nn \c__bithesis_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
-
 \cs_new_protected:Npn \__bithesis_define_label:nn #1#2
   { \tl_const:cn { c__bithesis_label_ #1 _tl } {#2} }
 
@@ -398,8 +395,10 @@
     bottom=2.5cm + 7bp,
     top=3.5cm + 7bp,
     right=2.7cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.5cm - 15bp,
     headheight = 15 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.5cm + 7bp - 1.8cm,
   }
 } {
@@ -410,8 +409,10 @@
     bottom=2.6cm + 7bp,
     top=3.5cm + 7bp,
     right=2.6cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.4cm - 20bp,
     headheight = 20 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
@@ -420,11 +421,14 @@
 \ctex_at_end_preamble:n {
   \__bithesis_if_thesis_english:TF {
     \__bithesis_if_thesis_int_type:nT {3} {
-      % font Arial needed
+      % 对于本科全英文专业模板
+      % Font Arial is needed.
       \newfontfamily\arialfamily{Arial}
     }
 
   } {
+    % 对于其他的中文模板，
+    % 需要加载细黑体。
     \tl_if_blank:VTF \l__bithesis_cover_xihei_font_path_tl {}
     {
       \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
@@ -432,6 +436,7 @@
     }
   }
 
+  % 对于本科全英文专业模板，需要自定义日期格式。
   \__bithesis_if_thesis_int_type:nT {3} {
     \RequirePackage[en-US]{datetime2}
     \RequirePackage{indentfirst}
@@ -439,6 +444,8 @@
   }
 
   % Define biblatex category if it was imported.
+  % 这部分是给研究生模板中的
+  % 「攻读学位期间发表论文与研究成果清单」使用的。
   \cs_if_exist:NT \DeclareBibliographyCategory {
     \DeclareBibliographyCategory{mypub}
   }
@@ -507,7 +514,11 @@
 
 \ctexset{subsection={
     number = {
-      \arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}
+      \arabicHeiti{
+        \thechapter.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}
+      }
     },
     format = {\l__bithesis_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
@@ -542,11 +553,12 @@
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \__bithesis_if_graduate:TF {
-  % 各章标题，宋体四号
+  % 对于研究生模板，定义各章标题为宋体四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 } {
+  % 对于其他，定义各章标题为宋体小四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
@@ -558,13 +570,14 @@
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
 \RenewDocumentCommand \frontmatter {} {
-
   \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
   {
+    % 本科全英文专业论文，页码使用小罗马数字。
     \pagenumbering{roman}
   } {
     \pagenumbering{Roman}
   }
+  % 这部分的章节标题不进行编号。
   \ctexset{
     chapter = {
       numbering = false,
@@ -575,11 +588,13 @@
 \RenewDocumentCommand \mainmatter {} {
   \cleardoublepage
 
+  % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
       numbering = true,
     }
   }
+  % 页码使用阿拉伯数字。
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
   % 正文 22 磅的行距
@@ -589,6 +604,7 @@
   \interfootnotelinepenalty=10000
 }
 \RenewDocumentCommand \backmatter {} {
+  % 同样，所有的章节标题不进行编号。
   \setcounter{section}{0}
   \setcounter{subsection}{0}
   \setcounter{subsubsection}{0}
@@ -771,9 +787,11 @@
     \vspace*{65mm}
     {\heiti\zihao{-2} \l__bithesis_value_title_tl}
     \vskip 60mm
-    {\heiti \zihao{-3} \l__bithesis_value_author_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l__bithesis_value_author_tl}
     \vskip 10mm
-    {\heiti \zihao{-3} \l__bithesis_cover_date_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l__bithesis_cover_date_tl}
   \end{titlepage}
 }
 \cs_new:Npn \make_paper_back: {
@@ -802,28 +820,34 @@
 \cs_new:Npn \__bithesis_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
-      { %
+      {
+        % 密级、分类号
         {\heiti \zihao{5} \noindent \c__bithesis_label_classification_tl}
         \l__bithesis_value_classification_tl\\
         {\heiti \zihao{5} \c__bithesis_label_udc_tl}  \l__bithesis_value_udc_tl
       }
+
      \begin{center}
 
       \vskip \stretch{1}
+
          {\heiti\zihao{-2} \l__bithesis_value_title_tl}
+
       \vskip \stretch{1}
 
       \def\tabcolsep{1pt}
       \def\arraystretch{1.5}
 
       {
-      \renewcommand{\baselinestretch}{2}
+        \renewcommand{\baselinestretch}{2}
 
         \tl_if_empty:NT \l__bithesis_cover_dilimiter_tl {
           \tl_set:Nn \l__bithesis_cover_dilimiter_tl {\qquad}
         }
         \tl_set:Nn \l__bithesis_cover_underline_offset_dim {-5pt}
-        % if not auto width, try override width
+
+        % 如果不是自动计算宽度，且用户没有自定义宽度，
+        % 则尝试提供一个默认宽度。
         \bool_if:NF \l__bithesis_cover_auto_width_bool {
           \dim_compare:nNnT {\l__bithesis_cover_label_max_width_dim} = {0pt} {
             \dim_set:Nn \l__bithesis_cover_label_max_width_dim {45mm}
@@ -833,19 +857,20 @@
           }
         }
 
-      \clist_set:Nn \l__bithesis_input_clist {
-          {\c__bithesis_graduate_label_author_tl} {\l__bithesis_value_author_tl},
-          {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
-          {\c__bithesis_graduate_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
-          {\c__bithesis_graduate_label_chairman_tl} {\l__bithesis_value_chairman_tl},
-          {\c__bithesis_graduate_label_degree_tl} {\l__bithesis_value_degree_tl},
-          {\c__bithesis_graduate_label_major_tl} {\l__bithesis_value_major_tl},
-          {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
-          {\c__bithesis_graduate_label_defense_date_tl} {\l__bithesis_value_defense_date_tl},
-       }
+        % 渲染信息。
+        \clist_set:Nn \l__bithesis_input_clist {
+            {\c__bithesis_graduate_label_author_tl} {\l__bithesis_value_author_tl},
+            {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
+            {\c__bithesis_graduate_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
+            {\c__bithesis_graduate_label_chairman_tl} {\l__bithesis_value_chairman_tl},
+            {\c__bithesis_graduate_label_degree_tl} {\l__bithesis_value_degree_tl},
+            {\c__bithesis_graduate_label_major_tl} {\l__bithesis_value_major_tl},
+            {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
+            {\c__bithesis_graduate_label_defense_date_tl} {\l__bithesis_value_defense_date_tl},
+         }
 
-      \heiti\zihao{-3}
-      \__bithesis_render_cover_entry:n \l__bithesis_input_clist
+        \heiti\zihao{-3}
+        \__bithesis_render_cover_entry:n \l__bithesis_input_clist
       }
     \end{center}
     \vskip \stretch{0.5}
@@ -856,8 +881,12 @@
     \begin{center}
 
     \vspace*{10em}
-    {\zihao{-2}\textbf{\l__bithesis_value_title_en_tl}}
-    % \bfseries
+
+    {
+      \zihao{-2}
+      \textbf{\l__bithesis_value_title_en_tl}
+    }
+
     \vskip \stretch{1}
 
     {
@@ -868,7 +897,8 @@
       \tl_set:Nn \l__bithesis_cover_label_align_tl {l}
       \tl_set:Nn \l__bithesis_cover_underline_offset_dim {-5pt}
 
-      % if not auto width, try override width
+      % 如果不是自动计算宽度，且用户没有自定义宽度，
+      % 则尝试提供一个默认宽度。
       \bool_if:NF \l__bithesis_cover_auto_width_bool {
         \dim_compare:nNnT {\l__bithesis_cover_label_max_width_dim} = {0pt} {
           \dim_set:Nn \l__bithesis_cover_label_max_width_dim {55mm}
@@ -878,6 +908,7 @@
         }
       }
 
+      % 渲染信息。
       \clist_set:Nn \l__bithesis_input_clist {
           {\c__bithesis_graduate_label_author_en_tl} {\l__bithesis_value_author_en_tl},
           {\c__bithesis_graduate_label_school_en_tl} {\l__bithesis_value_school_en_tl},
@@ -905,20 +936,25 @@
 \robustify{\circled}
 \cs_new:Npn \__bithesis_graduate_originality:
   {
+    % 取消页眉页脚。
     \ctexset {
       chapter / pagestyle = plain,
     }
 
     \begin{titlepage}
+      % 不计算页码。
       \pagenumbering{gobble}
 
       % 原创性声明部分
       \begin{center}
         \__bithesis_same_page:
-        \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_originality_tl}
+        \chapter*{
+          \heiti\zihao{3}
+          \c__bithesis_graduate_label_originality_tl
+        }
       \end{center}~\par
 
-      % 本部分字号为小三
+      % 本部分字号为四号。
       \zihao{4}
       \c__bithesis_graduate_label_originality_clause_tl
 
@@ -930,10 +966,13 @@
 
       \vspace{16mm}
 
-      % 使用授权声明部分
+      % 使用授权声明部分。
       \begin{center}
         \__bithesis_same_page:
-        \chapter*{\heiti\zihao{3}\c__bithesis_graduate_label_authorization_tl}
+        \chapter*{
+          \heiti\zihao{3}
+          \c__bithesis_graduate_label_authorization_tl
+        }
       \end{center}~\par
 
       \c__bithesis_graduate_label_authorization_clause_tl
@@ -1099,7 +1138,8 @@
               \tl_set:Nn \l__bithesis_cover_dilimiter_tl {：}
             }
 
-            % if not auto width, try override width
+            % 如果不是自动计算宽度，且用户没有自定义宽度，
+            % 则尝试提供一个默认宽度。
             \bool_if:NF \l__bithesis_cover_auto_width_bool {
               \dim_compare:nNnT {\l__bithesis_cover_label_max_width_dim} = {0pt} {
                 \dim_set:Nn \l__bithesis_cover_label_max_width_dim {35mm}
@@ -1111,6 +1151,7 @@
 
             \zihao{3}
 
+        % 渲染信息。
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
@@ -1219,7 +1260,7 @@
             \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_originality_tl}
           \end{center}~\par
 
-          % 本部分字号为小三
+          % 本部分字号为小三。
           \zihao{-3}
           \c__bithesis_bachelor_label_originality_clause_tl
 
@@ -1234,7 +1275,10 @@
           % 使用授权声明部分
           \begin{center}
             \__bithesis_same_page:
-            \chapter*{\heiti\zihao{2}\c__bithesis_bachelor_label_authorization_tl}
+            \chapter*{
+              \heiti\zihao{2}
+              \c__bithesis_bachelor_label_authorization_tl
+            }
           \end{center}~\par
 
           \c__bithesis_bachelor_label_authorization_clause_tl
@@ -1258,7 +1302,10 @@
           \begin{center}
             \vspace*{-2bp}
             \__bithesis_same_page:
-            \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_originality_tl}
+            \chapter*{
+              \heiti\zihao{-2}
+              \c__bithesis_bachelor_english_label_originality_tl
+            }
           \end{center}~\par
 
           % 本部分字号为小三
@@ -1274,14 +1321,21 @@
           % 使用授权声明部分
           \begin{center}
             \__bithesis_same_page:
-            \chapter*{\heiti\zihao{-2}\c__bithesis_bachelor_english_label_authorization_tl}
+            \chapter*{
+              \heiti\zihao{-2}
+              \c__bithesis_bachelor_english_label_authorization_tl
+            }
           \end{center}~\par
 
           \c__bithesis_bachelor_english_label_authorization_clause_tl
 
           \bigbreak
-          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
-          Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
+          Student~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~
+            \hspace{2mm}Date:\par
+          Supervisor~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm]{}}~
+            \hspace{2mm}Date:\par
         }
         {4} {\__bithesis_graduate_originality:}
         {5} {\__bithesis_graduate_originality:}
@@ -1295,7 +1349,6 @@
       \make_paper_back:
     \end{blindPeerReview}
   }
-  % \begin{macro}{\MakeTitle}
 \NewDocumentCommand \MakeTitle {}
   {
     \begin{blindPeerReview}
@@ -1321,7 +1374,9 @@
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
-        \l__bithesis_unnumchapter_style_cs:n\l__bithesis_title_font_cs:n{\l__bithesis_toc_title_tl}
+        \l__bithesis_unnumchapter_style_cs:n
+          \l__bithesis_title_font_cs:n
+            {\l__bithesis_toc_title_tl}
         \vspace{-8pt}
       }
 
@@ -1379,7 +1434,9 @@
   }
   {
     \par
-    \vspace{4ex}\noindent\textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
+    \vspace{4ex}
+    \noindent
+    \textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
     \newpage
   }
 \NewDocumentEnvironment {abstractEn} {}
@@ -1393,9 +1450,11 @@
         \vspace*{-2bp}
 
         \__bithesis_if_thesis_int_type:nTF {3} {
-          \arialfamily\zihao{-2}\textbf\l__bithesis_value_title_en_tl\\
+          \arialfamily\zihao{-2}\textbf
+          \l__bithesis_value_title_en_tl\\
         } {
-          \heiti\zihao{3}\textbf\l__bithesis_value_title_en_tl\\
+          \heiti\zihao{3}\textbf
+          \l__bithesis_value_title_en_tl\\
         }
       \end{spacing}
       \vspace*{10mm}
@@ -1436,7 +1495,8 @@
     }
   }
   {
-    \par\vspace{3ex}\noindent\textbf{\c__bithesis_label_keywords_en_tl \l__bithesis_value_keywords_en_tl}
+    \par\vspace{3ex}\noindent
+    \textbf{\c__bithesis_label_keywords_en_tl \l__bithesis_value_keywords_en_tl}
     \newpage
   }
 
@@ -1510,6 +1570,7 @@
     }
 
     \bool_if:NTF \l__bithesis_appendices_chapter_level_bool {
+      % 附录章节级别
       \setcounter{chapter}{0}
       \ctexset{
         chapter/numbering = true,
@@ -1523,6 +1584,7 @@
         \Alph{chapter}
       }
     } {
+      % 附录节（section）级别
       \ctexset{
         section/number = \l__bithesis_appendix_plain_label_tl\hspace{1ex}\Alph{section},
         subsection/number = \Alph{section}. \arabic{subsection},
@@ -1547,7 +1609,6 @@
   }
   {
   }
-
 \NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
@@ -1631,7 +1692,13 @@
       \chapter*{\c__bithesis_label_symbols_tl}
     }
     \zihao{-4}
-    \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
+    \begin{itemize}[
+      labelwidth=2.5cm,
+      labelsep=0.5cm,
+      leftmargin=3cm,
+      itemindent=0cm,
+      itemsep=0cm
+    ]
     \cs_set:Npn \makelabel ##1 {##1\hfil}
   }
   {

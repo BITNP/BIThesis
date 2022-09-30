@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-09-29}{3.0.3}{BIT Thesis Templates}
+%<cls>{2022-09-30}{3.0.4}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/09/29 3.0.3 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/09/30 3.0.4 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -1997,8 +1997,10 @@
     bottom=2.5cm + 7bp,
     top=3.5cm + 7bp,
     right=2.7cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.5cm - 15bp,
     headheight = 15 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.5cm + 7bp - 1.8cm,
   }
 } {
@@ -2009,8 +2011,10 @@
     bottom=2.6cm + 7bp,
     top=3.5cm + 7bp,
     right=2.6cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.4cm - 20bp,
     headheight = 20 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
@@ -2031,11 +2035,14 @@
 \ctex_at_end_preamble:n {
   \@@_if_thesis_english:TF {
     \@@_if_thesis_int_type:nT {3} {
-      % font Arial needed
+      % 对于本科全英文专业模板
+      % Font Arial is needed.
       \newfontfamily\arialfamily{Arial}
     }
 
   } {
+    % 对于其他的中文模板，
+    % 需要加载细黑体。
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {} 
     {
       \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
@@ -2043,6 +2050,7 @@
     }
   }
 
+  % 对于本科全英文专业模板，需要自定义日期格式。
   \@@_if_thesis_int_type:nT {3} {
     \RequirePackage[en-US]{datetime2}
     \RequirePackage{indentfirst}
@@ -2050,6 +2058,8 @@
   }
 
   % Define biblatex category if it was imported.
+  % 这部分是给研究生模板中的
+  % 「攻读学位期间发表论文与研究成果清单」使用的。
   \cs_if_exist:NT \DeclareBibliographyCategory {
     \DeclareBibliographyCategory{mypub}
   }
@@ -2150,7 +2160,11 @@
 
 \ctexset{subsection={
     number = {
-      \arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}
+      \arabicHeiti{
+        \thechapter.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}
+      }
     },
     format = {\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
@@ -2189,18 +2203,21 @@
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \@@_if_graduate:TF {
-  % 各章标题，宋体四号
+  % 对于研究生模板，定义各章标题为宋体四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 } {
+  % 对于其他，定义各章标题为宋体小四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 }
+% section 标题为宋体小四号。
 \titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
+% subsection 标题为宋体小四号。
 \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
@@ -2210,13 +2227,14 @@
 % 定义前置内容的页面样式。
 %    \begin{macrocode}
 \RenewDocumentCommand \frontmatter {} {
-
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
   {
+    % 本科全英文专业论文，页码使用小罗马数字。
     \pagenumbering{roman}
   } {
     \pagenumbering{Roman}
   }
+  % 这部分的章节标题不进行编号。
   \ctexset{
     chapter = {
       numbering = false,
@@ -2233,11 +2251,13 @@
 \RenewDocumentCommand \mainmatter {} {
   \cleardoublepage
 
+  % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
       numbering = true,
     }
   }
+  % 页码使用阿拉伯数字。
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
   % 正文 22 磅的行距
@@ -2253,6 +2273,7 @@
 % 后置内容的页面样式。
 %    \begin{macrocode}
 \RenewDocumentCommand \backmatter {} {
+  % 同样，所有的章节标题不进行编号。
   \setcounter{section}{0}
   \setcounter{subsection}{0}
   \setcounter{subsubsection}{0}
@@ -2376,9 +2397,14 @@
 %    \end{macrocode}
 % 
 % \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:nn,\@@_dunderline:n}
-% \#1: position
-% \#2: line_thickness
-% \#3: token list
+% 用于渲染下划线。
+% 
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
+%   \item \#2 |dim| 长度。
+%   \item \#3 |tl| 文字内容。
+% \end{itemize}
 %    \begin{macrocode}
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
@@ -2389,6 +2415,7 @@
 \cs_new:Npn \@@_dunderline:n #1 {
   \@@_dunderline:nnn {-10pt} {1pt} {#1}
 }
+% 遗留代码，等待重构。
 \newcommand\dunderline[3][-1pt]{{%
   \setbox0=\hbox{#3}
   \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
@@ -2533,6 +2560,7 @@
 % \end{macro}
 % 
 % \begin{macro}{\make_graduate_cover:}
+% 制作研究生论文模板封面。
 %    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
@@ -2549,15 +2577,18 @@
     \vspace*{65mm}
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
-    {\heiti \zihao{-3} \l_@@_value_author_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l_@@_value_author_tl}
     \vskip 10mm
-    {\heiti \zihao{-3} \l_@@_cover_date_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l_@@_cover_date_tl}
   \end{titlepage}
 }
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\make_paper_back:}
+% 制作书脊。
 %    \begin{macrocode}
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
@@ -2586,32 +2617,39 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_make_chinese_title_page:}
+% 制作中文封面页。
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
-      { %
+      {
+        % 密级、分类号
         {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
         \l_@@_value_classification_tl\\
         {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
       }
+
      \begin{center}
 
       \vskip \stretch{1}
+
          {\heiti\zihao{-2} \l_@@_value_title_tl}
+
       \vskip \stretch{1}
 
       \def\tabcolsep{1pt}
       \def\arraystretch{1.5}
 
       {
-      \renewcommand{\baselinestretch}{2}
+        \renewcommand{\baselinestretch}{2}
 
         \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
           \tl_set:Nn \l_@@_cover_dilimiter_tl {\qquad}
         }
         \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
-        % if not auto width, try override width
+
+        % 如果不是自动计算宽度，且用户没有自定义宽度，
+        % 则尝试提供一个默认宽度。
         \bool_if:NF \l_@@_cover_auto_width_bool {
           \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
             \dim_set:Nn \l_@@_cover_label_max_width_dim {45mm}
@@ -2621,19 +2659,20 @@
           } 
         }
 
-      \clist_set:Nn \l_@@_input_clist {
-          {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
-          {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
-          {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
-          {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
-          {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
-          {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
-          {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
-          {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
-       }
+        % 渲染信息。
+        \clist_set:Nn \l_@@_input_clist {
+            {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
+            {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
+            {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
+            {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
+            {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
+            {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
+            {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
+            {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
+         }
 
-      \heiti\zihao{-3}
-      \@@_render_cover_entry:n \l_@@_input_clist
+        \heiti\zihao{-3}
+        \@@_render_cover_entry:n \l_@@_input_clist
       }
     \end{center}
     \vskip \stretch{0.5}
@@ -2643,14 +2682,19 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_make_english_title_page:}
+% 制作英文封面页。
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_english_title_page: {
   \begin{titlepage}
     \begin{center}
 
     \vspace*{10em}
-    {\zihao{-2}\textbf{\l_@@_value_title_en_tl}}
-    % \bfseries
+
+    {
+      \zihao{-2}
+      \textbf{\l_@@_value_title_en_tl}
+    }
+
     \vskip \stretch{1}
 
     {
@@ -2661,7 +2705,8 @@
       \tl_set:Nn \l_@@_cover_label_align_tl {l}
       \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
-      % if not auto width, try override width
+      % 如果不是自动计算宽度，且用户没有自定义宽度，
+      % 则尝试提供一个默认宽度。
       \bool_if:NF \l_@@_cover_auto_width_bool {
         \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
           \dim_set:Nn \l_@@_cover_label_max_width_dim {55mm}
@@ -2671,6 +2716,7 @@
         } 
       }
 
+      % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
           {\c_@@_graduate_label_author_en_tl} {\l_@@_value_author_en_tl},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
@@ -2695,7 +2741,7 @@
 % \end{macro}
 %
 % \begin{macro}{\circled}
-% 圆形数字编号定义
+% 圆形数字编号定义。
 %    \begin{macrocode}
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
   {\node[shape = circle, draw, inner~sep = 1pt]
@@ -2710,20 +2756,25 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_graduate_originality:
   {
+    % 取消页眉页脚。
     \ctexset {
       chapter / pagestyle = plain,
     }
 
     \begin{titlepage}
+      % 不计算页码。
       \pagenumbering{gobble}
 
       % 原创性声明部分
       \begin{center}
         \@@_same_page:
-        \chapter*{\heiti\zihao{3}\c_@@_graduate_label_originality_tl}
+        \chapter*{
+          \heiti\zihao{3}
+          \c_@@_graduate_label_originality_tl
+        }
       \end{center}~\par
 
-      % 本部分字号为小三
+      % 本部分字号为四号。
       \zihao{4}
       \c_@@_graduate_label_originality_clause_tl
 
@@ -2735,10 +2786,13 @@
 
       \vspace{16mm}
 
-      % 使用授权声明部分
+      % 使用授权声明部分。
       \begin{center}
         \@@_same_page:
-        \chapter*{\heiti\zihao{3}\c_@@_graduate_label_authorization_tl}
+        \chapter*{
+          \heiti\zihao{3}
+          \c_@@_graduate_label_authorization_tl
+        }
       \end{center}~\par
 
       \c_@@_graduate_label_authorization_clause_tl
@@ -2801,6 +2855,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakeCover}
+% 制作封面。
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
@@ -2934,7 +2989,8 @@
               \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
             }
 
-            % if not auto width, try override width
+            % 如果不是自动计算宽度，且用户没有自定义宽度，
+            % 则尝试提供一个默认宽度。
             \bool_if:NF \l_@@_cover_auto_width_bool {
               \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
                 \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
@@ -2946,6 +3002,7 @@
 
             \zihao{3}
 
+        % 渲染信息。
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
@@ -3041,6 +3098,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakeOriginality}
+% 原创性声明。
 %    \begin{macrocode}
 \NewDocumentCommand \MakeOriginality {} 
   {
@@ -3060,7 +3118,7 @@
             \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
           \end{center}~\par
 
-          % 本部分字号为小三
+          % 本部分字号为小三。
           \zihao{-3}
           \c_@@_bachelor_label_originality_clause_tl
 
@@ -3075,7 +3133,10 @@
           % 使用授权声明部分
           \begin{center}
             \@@_same_page:
-            \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_authorization_tl}
+            \chapter*{
+              \heiti\zihao{2}
+              \c_@@_bachelor_label_authorization_tl
+            }
           \end{center}~\par
 
           \c_@@_bachelor_label_authorization_clause_tl
@@ -3099,7 +3160,10 @@
           \begin{center}
             \vspace*{-2bp}
             \@@_same_page:
-            \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_originality_tl}
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_originality_tl
+            }
           \end{center}~\par
 
           % 本部分字号为小三
@@ -3115,14 +3179,21 @@
           % 使用授权声明部分
           \begin{center}
             \@@_same_page:
-            \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_authorization_tl}
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_authorization_tl
+            }
           \end{center}~\par
 
           \c_@@_bachelor_english_label_authorization_clause_tl
 
           \bigbreak
-          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
-          Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
+          Student~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~
+            \hspace{2mm}Date:\par
+          Supervisor~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm]{}}~
+            \hspace{2mm}Date:\par
         }
         {4} {\@@_graduate_originality:}
         {5} {\@@_graduate_originality:}
@@ -3134,6 +3205,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakePaperBack}
+% 生成书脊。
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
@@ -3144,7 +3216,8 @@
 %    \end{macrocode}
 % \end{macro}
 %
-  % \begin{macro}{\MakeTitle}
+% \begin{macro}{\MakeTitle}
+% 生成标题页。（研究生）
 %    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
@@ -3157,6 +3230,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakeTOC}
+% 生成目录。
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeTOC {}
   {
@@ -3176,7 +3250,9 @@
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
-        \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\l_@@_toc_title_tl}
+        \l_@@_unnumchapter_style_cs:n
+          \l_@@_title_font_cs:n
+            {\l_@@_toc_title_tl}
         \vspace{-8pt}
       }
 
@@ -3193,6 +3269,7 @@
 % \end{macro}
 %
 % \begin{environment}{abstract}
+% 生成摘要。
 %    \begin{macrocode}
 \NewDocumentEnvironment {abstract} {}
   {
@@ -3239,13 +3316,16 @@
   }
   {
     \par
-    \vspace{4ex}\noindent\textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
+    \vspace{4ex}
+    \noindent
+    \textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
     \newpage
   }
 %    \end{macrocode}
 % \end{environment}
 %
 % \begin{environment}{abstractEn}
+% 生成英文摘要。
 %    \begin{macrocode}
 \NewDocumentEnvironment {abstractEn} {}
   {
@@ -3258,9 +3338,11 @@
         \vspace*{-2bp}
 
         \@@_if_thesis_int_type:nTF {3} {
-          \arialfamily\zihao{-2}\textbf\l_@@_value_title_en_tl\\
+          \arialfamily\zihao{-2}\textbf
+          \l_@@_value_title_en_tl\\
         } {
-          \heiti\zihao{3}\textbf\l_@@_value_title_en_tl\\
+          \heiti\zihao{3}\textbf
+          \l_@@_value_title_en_tl\\
         }
       \end{spacing}
       \vspace*{10mm}
@@ -3301,7 +3383,8 @@
     }
   }
   {
-    \par\vspace{3ex}\noindent\textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
+    \par\vspace{3ex}\noindent
+    \textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
     \newpage
   }
 
@@ -3309,7 +3392,7 @@
 % \end{environment}
 %
 % \begin{environment}{conclusion}
-% after \cs{backmatter}
+% 生成结论。需要放在 \cs{macrocode} 之后。
 %    \begin{macrocode}
 \NewDocumentEnvironment {conclusion} {}
   {
@@ -3328,7 +3411,7 @@
 % \end{environment}
 %
 % \begin{environment}{bibprint}
-% after \cs{backmatter}
+% 生成参考文献。需要放在 \cs{backmatter} 之后。
 %    \begin{macrocode}
 \NewDocumentEnvironment {bibprint} {}
   {
@@ -3375,6 +3458,7 @@
 % \end{environment}
 %
 % \begin{environment}{appendices}
+% 生成附录。
 %    \begin{macrocode}
 \NewDocumentEnvironment {appendices} {}
   {
@@ -3392,6 +3476,7 @@
     }
 
     \bool_if:NTF \l_@@_appendices_chapter_level_bool {
+      % 附录章节级别
       \setcounter{chapter}{0}
       \ctexset{
         chapter/numbering = true,
@@ -3405,6 +3490,7 @@
         \Alph{chapter}
       }
     } {
+      % 附录节（section）级别
       \ctexset{
         section/number = \l_@@_appendix_plain_label_tl\hspace{1ex}\Alph{section},
         subsection/number = \Alph{section}. \arabic{subsection},
@@ -3429,11 +3515,11 @@
   }
   {
   }
-
 %    \end{macrocode}
 % \end{environment}
 %
 % \begin{environment}{acknowledgements}
+% 生成致谢。
 %    \begin{macrocode}
 \NewDocumentEnvironment {acknowledgements} {+b}
   {
@@ -3456,6 +3542,7 @@
 % \end{environment}
 %
 % \begin{environment}{publications}
+% 生成攻读学位期间发表论文与研究成果清单。
 %    \begin{macrocode}
 \NewDocumentEnvironment {publications} {+b}
   {
@@ -3509,6 +3596,7 @@
 % \end{environment}
 %
 % \begin{environment}{resume}
+% 生成个人简历。
 %    \begin{macrocode}
 \NewDocumentEnvironment {resume} {+b}
   {
@@ -3522,7 +3610,8 @@
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{environment}{resume}
+% \begin{environment}{symbols}
+% 生成主要术语对照包。
 %    \begin{macrocode}
 \NewDocumentEnvironment {symbols} {}
   {
@@ -3532,7 +3621,13 @@
       \chapter*{\c_@@_label_symbols_tl}
     }
     \zihao{-4}
-    \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
+    \begin{itemize}[
+      labelwidth=2.5cm,
+      labelsep=0.5cm,
+      leftmargin=3cm,
+      itemindent=0cm,
+      itemsep=0cm
+    ]
     \cs_set:Npn \makelabel ##1 {##1\hfil}
   }
   {
@@ -3701,9 +3796,14 @@
 % \end{macro}
 % 
 % \begin{macro}{\@@_dunderline:nnn}
-% \#1: position
-% \#2: line_thickness
-% \#3: token list
+% 用于渲染下划线。
+% 
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
+%   \item \#2 |dim| 长度。
+%   \item \#3 |tl| 文字内容。
+% \end{itemize}
 %    \begin{macrocode}
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
@@ -3712,6 +3812,16 @@
 % \end{macro}
 % 
 % \begin{macro}{|@@_render_cover_entry:nn}
+% 用于渲染封面的辅助函数。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#2 |{token_list}| 为封面信息条目的内容。
+% \end{itemize}
+%
+% 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
+% 存储已经计算出来的最大宽度。
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
@@ -3771,7 +3881,15 @@
 % \end{macro}
 % 
 % \begin{macro}{\@@_parse_entry}
-% process label (\#1) and value \#2 separately
+% 解析封面信息条目。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |tl| 为封面信息条目的名称。
+%   \item \#2: |tl| 为封面信息条目的内容。
+% \end{itemize}
+% |//| 会被视为换行符，从而实现信息条目换行的效果。
+%
 %    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
@@ -3850,29 +3968,39 @@
       {1} {
         \begin{titlepage}
           \centering
+
           \vspace{23mm}
+
           \tl_if_empty:NF \l_bit_coverimagepath_tl {
             \includegraphics[width=.5\textwidth]{\l_bit_coverimagepath_tl}\\
           }
+
           \vspace{10mm}
+
           \heiti\fontsize{24pt}{24pt}\selectfont{\l_@@_value_title_tl}\\
+
           \vspace{67mm}
-            \begin{spacing}{2.2}
-              \songti\zihao{3}
-              \clist_set:Nn \l_@@_input_clist {
-                  {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
-                  {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
-                  {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
-                  {\textbf{学\qquad 号：}} {\l_@@_value_student_id_tl},
-                  {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
-                  {\textbf{任课教师：}} {\l_@@_value_supervisor_tl},
-              }
 
-              \@@_render_cover_entry:n \l_@@_input_clist
+          \begin{spacing}{2.2}
+            \songti\zihao{3}
 
-            \end{spacing}
+            \clist_set:Nn \l_@@_input_clist {
+                {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
+                {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
+                {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
+                {\textbf{学\qquad 号：}} {\l_@@_value_student_id_tl},
+                {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
+                {\textbf{任课教师：}} {\l_@@_value_supervisor_tl},
+            }
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+
+          \end{spacing}
+
           \vspace*{\fill}
+
           \centering
+
           \songti\fontsize{12pt}{12pt}\selectfont{
             \tl_if_empty:NTF \l_@@_cover_date_tl {
               \today
@@ -3888,11 +4016,15 @@
           \topskip=0pt
           \vspace*{-16mm}
           \centering
-          \hspace{-6mm}\songti\fontsize{22pt}{22pt}\selectfont{北京理工大学}\par
+          \hspace{-6mm}
+          \songti\fontsize{22pt}{22pt}
+          \selectfont{北京理工大学}\par
 
           \vspace{13mm}
 
-          \hspace{-6mm}\heiti\fontsize{24pt}{24pt}\selectfont{本科生毕业设计（论文）开题报告}\par
+          \hspace{-6mm}
+          \heiti\fontsize{24pt}{24pt}
+          \selectfont{本科生毕业设计（论文）开题报告}\par
 
           \vspace{53mm}
 
@@ -3905,7 +4037,7 @@
                 {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
                 {\textbf{指导教师：}} {\l_@@_value_supervisor_tl},
                 {\textbf{校外指导教师：}} {\l_@@_value_external_supervisor_tl},
-             }
+            }
 
           \@@_render_cover_entry:n \l_@@_input_clist
 
@@ -3915,6 +4047,7 @@
 
           \centering
           \hspace{-6mm}\songti\fontsize{12pt}{12pt}\selectfont{\today}
+
         \end{titlepage}
       }
     }
@@ -3974,7 +4107,9 @@
 %    \begin{macrocode}
 % 一级标题：小三，宋体，加粗，段前段后各半行。
 \ctexset{section={
-  format={\raggedright \bfseries \songti \zihao{-3}},
+  format={
+    \raggedright \bfseries \songti \zihao{-3}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
@@ -3983,7 +4118,9 @@
 }
 % 二级标题：小四，宋体，加粗，段前段后各半行。
 \ctexset{subsection={
-  format = {\bfseries \songti \raggedright \zihao{4}},
+  format = {
+    \bfseries \songti \raggedright \zihao{4}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
@@ -3995,8 +4132,18 @@
 %    \begin{macrocode}
 \fancyhf{}
 \int_case:nn {\g_@@_report_type_int} {
-  {1} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{\l_@@_value_title_tl}}}
-  {2} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{北京理工大学本科生毕业设计（论文）开题报告}}}
+  {1} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{\l_@@_value_title_tl}
+    }
+  }
+  {2} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{北京理工大学本科生毕业设计（论文）开题报告}
+    }
+  }
 }
 \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
 \renewcommand{\headrulewidth}{1pt}
@@ -4096,7 +4243,8 @@
 \tl_if_empty:NF \l_bit_framelogo_tl {
   \addtobeamertemplate{frametitle}{}{%
     \begin{tikzpicture}[remember~picture,overlay]
-      \node[anchor=north~east,yshift=2pt] at (current~page.north~east) {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
+      \node[anchor=north~east,yshift=2pt] at (current~page.north~east) 
+        {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
     \end{tikzpicture}
   }
 }

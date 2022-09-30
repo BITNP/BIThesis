@@ -27,9 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitbeamer}
-{2022-09-29}{3.0.3}{BIT Thesis Templates}
-
-
+{2022-09-30}{3.0.4}{BIT Thesis Templates}
 \keys_define:nn { bitbeamer }
   {
     titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
@@ -56,7 +54,8 @@
 \tl_if_empty:NF \l_bit_framelogo_tl {
   \addtobeamertemplate{frametitle}{}{%
     \begin{tikzpicture}[remember~picture,overlay]
-      \node[anchor=north~east,yshift=2pt] at (current~page.north~east) {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
+      \node[anchor=north~east,yshift=2pt] at (current~page.north~east)
+        {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
     \end{tikzpicture}
   }
 }
