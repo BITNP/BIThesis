@@ -201,8 +201,11 @@
 % \begin{tabular}{@{}l l p{6cm} @{}}
 % \toprule
 % 项目                & 项目地址 & 主要目的 \\ \midrule
-% BIThesis          &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
-% BIThesis-wiki     &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
+% BIThesis   &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   
+%   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
+% BIThesis-wiki    
+%   &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  
+%   &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
 % \end{tabular}
 % \end{table}
 %
@@ -220,16 +223,50 @@
 % \label{tab:classes}
 % \begin{tabular}{@{}lll@{}}
 % \toprule
-% 类别                   & 文件          & 说明                             \\ \midrule
-% \multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  & 封装本科生与研究生的毕业论文样式。 \\
-%                    & \cls{bitreport.cls}\ref{sec:bitreport} & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
-%                    & \cls{bitbeamer.cls} & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     \\ \cmidrule(l){2-3}
+% 类别                   & 文件
+%   & 说明                             \\ \midrule
+% \multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  
+%   & 封装本科生与研究生的毕业论文样式。 \\
+% & \cls{bitreport.cls}\ref{sec:bitreport} 
+%   & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
+% & \cls{bitbeamer.cls} 
+%   & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     
+%   \\ \cmidrule(l){2-3}
 % \end{tabular}
 % \end{table}
+%
+% \subsection{\BIThesisLaTeX 是如何发布的？}
+% \label{sec:release}
+%
+% \BIThesisLaTeX 每一个版本会有三种发布方式： 
+%
+% \begin{itemize}
+%   \item  CTAN 发布：
+%     \href{https://ctan.org/pkg/bithesis}{CTAN bithesis package}
+%   \item  GitHub 发布：
+%     \href{https://github.com/BITNP/BIThesis/releases}{Github Releases}
+%     \footnote{最推荐使用此种方式}
+%   \item  Overleaf 发布：
+%     \href{https://bithesis.bitnp.net}{Overleaf Templates}
+% \end{itemize}
+% 其中，CTAN 上发布的是 bithesis 宏集，也就是 |*.cls| 组成的文件，
+% 它们可以通过 \TeX 发行版自带的包管理器 tlmgr 来更新。
+%
+% GitHub 和 Overleaf 上发布的是 \BIThesisLaTeX 的完整模板，因此想要升级
+% 到最新版本，你需要重新下载最新模板。然后，选择下列方法的一种来更新：
+%
+% \begin{itemize}
+%   \item 将新模板中的 |*.cls| 文件替换到你原有模板的工作目录中。
+%   \item 将旧模板中的写作内容复制到新模板中。
+% \end{itemize}
+%
+% 需要注意的是，Github 和 Overleaf 的模板中包含了当前版本的 |*.cls| 文件，
+% 因此不会因为 CTAN 上的更新而导致模板无法编译。（但代价当然是需要手动升级）
 %
 % \section{安装}
 %
 % \subsection{\BIThesis 宏包的安装和更新}
+%
 % 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录
 % \BIThesisMacroPackage 及其依赖的宏包和宏集。
 %
@@ -241,7 +278,8 @@
 %   如果已安装 CTeX，\textbf{建议将其卸载}。
 % \end{itemize}
 %
-% 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。
+% 如果安装以上发行版的时间较早，可能你本地的环境中不存在
+% \BIThesisMacroPackage 或者不是最新版本的。
 % 那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
 %
 % \begin{shell}[morekeywords={tlmgr,install}]
@@ -254,10 +292,22 @@
 %   tlmgr update bithesis
 % \end{shell}
 %
-% \textbf{在安装完发行版之后，还需要安装编辑 \LaTeX 所需的编辑器，在这里推荐 TexStudio。}
+% \textbf{
+%   在安装完发行版之后，还需要安装编辑 \LaTeX 所需的编辑器，在这里推荐 TexStudio。
+% }
 %
-% \textit{更多安装教程请访问我们的 \href{https://bithesis.bitnp.net}{wiki 网站}，那里收录了使用模板以外的信息。}
+% \textit{更多安装教程请访问我们的 
+%   \href{https://bithesis.bitnp.net}{wiki 网站}，那里收录了使用模板以外的信息。}
 %
+% \subsubsection{升级模板版本}
+%
+% 由于软件维护是一个持续的过程，我们会不定期地更新 \BIThesisMacroPackage 的版本。
+% 更新的版本可能会修复一些 bug，也可能会增加新的功能。
+%
+% 因此，首先建议你首先查看最新版本与你当前版本的差异，以便决定是否升级。
+% 你可以通过 Github Releases 或者 ChangeLog 来查看更新内容。
+%
+% 当你决定升级时，请首先备份你的工作目录，然后按照\ref{sec:release}节的描述进行升级。
 %
 % \section{编译方式}
 %
@@ -587,14 +637,16 @@
 %
 %   书籍页竖排标题。此选项默认为空。为空时，会被 \kvopt{info/title}{字符串} 替代。
 %
-%   如想要使用竖排英文，可以使用 \lstinline|{X }|。其中 X 为英文字符，每个竖排英文间需要空一格。
+%   如想要使用竖排英文，可以使用 \lstinline|{X }|。
+%   其中 X 为英文字符，每个竖排英文间需要空一格。
 %   比如，想要竖排「LaTeX」，可以使用：
 %
 %   \begin{latex}[emph={[1]}]
 %      verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
 %   \end{latex}
 %
-%   如果想要使用旋转竖排英文，可以使用 \lstinline|\rotatebox[origin=c]{-90}{English text}|。
+%   如果想要使用旋转竖排英文，可以使用
+%   \lstinline|\rotatebox[origin=c]{-90}{English text}|。
 %
 %   \begin{latex}[emph={[1]}]
 %      verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
@@ -782,7 +834,7 @@
 %     TOC/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{TOC/abstract,TOC/abstractEn}
@@ -813,7 +865,7 @@
 %     appendices/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{appendices/chapterLevel}
@@ -862,7 +914,7 @@
 %     misc/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{misc/arialFont}
