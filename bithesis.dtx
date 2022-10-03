@@ -133,6 +133,40 @@
 % \clearpage
 % \setlength{\parskip}{0.8ex}
 %
+% \section{常用术语表}
+% \label{sec:terms}
+% \begin{description}
+%   \item[\LaTeX] \LaTeX{} 是一个高质量的文档排版系统
+%     ，他是基于 \TeX{} 进一步封装实现的。
+%   \item[\LaTeX2e] \LaTeX2e 是 \LaTeX{} 的最新稳定版本，
+%     目前大家使用的都是这个版本。
+%   \item[\LaTeX3] \LaTeX3 是 \LaTeX{} 的下一代版本，
+%     目前还在开发中（近十年了）。
+%     \LaTeX3 旨在为宏基编写人员提供一套通用的编程层。
+%     目前，\LaTeX3 的功能已经
+%     通过 \cs{expl3} 等宏包在 \LaTeX2e 中提供。
+%     目前，|bithesis| 就是通过 \cs{expl3} 实现的。
+%   \item[\LaTeX 引擎] 引擎就是将TeX代码转化为页面描述语言(PDL)的核心部分，
+%     就像C语言的编译器一样。比如 \hologo{XeLaTeX}、\hologo{LuaLaTeX} 等。
+%   \item[编辑器] TeX的编辑器给用户提供了较为方便的交互工具，
+%     将一些编译的过程都做成了按钮，
+%     省去了我们需要去命令行一步步编译，且提供了较为方便的编辑环境，
+%     如快捷键注释、语法高亮等等功能。常见的编辑器有 TeXstudio 等。
+%     另一些编辑器则是通过插件的方式来实现 TeX 的编辑，如 VSCode、Neovim、Vim 等。
+%   \item[宏包 (package)] \LaTeX{} 语言本质上是一个宏语言（通过文本替换而层层展开），
+%     而宏包就是一些宏的集合。CTAN 中的 bithesis 就是一个宏包。
+%   \item[宏集] 宏集是一些宏包的集合，比如 ctex 宏集。
+%   \item[CTAN] Comprehensive TeX Archive Network，CTAN 是 TeX 项目的官方网站，
+%     也是 TeX 项目的主要资源库。
+%     你使用的 \LaTeX{} 发行版中的宏包都是通过 CTAN 来发布的。
+%   \item[发行版] 发行版是将引擎，格式，宏包等等打包成一套安装文件的软件，
+%     TeX Live、MiKTeX 等。
+%   \item[文档类] 文档类指代一类以 |.cls| 结尾的文件，它们定义了文档的基本结构，
+%     通常包括文档的标题、作者、日期、页眉、页脚、正文样式等等。
+%     你可以通过 \cs{documentclass} 命令来指定文档类。
+%     没错，|bithesis| 为你提供的模板功能就是通过数个文档类实现的。
+% \end{description}
+%
 % \section{项目简介}
 % \subsection{历史与贡献者们}
 % \begin{itemize}
@@ -187,7 +221,7 @@
 % 通过使用\BIThesisLaTeX 模板，学生可以轻松撰写符合学校格式要求的学位论文，
 % 避免繁琐的论文格式调整；从而将关注点更多地放在高质量的内容本身。
 %
-% 要使用这个模板协助你完成研究生学位论文的创作，下面的条件必须满足：
+% 要使用这个模板协助你完成学位论文的创作，下面的条件必须满足：
 % \begin{itemize}
 % \item  操作系统字体目录中有中文字体；
 % \item  \TeX~系统有~\XeTeX~引擎（一般发行版均已经具备）；
@@ -215,7 +249,7 @@
 % 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 % 
 % \subsection{\BIThesis 宏包的组成}
-% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 
+% 为了适应用户的不同需求，我们将 \BIThesisMacroPackage 
 % 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 % \begin{table}[H]
 % \centering
@@ -249,7 +283,7 @@
 %   \item  Overleaf 发布：
 %     \href{https://bithesis.bitnp.net}{Overleaf Templates}
 % \end{itemize}
-% 其中，CTAN 上发布的是 bithesis 宏集，也就是 |*.cls| 组成的文件，
+% 其中，CTAN 上发布的是 bithesis 宏包，也就是 |*.cls| 组成的文件，
 % 它们可以通过 \TeX 发行版自带的包管理器 tlmgr 来更新。
 %
 % GitHub 和 Overleaf 上发布的是 \BIThesisLaTeX 的完整模板，因此想要升级
@@ -5651,7 +5685,7 @@ footskip=0.7cm% 页脚 1.8cm %
 }%
 
 \newcommand{\BIThesisLaTeX}{{\BIThesis}北京理工大学学位论文及报告{\LaTeX}模板}
-\newcommand{\BIThesisMacroPackage}{{\BIThesis}宏集}
+\newcommand{\BIThesisMacroPackage}{{\BIThesis}宏包}
 \newcommand{\BIThesisWiki}{{\BIThesis}在线文档}
 \newcommand{\BIThesisScaffold}{{\BIThesis}模板}
 \newcommand{\BIThesisRelease}{{\BIThesis}模板}
