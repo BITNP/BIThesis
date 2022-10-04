@@ -13,6 +13,28 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.0.4] - 2022-10-04
+
+[5026f2b](5026f2b1c4c52af20e6c7427247bd834c7350ae0)...[a3a7b7d](a3a7b7d0d46a580bff4a5bc8f007f6aadb0ee934)
+
+### Bug Fixes
+
+- Typo ([fb69996](fb6999601f3745888ac470c85c26bf119528d0a3))
+
+### Documentation
+
+- More docs for impl. ([ed07973](ed079737f7af53823cc2cc77fa4aed5baea0a160))
+- Update manual. ([ddf66e5](ddf66e56e8d42c0fd8b7904cb6182d6e328eca6a))
+- Refactor docs. ([2600677](2600677f663345eeb6ccd27ca43cc4727f3b89ee))
+- Finish polishing docs. ([0186b7d](0186b7d9d681a21624ab09eb5ada5976c733cbbb))
+- Add more jargons. ([bee591f](bee591faee2cd4ce618df56c0932cf6c190eac56))
+- Fix ref type. ([61b2df1](61b2df1fcef7502e475cc2b175149079b0a3c0ff))
+
+### Refactor
+
+- Docs. ([6f39a69](6f39a696521a16acd564f408745b954f69abfb48))
+- Update docs. ([502d370](502d370f997e980badf1db74f25cbf3bbfc65a7a))
+
 ## [3.0.3] - 2022-09-29
 
 [62f9e8c](62f9e8c8e0ba0450306255e6728543d6213e34d3)...[a21ce51](a21ce5108a19241c1c0b917fe098b4e0498550cc)
