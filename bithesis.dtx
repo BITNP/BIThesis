@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-09-29}{3.0.3}{BIT Thesis Templates}
+%<cls>{2022-09-30}{3.0.4}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/09/29 3.0.3 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/09/30 3.0.4 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -82,7 +82,8 @@
 %
 % \def\abstractname{}
 % \begin{abstract}\noindent
-%   此宏包旨在建立一个简单易用的北京理工大学学位论文模板（以及其他模板），包括本科毕业设计与研究生论文。
+%   此宏包旨在建立一个简单易用的北京理工大学学位论文 $\LaTeX$ 模板
+%  （以及其他模板），包括本科毕业设计与研究生学位论文。
 % \end{abstract}
 %
 % \vspace{5mm}
@@ -96,10 +97,11 @@
 % \noindent
 % \begin{enumerate}
 % \item 本模板的发布遵守 \LPPL ，使用前请认真阅读协议内容。
-% \item 与\BIThesis 相关的文档内容采用 \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
-% \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵
-%   守 \LaTeX{} Project Public License 协议。由于违犯协议而引起的任何纠纷争端均与
-%   本模板作者无关。
+% \item 与\BIThesis 相关的文档内容采用 
+%  \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
+% \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，
+%  请严格遵守 \LaTeX{} Project Public License 协议。
+%  由于违犯协议而引起的任何纠纷争端均与本模板作者无关。
 % \end{enumerate}
 % \end{abstract}
 %
@@ -107,14 +109,22 @@
 %
 % \def\abstractname{简介}
 % \begin{abstract}
-% \BIThesisLaTeX 是北京理工大学本科生毕业设计与研究生学位论文，以及其他课程报告、实验报告的 {\LaTeX} 模板集合。
-% 如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，来排版你的论文。
-% 专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
+% \BIThesisLaTeX 是北京理工大学本科生毕业设计与研究生学位论文，
+%   以及其他课程报告、实验报告的 {\LaTeX} 模板集合。
+%   如果你厌烦了 Word 格式的不人性化、参考文献的难以管理、
+%   公式输入的差劲体验……那么欢迎来尝试用专业的学术稿件排版利器 —— {\LaTeX}，
+%   来排版你的论文。
+%   专业高端、学界认可、开源免费，{\LaTeX} 是你论文排版的最佳搭档。
 %
-% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，
+% \BIThesisLaTeX 目前支持使用 {\hologo{XeLaTeX}} 进行编译，
+% 使用以 biber 为后端的 BibLaTeX 进行参考文献的生成，
 % 符合《信息与文献参考文献著录规则》
-% （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）的标准。
-% 目前主要设计完成了计算机学院本科生毕业论文开题报告、毕业设计毕业论文与通用实验报告的 {\LaTeX} 模板。
+% （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）
+% 的标准。
+% 
+% 目前，\BIThesisLaTeX 主要设计完成了计算机学院本科生毕业论文开题报告、
+% 本科生毕业（设计）论文、研究生学位论文、本科生毕业（设计）论文外文翻译、
+% 全英文专业本科生毕业（设计）论文与通用实验报告的 {\LaTeX} 模板。
 %
 % \end{abstract}
 % \newpage
@@ -123,32 +133,101 @@
 % \clearpage
 % \setlength{\parskip}{0.8ex}
 %
+% \section{常用术语表}
+% \label{sec:terms}
+% \begin{description}
+%   \item[\LaTeX] \LaTeX{} 是一个高质量的文档排版系统
+%     ，他是基于 \TeX{} 进一步封装实现的。
+%   \item[\LaTeX2e] \LaTeX2e 是 \LaTeX{} 的最新稳定版本，
+%     目前大家使用的都是这个版本。
+%   \item[\LaTeX3] \LaTeX3 是 \LaTeX{} 的下一代版本，
+%     目前还在开发中（近十年了）。
+%     \LaTeX3 旨在为宏基编写人员提供一套通用的编程层。
+%     目前，\LaTeX3 的功能已经
+%     通过 \pkg{expl3} 等宏包在 \LaTeX2e 中提供。
+%     目前，|bithesis| 就是通过 \pkg{expl3} 实现的。
+%   \item[\LaTeX 引擎] 引擎就是将TeX代码转化为页面描述语言(PDL)的核心部分，
+%     就像C语言的编译器一样。比如 \hologo{XeLaTeX}、\hologo{LuaLaTeX} 等。
+%   \item[编辑器] TeX的编辑器给用户提供了较为方便的交互工具，
+%     将一些编译的过程都做成了按钮，
+%     省去了我们需要去命令行一步步编译，且提供了较为方便的编辑环境，
+%     如快捷键注释、语法高亮等等功能。常见的编辑器有 TeXstudio 等。
+%     另一些编辑器则是通过插件的方式来实现 TeX 的编辑，如 VSCode、Neovim、Vim 等。
+%   \item[宏包 (package)] \LaTeX{} 语言本质上是一个宏语言（通过文本替换而层层展开），
+%     而宏包就是一些宏的集合。CTAN 中的 bithesis 就是一个宏包。
+%   \item[宏集] 宏集是一些宏包的集合，比如 ctex 宏集。
+%   \item[CTAN] Comprehensive TeX Archive Network，CTAN 是 TeX 项目的官方网站，
+%     也是 TeX 项目的主要资源库。
+%     你使用的 \LaTeX{} 发行版中的宏包都是通过 CTAN 来发布的。
+%   \item[发行版] 发行版是将引擎，格式，宏包等等打包成一套安装文件的软件，
+%     TeX Live、MiKTeX 等。
+%   \item[文档类] 文档类指代一类以 |.cls| 结尾的文件，它们定义了文档的基本结构，
+%     通常包括文档的标题、作者、日期、页眉、页脚、正文样式等等。
+%     你可以通过 \cs{documentclass} 命令来指定文档类。
+%     没错，|bithesis| 为你提供的模板功能就是通过数个文档类实现的。
+% \end{description}
+%
 % \section{项目简介}
 % \subsection{历史与贡献者们}
 % \begin{itemize}
-%   \item 2017 - 2018 年，杨雅婷等人受研究生院委托，制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 研究生学位论文模板。
-%   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
+%   \item 在 2017 年之前，网络上已经出现一些北京理工大学学位论文 \LaTeX 模板。
+%     它们是“2012大眼小蚂蚁版”和“2016汪卫版”，均以上海交通大学的模板为基础。
+%   \item 2017 - 2018 年，计算机学院 2016 级研究生杨雅婷等人受研究生院委托，
+%     制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 
+%     研究生学位论文模板。
+%   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的
+%     武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
 %   \begin{itemize}
-%     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、在线文档和开箱即用的模板。
-%     \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX 的视频教程。
+%     \item 此时，\BIThesis 仅支持本科生毕业论文的排版。
+%     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、
+%       在线文档和开箱即用的模板。
+%     \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX 
+%       的视频教程。
 %   \end{itemize}
-%   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人接管了维护开发工作。
+%   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人
+%       接管了维护开发工作。
 %   \begin{itemize}
 %     \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 CTAN 上。
-%     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，\BIThesisWiki 和 \BIThesisScaffold。
+%     \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，
+%       \BIThesisWiki 和 \BIThesisScaffold。
+%     \item 此版本是 V2 版本，代号为 Birthday Cake.
 %   \end{itemize}
-%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、2022 毕业季收到的反馈对该项目进行维护升级。
+%   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、
+%       2022 毕业季收到的反馈对该项目进行维护升级。
 %   \begin{itemize}
-%      \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
-%      \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
-%      \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，向用户提供了简易易用的接口。
-%      \item 同时，也增加了本科全英文专业的毕设论文模板样式。
+%     \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
+%     \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
+%     \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，
+%       向用户提供了简易易用的接口。
+%     \item 同时，也增加了本科全英文专业的毕设论文模板样式。
+%     \item 此版本是 V3 版本，代号为 Summer Time.
 %   \end{itemize}
 % \end{itemize}
-% \subsection{\BIThesis 是什么？}
-% \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
 %
-% \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板，包括本科综合论文训练。
+% \subsection{\BIThesis 是什么？}
+% \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）
+% 的首字母缩写“BIT” 与“Thesis”结合而成。在纯文本环境下，该名字应写作“BIThesis”。
+% 同理，其 IPA 发音为 |/ˈbiːˈaiˈtiːˈθiː.sis/|。
+%
+% \BIThesisLaTeX 是由北京理工大学众多学子发起并维护的开源项目。
+% 该项目旨在建立一套简单易用的北京理工大学 \LaTeX 学位论文模板。
+%
+% \subsection{为什么要使用 \BIThesis？}
+% 学位论文通常具有比较严格的格式要求，这是为了方便同行学术交流的起码要求，
+% 同时也是科学研究严谨性的体现。
+% 然而，由于市场各种排版软件混杂，使用者水平不一，学生对格式的重视程度不够，
+% 学生编写标准格式的学位论存在很多问题。
+% \BIThesisLaTeX 为符合北京理工大学硕士（博士）学位论文的LaTeX模板。
+% 通过使用\BIThesisLaTeX 模板，学生可以轻松撰写符合学校格式要求的学位论文，
+% 避免繁琐的论文格式调整；从而将关注点更多地放在高质量的内容本身。
+%
+% 要使用这个模板协助你完成学位论文的创作，下面的条件必须满足：
+% \begin{itemize}
+% \item  操作系统字体目录中有中文字体；
+% \item  \TeX~系统有~\XeTeX~引擎（一般发行版均已经具备）；
+% \item  你有使用~\LaTeX~ 的经验，或者愿意为此学习；
+% \end{itemize}
+%
 % \subsubsection{\BIThesisLaTeX 的组成}
 % 我们将 \BIThesisLaTeX 划分为了两个主要仓库：
 % \begin{table}[H]
@@ -156,45 +235,141 @@
 % \begin{tabular}{@{}l l p{6cm} @{}}
 % \toprule
 % 项目                & 项目地址 & 主要目的 \\ \midrule
-% BIThesis          &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
-% BIThesis-wiki     &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
+% BIThesis   &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   
+%   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
+% BIThesis-wiki    
+%   &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  
+%   &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
 % \end{tabular}
 % \end{table}
 %
-% 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
+% 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，
+% 那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
 %
 % 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 % 
 % \subsection{\BIThesis 宏包的组成}
-% 为了适应用户的不同需求，并符合 CTeX 宏集的设计习惯，我们将 \BIThesisMacroPackage 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
+% 为了适应用户的不同需求，我们将 \BIThesisMacroPackage 
+% 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 % \begin{table}[H]
 % \centering
 % \caption{测试}
 % \label{tab:classes}
 % \begin{tabular}{@{}lll@{}}
 % \toprule
-% 类别                   & 文件          & 说明                             \\ \midrule
-% \multirow{2}{*}{文档类} & \cls{bithesis.cls}  & 封装本科生与研究生的毕业论文样式。 \\
-%                    & \cls{bitreport.cls} & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
-%                    & \cls{bitbeamer.cls} & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     \\ \cmidrule(l){2-3}
+% 类别                   & 文件
+%   & 说明                             \\ \midrule
+% \multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  
+%   & 封装本科生与研究生的毕业论文样式。 \\
+% & \cls{bitreport.cls}\ref{sec:bitreport} 
+%   & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
+% & \cls{bitbeamer.cls} 
+%   & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     
+%   \\ \cmidrule(l){2-3}
 % \end{tabular}
 % \end{table}
 %
-% \section{安装}
-% \subsection{\BIThesis 宏包的安装和更新}
-% 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录\BIThesisMacroPackage 及其依赖的宏包和宏集。
+% \subsection{\BIThesisLaTeX 是如何发布的？}
+% \label{sec:release}
 %
-% 如果安装以上发行版的时间较早，可能你本地的环境中不存在 \BIThesisMacroPackage 或者不是最新版本的。那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
+% \BIThesisLaTeX 每一个版本会有三种发布方式： 
+%
+% \begin{itemize}
+%   \item  CTAN 发布：
+%     \href{https://ctan.org/pkg/bithesis}{CTAN bithesis package}
+%   \item  GitHub 发布：
+%     \href{https://github.com/BITNP/BIThesis/releases}{Github Releases}
+%     \footnote{最推荐使用此种方式}
+%   \item  Overleaf 发布：
+%     \href{https://bithesis.bitnp.net}{Overleaf Templates}
+% \end{itemize}
+% 其中，CTAN 上发布的是 bithesis 宏包，也就是 |*.cls| 组成的文件，
+% 它们可以通过 \TeX 发行版自带的包管理器 tlmgr 来更新。
+%
+% GitHub 和 Overleaf 上发布的是 \BIThesisLaTeX 的完整模板，因此想要升级
+% 到最新版本，你需要重新下载最新模板。然后，选择下列方法的一种来更新：
+%
+% \begin{itemize}
+%   \item 将新模板中的 |*.cls| 文件替换到你原有模板的工作目录中。
+%   \item 将旧模板中的写作内容复制到新模板中。
+% \end{itemize}
+%
+% 需要注意的是，Github 和 Overleaf 的模板中包含了当前版本的 |*.cls| 文件，
+% 因此不会因为 CTAN 上的更新而导致模板无法编译。（但代价当然是需要手动升级）
+%
+% \section{安装}
+%
+% \subsection{\BIThesis 宏包的安装和更新}
+%
+% 最常见的 \TeX 发行版（\hologo{TeX} Live 和 \hologo{MiKTeX})已收录
+% \BIThesisMacroPackage 及其依赖的宏包和宏集。
+%
+% \begin{itemize}
+% \item Windows、Linux用户推荐安装 TeX Live 套装，
+%   并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装）
+% \item OSX用户推荐安装 Mac TeX。
+% \item 由于CTeX套装所含宏包比较陈旧，可能会导致编译无法通过，故不推荐安装。
+%   如果已安装 CTeX，\textbf{建议将其卸载}。
+% \end{itemize}
+%
+% 如果安装以上发行版的时间较早，可能你本地的环境中不存在
+% \BIThesisMacroPackage 或者不是最新版本的。
+% 那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
+%
 % \begin{shell}[morekeywords={tlmgr,install}]
-%   tlmgr install fduthesis
+%   tlmgr install bithesis
 % \end{shell}
 %
 % 更新可以通过图形界面进行，或者通过命令行：
+%
 % \begin{shell}[morekeywords={tlmgr,install}]
-%   tlmgr update fduthesis
+%   tlmgr update bithesis
 % \end{shell}
 %
-% \section{\cls{bithesis} 使用与配置}
+% \textbf{
+%   在安装完发行版之后，还需要安装编辑 \LaTeX 所需的编辑器，在这里推荐 TexStudio。
+% }
+%
+% \textit{更多安装教程请访问我们的 
+%   \href{https://bithesis.bitnp.net}{wiki 网站}，那里收录了使用模板以外的信息。}
+%
+% \subsubsection{升级模板版本}
+%
+% 由于软件维护是一个持续的过程，我们会不定期地更新 \BIThesisMacroPackage 的版本。
+% 更新的版本可能会修复一些 bug，也可能会增加新的功能。
+%
+% 因此，首先建议你首先查看最新版本与你当前版本的差异，以便决定是否升级。
+% 你可以通过 Github Releases 或者 ChangeLog 来查看更新内容。
+%
+% 当你决定升级时，请首先备份你的工作目录，然后按照\ref{sec:release}节的描述进行升级。
+%
+% \section{编译方式}
+%
+% \subsection{使用 Latexmk（推荐）}
+%
+% 在项目模板中，已经预制好了 latexmk 的配置文件 |.latexmkrc|。
+%
+% 因此只需要在命令行里执行，或者在代码编辑器里配置并运行以下命令即可：
+%
+% \begin{shell}
+%   latexmk
+% \end{shell}
+%
+% \subsubsection{手动四次编译}
+%
+% \begin{shell}
+% xelatex -no-pdf --interaction=nonstopmode main
+% biber main
+% xelatex -no-pdf --interaction=nonstopmode main
+% xelatex --interaction=nonstopmode main
+% \end{shell}
+%
+% 运行bibtex的时候会提示一些错误，可能是~{{\sc Bib}\TeX}~对UTF-8支持不充
+% 分，一般不影响最终结果。加入~\verb|--interaction=nonstopmode|~参数是不让错误打断编译过程。
+% \XeTeX~ 仍存在一些宏包兼容性问题，而这些错误通常不会影响最终的编译结果。
+%
+% \section{\cls{bithesis.cls} 使用与配置}
+% \label{sec:bithesis}
 % 
 % 推荐使用\BIThesisRelease （开箱即用）。
 % 
@@ -223,7 +398,7 @@
 %   \end{document}
 % \end{latex}
 %
-% 如您所见，在 \LaTeX 中，用户使用的命令通常以「\\」作为开头，后面依次跟随
+% 如您所见，在 \LaTeX 中，用户使用的命令通常以「|\|」作为开头，后面依次跟随
 % 命令名称、若干可选参数和若干必需参数。如：
 %
 % \begin{latex}
@@ -232,7 +407,8 @@
 %   \FooBar[]{}
 % \end{latex}
 %
-% 同理，用户使用的环境通常以 begin 和 end 进行包裹，同样可以传入可选参数和必需参数：
+% 同理，用户使用的环境通常以 begin 和 end 进行包裹，
+% 同样可以传入可选参数和必需参数：
 %
 % \begin{latex}
 %   \begin{abstract}
@@ -298,7 +474,8 @@
 %
 %   该选项用于传入模板选项至 ctexbook。
 %   
-%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
+%   例如：想要同时修改 ctex 的字体参数和标点符号处理格式
+%   （更多选项请参考 ctex 手册）。
 %
 %   \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
 %      \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
@@ -494,14 +671,16 @@
 %
 %   书籍页竖排标题。此选项默认为空。为空时，会被 \kvopt{info/title}{字符串} 替代。
 %
-%   如想要使用竖排英文，可以使用 \lstinline|{X }|。其中 X 为英文字符，每个竖排英文间需要空一格。
+%   如想要使用竖排英文，可以使用 \lstinline|{X }|。
+%   其中 X 为英文字符，每个竖排英文间需要空一格。
 %   比如，想要竖排「LaTeX」，可以使用：
 %
 %   \begin{latex}[emph={[1]}]
 %      verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
 %   \end{latex}
 %
-%   如果想要使用旋转竖排英文，可以使用 \lstinline|\rotatebox[origin=c]{-90}{English text}|。
+%   如果想要使用旋转竖排英文，可以使用
+%   \lstinline|\rotatebox[origin=c]{-90}{English text}|。
 %
 %   \begin{latex}[emph={[1]}]
 %      verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
@@ -689,7 +868,7 @@
 %     TOC/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{TOC/abstract,TOC/abstractEn}
@@ -720,7 +899,7 @@
 %     appendices/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{appendices/chapterLevel}
@@ -730,7 +909,7 @@
 %
 %   \textit{此选项一般不需要用户自行修改。}
 %
-%   开启后，可以使用以「chapter」为顶层的附录格式。
+%   开启后，可以使用以「chapter」为顶层的附录格式：
 %
 %  \begin{latex}[emph={[1]appendices,chapter}]
 %    \begin{appendices}
@@ -740,11 +919,14 @@
 %          (*\meta{附录B 内容}*)
 %    \end{appendices}
 %  \end{latex}
+%
+%   默认不开启，使用以「section」为顶层的附录格式。
+%
 % \end{function}
 %
 % \begin{function}{appendices/title}
 %   \begin{bitsyntax}[emph={[1]title}]
-%     title = (*\meta{字符串}*)
+%     title = (*(附录)|\meta{字符串}*)
 %   \end{bitsyntax}
 %
 %  可以覆盖附录的标题名称，默认为「附录」。
@@ -752,7 +934,7 @@
 %
 % \begin{function}{appendices/TOCTitle}
 %   \begin{bitsyntax}[emph={[1]TOCTitle}]
-%     TOCTitle = (*\meta{字符串}*)
+%     TOCTitle = (*(附录)|\meta{字符串}*)
 %   \end{bitsyntax}
 %
 %  可以覆盖附录在目录中的名称，默认为「附录」。
@@ -766,7 +948,7 @@
 %     misc/(*\meta{key}*) = (*\meta{value}*)
 %   \end{bitsyntax}
 % 
-%  该选项包含许多子项目，用于调整其他选项。具体内容见下。
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
 % \begin{function}{misc/arialFont}
@@ -788,14 +970,26 @@
 %
 % \begin{function}{\MakeCover}
 %
-%   \textit{封面内容会根据模板选项（具体参见节\ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
-%   \textit{封面的下划线效果会受到参数设置中封面选项（具体见节\ref{sec:cover}）的影响。}
+%   \textit{封面内容会根据模板选项（具体参见节
+%     \ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
+%   \textit{封面的下划线效果会受到参数设置中封面选项
+%      （具体见节\ref{sec:cover}）的影响。}
 %
 %   绘制封面。
 %
-%   在默认配置下，封面中的下划线会自动计算最大宽度。此时，如果用户需要换行，可以通过「//」控制换行。
+%   在默认配置下，封面中的下划线会自动计算最大宽度。
+%   此时，如果用户需要换行，可以通过「//」控制换行。
 %
-%   当关闭自动计算下划线宽度后，可以通过\meta{labelMaxWidth=xxx} 与 \meta{valueMaxWidth=xxx}来指定下划线的宽度。一般情况下，我们不建议您这样做。
+%   当关闭自动计算下划线宽度后，
+%   可以通过 
+%
+%   \meta{labelMaxWidth=xxx} 
+%
+%   与 
+%
+%   \meta{valueMaxWidth=xxx}
+%
+%   来指定下划线的宽度。一般情况下，我们不建议您这样做。
 % \end{function}
 % 
 % \begin{function}{\MakePaperBack}
@@ -965,9 +1159,14 @@
 %
 %   打印参考文献。
 %
-%   在使用\BIThesisTemplates{GT}时需要注意，由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，因此 bithesis 同样使用 bibtex 管理其文献。而由于 biblatex 的排序是全局的，因此需要使用 \meta{category} 功能来分割出两个不同的类别。
+%   在使用\BIThesisTemplates{GT}时需要注意，
+%   由于研究生学位论文也要求使用国标形式输出「攻读学位期间发表论文与研究成果清单」，
+%   因此 bithesis 同样使用 bibtex 管理其文献。
+%   而由于 biblatex 的排序是全局的，
+%   因此需要使用 \meta{category} 功能来分割出两个不同的类别。
 %
-%  因此，请使用下列语句输出参考文献：
+%   因此，请使用下列语句输出参考文献：
+%
 % \begin{latex}[emph={[1]bibprint}]
 %   \begin{bibprint}
 %     \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
@@ -1020,7 +1219,8 @@
 %   个人简介。
 % \end{function}
 %
-% \section{\cls{bitreport} 使用与配置}
+% \section{\cls{bitreport.cls} 使用与配置}
+% \label{sec:bitreport}
 % 
 % 推荐使用\BIThesisRelease （开箱即用）。
 %
@@ -1237,10 +1437,27 @@
 %
 % \section{致谢}
 % \begin{itemize}
-%   \item 感谢贡献者对 BIThesis 的无私奉献。
-%   \item 感谢学校及相关老师对 BIThesis 的支持。
-%   \item 感谢清华大学和复旦大学的学位论文模板项目，他们为后来者提供了前进的方向。
+%   \item 感谢历届贡献者对 BIThesis 的悉心维护。
+%   \item 感谢学校及老师们对 BIThesis 的支持。
+%   \begin{itemize}
+%     \item 感谢北京理工大学教务部、计算机学院对本科模板的支持。
+%     \item 感谢北京理工大学研究生院对研究生模板的支持。
+%   \end{itemize}
+%   \item 感谢众多优秀的开源 $\LaTeX$ 项目，他们为后来者提供了前进的方向。
+%   \begin{itemize}
+%     \item \href{https://github.com/hushidong/biblatex-gb7714-2015}{biblatex-gb7714-2015}
+%       提供了易用的国标引用格式以及细心指导。
+%     \item \href{https://github.com/BIT-thesis/LaTeX-template}
+%       {北京理工大学硕士（博士）学位论文 $\LaTeX$ 模板} 提供了
+%       研究生模板样式的代码参考。
+%     \item \href{https://github.com/stone-zeng/fduthesis}
+%       {fduthesis（复旦大学学位论文 $\LaTeX$ 模板）} 提供了包编写的最佳实践。
+%     \item \href{https://github.com/tuna/thuthesis}
+%       {ThuThesis（清华大学学位论文 $\LaTeX$ 模板）} 提供了 dtx 文件的编写参考。
+%   \end{itemize}
 % \end{itemize}
+%
+% 最后，感谢你的使用。
 %
 % \section{软件许可证}
 %
@@ -1263,12 +1480,15 @@
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
-
+%
+% \subsection{bithesis.cls 文档类}
+%
 %    \begin{macrocode}
 %<*thesis>
 %    \end{macrocode}
-
-% \subsection{全局变量与临时变量}
+%
+% \subsubsection{全局变量与临时变量}
+%
 % 定义全局变量。
 % \begin{variable}{\g_@@_thesis_type_int}
 % 论文类型，取值从 1 开始，分别对应: 
@@ -1283,36 +1503,42 @@
 \int_new:N \g_@@_thesis_type_int
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_head_zihao_int}
 % 页眉字号。研究生论文使用 5 号字，本科生论文使用 4 号字。
 %    \begin{macrocode}
 \int_new:N \g_@@_head_zihao_int
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_twoside_bool}
 % 是否双面打印。默认单面打印。
 %    \begin{macrocode}
 \bool_new:N \g_@@_twoside_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_thesis_type_english_bool}
 % 是否为英文模板。目前只有本科生全英文专业的模板会将此变量设置为 true。
 %    \begin{macrocode}
 \bool_new:N \g_@@_thesis_type_english_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_blind_mode_bool}
 % 是否为盲审模式。默认为 false。
 %    \begin{macrocode}
 \bool_new:N \g_@@_blind_mode_bool
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\g_@@_label_divide_char_tl}
 % 用于分隔标签的字符。默认为「-」或者「.」。
 %    \begin{macrocode}
 \tl_new:N \g_@@_label_divide_char_tl
 %    \end{macrocode}
 % \end{variable}
+%
 % \begin{variable}{\l_@@_right_seq, \l_@@_left_seq}
 % 定义临时变量。
 %    \begin{macrocode}
@@ -1320,8 +1546,9 @@
 \seq_new:N \l_@@_left_seq
 %    \end{macrocode}
 % \end{variable}
-
-% \subsection{辅助函数与常量}
+%
+% \subsubsection{辅助函数与常量}
+%
 % \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
 % 生成变体。
 %    \begin{macrocode}
@@ -1329,6 +1556,7 @@
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 %    \end{macrocode}
 % \end{macro}
+%
 % \begin{macro}{\@@_same_page:}
 % 取消换页。
 %    \begin{macrocode}
@@ -1364,7 +1592,7 @@
 \cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\@@_if_bachelor_thesis:TF,\@@_if_bachelor_thesis:T,\@@_if_master_thesis:TF,\@@_if_doctor_thesis:TF}
 % 是否为本科、硕士、博士学位论文。
 %    \begin{macrocode}
@@ -1374,8 +1602,7 @@
 \cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
 %    \end{macrocode}
 % \end{macro}
-
-
+%
 % \begin{variable}{\c_@@_thesis_type_clist}
 % 定义论文类型的列表。
 %    \begin{macrocode}
@@ -1383,7 +1610,7 @@
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{macro}{\@@_define_label:nn,\@@_define_label_by_thesis_type:nnn,\@@_define_label:nnn,\@@_define_label_by_thesis_type:nnnn}
 % 定义常量（标签）的辅助函数。
 %    \begin{macrocode}
@@ -1408,7 +1635,7 @@
   }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\smallgap:}
 % 标签文字之间的间距。
 %    \begin{macrocode}
@@ -1417,7 +1644,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{macro}{\label_space:}
 % 标签与内容之间的空白间距。
 %    \begin{macrocode}
@@ -1428,7 +1655,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
-
+%
 % \begin{variable}{\c_@@_label_code_tl,\c_@@_label_udc_tl,
 %   \c_@@_label_classification_tl,\c_@@_label_classified_level_tl,\c_@@_label_type_tl}
 % 没有对应英文的常量。
@@ -1444,24 +1671,32 @@
   {\@@_define_label:nn #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_label_xxx_tl}
 % 本科毕设的常量。
 %    \begin{macrocode}
-% bachelor
 \clist_map_inline:nn
   {
     {title} {本科生毕业设计（论文）},
     {originality} {原创性声明},
-    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
+    {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），
+    是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+    本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+    对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。\par~特此申明。},
     {authorization} {关于使用授权的声明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
-    {originality_author_signature} {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+    \circled{3}~学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}~学校可以学术交流为目的，
+    复制赠送和交换本毕业设计（论文）；\circled{5}~学校可以公布本毕业设计（论文）的全部或部分内容。},
+    {originality_author_signature} 
+      {本人签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
+    {originality_supervisor_signature} 
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{13mm}年\hspace{8mm}月\hspace{8mm}日},
   } {\@@_define_label_by_thesis_type:nnn {bachelor} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_english_label_xxx_tl}
 % 全英文专业的常量。
 %    \begin{macrocode}
@@ -1470,9 +1705,13 @@
     {title} {},
     {originality} {原创性声明~Statement~of~Originality},
     {originality_clause} {
-        本人郑重声明：所呈交的毕业设计（论文），是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，本文不包含任何其他个人或集体已经发表或撰写过的研究成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par 
+        本人郑重声明：所呈交的毕业设计（论文），
+        是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
+        本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+        对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par 
         \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
-        declare:~the~submitted~graduation~design~(thesis),~is~the~research~achievement~completed~independently~by~myself~
+        declare:~the~submitted~graduation~design~(thesis),~
+        is~the~research~achievement~completed~independently~by~myself~
         under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
         any~research~published~or~written~by~any~other~individual~or~group,~
         except~as~already~referenced~in~this~paper.~Individuals~and~groups~
@@ -1481,29 +1720,55 @@
     },
     {authorization} {关于使用授权的声明~State~of~Use~Authorization},
     {authorization_clause} {
-      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；\circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；\circled{3}学校可允许本毕业设计（论文）被查阅或借阅；\circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；\circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
-  I~fully~understand~the~regulations~on~the~storage,~use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~and~to~the~relevant~departments~to~send~the~original~or~copy~of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~graduation~design~(thesis)~by~photocopying,~miniature~or~other~means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
+      本人完全了解北京理工大学有关保管、使用毕业设计（论文）的规定，
+      其中包括：\circled{1}学校有权保管、并向有关部门送交本毕业设计（论文）的原件与复印件；
+      \circled{2}学校可以采用影印、缩印或其它复制手段复制并保存本毕业设计（论文）；
+      \circled{3}学校可允许本毕业设计（论文）被查阅或借阅；
+      \circled{4}学校可以学术交流为目的,复制赠送和交换本毕业设计（论文）；
+      \circled{5}学校可以公布本毕业设计（论文）的全部或部分内容。\par
+      I~fully~understand~the~regulations~on~the~storage,~
+      use~of~graduation~design~(thesis)~in~Beijing~Institute~of~Technology.~
+      Beijing~Institute~of~Technology~has~the~right~to~(1)~keep,~
+      and~to~the~relevant~departments~to~send~the~original~or~copy~
+      of~this~graduation~design~(thesis);~(2)~copy~and~preserve~this~
+      graduation~design~(thesis)~by~photocopying,~miniature~or~other~
+      means~of~reproduction;~(3)~allow~this~graduation~design~(thesis)~
+      to~be~read~or~borrowed;~(4)~for~the~purpose~of~academic~exchange,~
+      copy,~give~and~exchange~this~graduation~design~(thesis);~(5)~
+      publish~all~or~part~of~the~contents~of~this~graduation~design~(thesis).~
     },
   } {\@@_define_label_by_thesis_type:nnn {bachelor_english} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_graduate_label_xxx_tl}
 % 研究生模板的常量。
 %    \begin{macrocode}
-% graduate
 \clist_map_inline:nn
   {
     {originality} {研究成果声明},
-    {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。尽我所知，文中除特别标注和致谢的地方外，学位论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。与我一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
+    {originality_clause} {本人郑重声明：
+    所提交的学位论文是我本人在指导教师的指导下进行的研究工作获得的研究成果。
+    尽我所知，文中除特别标注和致谢的地方外，
+    学位论文中不包含其他人已经发表或撰写过的研究成果，
+    也不包含为获得北京理工大学或其它教育机构的学位或证书所使用过的材料。
+    与我一同工作的合作者对此研究工作所做的任何贡献均已在
+    学位论文中作了明确的说明并表示了谢意。\par~特此申明。},
     {authorization} {关于学位论文使用权的说明},
-    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；\circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；\circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
-    {originality_author_signature} {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
-    {originality_supervisor_signature} {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，
+    其中包括：\circled{1}~学校有权保管、并向有关部门送交学位论文的原件与复印件；
+    \circled{2}~学校可以采用影印、缩印或其它复制手段复制并保存学位论文；
+    \circled{3}~学校可允许学位论文被查阅或借阅；\circled{4}~
+    学校可以学术交流为目的,复制赠送和交换学位论文；\circled{5}~
+    学校可以公布学位论文的全部或部分内容（保密学位论文在解密后遵守此规定）。},
+    {originality_author_signature} 
+      {签\qquad 名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
+    {originality_supervisor_signature} 
+      {指导老师签名：\hspace{40mm}日\hspace{2.5mm}期：\hspace{30mm}\quad},
   } {\@@_define_label_by_thesis_type:nnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_graduate_label_xxx_tl,\c_@@_graduate_label_xxx_en_tl}
 % 研究生模板的中英常量。
 %    \begin{macrocode}
@@ -1513,14 +1778,20 @@
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
-    {degree} {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别} {Degree~Applied},
+    {degree} 
+      {申\smallgap: 请\smallgap: 学\smallgap: 位\smallgap: 级\smallgap: 别}
+      {Degree~Applied},
     {major} {学\quad 科\quad 专\quad 业} {Major},
-    {institute} {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位} {Degree~by},
-    {defense_date} {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期} {The~Date~of~Defence},
+    {institute}
+      {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位}
+      {Degree~by},
+    {defense_date}
+      {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期}
+      {The~Date~of~Defence},
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_label_xxx_tl,\c_@@_label_xxx_en_tl}
 % 常用的中英常量。
 %    \begin{macrocode}
@@ -1543,7 +1814,8 @@
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
-    {publications} {攻读学位期间发表论文与研究成果清单} {Publications~During~Studies},
+    {publications} {攻读学位期间发表论文与研究成果清单} 
+      {Publications~During~Studies},
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {},
     {symbols} {主要符号对照表} {},
@@ -1551,12 +1823,16 @@
   {\@@_define_label:nnn #1}
 %    \end{macrocode}
 % \end{variable}
-
+%
 % \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_cover_title_clist}
 % 本科生模板的封面标题与页眉标题常量列表。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
-  {北京理工大学本科生毕业设计（论文）, 北京理工大学本科生毕业设计（论文）外文翻译, Beijing~Institute~of~Technology~Bachelor's~Thesis }
+  {
+    北京理工大学本科生毕业设计（论文）, 
+    北京理工大学本科生毕业设计（论文）外文翻译, 
+    Beijing~Institute~of~Technology~Bachelor's~Thesis 
+  }
 \clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
   {
     本科生毕业设计（论文）,
@@ -1565,11 +1841,11 @@
   }
 %    \end{macrocode}
 % \end{variable}
-
-
-% \subsection{l3keys 接口键值对定义}
+%
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bithesis| 键值对类。
 %    \begin{macrocode}
-% key-value interface definition.
 \keys_define:nn { bithesis }
 {
   info .meta:nn = { bithesis / info } {#1},
@@ -1580,7 +1856,10 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
 }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/option| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / option }
 {
   type .choice:,
@@ -1599,7 +1878,10 @@
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
 }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/cover| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l_@@_cover_date_tl,
@@ -1621,7 +1903,10 @@
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/info| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -1657,12 +1942,19 @@
     defenseDateEn .tl_set:N = \l_@@_value_defense_date_en_tl,
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
   }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/misc| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / misc }
   {
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
   }
 
+%    \end{macrocode}
+%
+% 定义 |bithesis/style| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
@@ -1679,7 +1971,10 @@
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
 }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/TOC| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / TOC }
 {
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
@@ -1689,34 +1984,58 @@
   symbols .bool_set:N = \l_@@_add_symbols_to_toc_bool,
   symbols .initial:n = {true},
 }
-
+%    \end{macrocode}
+%
+% 定义 |bithesis/appendices| 键值对类。
+%    \begin{macrocode}
 \keys_define:nn { bithesis / appendices }
 {
   chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
   title .tl_set:N = \l_@@_appendices_title_tl,
   TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
 }
-
+%    \end{macrocode}
+%
+% 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
-
+%    \end{macrocode}
+%
+% \subsubsection{处理模板选项}
+%
+% 英文模板需要开启 ctexbook 宏包的英文选项。
+%    \begin{macrocode}
 \@@_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
-
+%    \end{macrocode}
+%
+% 如果没有开启双面打印选项，则在 ctexbook 中开启单面打印选项。
+%    \begin{macrocode}
 \bool_if:NTF \g_@@_twoside_bool {} {
   \PassOptionsToClass{oneside,openany}{ctexbook}
 }
-
-
+%    \end{macrocode}
+%
+% 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
+%    \begin{macrocode}
 % Any extra option passed by user will be passed to ctexbook.
 \DeclareOption*{
   \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexbook}
 }
-% Executes the code for each option.
+%    \end{macrocode}
+%
+% 加载 ctexbook 模板类。
+%    \begin{macrocode}
 \ProcessOptions\relax
-% Load
 \LoadClass[zihao=-4,]{ctexbook}
-
+%    \end{macrocode}
+%
+% \subsubsection{定义模板类样式}
+%
+% 加载所需的宏包。
+%    \begin{macrocode}
 \RequirePackage{geometry}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
@@ -1740,13 +2059,22 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
-\RequirePackage{environ}
-
-% Suppress warning for \hskip by hyperref.
+%    \end{macrocode}
+%
+% 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
+%    \begin{macrocode}
 \pdfstringdefDisableCommands{%
   \let\quad\empty  
 }
-
+%    \end{macrocode}
+%
+% 设置页眉字号，页边距。
+% 
+% 需要注意的是，根据 \pkg{geometry} 的规则，
+% |headsep| 和 |footskip| 分别受到 |top| 与 |bottom| 的影响。
+% 所以你能看到在计算 |headsep| 与 |footskip| 时，我们
+% 首先计算了相应的偏移量。
+%    \begin{macrocode}
 \@@_if_graduate:TF {
   \int_set:Nn \g_@@_head_zihao_int {5}
   \geometry{
@@ -1755,8 +2083,10 @@
     bottom=2.5cm + 7bp,
     top=3.5cm + 7bp,
     right=2.7cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.5cm - 15bp,
     headheight = 15 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.5cm + 7bp - 1.8cm,
   }
 } {
@@ -1767,31 +2097,46 @@
     bottom=2.6cm + 7bp,
     top=3.5cm + 7bp,
     right=2.6cm,
+    % `headsep' is affected by `top' option.
     headsep = 3.5cm + 7bp - 2.4cm - 20bp,
     headheight = 20 bp,
+    % `footskip' is affected by `bottom' option.
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
-
-% One blank line before the figure and after the caption.
+%    \end{macrocode}
+%
+% 根据学校的要求，在图片前后加上一行空白。
+%    \begin{macrocode}
 \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-
+%    \end{macrocode}
+%
+% 设置 Times New Roman 字体。
+%    \begin{macrocode}
 \setromanfont{Times~New~Roman}
-
+%    \end{macrocode}
+%
+% 在 |preamble| 中，加载各个模板需要的字体。
+%    \begin{macrocode}
 \ctex_at_end_preamble:n {
   \@@_if_thesis_english:TF {
     \@@_if_thesis_int_type:nT {3} {
-      % font Arial needed
+      % 对于本科全英文专业模板
+      % Font Arial is needed.
       \newfontfamily\arialfamily{Arial}
     }
 
   } {
+    % 对于其他的中文模板，
+    % 需要加载细黑体。
     \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {} 
     {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]{\l_@@_cover_xihei_font_path_tl}
+      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
+        {\l_@@_cover_xihei_font_path_tl}
     }
   }
 
+  % 对于本科全英文专业模板，需要自定义日期格式。
   \@@_if_thesis_int_type:nT {3} {
     \RequirePackage[en-US]{datetime2}
     \RequirePackage{indentfirst}
@@ -1799,11 +2144,17 @@
   }
 
   % Define biblatex category if it was imported.
+  % 这部分是给研究生模板中的
+  % 「攻读学位期间发表论文与研究成果清单」使用的。
   \cs_if_exist:NT \DeclareBibliographyCategory {
     \DeclareBibliographyCategory{mypub}
   }
 }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\xihei:n}
+% 定义细黑字体。
+%    \begin{macrocode}
 \cs_new:Npn \xihei:n #1 {
   \xeCJK_family_if_exist:nTF {xihei} {
     \CJKfamily{xihei} #1
@@ -1811,7 +2162,12 @@
     \heiti #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\l_@@_title_font_cs:n}
+% 定义标题字体。
+%    \begin{macrocode}
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
   {
@@ -1820,7 +2176,12 @@
     \heiti #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\l_@@_unnumchapter_style_cs:n}
+% 定义无序章节的样式。
+%    \begin{macrocode}
 \cs_new:Npn \l_@@_unnumchapter_style_cs:n #1 {
   % 本科全英文、研究生学位论文需要加粗
   \int_compare:nNnTF {\g_@@_thesis_type_int} > {2}
@@ -1830,19 +2191,34 @@
     \mdseries #1
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\arabicHeiti}
+% 遗留下来的黑体字体定义。
+%    \begin{macrocode}
 \cs_set:Npn \arabicHeiti #1 {#1}
-
-% TODO: custom title
+%    \end{macrocode}
+% \end{macro}
+% 
+% 定义 \pkg{fancyhdr} 的页眉页脚。
+%    \begin{macrocode}
 \fancypagestyle{BIThesis}{
   \fancyhf{}
   % 定义页眉、页码
-  \fancyhead[C]{\zihao{\int_use:N \g_@@_head_zihao_int}\ziju{0.08}\songti{\tl_use:N \l_@@_style_head_tl}}
+  \fancyhead[C]{
+    \zihao{\int_use:N \g_@@_head_zihao_int}
+    \ziju{0.08}
+    \songti{\tl_use:N \l_@@_style_head_tl}
+  }
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
   \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
-
+%    \end{macrocode}
+%
+%  定义 \pkg{ctex} 的章节标题形式。
+%    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
     format = { \l_@@_title_font_cs:n \bfseries \centering \zihao{3}},
@@ -1869,7 +2245,13 @@
 }
 
 \ctexset{subsection={
-    number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}}},
+    number = {
+      \arabicHeiti{
+        \thechapter.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}
+      }
+    },
     format = {\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -1884,7 +2266,14 @@
   secnumdepth = 3,
   subsubsection={
     numbering = true,
-    number = {\arabicHeiti{\arabic{chapter}.\hspace{1bp}\arabic{section}.\hspace{1bp}\arabic{subsection}.\hspace{1bp}\arabic{subsubsection}}},
+    number = {
+      \arabicHeiti{
+        \arabic{chapter}.\hspace{1bp}
+        \arabic{section}.\hspace{1bp}
+        \arabic{subsection}.\hspace{1bp}
+        \arabic{subsubsection}
+      }
+    },
     format={\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
@@ -1893,68 +2282,45 @@
     fixskip=true,
   }
 }
-
-% TOC
+%    \end{macrocode}
+%
+%  定义 TOC 样式。
+%    \begin{macrocode}
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \@@_if_graduate:TF {
-  % 各章标题，宋体四号
+  % 对于研究生模板，定义各章标题为宋体四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 } {
+  % 对于其他，定义各章标题为宋体小四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 }
+% section 标题为宋体小四号。
 \titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
+% subsection 标题为宋体小四号。
 \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
-
-% \bool_new:N \l_@@_add_to_toc_bool
-% \bool_set_true:N \l_@@_add_to_toc_bool
-%
-% \keys_define:nn { bit }
-%   {
-%     abstract .meta:nn = { bit / abstract } {#1},
-%     abstract_en .meta:nn = { bit / abstract_en } {#1},
-%     symbols .meta:nn = { bit / symbols } {#1},
-%     appendices .meta:nn = { bit / appendices } {#1},
-%   }
-%
-% \keys_define:nn { bit / abstract }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / abstract_en }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / symbols }
-%   {
-%     addTOC .bool_set:N = \l_@@_add_to_toc_bool,
-%   }
-%
-% \keys_define:nn { bit / appendices }
-%   {
-%     chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
-%     title .tl_set:N = \l_@@_appendices_title_tl,
-%     TOCTitle .tl_set:N = \l_@@_appendix_toc_title_tl,
-%   }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\frontmatter}
+% 定义前置内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \frontmatter {} {
-
   \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
   {
+    % 本科全英文专业论文，页码使用小罗马数字。
     \pagenumbering{roman}
   } {
     \pagenumbering{Roman}
   }
+  % 这部分的章节标题不进行编号。
   \ctexset{
     chapter = {
       numbering = false,
@@ -1962,15 +2328,22 @@
   }
   \pagestyle{BIThesis}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\mainmatter}
+% 主体内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \mainmatter {} {
   \cleardoublepage
 
+  % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
       numbering = true,
     }
   }
+  % 页码使用阿拉伯数字。
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
   % 正文 22 磅的行距
@@ -1979,8 +2352,14 @@
   % 修复脚注出现跨页的问题
   \interfootnotelinepenalty=10000
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\backmatter}
+% 后置内容的页面样式。
+%    \begin{macrocode}
 \RenewDocumentCommand \backmatter {} {
+  % 同样，所有的章节标题不进行编号。
   \setcounter{section}{0}
   \setcounter{subsection}{0}
   \setcounter{subsubsection}{0}
@@ -1988,21 +2367,34 @@
     chapter = {
       numbering = false,
       beforeskip = 18bp,
-      format = {\l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}},
+      format = {
+        \l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}
+      },
       afterskip = 26bp,
     }
   }
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% 定义标题的前后间距。
+%    \begin{macrocode}
 \setlength{\abovecaptionskip}{11pt}
 \setlength{\belowcaptionskip}{9pt}
-
+%    \end{macrocode}
+% 
+% 定义分隔字符。
+%    \begin{macrocode}
 \@@_if_graduate:TF {
   \tl_set:Nn \g_@@_label_divide_char_tl {.}
 } {
   \tl_set:Nn \g_@@_label_divide_char_tl {-}
 }
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\thefigure,\thetable,\theequation,\thelstlisting,\lstlistingname}
+% 定义各种计数器的格式。
+%    \begin{macrocode}
 % figure
 \cs_set:Npn \thefigure {\thechapter\g_@@_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
@@ -2017,14 +2409,20 @@
 % code snippet
 \cs_set:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c_@@_label_code_tl}
-
-
-% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现
+%    \end{macrocode}
+% \end{macro}
+% 
+% 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现。
+% 是的，这是祖传代码。
+%    \begin{macrocode}
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
-
+%    \end{macrocode}
+%
+% 自定义一个默认的 lstlisting 样式。
+%    \begin{macrocode}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -2047,23 +2445,26 @@
     showtabs=false,
     tabsize=2
 }
-% TODO: optional
 \lstset{style=examplestyle}
-
-% 调整插图目录与表格目录的标题
+%    \end{macrocode}
+% 
+% 调整插图目录与表格目录的标题。
+%    \begin{macrocode}
 \cs_set:Npn \listfigurename {\c_@@_label_figure_tl}
 \cs_set:Npn \listtablename {\c_@@_label_table_tl}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%    \end{macrocode}
+% 
 % 根据 GB 3102.11--93 以及 ISO 80000-2:2009 的规定，数学表达式中
 % 表示变量的拉丁字母和希腊字母均应当使用斜体。
+%    \begin{macrocode}
 \unimathsetup{
   math-style = ISO,
   bold-style = ISO,
 }
-
-% 预定义用户常用的证明环境
+%    \end{macrocode}
+% 
+% 预定义用户常用的证明环境。
+%    \begin{macrocode}
 \theoremstyle{plain}
   \newtheorem{algorithm}{算法}[chapter]
   \newtheorem{theorem}{定理}[chapter]
@@ -2079,31 +2480,86 @@
 \theoremstyle{remark}
   \newtheorem{remark}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
-
-
-% user interface.
-\DeclareDocumentCommand \BITSetup { m }
-  { \keys_set:nn { bithesis } { #1 }}
-
+%    \end{macrocode}
+% 
+% \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:nn,\@@_dunderline:n}
+% 用于渲染下划线。
+% 
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
+%   \item \#2 |dim| 长度。
+%   \item \#3 |tl| 文字内容。
+% \end{itemize}
+%    \begin{macrocode}
+\cs_new:Npn \@@_dunderline:nnn #1#2#3 {
+  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
+}
+\cs_new:Npn \@@_dunderline:nn #1#2 {
+  \@@_dunderline:nnn {#1} {1pt} {#2}
+}
+\cs_new:Npn \@@_dunderline:n #1 {
+  \@@_dunderline:nnn {-10pt} {1pt} {#1}
+}
+% 遗留代码，等待重构。
+\newcommand\dunderline[3][-1pt]{{%
+  \setbox0=\hbox{#3}
+  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{|@@_render_cover_entry:nn}
+% 用于渲染封面的辅助函数。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#2 |{token_list}| 为封面信息条目的内容。
+% \end{itemize}
+%
+% 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
+% 存储已经计算出来的最大宽度。
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
   }
   \hspace{1ex}
-  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
+  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
+    {\l_@@_cover_underline_thickness_dim}{
     \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
   }\par
 }
-
-% Get text with from #2, then set to #1.
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |dim| 存储宽度的变量。
+%   \item \#2 |tl| 要计算宽度的文本。
+% \end{itemize}
+%    \begin{macrocode}
 \cs_new:Npn \@@_get_text_width:Nn #1#2
   {
     \hbox_set:Nn \l_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
-
-% Get max text width from seq #2, then set to #1.
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_get_max_text_width:NN}
+% 从 \#2 中获取最大的文本宽度，然后设置到 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |dim| 用于存储最大宽度。
+%   \item \#2: |seq| 用于存储文本。
+% \end{itemize}
+%    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
   {
 % 这里用 |group| 确保局部变量不会被污染。
@@ -2118,8 +2574,20 @@
         }
     \group_end:
   }
-
-% process label (#1) and value #2 separately
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_parse_entry}
+% 解析封面信息条目。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |tl| 为封面信息条目的名称。
+%   \item \#2: |tl| 为封面信息条目的内容。
+% \end{itemize}
+% |//| 会被视为换行符，从而实现信息条目换行的效果。
+%
+%    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
@@ -2129,22 +2597,40 @@
   \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。此函数为主函数。
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
   \seq_set_from_clist:NN \l_@@_input_seq #1
-  % parse newline //
   \seq_map_inline:Nn \l_@@_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
     \@@_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l_@@_right_seq 
+    % 或者 \l_@@_left_sql 中。
+    % left 就是 label，right 就是 value。
     \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
     \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
   }
 
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
   \bool_if:NT \l_@@_cover_auto_width_bool {
     \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
   }
   
 
+  % 最后，根据宽度渲染 label 和 value 对。
   \group_begin:
     \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
       {
@@ -2156,44 +2642,12 @@
       }
   \group_end:
 }
-
-% #1: position
-% #2: line_thickness
-% #3: token list
-\cs_new:Npn \@@_dunderline:nnn #1#2#3 {
-  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
-}
-
-\cs_new:Npn \@@_dunderline:nn #1#2 {
-  \@@_dunderline:nnn {#1} {1pt} {#2}
-}
-
-\cs_new:Npn \@@_dunderline:n #1 {
-  \@@_dunderline:nnn {-10pt} {1pt} {#1}
-}
-
-\newcommand\dunderline[3][-1pt]{{%
-  \setbox0=\hbox{#3}
-  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
-
-\NewEnviron{blindPeerReview}{
-  \bool_if:NTF \g_@@_blind_mode_bool {} {
-    \BODY
-  }
-}
-
-% 重定义 \tn{cleardoublepage}，使得偶数页面在没有内容时也不显示页眉页脚，见
-% \url{https://tex.stackexchange.com/a/1683}。
-\RenewDocumentCommand \cleardoublepage { }
-  {
-    \clearpage
-    \bool_if:NT \g_@@_twoside_bool
-      {
-        \int_if_odd:nF \c@page
-          { \hbox:n { } \thispagestyle { empty } \newpage }
-      }
-  }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\make_graduate_cover:}
+% 制作研究生论文模板封面。
+%    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
   \begin{titlepage}
@@ -2209,12 +2663,19 @@
     \vspace*{65mm}
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
-    {\heiti \zihao{-3} \l_@@_value_author_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l_@@_value_author_tl}
     \vskip 10mm
-    {\heiti \zihao{-3} \l_@@_cover_date_tl} % 黑体 小三
+    % 黑体 小三
+    {\heiti \zihao{-3} \l_@@_cover_date_tl}
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\make_paper_back:}
+% 制作书脊。
+%    \begin{macrocode}
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
   \begin{titlepage}
@@ -2223,7 +2684,11 @@
     \setstretch{1.1}
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
-        {\heiti\zihao{3} \tl_if_blank:VTF \l_@@_value_vertical_title_tl {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}}
+        {
+          \heiti\zihao{3}
+          \tl_if_blank:VTF \l_@@_value_vertical_title_tl 
+            {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
+        }
           \vfill
         {\heiti\zihao{3}\l_@@_value_author_tl}
           \vfill
@@ -2234,31 +2699,43 @@
    % \vskip 5cm
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_make_chinese_title_page:}
+% 制作中文封面页。
+%    \begin{macrocode}
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
-      { %
-        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl} \l_@@_value_classification_tl\\
+      {
+        % 密级、分类号
+        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
+        \l_@@_value_classification_tl\\
         {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
       }
+
      \begin{center}
 
       \vskip \stretch{1}
+
          {\heiti\zihao{-2} \l_@@_value_title_tl}
+
       \vskip \stretch{1}
 
       \def\tabcolsep{1pt}
       \def\arraystretch{1.5}
 
       {
-      \renewcommand{\baselinestretch}{2}
+        \renewcommand{\baselinestretch}{2}
 
         \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
           \tl_set:Nn \l_@@_cover_dilimiter_tl {\qquad}
         }
         \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
-        % if not auto width, try override width
+
+        % 如果不是自动计算宽度，且用户没有自定义宽度，
+        % 则尝试提供一个默认宽度。
         \bool_if:NF \l_@@_cover_auto_width_bool {
           \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
             \dim_set:Nn \l_@@_cover_label_max_width_dim {45mm}
@@ -2268,32 +2745,42 @@
           } 
         }
 
-      \clist_set:Nn \l_@@_input_clist {
-          {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
-          {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
-          {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
-          {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
-          {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
-          {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
-          {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
-          {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
-       }
+        % 渲染信息。
+        \clist_set:Nn \l_@@_input_clist {
+            {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
+            {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
+            {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
+            {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
+            {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
+            {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
+            {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
+            {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
+         }
 
-      \heiti\zihao{-3}
-      \@@_render_cover_entry:n \l_@@_input_clist
+        \heiti\zihao{-3}
+        \@@_render_cover_entry:n \l_@@_input_clist
       }
     \end{center}
     \vskip \stretch{0.5}
   \end{titlepage}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_make_english_title_page:}
+% 制作英文封面页。
+%    \begin{macrocode}
 \cs_new:Npn \@@_make_english_title_page: {
   \begin{titlepage}
     \begin{center}
 
     \vspace*{10em}
-    {\zihao{-2}\textbf{\l_@@_value_title_en_tl}}
-    % \bfseries
+
+    {
+      \zihao{-2}
+      \textbf{\l_@@_value_title_en_tl}
+    }
+
     \vskip \stretch{1}
 
     {
@@ -2304,7 +2791,8 @@
       \tl_set:Nn \l_@@_cover_label_align_tl {l}
       \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
-      % if not auto width, try override width
+      % 如果不是自动计算宽度，且用户没有自定义宽度，
+      % 则尝试提供一个默认宽度。
       \bool_if:NF \l_@@_cover_auto_width_bool {
         \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
           \dim_set:Nn \l_@@_cover_label_max_width_dim {55mm}
@@ -2314,6 +2802,7 @@
         } 
       }
 
+      % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
           {\c_@@_graduate_label_author_en_tl} {\l_@@_value_author_en_tl},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
@@ -2334,7 +2823,126 @@
     \vskip \stretch{0.5}
   \end{titlepage}
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\circled}
+% 圆形数字编号定义。
+%    \begin{macrocode}
+\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
+  {\node[shape = circle, draw, inner~sep = 1pt]
+  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+  \node at (char.center) {\makebox[0pt][c]{#2}};}}
+\robustify{\circled}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_graduate_originality:}
+% 研究生原创性声明。
+%    \begin{macrocode}
+\cs_new:Npn \@@_graduate_originality:
+  {
+    % 取消页眉页脚。
+    \ctexset {
+      chapter / pagestyle = plain,
+    }
 
+    \begin{titlepage}
+      % 不计算页码。
+      \pagenumbering{gobble}
+
+      % 原创性声明部分
+      \begin{center}
+        \@@_same_page:
+        \chapter*{
+          \heiti\zihao{3}
+          \c_@@_graduate_label_originality_tl
+        }
+      \end{center}~\par
+
+      % 本部分字号为四号。
+      \zihao{4}
+      \c_@@_graduate_label_originality_clause_tl
+
+      \vspace{17mm}
+
+      \begin{flushright}
+        \c_@@_graduate_label_originality_author_signature_tl\par
+      \end{flushright}
+
+      \vspace{16mm}
+
+      % 使用授权声明部分。
+      \begin{center}
+        \@@_same_page:
+        \chapter*{
+          \heiti\zihao{3}
+          \c_@@_graduate_label_authorization_tl
+        }
+      \end{center}~\par
+
+      \c_@@_graduate_label_authorization_clause_tl
+
+      \vspace*{15mm}
+
+      \begin{flushright}
+        \begin{spacing}{1.65}
+          \zihao{4}
+          % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \c_@@_graduate_label_originality_author_signature_tl\par
+          \c_@@_graduate_label_originality_supervisor_signature_tl\par
+        \end{spacing}
+      \end{flushright}
+    \end{titlepage}
+    \cleardoublepage
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{定义用户接口}
+%
+% \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BITSetup { m }
+  { \keys_set:nn { bithesis } { #1 }}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{blindPeerReview}
+% 用于包裹涉及个人信息的内容。
+%
+% 在启用盲审模式时，其中的内容会被隐藏。
+%    \begin{macrocode}
+\NewDocumentEnvironment {blindPeerReview} {+b}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {} {
+      #1
+    }
+  } {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\cleardoublepage}
+% 重定义 \tn{cleardoublepage}，
+% 使得偶数页面在没有内容时也不显示页眉页脚。见：
+% \url{https://tex.stackexchange.com/a/1683}。
+%    \begin{macrocode}
+\RenewDocumentCommand \cleardoublepage { }
+  {
+    \clearpage
+    \bool_if:NT \g_@@_twoside_bool
+      {
+        \int_if_odd:nF \c@page
+          { \hbox:n { } \thispagestyle { empty } \newpage }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeCover}
+% 制作封面。
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
     \begin{blindPeerReview}
@@ -2467,7 +3075,8 @@
               \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
             }
 
-            % if not auto width, try override width
+            % 如果不是自动计算宽度，且用户没有自定义宽度，
+            % 则尝试提供一个默认宽度。
             \bool_if:NF \l_@@_cover_auto_width_bool {
               \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
                 \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
@@ -2479,6 +3088,7 @@
 
             \zihao{3}
 
+        % 渲染信息。
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
@@ -2507,7 +3117,8 @@
 
           \vspace*{-3mm}
 
-          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute
+          \nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
 
           \vspace{18mm}
 
@@ -2569,158 +3180,131 @@
     \group_end:
     \end{blindPeerReview}
   }
-
-% 圆形数字编号定义
-\newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
-  {\node[shape = circle, draw, inner~sep = 1pt]
-  (char) {\phantom{\ifblank{#1}{#2}{#1}}};
-  \node at (char.center) {\makebox[0pt][c]{#2}};}}
-\robustify{\circled}
-
-\cs_new:Npn \@@_graduate_originality: {
-  \ctexset {
-    chapter / pagestyle = plain,
-  }
-
-  \begin{titlepage}
-    \pagenumbering{gobble}
-
-    % 原创性声明部分
-    \begin{center}
-      \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_originality_tl}
-    \end{center}~\par
-
-    % 本部分字号为小三
-    \zihao{4}
-    \c_@@_graduate_label_originality_clause_tl
-
-    \vspace{17mm}
-
-    \begin{flushright}
-      \c_@@_graduate_label_originality_author_signature_tl\par
-    \end{flushright}
-
-    \vspace{16mm}
-
-    % 使用授权声明部分
-    \begin{center}
-      \@@_same_page:
-      \chapter*{\heiti\zihao{3}\c_@@_graduate_label_authorization_tl}
-    \end{center}~\par
-
-    \c_@@_graduate_label_authorization_clause_tl
-
-    \vspace*{15mm}
-
-    \begin{flushright}
-      \begin{spacing}{1.65}
-        \zihao{4}
-        % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
-        \c_@@_graduate_label_originality_author_signature_tl\par
-        \c_@@_graduate_label_originality_supervisor_signature_tl\par
-      \end{spacing}
-    \end{flushright}
-  \end{titlepage}
-  \cleardoublepage
-}
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeOriginality}
+% 原创性声明。
+%    \begin{macrocode}
 \NewDocumentCommand \MakeOriginality {} 
-{
-  \group_begin:
-    \begin{blindPeerReview}
-    \int_case:nn {\g_@@_thesis_type_int}
-    {
-      {1} 
+  {
+    \group_begin:
+      \begin{blindPeerReview}
+      \int_case:nn {\g_@@_thesis_type_int}
       {
-        \pagestyle{BIThesis}
-        \pagenumbering{gobble}
+        {1} 
+        {
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
 
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
-        \end{center}~\par
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
+          \end{center}~\par
 
-        % 本部分字号为小三
-        \zihao{-3}
-        \c_@@_bachelor_label_originality_clause_tl
+          % 本部分字号为小三。
+          \zihao{-3}
+          \c_@@_bachelor_label_originality_clause_tl
 
-        \vspace{17mm}
+          \vspace{17mm}
 
-        \begin{flushright}
-          \c_@@_bachelor_label_originality_author_signature_tl\par
-        \end{flushright}
-
-        \vspace{16mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_authorization_tl}
-        \end{center}~\par
-
-        \c_@@_bachelor_label_authorization_clause_tl
-
-        \vspace*{3mm}
-
-        \begin{flushright}
-          \begin{spacing}{1.65}
-            \zihao{-3}
-            % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+          \begin{flushright}
             \c_@@_bachelor_label_originality_author_signature_tl\par
-            \c_@@_bachelor_label_originality_supervisor_signature_tl\par
-          \end{spacing}
-        \end{flushright}
+          \end{flushright}
 
-        \newpage
+          \vspace{16mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{2}
+              \c_@@_bachelor_label_authorization_tl
+            }
+          \end{center}~\par
+
+          \c_@@_bachelor_label_authorization_clause_tl
+
+          \vspace*{3mm}
+
+          \begin{flushright}
+            \begin{spacing}{1.65}
+              \zihao{-3}
+              % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+              \c_@@_bachelor_label_originality_author_signature_tl\par
+              \c_@@_bachelor_label_originality_supervisor_signature_tl\par
+            \end{spacing}
+          \end{flushright}
+
+          \newpage
+        }
+        {3} {
+          \setstretch{1.26}
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_originality_tl
+            }
+          \end{center}~\par
+
+          % 本部分字号为小三
+          \zihao{-4}
+          \c_@@_bachelor_english_label_originality_clause_tl
+
+          \bigbreak
+
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
+
+          \vspace{6mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_authorization_tl
+            }
+          \end{center}~\par
+
+          \c_@@_bachelor_english_label_authorization_clause_tl
+
+          \bigbreak
+          Student~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~
+            \hspace{2mm}Date:\par
+          Supervisor~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm]{}}~
+            \hspace{2mm}Date:\par
+        }
+        {4} {\@@_graduate_originality:}
+        {5} {\@@_graduate_originality:}
       }
-      {3} {
-        \setstretch{1.26}
-        % 原创性声明部分
-        \begin{center}
-          \vspace*{-2bp}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_originality_tl}
-        \end{center}~\par
-
-        % 本部分字号为小三
-        \zihao{-4}
-        \c_@@_bachelor_english_label_originality_clause_tl
-
-        \bigbreak
-
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
-
-        \vspace{6mm}
-
-        % 使用授权声明部分
-        \begin{center}
-          \@@_same_page:
-          \chapter*{\heiti\zihao{-2}\c_@@_bachelor_english_label_authorization_tl}
-        \end{center}~\par
-
-        \c_@@_bachelor_english_label_authorization_clause_tl
-
-        \bigbreak
-        Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~\hspace{2mm}Date:\par
-        Supervisor~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~\hspace{2mm}Date:\par
-      }
-      {4} {\@@_graduate_originality:}
-      {5} {\@@_graduate_originality:}
-    }
-  \end{blindPeerReview}
-  \group_end:
-}
-
+    \end{blindPeerReview}
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakePaperBack}
+% 生成书脊。
+%    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
     \begin{blindPeerReview}
       \make_paper_back:
     \end{blindPeerReview}
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeTitle}
+% 生成标题页。（研究生）
+%    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
     \begin{blindPeerReview}
@@ -2728,7 +3312,12 @@
       \@@_make_english_title_page:
     \end{blindPeerReview}
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeTOC}
+% 生成目录。
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
@@ -2747,7 +3336,9 @@
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
-        \l_@@_unnumchapter_style_cs:n\l_@@_title_font_cs:n{\l_@@_toc_title_tl}
+        \l_@@_unnumchapter_style_cs:n
+          \l_@@_title_font_cs:n
+            {\l_@@_toc_title_tl}
         \vspace{-8pt}
       }
 
@@ -2760,9 +3351,13 @@
       }
     }
   }
-
-  % TODO:
-  \NewDocumentEnvironment {abstract} {}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{abstract}
+% 生成摘要。
+%    \begin{macrocode}
+\NewDocumentEnvironment {abstract} {}
   {
 
     \cleardoublepage
@@ -2807,11 +3402,18 @@
   }
   {
     \par
-    \vspace{4ex}\noindent\textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
+    \vspace{4ex}
+    \noindent
+    \textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
     \newpage
   }
-
-  \NewDocumentEnvironment {abstractEn} {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{abstractEn}
+% 生成英文摘要。
+%    \begin{macrocode}
+\NewDocumentEnvironment {abstractEn} {}
   {
     \cleardoublepage
     \setstretch{1.53}
@@ -2822,9 +3424,11 @@
         \vspace*{-2bp}
 
         \@@_if_thesis_int_type:nTF {3} {
-          \arialfamily\zihao{-2}\textbf\l_@@_value_title_en_tl\\
+          \arialfamily\zihao{-2}\textbf
+          \l_@@_value_title_en_tl\\
         } {
-          \heiti\zihao{3}\textbf\l_@@_value_title_en_tl\\
+          \heiti\zihao{3}\textbf
+          \l_@@_value_title_en_tl\\
         }
       \end{spacing}
       \vspace*{10mm}
@@ -2865,12 +3469,18 @@
     }
   }
   {
-    \par\vspace{3ex}\noindent\textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
+    \par\vspace{3ex}\noindent
+    \textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
     \newpage
   }
 
-% after \backmatter
-  \NewDocumentEnvironment {conclusion} {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{conclusion}
+% 生成结论。需要放在 \cs{macrocode} 之后。
+%    \begin{macrocode}
+\NewDocumentEnvironment {conclusion} {}
   {
     \ctexset{
       section/number = \arabic{section}
@@ -2883,9 +3493,13 @@
     }
   }
   {}
-
-% after backmatter
-  \NewDocumentEnvironment {bibprint} {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{bibprint}
+% 生成参考文献。需要放在 \cs{backmatter} 之后。
+%    \begin{macrocode}
+\NewDocumentEnvironment {bibprint} {}
   {
     % 设置参考文献字号为 5 号
     \renewcommand*{\bibfont}{\zihao{5}}
@@ -2926,10 +3540,13 @@
     }
   }
   {}
-
-  % #1: The name that used as chapter title
-  % #2: The name that used in ToC.
-  \NewDocumentEnvironment {appendices} {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{appendices}
+% 生成附录。
+%    \begin{macrocode}
+\NewDocumentEnvironment {appendices} {}
   {
     % Used in chapter, ToC.
     \tl_new:N \l_@@_appendix_plain_label_tl
@@ -2945,6 +3562,7 @@
     }
 
     \bool_if:NTF \l_@@_appendices_chapter_level_bool {
+      % 附录章节级别
       \setcounter{chapter}{0}
       \ctexset{
         chapter/numbering = true,
@@ -2958,6 +3576,7 @@
         \Alph{chapter}
       }
     } {
+      % 附录节（section）级别
       \ctexset{
         section/number = \l_@@_appendix_plain_label_tl\hspace{1ex}\Alph{section},
         subsection/number = \Alph{section}. \arabic{subsection},
@@ -2982,8 +3601,13 @@
   }
   {
   }
-
-  \NewDocumentEnvironment {acknowledgements} {+b}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{acknowledgements}
+% 生成致谢。
+%    \begin{macrocode}
+\NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
       \ctexset{
@@ -3000,8 +3624,13 @@
       #1
     \end{blindPeerReview}
   } {}
-
-  \NewDocumentEnvironment {publications} {+b}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{publications}
+% 生成攻读学位期间发表论文与研究成果清单。
+%    \begin{macrocode}
+\NewDocumentEnvironment {publications} {+b}
   {
     \begin{blindPeerReview}
       % 设置参考文献字号为 5 号
@@ -3049,8 +3678,13 @@
     \end{blindPeerReview}
   }
   {}
-
-  \NewDocumentEnvironment {resume} {+b}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{resume}
+% 生成个人简历。
+%    \begin{macrocode}
+\NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
     \chapter{\c_@@_label_resume_tl}
@@ -3059,8 +3693,13 @@
   }
   {
   }
+%    \end{macrocode}
+% \end{environment}
 
-  \NewDocumentEnvironment {symbols} {}
+% \begin{environment}{symbols}
+% 生成主要术语对照包。
+%    \begin{macrocode}
+\NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
       \chapter{\c_@@_label_symbols_tl}
@@ -3068,35 +3707,69 @@
       \chapter*{\c_@@_label_symbols_tl}
     }
     \zihao{-4}
-    \begin{itemize}[labelwidth=2.5cm,labelsep=0.5cm,leftmargin=3cm,itemindent=0cm,itemsep=0cm]
+    \begin{itemize}[
+      labelwidth=2.5cm,
+      labelsep=0.5cm,
+      leftmargin=3cm,
+      itemindent=0cm,
+      itemsep=0cm
+    ]
     \cs_set:Npn \makelabel ##1 {##1\hfil}
   }
   {
     \end{itemize}
   }
 %    \end{macrocode}
+% \end{environment}
+%
 %    \begin{macrocode}
 %</thesis>
 %    \end{macrocode}
-
+%
+% \subsection{bitreport.cls 模板类}
+%
 %    \begin{macrocode}
 %<*report>
 %    \end{macrocode}
 %
+% \subsubsection{全局变量与临时变量}
+%
+% \begin{variable}{\g_@@_thesis_type_int}
+% 论文类型，取值从 1 开始，分别对应: 
+%  \begin{enumerate}
+%      \item 课程实验报告
+%      \item （计算机学院）本科生毕业（设计）开题报告
+%  \end{enumerate}
 %    \begin{macrocode}
-% Define global
 \int_new:N \g_@@_report_type_int
-
-% Define Consts.
+%    \end{macrocode}
+% \end{variable}
+% 
+% \begin{variable}{\c_@@_report_type_clist}
+% 定义报告类型的列表。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_report_type_clist
     { common, undergraduate_proposal}
-
-% Define tmp Variables
+%    \end{macrocode}
+% \end{variable}
+% 
+% \begin{variable}{\l_@@_right_seq,\l_@@_left_seq}
+% 临时变量。
+%    \begin{macrocode}
 \seq_new:N \l_@@_right_seq
 \seq_new:N \l_@@_left_seq
-
+%    \end{macrocode}
+% \end{variable}
+% 
+% 手动开启伪粗体、伪斜体。
+%    \begin{macrocode}
 \PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
-
+%    \end{macrocode}
+% 
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitreport| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport }
   {
     option .meta:nn = {bitreport / option } {#1},
@@ -3104,7 +3777,10 @@
     info .meta:nn = { bitreport / info } {#1},
     misc .meta:nn = { bitreport / misc } {#1}
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/option| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / option }
   {
     type .choice:,
@@ -3117,25 +3793,10 @@
     type .initial:n = common,
     ctex .tl_set:N = \l_@@_options_to_ctex_tl,
   }
-
-
-% Pass every option not explicitly defined to `ctexbeamer`.
-\DeclareOption*{
-  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
-}
-% Executes the code for each option.
-\ProcessOptions\relax
-% Load
-\LoadClass[zihao=-4]{ctexart}
-
-\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
-\RequirePackage{caption}
-\RequirePackage{booktabs}
-\RequirePackage{pdfpages}
-
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/cover| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / cover }
   {
     imagePath .tl_set:N = \l_bit_coverimagepath_tl,
@@ -3155,7 +3816,10 @@
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/info| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -3167,24 +3831,84 @@
     externalSupervisor .tl_set:N = \l_@@_value_external_supervisor_tl,
     studentId .tl_set:N = \l_@@_value_student_id_tl,
   }
-
+%    \end{macrocode}
+% 
+% 定义 |bitreport/misc| 模板类的键值对。
+%    \begin{macrocode}
 \keys_define:nn { bitreport / misc }
   {
     reviewTable .tl_set:N = \l_bit_reviewtable_tl,
   }
-
+%    \end{macrocode}
+% 
+% 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
+%    \begin{macrocode}
+\DeclareOption*{
+  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
+}
+%    \end{macrocode}
+% 
+% 加载 ctexbook 模板类。
+%    \begin{macrocode}
+\ProcessOptions\relax
+\LoadClass[zihao=-4]{ctexart}
+%    \end{macrocode}
+% 
+% \subsubsection{定义模板类样式}
+% 加载所需的宏包。
+%    \begin{macrocode}
+\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{pdfpages}
+%    \end{macrocode}
+% 
+% 在宏加载时，处理 |bitreport/option| 中的值。使得 |bitreport| 
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bitreport / option }
-
+%    \end{macrocode}
+% 
+% \subsubsection{辅助函数与常量}
+%
+% \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
+% 生成变体。
+%    \begin{macrocode}
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
-
-% #1: position
-% #2: line_thickness
-% #3: token list
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_dunderline:nnn}
+% 用于渲染下划线。
+% 
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
+%   \item \#2 |dim| 长度。
+%   \item \#3 |tl| 文字内容。
+% \end{itemize}
+%    \begin{macrocode}
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{|@@_render_cover_entry:nn}
+% 用于渲染封面的辅助函数。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#2 |{token_list}| 为封面信息条目的内容。
+% \end{itemize}
+%
+% 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
+% 存储已经计算出来的最大宽度。
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
@@ -3194,7 +3918,18 @@
     \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
   }\par
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |dim| 存储宽度的变量。
+%   \item \#2 |tl| 要计算宽度的文本。
+% \end{itemize}
+%    \begin{macrocode}
 % Get text with from #2, then set to #1.
 \cs_new:Npn \@@_get_text_width:Nn #1#2
   {
@@ -3202,8 +3937,18 @@
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
   }
 \cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
-
-% Get max text width from seq #2, then set to #1.
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_get_max_text_width:NN}
+% 从 \#2 中获取最大的文本宽度，然后设置到 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |dim| 用于存储最大宽度。
+%   \item \#2: |seq| 用于存储文本。
+% \end{itemize}
+%    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
   {
 % 这里用 |group| 确保局部变量不会被污染。
@@ -3218,8 +3963,20 @@
         }
     \group_end:
   }
-
-% process label (#1) and value #2 separately
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_parse_entry}
+% 解析封面信息条目。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |tl| 为封面信息条目的名称。
+%   \item \#2: |tl| 为封面信息条目的内容。
+% \end{itemize}
+% |//| 会被视为换行符，从而实现信息条目换行的效果。
+%
+%    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
   \seq_set_split:Nnx \l_@@_tmp_right_seq {//} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
@@ -3229,22 +3986,40 @@
   \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
-
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。此函数为主函数。
+%    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
   \seq_set_from_clist:NN \l_@@_input_seq #1
-  % parse newline //
   \seq_map_inline:Nn \l_@@_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value // 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
     \@@_parse_entry ##1
+    % 然后将这些 label - value 对添加到 \l_@@_right_seq 
+    % 或者 \l_@@_left_sql 中。
+    % left 就是 label，right 就是 value。
     \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
     \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
   }
 
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
   \bool_if:NT \l_@@_cover_auto_width_bool {
     \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
   }
   
 
+  % 最后，根据宽度渲染 label 和 value 对。
   \group_begin:
     \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
       {
@@ -3256,9 +4031,22 @@
       }
   \group_end:
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{定义用户接口}
+% 
+% \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
+%    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bitreport } { #1 }}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeCover}
+% 渲染封面。
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
     \group_begin:
@@ -3266,29 +4054,39 @@
       {1} {
         \begin{titlepage}
           \centering
+
           \vspace{23mm}
+
           \tl_if_empty:NF \l_bit_coverimagepath_tl {
             \includegraphics[width=.5\textwidth]{\l_bit_coverimagepath_tl}\\
           }
+
           \vspace{10mm}
+
           \heiti\fontsize{24pt}{24pt}\selectfont{\l_@@_value_title_tl}\\
+
           \vspace{67mm}
-            \begin{spacing}{2.2}
-              \songti\zihao{3}
-              \clist_set:Nn \l_@@_input_clist {
-                  {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
-                  {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
-                  {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
-                  {\textbf{学\qquad 号：}} {\l_@@_value_student_id_tl},
-                  {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
-                  {\textbf{任课教师：}} {\l_@@_value_supervisor_tl},
-              }
 
-              \@@_render_cover_entry:n \l_@@_input_clist
+          \begin{spacing}{2.2}
+            \songti\zihao{3}
 
-            \end{spacing}
+            \clist_set:Nn \l_@@_input_clist {
+                {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
+                {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
+                {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
+                {\textbf{学\qquad 号：}} {\l_@@_value_student_id_tl},
+                {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
+                {\textbf{任课教师：}} {\l_@@_value_supervisor_tl},
+            }
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+
+          \end{spacing}
+
           \vspace*{\fill}
+
           \centering
+
           \songti\fontsize{12pt}{12pt}\selectfont{
             \tl_if_empty:NTF \l_@@_cover_date_tl {
               \today
@@ -3304,11 +4102,15 @@
           \topskip=0pt
           \vspace*{-16mm}
           \centering
-          \hspace{-6mm}\songti\fontsize{22pt}{22pt}\selectfont{北京理工大学}\par
+          \hspace{-6mm}
+          \songti\fontsize{22pt}{22pt}
+          \selectfont{北京理工大学}\par
 
           \vspace{13mm}
 
-          \hspace{-6mm}\heiti\fontsize{24pt}{24pt}\selectfont{本科生毕业设计（论文）开题报告}\par
+          \hspace{-6mm}
+          \heiti\fontsize{24pt}{24pt}
+          \selectfont{本科生毕业设计（论文）开题报告}\par
 
           \vspace{53mm}
 
@@ -3321,7 +4123,7 @@
                 {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
                 {\textbf{指导教师：}} {\l_@@_value_supervisor_tl},
                 {\textbf{校外指导教师：}} {\l_@@_value_external_supervisor_tl},
-             }
+            }
 
           \@@_render_cover_entry:n \l_@@_input_clist
 
@@ -3331,12 +4133,18 @@
 
           \centering
           \hspace{-6mm}\songti\fontsize{12pt}{12pt}\selectfont{\today}
+
         \end{titlepage}
       }
     }
     \group_end:
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeReviewTable}
+% 渲染评阅表。
+%    \begin{macrocode}
 \DeclareDocumentCommand \MakeReviewTable {} 
   {
     \group_begin:
@@ -3345,65 +4153,96 @@
       \end{titlepage}
     \group_end:
   }
-
+%    \end{macrocode}
+% \end{macro}
+%
 % 定义 caption 字体为楷体
+%    \begin{macrocode}
 \DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
-
+%    \end{macrocode}
+% 
 % 设置图片的 caption 格式
+%    \begin{macrocode}
 \renewcommand{\thefigure}{\thesection-\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
-
+%    \end{macrocode}
+% 
 % 设置表格的 caption 格式
+%    \begin{macrocode}
 \renewcommand{\thetable}{\thesection-\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
-
+%    \end{macrocode}
+% 
 % 输出大写数字日期
+%    \begin{macrocode}
 \ctexset{today=big}
-
+%    \end{macrocode}
+% 
 % 将西文字体设置为 Times New Roman
+%    \begin{macrocode}
 \setromanfont{Times~New~Roman}
-
-%% 将中文楷体设置为 SIMKAI.TTF（如果需要）
-% \setCJKfamilyfont{zhkai}{[SIMKAI.TTF]}
-% \newcommand*{\kaiti}{\CJKfamily{zhkai}}
-
+%    \end{macrocode}
+% 
 % 设置文档标题深度
+%    \begin{macrocode}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
-
-%%
-% 设置一级标题、二级标题格式
-% 一级标题：小三，宋体，加粗，段前段后各半行
+%    \end{macrocode}
+% 
+% 设置一级标题、二级标题格式。
+%    \begin{macrocode}
+% 一级标题：小三，宋体，加粗，段前段后各半行。
 \ctexset{section={
-  format={\raggedright \bfseries \songti \zihao{-3}},
+  format={
+    \raggedright \bfseries \songti \zihao{-3}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
   name = {,.\quad}
   }
 }
-% 二级标题：小四，宋体，加粗，段前段后各半行
+% 二级标题：小四，宋体，加粗，段前段后各半行。
 \ctexset{subsection={
-  format = {\bfseries \songti \raggedright \zihao{4}},
+  format = {
+    \bfseries \songti \raggedright \zihao{4}
+  },
   beforeskip = 24bp plus 1ex minus .2ex,
   afterskip = 24bp plus .2ex,
   fixskip = true,
   }
 }
-% 页眉和页脚（页码）的格式设定
+%    \end{macrocode}
+% 
+% 页眉和页脚（页码）的格式设定。
+%    \begin{macrocode}
 \fancyhf{}
 \int_case:nn {\g_@@_report_type_int} {
-  {1} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{\l_@@_value_title_tl}}}
-  {2} {\fancyhead[R]{\fontsize{10.5pt}{10.5pt}\selectfont{北京理工大学本科生毕业设计（论文）开题报告}}}
+  {1} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{\l_@@_value_title_tl}
+    }
+  }
+  {2} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{北京理工大学本科生毕业设计（论文）开题报告}
+    }
+  }
 }
 \fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
-
+%    \end{macrocode}
+% 
 % 正文开始
+%    \begin{macrocode}
 \pagestyle{fancy}
 \setcounter{page}{1}
-
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 % 正文 22 磅的行距，段前段后间距为 0
 % \setlength{\parskip}{0em}
 \cs_set:Npn \baselinestretch {1.53}
@@ -3414,63 +4253,106 @@
 %    \begin{macrocode}
 %</report>
 %    \end{macrocode}
+%
+% \subsection{bitbeamer.cls 文档类}
+%
 %    \begin{macrocode}
 %<*beamer>
 %    \end{macrocode}
 %
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitbeamer| 文档类的接口键值对。
 %    \begin{macrocode}
-% Define our keyvalues
 \keys_define:nn { bitbeamer }
   {
     titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
     framelogo .tl_set:N = \l_bit_framelogo_tl,
   }
+%    \end{macrocode}
+% 
+% 在宏加载时，处理 |bitbeamer| 中的值。使得 |bitbeamer| 
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
 \ProcessKeysOptions { bitbeamer }
-
+%    \end{macrocode}
+% 
 % Pass every option not explicitly defined to `ctexbeamer`.
+%    \begin{macrocode}
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{ctexbeamer}
 }
+%    \end{macrocode}
+% 
 % Executes the code for each option.
+% Load.
+%    \begin{macrocode}
 \ProcessOptions\relax
-
-% Load
 \LoadClass{ctexbeamer}
-
+%    \end{macrocode}
+% 
+% \subsubsection{定义模板类样式}
+%
+% 加载所需的宏包。
+%    \begin{macrocode}
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
-
+%    \end{macrocode}
+%
+% 设置主题与主题色。
+%    \begin{macrocode}
 \usetheme{Madrid}
-% 设置主题色
 \colorlet{beamer@blendedblue}{green!40!black}
-
+%    \end{macrocode}
+% 
+%
+% \begin{macro}{\CJKhl:nn}
+% 高亮中文字符。
+%    \begin{macrocode}
 \cs_new:Npn \CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
-
+%    \end{macrocode}
+% \end{macro}
+% 
 % Set header if logo path is provided. 
+%    \begin{macrocode}
 \tl_if_empty:NF \l_bit_titlegraphic_tl {
   % BIT Logo
   \titlegraphic{
       \includegraphics[width=2cm]{\l_bit_titlegraphic_tl}
   }
 }
-
+%    \end{macrocode}
+% 
 % Set title logo if logo path is provided.
+%    \begin{macrocode}
 \tl_if_empty:NF \l_bit_framelogo_tl {
   \addtobeamertemplate{frametitle}{}{%
     \begin{tikzpicture}[remember~picture,overlay]
-      \node[anchor=north~east,yshift=2pt] at (current~page.north~east) {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
+      \node[anchor=north~east,yshift=2pt] at (current~page.north~east) 
+        {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
     \end{tikzpicture}
   }
 }
-
-% Expose command to user.
+%    \end{macrocode}
+% 
+% \subsubsection{定义用户接口}
+%
+%    \begin{macrocode}
 \cs_new_eq:NN \CJKhl \CJKhl:nn
 %    \end{macrocode}
+%
 %    \begin{macrocode}
 %</beamer>
 %    \end{macrocode}
-
+%
+% \subsection{已弃用的代码}
+%
+% 来自老版本的代码，但是在新版本中已经不再使用。
+% ，为了保证老版本论文能够正常编译，特此保留。
+%
+% \subsubsection{bitbook.cls 文档类（已弃用）}
+%
 %    \begin{macrocode}
 %<*book>
 %    \end{macrocode}
@@ -3727,6 +4609,7 @@
 %    \begin{macrocode}
 %</book>
 %    \end{macrocode}
+% \subsubsection{bitart.cls 文档类（已弃用）}
 %    \begin{macrocode}
 %<*article>
 %    \end{macrocode}
@@ -3878,6 +4761,7 @@
 %    \begin{macrocode}
 %</article>
 %    \end{macrocode}
+% \subsubsection{bitgraduate.cls 文档类（已弃用）}
 %    \begin{macrocode}
 %<*graduate>
 %    \end{macrocode}
@@ -4741,11 +5625,7 @@ footskip=0.7cm% 页脚 1.8cm %
      \RequirePackage{siunitx}
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-
-%% End of file `bitmaster-xetex.cls'.
-
 %% =========================================================
-
 %    \end{macrocode}
 %    \begin{macrocode}
 %</graduate>
@@ -4805,7 +5685,7 @@ footskip=0.7cm% 页脚 1.8cm %
 }%
 
 \newcommand{\BIThesisLaTeX}{{\BIThesis}北京理工大学学位论文及报告{\LaTeX}模板}
-\newcommand{\BIThesisMacroPackage}{{\BIThesis}宏集}
+\newcommand{\BIThesisMacroPackage}{{\BIThesis}宏包}
 \newcommand{\BIThesisWiki}{{\BIThesis}在线文档}
 \newcommand{\BIThesisScaffold}{{\BIThesis}模板}
 \newcommand{\BIThesisRelease}{{\BIThesis}模板}
@@ -4851,6 +5731,8 @@ footskip=0.7cm% 页脚 1.8cm %
   today=big,
   abstractname=简介,
 }
+
+\pagestyle{fancy}
 
 \ctexset{section={
   format={\raggedright \bfseries \zihao{-3}},
