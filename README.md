@@ -5,7 +5,7 @@
 
 📖 [_非官方本科生毕业设计论文/研究生学位论文 LaTeX 模板（以及更多）_](https://bithesis.bitnp.net)
 
-![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)
+[![GitHub all releases](https://img.shields.io/github/downloads/BITNP/BIThesis/total)](https://tooomm.github.io/github-release-stats/?username=BITNP&repository=BIThesis)
 [![English version](./assets/english.svg)](./README-bithesis.md)
 [![Latexmk](https://badgen.net/badge/compiler/latexmk/blue)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
@@ -15,7 +15,7 @@
 
 **有关如何安装 $LaTeX$、编译 BIThesis 模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
 
-[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)](https://bithesis.bitnp.net/)
+[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)[wiki]]
 
 **有关 BIThesis 提供的配置选项和命令，请参阅 BIThesis 的模板使用手册。👇**
 
@@ -39,7 +39,7 @@ BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学�
 
 > **研究生模板暂未与官方进行沟通。但是我们的代码从[BIT-thesis](https://github.com/BIT-thesis/LaTeX-template)迁移而来，而它曾得到了研究生院和北京理工大学学生事务中心的支持。**
 
-> __我们将在 2022-2023 学年与官方进行研究生模板的沟通。__
+> [__我们正在与官方进行研究生模板的沟通。__](https://github.com/BITNP/BIThesis/issues/163)
 
 <h2>特性</h2>
 
@@ -84,7 +84,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 开发者指南
 
-**以下内容供开发者使用，如果你是普通用户的话，请参考我们的[在线文档](https://bithesis.bitnp.net) 。**
+**以下内容供开发者使用，如果你是普通用户的话，请参考我们的[在线文档][wiki] 。**
 
 详见[开发者指南](./DEVELOPMENT.md)
 
@@ -129,6 +129,5 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
 
----
-
 [releases]: https://github.com/BITNP/BIThesis/releases/latest
+[wiki]: https://bithesis.bitnp.net
