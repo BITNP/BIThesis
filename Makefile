@@ -65,12 +65,14 @@ copy: cls
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
 # Generate scaffolds for overleaf
-overleaf: FORCE_MAKE
+overleaf: doc FORCE_MAKE
 	git clean -fdx ./templates/
 	rm -rf overleaf
 	make copy
 	mkdir overleaf
-	ls templates | xargs -I {} bash -c "cp -r ./templates/{} overleaf && zip -r ./overleaf/{}.zip ./overleaf/{}"
+	ls templates | \
+		xargs -I {} bash -c \
+		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && zip -r ./overleaf/{}.zip ./overleaf/{}"
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
