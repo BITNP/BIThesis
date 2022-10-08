@@ -726,7 +726,7 @@
     \group_end:
   }
 \cs_new:Npn \__bithesis_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l__bithesis_tmp_right_seq {//} {#2}
+  \seq_set_split:Nnx \l__bithesis_tmp_right_seq {\\} {#2}
   \seq_clear:N \l__bithesis_tmp_left_seq
   \seq_map_inline:Nn \l__bithesis_tmp_right_seq {
     \seq_put_right:Nn \l__bithesis_tmp_left_seq {}
@@ -742,9 +742,9 @@
   \seq_set_from_clist:NN \l__bithesis_input_seq #1
   \seq_map_inline:Nn \l__bithesis_input_seq {
     % 然后对于每一对 label 和 value，首先查找
-    % value 中是否含有 // 字符，如果有，则将其分割成多个
+    % value 中是否含有 \\ 字符，如果有，则将其分割成多个
     % label - value 对。
-    % 比如 {label_1} {value // 1} 会被转换成
+    % 比如 {label_1} {value \\ 1} 会被转换成
     % { {label_1} {value}, {} {1} }
     \__bithesis_parse_entry ##1
     % 然后将这些 label - value 对添加到 \l__bithesis_right_seq
