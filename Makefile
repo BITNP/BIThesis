@@ -9,6 +9,7 @@ LATEXMK = latexmk
 
 SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
+EXAMPLEDIR = ./examples
 
 # make deletion work on Windows
 ifdef SystemRoot
@@ -86,3 +87,7 @@ pkg: doc
 	cp bithesis.{ins,dtx,pdf} ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
+
+examples: cls
+	cp bithesis.cls $(EXAMPLEDIR)/cover/
+	cd $(EXAMPLEDIR)/cover && latexmk && cd -
