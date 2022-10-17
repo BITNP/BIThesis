@@ -13,6 +13,32 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.0.5] - 2022-10-14
+
+[dd078d8](dd078d809b98f20c6780237d2fc111a5f5348ada)...[28c14a2](28c14a2991e22a5dbc717bcab9e2d0bfb6f641dd)
+
+### Bug Fixes
+
+- Fix typo in newline syntax. ([e016a41](e016a419ccc4db70afadbc3f74d31e024d880722))
+
+### Documentation
+
+- Refine expression, add more links ([e5786c5](e5786c5a722935659389efc0af00808065570be3))
+- Fix readme. ([28c14a2](28c14a2991e22a5dbc717bcab9e2d0bfb6f641dd))
+
+### Features
+
+- Pack manual into overleaf pkg. ([4d8ab18](4d8ab183521f748f8c0049e440fd2592d827783c))
+
+### Miscellaneous Tasks
+
+- Add examples. ([293e5ee](293e5ee677d939926d06887bb9f4b9de0252aeb3))
+- Add build script for examples ([223e99f](223e99f0d96780445b3d01bc4126349c699e15d1))
+
+### Refactor
+
+- Add initial value to setup key-value pairs. ([deadc3b](deadc3b8b228ec0d41071b91193f67a1552a677e))
+
 ## [3.0.4] - 2022-10-04
 
 [5026f2b](5026f2b1c4c52af20e6c7427247bd834c7350ae0)...[a3a7b7d](a3a7b7d0d46a580bff4a5bc8f007f6aadb0ee934)

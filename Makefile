@@ -9,6 +9,7 @@ LATEXMK = latexmk
 
 SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
+EXAMPLEDIR = ./examples
 
 # make deletion work on Windows
 ifdef SystemRoot
@@ -65,12 +66,14 @@ copy: cls
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
 # Generate scaffolds for overleaf
-overleaf: FORCE_MAKE
+overleaf: doc FORCE_MAKE
 	git clean -fdx ./templates/
 	rm -rf overleaf
 	make copy
 	mkdir overleaf
-	ls templates | xargs -I {} bash -c "cp -r ./templates/{} overleaf && zip -r ./overleaf/{}.zip ./overleaf/{}"
+	ls templates | \
+		xargs -I {} bash -c \
+		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && zip -r ./overleaf/{}.zip ./overleaf/{}"
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
@@ -84,3 +87,7 @@ pkg: doc
 	cp bithesis.{ins,dtx,pdf} ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
+
+examples: cls
+	cp bithesis.cls $(EXAMPLEDIR)/cover/
+	cd $(EXAMPLEDIR)/cover && latexmk && cd -
