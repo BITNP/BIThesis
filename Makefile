@@ -93,5 +93,5 @@ examples: cls
 	cd $(EXAMPLEDIR)/cover && latexmk && cd -
 
 check-cls: copy
-	git status --porcelain | grep -q . && echo "Please commit your changes first." && exit 1
+	git status --porcelain | (! grep -q .) || (echo "Please execute \`make copy\` to update the *.cls in each templates."; exit 1)
 

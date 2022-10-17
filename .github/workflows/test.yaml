@@ -40,4 +40,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check there is nothing to diff.
         run: |
-            [[ ! `git status --porcelain` ]]
+            make check-cls
