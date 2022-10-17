@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2022-09-30}{3.0.4}{BIT Thesis Templates}
+{2022-10-17}{3.0.5}{BIT Thesis Templates}
 \int_new:N \g__bithesis_thesis_type_int
 \int_new:N \g__bithesis_head_zihao_int
 \bool_new:N \g__bithesis_twoside_bool
@@ -281,36 +281,60 @@
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l__bithesis_value_title_tl,
+    title .initial:n = {形状记忆聚氨酯的合成及其在织物中的应用（示例）},
     titleEn .tl_set:N = \l__bithesis_value_title_en_tl,
+    titleEn .initial:n = {Synthesis~and~Application~on~Texttiles~of~the~Shape~Memory~Polyurethane~(example)},
+    % 因为是覆盖选项，所以不需要设置初始值。
     verticalTitle .tl_set:N = \l__bithesis_value_vertical_title_tl,
     school .tl_set:N = \l__bithesis_value_school_tl,
+    school .initial:n = {网络空间安全学院（示例）},
     major .tl_set:N = \l__bithesis_value_major_tl,
+    major .initial:n = {网络空间安全（示例）},
     author .tl_set:N = \l__bithesis_value_author_tl,
+    author .initial:n = {张三（示例）},
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
+    studentId .initial:n = {3120211xxx（示例）},
     supervisor .tl_set:N = \l__bithesis_value_supervisor_tl,
+    supervisor .initial:n = {李四教授（示例）},
+    % 因为默认不显示，所以不需要设置初始值。
     externalSupervisor .tl_set:N = \l__bithesis_value_external_supervisor_tl,
     keywords .tl_set:N = \l__bithesis_value_keywords_tl,
+    keywords .initial:n = {聚氨酯,形状记忆,织物（示例）},
     keywordsEn .tl_set:N = \l__bithesis_value_keywords_en_tl,
+    keywordsEn .initial:n = {Polyurethane,Shape Memory,Textiles (example)},
     translationTitle .tl_set:N = \l__bithesis_value_trans_title_tl,
     translationOriginTitle .tl_set:N = \l__bithesis_value_trans_origin_title_tl,
     % 中国分类号，研究生学位论文使用
     classification .tl_set:N = \l__bithesis_value_classification_tl,
+    classification .initial:n = {TQ~028.1（示例）},
     % UDC 分类号，研究生学位论文使用
     UDC .tl_set:N = \l__bithesis_value_udc_tl,
+    UDC .initial:n = {540（示例）},
     chairman .tl_set:N = \l__bithesis_value_chairman_tl,
+    chairman .initial:n = {王五教授（示例）},
     degree .tl_set:N = \l__bithesis_value_degree_tl,
+    degree .initial:n = {工学博士（示例）},
     degreeEn .tl_set:N = \l__bithesis_value_degree_en_tl,
+    degreeEn .initial:n = {Doctor~of~Engineering~(example)},
     institute .tl_set:N = \l__bithesis_value_institute_tl,
     institute .initial:n = {\c__bithesis_label_university_tl},
     defenseDate .tl_set:N = \l__bithesis_value_defense_date_tl,
+    defenseDate .initial:n = {2019年6月（示例）},
     authorEn .tl_set:N = \l__bithesis_value_author_en_tl,
+    authorEn .initial:n = {San~Zhang~(example)},
     schoolEn .tl_set:N = \l__bithesis_value_school_en_tl,
+    schoolEn .initial:n = {School~of~Network~Space~Security\\(example)},
     supervisorEn .tl_set:N = \l__bithesis_value_supervisor_en_tl,
+    supervisorEn .initial:n = {Prof.~Si~Li~(example)},
     chairmanEn .tl_set:N = \l__bithesis_value_chairman_en_tl,
+    chairmanEn .initial:n = {Prof.~Wu~Wang~(example)},
     majorEn .tl_set:N = \l__bithesis_value_major_en_tl,
+    majorEn .initial:n = {Cyberspace~Security~and~Technology\\(example)},
     instituteEn .tl_set:N = \l__bithesis_value_institute_en_tl,
     instituteEn .initial:n = {\c__bithesis_label_university_en_tl},
     defenseDateEn .tl_set:N = \l__bithesis_value_defense_date_en_tl,
+    defenseDateEn .initial:n = {June,~2019~(example)},
+    % 因为默认不显示，所以不需要设置初始值。
     classifiedLevel .tl_set:N = \l__bithesis_value_classified_level_tl,
   }
 \keys_define:nn { bithesis / misc }

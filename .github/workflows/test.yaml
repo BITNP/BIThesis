@@ -33,11 +33,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: xu-cheng/texlive-action/full@v1
+        name: Check there is nothing to diff.
         with:
           run: |
             apk add make
-            make copy
-      - uses: actions/checkout@v3
-      - name: Check there is nothing to diff.
-        run: |
-            [[ ! `git status --porcelain` ]]
+            make check-cls

@@ -91,3 +91,7 @@ pkg: doc
 examples: cls
 	cp bithesis.cls $(EXAMPLEDIR)/cover/
 	cd $(EXAMPLEDIR)/cover && latexmk && cd -
+
+check-cls: copy
+	git status --porcelain | (! grep -q .) || (echo "Please execute \`make copy\` to update the *.cls in each templates."; exit 1)
+
