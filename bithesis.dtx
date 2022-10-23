@@ -942,6 +942,28 @@
 %  可以覆盖附录在目录中的名称，默认为「附录」。
 % \end{function}
 %
+% \subsubsection{攻读学位期间发表论文与研究成果清单选项}
+%
+% \begin{function}{publications}
+%   \begin{bitsyntax}[emph={[1]publications}]
+%     publications = (*\marg{键值列表}*)
+%     publications/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
+% \end{function}
+%
+% \begin{function}{publications/sorting}
+%   \begin{bitsyntax}[emph={[1]sorting}]
+%     sorting = (*(true)|false*)
+%   \end{bitsyntax}
+%
+% 根据学校要求，攻读学位期间发表论文与研究成果清单
+% 中的论文应按照发表时间排序。
+% 但是在实际使用中，有时候需要按照用户意愿自定义排序。
+% 该选项用于控制是否按照发表时间排序。
+% \end{function}
+% 
 % \subsubsection{其他配置}
 % 
 % \begin{function}{misc}
@@ -1613,6 +1635,14 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\c_@@_publication_types_clist}
+% 定义「攻读学位期间发表论文与研究成果清单」管理方式。
+%    \begin{macrocode}
+% \clist_const:Nn \c_@@_publication_modes_clist
+%     { biblatex, custom }
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{macro}{\@@_define_label:nn,\@@_define_label_by_thesis_type:nnn,\@@_define_label:nnn,\@@_define_label_by_thesis_type:nnnn}
 % 定义常量（标签）的辅助函数。
 %    \begin{macrocode}
@@ -1857,6 +1887,7 @@
   option .meta:nn = { bithesis / option } {#1},
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
+  publications .meta:nn = { bithesis / publications } {#1},
 }
 %    \end{macrocode}
 %
@@ -2022,6 +2053,17 @@
 }
 %    \end{macrocode}
 %
+% 定义 |bithesis/appendices| 键值对类。
+%    \begin{macrocode}
+\keys_define:nn { bithesis / publications }
+{
+  % type .choice:,
+  % type .value_required:n = true,
+  % type .initial:n = biblatex,
+  sorting .bool_set:N = \l_@@_publications_sorting_bool,
+  sorting .initial:n = {true},
+}
+%    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
@@ -3698,7 +3740,9 @@
       }
 
       % Sorting by year, name, type.
-      \newrefcontext[sorting=ynt]
+      \bool_if:NT \l_@@_publications_sorting_bool {
+        \newrefcontext[sorting=ynt]
+      }
       \chapter{\c_@@_label_publications_tl}
       #1
     \end{blindPeerReview}

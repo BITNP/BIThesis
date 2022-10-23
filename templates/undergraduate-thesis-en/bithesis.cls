@@ -238,6 +238,7 @@
   option .meta:nn = { bithesis / option } {#1},
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
+  publications .meta:nn = { bithesis / publications } {#1},
 }
 \keys_define:nn { bithesis / option }
 {
@@ -372,6 +373,14 @@
   chapterLevel .bool_set:N = \l__bithesis_appendices_chapter_level_bool,
   title .tl_set:N = \l__bithesis_appendices_title_tl,
   TOCTitle .tl_set:N = \l__bithesis_appendix_toc_title_tl,
+}
+\keys_define:nn { bithesis / publications }
+{
+  % type .choice:,
+  % type .value_required:n = true,
+  % type .initial:n = biblatex,
+  sorting .bool_set:N = \l__bithesis_publications_sorting_bool,
+  sorting .initial:n = {true},
 }
 \ProcessKeysOptions { bithesis / option }
 \__bithesis_if_thesis_english:T {
@@ -1692,7 +1701,9 @@
       }
 
       % Sorting by year, name, type.
-      \newrefcontext[sorting=ynt]
+      \bool_if:NT \l__bithesis_publications_sorting_bool {
+        \newrefcontext[sorting=ynt]
+      }
       \chapter{\c__bithesis_label_publications_tl}
       #1
     \end{blindPeerReview}
