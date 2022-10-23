@@ -1670,11 +1670,15 @@
       #1
     \end{blindPeerReview}
   } {}
-\NewDocumentCommand \Author {O{1} o}
+\NewDocumentCommand \Author {O{1} o o}
   {
     \bool_if:NTF \g__bithesis_blind_mode_bool {
       % 盲审模式
-      第\zhnumber{#1}作者
+      \IfValueTF {#3} {
+        #3
+      } {
+        第\zhnumber{#1}作者
+      }
     } {
       % 普通模式
       \IfValueTF {#2} {
@@ -1687,11 +1691,15 @@
     }
   }
 
-\NewDocumentCommand \AuthorEn {O{1} o}
+\NewDocumentCommand \AuthorEn {O{1} o o}
   {
     \bool_if:NTF \g__bithesis_blind_mode_bool {
       % 盲审模式
-      \Ordinalstringnum{#1}~Author
+      \IfValueTF {#3} {
+        #3
+      } {
+        \Ordinalstringnum{#1}~Author
+      }
     } {
       % 普通模式
       \IfValueTF {#2} {
