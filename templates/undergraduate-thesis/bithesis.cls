@@ -1812,7 +1812,12 @@
           % 自增计数器
           \stepcounter{pub}
           % 设置小标题，暂时没有考虑英文模式
-          \noindent\zhnumber{\thepub}、##1\par
+          \noindent
+          \textbf{
+            \heiti{
+              \zhnumber{\thepub}、##1
+            }
+          }\par
         }
       }
 
