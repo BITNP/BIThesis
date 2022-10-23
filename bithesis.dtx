@@ -1635,11 +1635,11 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\c_@@_publication_types_clist}
+% \begin{variable}{\c_@@_publication_modes_clist}
 % 定义「攻读学位期间发表论文与研究成果清单」管理方式。
 %    \begin{macrocode}
-% \clist_const:Nn \c_@@_publication_modes_clist
-%     { biblatex, custom }
+\clist_const:Nn \c_@@_publication_modes_clist
+    { biblatex, custom }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -2057,11 +2057,19 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / publications }
 {
-  % type .choice:,
-  % type .value_required:n = true,
-  % type .initial:n = biblatex,
+  mode .choice:,
+  mode .value_required:n = true,
+  mode .choices:Vn = 
+    \c_@@_publication_modes_clist
+    {
+      \int_new:N \l_@@_publication_mode_int
+      \int_set:Nn \l_@@_publication_mode_int \l_keys_choice_int
+    },
+  mode .initial:n = biblatex,
   sorting .bool_set:N = \l_@@_publications_sorting_bool,
   sorting .initial:n = {true},
+  omit .bool_set:N = \l_@@_publications_omit_bool,
+  omit .initial:n = {false},
 }
 %    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
@@ -2127,6 +2135,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage{fmtcount}
 %    \end{macrocode}
 %
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
@@ -2981,11 +2990,14 @@
 % 用于包裹涉及个人信息的内容。
 %
 % 在启用盲审模式时，其中的内容会被隐藏。
+%
+% 本环境提供了一个可选参数，可以传入一个 bool 值，用于在盲审模式下关闭
+% 隐藏行为。
 %    \begin{macrocode}
-\NewDocumentEnvironment {blindPeerReview} {+b}
+  \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
   {
-    \bool_if:NTF \g_@@_blind_mode_bool {} {
-      #1
+    \bool_if:nTF {\g_@@_blind_mode_bool && #1} {} {
+      #2
     }
   } {}
 %    \end{macrocode}
@@ -3695,20 +3707,59 @@
 %    \end{macrocode}
 % \end{environment}
 %
+% \begin{macro}{\Author,\AuthorEn}
+% 在普通模式下，输出作者姓名。
+% 在盲审模式下，输出「第 n 作者」。
+%    \begin{macrocode}
+\NewDocumentCommand \Author {O{1} o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      第\zhnumber{#1}作者
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_tl
+      }
+    }
+  }
+
+% 英文姓名
+\NewDocumentCommand \AuthorEn {O{1} o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      \Ordinalstringnum{#1}~Author
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_en_tl
+      }
+    }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{environment}{publications}
 % 生成攻读学位期间发表论文与研究成果清单。
 %    \begin{macrocode}
 \NewDocumentEnvironment {publications} {+b}
   {
-    \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l_@@_publications_omit_bool]
       % 设置参考文献字号为 5 号
       \renewcommand*{\bibfont}{\zihao{5}}
       % 设置参考文献各个项目之间的垂直距离为 0
       \setlength{\bibitemsep}{0ex}
       \setlength{\bibnamesep}{0ex}
       \setlength{\bibinitsep}{0ex}
-      % 设置单倍行距
-      \renewcommand{\baselinestretch}{1.2}
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
 
@@ -3730,19 +3781,86 @@
         }
       }
 
+      % If in blindPeerReview mode, omit delimiters in author field.
+      \bool_if:NT \g_@@_blind_mode_bool {
+        % 如果有多个作者，不修改此项的话，作者与标题之间会有逗号。
+        \DeclareDelimFormat[bib,biblist]{finalnamedelim}{}
+        % 如果自己不是第一个作者，不修改此项的话，会在最开始有逗号。
+        \DeclareDelimFormat{multinamedelim}{}
+      }
+
       % ===== 上方定义与「参考文献」部分相同
       \cs_set:Npn \mkbibnamegiven ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
       \cs_set:Npn \mkbibnamefamily ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          % 作者为自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式
+            \getpartannotation{myself}
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          % 作者不是自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
-      % Sorting by year, name, type.
-      \bool_if:NT \l_@@_publications_sorting_bool {
-        \newrefcontext[sorting=ynt]
+      % 添加一个参考文献
+      \cs_new:Npn \addpub ##1 {
+        \nocite{##1}
+        \addtocategory{mypub}{##1}
       }
+
+      % 添加多个参考文献
+      \cs_new:Npn \addpubs ##1 {
+        % apply a clist
+        \clist_map_function:nN {##1} \addpub
+      }
+
+      % 设置计数器
+      \newcounter{pub}
+      % 设置小标题
+      \cs_new:Npn \pubsection ##1 {
+        {
+          \stepcounter{pub}
+          \noindent\zhnumber{\thepub}、##1\par
+          \setlength{\parskip}{\baselineskip}
+        }
+      }
+
+      % 设置参考文献的排序
+      \bool_if:NTF \l_@@_publications_sorting_bool {
+        % Sorting by year, name, type.
+        \newrefcontext[sorting=ynt]
+      } {
+        % Do not sort.
+        \newrefcontext
+      }
+
       \chapter{\c_@@_label_publications_tl}
       #1
     \end{blindPeerReview}

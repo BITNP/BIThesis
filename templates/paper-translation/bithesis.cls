@@ -59,6 +59,8 @@
 \cs_new:Npn \__bithesis_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g__bithesis_thesis_type_int} = {5} {#1} {#2}}
 \clist_const:Nn \c__bithesis_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
+\clist_const:Nn \c__bithesis_publication_modes_clist
+    { biblatex, custom }
 \cs_new_protected:Npn \__bithesis_define_label:nn #1#2
   { \tl_const:cn { c__bithesis_label_ #1 _tl } {#2} }
 
@@ -376,11 +378,19 @@
 }
 \keys_define:nn { bithesis / publications }
 {
-  % type .choice:,
-  % type .value_required:n = true,
-  % type .initial:n = biblatex,
+  mode .choice:,
+  mode .value_required:n = true,
+  mode .choices:Vn =
+    \c__bithesis_publication_modes_clist
+    {
+      \int_new:N \l__bithesis_publication_mode_int
+      \int_set:Nn \l__bithesis_publication_mode_int \l_keys_choice_int
+    },
+  mode .initial:n = biblatex,
   sorting .bool_set:N = \l__bithesis_publications_sorting_bool,
   sorting .initial:n = {true},
+  omit .bool_set:N = \l__bithesis_publications_omit_bool,
+  omit .initial:n = {false},
 }
 \ProcessKeysOptions { bithesis / option }
 \__bithesis_if_thesis_english:T {
@@ -417,6 +427,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage{fmtcount}
 \pdfstringdefDisableCommands{%
   \let\quad\empty
 }
@@ -1025,10 +1036,10 @@
   }
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
-\NewDocumentEnvironment {blindPeerReview} {+b}
+  \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
   {
-    \bool_if:NTF \g__bithesis_blind_mode_bool {} {
-      #1
+    \bool_if:nTF {\g__bithesis_blind_mode_bool && #1} {} {
+      #2
     }
   } {}
 \RenewDocumentCommand \cleardoublepage { }
@@ -1659,17 +1670,48 @@
       #1
     \end{blindPeerReview}
   } {}
+\NewDocumentCommand \Author {O{1} o}
+  {
+    \bool_if:NTF \g__bithesis_blind_mode_bool {
+      % 盲审模式
+      第\zhnumber{#1}作者
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l__bithesis_value_author_tl
+      }
+    }
+  }
+
+\NewDocumentCommand \AuthorEn {O{1} o}
+  {
+    \bool_if:NTF \g__bithesis_blind_mode_bool {
+      % 盲审模式
+      \Ordinalstringnum{#1}~Author
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l__bithesis_value_author_en_tl
+      }
+    }
+  }
 \NewDocumentEnvironment {publications} {+b}
   {
-    \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l__bithesis_publications_omit_bool]
       % 设置参考文献字号为 5 号
       \renewcommand*{\bibfont}{\zihao{5}}
       % 设置参考文献各个项目之间的垂直距离为 0
       \setlength{\bibitemsep}{0ex}
       \setlength{\bibnamesep}{0ex}
       \setlength{\bibinitsep}{0ex}
-      % 设置单倍行距
-      \renewcommand{\baselinestretch}{1.2}
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
 
@@ -1691,19 +1733,86 @@
         }
       }
 
+      % If in blindPeerReview mode, omit delimiters in author field.
+      \bool_if:NT \g__bithesis_blind_mode_bool {
+        % 如果有多个作者，不修改此项的话，作者与标题之间会有逗号。
+        \DeclareDelimFormat[bib,biblist]{finalnamedelim}{}
+        % 如果自己不是第一个作者，不修改此项的话，会在最开始有逗号。
+        \DeclareDelimFormat{multinamedelim}{}
+      }
+
       % ===== 上方定义与「参考文献」部分相同
       \cs_set:Npn \mkbibnamegiven ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          \bool_if:NTF \g__bithesis_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          \bool_if:NTF \g__bithesis_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
       \cs_set:Npn \mkbibnamefamily ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          % 作者为自己
+          \bool_if:NTF \g__bithesis_blind_mode_bool {
+            % 盲审模式
+            \getpartannotation{myself}
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          % 作者不是自己
+          \bool_if:NTF \g__bithesis_blind_mode_bool {
+            % 盲审模式，不输出
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
-      % Sorting by year, name, type.
-      \bool_if:NT \l__bithesis_publications_sorting_bool {
-        \newrefcontext[sorting=ynt]
+      % 添加一个参考文献
+      \cs_new:Npn \addpub ##1 {
+        \nocite{##1}
+        \addtocategory{mypub}{##1}
       }
+
+      % 添加多个参考文献
+      \cs_new:Npn \addpubs ##1 {
+        % apply a clist
+        \clist_map_function:nN {##1} \addpub
+      }
+
+      % 设置计数器
+      \newcounter{pub}
+      % 设置小标题
+      \cs_new:Npn \pubsection ##1 {
+        {
+          \stepcounter{pub}
+          \noindent\zhnumber{\thepub}、##1\par
+          \setlength{\parskip}{\baselineskip}
+        }
+      }
+
+      % 设置参考文献的排序
+      \bool_if:NTF \l__bithesis_publications_sorting_bool {
+        % Sorting by year, name, type.
+        \newrefcontext[sorting=ynt]
+      } {
+        % Do not sort.
+        \newrefcontext
+      }
+
       \chapter{\c__bithesis_label_publications_tl}
       #1
     \end{blindPeerReview}
