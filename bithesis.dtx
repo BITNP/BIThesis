@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-10-17}{3.0.5}{BIT Thesis Templates}
+%<cls>{2022-10-23}{3.1.0}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/10/17 3.0.5 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/10/23 3.1.0 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -3753,6 +3753,7 @@
 %    \begin{macrocode}
 \NewDocumentEnvironment {publications} {+b}
   {
+    % 同时设置 omit 以及 blindPeerReview 才能跳过此章节生成。
     \begin{blindPeerReview}[\l_@@_publications_omit_bool]
       % 设置参考文献字号为 5 号
       \renewcommand*{\bibfont}{\zihao{5}}
@@ -3790,6 +3791,8 @@
       }
 
       % ===== 上方定义与「参考文献」部分相同
+
+      % 中文姓名下，此部分不参与输出。
       \cs_set:Npn \mkbibnamegiven ##1 {
         \haspartannotation{myself}{
           \bool_if:NTF \g_@@_blind_mode_bool {
@@ -3846,9 +3849,10 @@
       % 设置小标题
       \cs_new:Npn \pubsection ##1 {
         {
+          % 自增计数器
           \stepcounter{pub}
+          % 设置小标题，暂时没有考虑英文模式
           \noindent\zhnumber{\thepub}、##1\par
-          \setlength{\parskip}{\baselineskip}
         }
       }
 
