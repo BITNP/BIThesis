@@ -13,6 +13,30 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.1.0] - 2022-10-24
+
+[747b546](https://github.com/BITNP/BIThesis/commit/747b546b3d3e64325efbaf39977839bc5822ec7c)...[617dd00](https://github.com/BITNP/BIThesis/commit/617dd00b0ad9cb00e9fa8da9c6f75cafb17d7b0f)
+
+### Bug Fixes
+
+- Apply bold, heiti to pubsection title. ([fcddd78](https://github.com/BITNP/BIThesis/commit/fcddd789deb840e3ef1deb73c4cc1369e872ce4a))
+
+### Documentation
+
+- Add doc comment. ([a484e57](https://github.com/BITNP/BIThesis/commit/a484e57941d52a17d14b19be6575e534d814b0bc))
+- Add doc for new feature in the publications. ([edf0b37](https://github.com/BITNP/BIThesis/commit/edf0b375d15472b202e60174c3b9fe0132d64186))
+
+### Features
+
+- Add sorting option in publications. ([5052c84](https://github.com/BITNP/BIThesis/commit/5052c84e921bca07738fcdc351b7bba420060306))
+- Manage multiple section in pubs. ([0d3a465](https://github.com/BITNP/BIThesis/commit/0d3a4659c2e3aa6eb9b2117632fe317c349d3471))
+- Add overridable option for \Author. ([fac3a86](https://github.com/BITNP/BIThesis/commit/fac3a86e95ce9468c6a43b8210245a88b8a20352))
+
+### Miscellaneous Tasks
+
+- Add more docs. ([1e57b6c](https://github.com/BITNP/BIThesis/commit/1e57b6c0752375de41cf19da7ac10cfac03b5b2d))
+- Fix hyperlinks. ([617dd00](https://github.com/BITNP/BIThesis/commit/617dd00b0ad9cb00e9fa8da9c6f75cafb17d7b0f))
+
 ## [3.0.5] - 2022-10-14
 
 [dd078d8](https://github.com/BITNP/BIThesis/commit/dd078d809b98f20c6780237d2fc111a5f5348ada)...[28c14a2](https://github.com/BITNP/BIThesis/commit/28c14a2991e22a5dbc717bcab9e2d0bfb6f641dd)
