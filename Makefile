@@ -1,3 +1,6 @@
+# 以下命令仅能在 Linux 或 MacOS 环境下执行。
+# 如果你是 windows 用户，可以使用 git bash 或者 cygwin 来执行；
+# 或者可以考虑将此脚本移植为 PowerShell。
 PACKAGE = bithesis
 
 LATEX = xelatex

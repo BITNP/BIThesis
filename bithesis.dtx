@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-10-17}{3.0.5}{BIT Thesis Templates}
+%<cls>{2022-10-23}{3.1.0}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/10/17 3.0.5 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/10/23 3.1.0 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -942,6 +942,42 @@
 %  可以覆盖附录在目录中的名称，默认为「附录」。
 % \end{function}
 %
+% \subsubsection{攻读学位期间发表论文与研究成果清单选项}
+%
+% \begin{function}{publications}
+%   \begin{bitsyntax}[emph={[1]publications}]
+%     publications = (*\marg{键值列表}*)
+%     publications/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+% 
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
+% \end{function}
+%
+% \begin{function}{publications/sorting}
+%   \begin{bitsyntax}[emph={[1]sorting}]
+%     sorting = (*(true)|false*)
+%   \end{bitsyntax}
+%
+% 根据学校要求，攻读学位期间发表论文与研究成果清单
+% 中的论文应按照发表时间排序。
+% 但是在实际使用中，有时候需要按照用户意愿自定义排序。
+% 该选项用于控制是否按照发表时间排序。
+%
+% \textit{注意，如果编译后编号产生错误，
+% 请使用 |latexmk -c| 或手动清空缓存后再编译}
+% \end{function}
+%
+% \begin{function}{publications/omit}
+%   \begin{bitsyntax}[emph={[1]omit}]
+%     omit = (*(false)|true*)
+%   \end{bitsyntax}
+%
+% 在盲审模式下，不渲染「攻读学位期间发表论文与研究成果清单」。
+%
+% \textit{一般不需要用户自行修改。}
+% \end{function}
+% 
+% 
 % \subsubsection{其他配置}
 % 
 % \begin{function}{misc}
@@ -1190,15 +1226,75 @@
 % \end{function}
 %
 % \begin{function}{publications}
-%   \begin{bitsyntax}[emph={[1]publications,addtocategory,printbibliography}]
+%   \begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
+%     文献较少的时候。
 %     \begin{publications}
-%       \nocite{\meta{引用内容的key}}
-%       \addtocategory{mypub}{\meta{引用内容的key}}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%
 %       \printbibliography[heading=none,category=mypub,resetnumbers=true]
+%     \end{publications}
+%
+%     文献较多，需要分类的时候。
+%     \begin{publications}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%       \pubsection{文章}
+%
+%       \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
+%
+%       \pubsection{一些书}
+%
+%       \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
+%
+%       \pubsection{另一些书}
+%
+%       \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
 %     \end{publications}
 %   \end{bitsyntax}
 %
 %   攻读学位期间发表论文与研究成果清单。
+% \end{function}
+% 
+% \begin{function}{\addpubs,\addpub}
+%   \begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
+%     \begin{publications}
+%       \addpub{\meta{单条引用内容的key}}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%     \end{publications}
+%   \end{bitsyntax}
+%
+% \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
+% 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
+% \end{function}
+%
+% \begin{function}{\pubsection}
+%   \begin{bitsyntax}[emph={[1]publications,pubsection,printbibliography}]
+%     \begin{publications}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%
+%       \pubsection{分类一}
+%       \printbibliography[heading=none,category=mypub,type=book,resetnumbers=true]
+%       
+%       \pubsection{分类二}
+%       \printbibliography[heading=none,category=mypub,type=article,resetnumbers=true]
+%     \end{publications}
+%   \end{bitsyntax}
+% 
+% \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
+% 用于添加分类的目录。
+% \end{function}
+%
+% \begin{function}{\Author,\AuthorEn}
+%   \begin{bitsyntax}[emph={[1]Author}]
+%     \Author[<n(表示第几作者，默认为 1)>][<覆盖普通模式下内容>][<覆盖盲审模式下内容>]
+%   \end{bitsyntax}
+%
+% \textit{通常在「攻读学位期间发表论文与研究成果清单」的 |.bib| 文件中使用。}
+% \begin{itemize}
+%   \item 在普通模式下，输出作者姓名（由用户在 |info/author| 中配置）。
+%   \item 如果指定了覆盖普通模式下内容，则输出覆盖内容。
+%   \item 在盲审模式下，输出「第n作者」。
+%   \item 如果指定了覆盖盲审模式下内容，则输出覆盖内容。
+% \end{itemize}
 % \end{function}
 %
 % \begin{function}{acknowledgements}
@@ -1613,6 +1709,14 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\c_@@_publication_modes_clist}
+% 定义「攻读学位期间发表论文与研究成果清单」管理方式。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_publication_modes_clist
+    { biblatex, custom }
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{macro}{\@@_define_label:nn,\@@_define_label_by_thesis_type:nnn,\@@_define_label:nnn,\@@_define_label_by_thesis_type:nnnn}
 % 定义常量（标签）的辅助函数。
 %    \begin{macrocode}
@@ -1857,6 +1961,7 @@
   option .meta:nn = { bithesis / option } {#1},
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
+  publications .meta:nn = { bithesis / publications } {#1},
 }
 %    \end{macrocode}
 %
@@ -2022,6 +2127,25 @@
 }
 %    \end{macrocode}
 %
+% 定义 |bithesis/appendices| 键值对类。
+%    \begin{macrocode}
+\keys_define:nn { bithesis / publications }
+{
+  % mode .choice:,
+  % mode .value_required:n = true,
+  % mode .choices:Vn = 
+  %   \c_@@_publication_modes_clist
+  %   {
+  %     \int_new:N \l_@@_publication_mode_int
+  %     \int_set:Nn \l_@@_publication_mode_int \l_keys_choice_int
+  %   },
+  % mode .initial:n = biblatex,
+  sorting .bool_set:N = \l_@@_publications_sorting_bool,
+  sorting .initial:n = {true},
+  omit .bool_set:N = \l_@@_publications_omit_bool,
+  omit .initial:n = {false},
+}
+%    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
@@ -2085,6 +2209,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage{fmtcount}
 %    \end{macrocode}
 %
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
@@ -2939,11 +3064,14 @@
 % 用于包裹涉及个人信息的内容。
 %
 % 在启用盲审模式时，其中的内容会被隐藏。
+%
+% 本环境提供了一个可选参数，可以传入一个 bool 值，用于在盲审模式下关闭
+% 隐藏行为。
 %    \begin{macrocode}
-\NewDocumentEnvironment {blindPeerReview} {+b}
+  \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
   {
-    \bool_if:NTF \g_@@_blind_mode_bool {} {
-      #1
+    \bool_if:nTF {\g_@@_blind_mode_bool && #1} {} {
+      #2
     }
   } {}
 %    \end{macrocode}
@@ -3653,20 +3781,68 @@
 %    \end{macrocode}
 % \end{environment}
 %
+% \begin{macro}{\Author,\AuthorEn}
+% 在普通模式下，输出作者姓名。
+% 在盲审模式下，输出「第 n 作者」。
+%    \begin{macrocode}
+\NewDocumentCommand \Author {O{1} o o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      \IfValueTF {#3} {
+        #3
+      } {
+        第\zhnumber{#1}作者
+      }
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_tl
+      }
+    }
+  }
+
+% 英文姓名
+\NewDocumentCommand \AuthorEn {O{1} o o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      \IfValueTF {#3} {
+        #3
+      } {
+        \Ordinalstringnum{#1}~Author
+      }
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_en_tl
+      }
+    }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{environment}{publications}
 % 生成攻读学位期间发表论文与研究成果清单。
 %    \begin{macrocode}
 \NewDocumentEnvironment {publications} {+b}
   {
-    \begin{blindPeerReview}
+    % 同时设置 omit 以及 blindPeerReview 才能跳过此章节生成。
+    \begin{blindPeerReview}[\l_@@_publications_omit_bool]
       % 设置参考文献字号为 5 号
       \renewcommand*{\bibfont}{\zihao{5}}
       % 设置参考文献各个项目之间的垂直距离为 0
       \setlength{\bibitemsep}{0ex}
       \setlength{\bibnamesep}{0ex}
       \setlength{\bibinitsep}{0ex}
-      % 设置单倍行距
-      \renewcommand{\baselinestretch}{1.2}
       % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
       \setlength{\biblabelsep}{1.7mm}
 
@@ -3688,17 +3864,94 @@
         }
       }
 
+      % If in blindPeerReview mode, omit delimiters in author field.
+      \bool_if:NT \g_@@_blind_mode_bool {
+        % 如果有多个作者，不修改此项的话，作者与标题之间会有逗号。
+        \DeclareDelimFormat[bib,biblist]{finalnamedelim}{}
+        % 如果自己不是第一个作者，不修改此项的话，会在最开始有逗号。
+        \DeclareDelimFormat{multinamedelim}{}
+      }
+
       % ===== 上方定义与「参考文献」部分相同
+
+      % 中文姓名下，此部分不参与输出。
       \cs_set:Npn \mkbibnamegiven ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
       \cs_set:Npn \mkbibnamefamily ##1 {
-        \ifitemannotation{myself}{\textbf{##1}}{##1}
+        \haspartannotation{myself}{
+          % 作者为自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式
+            \getpartannotation{myself}
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          % 作者不是自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出
+          } {
+            % 普通模式
+            ##1
+          }
+        }
       }
 
-      % Sorting by year, name, type.
-      \newrefcontext[sorting=ynt]
+      % 添加一个参考文献
+      \cs_new:Npn \addpub ##1 {
+        \nocite{##1}
+        \addtocategory{mypub}{##1}
+      }
+
+      % 添加多个参考文献
+      \cs_new:Npn \addpubs ##1 {
+        % apply a clist
+        \clist_map_function:nN {##1} \addpub
+      }
+
+      % 设置计数器
+      \newcounter{pub}
+      % 设置小标题
+      \cs_new:Npn \pubsection ##1 {
+        {
+          % 自增计数器
+          \stepcounter{pub}
+          % 设置小标题，暂时没有考虑英文模式
+          \noindent
+          \textbf{
+            \heiti{
+              \zhnumber{\thepub}、##1
+            }
+          }\par
+        }
+      }
+
+      % 设置参考文献的排序
+      \bool_if:NTF \l_@@_publications_sorting_bool {
+        % Sorting by year, name, type.
+        \newrefcontext[sorting=ynt]
+      } {
+        % Do not sort.
+        \newrefcontext
+      }
+
       \chapter{\c_@@_label_publications_tl}
       #1
     \end{blindPeerReview}
