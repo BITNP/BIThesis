@@ -378,15 +378,15 @@
 }
 \keys_define:nn { bithesis / publications }
 {
-  mode .choice:,
-  mode .value_required:n = true,
-  mode .choices:Vn =
-    \c__bithesis_publication_modes_clist
-    {
-      \int_new:N \l__bithesis_publication_mode_int
-      \int_set:Nn \l__bithesis_publication_mode_int \l_keys_choice_int
-    },
-  mode .initial:n = biblatex,
+  % mode .choice:,
+  % mode .value_required:n = true,
+  % mode .choices:Vn =
+  %   \c__bithesis_publication_modes_clist
+  %   {
+  %     \int_new:N \l__bithesis_publication_mode_int
+  %     \int_set:Nn \l__bithesis_publication_mode_int \l_keys_choice_int
+  %   },
+  % mode .initial:n = biblatex,
   sorting .bool_set:N = \l__bithesis_publications_sorting_bool,
   sorting .initial:n = {true},
   omit .bool_set:N = \l__bithesis_publications_omit_bool,

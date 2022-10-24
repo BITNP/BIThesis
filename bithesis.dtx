@@ -962,7 +962,21 @@
 % 中的论文应按照发表时间排序。
 % 但是在实际使用中，有时候需要按照用户意愿自定义排序。
 % 该选项用于控制是否按照发表时间排序。
+%
+% \textit{注意，如果编译后编号产生错误，
+% 请使用 |latexmk -c| 或手动清空缓存后再编译}
 % \end{function}
+%
+% \begin{function}{publications/omit}
+%   \begin{bitsyntax}[emph={[1]omit}]
+%     omit = (*(false)|true*)
+%   \end{bitsyntax}
+%
+% 在盲审模式下，不渲染「攻读学位期间发表论文与研究成果清单」。
+%
+% \textit{一般不需要用户自行修改。}
+% \end{function}
+% 
 % 
 % \subsubsection{其他配置}
 % 
@@ -1212,15 +1226,75 @@
 % \end{function}
 %
 % \begin{function}{publications}
-%   \begin{bitsyntax}[emph={[1]publications,addtocategory,printbibliography}]
+%   \begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
+%     文献较少的时候。
 %     \begin{publications}
-%       \nocite{\meta{引用内容的key}}
-%       \addtocategory{mypub}{\meta{引用内容的key}}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%
 %       \printbibliography[heading=none,category=mypub,resetnumbers=true]
+%     \end{publications}
+%
+%     文献较多，需要分类的时候。
+%     \begin{publications}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%       \pubsection{文章}
+%
+%       \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
+%
+%       \pubsection{一些书}
+%
+%       \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
+%
+%       \pubsection{另一些书}
+%
+%       \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
 %     \end{publications}
 %   \end{bitsyntax}
 %
 %   攻读学位期间发表论文与研究成果清单。
+% \end{function}
+% 
+% \begin{function}{\addpubs,\addpub}
+%   \begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
+%     \begin{publications}
+%       \addpub{\meta{单条引用内容的key}}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%     \end{publications}
+%   \end{bitsyntax}
+%
+% \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
+% 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
+% \end{function}
+%
+% \begin{function}{\pubsection}
+%   \begin{bitsyntax}[emph={[1]publications,pubsection,printbibliography}]
+%     \begin{publications}
+%       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+%
+%       \pubsection{分类一}
+%       \printbibliography[heading=none,category=mypub,type=book,resetnumbers=true]
+%       
+%       \pubsection{分类二}
+%       \printbibliography[heading=none,category=mypub,type=article,resetnumbers=true]
+%     \end{publications}
+%   \end{bitsyntax}
+% 
+% \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
+% 用于添加分类的目录。
+% \end{function}
+%
+% \begin{function}{\Author,\AuthorEn}
+%   \begin{bitsyntax}[emph={[1]Author}]
+%     \Author[<n(表示第几作者，默认为 1)>][<覆盖普通模式下内容>][<覆盖盲审模式下内容>]
+%   \end{bitsyntax}
+%
+% \textit{通常在「攻读学位期间发表论文与研究成果清单」的 |.bib| 文件中使用。}
+% \begin{itemize}
+%   \item 在普通模式下，输出作者姓名（由用户在 |info/author| 中配置）。
+%   \item 如果指定了覆盖普通模式下内容，则输出覆盖内容。
+%   \item 在盲审模式下，输出「第n作者」。
+%   \item 如果指定了覆盖盲审模式下内容，则输出覆盖内容。
+% \end{itemize}
 % \end{function}
 %
 % \begin{function}{acknowledgements}
@@ -2057,15 +2131,15 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / publications }
 {
-  mode .choice:,
-  mode .value_required:n = true,
-  mode .choices:Vn = 
-    \c_@@_publication_modes_clist
-    {
-      \int_new:N \l_@@_publication_mode_int
-      \int_set:Nn \l_@@_publication_mode_int \l_keys_choice_int
-    },
-  mode .initial:n = biblatex,
+  % mode .choice:,
+  % mode .value_required:n = true,
+  % mode .choices:Vn = 
+  %   \c_@@_publication_modes_clist
+  %   {
+  %     \int_new:N \l_@@_publication_mode_int
+  %     \int_set:Nn \l_@@_publication_mode_int \l_keys_choice_int
+  %   },
+  % mode .initial:n = biblatex,
   sorting .bool_set:N = \l_@@_publications_sorting_bool,
   sorting .initial:n = {true},
   omit .bool_set:N = \l_@@_publications_omit_bool,
