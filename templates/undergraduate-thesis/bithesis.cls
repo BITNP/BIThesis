@@ -416,7 +416,7 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks=true]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{array}
