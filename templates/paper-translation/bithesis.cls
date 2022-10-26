@@ -416,12 +416,12 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage[hidelinks=true]{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
-\RequirePackage{amssymb}
+\RequirePackage{pifont}
 \RequirePackage{amsthm}
 \RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
@@ -1036,6 +1036,8 @@
   }
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
+\DeclareDocumentCommand \BigStar { }
+  { \ding{72} }
   \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
   {
     \bool_if:nTF {\g__bithesis_blind_mode_bool && #1} {} {
