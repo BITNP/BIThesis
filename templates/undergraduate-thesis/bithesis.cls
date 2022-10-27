@@ -461,6 +461,7 @@
   }
 }
 \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
 \ctex_at_end_preamble:n {
   \__bithesis_if_thesis_english:TF {
