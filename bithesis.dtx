@@ -2258,9 +2258,11 @@
 }
 %    \end{macrocode}
 %
-% 根据学校的要求，在图片前后加上一行空白。
+% 根据学校的要求，在本科生模板图片前后加上一行空白。
 %    \begin{macrocode}
-\setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\@@_if_bachelor_thesis:T {
+  \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+}
 %    \end{macrocode}
 %
 % 设置 Times New Roman 字体。
