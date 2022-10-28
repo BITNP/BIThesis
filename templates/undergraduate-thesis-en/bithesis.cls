@@ -460,7 +460,9 @@
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
-\setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\__bithesis_if_bachelor_thesis:T {
+  \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+}
 \setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
 \ctex_at_end_preamble:n {
