@@ -421,6 +421,7 @@
 \RequirePackage{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{pifont}
 \RequirePackage{amsthm}
 \RequirePackage{unicode-math}
