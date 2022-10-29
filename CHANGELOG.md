@@ -13,6 +13,41 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.1.1] - 2022-10-29
+
+[1a24ab8](https://github.com/BITNP/BIThesis/commit/1a24ab8de2e9c1d00efc4e190b4554d9ea0c1710)...[0ea1942](https://github.com/BITNP/BIThesis/commit/0ea194239afbf6483a854b74f9ee37bd6bba4143)
+
+### Bug Fixes
+
+- Hide color and border in the hyperref. ([c2c22fa](https://github.com/BITNP/BIThesis/commit/c2c22faf1e073cb51b5c68d205ccbe21604c9300))
+- Use pifont to provide \BigStar. ([7ad372a](https://github.com/BITNP/BIThesis/commit/7ad372a5ced6139f18d50a213a4db3285aa3f8d0))
+- Set Times New Roman as the main font. ([5dd2999](https://github.com/BITNP/BIThesis/commit/5dd2999c85015c0e47b4864b5f28928f4f40c28b))
+- Remove the extra blank around the figure. ([15b2153](https://github.com/BITNP/BIThesis/commit/15b21536b9698ee782043bd284bc0294b94687c3))
+
+### Documentation
+
+- Add an example on customizing text in listoffigure. ([9338dcd](https://github.com/BITNP/BIThesis/commit/9338dcd517d70e9ae026a9d72f71b783122435b8))
+- Add a FAQ entry for adjusting math font. ([a774cfe](https://github.com/BITNP/BIThesis/commit/a774cfe51deeafd6c964654aea45dea2696446bb))
+
+### Miscellaneous Tasks
+
+- Add a changelog inside the manual. ([a23c7a6](https://github.com/BITNP/BIThesis/commit/a23c7a69738e6bedb79c86393c2f3657b3eee9bc))
+
+### Refactor
+
+- Update release tracker template. ([72fe3d6](https://github.com/BITNP/BIThesis/commit/72fe3d623721f048e5972ede364260e2b764ca61))
+- Format code. ([237232d](https://github.com/BITNP/BIThesis/commit/237232d7fc7c593c30cd4429021ac4e05c3d44b5))
+- Add examples on publications. ([0ea1942](https://github.com/BITNP/BIThesis/commit/0ea194239afbf6483a854b74f9ee37bd6bba4143))
+
+### Testing
+
+- Update doctor-thesis test ([5d4c72b](https://github.com/BITNP/BIThesis/commit/5d4c72b8b596c89f53048e499045bd9a5abddca1))
+
+### Hotfix
+
+- Correct hyperref option. ([250e259](https://github.com/BITNP/BIThesis/commit/250e259298e3f624c9b01f5ef25075cf3a69dde6))
+- Import asmsymb before unicode-math. ([65bd9c8](https://github.com/BITNP/BIThesis/commit/65bd9c8493dd0e2d021fe967fac91815089b9969))
+
 ## [3.1.0] - 2022-10-24
 
 [747b546](https://github.com/BITNP/BIThesis/commit/747b546b3d3e64325efbaf39977839bc5822ec7c)...[617dd00](https://github.com/BITNP/BIThesis/commit/617dd00b0ad9cb00e9fa8da9c6f75cafb17d7b0f)
