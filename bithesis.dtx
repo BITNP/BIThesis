@@ -3859,16 +3859,16 @@
   }
 %    \end{macrocode}
 % \end{macro}
+%
 % \begin{macro}{\addpub,\addpubs}
-% 添加一个参考文献
-% 添加多个参考文献
+% 添加一个或多个参考文献。
 %   \begin{macrocode}
-\cs_new:Npn \addpub #1 {
+\NewDocumentCommand \addpub {m} {
   \nocite{#1}
   \addtocategory{mypub}{#1}
 }
 
-\cs_new:Npn \addpubs #1 {
+\NewDocumentCommand \addpubs {m} {
   % apply a clist
   \clist_map_function:nN {#1} \addpub
 }
@@ -3876,9 +3876,9 @@
 % \end{macro}
 %
 % \begin{macro}{\pubsection}
-% 设置小标题
-%   \begin{macrocode}
-\cs_new:Npn \pubsection #1 {
+% 设置小标题。
+%    \begin{macrocode}
+\NewDocumentCommand \pubsection {m} {
   {
     % 自增计数器
     \par\stepcounter{pub}
@@ -3891,7 +3891,7 @@
     }\par
   }
 }
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{environment}{publications}
