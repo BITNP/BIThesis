@@ -3859,6 +3859,40 @@
   }
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{\addpub,\addpubs}
+% 添加一个参考文献
+% 添加多个参考文献
+%   \begin{macrocode}
+\cs_new:Npn \addpub #1 {
+  \nocite{#1}
+  \addtocategory{mypub}{#1}
+}
+
+\cs_new:Npn \addpubs #1 {
+  % apply a clist
+  \clist_map_function:nN {#1} \addpub
+}
+%   \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pubsection}
+% 设置小标题
+%   \begin{macrocode}
+\cs_new:Npn \pubsection #1 {
+  {
+    % 自增计数器
+    \par\stepcounter{pub}
+    % 设置小标题，暂时没有考虑英文模式
+    \noindent
+    \textbf{
+      \heiti{
+        \zhnumber{\thepub}、#1
+      }
+    }\par
+  }
+}
+%   \end{macrocode}
+% \end{macro}
 %
 % \begin{environment}{publications}
 % 生成攻读学位期间发表论文与研究成果清单。
@@ -3944,34 +3978,13 @@
         }
       }
 
-      % 添加一个参考文献
-      \cs_new:Npn \addpub ##1 {
-        \nocite{##1}
-        \addtocategory{mypub}{##1}
-      }
-
-      % 添加多个参考文献
-      \cs_new:Npn \addpubs ##1 {
-        % apply a clist
-        \clist_map_function:nN {##1} \addpub
-      }
-
-      % 设置计数器
-      \newcounter{pub}
-      % 设置小标题
-      \cs_new:Npn \pubsection ##1 {
-        {
-          % 自增计数器
-          \stepcounter{pub}
-          % 设置小标题，暂时没有考虑英文模式
-          \noindent
-          \textbf{
-            \heiti{
-              \zhnumber{\thepub}、##1
-            }
-          }\par
-        }
-      }
+      \if_cs_exist:N \c@pub {
+        % 重置计数器
+        \setcounter{pub}{0}
+      } \else: {
+        % 设置计数器
+        \newcounter{pub}
+      } \fi:
 
       % 设置参考文献的排序
       \bool_if:NTF \l_@@_publications_sorting_bool {
