@@ -1717,16 +1717,16 @@
       }
     }
   }
-\cs_new:Npn \addpub #1 {
+\NewDocumentCommand \addpub {m} {
   \nocite{#1}
   \addtocategory{mypub}{#1}
 }
 
-\cs_new:Npn \addpubs #1 {
+\NewDocumentCommand \addpubs {m} {
   % apply a clist
   \clist_map_function:nN {#1} \addpub
 }
-\cs_new:Npn \pubsection #1 {
+\NewDocumentCommand \pubsection {m} {
   {
     % 自增计数器
     \par\stepcounter{pub}
