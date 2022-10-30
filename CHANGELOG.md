@@ -13,9 +13,9 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
-## [3.1.1] - 2022-10-29
+## [3.1.1] - 2022-10-30
 
-[1a24ab8](https://github.com/BITNP/BIThesis/commit/1a24ab8de2e9c1d00efc4e190b4554d9ea0c1710)...[0ea1942](https://github.com/BITNP/BIThesis/commit/0ea194239afbf6483a854b74f9ee37bd6bba4143)
+[1a24ab8](https://github.com/BITNP/BIThesis/commit/1a24ab8de2e9c1d00efc4e190b4554d9ea0c1710)...[c470b87](https://github.com/BITNP/BIThesis/commit/c470b87063d11766046d22563e7bf0996940d39c)
 
 ### Bug Fixes
 
@@ -23,6 +23,7 @@ Acronyms:
 - Use pifont to provide \BigStar. ([7ad372a](https://github.com/BITNP/BIThesis/commit/7ad372a5ced6139f18d50a213a4db3285aa3f8d0))
 - Set Times New Roman as the main font. ([5dd2999](https://github.com/BITNP/BIThesis/commit/5dd2999c85015c0e47b4864b5f28928f4f40c28b))
 - Remove the extra blank around the figure. ([15b2153](https://github.com/BITNP/BIThesis/commit/15b21536b9698ee782043bd284bc0294b94687c3))
+- Fix cls update check. ([c470b87](https://github.com/BITNP/BIThesis/commit/c470b87063d11766046d22563e7bf0996940d39c))
 
 ### Documentation
 
