@@ -36,5 +36,7 @@ jobs:
         name: Check there is nothing to diff.
         with:
           run: |
-            apk add make
+            apk add make git
+            git config --global --add safe.directory /github/workspace
+
             make check-cls

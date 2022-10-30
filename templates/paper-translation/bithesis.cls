@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2022-10-23}{3.1.0}{BIT Thesis Templates}
+{2022-10-29}{3.1.1}{BIT Thesis Templates}
 \int_new:N \g__bithesis_thesis_type_int
 \int_new:N \g__bithesis_head_zihao_int
 \bool_new:N \g__bithesis_twoside_bool
@@ -416,12 +416,13 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{pifont}
 \RequirePackage{amsthm}
 \RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
@@ -460,7 +461,10 @@
     footskip = 2.6cm + 7bp - 2cm,
   }
 }
-\setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\__bithesis_if_bachelor_thesis:T {
+  \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+}
+\setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
 \ctex_at_end_preamble:n {
   \__bithesis_if_thesis_english:TF {
@@ -1036,6 +1040,8 @@
   }
 \DeclareDocumentCommand \BITSetup { m }
   { \keys_set:nn { bithesis } { #1 }}
+\DeclareDocumentCommand \BigStar { }
+  { \ding{72} }
   \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
   {
     \bool_if:nTF {\g__bithesis_blind_mode_bool && #1} {} {
@@ -1711,6 +1717,28 @@
       }
     }
   }
+\NewDocumentCommand \addpub {m} {
+  \nocite{#1}
+  \addtocategory{mypub}{#1}
+}
+
+\NewDocumentCommand \addpubs {m} {
+  % apply a clist
+  \clist_map_function:nN {#1} \addpub
+}
+\NewDocumentCommand \pubsection {m} {
+  {
+    % 自增计数器
+    \par\stepcounter{pub}
+    % 设置小标题，暂时没有考虑英文模式
+    \noindent
+    \textbf{
+      \heiti{
+        \zhnumber{\thepub}、#1
+      }
+    }\par
+  }
+}
 \NewDocumentEnvironment {publications} {+b}
   {
     % 同时设置 omit 以及 blindPeerReview 才能跳过此章节生成。
@@ -1792,34 +1820,13 @@
         }
       }
 
-      % 添加一个参考文献
-      \cs_new:Npn \addpub ##1 {
-        \nocite{##1}
-        \addtocategory{mypub}{##1}
-      }
-
-      % 添加多个参考文献
-      \cs_new:Npn \addpubs ##1 {
-        % apply a clist
-        \clist_map_function:nN {##1} \addpub
-      }
-
-      % 设置计数器
-      \newcounter{pub}
-      % 设置小标题
-      \cs_new:Npn \pubsection ##1 {
-        {
-          % 自增计数器
-          \stepcounter{pub}
-          % 设置小标题，暂时没有考虑英文模式
-          \noindent
-          \textbf{
-            \heiti{
-              \zhnumber{\thepub}、##1
-            }
-          }\par
-        }
-      }
+      \if_cs_exist:N \c@pub {
+        % 重置计数器
+        \setcounter{pub}{0}
+      } \else: {
+        % 设置计数器
+        \newcounter{pub}
+      } \fi:
 
       % 设置参考文献的排序
       \bool_if:NTF \l__bithesis_publications_sorting_bool {

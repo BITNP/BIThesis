@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2022-10-23}{3.1.0}{BIT Thesis Templates}
+%<cls>{2022-10-29}{3.1.1}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2022/10/23 3.1.0 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2022/10/29 3.1.1 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -1254,7 +1254,7 @@
 %   攻读学位期间发表论文与研究成果清单。
 % \end{function}
 % 
-% \begin{function}{\addpubs,\addpub}
+% \begin{function}[added=2022-10-23]{\addpubs,\addpub}
 %   \begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
 %     \begin{publications}
 %       \addpub{\meta{单条引用内容的key}}
@@ -1266,7 +1266,7 @@
 % 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
 % \end{function}
 %
-% \begin{function}{\pubsection}
+% \begin{function}[added=2022-10-23]{\pubsection}
 %   \begin{bitsyntax}[emph={[1]publications,pubsection,printbibliography}]
 %     \begin{publications}
 %       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
@@ -1283,7 +1283,7 @@
 % 用于添加分类的目录。
 % \end{function}
 %
-% \begin{function}{\Author,\AuthorEn}
+% \begin{function}[added=2022-10-23]{\Author,\AuthorEn}
 %   \begin{bitsyntax}[emph={[1]Author}]
 %     \Author[<n(表示第几作者，默认为 1)>][<覆盖普通模式下内容>][<覆盖盲审模式下内容>]
 %   \end{bitsyntax}
@@ -1316,6 +1316,22 @@
 %
 %   个人简介。
 % \end{function}
+%
+% \section{常见问题和疑难解答}
+%
+% \subsection{如何修改数学公式的字体？}
+%
+% 本项目已经使用 \pkg{unicode-math} 宏包，
+% 可以在导言区使用 |\setmathfont{XITS Math}| 修改数学环境下字体：
+%
+% \begin{latex}
+%   \unimathsetup{bold-style=ISO}
+%   \setmathfont{XITS Math}
+% \end{latex}
+%
+% \textit{请事先安装 XITS 字体。}
+%
+% \textit{更多字体与使用方法请参考 \url{https://ctan.org/pkg/unicode-math?lang=zh}。}
 %
 % \section{\cls{bitreport.cls} 使用与配置}
 % \label{sec:bitreport}
@@ -2198,12 +2214,14 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage{hyperref}
+% Hide color and border in hyperref.
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{pifont}
 \RequirePackage{amsthm}
 \RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
@@ -2257,13 +2275,17 @@
 }
 %    \end{macrocode}
 %
-% 根据学校的要求，在图片前后加上一行空白。
+% 根据学校的要求，在本科生模板图片前后加上一行空白。
 %    \begin{macrocode}
-\setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\@@_if_bachelor_thesis:T {
+  \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+}
 %    \end{macrocode}
 %
 % 设置 Times New Roman 字体。
+% 根据学校规范要求，默认情况下也使用 Times New Roman 字体。
 %    \begin{macrocode}
+\setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
 %    \end{macrocode}
 %
@@ -3060,6 +3082,14 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\BigStar}
+% 提供密级选项中需要的五角星，在普通环境中使用。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BigStar { }
+  { \ding{72} }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{environment}{blindPeerReview}
 % 用于包裹涉及个人信息的内容。
 %
@@ -3830,6 +3860,40 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\addpub,\addpubs}
+% 添加一个或多个参考文献。
+%   \begin{macrocode}
+\NewDocumentCommand \addpub {m} {
+  \nocite{#1}
+  \addtocategory{mypub}{#1}
+}
+
+\NewDocumentCommand \addpubs {m} {
+  % apply a clist
+  \clist_map_function:nN {#1} \addpub
+}
+%   \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pubsection}
+% 设置小标题。
+%    \begin{macrocode}
+\NewDocumentCommand \pubsection {m} {
+  {
+    % 自增计数器
+    \par\stepcounter{pub}
+    % 设置小标题，暂时没有考虑英文模式
+    \noindent
+    \textbf{
+      \heiti{
+        \zhnumber{\thepub}、#1
+      }
+    }\par
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{environment}{publications}
 % 生成攻读学位期间发表论文与研究成果清单。
 %    \begin{macrocode}
@@ -3914,34 +3978,13 @@
         }
       }
 
-      % 添加一个参考文献
-      \cs_new:Npn \addpub ##1 {
-        \nocite{##1}
-        \addtocategory{mypub}{##1}
-      }
-
-      % 添加多个参考文献
-      \cs_new:Npn \addpubs ##1 {
-        % apply a clist
-        \clist_map_function:nN {##1} \addpub
-      }
-
-      % 设置计数器
-      \newcounter{pub}
-      % 设置小标题
-      \cs_new:Npn \pubsection ##1 {
-        {
-          % 自增计数器
-          \stepcounter{pub}
-          % 设置小标题，暂时没有考虑英文模式
-          \noindent
-          \textbf{
-            \heiti{
-              \zhnumber{\thepub}、##1
-            }
-          }\par
-        }
-      }
+      \if_cs_exist:N \c@pub {
+        % 重置计数器
+        \setcounter{pub}{0}
+      } \else: {
+        % 设置计数器
+        \newcounter{pub}
+      } \fi:
 
       % 设置参考文献的排序
       \bool_if:NTF \l_@@_publications_sorting_bool {
