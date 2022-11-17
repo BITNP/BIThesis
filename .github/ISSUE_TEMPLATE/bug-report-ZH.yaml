@@ -7,6 +7,7 @@ body:
     attributes:
       value: |
         感谢你抽出宝贵的时间来提交这个问题！
+        在提交问题前，请尝试使用我们[最新本版的模板](https://github.com/BITNP/BIThesis/releases)复现问题。
   - type: textarea
     id: what-happened
     attributes:
