@@ -65,6 +65,8 @@
     valueAlign .initial:n = {c},
     labelMaxWidth .dim_set:N = \l__bithesis_cover_label_max_width_dim,
     valueMaxWidth .dim_set:N = \l__bithesis_cover_value_max_width_dim,
+    autoWidthPadding .dim_set:N = \l__bithesis_cover_auto_width_padding_dim,
+    autoWidthPadding .initial:n = {0.25em},
     autoWidth .bool_set:N = \l__bithesis_cover_auto_width_bool,
     autoWidth .initial:n = {true},
     underlineThickness .dim_set:N = \l__bithesis_cover_underline_thickness_dim,
@@ -128,7 +130,7 @@
         {
           \seq_pop_left:NN \l__bithesis_tmpa_seq \l__bithesis_tmpa_tl
           \__bithesis_get_text_width:NV \l__bithesis_tmpa_dim \l__bithesis_tmpa_tl
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l__bithesis_tmpa_dim } }
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l__bithesis_tmpa_dim + \l__bithesis_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
   }

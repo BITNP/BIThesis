@@ -2019,6 +2019,8 @@
     valueAlign .initial:n = {c},
     labelMaxWidth .dim_set:N = \l_@@_cover_label_max_width_dim,
     valueMaxWidth .dim_set:N = \l_@@_cover_value_max_width_dim,
+    autoWidthPadding .dim_set:N = \l_@@_cover_auto_width_padding_dim,
+    autoWidthPadding .initial:n = {0.25em},
     autoWidth .bool_set:N = \l_@@_cover_auto_width_bool,
     autoWidth .initial:n = {true},
     underlineThickness .dim_set:N = \l_@@_cover_underline_thickness_dim,
@@ -2743,7 +2745,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
   }
@@ -4131,6 +4133,8 @@
     valueAlign .initial:n = {c},
     labelMaxWidth .dim_set:N = \l_@@_cover_label_max_width_dim,
     valueMaxWidth .dim_set:N = \l_@@_cover_value_max_width_dim,
+    autoWidthPadding .dim_set:N = \l_@@_cover_auto_width_padding_dim,
+    autoWidthPadding .initial:n = {0.25em},
     autoWidth .bool_set:N = \l_@@_cover_auto_width_bool,
     autoWidth .initial:n = {true},
     underlineThickness .dim_set:N = \l_@@_cover_underline_thickness_dim,
@@ -4281,7 +4285,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
   }
