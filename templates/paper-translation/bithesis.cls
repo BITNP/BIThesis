@@ -771,6 +771,7 @@
         {
           \seq_pop_left:NN \l__bithesis_tmpa_seq \l__bithesis_tmpa_tl
           \__bithesis_get_text_width:NV \l__bithesis_tmpa_dim \l__bithesis_tmpa_tl
+          % 在两边加上空白，避免文本太靠边。
           \dim_gset:Nn #1 { \dim_max:nn {#1} { \l__bithesis_tmpa_dim + \l__bithesis_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
