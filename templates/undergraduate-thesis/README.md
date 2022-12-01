@@ -57,7 +57,7 @@ latexmk
 
 - Bithesis wiki：https://bithesis.bitnp.net
 - 项目地址：https://github.com/BITNP/BIThesis
-- Bug report 与 Feature Request：https://github.com/BITNP/BIThesis/issues
+- Bug Report 与 Feature Request：https://github.com/BITNP/BIThesis/issues
 - QQ 交流群：737548118
 
 ## 排版参考
