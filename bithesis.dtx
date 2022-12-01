@@ -587,6 +587,18 @@
 %   和\kvopt{cover/valueMaxWidth}{\meta{长度}}使用，以控制下划线的长度。
 % \end{function}
 %
+% \begin{function}{cover/autoWidthPadding}
+%   \begin{bitsyntax}[emph={[1]autoWidthPadding}]
+%     autoWidthPadding = (*<\marg{任意长度}>*)
+%   \end{bitsyntax}
+%
+%   自适应下划线长度时，下划线的长度会比标签和值的长度多出一些空白。
+%   该选项用于设置这些空白的长度。默认为 0.25em。
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+% \end{function}
+%
 % \begin{function}{cover/labelMaxWidth}
 %   \begin{bitsyntax}[emph={[1]labelMaxWidth}]
 %     labelMaxWidth = (*\marg{任意长度}*)
@@ -2745,6 +2757,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
+          % 在两边加上空白，避免文本太靠边。
           \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
@@ -4285,6 +4298,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
+          % 在两边加上空白，避免文本太靠边。
           \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
         }
     \group_end:
