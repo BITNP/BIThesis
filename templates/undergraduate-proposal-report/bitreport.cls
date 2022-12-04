@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitreport}
-{2022-10-29}{3.1.1}{BIT Thesis Templates}
+{2022-12-02}{3.2.0}{BIT Thesis Templates}
 \int_new:N \g__bithesis_report_type_int
 \clist_const:Nn \c__bithesis_report_type_clist
     { common, undergraduate_proposal}

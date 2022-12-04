@@ -13,6 +13,27 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.2.0] - 2022-12-03
+
+[711c9c0](https://github.com/BITNP/BIThesis/commit/711c9c047becbaaeb29c76eb2cbc91641598403d)...[d6e4038](https://github.com/BITNP/BIThesis/commit/d6e403871e205aa08c220389e57d7578596f747b)
+
+### Documentation
+
+- Add a dev doc for maintainers. ([eee5d5a](https://github.com/BITNP/BIThesis/commit/eee5d5aafea5d4abd9e303a9235a6c48864f1692))
+- Add footnotes. ([f4337db](https://github.com/BITNP/BIThesis/commit/f4337db39fce4a4bd4283c31e553661b06c4e79e))
+- Add doc for autoWidthPadding. ([39c9d39](https://github.com/BITNP/BIThesis/commit/39c9d39bbad071b7fad28ef476ca6ad00f94fb52))
+- Add all templates. ([d6e4038](https://github.com/BITNP/BIThesis/commit/d6e403871e205aa08c220389e57d7578596f747b))
+
+### Features
+
+- Add a padding (default 0.25em) to cover/autoWidth. ([8bff98b](https://github.com/BITNP/BIThesis/commit/8bff98b36d4a534a68995025c738e432991b54c6))
+
+### Miscellaneous Tasks
+
+- Fix typo. ([aef5bfe](https://github.com/BITNP/BIThesis/commit/aef5bfec69e55afea8ceed843a855aa33e17d90c))
+- Refactor issue prompt. ([990f823](https://github.com/BITNP/BIThesis/commit/990f823b4e5d03c6129fee2abb657c166f5306b9))
+- Lift version. ([0c5d22f](https://github.com/BITNP/BIThesis/commit/0c5d22f76ec0622fe0e62abf8b711d1a43614b1c))
+
 ## [3.1.1] - 2022-10-30
 
 [1a24ab8](https://github.com/BITNP/BIThesis/commit/1a24ab8de2e9c1d00efc4e190b4554d9ea0c1710)...[c470b87](https://github.com/BITNP/BIThesis/commit/c470b87063d11766046d22563e7bf0996940d39c)
