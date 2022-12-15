@@ -418,7 +418,7 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage[hidelinks]{hyperref}
+\RequirePackage[hidelinks,bookmarksnumbered]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{array}
@@ -1480,6 +1480,7 @@
         \chapter{\c__bithesis_label_abstract_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_tl}
+        \currentpdfbookmark{\c__bithesis_label_abstract_tl}{ch:abstract}
       }
     }
     \vspace*{1mm}
@@ -1544,6 +1545,7 @@
         \chapter{\c__bithesis_label_abstract_en_tl}
       } {
         \chapter*{\c__bithesis_label_abstract_en_tl}
+        \currentpdfbookmark{\c__bithesis_label_abstract_en_tl}{ch:abstract:en}
       }
     }
   }
@@ -1861,6 +1863,7 @@
       \chapter{\c__bithesis_label_symbols_tl}
     } {
       \chapter*{\c__bithesis_label_symbols_tl}
+      \currentpdfbookmark{\c__bithesis_label_symbols_tl}{ch:symbols}
     }
     \zihao{-4}
     \begin{itemize}[
