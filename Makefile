@@ -24,7 +24,7 @@ endif
 .PHONY: all cls doc clean FORCE_MAKE copy
 
 $(PACKAGE).pdf: cls FORCE_MAKE
-	$(LATEXMK) -xelatex $(PACKAGE).dtx
+	@$(LATEXMK) -xelatex $(PACKAGE).dtx
 
 $(CLSFILE): $(SOURCES)
 	yes y | xetex $(PACKAGE).ins
@@ -70,13 +70,19 @@ copy: cls
 
 # Generate scaffolds for overleaf
 overleaf: doc FORCE_MAKE
+	# if $version is not specified, alert the user.
+	@if [ -z "$$version" ]; then \
+		echo -e "\e[32mPlease specify the version of the template you want to generate.\e[0m"; \
+		echo -e "\e[32mFor example: make overleaf version=1.0.0\e[0m"; \
+		exit 1; \
+	fi
 	git clean -fdx ./templates/
 	rm -rf overleaf
 	make copy
 	mkdir overleaf
 	ls templates | \
 		xargs -I {} bash -c \
-		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && zip -r ./overleaf/{}.zip ./overleaf/{}"
+		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && zip -r ./overleaf/BIThesis-{}-v$(version).zip ./overleaf/{}"
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
