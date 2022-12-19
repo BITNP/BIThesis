@@ -13,6 +13,26 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.2.1] - 2022-12-19
+
+[f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074)...[34c0bfd](https://github.com/BITNP/BIThesis/commit/34c0bfd36fcb3bda7aee75c5c4dc72360ef6cb89)
+
+### Miscellaneous Tasks
+
+- Bump version. ([1ee30ac](https://github.com/BITNP/BIThesis/commit/1ee30ac126cfafc11c97d8674ddf4ebbbdb3df6b))
+
+## [3.2.1-alpha-1] - 2022-12-15
+
+[ffc4185](https://github.com/BITNP/BIThesis/commit/ffc4185792250e47d0986f727f1529da4d05e5e1)...[f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074)
+
+### Bug Fixes
+
+- Add pdf bookmarks for \chapter* ([f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074))
+
+### Build
+
+- Improve Overleaf pack logic. ([420a841](https://github.com/BITNP/BIThesis/commit/420a841c5758450535887c7f47427aaae7cfdc68))
+
 ## [3.2.0] - 2022-12-03
 
 [711c9c0](https://github.com/BITNP/BIThesis/commit/711c9c047becbaaeb29c76eb2cbc91641598403d)...[d6e4038](https://github.com/BITNP/BIThesis/commit/d6e403871e205aa08c220389e57d7578596f747b)
