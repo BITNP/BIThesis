@@ -13,6 +13,14 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.2.2] - 2022-12-22
+
+[f47ebdd](https://github.com/BITNP/BIThesis/commit/f47ebdd56cdd8b42a3b5f4c4ae7e88f3775d38ef)...[7053468](https://github.com/BITNP/BIThesis/commit/7053468d729c7de73a445fa198401840a5903b70)
+
+### Miscellaneous Tasks
+
+- Update version number. ([7053468](https://github.com/BITNP/BIThesis/commit/7053468d729c7de73a445fa198401840a5903b70))
+
 ## [3.2.1] - 2022-12-19
 
 [f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074)...[34c0bfd](https://github.com/BITNP/BIThesis/commit/34c0bfd36fcb3bda7aee75c5c4dc72360ef6cb89)
