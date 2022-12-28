@@ -1626,7 +1626,12 @@
 
     \bool_if:NTF \l__bithesis_appendices_chapter_level_bool {
       % 附录章节级别
-      \setcounter{chapter}{0}
+
+      % 仅设置 \setcounter{chapter}{0} 时，pdf 目录会索引到正文章节。
+      % 因此，需要使用 \appendix 重置计数器，并将附录后面的
+      % 几个章节视为特殊的附录页。
+      \appendix
+
       \ctexset{
         chapter/numbering = true,
         chapter/name = {},
@@ -1667,9 +1672,14 @@
 \NewDocumentEnvironment {acknowledgements} {+b}
   {
     \begin{blindPeerReview}
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 setion 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
       \ctexset{
+        appendix/numbering = false,
         section/number = \arabic{section},
         subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
 
       \__bithesis_if_thesis_english:TF {
@@ -1748,6 +1758,15 @@
   {
     % 同时设置 omit 以及 blindPeerReview 才能跳过此章节生成。
     \begin{blindPeerReview}[\l__bithesis_publications_omit_bool]
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 setion 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
+      \ctexset{
+        appendix/numbering = false,
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+      }
       % 设置参考文献字号为 5 号
       \renewcommand*{\bibfont}{\zihao{5}}
       % 设置参考文献各个项目之间的垂直距离为 0
@@ -1850,8 +1869,17 @@
 \NewDocumentEnvironment {resume} {+b}
   {
     \begin{blindPeerReview}
-    \chapter{\c__bithesis_label_resume_tl}
-    #1
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 setion 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
+      \ctexset{
+        appendix/numbering = false,
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+      }
+      \chapter{\c__bithesis_label_resume_tl}
+      #1
     \end{blindPeerReview}
   }
   {
