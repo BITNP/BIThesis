@@ -13,6 +13,23 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.2.3] - 2022-12-30
+
+[21fa3d0](https://github.com/BITNP/BIThesis/commit/21fa3d0b113c527608dbf03e6451b25dc81f0388)...[3d58df5](https://github.com/BITNP/BIThesis/commit/3d58df5f29aa464cf5b3294dd5a5ccaa53dbb6da)
+
+### Bug Fixes
+
+- Fix wrong bookmarks in appendix. ([1f524f5](https://github.com/BITNP/BIThesis/commit/1f524f54181233c1c7d8050e00803e45a4578df9))
+
+### Miscellaneous Tasks
+
+- Lift version number to v3.2.3. ([3d58df5](https://github.com/BITNP/BIThesis/commit/3d58df5f29aa464cf5b3294dd5a5ccaa53dbb6da))
+
+### Hotfix
+
+- Typo. ([3a1f651](https://github.com/BITNP/BIThesis/commit/3a1f651b2deb6bc05767419361caca2ab6cb96ac))
+- Typo. ([a057b83](https://github.com/BITNP/BIThesis/commit/a057b83a0fb8e9bb9bd5eb9c72cd2f54d1299a08))
+
 ## [3.2.2] - 2022-12-22
 
 [f47ebdd](https://github.com/BITNP/BIThesis/commit/f47ebdd56cdd8b42a3b5f4c4ae7e88f3775d38ef)...[7053468](https://github.com/BITNP/BIThesis/commit/7053468d729c7de73a445fa198401840a5903b70)
