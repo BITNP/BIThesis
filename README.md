@@ -35,7 +35,7 @@ _（此文档已被包含在 [ Releases ][releases] 的文件中）_
 
 BIThesis 是针对北京理工大学本科生毕业毕业论文、研究生学位论文的一个非官方的 $LaTeX$ 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 $LaTeX$ 模板。
 
-> 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
+> 本项目获得了 [北京理工大学教务部](http://jwc.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html)。
 
 > **研究生模板暂未完成官方的沟通。但是我们的代码从[BIT-thesis](https://github.com/BIT-thesis/LaTeX-template)迁移而来，而它曾得到了研究生院和北京理工大学学生事务中心的支持。**
 
@@ -80,15 +80,15 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 项目内容
 
-详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
+详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
 
 ## 使用方法
 
-1. 安装或升级最新的 LaTeX 套装，详见[wiki](https://bithesis.bitnp.net/Guide/1-Intro/First-things-first.html)。
+1. 安装或升级最新的 LaTeX 套装，详见[wiki](https://bithesis.bitnp.net/guide/getting-started.html)。
 2. 根据需要，下载[最新的 Releases](https://github.com/BITNP/BIThesis/releases/latest)。
 3. 开始撰写。
 
->  或者使用 [Overleaf 模板](https://bithesis.bitnp.net/#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
+>  或者使用 [Overleaf 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
 
 ## 开发者指南
 
@@ -112,7 +112,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 贡献者
 
-参见 [Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/Guide/5-Acknowledgements/Acknowledgements.html)。
+参见 [Github Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/guide/acknowledgements.html)。
 
 ## 特别感谢
 
