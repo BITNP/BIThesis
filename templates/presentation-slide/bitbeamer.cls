@@ -6,7 +6,7 @@
 %%
 %% bithesis.dtx  (with options: `cls,beamer')
 %% 
-%%     Copyright (C) 2022
+%%     Copyright (C) 2023
 %%     Association of Bit Network Pioneer and any individual authors listed in the documentation.
 %% ------------------------------------------------------------------------------
 %% 
