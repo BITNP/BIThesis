@@ -2,7 +2,7 @@
 
 ## 任务管理
 
-本项目采用 [Github Projects](https://github.com/BITNP/BIThesis/projects) 进行任务管理。
+本项目采用 [GitHub Projects](https://github.com/BITNP/BIThesis/projects) 进行任务管理。
 你可以每次选择其中的一个小的 TODO 进行开发；来帮助项目一点一点前进。
 
 ## 开发命令
@@ -37,7 +37,7 @@ make doc
 3. 然后运行 `make copy` 将新的 `*.cls` 更新到 `templates/` 下。
 4. 不要忘记更新 `bithesis.dtx` 中的手册部分，添加相应说明。
 5. 运行 `make doc` 编译手册。
-6. 运行测试，确保你的改动不会影响到其他效果。
+6. 运行测试，确保你的改动不会影响到其他功能。
 
 #### 修改 `templates/` 中模板的行为
 
@@ -51,7 +51,7 @@ make doc
 由于我们常常需要实时预览代码编译的效果，而 LaTeX 本身没有提供实时编译的功能。
 因此我们常常需要来回运行 `make copy`、`latexmk` 以达成实时编译的效果。
 
-因此 Makefiles 里面提供了一些辅助开发的命令（以 `dev-`）开头。
+因此 Makefile 里面提供了一些辅助开发的命令（以 `dev-`）开头。
 可以帮助你自动化以上流程。
 
 或者你可以使用类似 `rg --files | entr make copy` 以及 `rg --files | entr latexmk` 来达到
@@ -60,18 +60,18 @@ make doc
 ## 参考资料
 
 - 本项目 LaTeX3，因此可以参考的手册包括 expl3 的文档。
-- fduthesis 项目代码有很多最佳实践，可以参考。
+- [fduthesis 项目代码](https://github.com/stone-zeng/fduthesis)有很多最佳实践，可以参考。
 - 样式部分，应该参考研究生院和教务部的相关文件和通知。
 
 ## 单元测试和回归测试
 
-运行 `make test` 将对所有的模板进行编译测试（同样被用于 Github Action）。
+运行 `make test` 将对所有的模板进行编译测试（同样被用于 GitHub Actions）。
 
 运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
 使用前请确保 `diff-pdf`、`zsh` 已经安装。
 
 运行 `make check-cls` 确保 `bithesis.dtx` 的修改都被同步到了 `templates/` 中。
-（同样被用于 Github Action）
+（同样被用于 GitHub Actions）
 
 ## 打包
 
