@@ -325,7 +325,7 @@ Acronyms:
 
 ### Bug Fixes
 
-- Pass options to ctex in a seperate option. ([9d17ba5](https://github.com/BITNP/BIThesis/commit/9d17ba55c042084793f67e33cd4bd9e40d87b8bf))
+- Pass options to ctex in a separate option. ([9d17ba5](https://github.com/BITNP/BIThesis/commit/9d17ba55c042084793f67e33cd4bd9e40d87b8bf))
 - Suppress harmless warning. ([17c5cee](https://github.com/BITNP/BIThesis/commit/17c5cee1ccc01cc4b95d92e02b37516af84024a8))
 
 ## [3.0.0-alpha-1] - 2022-07-09
@@ -343,7 +343,7 @@ Acronyms:
 ### Features
 
 - Finish undergraduate-thesis-en template ([3c42300](https://github.com/BITNP/BIThesis/commit/3c423007613c37f13df9da2f6461f37c653095a5))
-- Add \environent "symbols". ([80bfc2e](https://github.com/BITNP/BIThesis/commit/80bfc2e709fc92932a0b69a71ab121d67f14f161))
+- Add environment "symbols". ([80bfc2e](https://github.com/BITNP/BIThesis/commit/80bfc2e709fc92932a0b69a71ab121d67f14f161))
 - Option to add toc. ([0c1473f](https://github.com/BITNP/BIThesis/commit/0c1473f4b053fe7b602e6d3331b6a2901092484a))
 - Support auto wrap and auto width cover entry. ([eff8f61](https://github.com/BITNP/BIThesis/commit/eff8f61c77dbfe71a89937eddb869b91a0167efc))
 - Add blindPeerReview mode to all thesis. ([ac10ffa](https://github.com/BITNP/BIThesis/commit/ac10ffa7898de5691e75c6d6b9772b73acdecc37))
@@ -411,7 +411,7 @@ Acronyms:
 
 - Fix typo. ([8ec3db3](https://github.com/BITNP/BIThesis/commit/8ec3db397e9615590455c18ece20a4cfbf1978aa))
 - Add ISSUE_TEMPLATE config.yaml ([5519740](https://github.com/BITNP/BIThesis/commit/55197409790aaa70bdac2ac232a67bdd975b634a))
-- Add formated issue template. ([7dfc517](https://github.com/BITNP/BIThesis/commit/7dfc517dc195ddfc7bffa28a16f9d226cedb7e0e))
+- Add formatted issue template. ([7dfc517](https://github.com/BITNP/BIThesis/commit/7dfc517dc195ddfc7bffa28a16f9d226cedb7e0e))
 
 ### Features
 
@@ -618,7 +618,7 @@ Acronyms:
 ### Documentation
 
 - Repair the invalid links. ([167657c](https://github.com/BITNP/BIThesis/commit/167657ce9dc7b891425319961dfbbd6ff6fe593c))
-- Upadate the links' text ([618c01c](https://github.com/BITNP/BIThesis/commit/618c01c4743adfceff20efdd5f9ceb5f0afa4874))
+- Update the links' text ([618c01c](https://github.com/BITNP/BIThesis/commit/618c01c4743adfceff20efdd5f9ceb5f0afa4874))
 
 ### Ci
 
@@ -646,7 +646,7 @@ Acronyms:
 - Repair the invalid links. ([3a7cef5](https://github.com/BITNP/BIThesis/commit/3a7cef56a1def30eaece0064a4b1ceaea1bae13d))
 - Repair ([300e7b2](https://github.com/BITNP/BIThesis/commit/300e7b2ee6b7b9da4a37a130b0cf682df65be1a9))
 - Add more dev docs. ([27cd897](https://github.com/BITNP/BIThesis/commit/27cd897e66a6cc236e438ebff4257245ad0dbd4c))
-- Upadate the links' text ([7010b28](https://github.com/BITNP/BIThesis/commit/7010b285e32f5e46e74c7357e33c234d9e32ca10))
+- Update the links' text ([7010b28](https://github.com/BITNP/BIThesis/commit/7010b285e32f5e46e74c7357e33c234d9e32ca10))
 - Domain ([a9fe9fc](https://github.com/BITNP/BIThesis/commit/a9fe9fc342ee0c8b0b7d38305dccc5dbff014e6e))
 
 ### Features
@@ -662,8 +662,8 @@ Acronyms:
 
 ### Refactor
 
-- Basic maintanence ([94bf84d](https://github.com/BITNP/BIThesis/commit/94bf84d748fe8d9702be9f2811fadd1f7b083207))
-- Change maintainance info. ([0c972a3](https://github.com/BITNP/BIThesis/commit/0c972a3e7773de89dd4c9c0174624a9d9baf2554))
+- Basic maintenance ([94bf84d](https://github.com/BITNP/BIThesis/commit/94bf84d748fe8d9702be9f2811fadd1f7b083207))
+- Change maintenance info. ([0c972a3](https://github.com/BITNP/BIThesis/commit/0c972a3e7773de89dd4c9c0174624a9d9baf2554))
 
 ### Build
 
@@ -692,11 +692,11 @@ Acronyms:
 
 ### Bug Fixes
 
-- Modfiy title and picture position ([2f90368](https://github.com/BITNP/BIThesis/commit/2f9036828b5416c264d7cf38b8a87061f51f255a))
+- Modify title and picture position ([2f90368](https://github.com/BITNP/BIThesis/commit/2f9036828b5416c264d7cf38b8a87061f51f255a))
 
 ### Documentation
 
-- Add doc charpter 5, 6, 7 content ([9abd384](https://github.com/BITNP/BIThesis/commit/9abd38442df5fb8ed108c982e49b60280df157ab))
+- Add doc chapter 5, 6, 7 content ([9abd384](https://github.com/BITNP/BIThesis/commit/9abd38442df5fb8ed108c982e49b60280df157ab))
 - Add content in README-zh.md and lab-report/README.md ([a63078d](https://github.com/BITNP/BIThesis/commit/a63078dce5e8b746a9d9161dddd75e697290f1a2))
 - Fix content link ([904f201](https://github.com/BITNP/BIThesis/commit/904f2019dbcbe4ac5c433c7ed70723dfc88d76f7))
 
