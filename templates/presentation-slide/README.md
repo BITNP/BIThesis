@@ -1,6 +1,6 @@
 # Presentation Slide 演示文档模板
 
-**请尽可能使用最新版本进行文章撰写，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
+**请尽可能使用最新版本撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
 
 ## 特性
 

@@ -1,6 +1,6 @@
-# Undergradueate Proposal Report 本科生毕业设计开题报告
+# Undergraduate Proposal Report 本科生毕业设计开题报告
 
-**请尽可能使用最新版本进行文章撰写，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
+**请尽可能使用最新版本撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
 
 本目录中包含有北京理工大学本科生毕业设计的开题报告模板的全部内容，有关模板的使用方法更为详细的介绍，请参考：[bithesis 使用手册](./bithesis.pdf)。
 
@@ -17,7 +17,7 @@
     └── reviewTableBlank.pdf # 开题报告 PDF 格式的「评审表」
 ```
 
-另外，文章中需要添加图片时，可以将图片直接放在根目录（比如此处的 `merge-sort-recursion-tree.png`），或者统一将图片安置在一个文件夹下，在正文里按照**相对路径**进行引用。
+另外，文章中需要添加图片时，可以将图片直接放在根目录，或者统一将图片安置在一个文件夹下，在正文里按照**相对路径**进行引用。
 
 ## 编译方式
 
