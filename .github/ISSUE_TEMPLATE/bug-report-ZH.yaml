@@ -81,6 +81,7 @@ body:
         - presentation-slide
         - undergraduate-proposal-report
         - undergraduate-thesis
+        - graduate-thesis
   - type: textarea
     id: logs
     attributes:
