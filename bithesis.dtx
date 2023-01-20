@@ -460,6 +460,29 @@
 %   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，
 %   比如封面、信息页、原创性声明、个人简介、致谢等等。
 % \end{function}
+% 
+% \begin{function}{quirks}
+%   \begin{bitsyntax}[emph={[1]quirks}]
+%     quirks = (*<(false)|true>*)
+%   \end{bitsyntax}
+%
+%   此选项用于开启针对北理工官方示例的兼容模式。
+%   
+%   具体包括：
+%   \begin{itemize}
+%     \item \pkg{biblatex} 中的 |patent| 类型将不再采用国标 GB/T 7714-2015 的格式，
+%      而是采用北理工官方示例的格式。
+%   \end{itemize}
+%
+%   之所以需要此选项，是因为北理工官方示例中的格式
+%   与国标 GB/T 7714-2015 中的格式不一致；
+%   而这部分改动可能引入潜在的兼容性问题。
+%   而这些差异其实比较细微，所以我们将其作为一个默认不开启的选项。
+%   
+%   在未来，如果持续有用户反馈问题，亦或是没有边界问题，
+%   ，我们可能会将其中的功能移入默认效果中。
+% 
+% \end{function}
 %  
 % \begin{function}{twoside}
 %   \begin{bitsyntax}[emph={[1]twoside}]
