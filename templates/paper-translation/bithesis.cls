@@ -33,6 +33,7 @@
 \bool_new:N \g__bithesis_twoside_bool
 \bool_new:N \g__bithesis_thesis_type_english_bool
 \bool_new:N \g__bithesis_blind_mode_bool
+\bool_new:N \g__bithesis_quirks_mode_bool
 \tl_new:N \g__bithesis_label_divide_char_tl
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
@@ -259,6 +260,7 @@
   twoside .bool_gset:N = \g__bithesis_twoside_bool,
   blindPeerReview .bool_gset:N = \g__bithesis_blind_mode_bool,
   ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
+  quirks .bool_gset:N = \g__bithesis_quirks_mode_bool,
 }
 \keys_define:nn { bithesis / cover }
   {
@@ -498,6 +500,82 @@
   % 「攻读学位期间发表论文与研究成果清单」使用的。
   \cs_if_exist:NT \DeclareBibliographyCategory {
     \DeclareBibliographyCategory{mypub}
+  }
+
+  % 修改 biblatex 中「专利」（patent）部分的著录格式。
+  % 主要根据北理工自定义的规范，参考 biblatex 和
+  % biblatex-gb7714-2015 的实现修改而成。
+  %
+  % 默认不开启，因为此修改可能会产生其他边界问题。
+  \bool_if:NT \g__bithesis_quirks_mode_bool {
+    \cs_if_exist:NT \DeclareBibliographyDriver {
+      %
+      %   重设专利title的输出，将文献类型标识符输出出去
+      %
+      \newbibmacro*{patenttitle}{%原输出来自biblatex.def文件
+        \ifboolexpr{%
+          test{\iffieldundef{title}}%
+          and%
+          test{\iffieldundef{subtitle}}%
+        }%
+          {}%
+          {\printtext[title]{\bibtitlefont%
+             \printfield[titlecase]{title}%
+             \ifboolexpr{test {\iffieldundef{subtitle}}}%这里增加了对子标题的判断，解决不判断多一个点的问题
+             {}{\setunit{\subtitlepunct}%
+             \printfield[titlecase]{subtitle}}%
+              \iftoggle{bbx:gbtype}{\printfield[gbtypeflag]{usera}}{}%
+             \iffieldundef{titleaddon}{}%判断一下titleaddon，否则直接加可能多一个空格
+              {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+              % ：地区
+              \setunit{\subtitlepunct}\iflistundef{location}
+                {}
+                {\setunit*{\subtitlepunct}%
+                 \printtext{%[parens]
+                   \printlist[][-\value{listtotal}]{location}}}%
+              % ，专利号
+              \setunit{\addcomma\addspace}\printfield{number}%写专利号
+              \setunit{\addcomma\addspace}
+              \usebibmacro{newsdate}%
+           }%
+        }%
+      }
+
+      %
+      %   重定义专利文献驱动
+      %
+        \DeclareBibliographyDriver{patent}{%源来自standard.BBX
+        \usebibmacro{bibindex}%
+        \usebibmacro{begentry}%
+        \usebibmacro{author}%
+        \ifnameundef{author}{}{\setunit{\labelnamepunct}\newblock}%这一段用于去除作者不存在时多出的标点
+        \usebibmacro{patenttitle}%给出专利专用的标题输出
+        \iftoggle{bbx:gbstrict}{}{%
+          \newunit%
+          \printlist{language}%
+          \newunit\newblock
+          \usebibmacro{byauthor}
+        }%
+        \newunit\newblock
+        \printfield{type}%
+        \setunit*{\addspace}%
+        \newunit\newblock
+        \usebibmacro{byholder}%
+        \newunit\newblock
+        \printfield{note}%
+        \newunit\newblock
+        \usebibmacro{doi+eprint+url}%
+        \newunit\newblock
+        \usebibmacro{addendum+pubstate}%
+        \setunit{\bibpagerefpunct}\newblock
+        \usebibmacro{pageref}%
+        \newunit\newblock
+        \iftoggle{bbx:related}
+          {\usebibmacro{related:init}%
+           \usebibmacro{related}}
+          {}%
+        \usebibmacro{annotation}\usebibmacro{finentry}}
+    }
   }
 }
 \cs_new:Npn \xihei:n #1 {
