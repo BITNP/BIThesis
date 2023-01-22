@@ -14,12 +14,6 @@ SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
 EXAMPLEDIR = ./examples
 
-# make deletion work on Windows
-ifdef SystemRoot
-  RM = del /Q
-else
-  RM = rm -f
-endif
 
 .PHONY: all cls doc clean FORCE_MAKE copy
 
@@ -38,10 +32,10 @@ viewdoc: doc
 
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx
-	-@$(RM) -r *.glo $(CLSFILE)
+	-rm -rf *.glo $(CLSFILE)
 
 clean-dist:
-	-@$(RM) -r $(PACKAGE).pdf
+	-rm -rf $(PACKAGE).pdf
 
 clean-all: clean clean-dist FORCE_MAKE
 
