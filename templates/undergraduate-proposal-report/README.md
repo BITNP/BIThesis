@@ -1,8 +1,8 @@
 # Undergraduate Proposal Report 本科生毕业设计开题报告
 
-**请尽可能使用最新版本撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
+**请尽可能使用最新版本[^1]撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
 
-本目录中包含有北京理工大学本科生毕业设计的开题报告模板的全部内容，有关模板的使用方法更为详细的介绍，请参考：[bithesis 使用手册](./bithesis.pdf)。
+本目录中包含有北京理工大学本科生毕业设计的开题报告模板的全部内容，有关模板的使用方法更为详细的介绍，请参考：[bithesis 使用手册][manual]。
 
 ## 项目结构
 
@@ -45,3 +45,7 @@ latexmk
 ## 排版参考
 
 - 计算机学院《开题报告》
+
+[^1]: 关于如何升级模板的版本，请参考[手册][manual]中「版本号与升级」这一章节内容。
+
+[manual]: ./bithesis.pdf
