@@ -1,6 +1,6 @@
 # Presentation Slide 演示文档模板
 
-**请尽可能使用最新版本撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
+**请尽可能使用最新版本[^1]撰写文章，我们的代码仓库是：https://github.com/BITNP/BIThesis 。**
 
 ## 特性
 
@@ -42,3 +42,5 @@ latexmk
 - 项目地址：https://github.com/BITNP/BIThesis
 - Bug Report 与 Feature Request：https://github.com/BITNP/BIThesis/issues
 - QQ 交流群：737548118
+
+[^1]: 关于如何升级模板的版本，请参考[手册][manual]中「版本号与升级」这一章节内容。
