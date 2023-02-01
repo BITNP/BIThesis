@@ -475,6 +475,29 @@
 %   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，
 %   比如封面、信息页、原创性声明、个人简介、致谢等等。
 % \end{function}
+% 
+% \begin{function}{quirks}
+%   \begin{bitsyntax}[emph={[1]quirks}]
+%     quirks = (*<(false)|true>*)
+%   \end{bitsyntax}
+%
+%   此选项用于开启针对北理工官方示例的兼容模式。
+%   
+%   具体包括：
+%   \begin{itemize}
+%     \item \pkg{biblatex} 中的 |patent| 类型将不再采用国标 GB/T 7714-2015 的格式，
+%      而是采用北理工官方示例的格式。
+%   \end{itemize}
+%
+%   之所以需要此选项，是因为北理工官方示例中的格式
+%   与国标 GB/T 7714-2015 中的格式不一致；
+%   而这部分改动可能引入潜在的兼容性问题。
+%   而这些差异其实比较细微，所以我们将其作为一个默认不开启的选项。
+%   
+%   在未来，如果持续有用户反馈问题，亦或是没有边界问题，
+%   ，我们可能会将其中的功能移入默认效果中。
+% 
+% \end{function}
 %  
 % \begin{function}{twoside}
 %   \begin{bitsyntax}[emph={[1]twoside}]
@@ -1673,6 +1696,17 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\g_@@_quirks_mode_bool}
+% 是否兼容更符合北理工官方模板或规范，但不太符合一般排版要求的模式。默认为 false。
+% 目前此选项包括：
+% \begin{itemize}
+%   \item \pkg{biblatex} 的专利格式不再使用国标格式，而采用北理工自定义格式。
+% \end{itemize}
+%    \begin{macrocode}
+\bool_new:N \g_@@_quirks_mode_bool
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{variable}{\g_@@_label_divide_char_tl}
 % 用于分隔标签的字符。默认为「-」或者「.」。
 %    \begin{macrocode}
@@ -2027,6 +2061,7 @@
   twoside .bool_gset:N = \g_@@_twoside_bool,
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
+  quirks .bool_gset:N = \g_@@_quirks_mode_bool,
 }
 %    \end{macrocode}
 %
@@ -2350,6 +2385,82 @@
   % 「攻读学位期间发表论文与研究成果清单」使用的。
   \cs_if_exist:NT \DeclareBibliographyCategory {
     \DeclareBibliographyCategory{mypub}
+  }
+
+  % 修改 biblatex 中「专利」（patent）部分的著录格式。
+  % 主要根据北理工自定义的规范，参考 biblatex 和 
+  % biblatex-gb7714-2015 的实现修改而成。
+  %
+  % 默认不开启，因为此修改可能会产生其他边界问题。
+  \bool_if:NT \g_@@_quirks_mode_bool {
+    \cs_if_exist:NT \DeclareBibliographyDriver {
+      %
+      %   重设专利title的输出，将文献类型标识符输出出去
+      %
+      \newbibmacro*{patenttitle}{%原输出来自biblatex.def文件
+        \ifboolexpr{%
+          test{\iffieldundef{title}}%
+          and%
+          test{\iffieldundef{subtitle}}%
+        }%
+          {}%
+          {\printtext[title]{\bibtitlefont%
+             \printfield[titlecase]{title}%
+             \ifboolexpr{test {\iffieldundef{subtitle}}}%这里增加了对子标题的判断，解决不判断多一个点的问题
+             {}{\setunit{\subtitlepunct}%
+             \printfield[titlecase]{subtitle}}%
+              \iftoggle{bbx:gbtype}{\printfield[gbtypeflag]{usera}}{}%
+             \iffieldundef{titleaddon}{}%判断一下titleaddon，否则直接加可能多一个空格
+              {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+              % ：地区
+              \setunit{\subtitlepunct}\iflistundef{location}
+                {}
+                {\setunit*{\subtitlepunct}%
+                 \printtext{%[parens]
+                   \printlist[][-\value{listtotal}]{location}}}%
+              % ，专利号
+              \setunit{\addcomma\addspace}\printfield{number}%写专利号
+              \setunit{\addcomma\addspace}
+              \usebibmacro{newsdate}%
+           }%
+        }%
+      }
+
+      %
+      %   重定义专利文献驱动
+      %
+        \DeclareBibliographyDriver{patent}{%源来自standard.BBX
+        \usebibmacro{bibindex}%
+        \usebibmacro{begentry}%
+        \usebibmacro{author}%
+        \ifnameundef{author}{}{\setunit{\labelnamepunct}\newblock}%这一段用于去除作者不存在时多出的标点
+        \usebibmacro{patenttitle}%给出专利专用的标题输出
+        \iftoggle{bbx:gbstrict}{}{%
+          \newunit%
+          \printlist{language}%
+          \newunit\newblock
+          \usebibmacro{byauthor}
+        }%
+        \newunit\newblock
+        \printfield{type}%
+        \setunit*{\addspace}%
+        \newunit\newblock
+        \usebibmacro{byholder}%
+        \newunit\newblock
+        \printfield{note}%
+        \newunit\newblock
+        \usebibmacro{doi+eprint+url}%
+        \newunit\newblock
+        \usebibmacro{addendum+pubstate}%
+        \setunit{\bibpagerefpunct}\newblock
+        \usebibmacro{pageref}%
+        \newunit\newblock
+        \iftoggle{bbx:related}
+          {\usebibmacro{related:init}%
+           \usebibmacro{related}}
+          {}%
+        \usebibmacro{annotation}\usebibmacro{finentry}}
+    }
   }
 }
 %    \end{macrocode}
