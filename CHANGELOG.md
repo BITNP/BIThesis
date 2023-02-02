@@ -13,6 +13,44 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.3.0] - 2023-02-02
+
+[7b4bd2d](https://github.com/BITNP/BIThesis/commit/7b4bd2d0c445b91c13ff23d159c98c29540e59f7)...[694c3b3](https://github.com/BITNP/BIThesis/commit/694c3b348ff91364de9a094681ad2cb1ed974847)
+
+### Bug Fixes
+
+- Revise a typo. ([9583710](https://github.com/BITNP/BIThesis/commit/958371012a161e03bce5d48075a10767b8e42233))
+
+### Documentation
+
+- Typo and other small fixes ([26400cb](https://github.com/BITNP/BIThesis/commit/26400cbf9fd9e8e9822dcee08e1ebd4bc5cec944))
+- Typo and other small fixes ([ac0b0c3](https://github.com/BITNP/BIThesis/commit/ac0b0c3df4f721414661a50f062bfb48fe4b5fd1))
+- Typo ([95142c4](https://github.com/BITNP/BIThesis/commit/95142c4840b7d44794b013935d645ec4a3ada9fa))
+- Add docs for quirks mode. ([d90f939](https://github.com/BITNP/BIThesis/commit/d90f939c40e2454af88a0ecc22a93177115e2a31))
+- Add subsection for versioning and updating. ([00a3d7c](https://github.com/BITNP/BIThesis/commit/00a3d7c1231f9197a7a4ae0916c206c6f84297af))
+- Add a reminder on how to update. ([5347352](https://github.com/BITNP/BIThesis/commit/534735268d11b3ba7997697eead453acb68a65ad))
+
+### Features
+
+- Add quirks mode. ([d2d1042](https://github.com/BITNP/BIThesis/commit/d2d10428ce6e84f91344ad684f29f4bfef88837e))
+
+### Miscellaneous Tasks
+
+- Fix typo. ([9508311](https://github.com/BITNP/BIThesis/commit/9508311f432a266273f299b8df2a6460f916bc2a))
+- Fix typo. ([c736aca](https://github.com/BITNP/BIThesis/commit/c736aca332449e6b8b76a15440b1ef0b81d2967e))
+- Add missing field in the issue template.  ([d180e6d](https://github.com/BITNP/BIThesis/commit/d180e6d7620934bfe3392dce2c4b6ec58fc8c187))
+- Make linter happy. ([e5690e6](https://github.com/BITNP/BIThesis/commit/e5690e658cc85e9a546d5480da2cbbd0c7085705))
+- Update copyright. ([a55e45a](https://github.com/BITNP/BIThesis/commit/a55e45a90449fda7dec74750a2164d4471555ada))
+- Bump version to v3.3.0. ([9ebe371](https://github.com/BITNP/BIThesis/commit/9ebe3711aab8759c006efa770510c9516c8e73a3))
+
+### Refactor
+
+- Add a patent entry. ([ed5c552](https://github.com/BITNP/BIThesis/commit/ed5c5527fc04b3a8d85a4602d210cab8145e07ff))
+
+### Rechore
+
+- Make sure all templates are updated. ([0f109e9](https://github.com/BITNP/BIThesis/commit/0f109e970c3d6fe82254d44b733e38505116a34b))
+
 ## [3.2.3] - 2022-12-30
 
 [21fa3d0](https://github.com/BITNP/BIThesis/commit/21fa3d0b113c527608dbf03e6451b25dc81f0388)...[3d58df5](https://github.com/BITNP/BIThesis/commit/3d58df5f29aa464cf5b3294dd5a5ccaa53dbb6da)
