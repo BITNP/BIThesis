@@ -401,8 +401,9 @@
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
 \bool_if:NTF \g__bithesis_twoside_bool {} {
-  \PassOptionsToClass{oneside,openany}{ctexbook}
+  \PassOptionsToClass{oneside}{ctexbook}
 }
+\PassOptionsToClass{openany}{ctexbook}
 \DeclareOption*{
   \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexbook}
 }
@@ -714,8 +715,6 @@
   \pagestyle{BIThesis}
 }
 \RenewDocumentCommand \mainmatter {} {
-  \cleardoublepage
-
   % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
@@ -1573,7 +1572,6 @@
   }
 \NewDocumentEnvironment {abstractEn} {}
   {
-    \cleardoublepage
     \setstretch{1.53}
 
     \__bithesis_if_bachelor_thesis:T {

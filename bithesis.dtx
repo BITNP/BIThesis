@@ -2242,10 +2242,12 @@
 %    \end{macrocode}
 %
 % 如果没有开启双面打印选项，则在 ctexbook 中开启单面打印选项。
+% 允许 chapter 直接另起一页（即使是偶数（左手）页）。
 %    \begin{macrocode}
 \bool_if:NTF \g_@@_twoside_bool {} {
-  \PassOptionsToClass{oneside,openany}{ctexbook}
+  \PassOptionsToClass{oneside}{ctexbook}
 }
+\PassOptionsToClass{openany}{ctexbook}
 %    \end{macrocode}
 %
 % 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
@@ -2648,8 +2650,6 @@
 % 主体内容的页面样式。
 %    \begin{macrocode}
 \RenewDocumentCommand \mainmatter {} {
-  \cleardoublepage
-
   % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
@@ -3741,7 +3741,6 @@
 %    \begin{macrocode}
 \NewDocumentEnvironment {abstractEn} {}
   {
-    \cleardoublepage
     \setstretch{1.53}
 
     \@@_if_bachelor_thesis:T {
