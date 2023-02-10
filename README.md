@@ -122,6 +122,8 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 - [北京理工大学硕士（博士）学位论文 LaTeX 模板](https://github.com/BIT-thesis/LaTeX-template)：提供了研究生论文样式的代码参考。
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)：提供了包编写的最佳实践。
 - [ThuThesis（清华大学论文模板）](https://github.com/tuna/thuthesis)：提供了 dtx 样式的参考。
+- [西安电子科技大学 LaTeX 套装](https://github.com/note286/xduts)：[@note286](https://github.com/note286) 提供了包编写的指导。
+- [@KaysinBIT](https://github.com/KaysinBIT)：积极反馈，提供了多处修改建议。
 
 以及所有参与本项目的开发者、贡献者与使用者。谢谢你们！
 
