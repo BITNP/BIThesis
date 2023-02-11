@@ -13,6 +13,28 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.3.1] - 2023-02-11
+
+[4807915](https://github.com/BITNP/BIThesis/commit/480791527043e2ccc706d688cacd0cbbde87d9a3)...[a87c4f6](https://github.com/BITNP/BIThesis/commit/a87c4f6aa450c93ef1e0b49f638262c6aa3482f6)
+
+### Bug Fixes
+
+- Increase Indent. ([25f87cc](https://github.com/BITNP/BIThesis/commit/25f87cc5db42506dae43e66b4abbb99143c074de))
+- Set font by font file names (in stead of font names). ([21826b0](https://github.com/BITNP/BIThesis/commit/21826b01e72bf36c8823295070666efcd5137e72))
+- Chapters now `openany` in twoside mode. ([a2047ff](https://github.com/BITNP/BIThesis/commit/a2047ff0124c3695f6e1745357ed584d45d4f2c5))
+
+### Documentation
+
+- Add apecial thanks. ([af0ecca](https://github.com/BITNP/BIThesis/commit/af0ecca7c429b996d7cc06f40b42658495eb9b95))
+
+### Miscellaneous Tasks
+
+- Bump version to v3.3.1 ([2f4aa62](https://github.com/BITNP/BIThesis/commit/2f4aa62f8efcfe9c46b5b2e78d1cbed3a5fbc11d))
+
+### Hotfix
+
+- \clearpage after remove \cleardoublepage. ([ea1a689](https://github.com/BITNP/BIThesis/commit/ea1a689637a7ff7ae5850965245ed24df0e1854e))
+
 ## [3.3.0] - 2023-02-02
 
 [7b4bd2d](https://github.com/BITNP/BIThesis/commit/7b4bd2d0c445b91c13ff23d159c98c29540e59f7)...[694c3b3](https://github.com/BITNP/BIThesis/commit/694c3b348ff91364de9a094681ad2cb1ed974847)
