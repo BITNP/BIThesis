@@ -1470,6 +1470,8 @@
         {4} {\__bithesis_graduate_originality:}
         {5} {\__bithesis_graduate_originality:}
       }
+    % 单独成页
+    \clearpage
     \end{blindPeerReview}
     \group_end:
   }
@@ -1517,6 +1519,9 @@
       \__bithesis_if_thesis_int_type:nT {3} {
         \addcontentsline{toc}{chapter}{\c__bithesis_label_toc_en_tl}
       }
+
+      % 单独成页
+      \clearpage
     }
   }
 \NewDocumentEnvironment {abstract} {}
@@ -1981,6 +1986,9 @@
   }
   {
     \end{itemize}
+
+    % 单独一页
+    \clearpage
   }
 \endinput
 %%
