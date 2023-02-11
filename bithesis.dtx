@@ -3609,6 +3609,8 @@
         {4} {\@@_graduate_originality:}
         {5} {\@@_graduate_originality:}
       }
+    % 单独成页
+    \clearpage
     \end{blindPeerReview}
     \group_end:
   }
@@ -3674,6 +3676,9 @@
       \@@_if_thesis_int_type:nT {3} {
         \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
       }
+
+      % 单独成页
+      \clearpage
     }
   }
 %    \end{macrocode}
@@ -4211,6 +4216,9 @@
   }
   {
     \end{itemize}
+
+    % 单独一页
+    \clearpage
   }
 %    \end{macrocode}
 % \end{environment}
