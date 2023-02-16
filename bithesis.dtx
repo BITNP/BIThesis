@@ -3735,7 +3735,14 @@
     \par
     \vspace{4ex}
     \noindent
-    \textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
+    \@@_if_graduate:TF {
+      % 研究生模板中，“关键词”宋体小四加粗
+      % 关键词为宋体小四号字。
+      \textbf{\c_@@_label_keywords_tl}\l_@@_value_keywords_tl\par
+    } {
+      % 本科生模板中，关键词为黑体加粗
+      \textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
+    }
     \newpage
   }
 %    \end{macrocode}
@@ -3801,7 +3808,14 @@
   }
   {
     \par\vspace{3ex}\noindent
-    \textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
+    \@@_if_graduate:TF {
+      % Times New Roman小四号字，行距22磅
+      % “Key Words”
+      % Times New Roman小四号字加粗
+      \textbf{\c_@@_label_keywords_en_tl} \l_@@_value_keywords_en_tl
+    } {
+      \textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
+    }
     \newpage
   }
 
