@@ -1572,7 +1572,14 @@
     \par
     \vspace{4ex}
     \noindent
-    \textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
+    \__bithesis_if_graduate:TF {
+      % 研究生模板中，“关键词”宋体小四加粗
+      % 关键词为宋体小四号字。
+      \textbf{\c__bithesis_label_keywords_tl}\l__bithesis_value_keywords_tl\par
+    } {
+      % 本科生模板中，关键词为黑体加粗
+      \textbf{\heiti \c__bithesis_label_keywords_tl \l__bithesis_value_keywords_tl}\par
+    }
     \newpage
   }
 \NewDocumentEnvironment {abstractEn} {}
@@ -1632,7 +1639,14 @@
   }
   {
     \par\vspace{3ex}\noindent
-    \textbf{\c__bithesis_label_keywords_en_tl \l__bithesis_value_keywords_en_tl}
+    \__bithesis_if_graduate:TF {
+      % Times New Roman小四号字，行距22磅
+      % “Key Words”
+      % Times New Roman小四号字加粗
+      \textbf{\c__bithesis_label_keywords_en_tl} \l__bithesis_value_keywords_en_tl
+    } {
+      \textbf{\c__bithesis_label_keywords_en_tl \l__bithesis_value_keywords_en_tl}
+    }
     \newpage
   }
 
