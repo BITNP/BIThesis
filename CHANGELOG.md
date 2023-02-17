@@ -13,6 +13,22 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.3.2] - 2023-02-17
+
+[b9444a7](https://github.com/BITNP/BIThesis/commit/b9444a7bf68f86903733911a2c1d9bf1968970aa)...[28c48bc](https://github.com/BITNP/BIThesis/commit/28c48bc8e168ac727e4b677dd23298d9c6ecfd99)
+
+### Bug Fixes
+
+- Use normal text with the keywords. ([2b5ee4e](https://github.com/BITNP/BIThesis/commit/2b5ee4e80cdcd81c5303278d1e686a372e1b3625))
+
+### Documentation
+
+- Add extra mark on doc. ([28c48bc](https://github.com/BITNP/BIThesis/commit/28c48bc8e168ac727e4b677dd23298d9c6ecfd99))
+
+### Miscellaneous Tasks
+
+- Bump version to v3.3.2. ([5714bda](https://github.com/BITNP/BIThesis/commit/5714bda579d24f078e9c742fec8c5545596974e2))
+
 ## [3.3.1] - 2023-02-11
 
 [4807915](https://github.com/BITNP/BIThesis/commit/480791527043e2ccc706d688cacd0cbbde87d9a3)...[a87c4f6](https://github.com/BITNP/BIThesis/commit/a87c4f6aa450c93ef1e0b49f638262c6aa3482f6)
