@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bitbeamer}
-{2023-02-11}{3.3.1}{BIT Thesis Templates}
+{2023-02-17}{3.3.2}{BIT Thesis Templates}
 \keys_define:nn { bitbeamer }
   {
     titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
