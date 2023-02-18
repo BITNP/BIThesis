@@ -429,7 +429,6 @@
 \RequirePackage{amssymb}
 \RequirePackage{pifont}
 \RequirePackage{amsthm}
-\RequirePackage{unicode-math}
 \RequirePackage{pdfpages}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
@@ -792,10 +791,6 @@
 \lstset{style=examplestyle}
 \cs_set:Npn \listfigurename {\c__bithesis_label_figure_tl}
 \cs_set:Npn \listtablename {\c__bithesis_label_table_tl}
-\unimathsetup{
-  math-style = ISO,
-  bold-style = ISO,
-}
 \theoremstyle{plain}
   \newtheorem{algorithm}{算法}[chapter]
   \newtheorem{theorem}{定理}[chapter]
@@ -810,7 +805,7 @@
   \newtheorem{case}{情形}
 \theoremstyle{remark}
   \newtheorem{remark}{注}
-  \renewcommand{\qedsymbol}{\ensuremath{\QED}}
+  \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
