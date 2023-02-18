@@ -1027,6 +1027,30 @@
 % \textit{一般不需要用户自行修改。}
 % \end{function}
 % 
+% \begin{function}[added=2023-02-18]{publications/maxbibnames}
+%   \begin{bitsyntax}[emph={[1]maxbibnames}]
+%     maxbibnames = (*(3)|\marg{正整数}*)
+%   \end{bitsyntax}
+%
+% 影响「攻读学位期间发表论文与研究成果清单」中所有名称列表（author、editor 等）的阈值。
+% 如果名称列表超过了该阈值，即，它包含的姓名数量超过 \marg{正整数}，
+% 那么就会根据 \kvopt{publications/minbibnames}{正整数} 选项的设置进行自动截断。
+%
+% \end{function}
+% 
+% \begin{function}[added=2023-02-18]{publications/minbibnames}
+%   \begin{bitsyntax}[emph={[1]minbibnames}]
+%     minbibnames = (*(1)|\marg{正整数}*)
+%   \end{bitsyntax}
+%
+% 影响所有名称列表（author、editor 等）的限制值。如果某个列表包含的姓名数量超
+% 过 \marg{正整数}，那么就会自动截断至 |minbibnames| 个姓名。|minbibnames| 的值必须小于或
+% 等于 |maxbibnames|。
+%
+% 对于用户来说，可以将 |minbibnames| 理解为「姓名列表的最小长度」。
+% 例如，你在全部文献中最低排在第四位，那么可以将 |minbibnames| 和 |maxbibnames| 都设置为 4。
+%
+% \end{function}
 % 
 % \subsubsection{其他配置}
 % 
@@ -2224,6 +2248,10 @@
   sorting .initial:n = {true},
   omit .bool_set:N = \l_@@_publications_omit_bool,
   omit .initial:n = {false},
+  maxbibnames .int_set:N = \l_@@_publications_maxbibnames_int,
+  maxbibnames .initial:n = {3},
+  minbibnames .int_set:N = \l_@@_publications_minbibnames_int,
+  minbibnames .initial:n = {1},
 }
 %    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
@@ -4173,6 +4201,16 @@
       } {
         % Do not sort.
         \newrefcontext
+      }
+
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l_@@_publications_maxbibnames_int
+      }
+
+      % 根据 minbibnames 的设置，覆盖 \blx@minbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@minbibnames {
+        \l_@@_publications_minbibnames_int
       }
 
       \chapter{\c_@@_label_publications_tl}
