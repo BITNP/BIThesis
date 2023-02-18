@@ -395,6 +395,8 @@
   sorting .initial:n = {true},
   omit .bool_set:N = \l__bithesis_publications_omit_bool,
   omit .initial:n = {false},
+  maxbibnames .int_set:N = \l__bithesis_publications_maxbibnames_int,
+  maxbibnames .initial:n = {3},
 }
 \ProcessKeysOptions { bithesis / option }
 \__bithesis_if_thesis_english:T {
@@ -1954,6 +1956,11 @@
       } {
         % Do not sort.
         \newrefcontext
+      }
+
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l__bithesis_publications_maxbibnames_int
       }
 
       \chapter{\c__bithesis_label_publications_tl}

@@ -1027,6 +1027,17 @@
 % \textit{一般不需要用户自行修改。}
 % \end{function}
 % 
+% \begin{function}[added=2023-02-18]{publications/maxbibnames}
+%   \begin{bitsyntax}[emph={[1]maxbibnames}]
+%     maxbibnames = (*(3)|\marg{正整数}*)
+%   \end{bitsyntax}
+%
+% 修改「攻读学位期间发表论文与研究成果清单」中最大作者数量。
+% 默认为 3，即最多显示 3 个作者。
+% 比如，你是第四个作者，那么可以设置为 4。
+%
+% \end{function}
+% 
 % 
 % \subsubsection{其他配置}
 % 
@@ -2224,6 +2235,8 @@
   sorting .initial:n = {true},
   omit .bool_set:N = \l_@@_publications_omit_bool,
   omit .initial:n = {false},
+  maxbibnames .int_set:N = \l_@@_publications_maxbibnames_int,
+  maxbibnames .initial:n = {3},
 }
 %    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
@@ -4173,6 +4186,11 @@
       } {
         % Do not sort.
         \newrefcontext
+      }
+
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l_@@_publications_maxbibnames_int
       }
 
       \chapter{\c_@@_label_publications_tl}
