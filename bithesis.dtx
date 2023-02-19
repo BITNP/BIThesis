@@ -2286,6 +2286,10 @@
 }
 %    \end{macrocode}
 %
+% 抑制 fontspec 宏包关于字体的警告信息。
+%    \begin{macrocode}
+\PassOptionsToPackage{quiet}{xeCJK}
+%    \end{macrocode}
 % 加载 ctexbook 模板类。
 %    \begin{macrocode}
 \ProcessOptions\relax
@@ -6192,7 +6196,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \ProvidesPackage{dtx-style}
 \RequirePackage{hypdoc}
 \RequirePackage{ifthen}
-\RequirePackage{fontspec}
+\RequirePackage[quiet]{fontspec}
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \RequirePackage[UTF8,scheme=chinese,heading,sub3section]{ctex}
