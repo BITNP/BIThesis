@@ -135,6 +135,8 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 | Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
 
 
+![Alt](https://repobeats.axiom.co/api/embed/ab8b841962ee6e9bcf77a228815534b7a35fbbe9.svg "Repobeats analytics image")
+
 ---
 
 📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
