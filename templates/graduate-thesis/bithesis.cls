@@ -411,6 +411,7 @@
 \DeclareOption*{
   \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexbook}
 }
+\PassOptionsToPackage{quiet}{xeCJK}
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
 \RequirePackage{geometry}
