@@ -13,6 +13,24 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.4.0] - 2023-02-20
+
+[900a590](https://github.com/BITNP/BIThesis/commit/900a590a3120cfa84cc696d5bea2bbb679c67e87)...[a1ae48e](https://github.com/BITNP/BIThesis/commit/a1ae48e459636d9cf4448924663b02cea54fd714)
+
+### Bug Fixes
+
+- Add minbibnames to both control name truncate behavior. ([e5aa6af](https://github.com/BITNP/BIThesis/commit/e5aa6af39fc02d8a23183ec4b5a40c320e95d893))
+- Suppress fontspec warning. ([0844846](https://github.com/BITNP/BIThesis/commit/08448466a4c989981f3c09e9b5f1188e25ad6f85))
+
+### Features
+
+- Allow to set maxbibnames for publications. ([f627bf2](https://github.com/BITNP/BIThesis/commit/f627bf2f90f5cecb802043eb0408d09b8c2dc1f4))
+
+### Miscellaneous Tasks
+
+- Add a repobeats service. ([ae84183](https://github.com/BITNP/BIThesis/commit/ae8418376142290671d1dd4d7f814e2ed2ba4314))
+- Update version to v3.4.0. ([a1ae48e](https://github.com/BITNP/BIThesis/commit/a1ae48e459636d9cf4448924663b02cea54fd714))
+
 ## [3.3.2] - 2023-02-17
 
 [b9444a7](https://github.com/BITNP/BIThesis/commit/b9444a7bf68f86903733911a2c1d9bf1968970aa)...[28c48bc](https://github.com/BITNP/BIThesis/commit/28c48bc8e168ac727e4b677dd23298d9c6ecfd99)
