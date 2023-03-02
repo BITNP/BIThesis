@@ -13,6 +13,14 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.4.1] - 2023-03-02
+
+[64411f5](https://github.com/BITNP/BIThesis/commit/64411f5023b0bbd8eb9a1b3b7c156fbe053834e8)...[a1ab51e](https://github.com/BITNP/BIThesis/commit/a1ab51eeaed3205d3f44299a4e2eb15e143a6440)
+
+### Bug Fixes
+
+- Add magic comments to auto-config editors. ([a4a921e](https://github.com/BITNP/BIThesis/commit/a4a921ea6d7a62221bc70e68a98043b46ad7b0b1))
+
 ## [3.4.0] - 2023-02-20
 
 [900a590](https://github.com/BITNP/BIThesis/commit/900a590a3120cfa84cc696d5bea2bbb679c67e87)...[a1ae48e](https://github.com/BITNP/BIThesis/commit/a1ae48e459636d9cf4448924663b02cea54fd714)
