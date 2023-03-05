@@ -1190,11 +1190,11 @@
 % \subsubsection{定理类环境}
 % \paragraph{默认格式}
 %
-% \begin{function}{algorithm,theorem,lemma,proposition,corollary,axiom,definition,conjecture,example,case,remark}
+% \begin{function}[updated=2023-03-05]{algo,them,lem,prop,cor,axi,defn,conj,exmp,case,rem}
 %   \begin{bitsyntax}[emph={[2]proof}]
-%     \begin{theorem}[留数定理]
+%     \begin{them}[留数定理]
 %       (*\meta{定理内容}*)
-%     \end{theorem}
+%     \end{them}
 %     
 %     \begin{proof}(*\oarg{小标题}*)
 %       (*\meta{证明过程}*)
@@ -1209,7 +1209,8 @@
 % \subfloat[][plain样式]{
 %   \begin{tabular}{@{}ccccccc@{}}
 %   \toprule
-%   \textbf{名称} & algorithm & theorem & lemma & proposition & corollary & axiom \\ \midrule
+%   \textbf{名称} & algo & them & lem & prop & cor & axi \\ \midrule
+%   \textbf{全称} & algorithm & theorem & lemma & proposition & corollary & axiom \\
 %   \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    \\
 %   \textbf{样式} & \multicolumn{6}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
 %   \end{tabular}
@@ -1218,7 +1219,8 @@
 % \subfloat[][definition样式]{
 %   \begin{tabular}{@{}ccccc@{}}
 %   \toprule
-%   \textbf{名称} & definition & conjecture & example & case \\ \midrule
+%   \textbf{名称} & defn & conj & exmp & case \\ \midrule
+%   \textbf{全称} & definition & conjecture & example & case \\
 %   \textbf{含义} & 定义        & 猜想      & 例    & 情形          \\
 %   \textbf{样式} & \multicolumn{4}{c}{\textbf{定义2.1.} 定义内容……}       \\ \bottomrule
 %   \end{tabular}
@@ -1227,7 +1229,8 @@
 % \subfloat[][remark样式]{
 %   \begin{tabular}{@{}cc@{}}
 %   \toprule
-%   \textbf{名称} & remark \\ \midrule
+%   \textbf{名称} & rem \\ \midrule
+%   \textbf{全称} & remark \\ \midrule
 %   \textbf{含义} & 注        \\
 %   \textbf{样式} & \multicolumn{1}{c}{\textit{注1.} 内容……}       \\ \bottomrule
 %   \end{tabular}
@@ -1237,6 +1240,7 @@
 %   \begin{tabular}{@{}cc@{}}
 %   \toprule
 %   \textbf{名称} & proof \\ \midrule
+%   \textbf{全称} & proof \\
 %   \textbf{含义} & 证明        \\
 %   \textbf{样式} & \multicolumn{1}{c}{\textit{证明. } 内容…… 「证毕符号」}       \\ \bottomrule
 %   \end{tabular}
@@ -2814,19 +2818,19 @@
 % 预定义用户常用的证明环境。
 %    \begin{macrocode}
 \theoremstyle{plain}
-  \newtheorem{algorithm}{算法}[chapter]
-  \newtheorem{theorem}{定理}[chapter]
-  \newtheorem{lemma}[theorem]{引理}
-  \newtheorem{proposition}[theorem]{命题}
-  \newtheorem{corollary}[theorem]{推论}
-  \newtheorem{axiom}[theorem]{公理}
+  \newtheorem{algo}{算法}[chapter]
+  \newtheorem{them}{定理}[chapter]
+  \newtheorem{lem}[them]{引理}
+  \newtheorem{prop}[them]{命题}
+  \newtheorem{cor}[them]{推论}
+  \newtheorem{axi}[them]{公理}
 \theoremstyle{definition}
-  \newtheorem{definition}{定义}[chapter]
-  \newtheorem{conjecture}{猜想}[chapter]
-  \newtheorem{example}{例}[chapter]
+  \newtheorem{defn}{定义}[chapter]
+  \newtheorem{conj}{猜想}[chapter]
+  \newtheorem{exmp}{例}[chapter]
   \newtheorem{case}{情形}
 \theoremstyle{remark}
-  \newtheorem{remark}{注}
+  \newtheorem{rem}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
 %    \end{macrocode}
 % 
