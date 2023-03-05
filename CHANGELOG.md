@@ -13,6 +13,20 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.4.2] - 2023-03-05
+
+[cb5d833](https://github.com/BITNP/BIThesis/commit/cb5d83360a05bfe6c9f07b2580bb1c7650f13a34)...[b5045dd](https://github.com/BITNP/BIThesis/commit/b5045dd8bf50680c8cc13ea08363972c55288d9e)
+
+### Bug Fixes
+
+- Update the cover of template paper-translation. ([8a688c3](https://github.com/BITNP/BIThesis/commit/8a688c32699e61cb49d3d15e24dfc98d4eae0695))
+- Add info/class field in the cover of UT. ([e2ded7d](https://github.com/BITNP/BIThesis/commit/e2ded7dd8ee09fe5d7b6f6027e4426c582af7841))
+- Rename pre-defined theorem as per collision. ([d70fb9b](https://github.com/BITNP/BIThesis/commit/d70fb9b2d23c4ba37c8bdaf25f53a7b2913d09b9))
+
+### Miscellaneous Tasks
+
+- Update to v3.4.2. ([b5045dd](https://github.com/BITNP/BIThesis/commit/b5045dd8bf50680c8cc13ea08363972c55288d9e))
+
 ## [3.4.1] - 2023-03-02
 
 [64411f5](https://github.com/BITNP/BIThesis/commit/64411f5023b0bbd8eb9a1b3b7c156fbe053834e8)...[a1ab51e](https://github.com/BITNP/BIThesis/commit/a1ab51eeaed3205d3f44299a4e2eb15e143a6440)
