@@ -198,6 +198,7 @@
   {
     {school} {学\qquad 院} {School},
     {major} {专\qquad 业} {Degree},
+    {class} {班\qquad{}级} {Class},
     {author} {学生姓名} {Author},
     {student_id} {学\qquad 号} {Student~ID},
     {supervisor} {指导教师} {Supervisor},
@@ -297,6 +298,8 @@
     school .initial:n = {网络空间安全学院（示例）},
     major .tl_set:N = \l__bithesis_value_major_tl,
     major .initial:n = {网络空间安全（示例）},
+    class .tl_set:N = \l__bithesis_value_class_tl,
+    class .initial:n = {07111701},
     author .tl_set:N = \l__bithesis_value_author_tl,
     author .initial:n = {张三（示例）},
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
@@ -1194,6 +1197,7 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
               {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
@@ -1227,11 +1231,11 @@
             \includegraphics[width=6.87cm]{\l_bit_coverheaderimage_tl}\\
           }
 
-          \vspace{1mm}
+          \vspace{1.2mm}
 
           \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
 
-          \vspace{8mm}
+          \vspace{10mm}
 
           {
 
@@ -1256,7 +1260,7 @@
 
           }
 
-          \vspace{14mm}
+          \vspace{19mm}
 
           \zihao{2}\textbf{\xihei:n \l__bithesis_value_title_tl}\par
 
@@ -1290,6 +1294,7 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
               {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
