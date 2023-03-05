@@ -802,19 +802,19 @@
   bold-style = ISO,
 }
 \theoremstyle{plain}
-  \newtheorem{algorithm}{算法}[chapter]
-  \newtheorem{theorem}{定理}[chapter]
-  \newtheorem{lemma}[theorem]{引理}
-  \newtheorem{proposition}[theorem]{命题}
-  \newtheorem{corollary}[theorem]{推论}
-  \newtheorem{axiom}[theorem]{公理}
+  \newtheorem{algo}{算法}[chapter]
+  \newtheorem{them}{定理}[chapter]
+  \newtheorem{lem}[them]{引理}
+  \newtheorem{prop}[them]{命题}
+  \newtheorem{cor}[them]{推论}
+  \newtheorem{axi}[them]{公理}
 \theoremstyle{definition}
-  \newtheorem{definition}{定义}[chapter]
-  \newtheorem{conjecture}{猜想}[chapter]
-  \newtheorem{example}{例}[chapter]
+  \newtheorem{defn}{定义}[chapter]
+  \newtheorem{conj}{猜想}[chapter]
+  \newtheorem{exmp}{例}[chapter]
   \newtheorem{case}{情形}
 \theoremstyle{remark}
-  \newtheorem{remark}{注}
+  \newtheorem{rem}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\QED}}
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
