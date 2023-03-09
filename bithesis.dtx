@@ -2294,8 +2294,9 @@
 %    \end{macrocode}
 %
 % 抑制 fontspec 宏包关于字体的警告信息。
+% 手动开启伪粗体、伪斜体。
 %    \begin{macrocode}
-\PassOptionsToPackage{quiet}{xeCJK}
+\PassOptionsToPackage{quiet,AutoFakeBold,AutoFakeSlant}{xeCJK}
 %    \end{macrocode}
 % 加载 ctexbook 模板类。
 %    \begin{macrocode}
