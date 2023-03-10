@@ -33,7 +33,7 @@ jobs:
 
     strategy:
       matrix:
-        template: [graduate-thesis, undergraduate-thesis, undergraduate-proposal-report, lab-report, paper-translation, presentation-slide, undergraduate-thesis-en]
+        template: [graduate-thesis, undergraduate-thesis, lab-report, paper-translation, presentation-slide, undergraduate-thesis-en]
 
     steps:
       - uses: actions/checkout@v2

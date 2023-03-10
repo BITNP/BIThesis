@@ -7,7 +7,6 @@ Acronyms:
 - GT: graduate-thesis (研究生学位论文模板)
 - PT: paper-translation (本科生毕业设计外文翻译模板)
 - PS: presentation-slide (演讲幻灯片模板)
-- UPR: undergraduate-proposal-report (本科生毕业设计开题报告模板)
 - UTE: undergraduate-thesis-en (本科生毕业设计论文模板（全英文专业）)
 - UT: undergraduate-thesis (本科生毕业设计论文模板)
 
