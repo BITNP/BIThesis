@@ -40,7 +40,6 @@ clean-dist:
 clean-all: clean clean-dist FORCE_MAKE
 
 test: doc copy FORCE_MAKE
-	cd $(SCAFFOLDDIR)/undergraduate-proposal-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/undergraduate-thesis && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/paper-translation && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/undergraduate-thesis-en && latexmk && cd ..
@@ -58,7 +57,6 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
 	cp bithesis.cls $(TESTDIR)/doctor-thesis
-	cp bitreport.cls $(SCAFFOLDDIR)/undergraduate-proposal-report
 	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
