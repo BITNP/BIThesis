@@ -21,7 +21,7 @@
 %<thesis>\ProvidesExplClass{bithesis}
 %<report>\ProvidesExplClass{bitreport}
 %<beamer>\ProvidesExplClass{bitbeamer}
-%<cls>{2023-02-17}{3.3.2}{BIT Thesis Templates}
+%<cls>{2023-03-05}{3.4.2}{BIT Thesis Templates}
 %
 %<oldcls>\NeedsTeXFormat{LaTeX2e}[2020/10/01]
 %<book>\ProvidesClass{bitbook}
@@ -30,7 +30,7 @@
 %<oldcls> [2022/05/09 v2.1.1 BIT Thesis Templates]
 %
 %<*driver>
-\ProvidesFile{bithesis.dtx}[2023/02/17 3.3.2 BIT Thesis Templates]
+\ProvidesFile{bithesis.dtx}[2023/03/05 3.4.2 BIT Thesis Templates]
 \documentclass[letterpaper]{l3doc}
 \usepackage{dtx-style}
 
@@ -122,7 +122,7 @@
 % （\href{http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=7FA63E9BBA56E60471AEDAEBDE44B14C}{GB/T 7714—2015}）
 % 的标准。
 % 
-% 目前，\BIThesisLaTeX 主要设计完成了计算机学院本科生毕业论文开题报告、
+% 目前，\BIThesisLaTeX 主要设计完成了
 % 本科生毕业（设计）论文、研究生学位论文、本科生毕业（设计）论文外文翻译、
 % 全英文专业本科生毕业（设计）论文与通用实验报告的 {\LaTeX} 模板。
 %
@@ -262,7 +262,7 @@
 % \multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  
 %   & 封装本科生与研究生的毕业论文样式。 \\
 % & \cls{bitreport.cls}\ref{sec:bitreport} 
-%   & 封装了本科生开题报告与实验报告样式。     \\ \cmidrule(l){2-3}
+%   & 封装了本科生开题报告（已废弃）与实验报告样式。     \\ \cmidrule(l){2-3}
 % & \cls{bitbeamer.cls} 
 %   & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     
 %   \\ \cmidrule(l){2-3}
@@ -518,6 +518,17 @@
 %   \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
 %      \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
 %   \end{latex}
+% \end{function}
+%  
+% \begin{function}[added=2023-03-10]{autoFakeBold}
+%   \begin{bitsyntax}[emph={[1]autoFakeBold}]
+%     autoFakeBold = (*<(3)|false|{数字}>*)
+%   \end{bitsyntax}
+%
+%   该选项用于调整 \cls{xeCJK} 中 |AutoFakeBold| 选项以定义伪粗体的粗细程度。
+%   
+%   默认为 3，一般按照经验来说，2.5——3 比较符合 Words 中的粗体样式。
+%   
 % \end{function}
 %  
 % \subsection{参数设置}
@@ -1027,6 +1038,30 @@
 % \textit{一般不需要用户自行修改。}
 % \end{function}
 % 
+% \begin{function}[added=2023-02-18]{publications/maxbibnames}
+%   \begin{bitsyntax}[emph={[1]maxbibnames}]
+%     maxbibnames = (*(3)|\marg{正整数}*)
+%   \end{bitsyntax}
+%
+% 影响「攻读学位期间发表论文与研究成果清单」中所有名称列表（author、editor 等）的阈值。
+% 如果名称列表超过了该阈值，即，它包含的姓名数量超过 \marg{正整数}，
+% 那么就会根据 \kvopt{publications/minbibnames}{正整数} 选项的设置进行自动截断。
+%
+% \end{function}
+% 
+% \begin{function}[added=2023-02-18]{publications/minbibnames}
+%   \begin{bitsyntax}[emph={[1]minbibnames}]
+%     minbibnames = (*(1)|\marg{正整数}*)
+%   \end{bitsyntax}
+%
+% 影响所有名称列表（author、editor 等）的限制值。如果某个列表包含的姓名数量超
+% 过 \marg{正整数}，那么就会自动截断至 |minbibnames| 个姓名。|minbibnames| 的值必须小于或
+% 等于 |maxbibnames|。
+%
+% 对于用户来说，可以将 |minbibnames| 理解为「姓名列表的最小长度」。
+% 例如，你在全部文献中最低排在第四位，那么可以将 |minbibnames| 和 |maxbibnames| 都设置为 4。
+%
+% \end{function}
 % 
 % \subsubsection{其他配置}
 % 
@@ -1166,11 +1201,11 @@
 % \subsubsection{定理类环境}
 % \paragraph{默认格式}
 %
-% \begin{function}{algorithm,theorem,lemma,proposition,corollary,axiom,definition,conjecture,example,case,remark}
+% \begin{function}[updated=2023-03-05]{algo,them,lem,prop,cor,axi,defn,conj,exmp,case,rem}
 %   \begin{bitsyntax}[emph={[2]proof}]
-%     \begin{theorem}[留数定理]
+%     \begin{them}[留数定理]
 %       (*\meta{定理内容}*)
-%     \end{theorem}
+%     \end{them}
 %     
 %     \begin{proof}(*\oarg{小标题}*)
 %       (*\meta{证明过程}*)
@@ -1185,7 +1220,8 @@
 % \subfloat[][plain样式]{
 %   \begin{tabular}{@{}ccccccc@{}}
 %   \toprule
-%   \textbf{名称} & algorithm & theorem & lemma & proposition & corollary & axiom \\ \midrule
+%   \textbf{名称} & algo & them & lem & prop & cor & axi \\ \midrule
+%   \textbf{全称} & algorithm & theorem & lemma & proposition & corollary & axiom \\
 %   \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    \\
 %   \textbf{样式} & \multicolumn{6}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
 %   \end{tabular}
@@ -1194,7 +1230,8 @@
 % \subfloat[][definition样式]{
 %   \begin{tabular}{@{}ccccc@{}}
 %   \toprule
-%   \textbf{名称} & definition & conjecture & example & case \\ \midrule
+%   \textbf{名称} & defn & conj & exmp & case \\ \midrule
+%   \textbf{全称} & definition & conjecture & example & case \\
 %   \textbf{含义} & 定义        & 猜想      & 例    & 情形          \\
 %   \textbf{样式} & \multicolumn{4}{c}{\textbf{定义2.1.} 定义内容……}       \\ \bottomrule
 %   \end{tabular}
@@ -1203,7 +1240,8 @@
 % \subfloat[][remark样式]{
 %   \begin{tabular}{@{}cc@{}}
 %   \toprule
-%   \textbf{名称} & remark \\ \midrule
+%   \textbf{名称} & rem \\ \midrule
+%   \textbf{全称} & remark \\ \midrule
 %   \textbf{含义} & 注        \\
 %   \textbf{样式} & \multicolumn{1}{c}{\textit{注1.} 内容……}       \\ \bottomrule
 %   \end{tabular}
@@ -1213,6 +1251,7 @@
 %   \begin{tabular}{@{}cc@{}}
 %   \toprule
 %   \textbf{名称} & proof \\ \midrule
+%   \textbf{全称} & proof \\
 %   \textbf{含义} & 证明        \\
 %   \textbf{样式} & \multicolumn{1}{c}{\textit{证明. } 内容…… 「证毕符号」}       \\ \bottomrule
 %   \end{tabular}
@@ -1988,6 +2027,7 @@
   {
     {school} {学\qquad 院} {School},
     {major} {专\qquad 业} {Degree},
+    {class} {班\qquad{}级} {Class},
     {author} {学生姓名} {Author},
     {student_id} {学\qquad 号} {Student~ID},
     {supervisor} {指导教师} {Supervisor},
@@ -2068,6 +2108,9 @@
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
   quirks .bool_gset:N = \g_@@_quirks_mode_bool,
+  % xeCJK
+  autoFakeBold .tl_set:N = \g_@@_auto_fake_bold_tl,
+  autoFakeBold .initial:n = {3},
 }
 %    \end{macrocode}
 %
@@ -2112,6 +2155,8 @@
     school .initial:n = {网络空间安全学院（示例）},
     major .tl_set:N = \l_@@_value_major_tl,
     major .initial:n = {网络空间安全（示例）},
+    class .tl_set:N = \l_@@_value_class_tl,
+    class .initial:n = {07111701},
     author .tl_set:N = \l_@@_value_author_tl,
     author .initial:n = {张三（示例）},
     studentId .tl_set:N = \l_@@_value_student_id_tl,
@@ -2230,6 +2275,10 @@
   sorting .initial:n = {true},
   omit .bool_set:N = \l_@@_publications_omit_bool,
   omit .initial:n = {false},
+  maxbibnames .int_set:N = \l_@@_publications_maxbibnames_int,
+  maxbibnames .initial:n = {3},
+  minbibnames .int_set:N = \l_@@_publications_minbibnames_int,
+  minbibnames .initial:n = {1},
 }
 %    \end{macrocode}
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis| 
@@ -2264,6 +2313,11 @@
 }
 %    \end{macrocode}
 %
+% 抑制 fontspec 宏包关于字体的警告信息。
+% 手动开启伪粗体、伪斜体。
+%    \begin{macrocode}
+\PassOptionsToPackage{quiet,AutoFakeBold=\g_@@_auto_fake_bold_tl,AutoFakeSlant}{xeCJK}
+%    \end{macrocode}
 % 加载 ctexbook 模板类。
 %    \begin{macrocode}
 \ProcessOptions\relax
@@ -2775,19 +2829,19 @@
 % 预定义用户常用的证明环境。
 %    \begin{macrocode}
 \theoremstyle{plain}
-  \newtheorem{algorithm}{算法}[chapter]
-  \newtheorem{theorem}{定理}[chapter]
-  \newtheorem{lemma}[theorem]{引理}
-  \newtheorem{proposition}[theorem]{命题}
-  \newtheorem{corollary}[theorem]{推论}
-  \newtheorem{axiom}[theorem]{公理}
+  \newtheorem{algo}{算法}[chapter]
+  \newtheorem{them}{定理}[chapter]
+  \newtheorem{lem}[them]{引理}
+  \newtheorem{prop}[them]{命题}
+  \newtheorem{cor}[them]{推论}
+  \newtheorem{axi}[them]{公理}
 \theoremstyle{definition}
-  \newtheorem{definition}{定义}[chapter]
-  \newtheorem{conjecture}{猜想}[chapter]
-  \newtheorem{example}{例}[chapter]
+  \newtheorem{defn}{定义}[chapter]
+  \newtheorem{conj}{猜想}[chapter]
+  \newtheorem{exmp}{例}[chapter]
   \newtheorem{case}{情形}
 \theoremstyle{remark}
-  \newtheorem{remark}{注}
+  \newtheorem{rem}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 %    \end{macrocode}
 % 
@@ -3317,6 +3371,7 @@
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_class_tl} {\l_@@_value_class_tl},
               {\c_@@_label_author_tl} {\l_@@_value_author_tl},
               {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl},
               {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl},
@@ -3350,11 +3405,11 @@
             \includegraphics[width=6.87cm]{\l_bit_coverheaderimage_tl}\\
           }
 
-          \vspace{1mm}
+          \vspace{1.2mm}
 
           \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
 
-          \vspace{8mm}
+          \vspace{10mm}
 
           {
 
@@ -3379,7 +3434,7 @@
 
           }
 
-          \vspace{14mm}
+          \vspace{19mm}
 
           \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
 
@@ -3413,6 +3468,7 @@
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_class_tl} {\l_@@_value_class_tl},
               {\c_@@_label_author_tl} {\l_@@_value_author_tl},
               {\c_@@_label_student_id_tl} {\l_@@_value_student_id_tl},
               {\c_@@_label_supervisor_tl} {\l_@@_value_supervisor_tl},
@@ -4171,6 +4227,16 @@
         \newrefcontext
       }
 
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l_@@_publications_maxbibnames_int
+      }
+
+      % 根据 minbibnames 的设置，覆盖 \blx@minbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@minbibnames {
+        \l_@@_publications_minbibnames_int
+      }
+
       \chapter{\c_@@_label_publications_tl}
       #1
     \end{blindPeerReview}
@@ -4249,7 +4315,7 @@
 % 论文类型，取值从 1 开始，分别对应: 
 %  \begin{enumerate}
 %      \item 课程实验报告
-%      \item （计算机学院）本科生毕业（设计）开题报告
+%      \item （计算机学院）本科生毕业（设计）开题报告（已废弃）
 %  \end{enumerate}
 %    \begin{macrocode}
 \int_new:N \g_@@_report_type_int
@@ -6150,7 +6216,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \ProvidesPackage{dtx-style}
 \RequirePackage{hypdoc}
 \RequirePackage{ifthen}
-\RequirePackage{fontspec}
+\RequirePackage[quiet]{fontspec}
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \RequirePackage[UTF8,scheme=chinese,heading,sub3section]{ctex}

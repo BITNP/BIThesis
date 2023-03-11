@@ -53,7 +53,6 @@ BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学�
   - 本科生毕业设计论文模板
   - 本科生毕业设计论文模板（全英文专业）
   - 本科生毕业设计外文翻译模板
-  - 本科生毕业设计开题报告模板（计算机学院）
   - 实验报告模板
   - 幻灯片模板
 
@@ -134,6 +133,8 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 | GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)][releases]                                |
 | Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
 
+
+![Alt](https://repobeats.axiom.co/api/embed/ab8b841962ee6e9bcf77a228815534b7a35fbbe9.svg "Repobeats analytics image")
 
 ---
 

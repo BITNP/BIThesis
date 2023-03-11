@@ -7,11 +7,50 @@ Acronyms:
 - GT: graduate-thesis (研究生学位论文模板)
 - PT: paper-translation (本科生毕业设计外文翻译模板)
 - PS: presentation-slide (演讲幻灯片模板)
-- UPR: undergraduate-proposal-report (本科生毕业设计开题报告模板)
 - UTE: undergraduate-thesis-en (本科生毕业设计论文模板（全英文专业）)
 - UT: undergraduate-thesis (本科生毕业设计论文模板)
 
 **Bolded text highlights its importance.**
+
+## [3.4.2] - 2023-03-05
+
+[cb5d833](https://github.com/BITNP/BIThesis/commit/cb5d83360a05bfe6c9f07b2580bb1c7650f13a34)...[b5045dd](https://github.com/BITNP/BIThesis/commit/b5045dd8bf50680c8cc13ea08363972c55288d9e)
+
+### Bug Fixes
+
+- Update the cover of template paper-translation. ([8a688c3](https://github.com/BITNP/BIThesis/commit/8a688c32699e61cb49d3d15e24dfc98d4eae0695))
+- Add info/class field in the cover of UT. ([e2ded7d](https://github.com/BITNP/BIThesis/commit/e2ded7dd8ee09fe5d7b6f6027e4426c582af7841))
+- Rename pre-defined theorem as per collision. ([d70fb9b](https://github.com/BITNP/BIThesis/commit/d70fb9b2d23c4ba37c8bdaf25f53a7b2913d09b9))
+
+### Miscellaneous Tasks
+
+- Update to v3.4.2. ([b5045dd](https://github.com/BITNP/BIThesis/commit/b5045dd8bf50680c8cc13ea08363972c55288d9e))
+
+## [3.4.1] - 2023-03-02
+
+[64411f5](https://github.com/BITNP/BIThesis/commit/64411f5023b0bbd8eb9a1b3b7c156fbe053834e8)...[a1ab51e](https://github.com/BITNP/BIThesis/commit/a1ab51eeaed3205d3f44299a4e2eb15e143a6440)
+
+### Bug Fixes
+
+- Add magic comments to auto-config editors. ([a4a921e](https://github.com/BITNP/BIThesis/commit/a4a921ea6d7a62221bc70e68a98043b46ad7b0b1))
+
+## [3.4.0] - 2023-02-20
+
+[900a590](https://github.com/BITNP/BIThesis/commit/900a590a3120cfa84cc696d5bea2bbb679c67e87)...[a1ae48e](https://github.com/BITNP/BIThesis/commit/a1ae48e459636d9cf4448924663b02cea54fd714)
+
+### Bug Fixes
+
+- Add minbibnames to both control name truncate behavior. ([e5aa6af](https://github.com/BITNP/BIThesis/commit/e5aa6af39fc02d8a23183ec4b5a40c320e95d893))
+- Suppress fontspec warning. ([0844846](https://github.com/BITNP/BIThesis/commit/08448466a4c989981f3c09e9b5f1188e25ad6f85))
+
+### Features
+
+- Allow to set maxbibnames for publications. ([f627bf2](https://github.com/BITNP/BIThesis/commit/f627bf2f90f5cecb802043eb0408d09b8c2dc1f4))
+
+### Miscellaneous Tasks
+
+- Add a repobeats service. ([ae84183](https://github.com/BITNP/BIThesis/commit/ae8418376142290671d1dd4d7f814e2ed2ba4314))
+- Update version to v3.4.0. ([a1ae48e](https://github.com/BITNP/BIThesis/commit/a1ae48e459636d9cf4448924663b02cea54fd714))
 
 ## [3.3.2] - 2023-02-17
 

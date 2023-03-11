@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2023-02-17}{3.3.2}{BIT Thesis Templates}
+{2023-03-05}{3.4.2}{BIT Thesis Templates}
 \int_new:N \g__bithesis_thesis_type_int
 \int_new:N \g__bithesis_head_zihao_int
 \bool_new:N \g__bithesis_twoside_bool
@@ -198,6 +198,7 @@
   {
     {school} {学\qquad 院} {School},
     {major} {专\qquad 业} {Degree},
+    {class} {班\qquad{}级} {Class},
     {author} {学生姓名} {Author},
     {student_id} {学\qquad 号} {Student~ID},
     {supervisor} {指导教师} {Supervisor},
@@ -261,6 +262,9 @@
   blindPeerReview .bool_gset:N = \g__bithesis_blind_mode_bool,
   ctex .tl_set:N = \l__bithesis_options_to_ctex_tl,
   quirks .bool_gset:N = \g__bithesis_quirks_mode_bool,
+  % xeCJK
+  autoFakeBold .tl_set:N = \g__bithesis_auto_fake_bold_tl,
+  autoFakeBold .initial:n = {3},
 }
 \keys_define:nn { bithesis / cover }
   {
@@ -297,6 +301,8 @@
     school .initial:n = {网络空间安全学院（示例）},
     major .tl_set:N = \l__bithesis_value_major_tl,
     major .initial:n = {网络空间安全（示例）},
+    class .tl_set:N = \l__bithesis_value_class_tl,
+    class .initial:n = {07111701},
     author .tl_set:N = \l__bithesis_value_author_tl,
     author .initial:n = {张三（示例）},
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
@@ -395,6 +401,10 @@
   sorting .initial:n = {true},
   omit .bool_set:N = \l__bithesis_publications_omit_bool,
   omit .initial:n = {false},
+  maxbibnames .int_set:N = \l__bithesis_publications_maxbibnames_int,
+  maxbibnames .initial:n = {3},
+  minbibnames .int_set:N = \l__bithesis_publications_minbibnames_int,
+  minbibnames .initial:n = {1},
 }
 \ProcessKeysOptions { bithesis / option }
 \__bithesis_if_thesis_english:T {
@@ -407,6 +417,7 @@
 \DeclareOption*{
   \PassOptionsToClass{\l__bithesis_options_to_ctex_tl}{ctexbook}
 }
+\PassOptionsToPackage{quiet,AutoFakeBold=\g__bithesis_auto_fake_bold_tl,AutoFakeSlant}{xeCJK}
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
 \RequirePackage{geometry}
@@ -792,19 +803,19 @@
 \cs_set:Npn \listfigurename {\c__bithesis_label_figure_tl}
 \cs_set:Npn \listtablename {\c__bithesis_label_table_tl}
 \theoremstyle{plain}
-  \newtheorem{algorithm}{算法}[chapter]
-  \newtheorem{theorem}{定理}[chapter]
-  \newtheorem{lemma}[theorem]{引理}
-  \newtheorem{proposition}[theorem]{命题}
-  \newtheorem{corollary}[theorem]{推论}
-  \newtheorem{axiom}[theorem]{公理}
+  \newtheorem{algo}{算法}[chapter]
+  \newtheorem{them}{定理}[chapter]
+  \newtheorem{lem}[them]{引理}
+  \newtheorem{prop}[them]{命题}
+  \newtheorem{cor}[them]{推论}
+  \newtheorem{axi}[them]{公理}
 \theoremstyle{definition}
-  \newtheorem{definition}{定义}[chapter]
-  \newtheorem{conjecture}{猜想}[chapter]
-  \newtheorem{example}{例}[chapter]
+  \newtheorem{defn}{定义}[chapter]
+  \newtheorem{conj}{猜想}[chapter]
+  \newtheorem{exmp}{例}[chapter]
   \newtheorem{case}{情形}
 \theoremstyle{remark}
-  \newtheorem{remark}{注}
+  \newtheorem{rem}{注}
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
@@ -1184,6 +1195,7 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
               {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
@@ -1217,11 +1229,11 @@
             \includegraphics[width=6.87cm]{\l_bit_coverheaderimage_tl}\\
           }
 
-          \vspace{1mm}
+          \vspace{1.2mm}
 
           \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
 
-          \vspace{8mm}
+          \vspace{10mm}
 
           {
 
@@ -1246,7 +1258,7 @@
 
           }
 
-          \vspace{14mm}
+          \vspace{19mm}
 
           \zihao{2}\textbf{\xihei:n \l__bithesis_value_title_tl}\par
 
@@ -1280,6 +1292,7 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
               {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
@@ -1949,6 +1962,16 @@
       } {
         % Do not sort.
         \newrefcontext
+      }
+
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l__bithesis_publications_maxbibnames_int
+      }
+
+      % 根据 minbibnames 的设置，覆盖 \blx@minbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@minbibnames {
+        \l__bithesis_publications_minbibnames_int
       }
 
       \chapter{\c__bithesis_label_publications_tl}
