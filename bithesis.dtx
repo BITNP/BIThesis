@@ -520,6 +520,17 @@
 %   \end{latex}
 % \end{function}
 %  
+% \begin{function}[added=2023-03-10]{autoFakeBold}
+%   \begin{bitsyntax}[emph={[1]autoFakeBold}]
+%     autoFakeBold = (*<(3)|false|{数字}>*)
+%   \end{bitsyntax}
+%
+%   该选项用于调整 \cls{xeCJK} 中 |AutoFakeBold| 选项以定义伪粗体的粗细程度。
+%   
+%   默认为 3，一般按照经验来说，2.5——3 比较符合 Words 中的粗体样式。
+%   
+% \end{function}
+%  
 % \subsection{参数设置}
 %   
 % \begin{function}{\BITSetup}
@@ -2091,6 +2102,9 @@
   blindPeerReview .bool_gset:N = \g_@@_blind_mode_bool,
   ctex .tl_set:N = \l_@@_options_to_ctex_tl,
   quirks .bool_gset:N = \g_@@_quirks_mode_bool,
+  % xeCJK
+  autoFakeBold .tl_set:N = \g_@@_auto_fake_bold_tl,
+  autoFakeBold .initial:n = {3},
 }
 %    \end{macrocode}
 %
@@ -2296,7 +2310,7 @@
 % 抑制 fontspec 宏包关于字体的警告信息。
 % 手动开启伪粗体、伪斜体。
 %    \begin{macrocode}
-\PassOptionsToPackage{quiet,AutoFakeBold,AutoFakeSlant}{xeCJK}
+\PassOptionsToPackage{quiet,AutoFakeBold=\g_@@_auto_fake_bold_tl,AutoFakeSlant}{xeCJK}
 %    \end{macrocode}
 % 加载 ctexbook 模板类。
 %    \begin{macrocode}
