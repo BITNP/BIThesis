@@ -37,6 +37,16 @@
 \tl_new:N \g__bithesis_label_divide_char_tl
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
+\cs_new:Npn \__bithesis_get_const:N #1 {
+  \__bithesis_if_thesis_english:TF {
+    \use:c {c__bithesis_label_ #1 _en_tl}
+  } {
+    \use:c {c__bithesis_label_ #1 _tl}
+  }
+}
+\cs_new:Npn \__bithesis_set_english_mode: {
+  \bool_gset_true:N \g__bithesis_thesis_type_english_bool
+}
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 \cs_new:Npn \__bithesis_same_page: {
@@ -217,8 +227,8 @@
     {publications} {攻读学位期间发表论文与研究成果清单}
       {Publications~During~Studies},
     % TODO: Not so sure about the translation.
-    {resume} {作者简介} {},
-    {symbols} {主要符号对照表} {},
+    {resume} {作者简介} {Author~Biography},
+    {symbols} {主要符号对照表} {Nomenclature},
   }
   {\__bithesis_define_label:nnn #1}
 \clist_const:Nn \c__bithesis_bachelor_thesis_header_clist
@@ -254,7 +264,7 @@
       \int_set_eq:NN \g__bithesis_thesis_type_int \l_keys_choice_int
       \int_case:nn {\l_keys_choice_int} {
         % 本科全英文也是英文模板。
-        {3} {\bool_set_true:N \g__bithesis_thesis_type_english_bool}
+        {3} {\__bithesis_set_english_mode:}
       }
     },
   type .initial:n = bachelor,
@@ -265,6 +275,9 @@
   % xeCJK
   autoFakeBold .tl_set:N = \g__bithesis_auto_fake_bold_tl,
   autoFakeBold .initial:n = {3},
+  % 是否开启英文模式。目前在设计上，这个选项仅对研究生模板生效。
+  % 本科生模板的英文模式是根据 |type| 选项自动判断的。
+  english .code:n = { \__bithesis_set_english_mode: } ,
 }
 \keys_define:nn { bithesis / cover }
   {
@@ -800,8 +813,8 @@
     tabsize=2
 }
 \lstset{style=examplestyle}
-\cs_set:Npn \listfigurename {\c__bithesis_label_figure_tl}
-\cs_set:Npn \listtablename {\c__bithesis_label_table_tl}
+\cs_set:Npn \listfigurename {\__bithesis_get_const:N {figure}}
+\cs_set:Npn \listtablename {\__bithesis_get_const:N {table}}
 \theoremstyle{plain}
   \newtheorem{algo}{算法}[chapter]
   \newtheorem{them}{定理}[chapter]
@@ -1974,7 +1987,7 @@
         \l__bithesis_publications_minbibnames_int
       }
 
-      \chapter{\c__bithesis_label_publications_tl}
+      \chapter{\__bithesis_get_const:N {publications}}
       #1
     \end{blindPeerReview}
   }
@@ -1991,7 +2004,7 @@
         subsection/number = \arabic{section}. \arabic{subsection},
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
-      \chapter{\c__bithesis_label_resume_tl}
+      \chapter{\__bithesis_get_const:N{resume}}
       #1
     \end{blindPeerReview}
   }
@@ -2001,9 +2014,9 @@
 \NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l__bithesis_add_symbols_to_toc_bool {
-      \chapter{\c__bithesis_label_symbols_tl}
+      \chapter{\__bithesis_get_const:N {symbols}}
     } {
-      \chapter*{\c__bithesis_label_symbols_tl}
+      \chapter*{\__bithesis_get_const:N {symbols}}
       \currentpdfbookmark{\c__bithesis_label_symbols_tl}{ch:symbols}
     }
     \zihao{-4}
