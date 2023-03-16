@@ -2448,6 +2448,14 @@
     \DeclareBibliographyCategory{mypub}
   }
 
+  % Define biblatex strings if it was imported.
+  % 这部分是给研究生模板中的
+  % gbpunctin = false 时使用的。
+  \cs_if_exist:NT \DefineBibliographyStrings {
+    \DefineBibliographyStrings{english}{in={}}
+    \DefineBibliographyStrings{english}{incn={}}
+  }
+
   % 修改 biblatex 中「专利」（patent）部分的著录格式。
   % 主要根据北理工自定义的规范，参考 biblatex 和 
   % biblatex-gb7714-2015 的实现修改而成。
