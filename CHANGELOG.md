@@ -12,6 +12,31 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.4.3] - 2023-03-16
+
+[661be7c](https://github.com/BITNP/BIThesis/commit/661be7c718b9776b17ba492ae3e32c798d0654f0)...[9951571](https://github.com/BITNP/BIThesis/commit/9951571f400d311327638c00e517c2576431a14c)
+
+### Bug Fixes
+
+- Fix invalid date fields in bibs. ([e66a264](https://github.com/BITNP/BIThesis/commit/e66a2643fda2a92286806a2abf8c779f935230a7))
+- Turn on AutoFakeBold and AutoFakeSlant in xeCJK. ([31ea67d](https://github.com/BITNP/BIThesis/commit/31ea67defedc37fa64364a823bcf13fff0995c08))
+- Add options & fine-tune AutoFakeBold. ([479b9b4](https://github.com/BITNP/BIThesis/commit/479b9b46e476aa8bc09a97d8f13f40c02282634f))
+- Set gbpunctin to false. ([2505ea9](https://github.com/BITNP/BIThesis/commit/2505ea9d4a392f6f1b2fa96b236678b17428e57e))
+- Add an english option to enable english mode. ([d8b4a0d](https://github.com/BITNP/BIThesis/commit/d8b4a0d956559175be84d9632d45f308f038dc14))
+
+### Documentation
+
+- Update progress of authentication. ([b5b7aad](https://github.com/BITNP/BIThesis/commit/b5b7aad2f822df7a67ba5d96ee2def465a62354e))
+
+### Miscellaneous Tasks
+
+- Update to v3.4.3 ([9951571](https://github.com/BITNP/BIThesis/commit/9951571f400d311327638c00e517c2576431a14c))
+
+### Refactor
+
+- Remove dependency on unicode-math. ([38f52ad](https://github.com/BITNP/BIThesis/commit/38f52adfb5ff1dc77299482ab25312f75023ec4f))
+- Sunset template undergraduate-proposal-report. ([ea6e218](https://github.com/BITNP/BIThesis/commit/ea6e218a14bdf490d52dd8210b2f04098e966119))
+
 ## [3.4.2] - 2023-03-05
 
 [cb5d833](https://github.com/BITNP/BIThesis/commit/cb5d83360a05bfe6c9f07b2580bb1c7650f13a34)...[b5045dd](https://github.com/BITNP/BIThesis/commit/b5045dd8bf50680c8cc13ea08363972c55288d9e)
