@@ -1769,6 +1769,30 @@
 %
 % \subsubsection{辅助函数与常量}
 %
+%
+% \begin{macro}[added=2023-03-16]{\@@_get_const:}
+% 获取标题、章节、表格、图形等的常量名称。
+% 会区别英文模式和中文模式。
+%   \begin{macrocode}
+\cs_new:Npn \@@_get_const:N #1 {
+  \@@_if_thesis_english:TF {
+    \use:c {c_@@_label_ #1 _en_tl}
+  } {
+    \use:c {c_@@_label_ #1 _tl}
+  }
+}
+%   \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[added=2023-03-16]{\@@_set_english_mode:}
+% 设置为英文模式。
+%   \begin{macrocode}
+\cs_new:Npn \@@_set_english_mode: {
+  \bool_gset_true:N \g_@@_thesis_type_english_bool
+}
+%   \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
 % 生成变体。
 %    \begin{macrocode}
@@ -2046,8 +2070,8 @@
     {publications} {攻读学位期间发表论文与研究成果清单} 
       {Publications~During~Studies},
     % TODO: Not so sure about the translation.
-    {resume} {作者简介} {},
-    {symbols} {主要符号对照表} {},
+    {resume} {作者简介} {Author~Biography},
+    {symbols} {主要符号对照表} {Nomenclature},
   }
   {\@@_define_label:nnn #1}
 %    \end{macrocode}
@@ -2100,7 +2124,7 @@
       \int_set_eq:NN \g_@@_thesis_type_int \l_keys_choice_int 
       \int_case:nn {\l_keys_choice_int} {
         % 本科全英文也是英文模板。
-        {3} {\bool_set_true:N \g_@@_thesis_type_english_bool}
+        {3} {\@@_set_english_mode:}
       }
     },
   type .initial:n = bachelor,
@@ -2111,6 +2135,9 @@
   % xeCJK
   autoFakeBold .tl_set:N = \g_@@_auto_fake_bold_tl,
   autoFakeBold .initial:n = {3},
+  % 是否开启英文模式。目前在设计上，这个选项仅对研究生模板生效。
+  % 本科生模板的英文模式是根据 |type| 选项自动判断的。
+  english .code:n = { \@@_set_english_mode: } ,
 }
 %    \end{macrocode}
 %
@@ -2830,8 +2857,8 @@
 % 
 % 调整插图目录与表格目录的标题。
 %    \begin{macrocode}
-\cs_set:Npn \listfigurename {\c_@@_label_figure_tl}
-\cs_set:Npn \listtablename {\c_@@_label_table_tl}
+\cs_set:Npn \listfigurename {\@@_get_const:N {figure}}
+\cs_set:Npn \listtablename {\@@_get_const:N {table}}
 %    \end{macrocode}
 % 
 % 预定义用户常用的证明环境。
@@ -4245,7 +4272,7 @@
         \l_@@_publications_minbibnames_int
       }
 
-      \chapter{\c_@@_label_publications_tl}
+      \chapter{\@@_get_const:N {publications}}
       #1
     \end{blindPeerReview}
   }
@@ -4268,7 +4295,7 @@
         subsection/number = \arabic{section}. \arabic{subsection},
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
-      \chapter{\c_@@_label_resume_tl}
+      \chapter{\@@_get_const:N{resume}}
       #1
     \end{blindPeerReview}
   }
@@ -4283,9 +4310,9 @@
 \NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
-      \chapter{\c_@@_label_symbols_tl}
+      \chapter{\@@_get_const:N {symbols}}
     } {
-      \chapter*{\c_@@_label_symbols_tl}
+      \chapter*{\@@_get_const:N {symbols}}
       \currentpdfbookmark{\c_@@_label_symbols_tl}{ch:symbols}
     }
     \zihao{-4}
