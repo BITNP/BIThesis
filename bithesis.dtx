@@ -466,6 +466,19 @@
 %     \item \BIThesisTemplates{GT} 博士生
 %   \end{itemize}
 % \end{function}
+%
+% \begin{function}[added=2023-03-16]{english}
+%   \begin{bitsyntax}[emph={[1]english}]
+%     english = (*<(false)|true>*)
+%   \end{bitsyntax}
+%   开启英文模式。此选项会将论文的标题、摘要、目录、参考文献等部分的
+%   中文部分替换为英文部分。适用于英文论文的撰写。
+%
+%   \begin{note}
+%     本选项仅适用于 \BIThesisTemplates{GT} 模板，本科全英文专业的同学
+%     请直接使用 \BIThesisTemplates{UTE} 模板。
+%   \end{note}
+% \end{function}
 % 
 % \begin{function}{blindPeerReview}
 %   \begin{bitsyntax}[emph={[1]blindPeerReview}]
@@ -1350,6 +1363,9 @@
 %       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
 %     \end{publications}
 %   \end{bitsyntax}
+%
+% \textbf{请注意，如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
+% 请将条目分别添加进入两个 |.bib| 文件中；切勿重复使用。}
 %
 % \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
 % 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
