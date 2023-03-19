@@ -383,6 +383,12 @@
   },
   bibliographyIndent .bool_set:N = \l__bithesis_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
+  pageVerticalAlign .choices:nn = {top, scattered} {
+    \tl_if_eq:NnTF \l_keys_choice_tl {top}
+      { \raggedbottom }
+      { \flushbottom }
+  },
+  pageVerticalAlign .initial:n = {top},
 }
 \keys_define:nn { bithesis / TOC }
 {

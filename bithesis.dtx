@@ -935,6 +935,18 @@
 %   是因为在 Word 模板中参考文献的格式要求首行之后的行不缩进。
 %   但是国标要求首行之后的行缩进。
 % \end{function}
+% 
+% \begin{function}[added=2023-03-19]{style/pageVerticalAlign}
+%   \begin{bitsyntax}[emph={[1]pageVerticalAlign}]
+%     pageVerticalAlign = (*(top)|scattered*)
+%   \end{bitsyntax}
+% 设置页面垂直方向的对齐方式。
+% \begin{optdesc}
+%   \item[top] 顶部对齐。\textit{默认}。页面中的内容保持它的自然高度，
+%   每一页的页面底部用空白填满。
+%   \item[scattered] 分散对齐。页面高度均匀地填满，使每一页的底部直接对齐。
+% \end{optdesc}
+% \end{function}
 %
 % \subsubsection{目录选项}
 %
@@ -2275,6 +2287,12 @@
   },
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
+  pageVerticalAlign .choices:nn = {top, scattered} {
+    \tl_if_eq:NnTF \l_keys_choice_tl {top}
+      { \raggedbottom }
+      { \flushbottom }
+  },
+  pageVerticalAlign .initial:n = {top},
 }
 %    \end{macrocode}
 %
@@ -6569,6 +6587,13 @@ footskip=0.7cm% 页脚 1.8cm %
     \kern 1ex
    }
 }
+
+%% from \pkg{ctxdoc}
+\newlist{optdesc}{description}{3}
+%% 设置间距为 \marginparsep，与 l3doc 一致
+\setlist[optdesc]{%
+  font=\mdseries\small\ttfamily,align=right,listparindent=\parindent,
+  labelsep=\marginparsep,labelindent=-\marginparsep,leftmargin=0pt}
 
 \makeatother
 
