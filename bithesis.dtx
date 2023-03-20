@@ -466,6 +466,19 @@
 %     \item \BIThesisTemplates{GT} 博士生
 %   \end{itemize}
 % \end{function}
+%
+% \begin{function}[added=2023-03-16]{english}
+%   \begin{bitsyntax}[emph={[1]english}]
+%     english = (*<(false)|true>*)
+%   \end{bitsyntax}
+%   开启英文模式。此选项会将论文的标题、摘要、目录、参考文献等部分的
+%   中文部分替换为英文部分。适用于英文论文的撰写。
+%
+%   \begin{note}
+%     本选项仅适用于 \BIThesisTemplates{GT} 模板，本科全英文专业的同学
+%     请直接使用 \BIThesisTemplates{UTE} 模板。
+%   \end{note}
+% \end{function}
 % 
 % \begin{function}{blindPeerReview}
 %   \begin{bitsyntax}[emph={[1]blindPeerReview}]
@@ -922,6 +935,18 @@
 %   是因为在 Word 模板中参考文献的格式要求首行之后的行不缩进。
 %   但是国标要求首行之后的行缩进。
 % \end{function}
+% 
+% \begin{function}[added=2023-03-19]{style/pageVerticalAlign}
+%   \begin{bitsyntax}[emph={[1]pageVerticalAlign}]
+%     pageVerticalAlign = (*(top)|scattered*)
+%   \end{bitsyntax}
+% 设置页面垂直方向的对齐方式。
+% \begin{optdesc}
+%   \item[top] 顶部对齐。\textit{默认}。页面中的内容保持它的自然高度，
+%   每一页的页面底部用空白填满。
+%   \item[scattered] 分散对齐。页面高度均匀地填满，使每一页的底部直接对齐。
+% \end{optdesc}
+% \end{function}
 %
 % \subsubsection{目录选项}
 %
@@ -1350,6 +1375,9 @@
 %       \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
 %     \end{publications}
 %   \end{bitsyntax}
+%
+% \textbf{请注意，如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
+% 请将条目分别添加进入两个 |.bib| 文件中；切勿重复使用。}
 %
 % \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
 % 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
@@ -2259,6 +2287,12 @@
   },
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
+  pageVerticalAlign .choices:nn = {top, scattered} {
+    \tl_if_eq:NnTF \l_keys_choice_tl {top}
+      { \raggedbottom }
+      { \flushbottom }
+  },
+  pageVerticalAlign .initial:n = {top},
 }
 %    \end{macrocode}
 %
@@ -6553,6 +6587,13 @@ footskip=0.7cm% 页脚 1.8cm %
     \kern 1ex
    }
 }
+
+%% from \pkg{ctxdoc}
+\newlist{optdesc}{description}{3}
+%% 设置间距为 \marginparsep，与 l3doc 一致
+\setlist[optdesc]{%
+  font=\mdseries\small\ttfamily,align=right,listparindent=\parindent,
+  labelsep=\marginparsep,labelindent=-\marginparsep,leftmargin=0pt}
 
 \makeatother
 
