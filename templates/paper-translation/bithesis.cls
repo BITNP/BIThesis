@@ -663,6 +663,8 @@
     beforeskip = 8bp,
     afterskip = 32bp,
     fixskip = true,
+    lofskip = 0cm,
+    lotskip = 0cm,
   }
 }
 
@@ -735,6 +737,12 @@
 \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
 {\thecontentslabel\hspace{\ccwd}}{}
 {\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{figure}[0pt]{\songti\zihao{-4}}
+    {\figurename~\thecontentslabel\quad}{\hspace*{-1.5cm}}
+    {\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{table}[0pt]{\songti\zihao{-4}}
+    {\tablename~\thecontentslabel\quad}{\hspace*{-1.5cm}}
+    {\hspace{.5em}\titlerule*{.}\contentspage}
 \RenewDocumentCommand \frontmatter {} {
   \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
   {
