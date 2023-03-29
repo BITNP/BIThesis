@@ -389,6 +389,15 @@
       { \flushbottom }
   },
   pageVerticalAlign .initial:n = {top},
+  % 数学字体配置
+  mathFont .choices:nn = {
+    asana, bonum, cm, concrete, dejavu, erewhon, euler,
+    fira, garamond, gfsneohellenic, kp, libertinus, lm, newcm,
+    pagella, schola, stix, stix2, termes, xcharter, xits, none,
+    } { \tl_set_eq:NN \l__bithesis_style_math_font_tl \l_keys_choice_tl },
+  mathFont .initial:n = {cm},
+  % Options that will be pass to `unicode-math` pkgs.
+  unicodeMathOptions .tl_set:N = \l__bithesis_unicode_math_options_tl,
 }
 \keys_define:nn { bithesis / TOC }
 {
@@ -500,7 +509,59 @@
 }
 \setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
+\cs_new:Npn \__bithesis_font_path:
+  {
+    \str_if_eq:NNTF { \l__bithesis_font_type_tl } { font }
+      { }
+      { Path = \l__bithesis_font_path_tl / , }
+  }
+\cs_new:Npn \__bithesis_load_unicode_math_pkg:
+  {
+    \PassOptionsToPackage { \l__bithesis_unicode_math_options_tl } { unicode-math }
+    \RequirePackage { unicode-math }
+  }
+\cs_new:Npn \__bithesis_define_math_font:nn #1#2
+  {
+    \cs_new:cpn { __bithesis_load_math_font_ #1 : }
+      {
+        \__bithesis_load_unicode_math_pkg:
+        \setmathfont { #2 }
+      }
+  }
+\clist_map_inline:nn
+  {
+    { asana          } { Asana-Math.otf             },
+    { concrete       } { Concrete-Math.otf          },
+    { erewhon        } { Erewhon-Math.otf           },
+    { euler          } { Euler-Math.otf             },
+    { fira           } { FiraMath-Regular.otf       },
+    { garamond       } { Garamond-Math.otf          },
+    { gfsneohellenic } { GFSNeohellenicMath.otf     },
+    { kp             } { KpMath-Regular.otf         },
+    { libertinus     } { LibertinusMath-Regular.otf },
+    { lm             } { latinmodern-math.otf       },
+    { newcm          } { NewCMMath-Regular.otf      },
+    { stix           } { STIXMath-Regular.otf       },
+    { stix2          } { STIXTwoMath-Regular.otf    },
+    { xcharter       } { XCharter-Math.otf          },
+    { xits           } { XITSMath-Regular.otf       },
+    { bonum          } { texgyrebonum-math.otf      },
+    { dejavu         } { texgyredejavu-math.otf     },
+    { pagella        } { texgyrepagella-math.otf    },
+    { schola         } { texgyreschola-math.otf     },
+    { termes         } { texgyretermes-math.otf     }
+  }
+  { \__bithesis_define_math_font:nn #1 }
+\cs_new:Npn \__bithesis_load_math_font_cm: { }
+\cs_new:Npn \__bithesis_load_math_font_none: { }
+\cs_new:Npn \__bithesis_load_font:
+  {
+    \use:c { __bithesis_load_math_font_  \l__bithesis_style_math_font_tl  : }
+  }
 \ctex_at_end_preamble:n {
+  % 在导言区末尾加载数学字体。
+  \__bithesis_load_font:
+
   \__bithesis_if_thesis_english:TF {
     \__bithesis_if_thesis_int_type:nT {3} {
       % 对于本科全英文专业模板
