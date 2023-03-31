@@ -948,6 +948,43 @@
 % \end{optdesc}
 % \end{function}
 %
+% \begin{function}[added=2023-03-29]{style/mathFont}
+%   \begin{bitsyntax}[emph={[1]mathFont}]
+%     mathFont = (*(cm)|asana|fira|...|xits|none*)
+%   \end{bitsyntax}
+% 设置数学字体，具体配置见表~\ref{tab:math-font}。除 |Computer Modern| （默认）字体以外，均使用 \pkg{unicode-math} 宏包调用字体。 
+% 
+% \end{function}
+%
+% \begin{table}[]
+% \begin{tabular}{cc|cc}
+% \toprule
+% \textbf{选项名称}                          & \textbf{字体名称}                                & \textbf{选项名称}                  & \textbf{字体名称}                                    \\ \midrule
+% cm                                     & Computer Modern                             & \cellcolor[HTML]{EFEFEF}newcm  & \cellcolor[HTML]{EFEFEF}New Computer Modern Math \\
+% \cellcolor[HTML]{EFEFEF}asana          & \cellcolor[HTML]{EFEFEF}Asana Math           & stix                           & STIX Math                                        \\
+% concrete                               & Concrete Math                                & \cellcolor[HTML]{EFEFEF}stix2  & \cellcolor[HTML]{EFEFEF}STIX Two Math            \\
+% \cellcolor[HTML]{EFEFEF}erewhon        & \cellcolor[HTML]{EFEFEF}Erewhon Math         & xcharter                       & XCharter Math                                    \\
+% euler                                  & Euler Math                                   & \cellcolor[HTML]{EFEFEF}xits   & \cellcolor[HTML]{EFEFEF}XITS Math                \\
+% \cellcolor[HTML]{EFEFEF}fira           & \cellcolor[HTML]{EFEFEF}Fira Math            & bonum                          & TeX Gyre Bonum Math                              \\
+% garamond                               & Garamond Math                                & \cellcolor[HTML]{EFEFEF}dejavu & \cellcolor[HTML]{EFEFEF}TeX Gyre DejaVu Math     \\
+% \cellcolor[HTML]{EFEFEF}gfsneohellenic & \cellcolor[HTML]{EFEFEF}GFS Neohellenic Math & pagella                        & TeX Gyre Pagella Math                            \\
+% kp                                     & KpMath                                       & \cellcolor[HTML]{EFEFEF}schola & \cellcolor[HTML]{EFEFEF}TeX Gyre Schola Math     \\
+% \cellcolor[HTML]{EFEFEF}libertinus     & \cellcolor[HTML]{EFEFEF}Libertinus Math      & termes                         & TeX Gyre Termes Math                             \\
+% lm                                     & Latin Modern Math                            &                                &                                                  \\ \bottomrule
+% \end{tabular}
+% \caption{数学字体配置选项与名称说明}
+% \label{tab:math-font}
+% \end{table}
+%
+% \begin{function}[added=2023-03-29]{style/unicodeMathOptions}
+%   \begin{bitsyntax}[emph={[1]unicodeMathOptions}]
+%     unicodeMathOptions = (*({})|任意选项*)
+%   \end{bitsyntax}
+%
+% 传递给 \pkg{unicode-math} 的选项。
+% 
+% \end{function}
+%
 % \subsubsection{目录选项}
 %
 % \begin{function}{TOC}
@@ -1079,12 +1116,13 @@
 %     minbibnames = (*(1)|\marg{正整数}*)
 %   \end{bitsyntax}
 %
-% 影响所有名称列表（author、editor 等）的限制值。如果某个列表包含的姓名数量超
-% 过 \marg{正整数}，那么就会自动截断至 |minbibnames| 个姓名。|minbibnames| 的值必须小于或
+% 影响「攻读学位期间发表论文与研究成果清单」中所有名称列表（author、editor 等）的限制值。
+% 如果某个列表包含的姓名数量超
+% 过 |maxbibnames| 个，那么就会自动截断至 |minbibnames| 个姓名。|minbibnames| 的值必须小于或
 % 等于 |maxbibnames|。
 %
 % 对于用户来说，可以将 |minbibnames| 理解为「姓名列表的最小长度」。
-% 例如，你在全部文献中最低排在第四位，那么可以将 |minbibnames| 和 |maxbibnames| 都设置为 4。
+% \textbf{例如，你在全部文献中最低排在第四位，那么可以将 |minbibnames| 和 |maxbibnames| 都设置为 4。}
 %
 % \end{function}
 % 
@@ -2293,6 +2331,15 @@
       { \flushbottom }
   },
   pageVerticalAlign .initial:n = {top},
+  % 数学字体配置
+  mathFont .choices:nn = {
+    asana, bonum, cm, concrete, dejavu, erewhon, euler,
+    fira, garamond, gfsneohellenic, kp, libertinus, lm, newcm,
+    pagella, schola, stix, stix2, termes, xcharter, xits, none,
+    } { \tl_set_eq:NN \l_@@_style_math_font_tl \l_keys_choice_tl },
+  mathFont .initial:n = {cm},
+  % Options that will be pass to `unicode-math` pkgs.
+  unicodeMathOptions .tl_set:N = \l_@@_unicode_math_options_tl,
 }
 %    \end{macrocode}
 %
@@ -2468,6 +2515,8 @@
 }
 %    \end{macrocode}
 %
+%  \subsubsection{定义字体相关选项}
+%  
 % 设置 Times New Roman 字体。
 % 根据学校规范要求，默认情况下也使用 Times New Roman 字体。
 %    \begin{macrocode}
@@ -2475,9 +2524,103 @@
 \setromanfont{Times~New~Roman}
 %    \end{macrocode}
 %
+% \begin{macro}{\@@_font_path:}
+% 当选择使用字体文件配置字体时，设置字体文件路径。
+%    \begin{macrocode}
+\cs_new:Npn \@@_font_path:
+  {
+    \str_if_eq:NNTF { \l_@@_font_type_tl } { font }
+      { }
+      { Path = \l_@@_font_path_tl / , }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_load_unicode_math_pkg:}
+% 加载\pkg{unicode-math}宏包。
+%    \begin{macrocode}
+\cs_new:Npn \@@_load_unicode_math_pkg:
+  {
+    \PassOptionsToPackage { \l_@@_unicode_math_options_tl } { unicode-math }
+    \RequirePackage { unicode-math }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_define_math_font:nn}
+% 批量定义数学字体配置。
+% \begin{arguments}
+%   \item 配置名称。
+%   \item 字体名称。
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new:Npn \@@_define_math_font:nn #1#2
+  {
+    \cs_new:cpn { @@_load_math_font_ #1 : }
+      {
+        \@@_load_unicode_math_pkg:
+        \setmathfont { #2 }
+      }
+  }
+\clist_map_inline:nn
+  {
+    { asana          } { Asana-Math.otf             },
+    { concrete       } { Concrete-Math.otf          },
+    { erewhon        } { Erewhon-Math.otf           },
+    { euler          } { Euler-Math.otf             },
+    { fira           } { FiraMath-Regular.otf       },
+    { garamond       } { Garamond-Math.otf          },
+    { gfsneohellenic } { GFSNeohellenicMath.otf     },
+    { kp             } { KpMath-Regular.otf         },
+    { libertinus     } { LibertinusMath-Regular.otf },
+    { lm             } { latinmodern-math.otf       },
+    { newcm          } { NewCMMath-Regular.otf      },
+    { stix           } { STIXMath-Regular.otf       },
+    { stix2          } { STIXTwoMath-Regular.otf    },
+    { xcharter       } { XCharter-Math.otf          },
+    { xits           } { XITSMath-Regular.otf       },
+    { bonum          } { texgyrebonum-math.otf      },
+    { dejavu         } { texgyredejavu-math.otf     },
+    { pagella        } { texgyrepagella-math.otf    },
+    { schola         } { texgyreschola-math.otf     },
+    { termes         } { texgyretermes-math.otf     }
+  }
+  { \@@_define_math_font:nn #1 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_load_math_font_cm:}
+% 数学字体配置 |cm|。
+%    \begin{macrocode}
+\cs_new:Npn \@@_load_math_font_cm: { }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_load_math_font_none:}
+% 数学字体配置 |none|。
+%    \begin{macrocode}
+\cs_new:Npn \@@_load_math_font_none: { }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_load_font:}
+% 加载数学字体
+%    \begin{macrocode}
+\cs_new:Npn \@@_load_font:
+  {
+    \use:c { @@_load_math_font_  \l_@@_style_math_font_tl  : }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%  \paragraph{定义导言区末尾加载内容}
+%
 % 在 |preamble| 中，加载各个模板需要的字体。
 %    \begin{macrocode}
 \ctex_at_end_preamble:n {
+  % 在导言区末尾加载数学字体。
+  \@@_load_font:
+  
   \@@_if_thesis_english:TF {
     \@@_if_thesis_int_type:nT {3} {
       % 对于本科全英文专业模板
@@ -6310,7 +6453,7 @@ footskip=0.7cm% 页脚 1.8cm %
 \RequirePackage{array,longtable,booktabs}
 \RequirePackage{listings}
 \RequirePackage{fancyhdr}
-\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[dvipsnames,table,xcdraw]{xcolor}
 \RequirePackage{awesomebox}
 % \RequirePackage{etoolbox}
 \RequirePackage{dirtree}
@@ -6403,8 +6546,6 @@ footskip=0.7cm% 页脚 1.8cm %
   format = {\bfseries \raggedright \zihao{4}}
   }
 }
-
-
 
 \ifthenelse{\equal{\@nameuse{g__ctex_fontset_tl}}{mac}}{
   \setmainfont{Palatino}
