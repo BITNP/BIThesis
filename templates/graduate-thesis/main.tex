@@ -25,6 +25,11 @@
 % 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
 % 开启双面打印 twoside=true (如：[type=master,twoside=true]）
 %
+% 在 Linux 和 macOS 系统下，由于版权问题，中文字体和 Windows 系统下的字体不同。
+% 如果想要获得与 Word 文档相同的效果，你有两个选择：
+% 1. 使用 Windows 系统编译最终的论文。
+% 2. 自己手动安装中易字库并添加选项：`\documentclass[...,ctex={fontset=windows}]{bithesis}`。
+%
 % **更多使用说明请参考 bithesis.pdf **
 
 \documentclass[type=master,twoside]{bithesis}

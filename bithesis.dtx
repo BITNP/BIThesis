@@ -1493,6 +1493,21 @@
 % \textit{更多字体与使用方法请参考 
 %   \url{https://ctan.org/pkg/unicode-math?lang=zh}。}
 %
+% \subsection{如何采用与 Word 相同的中文字体？}
+%
+% 首先需要明确的是，我们所指的 Word 中的中文字体属于「中易字库」。
+%
+% 对于 Windows 用户，一般无需修改设置，开箱即用。
+%
+% 对于 Linux 和 macOS 用户，由于版权问题，系统中并不包含中易字库。
+% 因此，用户有两种选择：
+% \begin{itemize}
+%  \item 手动在系统中安装中易字库（一般包括 SimSun、SimHei、KaiTi、FangSong 等）。
+%  并通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
+%  强制使用中易字库。
+%  \item 在 Windows 系统下编译最终的 PDF 文件。
+% \end{itemize}
+%
 % \section{\cls{bitreport.cls} 使用与配置}
 % \label{sec:bitreport}
 % 
