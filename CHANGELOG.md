@@ -12,6 +12,31 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.5.0] - 2023-04-04
+
+[b0f6c3a](https://github.com/BITNP/BIThesis/commit/b0f6c3a9ac3e54f8bfc5fa9495eb66432cd3045f)...[08535d4](https://github.com/BITNP/BIThesis/commit/08535d44be9fa5e88eaf64162dfe6256636889c5)
+
+### Bug Fixes
+
+- Make listoffigure & listoftable align with the old template. ([96010ed](https://github.com/BITNP/BIThesis/commit/96010ed17314bdc78c425f868806da68a2b73902))
+- Fix typo. ([73f417a](https://github.com/BITNP/BIThesis/commit/73f417a278d604c6b364ab6be88bbf694d7dabfc))
+- Fix logo rendering problem in pdf bookmarks. ([3f3fda2](https://github.com/BITNP/BIThesis/commit/3f3fda24709ca7c7e706cefd8e770f77e04af0cf))
+
+### Documentation
+
+- Add explaination for `english`. ([7f5798b](https://github.com/BITNP/BIThesis/commit/7f5798be965cdbe7d366361706eeba4de67b7244))
+- Much more eye-catching doc for min/maxbibnames. ([09a8118](https://github.com/BITNP/BIThesis/commit/09a811861d1e2b9de722ba31cde9fd71e9e4a9fc))
+- Add a note about using CJK Font like MS Word. ([c866616](https://github.com/BITNP/BIThesis/commit/c8666166a60414a4e3bda1a62f95b2bf6b8eb827))
+
+### Features
+
+- Align content to top by default. ([1b662f6](https://github.com/BITNP/BIThesis/commit/1b662f6197b8c1f2a25d74b7222fac807359fc4e))
+- Add options for custom mathFont. ([5006fc6](https://github.com/BITNP/BIThesis/commit/5006fc6d8b661802a76c4457af1bbd5e6626f09b))
+
+### Miscellaneous Tasks
+
+- Update to v3.5.0 ([08535d4](https://github.com/BITNP/BIThesis/commit/08535d44be9fa5e88eaf64162dfe6256636889c5))
+
 ## [3.4.3] - 2023-03-16
 
 [661be7c](https://github.com/BITNP/BIThesis/commit/661be7c718b9776b17ba492ae3e32c798d0654f0)...[9951571](https://github.com/BITNP/BIThesis/commit/9951571f400d311327638c00e517c2576431a14c)
