@@ -821,6 +821,8 @@
   \pagestyle{BIThesis}
 }
 \RenewDocumentCommand \mainmatter {} {
+  % 另起一个空页，以便于后续的章节标题编号。
+  \clearpage
   % 这部分的章节标题进行编号。
   \ctexset{
     chapter = {
