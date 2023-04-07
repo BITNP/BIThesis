@@ -12,6 +12,18 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.5.1] - 2023-04-07
+
+[278d4aa](https://github.com/BITNP/BIThesis/commit/278d4aa160d69f3e4f7a5efaaed11596dcfae26f)...[b56efcb](https://github.com/BITNP/BIThesis/commit/b56efcb95b2ded6f5b5b233744b6d1c85f85c3e7)
+
+### Bug Fixes
+
+- Clear page at start of `\mainmatter`. ([46bb854](https://github.com/BITNP/BIThesis/commit/46bb854ce2b6ac797b5a7024d6ef88cdd5329a10))
+
+### Miscellaneous Tasks
+
+- Update version to v3.5.1. ([b56efcb](https://github.com/BITNP/BIThesis/commit/b56efcb95b2ded6f5b5b233744b6d1c85f85c3e7))
+
 ## [3.5.0] - 2023-04-04
 
 [b0f6c3a](https://github.com/BITNP/BIThesis/commit/b0f6c3a9ac3e54f8bfc5fa9495eb66432cd3045f)...[08535d4](https://github.com/BITNP/BIThesis/commit/08535d44be9fa5e88eaf64162dfe6256636889c5)
