@@ -2143,8 +2143,8 @@
     {conclusion} {结\label_space: 论} {Conclusions},
     {appendix} {附\label_space: 录} {Appendices},
     {ack} {致\label_space: 谢} {Acknowledgement},
-    {figure} {插\quad 图} {Illustrations},
-    {table} {表\quad 格} {Tables},
+    {figure} {插\label_space: 图} {Illustrations},
+    {table} {表\label_space: 格} {Tables},
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
@@ -2937,6 +2937,7 @@
       numbering = false,
     }
   }
+  \setstretch{1.53}
   \pagestyle{BIThesis}
 }
 %    \end{macrocode}
@@ -4527,7 +4528,8 @@
       labelsep=0.5cm,
       leftmargin=3cm,
       itemindent=0cm,
-      itemsep=0cm
+      % 不再在两项之间增加额外的间距（1.5 倍的行间距已经够宽了）（未来可以提供一个接口以供用户手动设置间距）
+      itemsep=-0.5ex,
     ]
     \cs_set:Npn \makelabel ##1 {##1\hfil}
   }
