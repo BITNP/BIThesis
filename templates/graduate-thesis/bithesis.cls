@@ -774,8 +774,8 @@
     format={\l__bithesis_title_font_cs:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
-    beforeskip=28bp plus 1ex minus .2ex,
-    afterskip=24bp plus .2ex,
+    beforeskip=14bp plus 1ex minus .2ex,
+    afterskip=14bp plus .2ex,
     fixskip=true,
   }
 }
