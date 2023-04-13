@@ -462,7 +462,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage[hidelinks,bookmarksnumbered]{hyperref}
 \RequirePackage{xcolor}
-\RequirePackage{caption}
+\RequirePackage[strut=off]{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -505,7 +505,7 @@
   }
 }
 \__bithesis_if_bachelor_thesis:T {
-  \setlength{\intextsep}{2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+  \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 }
 \setmainfont{Times~New~Roman}
 \setromanfont{Times~New~Roman}
@@ -856,7 +856,23 @@
   }
 }
 \setlength{\abovecaptionskip}{11pt}
-\setlength{\belowcaptionskip}{9pt}
+\__bithesis_if_bachelor_thesis:TF {
+  \__bithesis_if_thesis_english:TF {
+    \setlength{\belowcaptionskip}{9pt}
+  } {
+    % 为了满足 “前后一行空白的问题”，需要删除 Caption 下方的间距。
+    % 详见 `caption` 宏包手册和
+    % https://github.com/CTeX-org/forum/issues/86
+    %
+    % 这里实际的 skip 在 15pt 左右，但是全部移除会导致当图片置于页面顶部时，
+    % 图片与上方的间距过小，因此这里只移除 5pt。
+    % 当然，这样会导致文本间的图片的 Caption 下方的间距微微大于一行。
+    \captionsetup{belowskip=-5pt}
+  }
+} {
+  % 而研究生模板不存在这个问题。
+  \setlength{\belowcaptionskip}{9pt}
+}
 \__bithesis_if_graduate:TF {
   \tl_set:Nn \g__bithesis_label_divide_char_tl {.}
 } {
@@ -866,12 +882,13 @@
 \captionsetup[figure]{font=small,labelsep=space}
 
 \cs_set:Npn \thetable {\thechapter\g__bithesis_label_divide_char_tl\arabic{table}}
-\captionsetup[table]{font=small,labelsep=space,skip=2pt}
+\captionsetup[table]{font=small,labelsep=space}
 
 \cs_set:Npn \theequation {\thechapter\g__bithesis_label_divide_char_tl\arabic{equation}}
 
 \cs_set:Npn \thelstlisting {\thechapter\g__bithesis_label_divide_char_tl\arabic{lstlisting}}
 \cs_set:Npn \lstlistingname {\c__bithesis_label_code_tl}
+\captionsetup[listing]{font=small,labelsep=space}
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
