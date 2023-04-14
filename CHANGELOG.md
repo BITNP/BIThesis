@@ -12,6 +12,31 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.5.2] - 2023-04-14
+
+[1f05098](https://github.com/BITNP/BIThesis/commit/1f0509853acdf6e3cd57826e936bfbf043496d94)...[9345efc](https://github.com/BITNP/BIThesis/commit/9345efcf187c3d740129e97876502b3eba2791df)
+
+### Bug Fixes
+
+- Remove empty space when overwriting english bibname. ([713be99](https://github.com/BITNP/BIThesis/commit/713be99fa3fdc0ed798cb26bc662974ddfa1cb7c))
+- Fix the skip of subsubsection. ([2e667a5](https://github.com/BITNP/BIThesis/commit/2e667a5d2df4431b397f2cc4f67765405995d3bd))
+- Fix the skip of subsubsection. ([f9aafd9](https://github.com/BITNP/BIThesis/commit/f9aafd96606841e185ea58315bf21ff632286bcb))
+- Normalize title and 1.5 linestretch of listofx. ([0188ec1](https://github.com/BITNP/BIThesis/commit/0188ec1bea73daf9502a27912dc7462964c32644))
+- Improve extra space above/below float env. ([b730439](https://github.com/BITNP/BIThesis/commit/b7304396ebd58e213c34dc26a57d23640424da89))
+
+### Bugfix
+
+- 本科毕设封面添加班号信息 ([e3ed05f](https://github.com/BITNP/BIThesis/commit/e3ed05f639cd1c87213e3a88a615f9a75e81842b))
+
+### Documentation
+
+- Update readme & introduction. ([3820753](https://github.com/BITNP/BIThesis/commit/3820753783a1d9f1780aa2192179996a10681c55))
+
+### Miscellaneous Tasks
+
+- Use true tilde. ([5a0b721](https://github.com/BITNP/BIThesis/commit/5a0b7212531aac81a00c47d55e474c8168d05f7a))
+- Update to v3.5.2 ([9345efc](https://github.com/BITNP/BIThesis/commit/9345efcf187c3d740129e97876502b3eba2791df))
+
 ## [3.5.1] - 2023-04-07
 
 [278d4aa](https://github.com/BITNP/BIThesis/commit/278d4aa160d69f3e4f7a5efaaed11596dcfae26f)...[b56efcb](https://github.com/BITNP/BIThesis/commit/b56efcb95b2ded6f5b5b233744b6d1c85f85c3e7)

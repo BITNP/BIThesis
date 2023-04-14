@@ -27,7 +27,7 @@
 %% 
 \RequirePackage{expl3,l3keys2e}
 \ProvidesExplClass{bithesis}
-{2023-04-07}{3.5.1}{BIT Thesis Templates}
+{2023-04-14}{3.5.2}{BIT Thesis Templates}
 \int_new:N \g__bithesis_thesis_type_int
 \int_new:N \g__bithesis_head_zihao_int
 \bool_new:N \g__bithesis_twoside_bool
