@@ -98,7 +98,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 ## 参考规范
 
 - 本科生
-  - [北京理工大学教务部 - 关于2022届本科生毕业设计（论文）工作安排的通知](https://jwc.bit.edu.cn/sjjx/bysj/e06605ca60ec480d80bd6497560f70f7.htm) 
+  - [北京理工大学教务部 - 关于2023届本科生毕业设计（论文）工作安排的通知](https://jwb.bit.edu.cn//tzgg/9b6fd5d2adda4185bafe988347225292.htm) 
   - 《本科-全英文 Thesis Format 2022》
   - 《本科-全英文 Thesis Sample 2021 with signature》
 - 研究生
