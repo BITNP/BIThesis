@@ -1163,6 +1163,40 @@
 %  （Windows 和 MacOS 自带，Linux 需要用户自行安装）
 % \end{function}
 %
+% \begin{function}[added=2023-04-22]{misc/tabularFontSize}
+%   \begin{bitsyntax}[emph={[1]tabularFontSize}]
+%     tabularFontSize = (*(\marg{5})|其他字号*)
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   此选项用于调整表格中的字号。默认值为 5 号字。
+%
+%   如果你需要临时调整表格中的字号，可以使用 |\BITSetup| 命令
+%   在局部范围内覆盖此选项（注意使用大括号）。
+%
+%   \begin{latex}
+%      {
+%        \BITSetup{ misc / tabularFontSize = -4}
+%        
+%        \begin{table}[hbt]
+%          \centering
+%          \caption{水系聚氨酯分类} \label{tab:category}
+%          \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}cccc}
+%          \toprule
+%            类别			&水溶型		&胶体分散型		&乳液型 \\
+%          \midrule
+%            状态			&溶解$\sim$胶束	&分散		&白浊 \\
+%            外观			&水溶型		&胶体分散型		&乳液型 \\
+%            粒径$/\mu m$	&$<0.001$		&$0.001-0.1$		&$>0.1$ \\
+%            重均分子量	&$1000\sim 10000$	&数千$\sim 20$万 &$>5000$ \\
+%          \bottomrule
+%          \end{tabular*}
+%        \end{table}
+%      }
+%   \end{latex}
+% \end{function}
+% 
 % \section{正文编写}
 % 
 % 请注意，请在\env{document} 之内使用以下命令 。
@@ -2358,6 +2392,9 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / misc }
   {
+    % 表格字体大小，默认为 5 号字体。
+    tabularFontSize .tl_set:N = \l_@@_misc_tabular_font_size_tl,
+    tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
   }
 
@@ -2981,6 +3018,17 @@
   }
   \setstretch{1.53}
   \pagestyle{BIThesis}
+  
+  % 表格内容默认使用五号字。
+  % 
+  % 由于这种方式会影响所有的表格，
+  % 所以我们尽可能延迟这种影响。
+  %
+  % 不过，在目前的代码实现中没有在封面
+  % 之类的地方使用表格，所以目前即使放在
+  % preamble 中也不会有影响。
+  \AtBeginEnvironment{tabular}{\zihao{\l_@@_misc_tabular_font_size_tl}}
+  \AtBeginEnvironment{tabular*}{\zihao{\l_@@_misc_tabular_font_size_tl}}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3065,11 +3113,11 @@
 % \begin{macro}{\thefigure,\thetable,\theequation,\thelstlisting,\lstlistingname}
 % 定义各种计数器的格式。
 %    \begin{macrocode}
-% figure
+% 图片：五号字。
 \cs_set:Npn \thefigure {\thechapter\g_@@_label_divide_char_tl\arabic{figure}}
 \captionsetup[figure]{font=small,labelsep=space}
 
-% table
+% 表格：五号字。
 \cs_set:Npn \thetable {\thechapter\g_@@_label_divide_char_tl\arabic{table}}
 \captionsetup[table]{font=small,labelsep=space}
 

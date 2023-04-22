@@ -365,6 +365,9 @@
   }
 \keys_define:nn { bithesis / misc }
   {
+    % 表格字体大小，默认为 5 号字体。
+    tabularFontSize .tl_set:N = \l__bithesis_misc_tabular_font_size_tl,
+    tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l__bithesis_misc_arial_font_path_tl,
   }
 
@@ -820,6 +823,17 @@
   }
   \setstretch{1.53}
   \pagestyle{BIThesis}
+
+  % 表格内容默认使用五号字。
+  %
+  % 由于这种方式会影响所有的表格，
+  % 所以我们尽可能延迟这种影响。
+  %
+  % 不过，在目前的代码实现中没有在封面
+  % 之类的地方使用表格，所以目前即使放在
+  % preamble 中也不会有影响。
+  \AtBeginEnvironment{tabular}{\zihao{\l__bithesis_misc_tabular_font_size_tl}}
+  \AtBeginEnvironment{tabular*}{\zihao{\l__bithesis_misc_tabular_font_size_tl}}
 }
 \RenewDocumentCommand \mainmatter {} {
   % 另起一个空页，以便于后续的章节标题编号。
