@@ -229,6 +229,17 @@
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {Author~Biography},
     {symbols} {主要符号对照表} {Nomenclature},
+    {algo} {算法} {Algorithm},
+    {them} {定理} {Theorem},
+    {lem} {引理} {Lemma},
+    {prop} {命题} {Proposition},
+    {cor} {推论} {Corollary},
+    {axi} {公理} {Axiom},
+    {defn} {定义} {Definition},
+    {conj} {猜想} {Conjecture},
+    {exmp} {例} {Example},
+    {case} {情形} {Case},
+    {rem} {注} {Remark},
   }
   {\__bithesis_define_label:nnn #1}
 \clist_const:Nn \c__bithesis_bachelor_thesis_header_clist
@@ -253,6 +264,7 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
   publications .meta:nn = { bithesis / publications } {#1},
+  const .meta:nn = { bithesis / const } {#1},
 }
 \keys_define:nn { bithesis / option }
 {
@@ -366,6 +378,53 @@
 \keys_define:nn { bithesis / misc }
   {
     arialFont .tl_set:N = \l__bithesis_misc_arial_font_path_tl,
+    autoref / algo .tl_set:N = \algoautorefname,
+    autoref / algo .initial:n = {\g__bithesis_const_autoref_algo_tl},
+    autoref / them .tl_set:N = \themautorefname,
+    autoref / them .initial:n = {\g__bithesis_const_autoref_them_tl},
+    autoref / lem .tl_set:N = \lemautorefname,
+    autoref / lem .initial:n = {\g__bithesis_const_autoref_lem_tl},
+    autoref / prop .tl_set:N = \propautorefname,
+    autoref / prop .initial:n = {\g__bithesis_const_autoref_prop_tl},
+    autoref / cor .tl_set:N = \corautorefname,
+    autoref / cor .initial:n = {\g__bithesis_const_autoref_cor_tl},
+    autoref / axi .tl_set:N = \axiautorefname,
+    autoref / axi .initial:n = {\g__bithesis_const_autoref_axi_tl},
+    autoref / defn .tl_set:N = \defnautorefname,
+    autoref / defn .initial:n = {\g__bithesis_const_autoref_defn_tl},
+    autoref / conj .tl_set:N = \conjautorefname,
+    autoref / conj .initial:n = {\g__bithesis_const_autoref_conj_tl},
+    autoref / exmp .tl_set:N = \exmpautorefname,
+    autoref / exmp .initial:n = {\g__bithesis_const_autoref_exmp_tl},
+    autoref / case .tl_set:N = \caseautorefname,
+    autoref / case .initial:n = {\g__bithesis_const_autoref_case_tl},
+    autoref / rem .tl_set:N = \remautorefname,
+    autoref / rem .initial:n = {\g__bithesis_const_autoref_rem_tl},
+  }
+\keys_define:nn { bithesis / const }
+  {
+    autoref / algo .tl_set:N = \g__bithesis_const_autoref_algo_tl,
+    autoref / algo .initial:n = {\__bithesis_get_const:N {algo}},
+    autoref / them .tl_set:N = \g__bithesis_const_autoref_them_tl,
+    autoref / them .initial:n = {\__bithesis_get_const:N {them}},
+    autoref / lem .tl_set:N = \g__bithesis_const_autoref_lem_tl,
+    autoref / lem .initial:n = {\__bithesis_get_const:N {lem}},
+    autoref / prop .tl_set:N = \g__bithesis_const_autoref_prop_tl,
+    autoref / prop .initial:n = {\__bithesis_get_const:N {prop}},
+    autoref / cor .tl_set:N = \g__bithesis_const_autoref_cor_tl,
+    autoref / cor .initial:n = {\__bithesis_get_const:N {cor}},
+    autoref / axi .tl_set:N = \g__bithesis_const_autoref_axi_tl,
+    autoref / axi .initial:n = {\__bithesis_get_const:N {axi}},
+    autoref / defn .tl_set:N = \g__bithesis_const_autoref_defn_tl,
+    autoref / defn .initial:n = {\__bithesis_get_const:N {defn}},
+    autoref / conj .tl_set:N = \g__bithesis_const_autoref_conj_tl,
+    autoref / conj .initial:n = {\__bithesis_get_const:N {conj}},
+    autoref / exmp .tl_set:N = \g__bithesis_const_autoref_exmp_tl,
+    autoref / exmp .initial:n = {\__bithesis_get_const:N {exmp}},
+    autoref / case .tl_set:N = \g__bithesis_const_autoref_case_tl,
+    autoref / case .initial:n = {\__bithesis_get_const:N {case}},
+    autoref / rem .tl_set:N = \g__bithesis_const_autoref_rem_tl,
+    autoref / rem .initial:n = {\__bithesis_get_const:N {rem}},
   }
 
 \keys_define:nn { bithesis / style }
@@ -919,19 +978,19 @@
 \cs_set:Npn \listfigurename {\__bithesis_get_const:N {figure}}
 \cs_set:Npn \listtablename {\__bithesis_get_const:N {table}}
 \theoremstyle{plain}
-  \newtheorem{algo}{算法}[chapter]
-  \newtheorem{them}{定理}[chapter]
-  \newtheorem{lem}[them]{引理}
-  \newtheorem{prop}[them]{命题}
-  \newtheorem{cor}[them]{推论}
-  \newtheorem{axi}[them]{公理}
+  \newtheorem{algo}{\__bithesis_get_const:N {algo}}[chapter]
+  \newtheorem{them}{\__bithesis_get_const:N {them}}[chapter]
+  \newtheorem{lem}{\__bithesis_get_const:N {lem}}[chapter]
+  \newtheorem{prop}{\__bithesis_get_const:N {prop}}[chapter]
+  \newtheorem{cor}{\__bithesis_get_const:N {cor}}[chapter]
+  \newtheorem{axi}{\__bithesis_get_const:N {axi}}[chapter]
 \theoremstyle{definition}
-  \newtheorem{defn}{定义}[chapter]
-  \newtheorem{conj}{猜想}[chapter]
-  \newtheorem{exmp}{例}[chapter]
-  \newtheorem{case}{情形}
+  \newtheorem{defn}{\__bithesis_get_const:N {defn}}[chapter]
+  \newtheorem{conj}{\__bithesis_get_const:N {conj}}[chapter]
+  \newtheorem{exmp}{\__bithesis_get_const:N {exmp}}[chapter]
+  \newtheorem{case}{\__bithesis_get_const:N {case}}
 \theoremstyle{remark}
-  \newtheorem{rem}{注}
+  \newtheorem{rem}{\__bithesis_get_const:N {rem}}
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \cs_new:Npn \__bithesis_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
