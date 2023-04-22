@@ -47,6 +47,7 @@ test: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
 	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
+	cd $(TESTDIR)/autorefs && latexmk && cd ..
 
 regression-test: cls
 	zsh ./scripts/regression-testing.zsh
@@ -57,6 +58,7 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
 	cp bithesis.cls $(TESTDIR)/doctor-thesis
+	cp bithesis.cls $(TESTDIR)/autorefs
 	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
