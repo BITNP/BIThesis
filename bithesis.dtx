@@ -163,7 +163,7 @@
 %     TeX Live、MiKTeX 等。
 %   \item[文档类] 文档类指代一类以 |.cls| 结尾的文件，它们定义了文档的基本结构，
 %     通常包括文档的标题、作者、日期、页眉、页脚、正文样式等等。
-%     你可以通过 \cs{documentclass} 命令来指定文档类。
+%     你可以通过 \tn{documentclass} 命令来指定文档类。
 %     没错，|bithesis| 为你提供的模板功能就是通过数个文档类实现的。
 % \end{description}
 %
@@ -1165,7 +1165,7 @@
 %
 % \begin{function}[added=2023-04-22]{misc/tabularFontSize}
 %   \begin{bitsyntax}[emph={[1]tabularFontSize}]
-%     tabularFontSize = (*(\marg{5})|其他字号*)
+%     tabularFontSize = (*(5)|其他字号*)
 %   \end{bitsyntax}
 %
 %   \textit{此选项一般不需要用户自行修改。}
@@ -1197,6 +1197,76 @@
 %   \end{latex}
 % \end{function}
 % 
+% \begin{function}[added=2023-04-22]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
+%  misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/defn, misc/autoref/conj,
+%  misc/autoref/exmp, misc/autoref/case, misc/autoref/rem}
+%   \begin{bitsyntax}[emph={[1]tabularFontSize}]
+%     autoref = {
+%       algo = (*(算法)|\marg{字符串}*),
+%       them = (*(定理)|\marg{字符串}*),
+%       lem = (*(引理)|\marg{字符串}*),
+%       prop = (*(命题)|\marg{字符串}*),
+%       cor = (*(推论)|\marg{字符串}*),
+%       axi = (*(公理)|\marg{字符串}*),
+%       defn = (*(定义)|\marg{字符串}*),
+%       conj = (*(猜想)|\marg{字符串}*),
+%       exmp = (*(例)|\marg{字符串}*),
+%       case = (*(情形)|\marg{字符串}*),
+%       rem = (*(备注)|\marg{字符串}*),
+%     }
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   此选项用于定义 |autoref| 命令的输出格式。英文模板中，
+%   默认值会自动变成相应的英文格式（如|Figure|）。
+%
+%   \textit{此选项的默认值实际上是受到 \autoref{sec:const} 中 |const/autoref/xxx| \\
+%   （如 \cmd{misc/autoref/algo}）选项的影响。}
+%   
+% \end{function}
+%
+% \subsubsection{常量名称覆盖}
+% \label{sec:const}
+%
+% 在\BIThesis{} 中，模板定义了很多常量字符串，如页眉文字、章节名称等。
+% 你可以通过修改这里的选项来覆盖这些常量。
+% 
+% \begin{function}{const}
+%   \begin{bitsyntax}[emph={[1]const}]
+%     const = (*\marg{键值列表}*)
+%     const/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
+% \end{function}
+%
+% \begin{variable}[added=2023-04-22]{const/autoref/algo,const/autoref/them,
+% const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,
+% const/autoref/defn,const/autoref/conj,const/autoref/exmp,
+% const/autoref/case,const/autoref/rem}
+%   \begin{bitsyntax}[emph={[1]tabularFontSize}]
+%     autoref = {
+%       algo = (*(算法)|\marg{字符串}*),
+%       them = (*(定理)|\marg{字符串}*),
+%       lem = (*(引理)|\marg{字符串}*),
+%       prop = (*(命题)|\marg{字符串}*),
+%       cor = (*(推论)|\marg{字符串}*),
+%       axi = (*(公理)|\marg{字符串}*),
+%       defn = (*(定义)|\marg{字符串}*),
+%       conj = (*(猜想)|\marg{字符串}*),
+%       exmp = (*(例)|\marg{字符串}*),
+%       case = (*(情形)|\marg{字符串}*),
+%       rem = (*(备注)|\marg{字符串}*),
+%     }
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   此选项用于定义 |autoref| 命令的输出格式。英文模板中，
+%   默认值会自动变成相应的英文格式（如|Figure|）。
+%
+% \end{variable}
 % \section{正文编写}
 % 
 % 请注意，请在\env{document} 之内使用以下命令 。
@@ -2227,6 +2297,17 @@
     % TODO: Not so sure about the translation.
     {resume} {作者简介} {Author~Biography},
     {symbols} {主要符号对照表} {Nomenclature},
+    {algo} {算法} {Algorithm},
+    {them} {定理} {Theorem},
+    {lem} {引理} {Lemma},
+    {prop} {命题} {Proposition},
+    {cor} {推论} {Corollary},
+    {axi} {公理} {Axiom},
+    {defn} {定义} {Definition},
+    {conj} {猜想} {Conjecture},
+    {exmp} {例} {Example},
+    {case} {情形} {Case},
+    {rem} {注} {Remark},
   }
   {\@@_define_label:nnn #1}
 %    \end{macrocode}
@@ -2264,6 +2345,7 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
   publications .meta:nn = { bithesis / publications } {#1},
+  const .meta:nn = { bithesis / const } {#1},
 }
 %    \end{macrocode}
 %
@@ -2396,6 +2478,57 @@
     tabularFontSize .tl_set:N = \l_@@_misc_tabular_font_size_tl,
     tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
+    autoref / algo .tl_set:N = \algoautorefname,
+    autoref / algo .initial:n = {\g_@@_const_autoref_algo_tl},
+    autoref / them .tl_set:N = \themautorefname,
+    autoref / them .initial:n = {\g_@@_const_autoref_them_tl},
+    autoref / lem .tl_set:N = \lemautorefname,
+    autoref / lem .initial:n = {\g_@@_const_autoref_lem_tl},
+    autoref / prop .tl_set:N = \propautorefname,
+    autoref / prop .initial:n = {\g_@@_const_autoref_prop_tl},
+    autoref / cor .tl_set:N = \corautorefname,
+    autoref / cor .initial:n = {\g_@@_const_autoref_cor_tl},
+    autoref / axi .tl_set:N = \axiautorefname,
+    autoref / axi .initial:n = {\g_@@_const_autoref_axi_tl},
+    autoref / defn .tl_set:N = \defnautorefname,
+    autoref / defn .initial:n = {\g_@@_const_autoref_defn_tl},
+    autoref / conj .tl_set:N = \conjautorefname,
+    autoref / conj .initial:n = {\g_@@_const_autoref_conj_tl},
+    autoref / exmp .tl_set:N = \exmpautorefname,
+    autoref / exmp .initial:n = {\g_@@_const_autoref_exmp_tl},
+    autoref / case .tl_set:N = \caseautorefname,
+    autoref / case .initial:n = {\g_@@_const_autoref_case_tl},
+    autoref / rem .tl_set:N = \remautorefname,
+    autoref / rem .initial:n = {\g_@@_const_autoref_rem_tl},
+  }
+%    \end{macrocode}
+%    
+% 定义 |bithesis/const| 键值对类。
+%    \begin{macrocode}
+\keys_define:nn { bithesis / const }
+  {
+    autoref / algo .tl_set:N = \g_@@_const_autoref_algo_tl,
+    autoref / algo .initial:n = {\@@_get_const:N {algo}},
+    autoref / them .tl_set:N = \g_@@_const_autoref_them_tl,
+    autoref / them .initial:n = {\@@_get_const:N {them}},
+    autoref / lem .tl_set:N = \g_@@_const_autoref_lem_tl,
+    autoref / lem .initial:n = {\@@_get_const:N {lem}},
+    autoref / prop .tl_set:N = \g_@@_const_autoref_prop_tl,
+    autoref / prop .initial:n = {\@@_get_const:N {prop}},
+    autoref / cor .tl_set:N = \g_@@_const_autoref_cor_tl,
+    autoref / cor .initial:n = {\@@_get_const:N {cor}},
+    autoref / axi .tl_set:N = \g_@@_const_autoref_axi_tl,
+    autoref / axi .initial:n = {\@@_get_const:N {axi}},
+    autoref / defn .tl_set:N = \g_@@_const_autoref_defn_tl,
+    autoref / defn .initial:n = {\@@_get_const:N {defn}},
+    autoref / conj .tl_set:N = \g_@@_const_autoref_conj_tl,
+    autoref / conj .initial:n = {\@@_get_const:N {conj}},
+    autoref / exmp .tl_set:N = \g_@@_const_autoref_exmp_tl,
+    autoref / exmp .initial:n = {\@@_get_const:N {exmp}},
+    autoref / case .tl_set:N = \g_@@_const_autoref_case_tl,
+    autoref / case .initial:n = {\@@_get_const:N {case}},
+    autoref / rem .tl_set:N = \g_@@_const_autoref_rem_tl,
+    autoref / rem .initial:n = {\@@_get_const:N {rem}},
   }
 
 %    \end{macrocode}
@@ -3176,19 +3309,19 @@
 % 预定义用户常用的证明环境。
 %    \begin{macrocode}
 \theoremstyle{plain}
-  \newtheorem{algo}{算法}[chapter]
-  \newtheorem{them}{定理}[chapter]
-  \newtheorem{lem}[them]{引理}
-  \newtheorem{prop}[them]{命题}
-  \newtheorem{cor}[them]{推论}
-  \newtheorem{axi}[them]{公理}
+  \newtheorem{algo}{\@@_get_const:N {algo}}[chapter]
+  \newtheorem{them}{\@@_get_const:N {them}}[chapter]
+  \newtheorem{lem}{\@@_get_const:N {lem}}[chapter]
+  \newtheorem{prop}{\@@_get_const:N {prop}}[chapter]
+  \newtheorem{cor}{\@@_get_const:N {cor}}[chapter]
+  \newtheorem{axi}{\@@_get_const:N {axi}}[chapter]
 \theoremstyle{definition}
-  \newtheorem{defn}{定义}[chapter]
-  \newtheorem{conj}{猜想}[chapter]
-  \newtheorem{exmp}{例}[chapter]
-  \newtheorem{case}{情形}
+  \newtheorem{defn}{\@@_get_const:N {defn}}[chapter]
+  \newtheorem{conj}{\@@_get_const:N {conj}}[chapter]
+  \newtheorem{exmp}{\@@_get_const:N {exmp}}[chapter]
+  \newtheorem{case}{\@@_get_const:N {case}}
 \theoremstyle{remark}
-  \newtheorem{rem}{注}
+  \newtheorem{rem}{\@@_get_const:N {rem}}
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 %    \end{macrocode}
 % 
@@ -6613,6 +6746,11 @@ footskip=0.7cm% 页脚 1.8cm %
   pdfkeywords = {论文模板; 北京理工大学; 使用说明},
   pdfdisplaydoctitle = true
 }%
+
+\renewcommand{\subsectionautorefname}{小节}
+\renewcommand{\subsubsectionautorefname}{小节}
+\renewcommand{\sectionautorefname}{节}
+\renewcommand{\chapterautorefname}{章}
 
 \newcommand{\BIThesisLaTeX}{{\BIThesis}北京理工大学学位论文及报告{\LaTeX}模板}
 \newcommand{\BIThesisMacroPackage}{{\BIThesis}宏包}
