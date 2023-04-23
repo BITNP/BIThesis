@@ -163,7 +163,7 @@
 %     TeX Live、MiKTeX 等。
 %   \item[文档类] 文档类指代一类以 |.cls| 结尾的文件，它们定义了文档的基本结构，
 %     通常包括文档的标题、作者、日期、页眉、页脚、正文样式等等。
-%     你可以通过 \cs{documentclass} 命令来指定文档类。
+%     你可以通过 \tn{documentclass} 命令来指定文档类。
 %     没错，|bithesis| 为你提供的模板功能就是通过数个文档类实现的。
 % \end{description}
 %
@@ -1165,7 +1165,7 @@
 %
 % \begin{function}[added=2023-04-22]{misc/tabularFontSize}
 %   \begin{bitsyntax}[emph={[1]tabularFontSize}]
-%     tabularFontSize = (*(\marg{5})|其他字号*)
+%     tabularFontSize = (*(5)|其他字号*)
 %   \end{bitsyntax}
 %
 %   \textit{此选项一般不需要用户自行修改。}
@@ -1197,6 +1197,76 @@
 %   \end{latex}
 % \end{function}
 % 
+% \begin{function}[added=2023-04-22]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
+%  misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/defn, misc/autoref/conj,
+%  misc/autoref/exmp, misc/autoref/case, misc/autoref/rem}
+%   \begin{bitsyntax}[emph={[1]tabularFontSize}]
+%     autoref = {
+%       algo = (*(算法)|\marg{字符串}*),
+%       them = (*(定理)|\marg{字符串}*),
+%       lem = (*(引理)|\marg{字符串}*),
+%       prop = (*(命题)|\marg{字符串}*),
+%       cor = (*(推论)|\marg{字符串}*),
+%       axi = (*(公理)|\marg{字符串}*),
+%       defn = (*(定义)|\marg{字符串}*),
+%       conj = (*(猜想)|\marg{字符串}*),
+%       exmp = (*(例)|\marg{字符串}*),
+%       case = (*(情形)|\marg{字符串}*),
+%       rem = (*(备注)|\marg{字符串}*),
+%     }
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   此选项用于定义 |autoref| 命令的输出格式。英文模板中，
+%   默认值会自动变成相应的英文格式（如|Figure|）。
+%
+%   \textit{此选项的默认值实际上是受到 \autoref{sec:const} 中 |const/autoref/xxx| \\
+%   （如 \cmd{misc/autoref/algo}）选项的影响。}
+%   
+% \end{function}
+%
+% \subsubsection{常量名称覆盖}
+% \label{sec:const}
+%
+% 在\BIThesis{} 中，模板定义了很多常量字符串，如页眉文字、章节名称等。
+% 你可以通过修改这里的选项来覆盖这些常量。
+% 
+% \begin{function}{const}
+%   \begin{bitsyntax}[emph={[1]const}]
+%     const = (*\marg{键值列表}*)
+%     const/(*\meta{key}*) = (*\meta{value}*)
+%   \end{bitsyntax}
+%
+%  该选项包含许多子项目，用于调整其他选项。具体内容见下：
+% \end{function}
+%
+% \begin{variable}[added=2023-04-22]{const/autoref/algo,const/autoref/them,
+% const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,
+% const/autoref/defn,const/autoref/conj,const/autoref/exmp,
+% const/autoref/case,const/autoref/rem}
+%   \begin{bitsyntax}[emph={[1]tabularFontSize}]
+%     autoref = {
+%       algo = (*(算法)|\marg{字符串}*),
+%       them = (*(定理)|\marg{字符串}*),
+%       lem = (*(引理)|\marg{字符串}*),
+%       prop = (*(命题)|\marg{字符串}*),
+%       cor = (*(推论)|\marg{字符串}*),
+%       axi = (*(公理)|\marg{字符串}*),
+%       defn = (*(定义)|\marg{字符串}*),
+%       conj = (*(猜想)|\marg{字符串}*),
+%       exmp = (*(例)|\marg{字符串}*),
+%       case = (*(情形)|\marg{字符串}*),
+%       rem = (*(备注)|\marg{字符串}*),
+%     }
+%   \end{bitsyntax}
+%
+%   \textit{此选项一般不需要用户自行修改。}
+%
+%   此选项用于定义 |autoref| 命令的输出格式。英文模板中，
+%   默认值会自动变成相应的英文格式（如|Figure|）。
+%
+% \end{variable}
 % \section{正文编写}
 % 
 % 请注意，请在\env{document} 之内使用以下命令 。
@@ -6676,6 +6746,11 @@ footskip=0.7cm% 页脚 1.8cm %
   pdfkeywords = {论文模板; 北京理工大学; 使用说明},
   pdfdisplaydoctitle = true
 }%
+
+\renewcommand{\subsectionautorefname}{小节}
+\renewcommand{\subsubsectionautorefname}{小节}
+\renewcommand{\sectionautorefname}{节}
+\renewcommand{\chapterautorefname}{章}
 
 \newcommand{\BIThesisLaTeX}{{\BIThesis}北京理工大学学位论文及报告{\LaTeX}模板}
 \newcommand{\BIThesisMacroPackage}{{\BIThesis}宏包}
