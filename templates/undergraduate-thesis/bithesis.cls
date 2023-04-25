@@ -1275,11 +1275,11 @@
           \heiti\zihao{3}
           \c__bithesis_graduate_label_originality_tl
         }
-      \end{center}~\par
+      \end{center}
 
       % 本部分字号为四号。
       \zihao{4}
-      \c__bithesis_graduate_label_originality_clause_tl
+      \qquad\c__bithesis_graduate_label_originality_clause_tl
 
       \vspace{17mm}
 
@@ -1296,9 +1296,9 @@
           \heiti\zihao{3}
           \c__bithesis_graduate_label_authorization_tl
         }
-      \end{center}~\par
+      \end{center}
 
-      \c__bithesis_graduate_label_authorization_clause_tl
+      \qquad\c__bithesis_graduate_label_authorization_clause_tl
 
       \vspace*{15mm}
 
