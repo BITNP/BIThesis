@@ -833,7 +833,7 @@
         \arabic{subsubsection}
       }
     },
-    format={\l__bithesis_title_font_cs:n \bfseries \raggedright \zihao{-4}},
+    format={\l__bithesis_title_font_cs:n \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
     beforeskip=14bp plus 1ex minus .2ex,
