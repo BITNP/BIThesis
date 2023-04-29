@@ -1226,6 +1226,19 @@
 %   
 % \end{function}
 %
+% \begin{function}[added=2023-05-01]{misc/hideLinks}
+%  \begin{bitsyntax}[emph={[1]hideLinks}]
+%    hideLinks = (*(true)|false*)
+%  \end{bitsyntax}
+%
+%  此选项用于控制是否隐藏超链接的颜色。
+%
+%  为了减少歧义，此选项默认值为 |true|，即隐藏超链接的颜色。
+%
+%  \textit{请在导言区使用此选项。}
+%
+% \end{function}
+%
 % \subsubsection{常量名称覆盖}
 % \label{sec:const}
 %
@@ -2507,6 +2520,8 @@
     autoref / case .initial:n = {\g_@@_const_autoref_case_tl},
     autoref / rem .tl_set:N = \remautorefname,
     autoref / rem .initial:n = {\g_@@_const_autoref_rem_tl},
+    hideLinks .bool_set:N = \l_@@_misc_hide_links_bool,
+    hideLinks .initial:n = {true},
   }
 %    \end{macrocode}
 %    
@@ -2681,7 +2696,7 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 % Hide color and border in hyperref.
-\RequirePackage[hidelinks,bookmarksnumbered]{hyperref}
+\RequirePackage[bookmarksnumbered]{hyperref}
 \RequirePackage{xcolor}
 % 详见 `caption` 宏包手册和
 % https://github.com/CTeX-org/forum/issues/86
@@ -2854,6 +2869,12 @@
 \ctex_at_end_preamble:n {
   % 在导言区末尾加载数学字体。
   \@@_load_font:
+
+  % misc / hideLinks 选项
+  \bool_if:NT \l_@@_misc_hide_links_bool
+    {
+      \hypersetup { hidelinks }
+    }
   
   \@@_if_thesis_english:TF {
     \@@_if_thesis_int_type:nT {3} {
