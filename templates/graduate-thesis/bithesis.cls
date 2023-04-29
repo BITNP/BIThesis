@@ -403,6 +403,8 @@
     autoref / case .initial:n = {\g__bithesis_const_autoref_case_tl},
     autoref / rem .tl_set:N = \remautorefname,
     autoref / rem .initial:n = {\g__bithesis_const_autoref_rem_tl},
+    hideLinks .bool_set:N = \l__bithesis_misc_hide_links_bool,
+    hideLinks .initial:n = {true},
   }
 \keys_define:nn { bithesis / const }
   {
@@ -522,7 +524,7 @@
 \RequirePackage{multirow}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
-\RequirePackage[hidelinks,bookmarksnumbered]{hyperref}
+\RequirePackage[bookmarksnumbered]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage[strut=off]{caption}
 \RequirePackage{array}
@@ -623,6 +625,12 @@
 \ctex_at_end_preamble:n {
   % 在导言区末尾加载数学字体。
   \__bithesis_load_font:
+
+  % misc / hideLinks 选项
+  \bool_if:NT \l__bithesis_misc_hide_links_bool
+    {
+      \hypersetup { hidelinks }
+    }
 
   \__bithesis_if_thesis_english:TF {
     \__bithesis_if_thesis_int_type:nT {3} {
