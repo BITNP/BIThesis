@@ -12,6 +12,26 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.5.4] - 2023-04-29
+
+[22fccf5](https://github.com/BITNP/BIThesis/commit/22fccf5cc1c62cc69288fdf292857d4f3c08c4bc)...[b19599b](https://github.com/BITNP/BIThesis/commit/b19599bcd5b0917120aaf05fc8961f49f54700ef)
+
+### Bug Fixes
+
+- Normal text format in subsubsection. ([20f7060](https://github.com/BITNP/BIThesis/commit/20f7060ea78b5ace3d3e04e14c8c17247246dfd8))
+
+### Documentation
+
+- Add docs for twoside warning. ([f913aa1](https://github.com/BITNP/BIThesis/commit/f913aa1fa21218b8824af959bf9247954c4b0a2d))
+
+### Miscellaneous Tasks
+
+- Update version to v3.5.4. ([b19599b](https://github.com/BITNP/BIThesis/commit/b19599bcd5b0917120aaf05fc8961f49f54700ef))
+
+### Refactor
+
+- Try fix \MakeOriginality in the plagiarism check. ([7891e26](https://github.com/BITNP/BIThesis/commit/7891e26ae9e292bef1369d727e92e54ed423f6b8))
+
 ## [3.5.3] - 2023-04-23
 
 [5181d5a](https://github.com/BITNP/BIThesis/commit/5181d5a16c5e1d980abc905de8a2256c1fa282fe)...[346f11d](https://github.com/BITNP/BIThesis/commit/346f11da510b4c4d7ef10e4cb502f97aaf5865ea)
