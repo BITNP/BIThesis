@@ -37,6 +37,27 @@
 \tl_new:N \g__bithesis_label_divide_char_tl
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
+\cs_new:Npn \__bithesis_hide:n #1 {
+  *
+}
+
+\cs_new:Npn \__bithesis_secret_info:nn #1 #2 {
+  \bool_if:nTF \g__bithesis_blind_mode_bool {
+    #2
+  } {
+    #1
+  }
+}
+
+\cs_new:Npn \__bithesis_secret_info:N #1 {
+  \__bithesis_secret_info:nn {#1} {\tl_map_function:NN #1 \__bithesis_hide:n }
+}
+\cs_new:Npn \__bithesis_secret_info:n #1 {
+  \__bithesis_secret_info:nn {#1} {\tl_map_function:NN {#1} \__bithesis_hide:n }
+}
+
+\cs_generate_variant:Nn \__bithesis_secret_info:n {x}
+
 \cs_new:Npn \__bithesis_get_const:N #1 {
   \__bithesis_if_thesis_english:TF {
     \use:c {c__bithesis_label_ #1 _en_tl}
@@ -355,7 +376,7 @@
     degreeEn .tl_set:N = \l__bithesis_value_degree_en_tl,
     degreeEn .initial:n = {Doctor~of~Engineering~(example)},
     institute .tl_set:N = \l__bithesis_value_institute_tl,
-    institute .initial:n = {\c__bithesis_label_university_tl},
+    institute .initial:n = {\tl_use:N \c__bithesis_label_university_tl},
     defenseDate .tl_set:N = \l__bithesis_value_defense_date_tl,
     defenseDate .initial:n = {2019年6月（示例）},
     authorEn .tl_set:N = \l__bithesis_value_author_en_tl,
@@ -1129,7 +1150,7 @@
     {\heiti\zihao{-2} \l__bithesis_value_title_tl}
     \vskip 60mm
     % 黑体 小三
-    {\heiti \zihao{-3} \l__bithesis_value_author_tl}
+    {\heiti \zihao{-3} \__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{*~*~*}}
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l__bithesis_cover_date_tl}
@@ -1149,7 +1170,7 @@
             {\l__bithesis_value_title_tl}{\l__bithesis_value_vertical_title_tl}
         }
           \vfill
-        {\heiti\zihao{3}\l__bithesis_value_author_tl}
+        {\heiti\zihao{3}\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{*\quad*\quad*}}
           \vfill
         {\heiti\zihao{3}\c__bithesis_label_university_tl}
       \end{center}
@@ -1200,10 +1221,10 @@
 
         % 渲染信息。
         \clist_set:Nn \l__bithesis_input_clist {
-            {\c__bithesis_graduate_label_author_tl} {\l__bithesis_value_author_tl},
+            {\c__bithesis_graduate_label_author_tl} {\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{***}},
             {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
-            {\c__bithesis_graduate_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
-            {\c__bithesis_graduate_label_chairman_tl} {\l__bithesis_value_chairman_tl},
+            {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_tl}},
+            {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_tl}},
             {\c__bithesis_graduate_label_degree_tl} {\l__bithesis_value_degree_tl},
             {\c__bithesis_graduate_label_major_tl} {\l__bithesis_value_major_tl},
             {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
@@ -1251,10 +1272,10 @@
 
       % 渲染信息。
       \clist_set:Nn \l__bithesis_input_clist {
-          {\c__bithesis_graduate_label_author_en_tl} {\l__bithesis_value_author_en_tl},
+          {\c__bithesis_graduate_label_author_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_author_en_tl}},
           {\c__bithesis_graduate_label_school_en_tl} {\l__bithesis_value_school_en_tl},
-          {\c__bithesis_graduate_label_supervisor_en_tl} {\l__bithesis_value_supervisor_en_tl},
-          {\c__bithesis_graduate_label_chairman_en_tl} {\l__bithesis_value_chairman_en_tl},
+          {\c__bithesis_graduate_label_supervisor_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_en_tl}},
+          {\c__bithesis_graduate_label_chairman_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_en_tl}},
           {\c__bithesis_graduate_label_degree_en_tl} {\l__bithesis_value_degree_en_tl},
           {\c__bithesis_graduate_label_major_en_tl} {\l__bithesis_value_major_en_tl},
           {\c__bithesis_graduate_label_institute_en_tl} {\l__bithesis_value_institute_en_tl},
@@ -1352,7 +1373,6 @@
   }
 \DeclareDocumentCommand \MakeCover {}
   {
-    \begin{blindPeerReview}
     \group_begin:
 
     \int_case:nn {\g__bithesis_thesis_type_int}
@@ -1585,7 +1605,6 @@
       }
     }
     \group_end:
-    \end{blindPeerReview}
   }
 \NewDocumentCommand \MakeOriginality {}
   {
@@ -1692,16 +1711,12 @@
   }
 \NewDocumentCommand \MakePaperBack {}
   {
-    \begin{blindPeerReview}
       \make_paper_back:
-    \end{blindPeerReview}
   }
 \NewDocumentCommand \MakeTitle {}
   {
-    \begin{blindPeerReview}
       \__bithesis_make_chinese_title_page:
       \__bithesis_make_english_title_page:
-    \end{blindPeerReview}
   }
 \DeclareDocumentCommand \MakeTOC {}
   {
