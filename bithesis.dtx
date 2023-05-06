@@ -2014,6 +2014,33 @@
 %
 % \subsubsection{辅助函数与常量}
 %
+% \begin{macro}[added=2023-05-06]{\@@_secret_info:nn}
+% 普通模式下显示参数一，盲审模式下显示参数二。
+% \begin{macrocode}
+\cs_new:Npn \@@_hide:n #1 {
+  *
+}
+
+\cs_new:Npn \@@_secret_info:nn #1 #2 {
+  \bool_if:nTF \g_@@_blind_mode_bool {
+    #2
+  } {
+    #1
+  }
+}
+
+\cs_new:Npn \@@_secret_info:N #1 {
+  \@@_secret_info:nn {#1} {\tl_map_function:NN #1 \@@_hide:n }
+}
+\cs_new:Npn \@@_secret_info:n #1 {
+  \@@_secret_info:nn {#1} {\tl_map_function:NN {#1} \@@_hide:n }
+}
+
+\cs_generate_variant:Nn \@@_secret_info:n {x}
+
+% \end{macrocode}
+%
+% \end{macro}
 %
 % \begin{macro}[added=2023-03-16]{\@@_get_const:}
 % 获取标题、章节、表格、图形等的常量名称。
@@ -2468,7 +2495,7 @@
     degreeEn .tl_set:N = \l_@@_value_degree_en_tl,
     degreeEn .initial:n = {Doctor~of~Engineering~(example)},
     institute .tl_set:N = \l_@@_value_institute_tl,
-    institute .initial:n = {\c_@@_label_university_tl},
+    institute .initial:n = {\tl_use:N \c_@@_label_university_tl},
     defenseDate .tl_set:N = \l_@@_value_defense_date_tl,
     defenseDate .initial:n = {2019年6月（示例）},
     authorEn .tl_set:N = \l_@@_value_author_en_tl,
@@ -3536,7 +3563,7 @@
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
     % 黑体 小三
-    {\heiti \zihao{-3} \l_@@_value_author_tl}
+    {\heiti \zihao{-3} \@@_secret_info:nn{\l_@@_value_author_tl}{*~*~*}}
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l_@@_cover_date_tl}
@@ -3562,7 +3589,7 @@
             {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
         }
           \vfill
-        {\heiti\zihao{3}\l_@@_value_author_tl}
+        {\heiti\zihao{3}\@@_secret_info:nn{\l_@@_value_author_tl}{*\quad*\quad*}}
           \vfill
         {\heiti\zihao{3}\c_@@_label_university_tl}
       \end{center}
@@ -3619,10 +3646,10 @@
 
         % 渲染信息。
         \clist_set:Nn \l_@@_input_clist {
-            {\c_@@_graduate_label_author_tl} {\l_@@_value_author_tl},
+            {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{***}},
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
-            {\c_@@_graduate_label_supervisor_tl} {\l_@@_value_supervisor_tl},
-            {\c_@@_graduate_label_chairman_tl} {\l_@@_value_chairman_tl},
+            {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:x{\l_@@_value_supervisor_tl}},
+            {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:x{\l_@@_value_chairman_tl}},
             {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
             {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
             {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
@@ -3676,10 +3703,10 @@
 
       % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
-          {\c_@@_graduate_label_author_en_tl} {\l_@@_value_author_en_tl},
+          {\c_@@_graduate_label_author_en_tl} {\@@_secret_info:x{\l_@@_value_author_en_tl}},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
-          {\c_@@_graduate_label_supervisor_en_tl} {\l_@@_value_supervisor_en_tl},
-          {\c_@@_graduate_label_chairman_en_tl} {\l_@@_value_chairman_en_tl},
+          {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info:x{\l_@@_value_supervisor_en_tl}},
+          {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info:x{\l_@@_value_chairman_en_tl}},
           {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
           {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
@@ -3828,7 +3855,6 @@
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
-    \begin{blindPeerReview}
     \group_begin:
 
     \int_case:nn {\g_@@_thesis_type_int}
@@ -4063,7 +4089,6 @@
       }
     }
     \group_end:
-    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4182,9 +4207,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
-    \begin{blindPeerReview}
       \make_paper_back:
-    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4194,10 +4217,8 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
-    \begin{blindPeerReview}
       \@@_make_chinese_title_page:
       \@@_make_english_title_page:
-    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
