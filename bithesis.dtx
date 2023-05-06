@@ -2014,11 +2014,11 @@
 %
 % \subsubsection{辅助函数与常量}
 %
-% \begin{macro}[added=2023-05-06]{\@@_secret_info:nn}
+% \begin{macro}[added=2023-05-06]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n,\@@_secret_info:x}
 % 普通模式下显示参数一，盲审模式下显示参数二。
 % \begin{macrocode}
 \cs_new:Npn \@@_hide:n #1 {
-  *
+  \g_@@_const_substitute_symbol_tl
 }
 
 \cs_new:Npn \@@_secret_info:nn #1 #2 {
@@ -2578,6 +2578,8 @@
     autoref / case .initial:n = {\@@_get_const:N {case}},
     autoref / rem .tl_set:N = \g_@@_const_autoref_rem_tl,
     autoref / rem .initial:n = {\@@_get_const:N {rem}},
+    style / substituteSymbol .tl_set:N = \g_@@_const_substitute_symbol_tl,
+    style / substituteSymbol .initial:n = {*},
   }
 
 %    \end{macrocode}
@@ -3563,7 +3565,7 @@
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
     % 黑体 小三
-    {\heiti \zihao{-3} \@@_secret_info:nn{\l_@@_value_author_tl}{*~*~*}}
+    {\heiti \zihao{-3} \@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl}}
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l_@@_cover_date_tl}
@@ -3589,7 +3591,7 @@
             {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
         }
           \vfill
-        {\heiti\zihao{3}\@@_secret_info:nn{\l_@@_value_author_tl}{*\quad*\quad*}}
+        {\heiti\zihao{3}\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl}}
           \vfill
         {\heiti\zihao{3}\c_@@_label_university_tl}
       \end{center}
@@ -3646,7 +3648,7 @@
 
         % 渲染信息。
         \clist_set:Nn \l_@@_input_clist {
-            {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{***}},
+            {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
             {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:x{\l_@@_value_supervisor_tl}},
             {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:x{\l_@@_value_chairman_tl}},
