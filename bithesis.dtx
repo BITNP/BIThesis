@@ -3884,6 +3884,20 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\SecretInfo}
+% 用于包裹涉及个人信息的内容。
+%   \begin{macrocode}
+\DeclareDocumentCommand \SecretInfo { m o }
+  {
+    \IfValueTF {#2} {
+      \@@_secret_info:nn {#1} {#2}
+    } {
+      \@@_secret_info:x {#1}
+    }
+  }
+%   \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\MakeCover}
 % 制作封面。
 %    \begin{macrocode}
