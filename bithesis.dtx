@@ -2638,6 +2638,8 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l_@@_unicode_math_options_tl,
+  hideCoverInPeerReview .bool_set:N = \l_@@_style_hide_cover_in_peer_review_bool,
+  hideCoverInPeerReview .initial:n = {false},
 }
 %    \end{macrocode}
 %
@@ -3887,6 +3889,7 @@
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
+    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
     \group_begin:
 
     \int_case:nn {\g_@@_thesis_type_int}
@@ -4121,6 +4124,7 @@
       }
     }
     \group_end:
+    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4239,7 +4243,9 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
+    \begin{blindPeerReview}
       \make_paper_back:
+    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4249,8 +4255,10 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
+    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
       \@@_make_chinese_title_page:
       \@@_make_english_title_page:
+    \end{blindPeerReview}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -6171,7 +6179,7 @@ footskip=0.7cm% 页脚 1.8cm %
 % ==================================对于openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。===================
 \let\BIT@cleardoublepage\cleardoublepage
 \newcommand{\BIT@clearemptydoublepage}{%
-	\clearpage{\pagestyle{BIT@empty}\BIT@cleardoublepage}}
+  \clearpage{\pagestyle{BIT@empty}\BIT@cleardoublepage}}
 \let\cleardoublepage\BIT@clearemptydoublepage
 
  % ================修该frontmatter 的页码为大写罗马格式，并调整页面风格===============
@@ -6427,7 +6435,7 @@ footskip=0.7cm% 页脚 1.8cm %
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
 
-	% 黑体 小三
+  % 黑体 小三
     {\heiti\zihao{-3}
      \begin{tabular}{l p{3mm} c}
       \BIT@label@author & &\BITunderline[180pt]{\BIT@value@author}
