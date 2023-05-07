@@ -1365,6 +1365,14 @@
           { \hbox:n { } \thispagestyle { empty } \newpage }
       }
   }
+\DeclareDocumentCommand \SecretInfo { m o }
+  {
+    \IfValueTF {#2} {
+      \__bithesis_secret_info:nn {#1} {#2}
+    } {
+       \__bithesis_secret_info:x {#1}
+    }
+  }
 \DeclareDocumentCommand \MakeCover {}
   {
     \begin{blindPeerReview}[\l__bithesis_style_hide_cover_in_peer_review_bool]
