@@ -485,6 +485,8 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l__bithesis_unicode_math_options_tl,
+  hideCoverInPeerReview .bool_set:N = \l__bithesis_style_hide_cover_in_peer_review_bool,
+  hideCoverInPeerReview .initial:n = {false},
 }
 \keys_define:nn { bithesis / TOC }
 {
@@ -1375,6 +1377,7 @@
   }
 \DeclareDocumentCommand \MakeCover {}
   {
+    \begin{blindPeerReview}[\l__bithesis_style_hide_cover_in_peer_review_bool]
     \group_begin:
 
     \int_case:nn {\g__bithesis_thesis_type_int}
@@ -1607,6 +1610,7 @@
       }
     }
     \group_end:
+    \end{blindPeerReview}
   }
 \NewDocumentCommand \MakeOriginality {}
   {
@@ -1713,12 +1717,16 @@
   }
 \NewDocumentCommand \MakePaperBack {}
   {
+    \begin{blindPeerReview}
       \make_paper_back:
+    \end{blindPeerReview}
   }
 \NewDocumentCommand \MakeTitle {}
   {
+    \begin{blindPeerReview}[\l__bithesis_style_hide_cover_in_peer_review_bool]
       \__bithesis_make_chinese_title_page:
       \__bithesis_make_english_title_page:
+    \end{blindPeerReview}
   }
 \DeclareDocumentCommand \MakeTOC {}
   {
