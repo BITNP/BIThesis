@@ -1453,11 +1453,11 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
-              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
-              {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
-              {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
-              {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
-              {\c__bithesis_label_co_supervisor_tl} {\l__bithesis_value_external_supervisor_tl},
+              {\c__bithesis_label_class_tl} {\__bithesis_secret_info:N \l__bithesis_value_class_tl},
+              {\c__bithesis_label_author_tl} {\__bithesis_secret_info:N \l__bithesis_value_author_tl},
+              {\c__bithesis_label_student_id_tl} {\__bithesis_secret_info:N \l__bithesis_value_student_id_tl},
+              {\c__bithesis_label_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_supervisor_tl},
+              {\c__bithesis_label_co_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_external_supervisor_tl},
             }
 
             \zihao{3}
@@ -1550,11 +1550,11 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
-              {\c__bithesis_label_class_tl} {\l__bithesis_value_class_tl},
-              {\c__bithesis_label_author_tl} {\l__bithesis_value_author_tl},
-              {\c__bithesis_label_student_id_tl} {\l__bithesis_value_student_id_tl},
-              {\c__bithesis_label_supervisor_tl} {\l__bithesis_value_supervisor_tl},
-              {\c__bithesis_label_co_supervisor_tl} {\l__bithesis_value_external_supervisor_tl},
+              {\c__bithesis_label_class_tl} {\__bithesis_secret_info:N \l__bithesis_value_class_tl},
+              {\c__bithesis_label_author_tl} {\__bithesis_secret_info:N \l__bithesis_value_author_tl},
+              {\c__bithesis_label_student_id_tl} {\__bithesis_secret_info:N \l__bithesis_value_student_id_tl},
+              {\c__bithesis_label_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_supervisor_tl},
+              {\c__bithesis_label_co_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_external_supervisor_tl},
             }
 
             \__bithesis_render_cover_entry:n \l__bithesis_input_clist
