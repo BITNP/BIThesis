@@ -856,18 +856,28 @@
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
+  % section 标题为宋体小四号。缩进为两个字符宽度。
+  \titlecontents{section}[2\ccwd]{\songti \zihao{-4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
+  % subsection 标题为宋体小四号。缩进为四个字符宽度。
+  \titlecontents{subsection}[4\ccwd]{\songti \zihao{-4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
 } {
   % 对于其他，定义各章标题为宋体小四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
+  % section 标题为宋体小四号。
+  \titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
+  % subsection 标题为宋体小四号。
+  \titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
+  {\thecontentslabel\hspace{\ccwd}}{}
+  {\hspace{.5em}\titlerule*{.}\contentspage}
 }
-\titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
-{\thecontentslabel\hspace{\ccwd}}{}
-{\hspace{.5em}\titlerule*{.}\contentspage}
-\titlecontents{subsection}[2\ccwd]{\songti \zihao{-4}}
-{\thecontentslabel\hspace{\ccwd}}{}
-{\hspace{.5em}\titlerule*{.}\contentspage}
 \titlecontents{figure}[0pt]{\songti\zihao{-4}}
     {\figurename~\thecontentslabel\quad}{\hspace*{-1.5cm}}
     {\hspace{.5em}\titlerule*{.}\contentspage}
