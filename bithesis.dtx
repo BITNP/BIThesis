@@ -2681,6 +2681,12 @@
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
 %    \end{macrocode}
+% 如果设置 blindPeerReview 选项，则抑制 twoside 选项。
+%    \begin{macrocode}
+\bool_if:NT \g_@@_blind_mode_bool {
+  \bool_set_false:N \g_@@_twoside_bool
+}
+%    \end{macrocode}
 %
 % 如果没有开启双面打印选项，则在 ctexbook 中开启单面打印选项。
 % 允许 chapter 直接另起一页（即使是偶数（左手）页）。
