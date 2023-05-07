@@ -542,6 +542,9 @@
 \__bithesis_if_thesis_english:T {
   \PassOptionsToClass{scheme=plain}{ctexbook}
 }
+\bool_if:NT \g__bithesis_blind_mode_bool {
+  \bool_set_false:N \g__bithesis_twoside_bool
+}
 \bool_if:NTF \g__bithesis_twoside_bool {} {
   \PassOptionsToClass{oneside}{ctexbook}
 }
@@ -1395,7 +1398,7 @@
     \IfValueTF {#2} {
       \__bithesis_secret_info:nn {#1} {#2}
     } {
-       \__bithesis_secret_info:x {#1}
+      \__bithesis_secret_info:x {#1}
     }
   }
 \DeclareDocumentCommand \MakeCover {}
