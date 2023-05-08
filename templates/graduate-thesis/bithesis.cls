@@ -103,7 +103,7 @@
   {
     {code} {代码},
     {udc} {UDC分类号：},
-    {classification} {中国分类号：},
+    {classification} {中图分类号：},
     {classified_level} {密级},
     {type} {种类},
   }
@@ -342,7 +342,7 @@
     keywordsEn .initial:n = {Polyurethane,Shape Memory,Textiles (example)},
     translationTitle .tl_set:N = \l__bithesis_value_trans_title_tl,
     translationOriginTitle .tl_set:N = \l__bithesis_value_trans_origin_title_tl,
-    % 中国分类号，研究生学位论文使用
+    % 中图分类号，研究生学位论文使用
     classification .tl_set:N = \l__bithesis_value_classification_tl,
     classification .initial:n = {TQ~028.1（示例）},
     % UDC 分类号，研究生学位论文使用
