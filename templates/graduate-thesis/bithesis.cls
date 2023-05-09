@@ -1641,7 +1641,7 @@
 \NewDocumentCommand \MakeOriginality {}
   {
     \group_begin:
-      \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l__bithesis_style_hide_cover_in_peer_review_bool]
       \int_case:nn {\g__bithesis_thesis_type_int}
       {
         {1}
@@ -1743,7 +1743,7 @@
   }
 \NewDocumentCommand \MakePaperBack {}
   {
-    \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l__bithesis_style_hide_cover_in_peer_review_bool]
       \make_paper_back:
     \end{blindPeerReview}
   }

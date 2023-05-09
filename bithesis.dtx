@@ -4190,7 +4190,7 @@
 \NewDocumentCommand \MakeOriginality {} 
   {
     \group_begin:
-      \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
       \int_case:nn {\g_@@_thesis_type_int}
       {
         {1} 
@@ -4298,7 +4298,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
-    \begin{blindPeerReview}
+    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
       \make_paper_back:
     \end{blindPeerReview}
   }
