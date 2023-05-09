@@ -337,6 +337,8 @@
     underlineThickness .initial:n = {1pt},
     underlineOffset .dim_set:N = \l__bithesis_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
+    hideCoverInPeerReview .bool_set:N = \l__bithesis_style_hide_cover_in_peer_review_bool,
+    hideCoverInPeerReview .initial:n = {false},
   }
 \keys_define:nn { bithesis / info }
   {
@@ -500,8 +502,6 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l__bithesis_unicode_math_options_tl,
-  hideCoverInPeerReview .bool_set:N = \l__bithesis_style_hide_cover_in_peer_review_bool,
-  hideCoverInPeerReview .initial:n = {false},
 }
 \keys_define:nn { bithesis / TOC }
 {

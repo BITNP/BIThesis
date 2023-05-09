@@ -531,6 +531,12 @@
 %   \begin{bitsyntax}[emph={[1]twoside}]
 %     twoside = (*<(false)|true>*)
 %   \end{bitsyntax}
+%
+%   打开双页排版。对于研究生模板来说，这意味着摘要前的内容都会
+%   被插入空白页。这样，在你双面打印的时候，就可以获得单页打印
+%   效果的封面。
+%
+%   \textit{本科生模板一般不需要选择此选项。此选项会受到 |blindPeerReview| 的抑制。}
 % \end{function}
 %
 % \begin{function}{ctex}
@@ -730,6 +736,14 @@
 %   \end{bitsyntax}
 %
 %   设置封面信息中下划线的偏移量。
+% \end{function}
+%
+% \begin{function}[added=2023-05-09]{cover/hideCoverInPeerReview}
+%   \begin{bitsyntax}[emph={[1]hideCoverInPeerReview}]
+%     hideCoverInPeerReview = (*(false)|true*)
+%   \end{bitsyntax}
+%
+%   在盲审模式下，不渲染封面。
 % \end{function}
 %
 % \subsubsection{论文基本信息}
@@ -1287,6 +1301,15 @@
 %   默认值会自动变成相应的英文格式（如|Figure|）。
 %
 % \end{variable}
+%
+% \begin{variable}[added=2023-05-09]{const/style/substituteSymbol}
+%   \begin{bitsyntax}[emph={[1]substituteSymbol}]
+%     substituteSymbol = (*(*)|\marg{字符串}*),
+%   \end{bitsyntax}
+%
+%   盲审模式下用于替换个人信息的替换符号。
+% \end{variable}
+% 
 % \section{正文编写}
 % 
 % 请注意，请在\env{document} 之内使用以下命令 。
@@ -1315,6 +1338,18 @@
 %   \meta{valueMaxWidth=xxx}
 %
 %   来指定下划线的宽度。一般情况下，我们不建议您这样做。
+% \end{function}
+%
+% \begin{function}{\SecretInfo{}[]}
+%   \begin{itemize}
+%     \item 参数一为一般模式下显示的信息。
+%     \item 参数二（可选）为盲审模式下显示的信息。
+%   \end{itemize}
+%
+%   用于在盲审模式下隐藏个人隐私信息。
+%
+%   如果传入第二个参数，则会用等量的替换符号（一般是|*|）替换内容。
+%   否则，将使用第二个参数替换内容。
 % \end{function}
 % 
 % \begin{function}{\MakePaperBack}
@@ -2459,6 +2494,8 @@
     underlineThickness .initial:n = {1pt},
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
+    hideCoverInPeerReview .bool_set:N = \l_@@_style_hide_cover_in_peer_review_bool,
+    hideCoverInPeerReview .initial:n = {false},
   }
 %    \end{macrocode}
 %
@@ -2638,8 +2675,6 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l_@@_unicode_math_options_tl,
-  hideCoverInPeerReview .bool_set:N = \l_@@_style_hide_cover_in_peer_review_bool,
-  hideCoverInPeerReview .initial:n = {false},
 }
 %    \end{macrocode}
 %
