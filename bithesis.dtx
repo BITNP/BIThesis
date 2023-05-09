@@ -1197,7 +1197,7 @@
 %   \end{latex}
 % \end{function}
 % 
-% \begin{function}[added=2023-05-09]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
+% \begin{function}[added=2023-04-22,updated=2023-05-09]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
 %  misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/defn, misc/autoref/conj,
 %  misc/autoref/exmp, misc/autoref/case, misc/autoref/rem,misc/autoref/fig,misc/autoref/tab,misc/autoref/equ}
 %   \begin{bitsyntax}[emph={[1]tabularFontSize}]
@@ -1257,7 +1257,7 @@
 %  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 % \end{function}
 %
-% \begin{variable}[added=2023-05-09]{const/autoref/algo,const/autoref/them,
+% \begin{variable}[added=2023-04-22,updated=2023-05-09]{const/autoref/algo,const/autoref/them,
 % const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,
 % const/autoref/defn,const/autoref/conj,const/autoref/exmp,
 % const/autoref/case,const/autoref/rem,
@@ -2533,11 +2533,11 @@
     hideLinks .bool_set:N = \l_@@_misc_hide_links_bool,
     hideLinks .initial:n = {true},
     autoref / figure .tl_set:N = \figureautorefname,
-    autoref / figure .initial:n = {\g__bithesis_const_autoref_fig_tl},
+    autoref / figure .initial:n = {\g_@@_const_autoref_fig_tl},
     autoref / table .tl_set:N = \tableautorefname,
-    autoref / table .initial:n = {\g__bithesis_const_autoref_tab_tl},
+    autoref / table .initial:n = {\g_@@_const_autoref_tab_tl},
     autoref / equ .tl_set:N = \equationautorefname,
-    autoref / equ .initial:n = {\g__bithesis_const_autoref_equ_tl},
+    autoref / equ .initial:n = {\g_@@_const_autoref_equ_tl},
   }
 %    \end{macrocode}
 %    
@@ -2567,12 +2567,12 @@
     autoref / case .initial:n = {\@@_get_const:N {case}},
     autoref / rem .tl_set:N = \g_@@_const_autoref_rem_tl,
     autoref / rem .initial:n = {\@@_get_const:N {rem}},
-    autoref / figure .tl_set:N = \g__bithesis_const_autoref_fig_tl,
-    autoref / figure .initial:n =  {\__bithesis_get_const:N {fig}},
-    autoref / table .tl_set:N = \g__bithesis_const_autoref_tab_tl,
-    autoref / table .initial:n =  {\__bithesis_get_const:N {tab}},
-    autoref / equ .tl_set:N = \g__bithesis_const_autoref_equ_tl,
-    autoref / equ .initial:n = {\__bithesis_get_const:N {equ}},
+    autoref / figure .tl_set:N = \g_@@_const_autoref_fig_tl,
+    autoref / figure .initial:n =  {\@@_get_const:N {fig}},
+    autoref / table .tl_set:N = \g_@@_const_autoref_tab_tl,
+    autoref / table .initial:n =  {\@@_get_const:N {tab}},
+    autoref / equ .tl_set:N = \g_@@_const_autoref_equ_tl,
+    autoref / equ .initial:n = {\@@_get_const:N {equ}},
   }
 
 %    \end{macrocode}
