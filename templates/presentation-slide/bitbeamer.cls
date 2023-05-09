@@ -42,7 +42,10 @@
 \RequirePackage{xeCJKfntef}
 \RequirePackage{tikz}
 \usetheme{Madrid}
-\colorlet{beamer@blendedblue}{green!40!black}
+\colordefine{bitred}{HTML}{A13E0B}
+\colordefine{bitgreen}{HTML}{0A8F30}
+\colordefine{bitdarkgreen}{HTML}{005B30}
+\colorlet{beamer@blendedblue}{bitdarkgreen}
 \cs_new:Npn \CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
 \tl_if_empty:NF \l_bit_titlegraphic_tl {
