@@ -38,7 +38,7 @@
 \seq_new:N \l__bithesis_right_seq
 \seq_new:N \l__bithesis_left_seq
 \cs_new:Npn \__bithesis_hide:n #1 {
-  *
+  \g__bithesis_const_substitute_symbol_tl
 }
 
 \cs_new:Npn \__bithesis_secret_info:nn #1 #2 {
@@ -466,6 +466,8 @@
     autoref / table .initial:n =  {\__bithesis_get_const:N {tab}},
     autoref / equ .tl_set:N = \g__bithesis_const_autoref_equ_tl,
     autoref / equ .initial:n = {\__bithesis_get_const:N {equ}},
+    style / substituteSymbol .tl_set:N = \g__bithesis_const_substitute_symbol_tl,
+    style / substituteSymbol .initial:n = {*},
   }
 
 \keys_define:nn { bithesis / style }
@@ -1165,7 +1167,7 @@
     {\heiti\zihao{-2} \l__bithesis_value_title_tl}
     \vskip 60mm
     % 黑体 小三
-    {\heiti \zihao{-3} \__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{*~*~*}}
+    {\heiti \zihao{-3} \__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{\g__bithesis_const_substitute_symbol_tl~\g__bithesis_const_substitute_symbol_tl~\g__bithesis_const_substitute_symbol_tl}}
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l__bithesis_cover_date_tl}
@@ -1185,7 +1187,7 @@
             {\l__bithesis_value_title_tl}{\l__bithesis_value_vertical_title_tl}
         }
           \vfill
-        {\heiti\zihao{3}\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{*\quad*\quad*}}
+        {\heiti\zihao{3}\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{\g__bithesis_const_substitute_symbol_tl\quad\g__bithesis_const_substitute_symbol_tl\quad\g__bithesis_const_substitute_symbol_tl}}
           \vfill
         {\heiti\zihao{3}\c__bithesis_label_university_tl}
       \end{center}
@@ -1236,7 +1238,7 @@
 
         % 渲染信息。
         \clist_set:Nn \l__bithesis_input_clist {
-            {\c__bithesis_graduate_label_author_tl} {\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{***}},
+            {\c__bithesis_graduate_label_author_tl} {\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{\g__bithesis_const_substitute_symbol_tl\g__bithesis_const_substitute_symbol_tl\g__bithesis_const_substitute_symbol_tl}},
             {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
             {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_tl}},
             {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_tl}},
