@@ -240,6 +240,9 @@
     {exmp} {例} {Example},
     {case} {情形} {Case},
     {rem} {注} {Remark},
+    {fig} {图} {Figure},
+    {tab} {表} {Table},
+    {equ} {式} {Equation},
   }
   {\__bithesis_define_label:nnn #1}
 \clist_const:Nn \c__bithesis_bachelor_thesis_header_clist
@@ -405,6 +408,12 @@
     autoref / rem .initial:n = {\g__bithesis_const_autoref_rem_tl},
     hideLinks .bool_set:N = \l__bithesis_misc_hide_links_bool,
     hideLinks .initial:n = {true},
+    autoref / figure .tl_set:N = \figureautorefname,
+    autoref / figure .initial:n = {\g__bithesis_const_autoref_fig_tl},
+    autoref / table .tl_set:N = \tableautorefname,
+    autoref / table .initial:n = {\g__bithesis_const_autoref_tab_tl},
+    autoref / equ .tl_set:N = \equationautorefname,
+    autoref / equ .initial:n = {\g__bithesis_const_autoref_equ_tl},
   }
 \keys_define:nn { bithesis / const }
   {
@@ -430,6 +439,12 @@
     autoref / case .initial:n = {\__bithesis_get_const:N {case}},
     autoref / rem .tl_set:N = \g__bithesis_const_autoref_rem_tl,
     autoref / rem .initial:n = {\__bithesis_get_const:N {rem}},
+    autoref / figure .tl_set:N = \g__bithesis_const_autoref_fig_tl,
+    autoref / figure .initial:n =  {\__bithesis_get_const:N {fig}},
+    autoref / table .tl_set:N = \g__bithesis_const_autoref_tab_tl,
+    autoref / table .initial:n =  {\__bithesis_get_const:N {tab}},
+    autoref / equ .tl_set:N = \g__bithesis_const_autoref_equ_tl,
+    autoref / equ .initial:n = {\__bithesis_get_const:N {equ}},
   }
 
 \keys_define:nn { bithesis / style }
