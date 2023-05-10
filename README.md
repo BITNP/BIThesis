@@ -39,6 +39,8 @@ BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学�
 
 > **研究生模板正在完成与研究生院的沟通。[__（进度详情）__](https://github.com/BITNP/BIThesis/issues/163)**
 
+> :warning: 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
+
 <h2>特性</h2>
 
 - 符合学校对毕业论文的要求。
