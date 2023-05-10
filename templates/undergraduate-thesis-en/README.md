@@ -4,6 +4,9 @@
 
 此文件夹中包含了北京理工大学本科生毕业设计（论文）外文翻译的全部内容，有关模板的使用方法更为详细的介绍，请参考：[bithesis 使用手册][manual]。
 
+> :warning: 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
+
+
 ## 特性
 
 - 符合学校对毕业论文的要求。
