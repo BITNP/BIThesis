@@ -6,7 +6,7 @@ PACKAGE = bithesis
 LATEX = xelatex
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty bitart.cls bitbook.cls bitgrad.cls bitreport.cls bithesis.cls bitbeamer.cls
+CLSFILE = dtx-style.sty bitreport.cls bithesis.cls bitbeamer.cls
 
 LATEXMK = latexmk
 
