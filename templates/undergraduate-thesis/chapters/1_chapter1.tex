@@ -77,3 +77,22 @@
 % 使用自己定义的字体
 % 使用提供了相应字型的字体：\CJKfamily{custom-font}{彧}。
 
+
+\section{字体效果表格}
+
+% 列：Regular、Italic、Bold、Bold Italic
+% 行：宋体、黑体、楷体、Serif、Sans Serif、Typewriter、Math
+
+\begin{table}[htb]
+    \begin{tabular}{@{}lllll@{}}
+    \toprule
+               & Regular & Bold & Italic & Bold Italic \\ \midrule
+    宋体         & 宋体      & \textbf{宋体粗体} & \textit{楷体}     &    \textbf{\textit{粗体楷体}}  \\
+    黑体         & {\heiti{}黑体}      & \textbf{\heiti{}黑体粗体} &   \textit{\heiti{}黑体斜体}     &             \\
+    楷体         & 楷体      & 楷体粗体 &        &             \\
+    Serif      &         &      &        &             \\
+    Sans Serif &         &      &        &             \\
+    Typewriter &         &      &        &             \\
+    Math       &         &      &        &             \\ \bottomrule
+    \end{tabular}
+\end{table}

@@ -2812,6 +2812,7 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{fmtcount}
+\RequirePackage{ifplatform}
 %    \end{macrocode}
 %
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
@@ -2969,6 +2970,11 @@
 % 在 |preamble| 中，加载各个模板需要的字体。
 %    \begin{macrocode}
 \ctex_at_end_preamble:n {
+  % 针对 Windows 字体采用 Fake Bold 宋体
+  \ifwindows
+    \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
+  \fi
+
   % 在导言区末尾加载数学字体。
   \@@_load_font:
 

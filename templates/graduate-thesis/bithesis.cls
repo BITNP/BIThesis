@@ -579,6 +579,7 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{fmtcount}
+\RequirePackage{ifplatform}
 \pdfstringdefDisableCommands{%
   \let\quad\empty
 }
@@ -666,6 +667,11 @@
     \use:c { __bithesis_load_math_font_  \l__bithesis_style_math_font_tl  : }
   }
 \ctex_at_end_preamble:n {
+  % 针对 Windows 字体采用 Fake Bold 宋体
+  \ifwindows
+    \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
+  \fi
+
   % 在导言区末尾加载数学字体。
   \__bithesis_load_font:
 
