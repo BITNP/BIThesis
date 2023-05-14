@@ -556,6 +556,7 @@
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
 \RequirePackage{geometry}
+\RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
 \RequirePackage{setspace}
@@ -568,7 +569,6 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 \RequirePackage[bookmarksnumbered]{hyperref}
-\RequirePackage{xcolor}
 \RequirePackage[strut=off]{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
