@@ -4604,6 +4604,7 @@
 
       % 因为不需要用到 chapter counter, 所以直接加一即可。
       \stepcounter{chapter}
+      \setcounter{section}{0}
       % （与上面方法至少用一个）
       % 需要让 section 在 pdf bookmark 中输出字母而不是数字。
       % 详见 hyperref 代码。
