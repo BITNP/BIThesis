@@ -2006,14 +2006,26 @@
       }
     } {
       % 附录节（section）级别
+
+      % 因为不需要用到 chapter counter, 所以直接加一即可。
+      \stepcounter{chapter}
+      % （与上面方法至少用一个）
+      % 需要让 section 在 pdf bookmark 中输出字母而不是数字。
+      % 详见 hyperref 代码。
+      \gdef\theHsection{\Alph{section}}
+
+      % 定义 \thefigure 采用节而不是章
+\cs_set:Npn \thefigure {\theHsection \g__bithesis_label_divide_char_tl\arabic{figure}}
+
       \ctexset{
         section/number = \l__bithesis_appendix_plain_label_tl\hspace{1ex}\Alph{section},
         subsection/number = \Alph{section}. \arabic{subsection},
       }
 
-      \cs_set:Npn \thechapter {
+      \cs_gset:Npn \thechapter {
         \Alph{section}
       }
+      % \gdef \thechapter{\Alph{section}}
 
       \tl_if_blank:VTF \l__bithesis_appendices_title_tl {
         \chapter{\l__bithesis_appendix_default_title_tl}
