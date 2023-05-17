@@ -31,7 +31,7 @@ jobs:
           path: "*.cls"
 
     
-  publish_template:
+  publish_templates:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
     needs: build
