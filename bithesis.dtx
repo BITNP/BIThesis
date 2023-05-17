@@ -3385,9 +3385,11 @@
 \cs_set:Npn \theequation {\thechapter\g_@@_label_divide_char_tl\arabic{equation}}
 
 % code snippet
-\cs_set:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
-\cs_set:Npn \lstlistingname {\c_@@_label_code_tl}
-\captionsetup[listing]{font=small,labelsep=space}
+\AtBeginDocument{
+  \cs_gset:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
+  \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
+}
+\captionsetup[lstlisting]{font=small,labelsep=space}
 %    \end{macrocode}
 % \end{macro}
 % 

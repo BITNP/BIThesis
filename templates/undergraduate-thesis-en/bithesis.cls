@@ -1020,9 +1020,11 @@
 
 \cs_set:Npn \theequation {\thechapter\g__bithesis_label_divide_char_tl\arabic{equation}}
 
-\cs_set:Npn \thelstlisting {\thechapter\g__bithesis_label_divide_char_tl\arabic{lstlisting}}
-\cs_set:Npn \lstlistingname {\c__bithesis_label_code_tl}
-\captionsetup[listing]{font=small,labelsep=space}
+\AtBeginDocument{
+  \cs_gset:Npn \thelstlisting {\thechapter\g__bithesis_label_divide_char_tl\arabic{lstlisting}}
+  \cs_gset:Npn \lstlistingname {\c__bithesis_label_code_tl}
+}
+\captionsetup[lstlisting]{font=small,labelsep=space}
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
