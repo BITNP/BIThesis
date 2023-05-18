@@ -1025,10 +1025,14 @@
   \cs_gset:Npn \lstlistingname {\c__bithesis_label_code_tl}
 }
 \captionsetup[lstlisting]{font=small,labelsep=space}
-\tolerance=1
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
+\__bithesis_if_thesis_english:TF{
+  \hbadness=10000
+}{
+  \tolerance=1
+  \emergencystretch=\maxdimen
+  \hyphenpenalty=10000
+  \hbadness=10000
+}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}

@@ -3395,11 +3395,16 @@
 % 
 % 调整底层 TeX 排版引擎参数以保证所有段落能够很好地以两端对齐的方式呈现。
 % 是的，这是祖传代码。
+% 在英文模式下禁用，因为这段代码会禁用 hyphenation.
 %    \begin{macrocode}
-\tolerance=1
-\emergencystretch=\maxdimen
-\hyphenpenalty=10000
-\hbadness=10000
+\@@_if_thesis_english:TF{
+  \hbadness=10000
+}{
+  \tolerance=1
+  \emergencystretch=\maxdimen
+  \hyphenpenalty=10000
+  \hbadness=10000
+}
 %    \end{macrocode}
 %
 % 自定义一个默认的 lstlisting 样式。
