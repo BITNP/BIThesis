@@ -1025,7 +1025,9 @@
   \cs_gset:Npn \lstlistingname {\c__bithesis_label_code_tl}
 }
 \captionsetup[lstlisting]{font=small,labelsep=space}
-\__bithesis_if_thesis_english:TF{}{
+\__bithesis_if_thesis_english:TF{
+  \hbadness=10000
+}{
   \tolerance=1
   \emergencystretch=\maxdimen
   \hyphenpenalty=10000
