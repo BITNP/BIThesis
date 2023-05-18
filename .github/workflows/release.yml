@@ -24,9 +24,14 @@ jobs:
         with:
           name: bithesis
           path: bithesis.pdf
+      - name: Upload *.cls for later usage.
+        uses: actions/upload-artifact@v3
+        with:
+          name: cls
+          path: "*.cls"
 
     
-  publish:
+  publish_templates:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
     needs: build
@@ -54,4 +59,28 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./templates/${{ matrix.template }}.zip
           asset_name: ${{ matrix.template }}.zip
+          tag: ${{ github.ref }}
+
+    
+  publish_cls:
+    name: Publish ${{ matrix.cls }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        cls: [bithesis, bitreport, bitbeamer]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download *.cls
+        uses: actions/download-artifact@v3
+        with:
+          name: cls
+      - name: Upload ${{ matrix.cls }}.cls to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ matrix.cls }}.cls
+          asset_name: ${{ matrix.cls }}.cls
           tag: ${{ github.ref }}
