@@ -291,3 +291,5 @@ overleaf
 scripts
 !scripts/*.sh
 !scripts/*.zsh
+
+.DS_Store
