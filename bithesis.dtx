@@ -332,7 +332,7 @@
 %
 % \begin{itemize}
 % \item Windows、Linux用户推荐安装 TeX Live 套装，
-%   并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装）
+%   并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装；对于 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）
 % \item OSX用户推荐安装 Mac TeX。
 % \item 由于CTeX套装所含宏包比较陈旧，可能会导致编译无法通过，故不推荐安装。
 %   如果已安装 CTeX，\textbf{建议将其卸载}。
@@ -640,7 +640,7 @@
 %
 %   配置此选项以在部分模板封面中使用“华文细黑”，保证与 Word 模板中的字体一致。
 %
-%   在 Windows 和 MacOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装。
+%   在 Windows 和 MacOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
 % \end{function}
 %
 % \begin{function}{cover/dilimiter}
@@ -1170,7 +1170,7 @@
 %   \textit{此选项一般不需要用户自行修改。}
 %
 %   本科生毕业设计模板（全英文专业）需要设置 Arial 字体。
-%  （Windows 和 MacOS 自带，Linux 需要用户自行安装）
+%   在 Windows 和 MacOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
 % \end{function}
 %
 % \begin{function}[added=2023-04-22]{misc/tabularFontSize}
@@ -1670,7 +1670,7 @@
 % \textit{更多字体与使用方法请参考 
 %   \url{https://ctan.org/pkg/unicode-math?lang=zh}。}
 %
-% \subsection{如何采用与 Word 相同的中文字体？}
+% \subsection{如何采用与 Word 相同的中文字体？} \label{sec:word-fonts}
 %
 % 首先需要明确的是，我们所指的 Word 中的中文字体属于「中易字库」。
 %
@@ -1684,7 +1684,15 @@
 %  强制使用中易字库。
 %  \item 在 Windows 系统下编译最终的 PDF 文件。
 % \end{itemize}
-%
+% 
+% 此外，对于 WSL 用户，你可以将 Windows 的字体目录软链接到 WSL 的字体目录，直接使用 Windows 下的字体文件。通过 WSL 的命令行按序执行：
+% \begin{shell}[morekeywords={ln}]
+%   sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/win-fonts
+%   fc-cache -fv # 刷新字体缓存
+% \end{shell}
+% 之后通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
+% 强制使用中易字库即可。
+% 
 % \subsection{列表项的间距过大该如何解决？}
 %
 % 相比 Word，$\LaTeX$ 的列表项间距会比行间距更大一些。
