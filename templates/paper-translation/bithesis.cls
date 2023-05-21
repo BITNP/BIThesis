@@ -1823,8 +1823,16 @@
     }
 
     \__bithesis_if_bachelor_thesis:T {
-      \ctexset{
-        chapter/titleformat = {\textmd}
+      \int_compare:nNnTF {\g__bithesis_thesis_type_int} = {3}
+      {
+        \ctexset{
+          chapter/titleformat = {\heiti}
+        }
+      }
+      {
+        \ctexset{
+          chapter/titleformat = {\textmd}
+        }
       }
     }
 
