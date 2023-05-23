@@ -84,15 +84,25 @@
 % 行：宋体、黑体、楷体、Serif、Sans Serif、Typewriter、Math
 
 \begin{table}[htb]
+    \linespread{1.5}
+    \zihao{5}
+    \centering
+    \caption{字体效果表格}
     \begin{tabular}{@{}lllll@{}}
     \toprule
                & Regular & Bold & Italic & Bold Italic \\ \midrule
-      宋体         & 宋体      & \textbf{宋体粗体} & \textit{楷体}     &    \textbf{\textit{楷书粗体}}  \\
-    黑体         & {\heiti{}黑体}      & \textbf{\heiti{}黑体粗体} &   \textit{\heiti{}黑体斜体}     &   \textit{\textbf{\heiti{}黑体粗体}}   \\
-    楷体         & {\kaishu{}楷书}      & \textbf{\kaishu{}楷书粗体} & \textit{\kaishu{}斜体楷体} &  \cellcolor[HTML]{FFCB2F} \textbf{\textit{\kaishu{}楷书粗斜体}}    \\
+      宋体       & 宋体      & \cellcolor{orange}\textbf{宋体粗体} & \textit{楷体}     &   \cellcolor{gray}\textbf{\textit{楷书粗斜体}}  \\
+    黑体         & {\heiti{}黑体}      & \textbf{\heiti{}黑体粗体} &   \textit{\heiti{}黑体斜体}     & \cellcolor{gray}\textit{\textbf{\heiti{}黑体粗斜体}}   \\
+    楷体         & {\kaishu{}楷书}      & \textbf{\kaishu{}楷书粗体} & \textit{\kaishu{}斜体楷体} &  \cellcolor{gray}\textbf{\textit{\kaishu{}楷书粗斜体}}    \\
     Serif(Roman/Normal)      &    Regular    &  \textbf{Bold}  &    \textit{Italic}    &     \textbf{\textit{Bold Italic}}    \\
     Sans Serif &  \textsf{Regular}       &  \textbf{\textsf{Bold}}    &  \textit{\textsf{Bold}}   &    \textbf{\textit{\textsf{Bold}}}   \\
     Typewriter &  \texttt{Regular}       &  \textbf{\texttt{Bold}}    &  \textit{\texttt{Bold}}   &    \textbf{\textit{\texttt{Bold}}}   \\
     Math       &   $\mathnormal{Regular} \mathrm{Roman}$  & $\mathbf{Bold}$   &    $\mathit{Italic}$    &  $\mathbf{\mathit{Bold Italic}}$    \\ \bottomrule
     \end{tabular}
 \end{table}
+
+\begin{itemize}[nosep]
+  \item \colorbox{orange}{宋体粗体}在 Windows 下会成为黑体。这是因为 Windows 的中易宋体没有粗体字重而进行的妥协。
+    如果想要获得宋体粗体的样式，请在配置中开启伪粗体选项。
+  \item \colorbox{gray}{粗斜体}的效果是因操作系统字体而定的，中文写作中不会使用这种字形，可以忽略。
+\end{itemize}

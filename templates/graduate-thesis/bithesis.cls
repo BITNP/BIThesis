@@ -502,6 +502,9 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l__bithesis_unicode_math_options_tl,
+  % Windows 平台开启宋体伪粗体。
+  windowsSimSunFakeBold .bool_set:N = \l__bithesis_style_windows_simsum_fake_bold,
+  windowsSimSunFakeBold .initial:n = {false},
 }
 \keys_define:nn { bithesis / TOC }
 {
@@ -579,7 +582,6 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{fmtcount}
-\RequirePackage{ifplatform}
 \pdfstringdefDisableCommands{%
   \let\quad\empty
 }
@@ -668,9 +670,13 @@
   }
 \ctex_at_end_preamble:n {
   % 针对 Windows 字体采用 Fake Bold 宋体
-  \ifwindows
-    \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
-  \fi
+  \bool_if:NT \l__bithesis_style_windows_simsum_fake_bold
+  {
+    \RequirePackage{ifplatform}
+    \ifwindows
+      \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
+    \fi
+  }
 
   % 在导言区末尾加载数学字体。
   \__bithesis_load_font:
