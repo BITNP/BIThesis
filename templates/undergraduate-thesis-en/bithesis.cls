@@ -502,6 +502,9 @@
   mathFont .initial:n = {cm},
   % Options that will be pass to `unicode-math` pkgs.
   unicodeMathOptions .tl_set:N = \l__bithesis_unicode_math_options_tl,
+  % Windows 平台开启宋体伪粗体。
+  windowsSimSunFakeBold .bool_set:N = \l__bithesis_style_windows_simsum_fake_bold,
+  windowsSimSunFakeBold .initial:n = {false},
 }
 \keys_define:nn { bithesis / TOC }
 {
@@ -556,6 +559,7 @@
 \ProcessOptions\relax
 \LoadClass[zihao=-4,]{ctexbook}
 \RequirePackage{geometry}
+\RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
 \RequirePackage{setspace}
@@ -568,7 +572,6 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 \RequirePackage[bookmarksnumbered]{hyperref}
-\RequirePackage{xcolor}
 \RequirePackage[strut=off]{caption}
 \RequirePackage{array}
 \RequirePackage{amsmath}
@@ -666,6 +669,15 @@
     \use:c { __bithesis_load_math_font_  \l__bithesis_style_math_font_tl  : }
   }
 \ctex_at_end_preamble:n {
+  % 针对 Windows 字体采用 Fake Bold 宋体
+  \bool_if:NT \l__bithesis_style_windows_simsum_fake_bold
+  {
+    \RequirePackage{ifplatform}
+    \ifwindows
+      \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
+    \fi
+  }
+
   % 在导言区末尾加载数学字体。
   \__bithesis_load_font:
 

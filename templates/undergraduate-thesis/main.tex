@@ -25,6 +25,7 @@
 
 % 开启盲审格式 blindPeerReview=true (如：[type=bachelor,blindPeerReview=true])
 
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[type=bachelor]{bithesis}
 
 \BITSetup{
@@ -56,9 +57,12 @@
     % externalSupervisor = 左偏树,
   },
   style = {
-    % 保持参考文献的缩进样式与 Word 模板一致。
+    % 学校提供的 Word 模板没有使用悬挂缩进。
+    % 因此通过关闭这个选项保持参考文献的缩进样式与 Word 模板一致。
     % 如果你不需要此样式，请将此行注释掉。
     bibliographyIndent = false,
+    % 开启 Windows 平台下的中易宋体伪粗体。
+    % windowsSimSunFakeBold = true,
   }
 }
 
@@ -66,6 +70,7 @@
 % 你也可以选用自己的喜欢的其他宏包，如 minted；
 % 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的简洁程度考虑，我们没有提供 minted 进行代码块书写的示例。
 \usepackage{listings}
+
 
 \usepackage[
   backend=biber,
