@@ -371,45 +371,45 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \subsection{最小用例}
 
 \begin{latex}
-  \documentclass[type=bachelor]{bithesis}
-  \BITSetup{
-    info = {
-      author = FKY,
-      ......
-    }
+\documentclass[type=bachelor]{bithesis}
+\BITSetup{
+  info = {
+    author = FKY,
+    ......
   }
-  \begin{document}
-  \end{document}
+}
+\begin{document}
+\end{document}
 \end{latex}
 
 如您所见，在 \LaTeX 中，用户使用的命令通常以「|\|」作为开头，后面依次跟随
 命令名称、若干可选参数和若干必需参数。如：
 
 \begin{latex}
-  \MakeCover
-  \BITSetup{}
-  \FooBar[]{}
+\MakeCover
+\BITSetup{}
+\FooBar[]{}
 \end{latex}
 
 同理，用户使用的环境通常以 begin 和 end 进行包裹，
 同样可以传入可选参数和必需参数：
 
 \begin{latex}
-  \begin{abstract}
-  \end{abstract}
+\begin{abstract}
+\end{abstract}
 
-  \begin{abstract}[addTOC=false]
-  \end{abstract}
+\begin{abstract}[addTOC=false]
+\end{abstract}
 
-  \begin{foo}{param1}
-  \end{foo}
+\begin{foo}{param1}
+\end{foo}
 \end{latex}
 
 需要强调的是：以方框号表示的可选参数，在没有参数传入的时候，是可以忽略的。
 比如以下两个命令等价：
 \begin{latex}
-  \FooBar
-  \FooBar[]
+\FooBar
+\FooBar[]
 \end{latex}
 
 环境同理。
@@ -419,13 +419,13 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
 
 \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
-  \documentclass(*\oarg{模板选项}*){bithesis}
+\documentclass(*\oarg{模板选项}*){bithesis}
 \end{latex}
 
 \begin{function}{type}
-  \begin{bitsyntax}[emph={[1]type}]
-    type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|doctor>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]type}]
+type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|doctor>*)
+\end{bitsyntax}
   选择论文类型，它们分别对应：
   \begin{itemize}
     \item \BIThesisTemplates{UT}
@@ -437,9 +437,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}[added=2023-03-16]{english}
-  \begin{bitsyntax}[emph={[1]english}]
-    english = (*<(false)|true>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]english}]
+english = (*<(false)|true>*)
+\end{bitsyntax}
   开启英文模式。此选项会将论文的标题、摘要、目录、参考文献等部分的
   中文部分替换为英文部分。适用于英文论文的撰写。
 
@@ -450,18 +450,18 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{blindPeerReview}
-  \begin{bitsyntax}[emph={[1]blindPeerReview}]
-    blindPeerReview = (*<(false)|true>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]blindPeerReview}]
+blindPeerReview = (*<(false)|true>*)
+\end{bitsyntax}
 
   此选项用于输出符合盲审要求的论文。所有可能暴露个人信息的页面都将隐藏，
   比如封面、信息页、原创性声明、个人简介、致谢等等。
 \end{function}
 
 \begin{function}[added=2023-02-02]{quirks}
-  \begin{bitsyntax}[emph={[1]quirks}]
-    quirks = (*<(false)|true>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]quirks}]
+quirks = (*<(false)|true>*)
+\end{bitsyntax}
 
   此选项用于开启针对北理工官方示例的兼容模式。
   
@@ -482,9 +482,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
  
 \begin{function}{twoside}
-  \begin{bitsyntax}[emph={[1]twoside}]
-    twoside = (*<(false)|true>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]twoside}]
+twoside = (*<(false)|true>*)
+\end{bitsyntax}
 
   打开双页排版。对于研究生模板来说，这意味着摘要前的内容都会
   被插入空白页。这样，在你双面打印的时候，就可以获得单页打印
@@ -494,24 +494,24 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{ctex}
-  \begin{bitsyntax}[emph={[1]ctex}]
-    ctex = (*{传给 ctexbook 的模板选项}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]ctex}]
+ctex = (*{传给 ctexbook 的模板选项}*)
+\end{bitsyntax}
 
   该选项用于传入模板选项至 ctexbook。
   
   例如：想要同时修改 ctex 的字体参数和标点符号处理格式
   （更多选项请参考 ctex 手册）。
 
-  \begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
-     \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
-  \end{latex}
+\begin{latex}[emph={[1]type,master,ctex,fontset,fandol,punct,banjiao,bithesis}]
+\documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
+\end{latex}
 \end{function}
  
 \begin{function}[added=2023-03-10]{autoFakeBold}
-  \begin{bitsyntax}[emph={[1]autoFakeBold}]
-    autoFakeBold = (*<(3)|false|{数字}>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]autoFakeBold}]
+autoFakeBold = (*<(3)|false|{数字}>*)
+\end{bitsyntax}
 
   该选项用于调整 \cls{xeCJK} 中 |AutoFakeBold| 选项以定义伪粗体的粗细程度。
   
@@ -522,9 +522,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \subsection{参数设置}
   
 \begin{function}{\BITSetup}
-  \begin{bitsyntax}[emph={[1]BITSetup}]
-    \BITSetup = {(*\oarg{键值对}*)}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]BITSetup}]
+\BITSetup = {(*\oarg{键值对}*)}
+\end{bitsyntax}
 \end{function}
 
 本模板提供了一系列选项，可由您自行配置。载入文档类之后，以下所有选项均可通过统一的
@@ -540,25 +540,25 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
 
 \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
-  \BITSetup{
-    cover = {
-      date = xxxx年x月,
-    },
-    info = {
-      author = Feng Kaiyu,
-      title = A Thesis Title for Your Paper,
-    }
+\BITSetup{
+  cover = {
+    date = xxxx年x月,
+  },
+  info = {
+    author = Feng Kaiyu,
+    title = A Thesis Title for Your Paper,
   }
+}
 \end{latex}
 
 或者
 
 \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
-  \BITSetup{
-    cover / date = xxxx年x月,
-    info / author = Feng Kaiyu,
-    info / title = A Thesis Title for Your Paper,
-  }
+\BITSetup{
+  cover / date = xxxx年x月,
+  info / author = Feng Kaiyu,
+  info / title = A Thesis Title for Your Paper,
+}
 \end{latex}
 
 \textbf{请注意：以下选项根据模板的不同，可能会有不同的默认值。
@@ -567,34 +567,34 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \subsubsection{封面选项} \label{sec:cover}
 
 \begin{function}{cover}
-  \begin{bitsyntax}[emph={[1]cover}]
-    cover = (*\marg{键值列表}*)
-    cover/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]cover}]
+cover = (*\marg{键值列表}*)
+cover/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
   该选项包含许多子项目，用于设置论文格式。具体内容见下。
 \end{function}
 
 \begin{function}{cover/date}
-  \begin{bitsyntax}[emph={[1]date}]
-    date = (*\marg{任意字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]date}]
+date = (*\marg{任意字符串}*)
+\end{bitsyntax}
 
   覆盖封面的日期。
 \end{function}
 
 \begin{function}{cover/headerImage}
-  \begin{bitsyntax}[emph={[1]headerImage}]
-    headerImage = (*\marg{图片路径}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]headerImage}]
+headerImage = (*\marg{图片路径}*)
+\end{bitsyntax}
 
   设置封面顶部的“北京理工大学”字样图片。
 \end{function}
 
 \begin{function}{cover/xiheiFont}
-  \begin{bitsyntax}[emph={[1]xiheiFont}]
-    xiheiFont = (*\marg{字体路径}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]xiheiFont}]
+xiheiFont = (*\marg{字体路径}*)
+\end{bitsyntax}
 
   配置此选项以在部分模板封面中使用“华文细黑”，保证与 Word 模板中的字体一致。
 
@@ -602,9 +602,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/dilimiter}
-  \begin{bitsyntax}[emph={[1]dilimiter}]
-    dilimiter = (*\marg{任意字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]dilimiter}]
+dilimiter = (*\marg{任意字符串}*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -612,9 +612,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/autoWidth}
-  \begin{bitsyntax}[emph={[1]autoWidth}]
-    autoWidth = (*<(true)|false>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]autoWidth}]
+autoWidth = (*<(true)|false>*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -625,9 +625,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/autoWidthPadding}
-  \begin{bitsyntax}[emph={[1]autoWidthPadding}]
-    autoWidthPadding = (*<\marg{任意长度}>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]autoWidthPadding}]
+autoWidthPadding = (*<\marg{任意长度}>*)
+\end{bitsyntax}
 
   自适应下划线长度时，下划线的长度会比标签和值的长度多出一些空白。
   该选项用于设置这些空白的长度。默认为 0.25em。
@@ -637,9 +637,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/labelMaxWidth}
-  \begin{bitsyntax}[emph={[1]labelMaxWidth}]
-    labelMaxWidth = (*\marg{任意长度}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]labelMaxWidth}]
+labelMaxWidth = (*\marg{任意长度}*)
+\end{bitsyntax}
   
   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
 
@@ -647,9 +647,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/valueMaxWidth}
-  \begin{bitsyntax}[emph={[1]valueMaxWidth}]
-    valueMaxWidth = (*\marg{任意长度}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]valueMaxWidth}]
+valueMaxWidth = (*\marg{任意长度}*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -657,9 +657,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/labelAlign}
-  \begin{bitsyntax}[emph={[1]labelAlign}]
-    labelAlign = (*<c|l|r>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]labelAlign}]
+labelAlign = (*<c|l|r>*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -667,9 +667,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/valueAlign}
-  \begin{bitsyntax}[emph={[1]valueAlign}]
-    valueAlign = (*<c|l|r>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]valueAlign}]
+valueAlign = (*<c|l|r>*)
+\end{bitsyntax}
 
   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
 
@@ -677,25 +677,25 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{cover/underlineThickness}
-  \begin{bitsyntax}[emph={[1]underlineThickness}]
-    underlineThickness = (*\marg{任意长度}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]underlineThickness}]
+underlineThickness = (*\marg{任意长度}*)
+\end{bitsyntax}
 
   设置封面信息中下划线的厚度。
 \end{function}
 
 \begin{function}{cover/underlineOffset}
-  \begin{bitsyntax}[emph={[1]underlineOffset}]
-    underlineOffset = (*(-10pt)|\marg{任意长度}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]underlineOffset}]
+underlineOffset = (*(-10pt)|\marg{任意长度}*)
+\end{bitsyntax}
 
   设置封面信息中下划线的偏移量。
 \end{function}
 
 \begin{function}[added=2023-05-09]{cover/hideCoverInPeerReview}
-  \begin{bitsyntax}[emph={[1]hideCoverInPeerReview}]
-    hideCoverInPeerReview = (*(false)|true*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]hideCoverInPeerReview}]
+hideCoverInPeerReview = (*(false)|true*)
+\end{bitsyntax}
 
   在盲审模式下，不渲染封面。
 \end{function}
@@ -703,10 +703,10 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \subsubsection{论文基本信息}
 
 \begin{function}{info}
-  \begin{bitsyntax}[emph={[1]info}]
-    info = (*\marg{键值列表}*)
-    info/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]info}]
+info = (*\marg{键值列表}*)
+info/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于录入论文信息。具体内容见下。
  一般以「En」结尾的项目表示对应的英文字段。
@@ -715,18 +715,18 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{info/title,info/titleEn}
-  \begin{bitsyntax}[emph={[1]title,titleEn}]
-    title = (*\marg{字符串}*)
-    titleEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]title,titleEn}]
+title = (*\marg{字符串}*)
+titleEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   论文标题。
 \end{function}
 
 \begin{function}{info/verticalTitle}
-  \begin{bitsyntax}[emph={[1]verticalTitle}]
-    verticalTitle = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]verticalTitle}]
+verticalTitle = (*\marg{字符串}*)
+\end{bitsyntax}
 
   书籍页竖排标题。此选项默认为空。为空时，会被 \kvopt{info/title}{字符串} 替代。
 
@@ -734,152 +734,152 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
   其中 X 为英文字符，每个竖排英文间需要空一格。
   比如，想要竖排「LaTeX」，可以使用：
 
-  \begin{latex}[emph={[1]}]
-     verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
-  \end{latex}
+\begin{latex}[emph={[1]}]
+verticalTitle = {其他文字{L } {a } {T } {e } {X }其他文字}
+\end{latex}
 
   如果想要使用旋转竖排英文，可以使用
   \lstinline|\rotatebox[origin=c]{-90}{English text}|。
 
-  \begin{latex}[emph={[1]}]
-     verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
-  \end{latex}
+\begin{latex}[emph={[1]}]
+verticalTitle = {其他文字 \lstinline{\rotatebox[origin=c]{-90}{English text}} 其他文字}
+\end{latex}
 
 \end{function}
 
 \begin{function}{info/school,info/schoolEn}
-  \begin{bitsyntax}[emph={[1]school,schoolEn}]
-    school = (*\marg{字符串}*)
-    schoolEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]school,schoolEn}]
+school = (*\marg{字符串}*)
+schoolEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   学院名称。
 \end{function}
 
 \begin{function}{info/major,info/majorEn}
-  \begin{bitsyntax}[emph={[1]major,majorEn}]
-    major = (*\marg{字符串}*)
-    majorEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]major,majorEn}]
+major = (*\marg{字符串}*)
+majorEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   专业名称。
 \end{function}
 
 \begin{function}{info/author,info/authorEn}
-  \begin{bitsyntax}[emph={[1]author,authorEn}]
-    author = (*\marg{字符串}*)
-    authorEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]author,authorEn}]
+author = (*\marg{字符串}*)
+authorEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   作者姓名。
 \end{function}
 
 \begin{function}{info/studentId}
-  \begin{bitsyntax}[emph={[1]studentId}]
-    studentId = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]studentId}]
+studentId = (*\marg{字符串}*)
+\end{bitsyntax}
 
   学号。
 \end{function}
 
 \begin{function}{info/supervisor,info/supervisorEn}
-  \begin{bitsyntax}[emph={[1]supervisor,supervisorEn}]
-    supervisor = (*\marg{字符串}*)
-    supervisorEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]supervisor,supervisorEn}]
+supervisor = (*\marg{字符串}*)
+supervisorEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   指导教师。
 \end{function}
 
 \begin{function}{info/externalSupervisor}
-  \begin{bitsyntax}[emph={[1]externalSupervisor}]
-    externalSupervisor = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]externalSupervisor}]
+externalSupervisor = (*\marg{字符串}*)
+\end{bitsyntax}
 
   校外指导教师。
 \end{function}
 
 \begin{function}{info/keywords,info/keywordsEn}
-  \begin{bitsyntax}[emph={[1]keywords,keywordsEn}]
-    keywords = (*\marg{字符串；以全角分号分割}*)
-    keywordsEn = (*\marg{字符串;以分号分割}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]keywords,keywordsEn}]
+keywords = (*\marg{字符串；以全角分号分割}*)
+keywordsEn = (*\marg{字符串;以分号分割}*)
+\end{bitsyntax}
 
   摘要关键词。
 \end{function}
 
 \begin{function}{info/translationTitle}
-  \begin{bitsyntax}[emph={[1]translationTitle}]
-    translationTitle = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]translationTitle}]
+translationTitle = (*\marg{字符串}*)
+\end{bitsyntax}
 
   文献翻译中，翻译后的论文名称。
 \end{function}
 
 \begin{function}{info/translationOriginTitleEn}
-  \begin{bitsyntax}[emph={[1]translationOriginTitleEn}]
-    translationOriginTitleEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]translationOriginTitleEn}]
+translationOriginTitleEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   文献翻译中，翻译前的论文名称。
 \end{function}
 
 \begin{function}{info/classification}
-  \begin{bitsyntax}[emph={[1]classification}]
-    classification = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]classification}]
+classification = (*\marg{字符串}*)
+\end{bitsyntax}
 
   中图分类号。
 \end{function}
 
 \begin{function}{info/UDC}
-  \begin{bitsyntax}[emph={[1]UDC}]
-    UDC = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]UDC}]
+UDC = (*\marg{字符串}*)
+\end{bitsyntax}
 
   UDC分类号。
 \end{function}
 
 \begin{function}{info/chairman,info/chairmanEn}
-  \begin{bitsyntax}[emph={[1]chairman,chairmanEn}]
-    chairman = (*\marg{字符串}*)
-    chairmanEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]chairman,chairmanEn}]
+chairman = (*\marg{字符串}*)
+chairmanEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   答辩委员会主席。
 \end{function}
 
 \begin{function}{info/degree,info/degreeEn}
-  \begin{bitsyntax}[emph={[1]degree,degreeEn}]
-    degree = (*\marg{字符串}*)
-    degreeEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]degree,degreeEn}]
+degree = (*\marg{字符串}*)
+degreeEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   申请学位。
 \end{function}
 
 \begin{function}{info/institute,info/instituteEn}
-  \begin{bitsyntax}[emph={[1]institute,instituteEn}]
-    institute = (*(北京理工大学)|\marg{字符串}*)
-    instituteEn = (*(Beijing~Institute~of~Technology)|\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]institute,instituteEn}]
+institute = (*(北京理工大学)|\marg{字符串}*)
+instituteEn = (*(Beijing~Institute~of~Technology)|\marg{字符串}*)
+\end{bitsyntax}
 
   学位授予单位。
 \end{function}
 
 \begin{function}{info/defenseDate,info/defenseDateEn}
-  \begin{bitsyntax}[emph={[1]defenseDate,defenseDateEn}]
-    defenseDate = (*\marg{字符串}*)
-    defenseDateEn = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]defenseDate,defenseDateEn}]
+defenseDate = (*\marg{字符串}*)
+defenseDateEn = (*\marg{字符串}*)
+\end{bitsyntax}
 
   答辩日期。
 \end{function}
 
 \begin{function}{info/classifiedLevel}
-  \begin{bitsyntax}[emph={[1]classifiedLevel}]
-    classifiedLevel = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]classifiedLevel}]
+classifiedLevel = (*\marg{字符串}*)
+\end{bitsyntax}
 
   密级。
 \end{function}
@@ -887,18 +887,18 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \subsubsection{样式信息}
 
 \begin{function}{style}
-  \begin{bitsyntax}[emph={[1]style}]
-    style = (*\marg{键值列表}*)
-    style/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]style}]
+style = (*\marg{键值列表}*)
+style/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整样式。具体内容见下。
 \end{function}
 
 \begin{function}{style/head}
-  \begin{bitsyntax}[emph={[1]head}]
-    head = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]head}]
+head = (*\marg{字符串}*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -906,9 +906,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}{style/bibliographyIndent}
-  \begin{bitsyntax}[emph={[1]bibliographyIndent}]
-    bibliographyIndent = (*(true)|false*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]bibliographyIndent}]
+bibliographyIndent = (*(true)|false*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -920,9 +920,9 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}[added=2023-03-19]{style/pageVerticalAlign}
-  \begin{bitsyntax}[emph={[1]pageVerticalAlign}]
-    pageVerticalAlign = (*(top)|scattered*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]pageVerticalAlign}]
+pageVerticalAlign = (*(top)|scattered*)
+\end{bitsyntax}
 设置页面垂直方向的对齐方式。
 \begin{optdesc}
   \item[top] 顶部对齐。\textit{默认}。页面中的内容保持它的自然高度，
@@ -932,17 +932,17 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 \end{function}
 
 \begin{function}[added=2023-03-29]{style/mathFont}
-  \begin{bitsyntax}[emph={[1]mathFont}]
-    mathFont = (*(cm)|asana|fira|...|xits|none*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]mathFont}]
+mathFont = (*(cm)|asana|fira|...|xits|none*)
+\end{bitsyntax}
 设置数学字体，具体配置见表~\ref{tab:math-font}。除 |Computer Modern| （默认）字体以外，均使用 \pkg{unicode-math} 宏包调用字体。 
 
 \end{function}
 
 \begin{function}[added=2023-05-25]{style/windowsSimSunFakeBold}
-  \begin{bitsyntax}[emph={[1]windowsSimSunFakeBold}]
+\begin{bitsyntax}[emph={[1]windowsSimSunFakeBold}]
 windowsSimSunFakeBold = (*(false)|true*)
-  \end{bitsyntax}
+\end{bitsyntax}
 
 在 Windows 平台下，由于中易宋体没有粗体字重；
 ctex 会默认选择较为美观的楷体代替粗体宋体。
@@ -971,9 +971,9 @@ lm                                     & Latin Modern Math                      
 \end{table}
 
 \begin{function}[added=2023-03-29]{style/unicodeMathOptions}
-  \begin{bitsyntax}[emph={[1]unicodeMathOptions}]
-    unicodeMathOptions = (*({})|任意选项*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]unicodeMathOptions}]
+unicodeMathOptions = (*({})|任意选项*)
+\end{bitsyntax}
 
 传递给 \pkg{unicode-math} 的选项。
 
@@ -982,18 +982,18 @@ lm                                     & Latin Modern Math                      
 \subsubsection{目录选项}
 
 \begin{function}{TOC}
-  \begin{bitsyntax}[emph={[1]TOC}]
-    TOC = (*\marg{键值列表}*)
-    TOC/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]TOC}]
+TOC = (*\marg{键值列表}*)
+TOC/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
 \begin{function}{TOC/abstract,TOC/abstractEn}
-  \begin{bitsyntax}[emph={[1]abstract,abstractEn}]
-    abstract = (*(true)|false*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]abstract,abstractEn}]
+abstract = (*(true)|false*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1001,9 +1001,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}{TOC/symbols}
-  \begin{bitsyntax}[emph={[1]symbols}]
-    abstract = (*(true)|false*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]symbols}]
+abstract = (*(true)|false*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1013,48 +1013,48 @@ lm                                     & Latin Modern Math                      
 \subsubsection{附录选项}
 
 \begin{function}{appendices}
-  \begin{bitsyntax}[emph={[1]appendices}]
-    appendices = (*\marg{键值列表}*)
-    appendices/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]appendices}]
+appendices = (*\marg{键值列表}*)
+appendices/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
 \begin{function}{appendices/chapterLevel}
-  \begin{bitsyntax}[emph={[1]chapterLevel}]
-    chapterLevel = (*<(false)|true>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]chapterLevel}]
+chapterLevel = (*<(false)|true>*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
   开启后，可以使用以「chapter」为顶层的附录格式：
 
- \begin{latex}[emph={[1]appendices,chapter}]
-   \begin{appendices}
-      \chapter{附录A 题目}
-         (*\meta{附录A 内容}*)
-      \chapter{附录B 题目}
-         (*\meta{附录B 内容}*)
-   \end{appendices}
- \end{latex}
+\begin{latex}[emph={[1]appendices,chapter}]
+\begin{appendices}
+  \chapter{附录A 题目}
+     (*\meta{附录A 内容}*)
+  \chapter{附录B 题目}
+     (*\meta{附录B 内容}*)
+\end{appendices}
+\end{latex}
 
   默认不开启，使用以「section」为顶层的附录格式。
 
 \end{function}
 
 \begin{function}{appendices/title}
-  \begin{bitsyntax}[emph={[1]title}]
-    title = (*(附录)|\meta{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]title}]
+title = (*(附录)|\meta{字符串}*)
+\end{bitsyntax}
 
  可以覆盖附录的标题名称，默认为「附录」。
 \end{function}
 
 \begin{function}{appendices/TOCTitle}
-  \begin{bitsyntax}[emph={[1]TOCTitle}]
-    TOCTitle = (*(附录)|\meta{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]TOCTitle}]
+TOCTitle = (*(附录)|\meta{字符串}*)
+\end{bitsyntax}
 
  可以覆盖附录在目录中的名称，默认为「附录」。
 \end{function}
@@ -1062,18 +1062,18 @@ lm                                     & Latin Modern Math                      
 \subsubsection{攻读学位期间发表论文与研究成果清单选项}
 
 \begin{function}{publications}
-  \begin{bitsyntax}[emph={[1]publications}]
-    publications = (*\marg{键值列表}*)
-    publications/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]publications}]
+publications = (*\marg{键值列表}*)
+publications/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
 \begin{function}{publications/sorting}
-  \begin{bitsyntax}[emph={[1]sorting}]
-    sorting = (*(true)|false*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]sorting}]
+sorting = (*(true)|false*)
+\end{bitsyntax}
 
 根据学校要求，攻读学位期间发表论文与研究成果清单
 中的论文应按照发表时间排序。
@@ -1085,9 +1085,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}{publications/omit}
-  \begin{bitsyntax}[emph={[1]omit}]
-    omit = (*(false)|true*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]omit}]
+omit = (*(false)|true*)
+\end{bitsyntax}
 
 在盲审模式下，不渲染「攻读学位期间发表论文与研究成果清单」。
 
@@ -1095,9 +1095,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}[added=2023-02-18]{publications/maxbibnames}
-  \begin{bitsyntax}[emph={[1]maxbibnames}]
-    maxbibnames = (*(3)|\marg{正整数}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]maxbibnames}]
+maxbibnames = (*(3)|\marg{正整数}*)
+\end{bitsyntax}
 
 影响「攻读学位期间发表论文与研究成果清单」中所有名称列表（author、editor 等）的阈值。
 如果名称列表超过了该阈值，即，它包含的姓名数量超过 \marg{正整数}，
@@ -1106,9 +1106,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}[added=2023-02-18]{publications/minbibnames}
-  \begin{bitsyntax}[emph={[1]minbibnames}]
-    minbibnames = (*(1)|\marg{正整数}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]minbibnames}]
+minbibnames = (*(1)|\marg{正整数}*)
+\end{bitsyntax}
 
 影响「攻读学位期间发表论文与研究成果清单」中所有名称列表（author、editor 等）的限制值。
 如果某个列表包含的姓名数量超
@@ -1123,18 +1123,18 @@ lm                                     & Latin Modern Math                      
 \subsubsection{其他配置}
 
 \begin{function}{misc}
-  \begin{bitsyntax}[emph={[1]misc}]
-    misc = (*\marg{键值列表}*)
-    misc/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]misc}]
+misc = (*\marg{键值列表}*)
+misc/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
 \begin{function}{misc/arialFont}
-  \begin{bitsyntax}[emph={[1]arialFont}]
-    arialFont = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]arialFont}]
+arialFont = (*\marg{字符串}*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1143,9 +1143,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}[added=2023-04-22]{misc/tabularFontSize}
-  \begin{bitsyntax}[emph={[1]tabularFontSize}]
-    tabularFontSize = (*(5)|其他字号*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]tabularFontSize}]
+tabularFontSize = (*(5)|其他字号*)
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1154,49 +1154,49 @@ lm                                     & Latin Modern Math                      
   如果你需要临时调整表格中的字号，可以使用 |\BITSetup| 命令
   在局部范围内覆盖此选项（注意使用大括号）。
 
-  \begin{latex}
-     {
-       \BITSetup{ misc / tabularFontSize = -4}
-       
-       \begin{table}[hbt]
-         \centering
-         \caption{水系聚氨酯分类} \label{tab:category}
-         \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}cccc}
-         \toprule
-           类别			&水溶型		&胶体分散型		&乳液型 \\
-         \midrule
-           状态			&溶解$\sim$胶束	&分散		&白浊 \\
-           外观			&水溶型		&胶体分散型		&乳液型 \\
-           粒径$/\mu m$	&$<0.001$		&$0.001-0.1$		&$>0.1$ \\
-           重均分子量	&$1000\sim 10000$	&数千$\sim 20$万 &$>5000$ \\
-         \bottomrule
-         \end{tabular*}
-       \end{table}
-     }
-  \end{latex}
+\begin{latex}
+{
+ \BITSetup{ misc / tabularFontSize = -4}
+ 
+ \begin{table}[hbt]
+   \centering
+   \caption{水系聚氨酯分类} \label{tab:category}
+   \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}cccc}
+   \toprule
+     类别			&水溶型		&胶体分散型		&乳液型 \\
+   \midrule
+     状态			&溶解$\sim$胶束	&分散		&白浊 \\
+     外观			&水溶型		&胶体分散型		&乳液型 \\
+     粒径$/\mu m$	&$<0.001$		&$0.001-0.1$		&$>0.1$ \\
+     重均分子量	&$1000\sim 10000$	&数千$\sim 20$万 &$>5000$ \\
+   \bottomrule
+   \end{tabular*}
+ \end{table}
+}
+\end{latex}
 \end{function}
 
 \begin{function}[added=2023-04-22,updated=2023-05-09]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
  misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/defn, misc/autoref/conj,
  misc/autoref/exmp, misc/autoref/case, misc/autoref/rem,misc/autoref/fig,misc/autoref/tab,misc/autoref/equ}
-  \begin{bitsyntax}[emph={[1]tabularFontSize}]
-    autoref = {
-      algo = (*(算法)|\marg{字符串}*),
-      them = (*(定理)|\marg{字符串}*),
-      lem = (*(引理)|\marg{字符串}*),
-      prop = (*(命题)|\marg{字符串}*),
-      cor = (*(推论)|\marg{字符串}*),
-      axi = (*(公理)|\marg{字符串}*),
-      defn = (*(定义)|\marg{字符串}*),
-      conj = (*(猜想)|\marg{字符串}*),
-      exmp = (*(例)|\marg{字符串}*),
-      case = (*(情形)|\marg{字符串}*),
-      rem = (*(备注)|\marg{字符串}*),
-      fig = (*(图)|\marg{字符串}*),
-      tab = (*(表)|\marg{字符串}*),
-      equ = (*(式)|\marg{字符串}*),
-    }
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]tabularFontSize}]
+autoref = {
+  algo = (*(算法)|\marg{字符串}*),
+  them = (*(定理)|\marg{字符串}*),
+  lem = (*(引理)|\marg{字符串}*),
+  prop = (*(命题)|\marg{字符串}*),
+  cor = (*(推论)|\marg{字符串}*),
+  axi = (*(公理)|\marg{字符串}*),
+  defn = (*(定义)|\marg{字符串}*),
+  conj = (*(猜想)|\marg{字符串}*),
+  exmp = (*(例)|\marg{字符串}*),
+  case = (*(情形)|\marg{字符串}*),
+  rem = (*(备注)|\marg{字符串}*),
+  fig = (*(图)|\marg{字符串}*),
+  tab = (*(表)|\marg{字符串}*),
+  equ = (*(式)|\marg{字符串}*),
+}
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1209,9 +1209,9 @@ lm                                     & Latin Modern Math                      
 \end{function}
 
 \begin{function}[added=2023-04-29]{misc/hideLinks}
- \begin{bitsyntax}[emph={[1]hideLinks}]
-   hideLinks = (*(true)|false*)
- \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]hideLinks}]
+hideLinks = (*(true)|false*)
+\end{bitsyntax}
 
  此选项用于控制是否隐藏超链接的颜色。
 
@@ -1228,10 +1228,10 @@ lm                                     & Latin Modern Math                      
 你可以通过修改这里的选项来覆盖这些常量。
 
 \begin{function}{const}
-  \begin{bitsyntax}[emph={[1]const}]
-    const = (*\marg{键值列表}*)
-    const/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]const}]
+const = (*\marg{键值列表}*)
+const/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
@@ -1241,24 +1241,24 @@ const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,
 const/autoref/defn,const/autoref/conj,const/autoref/exmp,
 const/autoref/case,const/autoref/rem,
 const/autoref/fig,const/autoref/tab,const/autoref/equ}
-  \begin{bitsyntax}[emph={[1]tabularFontSize}]
-    autoref = {
-      algo = (*(算法)|\marg{字符串}*),
-      them = (*(定理)|\marg{字符串}*),
-      lem = (*(引理)|\marg{字符串}*),
-      prop = (*(命题)|\marg{字符串}*),
-      cor = (*(推论)|\marg{字符串}*),
-      axi = (*(公理)|\marg{字符串}*),
-      defn = (*(定义)|\marg{字符串}*),
-      conj = (*(猜想)|\marg{字符串}*),
-      exmp = (*(例)|\marg{字符串}*),
-      case = (*(情形)|\marg{字符串}*),
-      rem = (*(备注)|\marg{字符串}*),
-      fig = (*(图)|\marg{字符串}*),
-      tab = (*(表)|\marg{字符串}*),
-      equ = (*(式)|\marg{字符串}*),
-    }
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]tabularFontSize}]
+autoref = {
+  algo = (*(算法)|\marg{字符串}*),
+  them = (*(定理)|\marg{字符串}*),
+  lem = (*(引理)|\marg{字符串}*),
+  prop = (*(命题)|\marg{字符串}*),
+  cor = (*(推论)|\marg{字符串}*),
+  axi = (*(公理)|\marg{字符串}*),
+  defn = (*(定义)|\marg{字符串}*),
+  conj = (*(猜想)|\marg{字符串}*),
+  exmp = (*(例)|\marg{字符串}*),
+  case = (*(情形)|\marg{字符串}*),
+  rem = (*(备注)|\marg{字符串}*),
+  fig = (*(图)|\marg{字符串}*),
+  tab = (*(表)|\marg{字符串}*),
+  equ = (*(式)|\marg{字符串}*),
+}
+\end{bitsyntax}
 
   \textit{此选项一般不需要用户自行修改。}
 
@@ -1268,9 +1268,9 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{variable}
 
 \begin{variable}[added=2023-05-09]{const/style/substituteSymbol}
-  \begin{bitsyntax}[emph={[1]substituteSymbol}]
-    substituteSymbol = (*(*)|\marg{字符串}*),
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]substituteSymbol}]
+substituteSymbol = (*(*)|\marg{字符串}*),
+\end{bitsyntax}
 
   盲审模式下用于替换个人信息的替换符号。
 \end{variable}
@@ -1342,19 +1342,19 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}[updated=2023-02-17]{abstract}
-  \begin{bitsyntax}[emph={[1]abstract}]
-    \begin{abstract}
-       (*\meta{中文摘要}*)
-    \end{abstract}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]abstract}]
+\begin{abstract}
+   (*\meta{中文摘要}*)
+\end{abstract}
+\end{bitsyntax}
 \end{function}
 
 \begin{function}[updated=2023-02-17]{abstractEn}
-  \begin{bitsyntax}[emph={[1]abstractEn}]
-    \begin{abstractEn}
-       (*\meta{英文摘要}*)
-    \end{abstractEn}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]abstractEn}]
+\begin{abstractEn}
+   (*\meta{英文摘要}*)
+\end{abstractEn}
+\end{bitsyntax}
 
  摘要。
  
@@ -1368,12 +1368,12 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}{symbols}
-  \begin{bitsyntax}[emph={[1]symbols}]
-    \begin{symbols}
-       \item[BIT] 北京理工大学的英文缩写
-       \item[\LaTeX] 一个很棒的排版系统
-    \end{symbols}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]symbols}]
+\begin{symbols}
+   \item[BIT] 北京理工大学的英文缩写
+   \item[\LaTeX] 一个很棒的排版系统
+\end{symbols}
+\end{bitsyntax}
 
  主要符号对照表。
  
@@ -1382,9 +1382,9 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}{addTOC}
-  \begin{bitsyntax}[emph={[1]addTOC}]
-    addTOC = (*<(true)|false>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]addTOC}]
+addTOC = (*<(true)|false>*)
+\end{bitsyntax}
 
  主要符号对照表的可选参数。
 
@@ -1404,15 +1404,15 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \paragraph{默认格式}
 
 \begin{function}[updated=2023-03-05]{algo,them,lem,prop,cor,axi,defn,conj,exmp,case,rem}
-  \begin{bitsyntax}[emph={[2]proof}]
-    \begin{them}[留数定理]
-      (*\meta{定理内容}*)
-    \end{them}
-    
-    \begin{proof}(*\oarg{小标题}*)
-      (*\meta{证明过程}*)
-    \end{proof}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[2]proof}]
+\begin{them}[留数定理]
+  (*\meta{定理内容}*)
+\end{them}
+
+\begin{proof}(*\oarg{小标题}*)
+  (*\meta{证明过程}*)
+\end{proof}
+\end{bitsyntax}
   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
 \end{function}
 
@@ -1472,19 +1472,19 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}{conclusion}
-  \begin{bitsyntax}[emph={[1]conclusion}]
-    \begin{conclusion}
-       (*\meta{结论}*)
-    \end{conclusion}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]conclusion}]
+\begin{conclusion}
+   (*\meta{结论}*)
+\end{conclusion}
+\end{bitsyntax}
 \end{function}
 
 \begin{function}{bibprint}
-  \begin{bitsyntax}[emph={[1]bibprint}]
-    \begin{bibprint}
-       \printbibliography[heading=none]
-    \end{bibprint}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]bibprint}]
+\begin{bibprint}
+   \printbibliography[heading=none]
+\end{bibprint}
+\end{bitsyntax}
 
   打印参考文献。
 
@@ -1497,61 +1497,61 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
   因此，请使用下列语句输出参考文献：
 
 \begin{latex}[emph={[1]bibprint}]
-  \begin{bibprint}
-    \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
-  \end{bibprint}
+\begin{bibprint}
+  \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
+\end{bibprint}
 \end{latex}
 \end{function}
 
 \begin{function}{appendices}
-  \begin{bitsyntax}[emph={[1]appendices}]
-    \begin{appendices}
-      \section{附录A题目}
-         (*\meta{附录A内容}*)
-      \section{附录B题目}
-         (*\meta{附录B内容}*)
-    \end{appendices}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]appendices}]
+\begin{appendices}
+  \section{附录A题目}
+     (*\meta{附录A内容}*)
+  \section{附录B题目}
+     (*\meta{附录B内容}*)
+\end{appendices}
+\end{bitsyntax}
 
  附录。
 \end{function}
 
 \begin{function}{publications}
-  \begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
-    文献较少的时候。
-    \begin{publications}
-      \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+\begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
+文献较少的时候。
+\begin{publications}
+  \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
 
-      \printbibliography[heading=none,category=mypub,resetnumbers=true]
-    \end{publications}
+  \printbibliography[heading=none,category=mypub,resetnumbers=true]
+\end{publications}
 
-    文献较多，需要分类的时候。
-    \begin{publications}
-      \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
-      \pubsection{文章}
+文献较多，需要分类的时候。
+\begin{publications}
+  \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+  \pubsection{文章}
 
-      \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
+  \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
 
-      \pubsection{一些书}
+  \pubsection{一些书}
 
-      \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
+  \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
 
-      \pubsection{另一些书}
+  \pubsection{另一些书}
 
-      \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
-    \end{publications}
-  \end{bitsyntax}
+  \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
+\end{publications}
+\end{bitsyntax}
 
   攻读学位期间发表论文与研究成果清单。
 \end{function}
 
 \begin{function}[added=2022-10-23]{\addpubs,\addpub}
-  \begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
-    \begin{publications}
-      \addpub{\meta{单条引用内容的key}}
-      \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
-    \end{publications}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
+\begin{publications}
+  \addpub{\meta{单条引用内容的key}}
+  \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+\end{publications}
+\end{bitsyntax}
 
 \textbf{请注意，如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
 请将条目分别添加进入两个 |.bib| 文件中，并修改它们的key以避免重名；切勿重复使用。}
@@ -1561,26 +1561,26 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}[added=2022-10-23]{\pubsection}
-  \begin{bitsyntax}[emph={[1]publications,pubsection,printbibliography}]
-    \begin{publications}
-      \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
+\begin{bitsyntax}[emph={[1]publications,pubsection,printbibliography}]
+\begin{publications}
+  \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
 
-      \pubsection{分类一}
-      \printbibliography[heading=none,category=mypub,type=book,resetnumbers=true]
-      
-      \pubsection{分类二}
-      \printbibliography[heading=none,category=mypub,type=article,resetnumbers=true]
-    \end{publications}
-  \end{bitsyntax}
+  \pubsection{分类一}
+  \printbibliography[heading=none,category=mypub,type=book,resetnumbers=true]
+  
+  \pubsection{分类二}
+  \printbibliography[heading=none,category=mypub,type=article,resetnumbers=true]
+\end{publications}
+\end{bitsyntax}
 
 \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
 用于添加分类的目录。
 \end{function}
 
 \begin{function}[added=2022-10-23]{\Author,\AuthorEn}
-  \begin{bitsyntax}[emph={[1]Author}]
-    \Author[<n(表示第几作者，默认为 1)>][<覆盖普通模式下内容>][<覆盖盲审模式下内容>]
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]Author}]
+\Author[<n(表示第几作者，默认为 1)>][<覆盖普通模式下内容>][<覆盖盲审模式下内容>]
+\end{bitsyntax}
 
 \textit{通常在「攻读学位期间发表论文与研究成果清单」的 |.bib| 文件中使用。}
 \begin{itemize}
@@ -1592,21 +1592,21 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}{acknowledgements}
-  \begin{bitsyntax}[emph={[1]acknowledgements}]
-    \begin{acknowledgements}
-      (*\meta{致谢内容}*)
-    \end{acknowledgements}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]acknowledgements}]
+\begin{acknowledgements}
+  (*\meta{致谢内容}*)
+\end{acknowledgements}
+\end{bitsyntax}
 
   致谢。
 \end{function}
 
 \begin{function}{resume}
-  \begin{bitsyntax}[emph={[1]resume}]
-    \begin{resume}
-      (*\meta{个人简介内容}*)
-    \end{resume}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]resume}]
+\begin{resume}
+  (*\meta{个人简介内容}*)
+\end{resume}
+\end{bitsyntax}
 
   个人简介。
 \end{function}
@@ -1626,12 +1626,12 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 并使用 |\setmathfont{XITS Math}| 修改数学环境下字体：
 
 \begin{latex}
-  \usepackage{unicode-math}
-  \unimathsetup{
-    math-style = ISO,
-    bold-style = ISO,
-  }
-  \setmathfont{XITSMath-Regular.otf}
+\usepackage{unicode-math}
+\unimathsetup{
+  math-style = ISO,
+  bold-style = ISO,
+}
+\setmathfont{XITSMath-Regular.otf}
 \end{latex}
 
 \textit{请事先安装 XITS 字体。}
@@ -1670,16 +1670,16 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 想要\textbf{临时}取消这种间距，可以在环境中添加选项 |nosep|：
 
 \begin{latex}
- \begin{itemize}[nosep]
-   \item 选项一
-   \item 选项二
- \end{itemize}
+\begin{itemize}[nosep]
+  \item 选项一
+  \item 选项二
+\end{itemize}
 \end{latex}
 
 想要\textbf{永久}取消这种间距，可以在导言区添加如下代码：
 
 \begin{latex}
-  \setlist{nosep}
+\setlist{nosep}
 \end{latex}
 
 详见：https://github.com/BITNP/BIThesis/issues/293
@@ -1705,15 +1705,15 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \subsection{最小用例}
 
 \begin{latex}
-  \documentclass[]{bitreport}
-  \BITSetup{
-    info = {
-      author = FKY,
-      ......
-    }
+\documentclass[]{bitreport}
+\BITSetup{
+  info = {
+    author = FKY,
+    ......
   }
-  \begin{document}
-  \end{document}
+}
+\begin{document}
+\end{document}
 \end{latex}
 
 \subsection{模板选项}
@@ -1721,13 +1721,13 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 所谓“模板选项”，指需要在引入文档类的时候指定的选项：
 
 \begin{latex}[deletetexcs={\documentclass},morekeywords={\documentclass}]
-  \documentclass(*\oarg{模板选项}*){bithesis}
+\documentclass(*\oarg{模板选项}*){bithesis}
 \end{latex}
 
 \begin{function}{type}
-  \begin{bitsyntax}[emph={[1]type}]
-    type = (*<(common)|\mbox{undergraduate_proposal}>*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]type}]
+type = (*<(common)|\mbox{undergraduate_proposal}>*)
+\end{bitsyntax}
   选择论文类型，它们分别对应：
   \begin{itemize}
     \item \BIThesisTemplates{LR}
@@ -1736,25 +1736,25 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \end{function}
 
 \begin{function}{ctex}
-  \begin{bitsyntax}[emph={[1]ctex}]
-    ctex = (*传给 ctexbook 的模板选项*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]ctex}]
+ctex = (*传给 ctexbook 的模板选项*)
+\end{bitsyntax}
 
   该选项用于传入模板选项至 ctexbook。
 
   例如：想要同时修改 ctex 的字体参数和标点符号处理格式（更多选项请参考 ctex 手册）。
 
-  \begin{latex}[emph={[1]type,common,ctex,fontset,fandol,punct,banjiao,bitreport}]
-     \documentclass[type=common,ctex={fontset=fandol,punct=banjiao}]{bitreport}
-  \end{latex}
+\begin{latex}[emph={[1]type,common,ctex,fontset,fandol,punct,banjiao,bitreport}]
+\documentclass[type=common,ctex={fontset=fandol,punct=banjiao}]{bitreport}
+\end{latex}
 \end{function}
 
 \subsection{参数设置}
   
 \begin{function}{\BITSetup}
-  \begin{bitsyntax}[emph={[1]BITSetup}]
-    \BITSetup = {(*\oarg{键值对}*)}
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]BITSetup}]
+\BITSetup = {(*\oarg{键值对}*)}
+\end{bitsyntax}
 \end{function}
 
 本模板提供了一系列选项，可由您自行配置。载入文档类之后，以下所有选项均可通过统一的
@@ -1770,42 +1770,42 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 另有一些选项包含子选项，如 cover 和 info 等。它们可以按如下两种等价方式来设定：
 
 \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
-  \BITSetup{
-    cover = {
-      date = xxxx年x月,
-    },
-    info = {
-      author = Feng Kaiyu,
-      title = A Report Title for Your Experiment,
-    }
+\BITSetup{
+  cover = {
+    date = xxxx年x月,
+  },
+  info = {
+    author = Feng Kaiyu,
+    title = A Report Title for Your Experiment,
   }
+}
 \end{latex}
 
 或者
 
 \begin{latex}[morekeywords={\BITSetup},emph={[1]BITSetup,cover,date,info,title,author}]
-  \BITSetup{
-    cover / date = xxxx年x月,
-    info / author = Feng Kaiyu,
-    info / title = A Thesis Title for Your Paper,
-  }
+\BITSetup{
+  cover / date = xxxx年x月,
+  info / author = Feng Kaiyu,
+  info / title = A Thesis Title for Your Paper,
+}
 \end{latex}
 
 \subsubsection{封面选项}
 
 \begin{function}{cover}
-  \begin{bitsyntax}[emph={[1]cover}]
-    cover = (*\marg{键值列表}*)
-    cover/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]cover}]
+cover = (*\marg{键值列表}*)
+cover/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
   该选项包含许多子项目，用于设置论文格式。具体内容见下。
 \end{function}
 
 \begin{function}{cover/date}
-  \begin{bitsyntax}[emph={[1]date}]
-    date = (*\marg{任意字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]date}]
+date = (*\marg{任意字符串}*)
+\end{bitsyntax}
 
   覆盖封面的日期。
 \end{function}
@@ -1813,74 +1813,74 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \subsubsection{文档基本信息}
 
 \begin{function}{info}
-  \begin{bitsyntax}[emph={[1]info}]
-    info = (*\marg{键值列表}*)
-    info/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]info}]
+info = (*\marg{键值列表}*)
+info/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于录入论文信息。具体内容见下。
 \end{function}
 
 \begin{function}{info/title}
-  \begin{bitsyntax}[emph={[1]title}]
-    title = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]title}]
+title = (*\marg{字符串}*)
+\end{bitsyntax}
 
   论文或报告标题。
 \end{function}
 
 \begin{function}{info/school}
-  \begin{bitsyntax}[emph={[1]school}]
-    school = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]school}]
+school = (*\marg{字符串}*)
+\end{bitsyntax}
 
   学院名称。
 \end{function}
 
 \begin{function}{info/major}
-  \begin{bitsyntax}[emph={[1]major}]
-    major = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]major}]
+major = (*\marg{字符串}*)
+\end{bitsyntax}
 
   专业名称。
 \end{function}
 
 \begin{function}{info/author}
-  \begin{bitsyntax}[emph={[1]author}]
-    author = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]author}]
+author = (*\marg{字符串}*)
+\end{bitsyntax}
 
   作者姓名。
 \end{function}
 
 \begin{function}{info/studentId}
-  \begin{bitsyntax}[emph={[1]studentId}]
-    studentId = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]studentId}]
+studentId = (*\marg{字符串}*)
+\end{bitsyntax}
 
   学号。
 \end{function}
 
 \begin{function}{info/supervisor}
-  \begin{bitsyntax}[emph={[1]supervisor}]
-    supervisor = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]supervisor}]
+supervisor = (*\marg{字符串}*)
+\end{bitsyntax}
 
   指导教师。
 \end{function}
 
 \begin{function}{info/externalSupervisor}
-  \begin{bitsyntax}[emph={[1]externalSupervisor}]
-    externalSupervisor = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]externalSupervisor}]
+externalSupervisor = (*\marg{字符串}*)
+\end{bitsyntax}
 
   校外指导教师。
 \end{function}
 
 \begin{function}{info/class}
-  \begin{bitsyntax}[emph={[1]class}]
-    class = (*\marg{字符串}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]class}]
+class = (*\marg{字符串}*)
+\end{bitsyntax}
 
   班级。
 \end{function}
@@ -1888,18 +1888,18 @@ const/autoref/fig,const/autoref/tab,const/autoref/equ}
 \subsubsection{其他选项}
 
 \begin{function}{misc}
-  \begin{bitsyntax}[emph={[1]misc}]
-    misc = (*\marg{键值列表}*)
-    misc/(*\meta{key}*) = (*\meta{value}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]misc}]
+misc = (*\marg{键值列表}*)
+misc/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
 
  该选项包含许多子项目，用于额外的控制。具体内容见下。
 \end{function}
 
 \begin{function}{misc/reviewTable}
-  \begin{bitsyntax}[emph={[1]reviewTable}]
-    reviewTable = (*\marg{指向评审表的路径}*)
-  \end{bitsyntax}
+\begin{bitsyntax}[emph={[1]reviewTable}]
+reviewTable = (*\marg{指向评审表的路径}*)
+\end{bitsyntax}
 
   用于指定已经填写好的评审表 PDF 文件。
 \end{function}
