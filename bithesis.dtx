@@ -3975,17 +3975,17 @@
 \makeatletter
 \def\matex@ssize{\smaller\scshape}
 \DeclareRobustCommand{\BIThesis}{
-  \mbox{
-    \kern-0.5em{B}\kern-0.05em
-    {I}\kern-0.05em
-    {T}\kern-0.1em
-    \raisebox{-0.38ex}{\matex@ssize {H}}\kern-0.1em
-    {\matex@ssize {E}}\kern-0.05em
-    \raisebox{-0.38ex}{\matex@ssize {S}}\kern-0.05em
-    {\matex@ssize {I}}\kern-0.05em
-    \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.5em
-    \kern 1ex
-   }
+  \texorpdfstring{\mbox{
+      \kern-0.5em{B}\kern-0.05em
+      {I}\kern-0.05em
+      {T}\kern-0.1em
+      \raisebox{-0.38ex}{\matex@ssize {H}}\kern-0.1em
+      {\matex@ssize {E}}\kern-0.05em
+      \raisebox{-0.38ex}{\matex@ssize {S}}\kern-0.05em
+      {\matex@ssize {I}}\kern-0.05em
+      \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.5em
+      \kern 1ex
+     }}{BIThesis}
 }
 
 %% from \pkg{ctxdoc}
