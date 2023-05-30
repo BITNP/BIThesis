@@ -301,13 +301,13 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 那么你需要通过包管理器来安装/更新 \BIThesisMacroPackage：
 
 \begin{shell}[morekeywords={tlmgr,install}]
-  tlmgr install bithesis
+tlmgr install bithesis
 \end{shell}
 
 更新可以通过图形界面进行，或者通过命令行：
 
-\begin{shell}[morekeywords={tlmgr,install}]
-  tlmgr update bithesis
+\begin{shell}[morekeywords={tlmgr,update}]
+tlmgr update bithesis
 \end{shell}
 
 \textbf{
@@ -1638,7 +1638,7 @@ addTOC = (*<(true)|false>*)
 \textit{请事先安装 XITS 字体。}
 
 \textit{更多字体与使用方法请参考 
-  \url{https://ctan.org/pkg/unicode-math?lang=zh}。}
+\href{https://ctan.org/pkg/unicode-math?lang=zh}{unicode-math 手册}。}
 
 \subsection{如何采用与 Word 相同的中文字体？} \label{sec:word-fonts}
 
@@ -1649,7 +1649,8 @@ addTOC = (*<(true)|false>*)
 对于 Linux 和 macOS 用户，由于版权问题，系统中并不包含中易字库。
 因此，用户有两种选择：
 \begin{itemize}
- \item 手动在系统中安装中易字库（一般包括 SimSun、SimHei、KaiTi、FangSong 等）。
+ \item 手动在系统中安装中易字库
+ （一般包括 SimSun、SimHei、KaiTi、FangSong 等）。
  并通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
  强制使用中易字库。
  \item 在 Windows 系统下编译最终的 PDF 文件。
@@ -1657,8 +1658,8 @@ addTOC = (*<(true)|false>*)
 
 此外，对于 WSL 用户，你可以将 Windows 的字体目录软链接到 WSL 的字体目录，直接使用 Windows 下的字体文件。通过 WSL 的命令行按序执行：
 \begin{shell}[morekeywords={ln}]
-  sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/win-fonts
-  fc-cache -fv # 刷新字体缓存
+sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/win-fonts
+fc-cache -fv # 刷新字体缓存
 \end{shell}
 之后通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
 强制使用中易字库即可。
