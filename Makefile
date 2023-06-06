@@ -44,6 +44,7 @@ test: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/paper-translation && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/undergraduate-thesis-en && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && cd ..
+	cd $(SCAFFOLDDIR)/reading-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
 	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
 	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
@@ -57,6 +58,7 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
 	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
 	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
+	cp bithesis.cls $(SCAFFOLDDIR)/reading-report
 	cp bithesis.cls $(TESTDIR)/doctor-thesis
 	cp bithesis.cls $(TESTDIR)/autorefs
 	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
