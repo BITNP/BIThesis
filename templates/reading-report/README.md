@@ -22,7 +22,6 @@
 ├── README.md
 ├── bithesis.pdf # bithesis 使用手册
 ├── chapters
-│   ├── 0_abstract.tex
 │   ├── 1_chapter1.tex
 │   └── 2_chapter2.tex
 ├── images
@@ -31,11 +30,8 @@
 ├── main.pdf
 ├── main.tex
 └── misc
-    ├── 1_originality.tex
-    ├── 2_conclusion.tex
-    ├── 3_reference.tex
-    ├── 4_appendix.tex
-    ├── 5_acknowledgements.tex
+    ├── 1_conclusion.tex
+    ├── 2_reference.tex
     └── ref.bib
 ```
 
