@@ -23,7 +23,7 @@
 % !BIB program = biber
 
 
-\documentclass[type=reading_report]{bithesis}
+\documentclass[type=bachelor]{bithesis}
 
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
@@ -40,17 +40,22 @@
     % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
     % 如需要换行，则用 “\\” 符号分割。
     title = 北京理工大学本科生读书报告题目,
-    titleEn = {},
+    semester = {1840-1841学年第一学期},
     school = 信息与电子学院,
-    major = 数字文化与创意媒体设计,
-    class = 0561xxxx,
-    author = 惠计算,
+    author = 罗辑,
     studentId = 11xxxxxxxx,
-    supervisor = 张哈希,
+    course = 宇宙社会学,
+    teacher = 叶文洁,
     keywords = {北京理工大学；本科生；读书报告},
     keywordsEn = {BIT; Undergraduate; Graduation Project (Thesis)},
+    % 以下用于隐藏字段
+    titleEn = {},
+    class = {},
+    major = {},
+    supervisor = {},
   },
   style = {
+    head = 北京理工大学本科生读书报告,
     % 开启 Windows 平台下的中易宋体伪粗体。
     % windowsSimSunFakeBold = true,
   }

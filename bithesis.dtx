@@ -73,7 +73,6 @@
 %      \item 本科生全英文专业毕业设计（论文）
 %      \item 硕士学位论文
 %      \item 博士学位论文
-%      \item 读书报告
 %  \end{enumerate}
 %    \begin{macrocode}
 \int_new:N \g_@@_thesis_type_int
@@ -234,11 +233,7 @@
 % \begin{macro}{\@@_if_bachelor_thesis:TF,\@@_if_bachelor_thesis:T,\@@_if_master_thesis:TF,\@@_if_doctor_thesis:TF}
 % 是否为本科、硕士、博士学位论文。
 %    \begin{macrocode}
-\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {
-    \int_compare:nNnTF {\g_@@_thesis_type_int} = {6} {#1} {#2}
-  }
-}
+\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
 \cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
 \cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
 \cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
@@ -249,7 +244,7 @@
 % 定义论文类型的列表。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_thesis_type_clist
-    { bachelor, bachelor_translation, bachelor_english, master, doctor, reading_report}
+    { bachelor, bachelor_translation, bachelor_english, master, doctor}
 %    \end{macrocode}
 % \end{variable}
 %
@@ -508,15 +503,13 @@
   {
     北京理工大学本科生毕业设计（论文）, 
     北京理工大学本科生毕业设计（论文）外文翻译, 
-    Beijing~Institute~of~Technology~Bachelor's~Thesis, 
-    北京理工大学本科生读书报告 
+    Beijing~Institute~of~Technology~Bachelor's~Thesis 
   }
 \clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
   {
     本科生毕业设计（论文）,
     本科生毕业设计（论文）外文翻译,
     Beijing\nobreak{~}Institute\nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis,
-    本科生读书报告,
   }
 %    \end{macrocode}
 % \end{variable}
@@ -764,7 +757,6 @@
       {3} {Beijing~Institute~of~Technology~Bachelor's~Thesis}
       {4} {北京理工大学硕士学位论文}
       {5} {北京理工大学博士学位论文}
-      {6} {北京理工大学本科生读书报告}
     }
   },
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
@@ -2122,13 +2114,16 @@
             }
 
             \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_semester_tl} {\l_@@_value_semester_tl},
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
               {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
               {\c_@@_label_author_tl} {\@@_secret_info:N \l_@@_value_author_tl},
               {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
+              {\c_@@_label_course_tl} {\l_@@_value_course_tl},
               {\c_@@_label_supervisor_tl} {\@@_secret_info:N \l_@@_value_supervisor_tl},
               {\c_@@_label_co_supervisor_tl} {\@@_secret_info:N \l_@@_value_external_supervisor_tl},
+              {\c_@@_label_teacher_tl} {\l_@@_value_teacher_tl},
             }
 
             \zihao{3}
@@ -2305,76 +2300,6 @@
       }
       {5} {
         \make_graduate_cover:
-      }
-      {6}
-      {
-        \begin{titlepage}
-          \vspace*{16mm}
-
-          \centering
-
-          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
-            \includegraphics[width=9.87cm]{\l_bit_coverheaderimage_tl}\\
-          }
-
-          \vspace*{-3mm}
-
-          \zihao{-0}\textbf{\ziju{0.12}\songti{\c_@@_reading_report_label_title_tl}}\par
-
-          \vspace{16mm}
-
-          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
-
-          \vspace{3mm}
-
-          \begin{spacing}{1.2}
-            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
-          \end{spacing}
-
-          \vspace{15mm}
-
-
-          \begin{spacing}{1.8}
-            \begin{center}
-            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-              \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
-            }
-            % if not auto width, try override width
-            \bool_if:NF \l_@@_cover_auto_width_bool {
-              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
-                \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
-              } 
-              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
-                \dim_set:Nn \l_@@_cover_value_max_width_dim {78mm}
-              } 
-            }
-
-            \clist_set:Nn \l_@@_input_clist {
-              {\c_@@_label_semester_tl} {\l_@@_value_semester_tl},
-              {\c_@@_label_school_tl} {\l_@@_value_school_tl},
-              {\c_@@_label_author_tl} {\@@_secret_info:N \l_@@_value_author_tl},
-              {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
-              {\c_@@_label_course_tl} {\l_@@_value_course_tl},
-              {\c_@@_label_teacher_tl} {\l_@@_value_teacher_tl},
-            }
-
-            \zihao{3}
-
-            \@@_render_cover_entry:n \l_@@_input_clist
-            
-            \end{center}
-          \end{spacing}
-
-          \vspace*{\fill}
-          \centering
-          \zihao{3}\ziju{0.5}\songti{
-            \tl_if_empty:NTF \l_@@_cover_date_tl {
-              \today
-            } {
-              \l_@@_cover_date_tl
-            }
-          }
-        \end{titlepage}
       }
     }
     \group_end:
@@ -3867,7 +3792,6 @@
     {PT}{本科生毕业设计外文翻译模板（paper-translation）}
     {PS}{北理工主题的 Beamer 模板（presentation-slide）}
     {UP}{本科生毕业设计开题报告（undergraduate-proposal）}
-    {RR}{读书报告模板（reading-report）}
   }
 }
 
