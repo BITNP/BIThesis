@@ -1689,6 +1689,12 @@ fc-cache -fv # 刷新字体缓存
 \textit{以上功能由 \pkg{enumitem} 宏包支持。通过导入 \pkg{bithesis}
 ，该宏包已经被自动导入。}
 
+\subsection{想要让某一个页面自动从奇数页开始}
+
+首先，请保证开启了 |twoside| 模式。
+然后，请在你想要奇数页排版的页面之前
+（|\chapter|之前）插入 |\cleardoublepage|。
+
 \section{\cls{bitreport.cls} 使用与配置}
 \label{sec:bitreport}
 
