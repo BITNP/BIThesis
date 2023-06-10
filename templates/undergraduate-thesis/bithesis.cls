@@ -455,6 +455,18 @@
     autoref / equ .initial:n = {\__bithesis_get_const:N {equ}},
     style / substituteSymbol .tl_set:N = \g__bithesis_const_substitute_symbol_tl,
     style / substituteSymbol .initial:n = {*},
+    info / degree .tl_set:N = \g__bithesis_const_info_degree_tl,
+    info / degree .initial:n = {
+          \c__bithesis_graduate_label_degree_tl
+      },
+    info / major .tl_set:N = \g__bithesis_const_info_major_tl,
+    info / major .initial:n = {
+        \__bithesis_if_graduate:TF {
+          \c__bithesis_graduate_label_major_tl
+        } {
+          \__bithesis_get_const:N {major}
+        }
+      },
   }
 
 \keys_define:nn { bithesis / style }
@@ -1251,8 +1263,8 @@
             {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
             {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_tl}},
             {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_tl}},
-            {\c__bithesis_graduate_label_degree_tl} {\l__bithesis_value_degree_tl},
-            {\c__bithesis_graduate_label_major_tl} {\l__bithesis_value_major_tl},
+            {\g__bithesis_const_info_degree_tl} {\l__bithesis_value_degree_tl},
+            {\g__bithesis_const_info_major_tl} {\l__bithesis_value_major_tl},
             {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
             {\c__bithesis_graduate_label_defense_date_tl} {\l__bithesis_value_defense_date_tl},
          }
@@ -1456,7 +1468,7 @@
 
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
-              {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\g__bithesis_const_info_major_tl} {\l__bithesis_value_major_tl},
               {\c__bithesis_label_class_tl} {\__bithesis_secret_info:N \l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\__bithesis_secret_info:N \l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\__bithesis_secret_info:N \l__bithesis_value_student_id_tl},

@@ -703,6 +703,18 @@
     autoref / equ .initial:n = {\@@_get_const:N {equ}},
     style / substituteSymbol .tl_set:N = \g_@@_const_substitute_symbol_tl,
     style / substituteSymbol .initial:n = {*},
+    info / degree .tl_set:N = \g_@@_const_info_degree_tl,
+    info / degree .initial:n = {
+          \c_@@_graduate_label_degree_tl
+      },
+    info / major .tl_set:N = \g_@@_const_info_major_tl,
+    info / major .initial:n = {
+        \@@_if_graduate:TF {
+          \c_@@_graduate_label_major_tl
+        } {
+          \@@_get_const:N {major}
+        }
+      },
   }
 
 %    \end{macrocode}
@@ -1809,8 +1821,8 @@
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
             {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:x{\l_@@_value_supervisor_tl}},
             {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:x{\l_@@_value_chairman_tl}},
-            {\c_@@_graduate_label_degree_tl} {\l_@@_value_degree_tl},
-            {\c_@@_graduate_label_major_tl} {\l_@@_value_major_tl},
+            {\g_@@_const_info_degree_tl} {\l_@@_value_degree_tl},
+            {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
             {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
             {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
          }
@@ -2078,7 +2090,7 @@
 
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
-              {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
               {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
               {\c_@@_label_author_tl} {\@@_secret_info:N \l_@@_value_author_tl},
               {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
