@@ -227,11 +227,14 @@
   {
     {school} {学\qquad 院} {School},
     {major} {专\qquad 业} {Degree},
+    {course} {课程名称} {Course},
     {class} {班\qquad{}级} {Class},
     {author} {学生姓名} {Author},
     {student_id} {学\qquad 号} {Student~ID},
     {supervisor} {指导教师} {Supervisor},
     {co_supervisor} {校外指导教师} {Co-Supervisor},
+    {teacher} {任课教师} {Teacher},
+    {semester} {上课学期} {Semester},
     {keywords} {关键词：} {Key~Words:~},
     {toc} {目\label_space: 录} {Table~of~Contents},
     {abstract} {摘\label_space: 要} {Abstract},
@@ -351,11 +354,18 @@
     school .tl_set:N = \l__bithesis_value_school_tl,
     major .tl_set:N = \l__bithesis_value_major_tl,
     class .tl_set:N = \l__bithesis_value_class_tl,
+    % 课程名称，读书报告使用
+    course .tl_set:N = \l__bithesis_value_course_tl,
     author .tl_set:N = \l__bithesis_value_author_tl,
     studentId .tl_set:N = \l__bithesis_value_student_id_tl,
+    % 指导教师
     supervisor .tl_set:N = \l__bithesis_value_supervisor_tl,
     % 因为默认不显示，所以不需要设置初始值。
     externalSupervisor .tl_set:N = \l__bithesis_value_external_supervisor_tl,
+    % 任课教师，读书报告使用
+    teacher .tl_set:N = \l__bithesis_value_teacher_tl,
+    % 上课学期，读书报告使用
+    semester .tl_set:N = \l__bithesis_value_semester_tl,
     keywords .tl_set:N = \l__bithesis_value_keywords_tl,
     keywords .initial:n = {聚氨酯,形状记忆,织物（示例）},
     keywordsEn .tl_set:N = \l__bithesis_value_keywords_en_tl,
@@ -1452,13 +1462,16 @@
             }
 
             \clist_set:Nn \l__bithesis_input_clist {
+              {\c__bithesis_label_semester_tl} {\l__bithesis_value_semester_tl},
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
               {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
               {\c__bithesis_label_class_tl} {\__bithesis_secret_info:N \l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\__bithesis_secret_info:N \l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\__bithesis_secret_info:N \l__bithesis_value_student_id_tl},
+              {\c__bithesis_label_course_tl} {\l__bithesis_value_course_tl},
               {\c__bithesis_label_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_supervisor_tl},
               {\c__bithesis_label_co_supervisor_tl} {\__bithesis_secret_info:N \l__bithesis_value_external_supervisor_tl},
+              {\c__bithesis_label_teacher_tl} {\l__bithesis_value_teacher_tl},
             }
 
             \zihao{3}
