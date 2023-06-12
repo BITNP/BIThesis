@@ -483,7 +483,7 @@
 % \end{variable}
 %
 % \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_headline_clist}
-% 本科生模板的封面大标题与页眉标题常量列表。
+% 本科生模板的页眉标题与封面大标题常量列表，其中封面大标题不适用于硕士、博士学位论文，只适用于本科生毕业设计（论文）及其衍生物。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
   {
@@ -722,7 +722,6 @@
   },
   headline .tl_set:N = \l_@@_style_headline_tl,
   headline .initial:n = {
-    % todo 没有适配硕士、博士学位论文
     \clist_item:Nn \c_@@_bachelor_thesis_headline_clist \g_@@_thesis_type_int
   },
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
