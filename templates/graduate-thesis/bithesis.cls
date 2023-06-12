@@ -131,7 +131,6 @@
   {\__bithesis_define_label:nn #1}
 \clist_map_inline:nn
   {
-    {title} {本科生毕业设计（论文）},
     {originality} {原创性声明},
     {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），
     是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
@@ -150,7 +149,6 @@
   } {\__bithesis_define_label_by_thesis_type:nnn {bachelor} #1}
 \clist_map_inline:nn
   {
-    {title} {},
     {originality} {原创性声明~Statement~of~Originality},
     {originality_clause} {
         本人郑重声明：所呈交的毕业设计（论文），
@@ -272,7 +270,7 @@
     北京理工大学本科生毕业设计（论文）外文翻译,
     Beijing~Institute~of~Technology~Bachelor's~Thesis
   }
-\clist_const:Nn \c__bithesis_bachelor_thesis_cover_title_clist
+\clist_const:Nn \c__bithesis_bachelor_thesis_headline_clist
   {
     本科生毕业设计（论文）,
     本科生毕业设计（论文）外文翻译,
@@ -484,6 +482,11 @@
       {4} {北京理工大学硕士学位论文}
       {5} {北京理工大学博士学位论文}
     }
+  },
+  headline .tl_set:N = \l__bithesis_style_headline_tl,
+  headline .initial:n = {
+    % todo 没有适配硕士、博士学位论文
+    \clist_item:Nn \c__bithesis_bachelor_thesis_headline_clist \g__bithesis_thesis_type_int
   },
   bibliographyIndent .bool_set:N = \l__bithesis_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
@@ -1440,7 +1443,7 @@
 
           \vspace*{-3mm}
 
-          \zihao{-0}\textbf{\ziju{0.12}\songti{\c__bithesis_bachelor_label_title_tl}}\par
+          \zihao{-0}\textbf{\ziju{0.12}\songti{\l__bithesis_style_headline_tl}}\par
 
           \vspace{16mm}
 
@@ -1508,7 +1511,7 @@
 
           \vspace{1.2mm}
 
-          \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
+          \zihao{2}\textbf{\songti{\l__bithesis_style_headline_tl}}
 
           \vspace{10mm}
 
@@ -1595,8 +1598,7 @@
 
           \vspace*{-3mm}
 
-          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute
-          \nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+          \zihao{1}\textbf{\ziju{0.12}\l__bithesis_style_headline_tl}\par
 
           \vspace{18mm}
 
