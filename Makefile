@@ -1,5 +1,5 @@
-# 以下命令仅能在 Linux 或 MacOS 环境下执行。
-# 如果你是 windows 用户，可以使用 git bash 或者 cygwin 来执行；
+# 以下命令仅保证能在 Linux 或 MacOS 环境下执行。
+# 如果你是 Windows 用户，可以使用 Git Bash 或者 Cygwin 来执行；
 # 或者可以考虑将此脚本移植为 PowerShell。
 PACKAGE = bithesis
 
@@ -13,6 +13,12 @@ LATEXMK = latexmk
 SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
 EXAMPLEDIR = ./examples
+
+ifeq ($(OS), Windows_NT)
+	REGRESSION_TEST_COMMAND=pwsh ./scripts/regression-testing.ps1
+else
+	REGRESSION_TEST_COMMAND=zsh ./scripts/regression-testing.zsh
+endif
 
 
 .PHONY: all cls doc clean FORCE_MAKE copy
@@ -50,7 +56,7 @@ test: doc copy FORCE_MAKE
 	cd $(TESTDIR)/autorefs && latexmk && cd ..
 
 regression-test: cls
-	zsh ./scripts/regression-testing.zsh
+	$(REGRESSION_TEST_COMMAND)
 
 copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis

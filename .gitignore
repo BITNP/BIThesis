@@ -288,8 +288,9 @@ bithesis
 overleaf
 *.zip
 
-scripts
+scripts/*
 !scripts/*.sh
 !scripts/*.zsh
+!scripts/*.ps1
 
 .DS_Store
