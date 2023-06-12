@@ -70,9 +70,9 @@ make doc
 运行 `make regression-test` 进行回归测试，该命令将比较目前已发布的最新版本和本地版本生成的 PDF 的差异。
 使用前请确保已经安装下面这些依赖。
 
-- [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)（POSIX）或 [PowerShell 7](https://learn.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3)（Windows）
+- [Zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)（POSIX）或 [PowerShell 7](https://learn.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3)（Windows）
 - [diff-pdf](https://vslavik.github.io/diff-pdf/)
-- [jq](https://jqlang.github.io/jq/)（仅用 zsh 时需要）
+- [jq](https://jqlang.github.io/jq/)（仅用 Zsh 时需要）
 
 运行 `make check-cls` 确保 `bithesis.dtx` 的修改都被同步到了 `templates/` 中。
 （同样被用于 GitHub Actions）
