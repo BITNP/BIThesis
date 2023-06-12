@@ -322,7 +322,6 @@
 %    \begin{macrocode}
 \clist_map_inline:nn
   {
-    {title} {本科生毕业设计（论文）},
     {originality} {原创性声明},
     {originality_clause} {本人郑重声明：所呈交的毕业设计（论文），
     是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
@@ -347,7 +346,6 @@
 %    \begin{macrocode}
 \clist_map_inline:nn
   {
-    {title} {},
     {originality} {原创性声明~Statement~of~Originality},
     {originality_clause} {
         本人郑重声明：所呈交的毕业设计（论文），
@@ -484,16 +482,18 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_cover_title_clist}
-% 本科生模板的封面标题与页眉标题常量列表。
+% \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_headline_clist}
+% 本科生模板的页眉标题与封面大标题常量列表，其中封面大标题不适用于硕士、博士学位论文，只适用于本科生毕业设计（论文）及其衍生物。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
   {
     北京理工大学本科生毕业设计（论文）, 
     北京理工大学本科生毕业设计（论文）外文翻译, 
-    Beijing~Institute~of~Technology~Bachelor's~Thesis 
+    Beijing~Institute~of~Technology~Bachelor's~Thesis,
+    北京理工大学硕士学位论文,
+    北京理工大学博士学位论文,
   }
-\clist_const:Nn \c_@@_bachelor_thesis_cover_title_clist
+\clist_const:Nn \c_@@_bachelor_thesis_headline_clist
   {
     本科生毕业设计（论文）,
     本科生毕业设计（论文）外文翻译,
@@ -713,14 +713,11 @@
 {
   head .tl_set:N = \l_@@_style_head_tl,
   head .initial:n = {
-    \int_case:nn {\g_@@_thesis_type_int}
-    {
-      {1} {北京理工大学本科生毕业设计（论文）}
-      {2} {北京理工大学本科生毕业设计（论文）外文翻译}
-      {3} {Beijing~Institute~of~Technology~Bachelor's~Thesis}
-      {4} {北京理工大学硕士学位论文}
-      {5} {北京理工大学博士学位论文}
-    }
+    \clist_item:Nn \c_@@_bachelor_thesis_header_clist \g_@@_thesis_type_int
+  },
+  headline .tl_set:N = \l_@@_style_headline_tl,
+  headline .initial:n = {
+    \clist_item:Nn \c_@@_bachelor_thesis_headline_clist \g_@@_thesis_type_int
   },
   bibliographyIndent .bool_set:N = \l_@@_style_bibliography_indent_bool,
   bibliographyIndent .initial:n = {true},
@@ -2046,7 +2043,7 @@
 
           \vspace*{-3mm}
 
-          \zihao{-0}\textbf{\ziju{0.12}\songti{\c_@@_bachelor_label_title_tl}}\par
+          \zihao{-0}\textbf{\ziju{0.12}\songti{\l_@@_style_headline_tl}}\par
 
           \vspace{16mm}
 
@@ -2115,7 +2112,7 @@
 
           \vspace{1.2mm}
 
-          \zihao{2}\textbf{\songti{本科生毕业设计（论文）外文翻译}}
+          \zihao{2}\textbf{\songti{\l_@@_style_headline_tl}}
 
           \vspace{10mm}
 
@@ -2202,8 +2199,7 @@
 
           \vspace*{-3mm}
 
-          \zihao{1}\textbf{\ziju{0.12}Beijing\nobreak{~}Institute
-          \nobreak{~}of\nobreak{~}Technology~Bachelor's~Thesis}\par
+          \zihao{1}\textbf{\ziju{0.12}\l_@@_style_headline_tl}\par
 
           \vspace{18mm}
 
