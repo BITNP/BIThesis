@@ -41,7 +41,7 @@
   },
   info = {
     % 想要删除某项封面信息，直接删除该项即可。
-    % 想要让某项封面信息留空（但是保留下划线），请设置为空字符串。
+    % 想要让某项封面信息留空（但是保留下划线），请传入空白符组成的字符串，如"{~}"。
     % 如需要换行，则用 “\\” 符号分割。
     title = 北京理工大学本科生毕业设计（论文）题目,
     titleEn = {The Subject of Undergraduate Graduation Project (Thesis) of Beijing Institute of Technology},
@@ -68,6 +68,8 @@
 \usepackage{listings}
 
 
+% 大部分关于参考文献样式的修改，都可以通过此处的选项进行配置。
+% 详情请搜索「biblatex-gb7714-2015 文档」进行阅读。
 \usepackage[
   backend=biber,
   style=gb7714-2015,
@@ -83,6 +85,10 @@
 % 参考文献引用文件位于 misc/ref.bib
 \addbibresource{misc/ref.bib}
 
+% 如果要按照计算机学院的要求，
+% 在外文翻译报告中使用带有“北京理工大学”水印
+% 请使用此 issue 提供的方法：
+% https://github.com/BITNP/BIThesis/issues/350#issuecomment-1565974141
 
 % 文档开始
 \begin{document}
