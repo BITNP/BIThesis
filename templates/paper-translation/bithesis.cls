@@ -268,7 +268,9 @@
   {
     北京理工大学本科生毕业设计（论文）,
     北京理工大学本科生毕业设计（论文）外文翻译,
-    Beijing~Institute~of~Technology~Bachelor's~Thesis
+    Beijing~Institute~of~Technology~Bachelor's~Thesis,
+    北京理工大学硕士学位论文,
+    北京理工大学博士学位论文,
   }
 \clist_const:Nn \c__bithesis_bachelor_thesis_headline_clist
   {
@@ -459,18 +461,10 @@
 {
   head .tl_set:N = \l__bithesis_style_head_tl,
   head .initial:n = {
-    \int_case:nn {\g__bithesis_thesis_type_int}
-    {
-      {1} {北京理工大学本科生毕业设计（论文）}
-      {2} {北京理工大学本科生毕业设计（论文）外文翻译}
-      {3} {Beijing~Institute~of~Technology~Bachelor's~Thesis}
-      {4} {北京理工大学硕士学位论文}
-      {5} {北京理工大学博士学位论文}
-    }
+    \clist_item:Nn \c__bithesis_bachelor_thesis_header_clist \g__bithesis_thesis_type_int
   },
   headline .tl_set:N = \l__bithesis_style_headline_tl,
   headline .initial:n = {
-    % todo 没有适配硕士、博士学位论文
     \clist_item:Nn \c__bithesis_bachelor_thesis_headline_clist \g__bithesis_thesis_type_int
   },
   bibliographyIndent .bool_set:N = \l__bithesis_style_bibliography_indent_bool,
