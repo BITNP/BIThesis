@@ -487,6 +487,9 @@
   % Windows 平台开启宋体伪粗体。
   windowsSimSunFakeBold .bool_set:N = \l__bithesis_style_windows_simsum_fake_bold,
   windowsSimSunFakeBold .initial:n = {false},
+  % 控制英文是否使用 hyphen 进行换行
+  hyphen .bool_set:N = \l__bithesis_style_hyphen_bool,
+  hyphen .initial:n = {true},
 }
 \keys_define:nn { bithesis / TOC }
 {
@@ -1020,13 +1023,11 @@
   \cs_gset:Npn \lstlistingname {\c__bithesis_label_code_tl}
 }
 \captionsetup[lstlisting]{font=small,labelsep=space}
-\__bithesis_if_thesis_english:TF{
+\bool_if:NF \l__bithesis_style_hyphen_bool {
   \hbadness=10000
-}{
   \tolerance=1
   \emergencystretch=\maxdimen
   \hyphenpenalty=10000
-  \hbadness=10000
 }
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
