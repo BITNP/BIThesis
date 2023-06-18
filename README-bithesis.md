@@ -13,7 +13,7 @@ The current maintainer of this project is [Feng Kaiyu](https://github.com/fky201
 BIThesis is an unofficial LaTeX template set for your 
 **undergraduate, master, or doctoral thesis** as well as other academic writing here at BIT.
 
-This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](https://jwc.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](https://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
+This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](https://jwb.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](https://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
 
 At present, `bithesis` only supports XeTeX and LuaTeX engines. `bithesis` only allows `UTF-8` encoding.
 
