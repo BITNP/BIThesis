@@ -435,38 +435,61 @@
   }
 \keys_define:nn { bithesis / const }
   {
-    autoref / algo .tl_set:N = \g__bithesis_const_autoref_algo_tl,
-    autoref / algo .initial:n = {\__bithesis_get_const:N {algo}},
-    autoref / them .tl_set:N = \g__bithesis_const_autoref_them_tl,
-    autoref / them .initial:n = {\__bithesis_get_const:N {them}},
-    autoref / lem .tl_set:N = \g__bithesis_const_autoref_lem_tl,
-    autoref / lem .initial:n = {\__bithesis_get_const:N {lem}},
-    autoref / prop .tl_set:N = \g__bithesis_const_autoref_prop_tl,
-    autoref / prop .initial:n = {\__bithesis_get_const:N {prop}},
-    autoref / cor .tl_set:N = \g__bithesis_const_autoref_cor_tl,
-    autoref / cor .initial:n = {\__bithesis_get_const:N {cor}},
-    autoref / axi .tl_set:N = \g__bithesis_const_autoref_axi_tl,
-    autoref / axi .initial:n = {\__bithesis_get_const:N {axi}},
-    autoref / defn .tl_set:N = \g__bithesis_const_autoref_defn_tl,
-    autoref / defn .initial:n = {\__bithesis_get_const:N {defn}},
-    autoref / conj .tl_set:N = \g__bithesis_const_autoref_conj_tl,
-    autoref / conj .initial:n = {\__bithesis_get_const:N {conj}},
-    autoref / exmp .tl_set:N = \g__bithesis_const_autoref_exmp_tl,
-    autoref / exmp .initial:n = {\__bithesis_get_const:N {exmp}},
-    autoref / case .tl_set:N = \g__bithesis_const_autoref_case_tl,
-    autoref / case .initial:n = {\__bithesis_get_const:N {case}},
-    autoref / rem .tl_set:N = \g__bithesis_const_autoref_rem_tl,
-    autoref / rem .initial:n = {\__bithesis_get_const:N {rem}},
-    autoref / figure .tl_set:N = \g__bithesis_const_autoref_fig_tl,
-    autoref / figure .initial:n =  {\__bithesis_get_const:N {fig}},
-    autoref / table .tl_set:N = \g__bithesis_const_autoref_tab_tl,
-    autoref / table .initial:n =  {\__bithesis_get_const:N {tab}},
-    autoref / equ .tl_set:N = \g__bithesis_const_autoref_equ_tl,
-    autoref / equ .initial:n = {\__bithesis_get_const:N {equ}},
-    style / substituteSymbol .tl_set:N = \g__bithesis_const_substitute_symbol_tl,
-    style / substituteSymbol .initial:n = {*},
+    autoref .meta:nn = { bithesis / const / autoref } { #1 },
+    style .meta:nn = { bithesis / const / style } { #1 },
+    info .meta:nn = { bithesis / const / info } { #1 },
   }
-
+\keys_define:nn { bithesis / const / autoref }
+  {
+    algo .tl_set:N = \g__bithesis_const_autoref_algo_tl,
+    algo .initial:n = {\__bithesis_get_const:N {algo}},
+    them .tl_set:N = \g__bithesis_const_autoref_them_tl,
+    them .initial:n = {\__bithesis_get_const:N {them}},
+    lem .tl_set:N = \g__bithesis_const_autoref_lem_tl,
+    lem .initial:n = {\__bithesis_get_const:N {lem}},
+    prop .tl_set:N = \g__bithesis_const_autoref_prop_tl,
+    prop .initial:n = {\__bithesis_get_const:N {prop}},
+    cor .tl_set:N = \g__bithesis_const_autoref_cor_tl,
+    cor .initial:n = {\__bithesis_get_const:N {cor}},
+    axi .tl_set:N = \g__bithesis_const_autoref_axi_tl,
+    axi .initial:n = {\__bithesis_get_const:N {axi}},
+    defn .tl_set:N = \g__bithesis_const_autoref_defn_tl,
+    defn .initial:n = {\__bithesis_get_const:N {defn}},
+    conj .tl_set:N = \g__bithesis_const_autoref_conj_tl,
+    conj .initial:n = {\__bithesis_get_const:N {conj}},
+    exmp .tl_set:N = \g__bithesis_const_autoref_exmp_tl,
+    exmp .initial:n = {\__bithesis_get_const:N {exmp}},
+    case .tl_set:N = \g__bithesis_const_autoref_case_tl,
+    case .initial:n = {\__bithesis_get_const:N {case}},
+    rem .tl_set:N = \g__bithesis_const_autoref_rem_tl,
+    rem .initial:n = {\__bithesis_get_const:N {rem}},
+    figure .tl_set:N = \g__bithesis_const_autoref_fig_tl,
+    figure .initial:n =  {\__bithesis_get_const:N {fig}},
+    table .tl_set:N = \g__bithesis_const_autoref_tab_tl,
+    table .initial:n =  {\__bithesis_get_const:N {tab}},
+    equ .tl_set:N = \g__bithesis_const_autoref_equ_tl,
+    equ .initial:n = {\__bithesis_get_const:N {equ}},
+  }
+\keys_define:nn { bithesis / const / style }
+  {
+    substituteSymbol .tl_set:N = \g__bithesis_const_substitute_symbol_tl,
+    substituteSymbol .initial:n = {*},
+  }
+\keys_define:nn { bithesis / const / info }
+  {
+    degree .tl_set:N = \g__bithesis_const_info_degree_tl,
+    degree .initial:n = {
+      \c__bithesis_graduate_label_degree_tl
+    },
+    major .tl_set:N = \g__bithesis_const_info_major_tl,
+    major .initial:n = {
+      \__bithesis_if_graduate:TF {
+        \c__bithesis_graduate_label_major_tl
+      } {
+        \__bithesis_get_const:N {major}
+      }
+    },
+  }
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l__bithesis_style_head_tl,
@@ -1258,8 +1281,8 @@
             {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
             {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_tl}},
             {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_tl}},
-            {\c__bithesis_graduate_label_degree_tl} {\l__bithesis_value_degree_tl},
-            {\c__bithesis_graduate_label_major_tl} {\l__bithesis_value_major_tl},
+            {\g__bithesis_const_info_degree_tl} {\l__bithesis_value_degree_tl},
+            {\g__bithesis_const_info_major_tl} {\l__bithesis_value_major_tl},
             {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
             {\c__bithesis_graduate_label_defense_date_tl} {\l__bithesis_value_defense_date_tl},
          }
@@ -1464,7 +1487,7 @@
             \clist_set:Nn \l__bithesis_input_clist {
               {\c__bithesis_label_semester_tl} {\l__bithesis_value_semester_tl},
               {\c__bithesis_label_school_tl} {\l__bithesis_value_school_tl},
-              {\c__bithesis_label_major_tl} {\l__bithesis_value_major_tl},
+              {\g__bithesis_const_info_major_tl} {\l__bithesis_value_major_tl},
               {\c__bithesis_label_class_tl} {\__bithesis_secret_info:N \l__bithesis_value_class_tl},
               {\c__bithesis_label_author_tl} {\__bithesis_secret_info:N \l__bithesis_value_author_tl},
               {\c__bithesis_label_student_id_tl} {\__bithesis_secret_info:N \l__bithesis_value_student_id_tl},
