@@ -207,7 +207,7 @@ Acronyms:
 
 ## [3.3.1] - 2023-02-11
 
-[4807915](https://github.com/BITNP/BIThesis/commit/480791527043e2ccc706d688cacd0cbbde87d9a3)...[a87c4f6](https://github.com/BITNP/BIThesis/commit/a87c4f6aa450c93ef1e0b49f638262c6aa3482f6)
+[4807915](https://github.com/BITNP/BIThesis/commit/480791527043e2ccc706d688cacd0cbbde87d9a3)...[2f4aa62f](https://github.com/BITNP/BIThesis/commit/2f4aa62f8efcfe9c46b5b2e78d1cbed3a5fbc11)
 
 ### Bug Fixes
 
