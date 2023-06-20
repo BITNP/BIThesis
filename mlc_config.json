@@ -1,0 +1,22 @@
+{
+  "replacementPatterns": [],
+  "ignorePatterns": [
+    {
+      "pattern": "bithesis.pdf"
+    },
+    {
+      "pattern": "请参考|非官方的含义"
+    },
+    {
+      "pattern": "(grd|jwc|jwb|cs).bit.edu.cn"
+    }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 5,
+  "fallbackRetryDelay": "30s",
+  "aliveStatusCodes": [
+    200,
+    206
+  ]
+}
