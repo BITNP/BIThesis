@@ -762,6 +762,9 @@
   % Windows 平台开启宋体伪粗体。
   windowsSimSunFakeBold .bool_set:N = \l_@@_style_windows_simsum_fake_bold,
   windowsSimSunFakeBold .initial:n = {false},
+  % 控制英文是否使用 hyphen 进行换行
+  hyphen .bool_set:N = \l_@@_style_hyphen_bool,
+  hyphen .initial:n = {true},
 }
 %    \end{macrocode}
 %
@@ -1497,13 +1500,11 @@
 % 是的，这是祖传代码。
 % 在英文模式下禁用，因为这段代码会禁用 hyphenation.
 %    \begin{macrocode}
-\@@_if_thesis_english:TF{
+\bool_if:NF \l_@@_style_hyphen_bool {
   \hbadness=10000
-}{
   \tolerance=1
   \emergencystretch=\maxdimen
   \hyphenpenalty=10000
-  \hbadness=10000
 }
 %    \end{macrocode}
 %
