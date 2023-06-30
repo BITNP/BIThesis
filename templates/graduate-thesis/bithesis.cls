@@ -1270,8 +1270,8 @@
         \clist_set:Nn \l__bithesis_input_clist {
             {\c__bithesis_graduate_label_author_tl} {\__bithesis_secret_info:nn{\l__bithesis_value_author_tl}{\g__bithesis_const_substitute_symbol_tl\g__bithesis_const_substitute_symbol_tl\g__bithesis_const_substitute_symbol_tl}},
             {\c__bithesis_graduate_label_school_tl} {\l__bithesis_value_school_tl},
-            {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_tl}},
-            {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_tl}},
+            {\c__bithesis_graduate_label_supervisor_tl} {\__bithesis_secret_info:N{\l__bithesis_value_supervisor_tl}},
+            {\c__bithesis_graduate_label_chairman_tl} {\__bithesis_secret_info:N{\l__bithesis_value_chairman_tl}},
             {\g__bithesis_const_info_degree_tl} {\l__bithesis_value_degree_tl},
             {\g__bithesis_const_info_major_tl} {\l__bithesis_value_major_tl},
             {\c__bithesis_graduate_label_institute_tl} {\l__bithesis_value_institute_tl},
@@ -1319,10 +1319,10 @@
 
       % 渲染信息。
       \clist_set:Nn \l__bithesis_input_clist {
-          {\c__bithesis_graduate_label_author_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_author_en_tl}},
+          {\c__bithesis_graduate_label_author_en_tl} {\__bithesis_secret_info:N{\l__bithesis_value_author_en_tl}},
           {\c__bithesis_graduate_label_school_en_tl} {\l__bithesis_value_school_en_tl},
-          {\c__bithesis_graduate_label_supervisor_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_supervisor_en_tl}},
-          {\c__bithesis_graduate_label_chairman_en_tl} {\__bithesis_secret_info:x{\l__bithesis_value_chairman_en_tl}},
+          {\c__bithesis_graduate_label_supervisor_en_tl} {\__bithesis_secret_info:N{\l__bithesis_value_supervisor_en_tl}},
+          {\c__bithesis_graduate_label_chairman_en_tl} {\__bithesis_secret_info:N{\l__bithesis_value_chairman_en_tl}},
           {\c__bithesis_graduate_label_degree_en_tl} {\l__bithesis_value_degree_en_tl},
           {\c__bithesis_graduate_label_major_en_tl} {\l__bithesis_value_major_en_tl},
           {\c__bithesis_graduate_label_institute_en_tl} {\l__bithesis_value_institute_en_tl},
