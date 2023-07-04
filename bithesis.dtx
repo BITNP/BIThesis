@@ -3955,8 +3955,9 @@
 \DeclareDocumentCommand{\env}{m}{\texttt{#1}}
 \newcommand{\myentry}[1]{%
   \marginpar{\raggedleft\color{purple}\bfseries\strut #1}}
-\newcommand{\note}[2][Note]{{%
-  \color{magenta}{\bfseries #1}\emph{#2}}}
+\newenvironment{note}[1][Note]
+  {{\color{magenta} \bfseries #1} \itshape}
+  {}
 
 \DeclareDocumentCommand{\githubuser}{m}{\href{https://github.com/#1}{@#1}}
 
