@@ -1825,8 +1825,8 @@
         \clist_set:Nn \l_@@_input_clist {
             {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
-            {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:x{\l_@@_value_supervisor_tl}},
-            {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:x{\l_@@_value_chairman_tl}},
+            {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:N{\l_@@_value_supervisor_tl}},
+            {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:N{\l_@@_value_chairman_tl}},
             {\g_@@_const_info_degree_tl} {\l_@@_value_degree_tl},
             {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
             {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
@@ -1880,10 +1880,10 @@
 
       % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
-          {\c_@@_graduate_label_author_en_tl} {\@@_secret_info:x{\l_@@_value_author_en_tl}},
+          {\c_@@_graduate_label_author_en_tl} {\@@_secret_info:N{\l_@@_value_author_en_tl}},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
-          {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info:x{\l_@@_value_supervisor_en_tl}},
-          {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info:x{\l_@@_value_chairman_en_tl}},
+          {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info:N{\l_@@_value_supervisor_en_tl}},
+          {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info:N{\l_@@_value_chairman_en_tl}},
           {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
           {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
@@ -3952,8 +3952,9 @@
 \DeclareDocumentCommand{\env}{m}{\texttt{#1}}
 \newcommand{\myentry}[1]{%
   \marginpar{\raggedleft\color{purple}\bfseries\strut #1}}
-\newcommand{\note}[2][Note]{{%
-  \color{magenta}{\bfseries #1}\emph{#2}}}
+\newenvironment{note}[1][Note]
+  {{\color{magenta} \bfseries #1} \itshape}
+  {}
 
 \DeclareDocumentCommand{\githubuser}{m}{\href{https://github.com/#1}{@#1}}
 
