@@ -55,9 +55,6 @@
 \cs_new:Npn \__bithesis_secret_info:n #1 {
   \__bithesis_secret_info:nn {#1} {\tl_map_function:NN {#1} \__bithesis_hide:n }
 }
-
-\cs_generate_variant:Nn \__bithesis_secret_info:n {x}
-
 \cs_new:Npn \__bithesis_get_const:N #1 {
   \__bithesis_if_thesis_english:TF {
     \use:c {c__bithesis_label_ #1 _en_tl}
@@ -1423,7 +1420,7 @@
     \IfValueTF {#2} {
       \__bithesis_secret_info:nn {#1} {#2}
     } {
-      \__bithesis_secret_info:x {#1}
+      \__bithesis_secret_info:n {#1}
     }
   }
 \DeclareDocumentCommand \MakeCover {}
