@@ -135,7 +135,7 @@
 %
 % \subsubsection{辅助函数与常量}
 %
-% \begin{macro}[added=2023-05-06]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n,\@@_secret_info:x}
+% \begin{macro}[added=2023-05-06,updated=2023-07-04]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n}
 % 普通模式下显示参数一，盲审模式下显示参数二。
 % \begin{macrocode}
 \cs_new:Npn \@@_hide:n #1 {
@@ -156,9 +156,6 @@
 \cs_new:Npn \@@_secret_info:n #1 {
   \@@_secret_info:nn {#1} {\tl_map_function:NN {#1} \@@_hide:n }
 }
-
-\cs_generate_variant:Nn \@@_secret_info:n {x}
-
 % \end{macrocode}
 %
 % \end{macro}
@@ -2048,7 +2045,7 @@
     \IfValueTF {#2} {
       \@@_secret_info:nn {#1} {#2}
     } {
-      \@@_secret_info:x {#1}
+      \@@_secret_info:n {#1}
     }
   }
 %   \end{macrocode}
@@ -3968,8 +3965,9 @@
 \DeclareDocumentCommand{\env}{m}{\texttt{#1}}
 \newcommand{\myentry}[1]{%
   \marginpar{\raggedleft\color{purple}\bfseries\strut #1}}
-\newcommand{\note}[2][Note]{{%
-  \color{magenta}{\bfseries #1}\emph{#2}}}
+\newenvironment{note}[1][Note]
+  {{\color{magenta} \bfseries #1} \itshape}
+  {}
 
 \DeclareDocumentCommand{\githubuser}{m}{\href{https://github.com/#1}{@#1}}
 
