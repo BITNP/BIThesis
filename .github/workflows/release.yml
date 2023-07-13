@@ -31,36 +31,89 @@ jobs:
           path: "*.cls"
 
     
-  publish_templates:
+  publish_bithesis_templates:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
     needs: build
 
     strategy:
       matrix:
-        template: [graduate-thesis, undergraduate-thesis, lab-report, paper-translation, presentation-slide, undergraduate-thesis-en]
+        template: [graduate-thesis, undergraduate-thesis, paper-translation, undergraduate-thesis-en]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Download bithesis.pdf
+      - &CHECKOUT 
+        uses: actions/checkout@v2
+      - &DOWNLOAD_BITHESIS 
+        name: Download bithesis.pdf
         uses: actions/download-artifact@v3
         with:
           name: bithesis
-      - name: Copy manual to the template folder.
-        run: cp bithesis.pdf ./templates/${{ matrix.template }}
-      - name: Install zip
+      - &DOANLOWD_CLS
+        name: Download bithesis.cls
+        uses: actions/download-artifact@v3
+        with:
+          name: cls
+      - &MOVE_CLS  
+        name: Move `.cls` file to template
+        run: mv bithesis.cls ./templates/${{ matrix.template }}
+      - &MOVE_ARTIFACTS
+        name: Copy artifacts to the template folder.
+        run: mv bithesis.pdf ./templates/${{ matrix.template }}
+      - &ZIP_INSTALL
+        name: Install zip
         uses: montudor/action-zip@v1
-      - name: Zip files under ./${{ matrix.template }}
+      - &ZIP_TEMPLATE
+        name: Zip files under ./${{ matrix.template }}
         run: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
         working-directory: ./templates
-      - name: Upload ${{ matrix.template }}.zip to release
+      - &UPLOAD_ARTIFACTS
+        name: Upload ${{ matrix.template }}.zip to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./templates/${{ matrix.template }}.zip
           asset_name: ${{ matrix.template }}.zip
-          tag: ${{ github.ref }}
+          tag: ${{ github.ref }} 
 
+  publish_bitreport_templates:
+    name: Publish ${{ matrix.template }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        template: [lab-report]
+
+    steps:
+      - *CHECKOUT
+      - *DOWNLOAD_BITHESIS 
+      - *DOANLOWD_CLS
+      - name: Move `.cls` file to template
+        run: mv bitreport.cls ./templates/${{ matrix.template }}
+      - *MOVE_ARTIFACTS 
+      - *ZIP_INSTALL
+      - *ZIP_TEMPLATE
+      - *UPLOAD_ARTIFACTS
+
+  publish_bitbeamer_templates:
+    name: Publish ${{ matrix.template }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        template: [presentation-slide]
+
+    steps:
+      - *CHECKOUT
+      - *DOWNLOAD_BITHESIS 
+      - *DOANLOWD_CLS
+      - name: Move `.cls` file to template
+        run: mv bitbeamer.cls ./templates/${{ matrix.template }}
+      - *MOVE_ARTIFACTS 
+      - *ZIP_INSTALL
+      - *ZIP_TEMPLATE
+      - *UPLOAD_ARTIFACTS
     
   publish_cls:
     name: Publish ${{ matrix.cls }}
