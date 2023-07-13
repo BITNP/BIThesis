@@ -78,7 +78,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./templates/${{ matrix.template }}.zip
           asset_name: ${{ matrix.template }}.zip
-          tag: ${{ github.ref }} 
+          tag: ${{ github.ref }}
 
     
   publish_cls:
