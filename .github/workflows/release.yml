@@ -39,6 +39,21 @@ jobs:
     strategy:
       matrix:
         template: [graduate-thesis, undergraduate-thesis, lab-report, paper-translation, presentation-slide, undergraduate-thesis-en, reading-report]
+        include:
+          - template: graduate-thesis
+            cls: bithesis
+          - template: undergraduate-thesis
+            cls: bithesis
+          - template: lab-report
+            cls: bitreport
+          - template: paper-translation
+            cls: bithesis
+          - template: presentation-slide
+            cls: bitbeamer
+          - template: undergraduate-thesis-en
+            cls: bithesis
+          - template: reading-report
+            cls: bithesis
 
     steps:
       - uses: actions/checkout@v2
@@ -46,8 +61,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: bithesis
+      - name: Download `*.cls`
+        uses: actions/download-artifact@v3
+        with:
+          name: cls
       - name: Copy manual to the template folder.
-        run: cp bithesis.pdf ./templates/${{ matrix.template }}
+        run: |
+          mv bithesis.pdf ./templates/${{ matrix.template }}
+          mv ${{ matrix.cls }}.cls ./templates/${{ matrix.template }}
       - name: Install zip
         uses: montudor/action-zip@v1
       - name: Zip files under ./${{ matrix.template }}
