@@ -13,6 +13,219 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.6.0] - 2023-09-26
+
+[fc8061b](https://github.com/BITNP/BIThesis/commit/fc8061b4ee21caacffb7e38c1271d73bb2baba81)...[fc8061b](https://github.com/BITNP/BIThesis/commit/fc8061b4ee21caacffb7e38c1271d73bb2baba81)
+
+### Bug Fixes
+
+- Redundant teacher in cover ([4cbd11c](https://github.com/BITNP/BIThesis/commit/4cbd11cfb44c13d0f25f8f251817ba36b82aad49))
+- Typo in release-tracker.md ([1250c53](https://github.com/BITNP/BIThesis/commit/1250c5353e1249c1659529f8c51013d94f00a4f0))
+
+### Documentation
+
+- Update README for reading-report ([2591bd6](https://github.com/BITNP/BIThesis/commit/2591bd6b220bd5e41a9ad1c19ad8a72c57119257))
+
+### Features
+
+- Add type reading_report to change the title ([8d97017](https://github.com/BITNP/BIThesis/commit/8d97017da74b16625102aa5b746c9eddb6a11292))
+
+### Refactor
+
+- Basic setup for reading-report ([1d08feb](https://github.com/BITNP/BIThesis/commit/1d08feb26b57140aa96414b242cd15ce717bdf07))
+- Remove hard-coded title in reading_report ([a0df6e3](https://github.com/BITNP/BIThesis/commit/a0df6e303110807e1806fd06c80965e8197ff7fd))
+- Reading_report cover info ([ce1905c](https://github.com/BITNP/BIThesis/commit/ce1905cea6fcfa52f787c7ae8d125f5d46c9bf88))
+
+### Ci
+
+- Add reading-report ([492eecd](https://github.com/BITNP/BIThesis/commit/492eecdc07e50a47479b168dadc1e07aaa255d7d))
+
+## [3.6.0-beta-11-test-2] - 2023-07-13
+
+[d77f47f](https://github.com/BITNP/BIThesis/commit/d77f47f99638c7c12d81d3fba6beeb84e64c5154)...[c85fa6b](https://github.com/BITNP/BIThesis/commit/c85fa6b35b440b7ccf3bfa9732881437f35592a7)
+
+### Bug Fixes
+
+- Typo in release-tracker.md ([1250c53](https://github.com/BITNP/BIThesis/commit/1250c5353e1249c1659529f8c51013d94f00a4f0))
+- Update gitignore. ([c85fa6b](https://github.com/BITNP/BIThesis/commit/c85fa6b35b440b7ccf3bfa9732881437f35592a7))
+
+### Refactor
+
+- Remove all templates/*/*.cls. ([e457dae](https://github.com/BITNP/BIThesis/commit/e457daea0f6ede972ec2fa03d0bbe03105c21ef9))
+
+### Styling
+
+- Remove a trailing space ([7f73122](https://github.com/BITNP/BIThesis/commit/7f73122a69a6b05dc07f88d787dce438a61de8df))
+
+### Ci
+
+- Remove templates/*cls. ([ac5463c](https://github.com/BITNP/BIThesis/commit/ac5463ceb2fa734ba27ccc66b82f6ec4839069ad))
+- Remove ensure_updated_cls. ([1cab540](https://github.com/BITNP/BIThesis/commit/1cab540c184ec9fadc69f7de6125a0c2bde75263))
+
+## [3.6.0-beta-11-test-1] - 2023-07-08
+
+[c0a20dc](https://github.com/BITNP/BIThesis/commit/c0a20dcff038f4ad1ab0fd4549c73f1b3c1a06aa)...[d77f47f](https://github.com/BITNP/BIThesis/commit/d77f47f99638c7c12d81d3fba6beeb84e64c5154)
+
+### Bug Fixes
+
+- Typo ([ea08115](https://github.com/BITNP/BIThesis/commit/ea0811589a281281f410329da479116ea804f6cd))
+- Fix broken images in README.md ([c9779ee](https://github.com/BITNP/BIThesis/commit/c9779eebe0cae2627a147b6d522712071fcc252f))
+- Redundant teacher in cover ([4cbd11c](https://github.com/BITNP/BIThesis/commit/4cbd11cfb44c13d0f25f8f251817ba36b82aad49))
+- Remove default values to make entry can-be-deleted. ([e8f67b4](https://github.com/BITNP/BIThesis/commit/e8f67b48b3229df966d92fd8a1bea17fdf8f53da))
+- Typo ([fcbb3ce](https://github.com/BITNP/BIThesis/commit/fcbb3ce682553b2ff944f1c3fb1c3631c962973e))
+- Use meta key. ([4b7b6a1](https://github.com/BITNP/BIThesis/commit/4b7b6a150bb0a248d59bcd73af1aeac7e50e39f0))
+- Update links. ([999eb2e](https://github.com/BITNP/BIThesis/commit/999eb2e93cada08bbe1d6ac3070c8be690fa1c70))
+- Secret info expansion. ([d4decf9](https://github.com/BITNP/BIThesis/commit/d4decf9f2b47e3b14c398eec87c891a45650edfb))
+- Remove \@@_secret_info:x ([6c8a0f6](https://github.com/BITNP/BIThesis/commit/6c8a0f6336599742f84601f1a52442722261ba0a))
+- Note environment does not work as expected ([c703854](https://github.com/BITNP/BIThesis/commit/c7038542c7a2730651feabc745c6f543df505955))
+
+### Documentation
+
+- Update README for reading-report ([2591bd6](https://github.com/BITNP/BIThesis/commit/2591bd6b220bd5e41a9ad1c19ad8a72c57119257))
+- Add docs for cleardoublepage ([9348300](https://github.com/BITNP/BIThesis/commit/934830077eb6d47b1ee9bd6d44bd3e275d4f2479))
+- Maybe helps. ([3df8e5d](https://github.com/BITNP/BIThesis/commit/3df8e5d9a58c770f8ea9fddec3f6a82e4bd45a33))
+- A reference to how to add the watermark. ([14cb57c](https://github.com/BITNP/BIThesis/commit/14cb57cb1b54bba92a8cc85cd2eac99fa4b4ae10))
+- Fix the description about passing emtpy values. ([a942e6c](https://github.com/BITNP/BIThesis/commit/a942e6c6795dafa39dd7c7bbb9227b38dc775ab0))
+- Add docs on const/info/x. ([77b4582](https://github.com/BITNP/BIThesis/commit/77b4582f3a00c37c796eca1b4feb8c02ae5e4f3f))
+- `style / headline`适用范围 ([58cf8a3](https://github.com/BITNP/BIThesis/commit/58cf8a35f679713c48701a942f547937bf802224))
+- 更新教务部网站 ([3dc9f64](https://github.com/BITNP/BIThesis/commit/3dc9f644a16e99436fe4fff53ba41a3fc7dbdef2))
+- Replace code of conduct contact ([ea26d66](https://github.com/BITNP/BIThesis/commit/ea26d660beeac04319ebf36b6575d3aeea238cf1))
+- Add a doc entry for hyphen. ([b8eccd2](https://github.com/BITNP/BIThesis/commit/b8eccd2b82cdfb0727f45ff4d6c123d1f2d8d28b))
+
+### Features
+
+- Add parencite examples ([82800ec](https://github.com/BITNP/BIThesis/commit/82800ec8bcc77c421f9c592f2302d94499aeed5d))
+- Add type reading_report to change the title ([8d97017](https://github.com/BITNP/BIThesis/commit/8d97017da74b16625102aa5b746c9eddb6a11292))
+- Support customize cover label. ([f73359f](https://github.com/BITNP/BIThesis/commit/f73359fb0cf2731fd701613f0c1877c9171b4354))
+- Customizable headline ([9de5df6](https://github.com/BITNP/BIThesis/commit/9de5df6253bf4cfa965cfdf21cca97f8dff316a2))
+- Support hyphenation by default. ([9b849dd](https://github.com/BITNP/BIThesis/commit/9b849dd0132494b92af5d5fca40d89c32186e095))
+
+### Refactor
+
+- Basic setup for reading-report ([1d08feb](https://github.com/BITNP/BIThesis/commit/1d08feb26b57140aa96414b242cd15ce717bdf07))
+- Remove hard-coded title in reading_report ([a0df6e3](https://github.com/BITNP/BIThesis/commit/a0df6e303110807e1806fd06c80965e8197ff7fd))
+- Reading_report cover info ([ce1905c](https://github.com/BITNP/BIThesis/commit/ce1905cea6fcfa52f787c7ae8d125f5d46c9bf88))
+- `style / head`使用`\c_@@_bachelor_thesis_header_clist` ([e420412](https://github.com/BITNP/BIThesis/commit/e420412b9a47738b23f18c43fad58e0d2b4bee8c))
+
+### Build
+
+- PowerShell version of regression-test ([d8f44bf](https://github.com/BITNP/BIThesis/commit/d8f44bf24c6829d4e75fa25a9827680d78da4bb4))
+
+### Ci
+
+- Add reading-report ([492eecd](https://github.com/BITNP/BIThesis/commit/492eecdc07e50a47479b168dadc1e07aaa255d7d))
+- Add markdown link check. ([e400fac](https://github.com/BITNP/BIThesis/commit/e400facec5bb3ca978c87fae2c39cabb0ccb434c))
+
+## [3.6.0-beta-9] - 2023-06-01
+
+[bd6221d](https://github.com/BITNP/BIThesis/commit/bd6221d7e8a2e453c76e0d679e2da0b19692a35f)...[c0a20dc](https://github.com/BITNP/BIThesis/commit/c0a20dcff038f4ad1ab0fd4549c73f1b3c1a06aa)
+
+### Bug Fixes
+
+- Page numbering bug fix for two-side printing ([e435cc0](https://github.com/BITNP/BIThesis/commit/e435cc009daba6767ac88f769b3ed2e2d02a902e))
+
+### Refactor
+
+- A bunch of fixes. ([a6c7f33](https://github.com/BITNP/BIThesis/commit/a6c7f3381a48ad9db02a29db6f02043f5b0cb297))
+
+## [3.6.0-beta-8] - 2023-05-29
+
+[9b348a3](https://github.com/BITNP/BIThesis/commit/9b348a35b0cdee56cdf5ff914a6646b50ae1476f)...[bd6221d](https://github.com/BITNP/BIThesis/commit/bd6221d7e8a2e453c76e0d679e2da0b19692a35f)
+
+### Bug Fixes
+
+- More of tabular. ([e316c41](https://github.com/BITNP/BIThesis/commit/e316c41267af91948624effbc96ff4d8b042e556))
+- Add more. ([681ed0f](https://github.com/BITNP/BIThesis/commit/681ed0f144ba342ba05162c392e87eb50f164ddb))
+- Hotfix for ref.bib ([bd6221d](https://github.com/BITNP/BIThesis/commit/bd6221d7e8a2e453c76e0d679e2da0b19692a35f))
+
+### Documentation
+
+- Add the doc for windowsSimSunFakeBold. ([fa1eaca](https://github.com/BITNP/BIThesis/commit/fa1eacab87eb8ac7b5a8fff9aa9b7f962ed2fbae))
+
+### Features
+
+- Default fake bold SimSun on Windows. ([554871d](https://github.com/BITNP/BIThesis/commit/554871d6258ce0f85c49eb335718324bef5d104d))
+
+### Miscellaneous Tasks
+
+- Update docs. ([e4558dc](https://github.com/BITNP/BIThesis/commit/e4558dcc5977b8af72034f9bfcda1038a737e6ab))
+
+### Refactor
+
+- Move docs into separate file. ([8ad8bf8](https://github.com/BITNP/BIThesis/commit/8ad8bf8e261e3b03f138acbbdb39adb4a472d789))
+- Docs. ([e5c5ea7](https://github.com/BITNP/BIThesis/commit/e5c5ea7f70aacf0d8963a32020233ed40ebdc302))
+- Disable bibliographyIndent. ([30b651c](https://github.com/BITNP/BIThesis/commit/30b651cb738ee3e434b7d67bde6c4178c31ec3f2))
+
+## [3.6.0-beta-7] - 2023-05-21
+
+[626c75b](https://github.com/BITNP/BIThesis/commit/626c75b5fd1eb920c40e43ef3607720f42e56fea)...[9b348a3](https://github.com/BITNP/BIThesis/commit/9b348a35b0cdee56cdf5ff914a6646b50ae1476f)
+
+### Bug Fixes
+
+- Update example of references ([8fd6c79](https://github.com/BITNP/BIThesis/commit/8fd6c79a6dbd13cfe26eaf743002b467baa2c4fc))
+- Add Chinese abstract section. ([55cd7d2](https://github.com/BITNP/BIThesis/commit/55cd7d28413371c6ed10181b5ef24cc0b000d1cc))
+- Remove covers in peer review mode. ([65cf4e2](https://github.com/BITNP/BIThesis/commit/65cf4e25e05cf53fb3ef402a9304bfeb3cd45477))
+
+### Miscellaneous Tasks
+
+- Ignore .DS_Store. ([7f78856](https://github.com/BITNP/BIThesis/commit/7f78856d8160bc6a53ddab54ba2846b80e7d36d0))
+
+## [3.6.0-beta-6] - 2023-05-18
+
+[dc5d722](https://github.com/BITNP/BIThesis/commit/dc5d72228ac7730a771866d3bded2ff211452883)...[626c75b](https://github.com/BITNP/BIThesis/commit/626c75b5fd1eb920c40e43ef3607720f42e56fea)
+
+### Bug Fixes
+
+- Restore hyphenation for Eng template. ([f5ece01](https://github.com/BITNP/BIThesis/commit/f5ece01b9cd5734db4de8b9b81a5b1ac5deeca85))
+- Fix alignment. ([c7073e0](https://github.com/BITNP/BIThesis/commit/c7073e0430ac150d5bebacb01bac3a6c7222da44))
+
+## [3.6.0-beta-5] - 2023-05-17
+
+[b769a14](https://github.com/BITNP/BIThesis/commit/b769a146f745a629386fbb39ebc0d27906f5f0d6)...[dc5d722](https://github.com/BITNP/BIThesis/commit/dc5d72228ac7730a771866d3bded2ff211452883)
+
+### Bug Fixes
+
+- Fix non-effective listings numbering. ([4c2757f](https://github.com/BITNP/BIThesis/commit/4c2757fe94cfeade53691792ba666252819ae824))
+
+## [3.6.0-beta-4] - 2023-05-16
+
+[29c2061](https://github.com/BITNP/BIThesis/commit/29c20613771e3ae20e47d3ac241ac7926628b4e5)...[b769a14](https://github.com/BITNP/BIThesis/commit/b769a146f745a629386fbb39ebc0d27906f5f0d6)
+
+### Bug Fixes
+
+- Fix section-level appendix bookmark. ([5c2dbf5](https://github.com/BITNP/BIThesis/commit/5c2dbf5def8c03083aa9ee689f7ab8f2bff91450))
+- Reset section counter at the beginning of appendix. ([21f0661](https://github.com/BITNP/BIThesis/commit/21f0661b9a55c63e7ac0c41780cb5712b987260a))
+
+### Refactor
+
+- Remove all source-code docs. ([1be9eb7](https://github.com/BITNP/BIThesis/commit/1be9eb73681da324600196f1bb288fd712e7c9bb))
+- Remove deprecated code. ([80576ab](https://github.com/BITNP/BIThesis/commit/80576abb526c339f0050918571c8bf2efedd49f7))
+
+## [3.6.0-beta-3] - 2023-05-09
+
+[3a19d34](https://github.com/BITNP/BIThesis/commit/3a19d34d7507d79ebe90346343968569745d9499)...[29c2061](https://github.com/BITNP/BIThesis/commit/29c20613771e3ae20e47d3ac241ac7926628b4e5)
+
+### Bug Fixes
+
+- Graduate-thesis indent is larger than normal. ([c2b1d37](https://github.com/BITNP/BIThesis/commit/c2b1d37be0c127ddcc34e76770ffba2be58053fa))
+- Typo fix. ([6fa12af](https://github.com/BITNP/BIThesis/commit/6fa12af528c124a4c8e51596263d8caf7782f7d0))
+- Add autoref label for figure(fig),table(tab),euqation(equ) ([1a62cc5](https://github.com/BITNP/BIThesis/commit/1a62cc50e77da71fde234424dac5c3e2ba745de3))
+- Replace the _bithesis with @@ in .dtx, add updated property ([e02253a](https://github.com/BITNP/BIThesis/commit/e02253a2eff2b78aaa05478c9b929a762eacaa25))
+- Apply same rules to bachelor thesis. ([b0b3740](https://github.com/BITNP/BIThesis/commit/b0b3740c5f62bd0d690888b201f5dd517ca85d48))
+
+### Documentation
+
+- Add docs for SecretInfo feature. ([6f37ad2](https://github.com/BITNP/BIThesis/commit/6f37ad27d2c426ee81e2bc13a84078e7ec8c70e4))
+
+### Features
+
+- Hide only secret info in cover. ([026c529](https://github.com/BITNP/BIThesis/commit/026c529fc9ecafcf31fe89af07df7d1bd22e8192))
+- Provide const/style/substituteSymbol option. ([1f40eef](https://github.com/BITNP/BIThesis/commit/1f40eeff976af485e2cc3c19d0f17243c5c1d7c9))
+- [**breaking**] Add back cover pages in blindPeerReview mode. ([6953c61](https://github.com/BITNP/BIThesis/commit/6953c61b949c92be370b7a620e769f0a674ea29d))
+- Add interface for secret info. ([a39f545](https://github.com/BITNP/BIThesis/commit/a39f54551f790afb465bacd731396917b181ec0c))
+- Suppress twoside in blindPeerReview. ([f1db9e7](https://github.com/BITNP/BIThesis/commit/f1db9e7858ce4c8ccbe5cc80b3effa8d6fd6147f))
+- Also expose paperback and originality claim. ([61483f5](https://github.com/BITNP/BIThesis/commit/61483f5701ea0742f9602d65f7c07239b51ba854))
+
 ## [3.5.4] - 2023-04-29
 
 [22fccf5](https://github.com/BITNP/BIThesis/commit/22fccf5cc1c62cc69288fdf292857d4f3c08c4bc)...[b19599b](https://github.com/BITNP/BIThesis/commit/b19599bcd5b0917120aaf05fc8961f49f54700ef)
