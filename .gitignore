@@ -294,3 +294,5 @@ scripts/*
 !scripts/*.ps1
 
 .DS_Store
+
+BIT-bithesis-graduates*

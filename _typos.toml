@@ -2,6 +2,9 @@
 ist = "ist"
 acn = "acn"
 usera = "usera"
+multline = "multline"
+Winn = "Winn"
+nd = "nd"
 
 [files]
-extend-exclude = ["CHANGELOG.md"]
+extend-exclude = ["CHANGELOG.md", "main.bib"]
