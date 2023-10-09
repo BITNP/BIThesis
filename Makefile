@@ -114,7 +114,7 @@ grad: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && latexmk -c && cd -
 	cp -r $(SCAFFOLDDIR)/graduate-thesis ${GRAD_DEST_DIR}-${version}
 	cp ./bithesis.pdf ${GRAD_DEST_DIR}-${version}/
-	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/"研究生学位论文模板快速使用手册".pdf
+	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/'研究生学位论文模板快速使用手册'.pdf
 	zip -r ${GRAD_DEST_DIR}-${version}.zip ${GRAD_DEST_DIR}-${version}
 	
 
