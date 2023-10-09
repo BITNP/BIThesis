@@ -1,0 +1,104 @@
+\documentclass[type=master]{bithesis}
+
+\BITSetup{
+  % 在目录页中不显示摘要和主要符号对照表的标题。
+  TOC = {
+    abstract = false,
+    abstractEn = false,
+    symbols = false,
+  },
+  % 采用章节标题级别的附录格式
+  appendices / chapterLevel = true,
+  style = {
+    head = \BIThesis 研究生学位论文 \LaTeX 模板快速使用指南,
+    pageVerticalAlign = scattered,
+    % 开启 Windows 平台下的中易宋体伪粗体。
+    % windowsSimSunFakeBold = true,
+  },
+  misc/hideLinks = false,
+}
+
+\usepackage{booktabs}
+\usepackage{hologo}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{dirtree}
+\usepackage[utf8]{inputenc}
+\usepackage{upgreek}
+\usepackage{xltxtra}
+\usepackage{subfigure}
+\usepackage{threeparttablex}
+% \usepackage{tabularray}
+% \usepackage[nosep]{enumitem}
+
+\usepackage{relsize}
+\makeatletter
+\def\matex@ssize{\smaller\scshape}
+\DeclareRobustCommand{\BIThesis}{
+  \texorpdfstring{\mbox{
+      \kern-0.5em{B}\kern-0.05em
+      {I}\kern-0.05em
+      {T}\kern-0.1em
+      \raisebox{-0.38ex}{\matex@ssize {H}}\kern-0.1em
+      {\matex@ssize {E}}\kern-0.05em
+      \raisebox{-0.38ex}{\matex@ssize {S}}\kern-0.05em
+      {\matex@ssize {I}}\kern-0.05em
+      \raisebox{-0.35ex}{\matex@ssize {S}}\kern-0.5em
+      \kern 1ex
+     }}{BIThesis}
+}
+\makeatother
+
+\usepackage[
+  defernumbers=true,
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  gbannote=true,
+  gbpunctin=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
+
+\addbibresource{reference/main.bib}
+
+\begin{document}
+
+\input{chapters/cover.tex}
+
+% \input{preface.tex}
+
+\frontmatter
+
+\MakeTOC
+
+% 插图目录
+% \listoffigures
+% 表格目录
+% \listoftables
+%
+
+\mainmatter
+
+\input{chapters/ch0-quick-start.tex}
+\input{chapters/ch1-intro.tex}
+\input{chapters/ch2-template-usage.tex}
+\input{chapters/ch3-latex-syntax.tex}
+
+\begin{bibprint}
+  \printbibliography[heading=none,notcategory=mypub,resetnumbers=true]
+\end{bibprint}
+
+\backmatter
+
+\input{chapters/conclusion.tex}
+
+\input{chapters/appendices.tex}
+
+\input{chapters/acknowledgements.tex}
+
+\end{document}

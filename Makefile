@@ -55,6 +55,7 @@ test: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
 	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
 	cd $(TESTDIR)/autorefs && latexmk && cd ..
+	cd ./the-graduates-handbook && latexmk && cd ..
 
 regression-test: cls
 	$(REGRESSION_TEST_COMMAND)
@@ -67,6 +68,7 @@ copy: cls
 	cp bithesis.cls $(SCAFFOLDDIR)/reading-report
 	cp bithesis.cls $(TESTDIR)/doctor-thesis
 	cp bithesis.cls $(TESTDIR)/autorefs
+	cp bithesis.cls ./the-graduates-handbook
 	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
 	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
 
@@ -98,6 +100,23 @@ pkg: doc
 	cp bithesis.{ins,dtx,pdf} ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
+
+GRAD_DEST_DIR = ./BIT-bithesis-graduates
+
+grad: doc copy FORCE_MAKE
+	# if $version is not specified, alert the user.
+	@if [ -z "$$version" ]; then \
+		echo -e "\e[32mPlease specify the version of the template you want to generate.\e[0m"; \
+		echo -e "\e[32mFor example: make grad version=1.0.0\e[0m"; \
+		exit 1; \
+	fi
+	cd ./the-graduates-handbook && latexmk && cd -
+	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && latexmk -c && cd -
+	cp -r $(SCAFFOLDDIR)/graduate-thesis ${GRAD_DEST_DIR}-${version}
+	cp ./bithesis.pdf ${GRAD_DEST_DIR}-${version}/
+	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/'研究生学位论文模板快速使用手册'.pdf
+	zip -r ${GRAD_DEST_DIR}-${version}.zip ${GRAD_DEST_DIR}-${version}
+	
 
 examples: cls
 	cp bithesis.cls $(EXAMPLEDIR)/cover/
