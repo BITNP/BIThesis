@@ -772,6 +772,11 @@
   % 控制英文是否使用 hyphen 进行换行
   hyphen .bool_set:N = \l_@@_style_hyphen_bool,
   hyphen .initial:n = {true},
+  % 控制公式和上下文的距离
+  mathAboveDisplaySkip .dim_set:N = \l_@@_style_math_above_display_skip_dim,
+  mathAboveDisplaySkip .initial:n = {3pt},
+  mathBelowDisplaySkip .dim_set:N = \l_@@_style_math_below_display_skip_dim,
+  mathBelowDisplaySkip .initial:n = {3pt},
 }
 %    \end{macrocode}
 %
@@ -878,11 +883,10 @@
 \RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage{xeCJK}
 \RequirePackage{titletoc}
-\RequirePackage{setspace}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage{pdfpages}
-\RequirePackage{setspace}
+\RequirePackage[nodisplayskipstretch]{setspace}
 \RequirePackage{booktabs}
 \RequirePackage{multirow}
 \RequirePackage{tikz}
@@ -1281,8 +1285,8 @@
     nameformat = {},
     titleformat = {},
     aftername = \hspace{8bp},
-    beforeskip = 20bp plus 1ex minus .2ex,
-    afterskip = 18bp plus .2ex,
+    beforeskip = 20bp,
+    afterskip = 17bp,
     fixskip = true,
   }
 }
@@ -1299,8 +1303,8 @@
     nameformat = {},
     titleformat = {},
     aftername = \hspace{7bp},
-    beforeskip = 17bp plus 1ex minus .2ex,
-    afterskip = 14bp plus .2ex,
+    beforeskip = 17bp,
+    afterskip = 17bp,
     fixskip = true,
   }
 }
@@ -1320,8 +1324,8 @@
     format={\l_@@_title_font_cs:n \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
-    beforeskip=14bp plus 1ex minus .2ex,
-    afterskip=14bp plus .2ex,
+    beforeskip=14bp,
+    afterskip=14bp,
     fixskip=true,
   }
 }
@@ -1385,7 +1389,7 @@
       numbering = false,
     }
   }
-  \setstretch{1.53}
+  \linespread{1.53}\selectfont
   \pagestyle{BIThesis}
   
   % 表格内容默认使用五号字。
@@ -1420,7 +1424,7 @@
   \pagestyle{BIThesis}
   % 正文 22 磅的行距
   \setlength{\parskip}{0em}
-  \setstretch{1.53}
+  \linespread{1.53}\selectfont
   % 修复脚注出现跨页的问题
   \interfootnotelinepenalty=10000
 }
@@ -1498,6 +1502,13 @@
 \AtBeginDocument{
   \cs_gset:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
+  
+  % 默认的情况下，保留公式和上下文的一定间距。（会比 Word 稍宽一些）
+  \setlength{\abovedisplayskip}{\l_@@_style_math_above_display_skip_dim}
+  \setlength{\abovedisplayshortskip}{\l_@@_style_math_above_display_skip_dim}
+  \setlength{\belowdisplayskip}{\l_@@_style_math_below_display_skip_dim}
+  \setlength{\belowdisplayshortskip}{\l_@@_style_math_below_display_skip_dim}
+  %
 }
 \captionsetup[lstlisting]{font=small,labelsep=space}
 %    \end{macrocode}
@@ -1767,7 +1778,7 @@
   \begin{titlepage}
    \vskip 5cm
    \begin{center}
-    \setstretch{1.1}
+    \linespread{1.1}\selectfont
     \begin{minipage}[t][19.7cm]{2em}
       \begin{center}
         {
@@ -2357,7 +2368,7 @@
           \newpage
         }
         {3} {
-          \setstretch{1.26}
+          \linespread{1.26}\selectfont
           % 原创性声明部分
           \begin{center}
             \vspace*{-2bp}
@@ -2482,7 +2493,7 @@
   {
 
     \cleardoublepage
-    \setstretch{1.53}
+    \linespread{1.53}\selectfont
 
     \@@_if_bachelor_thesis:T {
       \begin{center}
@@ -2552,7 +2563,7 @@
 %    \begin{macrocode}
 \NewDocumentEnvironment {abstractEn} {}
   {
-    \setstretch{1.53}
+    \linespread{1.53}\selectfont
 
     \@@_if_bachelor_thesis:T {
       \begin{spacing}{0.95}

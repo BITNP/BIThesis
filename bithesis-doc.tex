@@ -1000,6 +1000,19 @@ hyphen = (*(true)|false*)
 
 \end{function}
 
+\begin{function}[added=2023-06-22]{style/mathAboveDisplaySkip,style/mathBelowDisplaySkip}
+\begin{bitsyntax}[emph={[1]mathBelowDisplaySkip,mathAboveDisplaySkip}]
+mathBelowDisplaySkip = (*(3pt)|任意长度*)
+mathAboveDisplaySkip = (*(3pt)|任意长度*)
+\end{bitsyntax}
+
+定义公式环境（如 \verb|\begin{equation}| ）到上下段落间的距离。
+  
+\textit{请保证源码中的公式的环境（如}\verb|\begin{equation}|
+  \textit{）与上一段落不要有空行。否则，公式和上文段落之间会有额外的空白。}
+
+\end{function}
+
 \subsubsection{目录选项}
 
 \begin{function}{TOC}
