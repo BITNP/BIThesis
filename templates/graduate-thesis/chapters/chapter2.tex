@@ -25,14 +25,12 @@
 \label{thm:res}
   假设$U$是复平面上的一个单连通开子集，$a_1,\ldots,a_n$是复平面上有限个点，$f$是定义在$U\backslash \{a_1,\ldots,a_n\}$上的全纯函数，
   如果$\gamma$是一条把$a_1,\ldots,a_n$包围起来的可求长曲线，但不经过任何一个$a_k$，并且其起点与终点重合，那么：
-
   \begin{equation}
     \label{eq:res}
     \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\pi\mathbf{i}\sum^n_{k=1}\mathrm{I}(\gamma,a_k)\mathrm{Res}(f,a_k)
   \end{equation}
 
   如果$\gamma$是若尔当曲线，那么$\mathrm{I}(\gamma, a_k)=1$，因此：
-
   \begin{equation}
     \label{eq:resthm}
     \ointop_{\gamma}f(z)\,\mathrm{d}z = 2\pi\mathbf{i}\sum^n_{k=1}\mathrm{Res}(f,a_k)
@@ -51,4 +49,7 @@
   所以，由\autoref{thm:res}可知……
   \qedhere
 \end{proof}
-  
+
+\textit{有关公式与上下文间距的一些注意事项：请保证源码中的公式的环境（如}
+\\ \verb|\begin{equation}|
+  \textit{）与上一段落不要有空行。否则，公式和上文段落之间会有额外的空白。}
