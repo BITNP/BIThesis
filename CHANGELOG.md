@@ -13,6 +13,31 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.6.1] - 2023-10-23
+
+[d8908bd](https://github.com/BITNP/BIThesis/commit/d8908bdd1f5f09ff9714af8b77b8bb3181854424)...[d8908bd](https://github.com/BITNP/BIThesis/commit/d8908bdd1f5f09ff9714af8b77b8bb3181854424)
+
+### Bug Fixes
+
+- Typo ([4581850](https://github.com/BITNP/BIThesis/commit/45818508a00ed98d94de4ca6c33e61839911edea))
+- Show links. ([470fc4d](https://github.com/BITNP/BIThesis/commit/470fc4df2c9ecd56f68a83d77a505d0853cf9a1e))
+- Use single quotation marks ([45c97b5](https://github.com/BITNP/BIThesis/commit/45c97b55c5b95e0ea0789c87e94c2763c2045f9e))
+- Fix display skip and line stretch. ([e08374f](https://github.com/BITNP/BIThesis/commit/e08374f6ade99150d1b52ce521faa9c33ef95831))
+- Fix a typo. ([4ba5027](https://github.com/BITNP/BIThesis/commit/4ba50278b50c0efb55c25fe52452918394888f1e))
+
+### Documentation
+
+- Update contributions ([94884a3](https://github.com/BITNP/BIThesis/commit/94884a3859e828d36a4810956430b9754df88d22))
+
+### Features
+
+- Add a quick-start handbook for graduates. ([55dcc77](https://github.com/BITNP/BIThesis/commit/55dcc77e02be046d75dd96ca7d62f5801e5138db))
+- Add acknowledgements. ([f8577d1](https://github.com/BITNP/BIThesis/commit/f8577d10fa57f1f51fb9f0d8e7c9e5576bafea31))
+
+### Miscellaneous Tasks
+
+- Update version. ([d8908bd](https://github.com/BITNP/BIThesis/commit/d8908bdd1f5f09ff9714af8b77b8bb3181854424)
+
 ## [3.6.0] - 2023-09-26
 
 [fc8061b](https://github.com/BITNP/BIThesis/commit/fc8061b4ee21caacffb7e38c1271d73bb2baba81)...[fc8061b](https://github.com/BITNP/BIThesis/commit/fc8061b4ee21caacffb7e38c1271d73bb2baba81)
