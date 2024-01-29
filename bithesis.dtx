@@ -2159,7 +2159,8 @@
 
           \zihao{2}\textbf{\songti{\l_@@_style_headline_tl}}
 
-          \vspace{25mm}
+          % 外文翻译封面有两组中英文标题，行数变化范围大，因此采用 fill 比例布局
+          \vspace{\stretch{1}}
 
           {
 
@@ -2184,7 +2185,7 @@
 
           }
 
-          \vspace{23mm}
+          \vspace{\stretch{1}}
 
           \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
 
@@ -2194,7 +2195,7 @@
             \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
           \end{spacing}
 
-          \vspace{19mm}
+          \vspace{\stretch{0.67}}
 
           \begin{spacing}{1.8}
             \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
@@ -2229,7 +2230,7 @@
             
           \end{spacing}
 
-          \vspace*{\fill}
+          \vspace{\stretch{0.67}}
         \end{titlepage}
       }
       {3} {
