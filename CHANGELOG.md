@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 Acronyms:
+
 - LB: lab-report (实验报告模板)
 - GT: graduate-thesis (研究生学位论文模板)
 - PT: paper-translation (本科生毕业设计外文翻译模板)
@@ -12,6 +13,27 @@ Acronyms:
 - UT: undergraduate-thesis (本科生毕业设计论文模板)
 
 **Bolded text highlights its importance.**
+
+## [3.6.2] - 2024-02-24
+
+[a4daadb](https://github.com/BITNP/BIThesis/commit/a4daadbb00ea8cee8587ba79f8ed79ddbc3da8a9)...[1d98b96](https://github.com/BITNP/BIThesis/commit/1d98b965eb4e1f24fe184f93863d82d6c6c9ccd0)
+
+### Bug Fixes
+
+- Update styles of PT ([f32503b](https://github.com/BITNP/BIThesis/commit/f32503b053beec02dc73b5cd971ab3f8807c6b10))
+- Typo ([27d3071](https://github.com/BITNP/BIThesis/commit/27d3071df752afd9f6304562e363d4e7db44ab0e))
+
+### Documentation
+
+- Unify the case of “GitHub” ([38a0e96](https://github.com/BITNP/BIThesis/commit/38a0e9676376ff30e36b18e226d73fc16423056f))
+
+### Miscellaneous Tasks
+
+- Bump version. ([1d98b96](https://github.com/BITNP/BIThesis/commit/1d98b965eb4e1f24fe184f93863d82d6c6c9ccd0))
+
+### Refactor
+
+- Stretch spaces in the cover of PT ([520e1d1](https://github.com/BITNP/BIThesis/commit/520e1d10df253c26053dcf6390af07d19232b264))
 
 ## [3.6.1] - 2023-10-23
 
@@ -76,7 +98,7 @@ Acronyms:
 
 ### Refactor
 
-- Remove all templates/*/*.cls. ([e457dae](https://github.com/BITNP/BIThesis/commit/e457daea0f6ede972ec2fa03d0bbe03105c21ef9))
+- Remove all templates/_/_.cls. ([e457dae](https://github.com/BITNP/BIThesis/commit/e457daea0f6ede972ec2fa03d0bbe03105c21ef9))
 
 ### Styling
 
@@ -84,7 +106,7 @@ Acronyms:
 
 ### Ci
 
-- Remove templates/*cls. ([ac5463c](https://github.com/BITNP/BIThesis/commit/ac5463ceb2fa734ba27ccc66b82f6ec4839069ad))
+- Remove templates/\*cls. ([ac5463c](https://github.com/BITNP/BIThesis/commit/ac5463ceb2fa734ba27ccc66b82f6ec4839069ad))
 - Remove ensure_updated_cls. ([1cab540](https://github.com/BITNP/BIThesis/commit/1cab540c184ec9fadc69f7de6125a0c2bde75263))
 
 ## [3.6.0-beta-11-test-1] - 2023-07-08
@@ -101,7 +123,7 @@ Acronyms:
 - Use meta key. ([4b7b6a1](https://github.com/BITNP/BIThesis/commit/4b7b6a150bb0a248d59bcd73af1aeac7e50e39f0))
 - Update links. ([999eb2e](https://github.com/BITNP/BIThesis/commit/999eb2e93cada08bbe1d6ac3070c8be690fa1c70))
 - Secret info expansion. ([d4decf9](https://github.com/BITNP/BIThesis/commit/d4decf9f2b47e3b14c398eec87c891a45650edfb))
-- Remove \@@_secret_info:x ([6c8a0f6](https://github.com/BITNP/BIThesis/commit/6c8a0f6336599742f84601f1a52442722261ba0a))
+- Remove \@@\_secret_info:x ([6c8a0f6](https://github.com/BITNP/BIThesis/commit/6c8a0f6336599742f84601f1a52442722261ba0a))
 - Note environment does not work as expected ([c703854](https://github.com/BITNP/BIThesis/commit/c7038542c7a2730651feabc745c6f543df505955))
 
 ### Documentation
@@ -235,7 +257,7 @@ Acronyms:
 - Graduate-thesis indent is larger than normal. ([c2b1d37](https://github.com/BITNP/BIThesis/commit/c2b1d37be0c127ddcc34e76770ffba2be58053fa))
 - Typo fix. ([6fa12af](https://github.com/BITNP/BIThesis/commit/6fa12af528c124a4c8e51596263d8caf7782f7d0))
 - Add autoref label for figure(fig),table(tab),euqation(equ) ([1a62cc5](https://github.com/BITNP/BIThesis/commit/1a62cc50e77da71fde234424dac5c3e2ba745de3))
-- Replace the _bithesis with @@ in .dtx, add updated property ([e02253a](https://github.com/BITNP/BIThesis/commit/e02253a2eff2b78aaa05478c9b929a762eacaa25))
+- Replace the \_bithesis with @@ in .dtx, add updated property ([e02253a](https://github.com/BITNP/BIThesis/commit/e02253a2eff2b78aaa05478c9b929a762eacaa25))
 - Apply same rules to bachelor thesis. ([b0b3740](https://github.com/BITNP/BIThesis/commit/b0b3740c5f62bd0d690888b201f5dd517ca85d48))
 
 ### Documentation
@@ -491,7 +513,7 @@ Acronyms:
 
 - Fix typo. ([9508311](https://github.com/BITNP/BIThesis/commit/9508311f432a266273f299b8df2a6460f916bc2a))
 - Fix typo. ([c736aca](https://github.com/BITNP/BIThesis/commit/c736aca332449e6b8b76a15440b1ef0b81d2967e))
-- Add missing field in the issue template.  ([d180e6d](https://github.com/BITNP/BIThesis/commit/d180e6d7620934bfe3392dce2c4b6ec58fc8c187))
+- Add missing field in the issue template. ([d180e6d](https://github.com/BITNP/BIThesis/commit/d180e6d7620934bfe3392dce2c4b6ec58fc8c187))
 - Make linter happy. ([e5690e6](https://github.com/BITNP/BIThesis/commit/e5690e658cc85e9a546d5480da2cbbd0c7085705))
 - Update copyright. ([a55e45a](https://github.com/BITNP/BIThesis/commit/a55e45a90449fda7dec74750a2164d4471555ada))
 - Bump version to v3.3.0. ([9ebe371](https://github.com/BITNP/BIThesis/commit/9ebe3711aab8759c006efa770510c9516c8e73a3))
@@ -543,7 +565,7 @@ Acronyms:
 
 ### Bug Fixes
 
-- Add pdf bookmarks for \chapter* ([f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074))
+- Add pdf bookmarks for \chapter\* ([f477e2d](https://github.com/BITNP/BIThesis/commit/f477e2db879ca5722c18397bac74d2e146ed2074))
 
 ### Build
 
@@ -849,7 +871,7 @@ Acronyms:
 - Extract const name. ([30da6e7](https://github.com/BITNP/BIThesis/commit/30da6e724559aa6a2713beeb5ab187de407a9f55))
 - Use option. ([d481a5c](https://github.com/BITNP/BIThesis/commit/d481a5c5e8fabfe6b0fdc8b476e1758e8c8cb9bc))
 - Squash to dtx file. ([2621f7b](https://github.com/BITNP/BIThesis/commit/2621f7bc7f90aa6c905342291da8dae9c5ebb85a))
-- Abstract* to abstractEn ([05011af](https://github.com/BITNP/BIThesis/commit/05011af69ac779208d88edea9236c6c271bd1023))
+- Abstract\* to abstractEn ([05011af](https://github.com/BITNP/BIThesis/commit/05011af69ac779208d88edea9236c6c271bd1023))
 
 ### WIP
 
