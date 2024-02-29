@@ -1075,9 +1075,14 @@
   \@@_load_font:
 
   % misc / hideLinks 选项
-  \bool_if:NT \l_@@_misc_hide_links_bool
+  \bool_if:NTF \l_@@_misc_hide_links_bool
     {
       \hypersetup { hidelinks }
+    } {
+      \definecolor{blue}{RGB}{10,10,110} 
+      \hypersetup{
+        colorlinks=true,
+      }
     }
   
   \@@_if_thesis_english:TF {
