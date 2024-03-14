@@ -2940,6 +2940,15 @@
         \DeclareDelimFormat{multinamedelim}{}
         % 如果覆盖的是英文作者，不修改此项的话，会在最开始有空格。
         \DeclareDelimFormat{bibnamedelimd}{}
+
+        % 如果作者太多而被截断，不修改的话，会多余逗号、“等”云云。
+        % 被截断的充要条件：作者数量大于通过`\BITSetup`设置的`publications/maxbibnames`。
+        % 故设置标点来去掉逗号，
+        \DeclareDelimFormat[bib,biblist]{andothersdelim}{}
+        % 并设置本地化字符串来去掉“等”。
+        \setlocalbibstring{andothers}{}
+        \setlocalbibstring{andotherscn}{}
+        % 另外注意，我们仍尊重`maxbibnames`和`minbibnames`，保证若开盲审时显示作者，则关盲审时也正常。
       }
 
       % ===== 上方定义与「参考文献」部分相同
