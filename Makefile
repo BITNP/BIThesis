@@ -127,6 +127,3 @@ examples: cls
 	cd $(EXAMPLEDIR)/cover && latexmk && cd -
 	cd $(EXAMPLEDIR)/publications && latexmk && cd -
 
-check-cls: copy
-	git status --porcelain | (! grep -q .) || (echo "Please execute \`make copy\` to update the *.cls in each templates."; exit 1)
-

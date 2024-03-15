@@ -75,9 +75,6 @@ make doc
 - [diff-pdf](https://vslavik.github.io/diff-pdf/)
 - [jq](https://jqlang.github.io/jq/)（仅用 Zsh 时需要）
 
-运行 `make check-cls` 确保 `bithesis.dtx` 的修改都被同步到了 `templates/` 中。
-（同样被用于 GitHub Actions）
-
 ## 打包
 
 - `make overleaf version=X.X.X` 可以生成上传 overleaf 所需要的 zip 文件。
