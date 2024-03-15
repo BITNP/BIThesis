@@ -1248,11 +1248,13 @@ autoref = {
 hideLinks = (*(true)|false*)
 \end{bitsyntax}
 
- 此选项用于控制是否隐藏超链接的颜色。
+ 此选项用于控制是否隐藏超链接的颜色。（只影响显示效果；即使不隐藏，打印效果也一样。）
 
  为了减少歧义，此选项默认值为 |true|，即隐藏超链接的颜色。
 
  \textit{请在导言区使用此选项。}
+
+ 相关功能由 \pkg{hyperref} 宏包支持，可参阅其手册进一步用 \cs{hypersetup} 定制。
 
 \end{function}
 
