@@ -89,7 +89,7 @@ make doc
 2. 点击 `Menu > Compiler` 选择 `XeLaTeX`，然后重新编译。
 3. 修改项目名称，以便于区分。（我一般加上 `BIThesis-`）
 4. 点击 `Share > Turn on link sharing`，复制 read 权限的链接。
-5. 在 `BIThesis-wiki` 项目的首页 `README.md` 中，更新链接。
+5. 在 [`BIThesis-wiki` 项目的 `wiki/guide/preface.md`](https://github.com/BITNP/BIThesis-wiki/blob/main/wiki/guide/preface.md) 中，更新链接。
 
 ## Release 工作流
 
