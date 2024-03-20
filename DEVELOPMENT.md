@@ -26,6 +26,7 @@ make doc
 ### 本地开发
 
 一般开发需求分为三个部分：
+
 - 修改 `bithesis.dtx` 文件。
 - 修改 `templates/` 中某个模板。
 - 修改其他文件。
@@ -79,8 +80,9 @@ make doc
 
 ## 打包
 
-- `make overleaf` 可以生成上传 overleaf 所需要的 zip 文件。
+- `make overleaf version=X.X.X` 可以生成上传 overleaf 所需要的 zip 文件。
 - `make pkg` 可以生成上传 CTAN 所需要的 zip 文件。
+- `make grad version=X.X.X` 可以生成用作研究生院官网附件的 zip 文件。
 
 ## 上传 Overleaf 与更新
 
@@ -99,4 +101,3 @@ make doc
 版本号：参考 [Semantic Versioning 2.0.0 | Semantic Versioning](https://semver.org/) 。
 
 ![Release Workflow](./assets/release_workflow.png)
-
