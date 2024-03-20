@@ -86,7 +86,7 @@ overleaf: doc FORCE_MAKE
 	mkdir overleaf
 	ls templates | \
 		xargs -I {} bash -c \
-		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && zip -r ./overleaf/BIThesis-{}-v$(version).zip ./overleaf/{}"
+		"cp -r ./templates/{} overleaf && cp $(PACKAGE).pdf ./overleaf/{} && (cd overleaf/{}/ && zip -r ../BIThesis-{}-v$(version).zip .)"
 
 dev:
 	ls bithesis.dtx | entr -s 'yes y | make doc && make copy'
@@ -116,7 +116,7 @@ grad: doc copy FORCE_MAKE
 	cp -r $(SCAFFOLDDIR)/graduate-thesis/ ${GRAD_DEST_DIR}-${version}/graduate-thesis/
 	cp ./bithesis.pdf ${GRAD_DEST_DIR}-${version}/'3-详细配置手册'.pdf
 	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/'2-快速使用手册'.pdf
-	zip -rm ${GRAD_DEST_DIR}-${version}/"1-BIThesis-论文模板-${version}".zip ${GRAD_DEST_DIR}-${version}/graduate-thesis/.
+	(cd ${GRAD_DEST_DIR}-${version}/graduate-thesis/ && zip -rm ../"1-BIThesis-论文模板-${version}".zip . )
 	rmdir ${GRAD_DEST_DIR}-${version}/graduate-thesis
 	zip -r ${GRAD_DEST_DIR}-${version}.zip ${GRAD_DEST_DIR}-${version}
 	
