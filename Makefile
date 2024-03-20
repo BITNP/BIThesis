@@ -101,7 +101,7 @@ pkg: doc
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
 
-GRAD_DEST_DIR = ./BIT-bithesis-graduates
+GRAD_DEST_DIR = ./BIThesis-graduate-thesis-template
 
 grad: doc copy FORCE_MAKE
 	# if $version is not specified, alert the user.
@@ -112,9 +112,12 @@ grad: doc copy FORCE_MAKE
 	fi
 	cd ./the-graduates-handbook && latexmk && cd -
 	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && latexmk -c && cd -
-	cp -r $(SCAFFOLDDIR)/graduate-thesis ${GRAD_DEST_DIR}-${version}
-	cp ./bithesis.pdf ${GRAD_DEST_DIR}-${version}/
-	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/'研究生学位论文模板快速使用手册'.pdf
+	mkdir ${GRAD_DEST_DIR}-${version}
+	cp -r $(SCAFFOLDDIR)/graduate-thesis/ ${GRAD_DEST_DIR}-${version}/graduate-thesis/
+	cp ./bithesis.pdf ${GRAD_DEST_DIR}-${version}/'3-详细配置手册'.pdf
+	cp ./the-graduates-handbook/main.pdf ${GRAD_DEST_DIR}-${version}/'2-快速使用手册'.pdf
+	zip -rm ${GRAD_DEST_DIR}-${version}/"1-BIThesis-论文模板-${version}".zip ${GRAD_DEST_DIR}-${version}/graduate-thesis/.
+	rmdir ${GRAD_DEST_DIR}-${version}/graduate-thesis
 	zip -r ${GRAD_DEST_DIR}-${version}.zip ${GRAD_DEST_DIR}-${version}
 	
 
