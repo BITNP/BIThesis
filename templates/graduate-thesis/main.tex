@@ -23,7 +23,8 @@
 % 硕士论文模板 type=master
 % 博士论文模板 type=doctor
 % 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
-% 开启双面打印 twoside=true (如：[type=master,twoside=true]）
+% 开启双面打印模式 twoside=true (如：[type=master,twoside=true]）
+%     在双面打印模式下，需要放在奇数页的页面后会自动插入一个空白页，以方便直接在打印机上“双面打印”。
 %
 % 在 Linux 和 macOS 系统下，由于版权问题，中文字体和 Windows 系统下的字体不同。
 % 如果想要获得与 Word 文档相同的效果，你有两个选择：
@@ -32,7 +33,7 @@
 %
 % **更多使用说明请参考 bithesis.pdf **
 
-\documentclass[type=master,twoside]{bithesis}
+\documentclass[type=master,twoside=false]{bithesis}
 
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
