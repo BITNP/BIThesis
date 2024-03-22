@@ -323,6 +323,9 @@
     {classification} {中图分类号：},
     {classified_level} {密级},
     {type} {种类},
+    {special_type} {特别类型},
+    {cross_research} {交叉研究方向},
+    {international_student_ugp} {政府项目留学生},
   }
   {\@@_define_label:nn #1}
 %    \end{macrocode}
@@ -646,6 +649,12 @@
     defenseDateEn .initial:n = {June,~2019~(example)},
     % 因为默认不显示，所以不需要设置初始值。
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
+    % 特别类型-交叉研究方向
+    crossResearch .bool_set:N = \l_@@_value_cross_research_bool,
+    crossResearch .initial:n = {false},
+    % 特别类型-政府项目留学生
+    internationalStudentUGP .bool_set:N = \l_@@_value_international_student_ugp_bool,
+    internationalStudentUGP .initial:n = {false},
   }
 %    \end{macrocode}
 %
@@ -1825,11 +1834,49 @@
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
   \begin{titlepage}
-      {
+      \begin{minipage}[t]{0.48\textwidth}
         % 密级、分类号
         {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
         \l_@@_value_classification_tl\\
         {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
+      \end{minipage}
+
+      \hfill
+
+      % 以下内容是「特别类型」的内容，
+      % 在没有勾选的时候隐藏。
+      \bool_if:nT {\l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool} {
+        \begin{minipage}[t]{0.48\textwidth}
+          \vspace{-12pt}
+          \begin{flushright}
+          \setlength\fboxrule{1pt}\setlength\fboxsep{3mm}
+          \fbox{
+            \noindent\begin{minipage}{0.48\linewidth}
+              \heiti \zihao{-4}
+              \scalebox{1.1}\BigStar{}\hspace{4pt} \c_@@_label_special_type_tl\\
+
+              \makebox[1em][l]
+              {
+                \makebox[1pt][l]{\zihao{4}$\boxempty$}
+                \bool_if:NT \l_@@_value_cross_research_bool {
+                  $\checkmark$
+                }
+              }
+              \hspace{3pt}\c_@@_label_cross_research_tl\\
+              \makebox[1em][l]
+              {
+                \makebox[1pt][l]{\zihao{4}$\boxempty$}
+                \bool_if:NT \l_@@_value_international_student_ugp_bool {
+                  $\checkmark$
+                }
+              }
+              \hspace{3pt}\c_@@_label_international_student_ugp_tl
+            \end{minipage}
+          }
+          \end{flushright}
+        \end{minipage}
+        % 保证下面的内容空间不会受到挤占。
+        \vspace{-35pt}
       }
 
      \begin{center}
