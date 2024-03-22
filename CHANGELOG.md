@@ -14,23 +14,34 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
-## [3.6.3] - 2024-03-20
+## [3.7.0] - 2024-03-22
 
-[4fc807e](https://github.com/BITNP/BIThesis/commit/4fc807e541549725eed628d5b32ccebd9606a0e6)...[c4e9098](https://github.com/BITNP/BIThesis/commit/c4e9098f742cbe599e0edd34f59feef0c750d09d)
+[4fc807e](https://github.com/BITNP/BIThesis/commit/4fc807e541549725eed628d5b32ccebd9606a0e6)...[9384774](https://github.com/BITNP/BIThesis/commit/93847740d897518dbc0ffa9ca00ba4c3282cfefe)
 
 ### Bug Fixes
 
 - Remove `, et al.` etc. for `pub.bib` in `blindPeerReview` mode ([d604b0e](https://github.com/BITNP/BIThesis/commit/d604b0ee7285e673fc2cc711cb5b9874d7f4cbbb))
+- Try fix github-action-markdown-link-check. ([9b64b96](https://github.com/BITNP/BIThesis/commit/9b64b96d40db2aed0cff6d692e2963c744eb2696))
+- Zip without parent folder. ([94d14b2](https://github.com/BITNP/BIThesis/commit/94d14b2ea78949a14a2b332225ccaa35b67cd260))
+- Update according new 2024 Word template. ([0609af7](https://github.com/BITNP/BIThesis/commit/0609af7820b5cbcd2898cd3a3b1e19e27c616350))
 
 ### Documentation
 
 - Hyperref ([7f07e3c](https://github.com/BITNP/BIThesis/commit/7f07e3c7690fe3cf661bc57b470606c7c04df0eb))
 - Update DEVELOPMENT.md ([08910a6](https://github.com/BITNP/BIThesis/commit/08910a64d20b0c7d987e838f7e23f9acd6b04849))
 - Update `wiki/guide/preface.md` in `BIThesis-wiki` ([c4e9098](https://github.com/BITNP/BIThesis/commit/c4e9098f742cbe599e0edd34f59feef0c750d09d))
+- Update readme. ([00abcf3](https://github.com/BITNP/BIThesis/commit/00abcf38d5454e5d987eaf58ee020c51258fea0f))
+
+### Features
+
+- Update make grad. ([5562de4](https://github.com/BITNP/BIThesis/commit/5562de434a516d2ff1553df89fb9247cbc2bd0fb))
+- Add support for special type. ([76255d8](https://github.com/BITNP/BIThesis/commit/76255d80467081cd952a99439ad1150f392f3ec8))
 
 ### Miscellaneous Tasks
 
 - Bump version to v3.6.3 ([24ad394](https://github.com/BITNP/BIThesis/commit/24ad394fc5adeb7b50cd6fa2b736433f6b3920d0))
+- Update GitHub Actions' version ([eca4d67](https://github.com/BITNP/BIThesis/commit/eca4d678b3569d4200d81d36a775503e5699c637))
+- Bump version to 3.7.0 ([9384774](https://github.com/BITNP/BIThesis/commit/93847740d897518dbc0ffa9ca00ba4c3282cfefe))
 
 ### Refactor
 
@@ -38,9 +49,6 @@ Acronyms:
 
 ### Ci
 
-- Try fix github-action-markdown-link-check. ([9b64b96](https://github.com/BITNP/BIThesis/commit/9b64b96d40db2aed0cff6d692e2963c744eb2696))
-- Update make grad. ([5562de4](https://github.com/BITNP/BIThesis/commit/5562de434a516d2ff1553df89fb9247cbc2bd0fb))
-- Zip without parent folder. ([94d14b2](https://github.com/BITNP/BIThesis/commit/94d14b2ea78949a14a2b332225ccaa35b67cd260))
 - Remove `make check-cls` ([8a0d5d1](https://github.com/BITNP/BIThesis/commit/8a0d5d19df58bc2c2b2834cbfac1b50bbb2b2cda))
 
 ## [3.6.2] - 2024-02-24
