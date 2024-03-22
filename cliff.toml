@@ -9,7 +9,6 @@
 # changelog header
 header = """
 # Changelog\n
-All notable changes to this project will be documented in this file.\n
 Acronyms:
 - LB: lab-report (实验报告模板)
 - GT: graduate-thesis (研究生学位论文模板)
@@ -23,25 +22,38 @@ Acronyms:
 # template for the changelog body
 # https://keats.github.io/tera/docs/#introduction
 body = """
+{%- macro remote_url() -%}
+  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+{%- endmacro -%}
+
 {% if version %}\
     ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
     ## [unreleased]
 {% endif %}\
-{% if previous %}\
-    {% if previous.commit_id %}
-        [{{ previous.commit_id | truncate(length=7, end="") }}](https://github.com/BITNP/BIThesis/commit/{{ previous.commit_id }})...\
-            [{{ commit_id | truncate(length=7, end="") }}](https://github.com/BITNP/BIThesis/commit/{{ commit_id }})
-    {% endif %}\
-{% endif %}\
-{% for group, commits in commits | group_by(attribute="group") %}
-    ### {{ group | striptags | trim | upper_first }}
-    {% for commit in commits %}
+{% for group, commits in commits | unique(attribute="id") | group_by(attribute="group") %}
+    ### {{ group  | upper_first }}
+    {% for commit in commits | unique(attribute="message") %}
         - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
             {% if commit.breaking %}[**breaking**] {% endif %}\
             {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/BITNP/BIThesis/commit/{{ commit.id }}))\
+            {% if commit.github.username %} by @{{ commit.github.username }}{%- endif -%}
+            {% if commit.github.pr_number %} in \
+                [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }}) \
+            {%- endif -%}
     {% endfor %}
 {% endfor %}\n
+
+{%- if github.contributors | filter(attribute="is_first_time", value=true) | length != 0 %}
+  ## New Contributors
+{%- endif -%}
+
+{% for contributor in github.contributors | filter(attribute="is_first_time", value=true) %}
+  * @{{ contributor.username }} made their first contribution
+    {%- if contributor.pr_number %} in \
+      [#{{ contributor.pr_number }}]({{ self::remote_url() }}/pull/{{ contributor.pr_number }}) \
+    {%- endif %}
+{%- endfor %}\n
 """
 # template for the changelog footer
 footer = """
@@ -59,7 +71,7 @@ conventional_commits = true
 # filter out the commits that are not conventional
 filter_unconventional = true
 # process each line of a commit as an individual commit
-split_commits = false
+split_commits = true
 # regex for preprocessing the commit messages
 commit_preprocessors = [
     # Replace issue numbers
@@ -102,3 +114,7 @@ topo_order = false
 sort_commits = "oldest"
 # limit the number of commits included in the changelog.
 # limit_commits = 42
+
+[remote.github]
+owner = "BITNP"
+repo = "BIThesis"
