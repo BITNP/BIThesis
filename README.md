@@ -27,19 +27,26 @@ _（此文档已被包含在 [Releases][releases] 的文件中）_
 
 <div align="center">
 
-:raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
-
 </div>
+
+> [!NOTE]
+> :raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
+
 
 <h2>欢迎</h2>
 
 BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
-> 本项目获得了 [北京理工大学教务部](http://jwb.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
+> [!CAUTION]
+> 研究生院在 2024-03-20 发布了新的研究生模板，本项目已经根据最新模板更新，请同学们使用 v3.7.0 及以上的 BIThesis 模板。
 
+> [!NOTE]
+> 本项目获得了 [北京理工大学教务部](http://jwb.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
+> 
 > **研究生模板正在完成与研究生院的沟通。[__（进度详情）__](https://github.com/BITNP/BIThesis/issues/163)**
 
-> :warning: 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
+> [!WARNING]
+> 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
 
 <h2>特性</h2>
 
