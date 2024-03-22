@@ -12,7 +12,7 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
@@ -24,7 +24,7 @@ jobs:
   check_typos:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Check spelling of bithesis.dtx
         uses: crate-ci/typos@master
 
