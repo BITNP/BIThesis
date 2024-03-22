@@ -590,8 +590,11 @@
     underlineThickness .initial:n = {1pt},
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
-    hideCoverInPeerReview .bool_set:N = \l_@@_style_hide_cover_in_peer_review_bool,
+    hideCoverInPeerReview .bool_set:N = \l_@@_cover_hide_cover_in_peer_review_bool,
     hideCoverInPeerReview .initial:n = {false},
+    % 研究生的「特殊类型」
+    showSpecialTypeBox .bool_set:N = \l_@@_cover_show_special_type_box_bool,
+    showSpecialTypeBox .initial:n = {false}
   }
 %    \end{macrocode}
 %
@@ -1845,7 +1848,7 @@
 
       % 以下内容是「特别类型」的内容，
       % 在没有勾选的时候隐藏。
-      \bool_if:nT {\l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool} {
+      \bool_if:nT {\l_@@_cover_show_special_type_box_bool || \l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool} {
         \begin{minipage}[t]{0.48\textwidth}
           \vspace{-12pt}
           \begin{flushright}
@@ -2134,7 +2137,7 @@
 %    \begin{macrocode}
 \DeclareDocumentCommand \MakeCover {}
   {
-    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
     \group_begin:
 
     \int_case:nn {\g_@@_thesis_type_int}
@@ -2384,7 +2387,7 @@
 \NewDocumentCommand \MakeOriginality {} 
   {
     \group_begin:
-    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
       \int_case:nn {\g_@@_thesis_type_int}
       {
         {1} 
@@ -2492,7 +2495,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
-    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
       \make_paper_back:
     \end{blindPeerReview}
   }
@@ -2504,7 +2507,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakeTitle {}
   {
-    \begin{blindPeerReview}[\l_@@_style_hide_cover_in_peer_review_bool]
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
       \@@_make_chinese_title_page:
       \@@_make_english_title_page:
     \end{blindPeerReview}
