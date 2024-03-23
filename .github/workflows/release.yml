@@ -30,7 +30,6 @@ jobs:
           name: cls
           path: "*.cls"
 
-    
   publish_templates:
     name: Publish ${{ matrix.template }}
     runs-on: ubuntu-latest
@@ -38,7 +37,16 @@ jobs:
 
     strategy:
       matrix:
-        template: [graduate-thesis, undergraduate-thesis, lab-report, paper-translation, presentation-slide, undergraduate-thesis-en, reading-report]
+        template:
+          [
+            graduate-thesis,
+            undergraduate-thesis,
+            lab-report,
+            paper-translation,
+            presentation-slide,
+            undergraduate-thesis-en,
+            reading-report,
+          ]
         include:
           - template: graduate-thesis
             cls: bithesis
@@ -82,7 +90,6 @@ jobs:
           asset_name: ${{ matrix.template }}.zip
           tag: ${{ github.ref }}
 
-    
   publish_cls:
     name: Publish ${{ matrix.cls }}
     runs-on: ubuntu-latest
@@ -105,3 +112,69 @@ jobs:
           file: ${{ matrix.cls }}.cls
           asset_name: ${{ matrix.cls }}.cls
           tag: ${{ github.ref }}
+
+  publish_pdfs:
+    name: Generate changelog
+    runs-on: ubuntu-latest
+    # Makesure it's the last job.
+    needs: [build, publish_cls, publish_templates]
+    outputs:
+      release_body: ${{ steps.git-cliff.outputs.content }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v3
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: -vv --latest --strip header
+        env:
+          OUTPUT: CHANGES.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v2
+      - name: Download PDF(s)
+        uses: actions/download-artifact@v3
+        with:
+          name: bithesis
+
+      - name: Upload the releases notes
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: bithesis.pdf
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: |
+            ${{ steps.git-cliff.outputs.content }}
+
+  update_changelog:
+    name: Generate changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v3
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          set +e
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG"
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/BITNP/BIThesis.git main
