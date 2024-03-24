@@ -31,7 +31,8 @@ _（此文档已被包含在 [Releases][releases] 的文件中）_
 
 > [!NOTE]
 > :raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎与 [Feng Kaiyu](https://github.com/fky2015) 取得联系，加入我们。
-
+>
+> 如果本项目有帮助到你的话，欢迎引用我们，让更多同学知道。（见右侧 “Cite this repository”）
 
 <h2>欢迎</h2>
 

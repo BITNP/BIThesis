@@ -1,0 +1,32 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: BIThesis
+message: >-
+  If you feel BIThesis is helpful, please cite it as below
+  to let more people know!
+type: software
+authors:
+  - given-names: Kaiyu
+    family-names: Feng
+    email: loveress01@outlook.com
+    affiliation: Beijing Institute of Technology
+    orcid: 'https://orcid.org/0000-0001-6397-8469'
+  - name: Net Pioneer of Beijing Institute of Technology
+    address: Beijing Institute of Technology
+    country: CN
+    city: Beijing
+    website: 'https://bitnp.net'
+repository-code: 'https://github.com/BITNP/BIThesis'
+url: 'https://bithesis.bitnp.net/'
+abstract: >-
+  This package establishes a simple and easy-to-use LATEX
+  template for Beijing Institute of Technology
+  dissertations, including general undergraduate theses and
+  master theses.
+keywords:
+  - LaTeX Thesis Template
+  - Graduation Thesis
+license: LPPL-1.3c
+version: v3
