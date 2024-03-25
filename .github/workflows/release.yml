@@ -113,7 +113,7 @@ jobs:
           asset_name: ${{ matrix.cls }}.cls
           tag: ${{ github.ref }}
 
-  publish_pdfs:
+  update_changelog:
     name: Generate changelog
     runs-on: ubuntu-latest
     # Makesure it's the last job.
@@ -151,33 +151,6 @@ jobs:
           overwrite: true
           body: |
             ${{ steps.git-cliff.outputs.content }}
-
-  update_changelog:
-    name: Generate changelog
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v3
-        with:
-          config: cliff.toml
-          args: --verbose
-        env:
-          OUTPUT: CHANGELOG.md
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          set +e
-          git add CHANGELOG.md
-          git commit -m "Update CHANGELOG"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/BITNP/BIThesis.git main
 
   upload_to_ctan:
     name: Upload to CTAN
