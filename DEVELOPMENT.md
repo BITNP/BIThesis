@@ -78,7 +78,7 @@ make doc
 ## 打包
 
 - `make overleaf version=X.X.X` 可以生成上传 overleaf 所需要的 zip 文件。
-- `make pkg` 可以生成上传 CTAN 所需要的 zip 文件。若已有手册而不想重新编译，可 `make pkg-only`。
+- `make pkg` 可以生成上传 CTAN 所需要的 zip 文件。若已有手册而不想重新编译，可 `make pkg-only`。（同样被用于 GitHub Actions）
 - `make grad version=X.X.X` 可以生成用作研究生院官网附件的 zip 文件。
 
 ## 上传 Overleaf 与更新
