@@ -21,7 +21,7 @@ else
 endif
 
 
-.PHONY: all cls doc clean FORCE_MAKE copy
+.PHONY: all cls doc clean FORCE_MAKE copy pkg pkg-only
 
 $(PACKAGE).pdf: cls FORCE_MAKE
 	@$(LATEXMK) -xelatex $(PACKAGE).dtx
@@ -94,12 +94,14 @@ dev:
 dev-doc:
 	ls bithesis.dtx | entr -s 'make clean-all && yes y | make doc && open bithesis.pdf'
 
-pkg: doc
+pkg-only:
 	rm -rf ./bithesis ./bithesis.zip
 	mkdir bithesis
-	cp bithesis.{ins,dtx,pdf} ./README*.md ./contributing*.md ./bithesis
+	cp bithesis.ins bithesis.dtx bithesis.pdf ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
 	zip -r bithesis.zip bithesis
+
+pkg: doc pkg-only
 
 GRAD_DEST_DIR = ./BIThesis-graduate-thesis-template
 

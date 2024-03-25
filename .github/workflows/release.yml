@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "*.*.*"
+  release:
+    types:
+      - published
 
 jobs:
   build:
@@ -113,7 +113,7 @@ jobs:
           asset_name: ${{ matrix.cls }}.cls
           tag: ${{ github.ref }}
 
-  publish_pdfs:
+  update_changelog:
     name: Generate changelog
     runs-on: ubuntu-latest
     # Makesure it's the last job.
@@ -152,29 +152,38 @@ jobs:
           body: |
             ${{ steps.git-cliff.outputs.content }}
 
-  update_changelog:
-    name: Generate changelog
+  upload_to_ctan:
+    name: Upload to CTAN
     runs-on: ubuntu-latest
+    needs: build
+    if: ${{ ! github.event.release.prerelease }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Download bithesis.pdf
+        uses: actions/download-artifact@v3
         with:
-          fetch-depth: 0
-
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v3
-        with:
-          config: cliff.toml
-          args: --verbose
-        env:
-          OUTPUT: CHANGELOG.md
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit
+          name: bithesis
+      - run: make pkg-only
+      - name: Determine version
+        id: version
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          set +e
-          git add CHANGELOG.md
-          git commit -m "Update CHANGELOG"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/BITNP/BIThesis.git main
+          version=${{ github.event.release.tag_name }}
+          echo "number=$(echo $version | sed 's/^v//')" >> "$GITHUB_OUTPUT"
+          echo "date=$(date '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+      - name: Upload to CTAN
+        uses: paolobrasolin/ctan-submit-action@v1
+        with:
+          action: upload
+          file_path: bithesis.zip
+          fields: |
+            update: "true"
+            pkg: bithesis
+            version: ${{ steps.version.outputs.number }} ${{ steps.version.outputs.date }}
+            author: Feng Kaiyu
+            email: loveress01@outlook.com
+            uploader: Feng Kaiyu
+      - name: Report
+        run: >
+          echo "🎉 Successfully upload
+          ${{ steps.version.outputs.number }} (${{ steps.version.outputs.date }})
+          to [CTAN](https://www.ctan.org/pkg/bithesis)." >> "$GITHUB_STEP_SUMMARY"
