@@ -287,14 +287,36 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\boxempty:}
+% 空的选框。
+%    \begin{macrocode}
+\cs_new:Npn \boxempty:
+{
+  \makebox[1em][l]
+  {
+    % 为保证与打了勾的一致，也需套盒子
+    \makebox[0pt][l]
+    {
+      % 默认比基线略高，向下降降
+      \raisebox{-1pt}{$\square$}
+    }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\boxcheck:}
-% 标签文字之间的间距。
+% 打了勾的选框。
 %    \begin{macrocode}
 \cs_new:Npn \boxcheck:
 {
   \makebox[1em][l]
   {
-    \makebox[1pt][l]{$\boxempty$}
+    \makebox[0pt][l]
+    {
+      % 默认比基线略高，向下降降
+      \raisebox{-1pt}{$\square$}
+    }
     $\checkmark$
   }
 }
@@ -405,11 +427,11 @@
   {
     {originality} {研究成果声明},
     {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下独立完成的研究成果。文中所撰写内容符合以下学术规范（请勾选）：
-\par $\boxcheck:$ 论文综述遵循“适当引用”的规范，全部引用的内容不超过50\%。
-\par 论文中的研究数据及结果不存在篡改、剽窃、抄袭、伪造等学术不端行为，并愿意承担因学术不端行为所带来的一切后果和法律责任。
-\par $\boxcheck:$文中依法引用他人的成果，均已做出明确标注或得到许可。
-\par $\boxcheck:$论文内容未包含法律意义上已属于他人的任何形式的研究成果，也不包含本人已用于其他学位申请的论文或成果。
-\par $\boxcheck:$与本人一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。
+\par \boxcheck:\hspace{0.5em} 论文综述遵循“适当引用”的规范，全部引用的内容不超过50\%。
+\par \boxcheck:\hspace{0.5em} 论文中的研究数据及结果不存在篡改、剽窃、抄袭、伪造等学术不端行为，并愿意承担因学术不端行为所带来的一切后果和法律责任。
+\par \boxcheck:\hspace{0.5em} 文中依法引用他人的成果，均已做出明确标注或得到许可。
+\par \boxcheck:\hspace{0.5em} 论文内容未包含法律意义上已属于他人的任何形式的研究成果，也不包含本人已用于其他学位申请的论文或成果。
+\par \boxcheck:\hspace{0.5em} 与本人一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。
 \par~特此声明。},
     {authorization} {关于学位论文使用权的说明},
     {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：
@@ -931,7 +953,6 @@
 \RequirePackage{listings}
 \RequirePackage{enumitem}
 \RequirePackage{fmtcount}
-\RequirePackage{stmaryrd}
 %    \end{macrocode}
 %
 % 抑制 \pkg{hyperref} 中对 |\hskip| 的 warning 信息。
@@ -1858,22 +1879,17 @@
               \heiti \zihao{-4}
               \scalebox{1.1}\BigStar{}\hspace{4pt} \c_@@_label_special_type_tl\\
 
-              \makebox[1em][l]
               {
-                \makebox[1pt][l]{\zihao{4}$\boxempty$}
-                \bool_if:NT \l_@@_value_cross_research_bool {
-                  $\checkmark$
-                }
+                \zihao{4}
+                \bool_if:NTF \l_@@_value_cross_research_bool {\boxcheck:} {\boxempty:}
               }
-              \hspace{3pt}\c_@@_label_cross_research_tl\\
-              \makebox[1em][l]
+              \hspace{1pt}\c_@@_label_cross_research_tl\\
+
               {
-                \makebox[1pt][l]{\zihao{4}$\boxempty$}
-                \bool_if:NT \l_@@_value_international_student_ugp_bool {
-                  $\checkmark$
-                }
+                \zihao{4}
+                \bool_if:NTF \l_@@_value_international_student_ugp_bool {\boxcheck:} {\boxempty:}
               }
-              \hspace{3pt}\c_@@_label_international_student_ugp_tl
+              \hspace{1pt}\c_@@_label_international_student_ugp_tl
             \end{minipage}
           }
           \end{flushright}
