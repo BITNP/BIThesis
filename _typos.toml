@@ -5,6 +5,7 @@ usera = "usera"
 multline = "multline"
 Winn = "Winn"
 nd = "nd"
+thm = "thm"
 
 [files]
-extend-exclude = ["CHANGELOG.md", "main.bib"]
+extend-exclude = ["CHANGELOG.md", "main.bib", "latexmkrc"]
