@@ -1043,6 +1043,21 @@ mathAboveDisplaySkip = (*(3pt)|任意长度*)
 
 \end{function}
 
+\begin{variable}[added=2024-04-04]{style/betterTimesNewRoman}
+\begin{bitsyntax}[emph={[1]betterTimesNewRoman}]
+betterTimesNewRoman = (*(false)|true*)
+\end{bitsyntax}
+
+使用 TeX Gyre Termes 代替 Times New Roman 作为主要字体。
+这个选项适用于以下情况：
+\begin{enumerate}
+  \item  不想或无法在系统中安装 Times New Roman。
+  \item 在 Linux/macOS 下遇到 `\textsc` 无法正常显示的问题。
+\end{enumerate}
+
+由于该字体与 Times New Roman 极为相似，因此不用担心不符合学校规定。
+\end{variable}
+
 \subsubsection{目录选项}
 
 \begin{function}{TOC}

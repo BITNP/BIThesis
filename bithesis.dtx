@@ -825,6 +825,8 @@
   mathAboveDisplaySkip .initial:n = {3pt},
   mathBelowDisplaySkip .dim_set:N = \l_@@_style_math_below_display_skip_dim,
   mathBelowDisplaySkip .initial:n = {3pt},
+  betterTimesNewRoman .bool_set:N = \l_@@_style_better_new_roman_bool,
+  betterTimesNewRoman .initial:n = {false},
 }
 %    \end{macrocode}
 %
@@ -1012,8 +1014,22 @@
 % 设置 Times New Roman 字体。
 % 根据学校规范要求，默认情况下也使用 Times New Roman 字体。
 %    \begin{macrocode}
-\setmainfont{Times~New~Roman}
-\setromanfont{Times~New~Roman}
+\ctex_at_end_preamble:n {
+  \bool_if:NTF \l_@@_style_better_new_roman_bool {
+    \defaultfontfeatures[TeX~Gyre~Termes]
+    {
+     Extension      = .otf ,
+     UprightFont    = texgyretermes-regular,
+     BoldFont       = texgyretermes-bold,
+     ItalicFont     = texgyretermes-italic,
+     BoldItalicFont = texgyretermes-bolditalic,
+    }
+    \setmainfont{TeX~Gyre~Termes}
+  }{
+    \setmainfont{Times~New~Roman}
+    \setromanfont{Times~New~Roman}
+  }
+}
 %    \end{macrocode}
 %
 % \begin{macro}{\@@_font_path:}
