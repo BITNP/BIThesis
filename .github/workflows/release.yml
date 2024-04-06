@@ -187,3 +187,32 @@ jobs:
           echo "🎉 Successfully upload
           ${{ steps.version.outputs.number }} (${{ steps.version.outputs.date }})
           to [CTAN](https://www.ctan.org/pkg/bithesis)." >> "$GITHUB_STEP_SUMMARY"
+
+  changelog:
+    name: Update changelog
+    runs-on: ubuntu-latest
+    if: ${{ ! github.event.release.prerelease }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v3
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          set +e
+          git add CHANGELOG.md
+          git commit -m "Update changelog"
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/BITNP/BIThesis.git ${{ github.event.repository.default_branch }}
