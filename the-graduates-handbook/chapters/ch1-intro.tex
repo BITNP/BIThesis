@@ -103,9 +103,27 @@ Overleaf 是一个在线的 \LaTeX{} 编辑器，可以直接在网页上进行 
     \end{itemize}
 \end{itemize}
 
-因此，需要使用者根据自己的需求进行选择。此外，我们的模板上传到 Overleaf 以后，需
-要修改项目配置才能正常编译：
-\begin{enumerate}[noitemsep]
-  \item 选择左上角 \texttt{Menu} 以打开侧边栏。
-  \item 修改 \texttt{Settings} 中 \texttt{Compiler} 一项的值为 \texttt{XeLaTeX}（默认为 \texttt{pdfLaTeX}）。
+因此，需要使用者根据自己的需求进行选择。
+
+\section{如何将自己电脑上的论文转到 Overleaf}
+
+\ref{sec:overleaf-compile} 节介绍了如何从 \url{https://bithesis.bitnp.net} 新建项目，那样通常更简单；不过若您已在本地用了模板，想转到 Overleaf（例如为了调试），请参考此节。
+
+\begin{enumerate}
+  \item 按网页提示上传文件到 Overleaf，注意\textbf{避免嵌套文件夹}。
+
+    （原因：嵌套文件夹可能导致无法统计字数；不过不影响编译。）
+
+    参考图\ref{fig:overleaf-recompile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \texttt{graduate-thesis/} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
+
+    详细操作如下。访问 \url{https://www.overleaf.com/project}，单击左上角\texttt{New Project}，然后有下面两种方法。
+
+    \begin{itemize}
+      \item 选择\texttt{Blank Project}，稍等片刻。待创建完成后，选择左上角\texttt{Upload}按钮，逐一上传文件（\texttt{Select files}）或一次性上传文件夹（\texttt{Select a folder}）。
+      \item 将自己电脑中的文件夹打包成ZIP，通过\texttt{Upload Project}上传ZIP文件。
+    \end{itemize}
+
+  \item 单击左上角 \texttt{Menu} 打开侧边栏，找到 \texttt{Settings} 一段，\textbf{将 \texttt{Compiler} 一项的值改为 \texttt{XeLaTeX}}。
+
+    （原因：默认的 \texttt{pdfLaTeX} 几乎不支持汉字，不修改则无法正常编译。）
 \end{enumerate}
