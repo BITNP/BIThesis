@@ -112,6 +112,7 @@ grad: doc copy FORCE_MAKE
 		echo -e "\e[32mFor example: make grad version=1.0.0\e[0m"; \
 		exit 1; \
 	fi
+	rm -rf ${GRAD_DEST_DIR}-${version} ${GRAD_DEST_DIR}-${version}.zip
 	cd ./the-graduates-handbook && latexmk && cd -
 	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && latexmk -c && cd -
 	mkdir ${GRAD_DEST_DIR}-${version}
