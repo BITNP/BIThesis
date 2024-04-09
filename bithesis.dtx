@@ -691,7 +691,14 @@
     tabularFontSize .tl_set:N = \l_@@_misc_tabular_font_size_tl,
     tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
-    autoref / algo .tl_set:N = \algoautorefname,
+    autoref / algo .code:n = {
+      % 定义算法的 autoref
+      \tl_set:Nn \algorithmautorefname {#1}
+      % 定义算法标题
+      \AtBeginDocument{
+        \tl_set:Nn \ALG@name {#1}
+      }
+    },
     autoref / algo .initial:n = {\g_@@_const_autoref_algo_tl},
     autoref / them .tl_set:N = \themautorefname,
     autoref / them .initial:n = {\g_@@_const_autoref_them_tl},
@@ -1560,12 +1567,14 @@
   \captionsetup[table]{font=small,labelsep=quad}
   % 其它 caption 也参照上述格式
   \captionsetup[lstlisting]{font=small,labelsep=quad}
+  \captionsetup[algorithm]{font=small,labelsep=quad}
 } {
   \tl_set:Nn \g_@@_label_divide_char_tl {-}
   % 本科生模板无 caption 字距要求
   \captionsetup[figure]{font=small,labelsep=space}
   \captionsetup[table]{font=small,labelsep=space}
   \captionsetup[lstlisting]{font=small,labelsep=space}
+  \captionsetup[algorithm]{font=small,labelsep=space}
 }
 %    \end{macrocode}
 % 
@@ -1585,6 +1594,10 @@
 \AtBeginDocument{
   \cs_gset:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
+  
+  % 算法变成「章节号-序号」
+  \cs_gset:Npn \thealgorithm
+  {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
   
   % 默认的情况下，保留公式和上下文的一定间距。（会比 Word 稍宽一些）
   \setlength{\abovedisplayskip}{\l_@@_style_math_above_display_skip_dim}
