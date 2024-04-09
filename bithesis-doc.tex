@@ -1154,13 +1154,24 @@ publications/(*\meta{key}*) = (*\meta{value}*)
 sorting = (*(true)|false*)
 \end{bitsyntax}
 
-根据学校要求，攻读学位期间发表论文与研究成果清单
-中的论文应按照发表时间排序。
-但是在实际使用中，有时候需要按照用户意愿自定义排序。
+学校要求「攻读学位期间发表论文与研究成果清单」中的论文按发表时间排序，
+但实际可能有别的需求，想自定义排序。
 该选项用于控制是否按照发表时间排序。
 
+您大致有以下三种选择。
+
+\begin{itemize}
+  \item 完全按发表时间排序——保留默认的 |true| 即可。（严格来说，这是按年份、姓名、标题排序。）
+
+  \item 完全手动指定顺序——修改为 |false|。这样会按照 |\addpubs| 或 |\addpub| 引用顺序来排。
+
+  \item 在发表时间顺序上微调，把个别的提到最前——保留默认的 |true|，同时在 |*.bib| 文件中给个别项加上 |sortkey| 字段。
+
+    具体例子可参考 \href{https://github.com/BITNP/BIThesis/discussions/407#discussioncomment-8630685}{GitHub Discussion \#407}，详细解释可参考 \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015 宏包手册（中文）}或 \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex 宏包手册（英文）}。
+\end{itemize}
+
 \textit{注意，如果编译后编号产生错误，
-请使用 |latexmk -c| 或手动清空缓存后再编译}
+请使用 |latexmk -c| 或手动清空缓存后再编译。}
 \end{function}
 
 \begin{function}{publications/omit}
