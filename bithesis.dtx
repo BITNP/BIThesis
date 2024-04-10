@@ -721,6 +721,9 @@
     autoref / table .initial:n = {\g_@@_const_autoref_tab_tl},
     autoref / equ .tl_set:N = \equationautorefname,
     autoref / equ .initial:n = {\g_@@_const_autoref_equ_tl},
+    % 浮动体与正文之间的距离
+    floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
+    floatSeparation .initial:n = {0},
   }
 %    \end{macrocode}
 %    
@@ -1005,7 +1008,10 @@
 % 根据学校的要求，在本科生模板图片前后加上一行空白。
 %    \begin{macrocode}
 \@@_if_bachelor_thesis:T {
+  % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
   \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+  % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
+  \setlength{\textfloatsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 }
 %    \end{macrocode}
 %
@@ -1548,8 +1554,18 @@
 %    \begin{macrocode}
 \@@_if_graduate:TF {
   \tl_set:Nn \g_@@_label_divide_char_tl {.}
+  % 研究生模板要求 "图序和图题间空1个中文字距"
+  \captionsetup[figure]{font=small,labelsep=quad}
+  % 研究生模板要求 "表序和题目间空1个中文字距"
+  \captionsetup[table]{font=small,labelsep=quad}
+  % 其它 caption 也参照上述格式
+  \captionsetup[lstlisting]{font=small,labelsep=quad}
 } {
   \tl_set:Nn \g_@@_label_divide_char_tl {-}
+  % 本科生模板无 caption 字距要求
+  \captionsetup[figure]{font=small,labelsep=space}
+  \captionsetup[table]{font=small,labelsep=space}
+  \captionsetup[lstlisting]{font=small,labelsep=space}
 }
 %    \end{macrocode}
 % 
@@ -1558,11 +1574,9 @@
 %    \begin{macrocode}
 % 图片：五号字。
 \cs_set:Npn \thefigure {\thechapter\g_@@_label_divide_char_tl\arabic{figure}}
-\captionsetup[figure]{font=small,labelsep=space}
 
 % 表格：五号字。
 \cs_set:Npn \thetable {\thechapter\g_@@_label_divide_char_tl\arabic{table}}
-\captionsetup[table]{font=small,labelsep=space}
 
 % equation
 \cs_set:Npn \theequation {\thechapter\g_@@_label_divide_char_tl\arabic{equation}}
@@ -1577,9 +1591,10 @@
   \setlength{\abovedisplayshortskip}{\l_@@_style_math_above_display_skip_dim}
   \setlength{\belowdisplayskip}{\l_@@_style_math_below_display_skip_dim}
   \setlength{\belowdisplayshortskip}{\l_@@_style_math_below_display_skip_dim}
-  %
+  % 调整浮动体与文字之间的距离
+  \addtolength{\intextsep}{\l_@@_misc_float_separation_tl\baselineskip}
+  \addtolength{\textfloatsep}{\l_@@_misc_float_separation_tl\baselineskip}
 }
-\captionsetup[lstlisting]{font=small,labelsep=space}
 %    \end{macrocode}
 % \end{macro}
 % 
