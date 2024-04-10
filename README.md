@@ -42,9 +42,7 @@ BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学�
 > 研究生院在 2024-03-20 发布了新的研究生模板，本项目已经根据最新模板更新，请同学们使用 v3.7.0 及以上的 BIThesis 模板。
 
 > [!NOTE]
-> 本项目获得了 [北京理工大学教务部](http://jwb.bit.edu.cn/)、[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
-> 
-> **研究生模板正在完成与研究生院的沟通。[__（进度详情）__](https://github.com/BITNP/BIThesis/issues/163)**
+> 本项目获得了[北京理工大学研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)、[北京理工大学教务部](http://jwb.bit.edu.cn/)和[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
 > [!WARNING]
 > 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
@@ -75,7 +73,6 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 [![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 
-
 <h2>内容</h2>
 
 - [项目内容](#项目内容)
@@ -97,7 +94,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 2. 根据需要，下载[最新的 Releases](https://github.com/BITNP/BIThesis/releases/latest)。
 3. 开始撰写。
 
->  或者使用 [Overleaf 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
+> 或者使用 [Overleaf 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
 
 ## 开发者指南
 
@@ -108,11 +105,11 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 ## 参考规范
 
 - 本科生
-  - [北京理工大学教务部 - 关于2023届本科生毕业设计（论文）工作安排的通知](https://jwb.bit.edu.cn//tzgg/9b6fd5d2adda4185bafe988347225292.htm) 
+  - [北京理工大学教务部 - 关于2023届本科生毕业设计（论文）工作安排的通知](https://jwb.bit.edu.cn//tzgg/9b6fd5d2adda4185bafe988347225292.htm)
   - 《本科-全英文 Thesis Format 2022》
   - 《本科-全英文 Thesis Sample 2021 with signature》
 - 研究生
-  - [北京理工大学研究生院 - 研究生学位论文模版](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b119746.htm) 
+  - [北京理工大学研究生院 - 研究生学位论文模版](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b119746.htm)
   - 《北京理工大学研究生学位论文撰写规范》
 
 ## 贡献者指南
@@ -136,11 +133,10 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 发布状态
 
-| CI             | Build status                                                                                                                                                                              |
-| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)][releases]                                |
-| Vercel Deploy | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments)               |
-
+| CI             | Build status                                                                                                                                                                        |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub Release | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/BITNP/BIThesis?style=flat-square)][releases]                                                            |
+| Vercel Deploy  | [![Vercel Status](https://img.shields.io/github/deployments/fky2015/BIThesis-wiki/production?label=vercel&style=flat-square)](https://vercel.com/fkynjyq/bithesis-wiki/deployments) |
 
 ![Alt](https://repobeats.axiom.co/api/embed/ab8b841962ee6e9bcf77a228815534b7a35fbbe9.svg "Repobeats analytics image")
 
