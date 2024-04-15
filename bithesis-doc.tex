@@ -1532,7 +1532,12 @@ addTOC = (*<(true)|false>*)
   (*\meta{证明过程}*)
 \end{proof}
 \end{bitsyntax}
+
   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
+
+  其中提供了算法环境 |algo|，但模板也适配了
+  \href{https://www.overleaf.com/learn/latex/Algorithms}{Overleaf}
+  介绍的 |algorithm|+X 方式或 |algorithm2e| 方式，您引入相关宏包即可使用。只需注意这三种方法并不兼容，而且采用 |algorithm2e| 方式时，要加上选项 |algochapter| 才能按学校要求分章编号（例如 |\usepackage[ruled,algochapter]{algorithm2e}|）。
 \end{function}
 
 \begin{table}[]
