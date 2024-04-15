@@ -692,11 +692,16 @@
     tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
     autoref / algo .code:n = {
-      % 定义算法的 autoref
-      \tl_set:Nn \algorithmautorefname {#1}
-      % 定义算法标题
       \AtBeginDocument{
+        % 定义算法标题
+        % 针对 algorithm 宏包
         \tl_set:Nn \ALG@name {#1}
+        % 针对 algorithm2e 宏包
+        \tl_set:Nn \algorithmcfname {#1}
+
+        % 定义算法的 autoref
+        % algorithm2e 宏包会覆写它，所以我们必须AtBeginDocument时再修改
+        \tl_set:Nn \algorithmautorefname {#1}
       }
     },
     autoref / algo .initial:n = {\g_@@_const_autoref_algo_tl},
@@ -1596,8 +1601,16 @@
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
   
   % 算法变成「章节号-序号」
+  % 针对 algorithm 宏包
   \cs_gset:Npn \thealgorithm
   {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
+  % 针对 algorithm2e 宏包
+  % 为了减少修改，我们只适配按章编号（algochapter）的情况。
+  \@ifpackagewith{algorithm2e}{algochapter}{
+    % 名字中的“cf”是指其作者 Christophe Fiorio。
+    \cs_gset:Npn \thealgocf
+    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algocf}}
+  }{}
   
   % 默认的情况下，保留公式和上下文的一定间距。（会比 Word 稍宽一些）
   \setlength{\abovedisplayskip}{\l_@@_style_math_above_display_skip_dim}
