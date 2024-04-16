@@ -140,6 +140,8 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ![Alt](https://repobeats.axiom.co/api/embed/ab8b841962ee6e9bcf77a228815534b7a35fbbe9.svg "Repobeats analytics image")
 
+[![Star History Chart](https://api.star-history.com/svg?repos=bitnp/bithesis&type=Date)](https://star-history.com/#bitnp/bithesis&Date)
+
 ---
 
 📖 **BIThesis** ©BITNP/BIThesis. Released under the [LaTeX Project Public License](LICENSE).
