@@ -1602,11 +1602,13 @@
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
   
   % 算法变成「章节号-序号」
+  % 为了减少修改，我们只适配按章编号的情况。
   % 针对 algorithm 宏包
-  \cs_gset:Npn \thealgorithm
-  {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
+  \@ifpackagewith{algorithm}{chapter}{
+    \cs_gset:Npn \thealgorithm
+    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
+  }
   % 针对 algorithm2e 宏包
-  % 为了减少修改，我们只适配按章编号（algochapter）的情况。
   \@ifpackagewith{algorithm2e}{algochapter}{
     % 名字中的“cf”是指其作者 Christophe Fiorio。
     \cs_gset:Npn \thealgocf

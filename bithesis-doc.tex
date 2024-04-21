@@ -1538,9 +1538,7 @@ addTOC = (*<(true)|false>*)
 
   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
 
-  其中提供了算法环境 |algo|，但模板也适配了
-  \href{https://www.overleaf.com/learn/latex/Algorithms}{Overleaf}
-  介绍的 |algorithm|+X 方式或 |algorithm2e| 方式，您引入相关宏包即可使用。只需注意这三种方法并不兼容，而且采用 |algorithm2e| 方式时，要加上选项 |algochapter| 才能按学校要求分章编号（例如 |\usepackage[ruled,algochapter]{algorithm2e}|）。
+  其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考 \ref{sec:algorithm}。
 \end{function}
 
 \begin{table}[]
@@ -1739,6 +1737,37 @@ addTOC = (*<(true)|false>*)
 \end{function}
 
 \section{常见问题和疑难解答}
+
+\subsection{如何排版算法（伪代码）？} \label{sec:algorithm}
+
+有以下三种互不兼容的方式。
+
+\begin{itemize}
+  \item |algorithm|+X 方式
+
+  引入 |algorithm| 宏包时，要加上选项 |chapter| 才能按学校要求分章编号，示例如下。
+
+\begin{bitsyntax}[emph={[1]chapter}]
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmic} % 也可替换为 algpseudocode 或 algcompatible
+\end{bitsyntax}
+
+  使用示例请参考 \href{https://www.overleaf.com/learn/latex/Algorithms}{Algorithms - Overleaf 文档}。
+
+  \item |algorithm2e| 方式
+
+  引入宏包时，要加上选项 |algochapter| 才能按学校要求分章编号，示例如下。
+
+\begin{bitsyntax}[emph={[1]algochapter}]
+\usepackage[ruled, algochapter]{algorithm2e}
+\end{bitsyntax}
+
+  使用示例请参考 \href{https://www.overleaf.com/learn/latex/Algorithms#The_algorithm2e_package}{Algorithms - Overleaf 文档的 The |algorithm2e| package 一节}。
+
+  \item 使用模板提供的 |algo| 环境
+
+  这是表~\ref{tab:theorem}中的数学环境之一，不额外依赖宏包，但功能有限，基本只支持编号。
+\end{itemize}
 
 \subsection{为什么我的研究生模板开头有间隔的空白页？}
 
