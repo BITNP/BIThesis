@@ -3978,7 +3978,6 @@
 % \RequirePackage{etoolbox}
 \RequirePackage{dirtree}
 \RequirePackage{metalogo}
-\RequirePackage[tightLists=false]{markdown}
 \RequirePackage{caption}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning}
@@ -3990,12 +3989,6 @@
  % 设置列表无间隔
 \usepackage{enumitem}
 \setlist{nosep}
-
-\markdownSetup{
-  renderers = {
-    link = {\href{#2}{#1}},
-  }
-}
 
 \hypersetup{
   pdflang     = zh-CN,
