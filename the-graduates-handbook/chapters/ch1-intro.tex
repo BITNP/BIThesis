@@ -73,6 +73,7 @@
 \TeX{}Shop），可直接使用。集成的编辑环境，比如 \TeX{}studio 也是推荐大家使用的。
 另外，比如 VS Code 和 Vim 等通用代码编辑器，也可以借助插件的安装，提升 \LaTeX{}
 的撰写体验。
+更具体的指南可参考\href{https://bithesis.bitnp.net/guide/configure-and-compile.html}{编辑器配置与模板编译 | BIThesis-wiki}。
 
 到此，我们其实就可以直接使用本模板，在自己的电脑上进行论文的编写了。如果想再了解
 有关在线编辑平台 Overleaf 的相关内容，请继续阅读~\ref{sec:online-overleaf} 节；
@@ -114,7 +115,7 @@ Overleaf 是一个在线的 \LaTeX{} 编辑器，可以直接在网页上进行 
 
     （原因：嵌套文件夹可能导致无法统计字数；不过不影响编译。）
 
-    参考图\ref{fig:overleaf-recompile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \texttt{graduate-thesis/} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
+    参考图\ref{fig:overleaf-recompile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \isGraduateTF{\texttt{graduate-thesis/}}{\texttt{undergraduate-thesis/}} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
 
     详细操作如下。访问 \url{https://www.overleaf.com/project}，单击左上角\texttt{New Project}，然后有下面两种方法。
 

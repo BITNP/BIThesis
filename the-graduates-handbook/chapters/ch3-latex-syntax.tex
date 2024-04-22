@@ -207,7 +207,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 \section{表格的例子}
 \label{sec:tab}
 
-表格的定义和引用就不多做介绍，表格内容包含在\textbackslash begin\{table\}和\textbackslash end\{table\}之间。这里给出一些表格的例子。
+表格的定义和引用就不多做介绍，表格内容包含在 \verb+\begin{table}+ 和 \verb+\end{table}+ 之间。这里给出一些表格的例子。
 
 \textbf{\href{https://www.tablesgenerator.com/}{Tables Generator}可以用于在线生成表格}
 
@@ -329,7 +329,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 的麻烦。
 当然，使用者也可以手动编参考文献item，直接插入文档中。但是，有BibLaTeX帮助，处理起参考文献更为简单。
 
-参考文献的具体内容就是reference文件夹下的\textit{main.bib}，
+参考文献的具体内容就是\isGraduateTF{\texttt{reference}文件夹下的\texttt{main.bib}}{\texttt{misc}文件夹下的\texttt{ref.bib}}，
 参考文献的元数据(名称、作者、出处等)以一定的格式保存在这些纯文本文件中。
 .bib文件也可以理解为参考文献的``数据库''，正文中所有引用的参考文件条目都会从这些文件中``析出''。
 控制参考文献条目``表现形式''(格式)的代码通过 main.tex 中的 \\ \verb|\usepackage[style=gb7714-2015,...]{biblatex}| 引入。
@@ -354,12 +354,12 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 
 \subsection{在正文中引用参考文献}
 
-\textit{如果想要按照章节分别管理参考文献，可以详见 biblatex中关于refsection 的部分。简单来说，就是使用 refsection 包裹一个章节的全部内容即可。但由于我校论文要求并非采用章节管理，因此不做赘述。}
+\textit{如果想要按照章节分别管理参考文献，可以详见 biblatex 中关于refsection 的部分。简单来说，就是\href{https://github.com/BITNP/BIThesis/discussions/435}{使用 refsection 包裹一个章节的全部内容}即可。但由于我校论文要求并非采用章节管理，因此不做赘述。}
 
 正文中引用参考文献时\cite{Jiang2005Size}，用\verb+\cite{key1,key2,key3...}+可以产生“上标引用的参考文献”，
 如\cite{Meta_CN,chen2007act,DPMG}。
 使用\verb+\parencite{key1,key2,key3...}+则可以产生水平引用的参考文献，例如\parencite{JohnD,zhubajie,IEEE-1363}。
-请看下面的例子，将会穿插使用水平的和上标的参考文献：关于书的\parencite{Meta_CN,JohnD,IEEE-1363}，关于期刊的\cite{chen2007act,chen2007ewi}，
+请看下面的例子，将会穿插使用水平的和上标的参考文献：\parencite{Meta_CN,JohnD,IEEE-1363}指出……，最近的工作\cite{chen2007act,chen2007ewi}聚焦在……，
 会议论文\cite{DPMG,kocher99,cnproceed}，
 硕士学位论文\cite{zhubajie,metamori2004}，博士学位论文\cite{shaheshang,FistSystem01,bai2008}，标准文件\cite{IEEE-1363}，技术报告\cite{NPB2}，电子文献\cite{xiaoyu2001, CHRISTINE1998}。
 

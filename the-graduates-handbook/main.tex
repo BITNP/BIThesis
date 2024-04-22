@@ -10,7 +10,7 @@
   % 采用章节标题级别的附录格式
   appendices / chapterLevel = true,
   style = {
-    head = \BIThesis 研究生学位论文 \LaTeX 模板快速使用指南,
+    head = \BIThesis \isGraduateTF{研究生学位论文}{本科生毕业设计（论文）} \LaTeX 模板快速使用指南,
     pageVerticalAlign = top,
     % 开启 Windows 平台下的中易宋体伪粗体。
     % windowsSimSunFakeBold = true,
@@ -65,6 +65,30 @@
 ]{biblatex}
 
 \addbibresource{reference/main.bib}
+
+\ExplSyntaxOn
+
+\NewDocumentCommand{\getenv}{om}
+ {
+  \sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+  \tl_trim_spaces:N \l_tmpa_tl
+  \IfNoValueTF { #1 }
+   {
+    \tl_use:N \l_tmpa_tl
+   }
+   {
+    \tl_set_eq:NN #1 \l_tmpa_tl
+   }
+ }
+
+ \tl_gset:Nn \GRADUATE {}
+ \getenv[\GRADUATE]{GRADUATE}
+
+ \NewDocumentCommand{\isGraduateTF}{ m m } {
+   \tl_if_eq:nnTF {\GRADUATE} { true } { #1 } { #2 }
+ }
+
+\ExplSyntaxOff
 
 \begin{document}
 

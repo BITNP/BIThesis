@@ -7,7 +7,7 @@
 
 \section{认识模板组成}
 
-\dirtree{%
+\isGraduateTF{\dirtree{%
 .1 /graduate-thesis/.
 .2 bithesis.pdf\DTcomment{\BIThesis 模板的使用手册}. 
 .2 bithesis.cls\DTcomment{模板类文件}. 
@@ -25,7 +25,22 @@
 .2 references/\DTcomment{包含了「参考文献」与「成果清单」中引用的参考文献}.
 .3 main.bib.
 .3 pub.bib.
-}
+}}{\dirtree{%
+.1 /undergraduate-thesis/.
+.2 bithesis.pdf\DTcomment{\BIThesis 模板的使用手册}. 
+.2 bithesis.cls\DTcomment{模板类文件}. 
+.2 latexmkrc\DTcomment{配置 latexmkrc 的编译选项}.
+.2 main.tex\DTcomment{入口文件}.
+.2 chapters/\DTcomment{正文内容文件夹}.
+.3 0\_abstract.tex\DTcomment{摘要}.
+.3 1\_chapter1.tex\DTcomment{章节一}.
+.3 \ldots{}.
+.2 images/\DTcomment{存放了一些图片，也可以在正文写作中用于存放图片}.
+.3 \ldots{}.
+.2 misc/\DTcomment{包含参考文献、结论等前置、后置内容}.
+.3 1\_originality.tex.
+.3 \ldots{}.
+}}
 
 在本模板提供的文件夹中，主要包含了上方所示的几个文件夹与文件。
 
@@ -38,7 +53,7 @@
 \subsection{入口文件 \texttt{main.tex}}
 
 \texttt{main.tex} 是本模板的入口文件，其中包含了本模板的所有配置信息，
-并引用了其余文件夹（\texttt{chapters/}、\texttt{figures/}、\texttt{references/}）的各个章节。在这里，我们可以进行个人信息的录入，
+并引用了其余文件夹（\texttt{chapters/}、\texttt{misc/}等）的各个章节。在这里，我们可以进行个人信息的录入，
 以及通过参数调整论文的各处格式。当然，每个参数的用法都已经
 在 \texttt{bithesis.pdf} 中进行了详细的说明。
 
@@ -46,7 +61,7 @@
 
 在 \texttt{main.tex} 的最上方，我们可以看到如下的代码：
 \begin{lstlisting}[language=TeX]
-\documentclass[master]{bithesis}
+\documentclass[…]{bithesis}
 \end{lstlisting}
 这里的\texttt{bithesis}引入的就是\texttt{bithesis.cls}文件，也就是本模板的类文件。
 该文件定义了本模板使用的所有格式，保证我们的论文符合学校的要求。
@@ -64,7 +79,7 @@
 \begin{enumerate}
   \item 在\texttt{main.tex}中填写个人信息，调整论文格式；
   \item 在\texttt{chapters/}文件夹中编写论文的各个章节；
-  \item 补充在\texttt{misc/}、\texttt{references/}文件夹中的其他内容。
+  \item 补充在\texttt{misc/}\isGraduateTF{、\texttt{references/}}{}文件夹中的其他内容。
 \end{enumerate}
 
 更棒的是，我们可以通过修改配置一键生成支持盲审的论文版本——一次写作，
@@ -72,7 +87,7 @@
 
 \section{个人信息录入}
 
-在 main.tex 中，我们可以看到如下的代码：
+在 \texttt{main.tex} 中，我们可以看到如下的代码：
 \begin{lstlisting}[language=TeX]
 \BITSetup{
   % ...
@@ -84,8 +99,6 @@
     author = 张三,
     major = 材料科学与工程,
     school = 材料学院,
-    degree = 工学硕士,
-    chairman = 王五教授,
     % ...
   },
   % ...
@@ -95,7 +108,7 @@
 这里的各个参数就是用于控制论文封面的个人信息的。
 在这里，我们用自己的信息替换掉这些默认参数，就可以生成自己的论文封面了。
 
-上方的 cover 参数中，date 一项用于自定义封面中的日期。如果不填写该参数，
+上方的 \texttt{cover} 参数中，\texttt{date} 一项用于自定义封面中的日期。如果不填写该参数，
 则默认使用当前的日期。
 
 是的，就是这么简单！
@@ -104,18 +117,18 @@
 
 \section{摘要和关键字}
 
-摘要内容，放置在 \texttt{chapters/} 文件夹中的 \texttt{abstract.tex} 文件中。
+摘要内容，放置在 \texttt{chapters/} 文件夹中的 \texttt{\isGraduateTF{}{0\_}abstract.tex} 文件中。
 其中，摘要的关键字可在 \texttt{main.tex} 中「信息录入」的部分进行配置。
 
 中英文摘要通过如下方式进行书写：
 
 \begin{lstlisting}[language=TeX]
 \begin{abstract}
-  本文......。
+  本文……
 \end{abstract}
 
 \begin{abstractEn}
-  In order to exploit.......
+  In order to exploit…
 \end{abstractEn}
 \end{lstlisting}
 
@@ -131,14 +144,23 @@
 
 \section{其他部分}
 
-在\texttt{misc/}文件夹中的各个文件与正文存在着下列的对应关系：
+\texttt{misc/}\isGraduateTF{和\texttt{reference/}}{}文件夹中各个文件与正文的对应关系如下：
 \begin{itemize}
-  \item \texttt{abstract.tex} 对应着摘要；
-  \item \texttt{conclusion.tex} 对应着结论；
-  \item \texttt{acknowledgements.tex} 对应着致谢；
-  \item \texttt{symbols.tex} 对应着符号表；
-  \item \texttt{pub.bib} 对应着「攻读学位期间发表论文与研究成果清单」中的成果；
-  \item \texttt{main.bib} 对应着「参考文献」中的文献。
+  \isGraduateTF{
+    \item \texttt{0\_symbols.tex} 对应符号表；
+    \item \texttt{1\_conclusion.tex} 对应结论；
+    \item \texttt{2\_reference.tex}、\texttt{main.bib} 分别对应「参考文献」一节和其中的文献；
+    \item \texttt{3\_appendices.tex} 对应附录；
+    \item \texttt{4\_pub.tex}、\texttt{pub.bib} 分别对应「攻读学位期间发表论文与研究成果清单」一节和其中的成果；
+    \item \texttt{5\_acknowledgements.tex} 对应致谢；
+    \item \texttt{6\_resume.tex} 对应博士学位论文需要的简历。
+  }{
+    \item \texttt{1\_originality.tex}、\texttt{1\_originality.pdf} 对应原创性声明；
+    \item \texttt{2\_conclusion.tex} 对应结论；
+    \item \texttt{3\_reference.tex}、\texttt{ref.bib} 分别对应「参考文献」一节和其中的文献；
+    \item \texttt{4\_appendix.tex} 对应附录；
+    \item \texttt{5\_acknowledgements.tex} 对应致谢。
+  }
 \end{itemize}
 
 由于在论文中，这些部分的样式固定且内容较短，因此我们
@@ -146,10 +168,11 @@
 文件中提供了示例内容，以供参考。相信你在阅读这些示例内容
 时，就已经知道了如何编写这些部分的内容了。
 
+\isGraduateTF{
 需要特殊注意的是，「成果清单」中的成果是通过引用 \texttt{pub.bib}
 中的文献来生成的。因此，如果你需要在「成果清单」中添加
-新的成果，那么你需要首先在 \texttt{pub.bib} 中添加新的文献条目。
-
+新的成果，那么你需要首先在 \texttt{pub.bib} 中添加新的文献条目。%
+%
 而如果你想要在盲审模式中隐藏自己的名字，那么你需要
 根据 pub.bib 中的示例以及注释说明，为每个文献条目添加并设置
  \texttt{author+an} 字段。
@@ -167,9 +190,9 @@
 \end{lstlisting}
 通过设置 \texttt{author+an} 字段，我们可以在盲审模式打开时，
 将自己的名字自动替换为「第一作者」。
-
+%
 更具体的用法，可以参考 \texttt{pub.bib} 的注释内容或者 \texttt{bithesis.pdf} 中的说明。
-
+}{}
 \subsection{交叉引用}
 
 \subsubsection{公式和图标引用}
@@ -206,7 +229,7 @@
 \BIThesis 论文模板使用 BibLaTeX 宏包管理参考文献，使用方法与普通的 BibTeX 宏包
 类似，但是更加强大。在使用时，请遵循以下步骤：
 \begin{enumerate}
-  \item 在 \texttt{references/main.bib} 中添加参考文献条目；
+  \item 在 \texttt{\isGraduateTF{references/main.bib}{misc/ref.bib}} 中添加参考文献条目；
   \item 在正文中使用 \verb|\cite{key}| 或 \verb|\parencite{key}| 等命令引用文献。
 \end{enumerate}
 
