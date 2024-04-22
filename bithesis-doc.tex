@@ -1031,13 +1031,16 @@ hyphen = (*(true)|false*)
 
 \end{function}
 
-\begin{function}[added=2023-10-22]{style/mathAboveDisplaySkip,style/mathBelowDisplaySkip}
+\begin{function}[added=2023-10-22,updated=2024-04-22]{style/mathAboveDisplaySkip,style/mathBelowDisplaySkip}
 \begin{bitsyntax}[emph={[1]mathBelowDisplaySkip,mathAboveDisplaySkip}]
-mathBelowDisplaySkip = (*(3pt)|任意长度*)
-mathAboveDisplaySkip = (*(3pt)|任意长度*)
+mathBelowDisplaySkip = (*(10pt)|任意长度*)
+mathAboveDisplaySkip = (*(10pt)|任意长度*)
 \end{bitsyntax}
 
-定义公式环境（如 \verb|\begin{equation}| ）到上下段落间的距离。
+定义数学公式环境（如 \verb|\begin{equation}| ）到上下段落间的距离。
+
+默认值设置为 10pt——一个比较美观的宽度。
+如果你更习惯 Word 文档的公式上下文距离，可以设置为一个更小的值（比如 3pt），反之亦然。
   
 \textit{请保证源码中的公式的环境（如}\verb|\begin{equation}|
   \textit{）与上一段落不要有空行。否则，公式和上文段落之间会有额外的空白。}
