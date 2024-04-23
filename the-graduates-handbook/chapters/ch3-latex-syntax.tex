@@ -1,50 +1,56 @@
-\chapter{公式、图像和表格}
+\chapter{公式、图表等文档元素}
 \label{chap:example}
 
-公式、图表和插图广泛使用于学位论文中，并且在正文内存在较多的交叉引用，对他们的高效处理也是\LaTeX{}的优势之一。公式、图表和插图在定义时的共同特点包含：定义中需要设定引用标签、设置图表名称。定义时，图表摆放位置并无要求，\LaTeX{}会根据文稿内容自动计算图表摆放位置，不会出现表格窜行的问题。
+\textit{
+通常可先跳过这章，有需求再回来翻。
+}
+
+公式、图像和表格广泛用于学位论文，且会被正文频繁交叉引用，\LaTeX{}也能对它们高效处理。若想引用这些内容，定义时要注意设定引用标签。此外，图表并无严格摆放位置要求，\LaTeX{}会参考文字内容上下浮动，尽量避免表格窜行等问题。
 
 \section{公式与数学环境}
 
 \subsection{公式及术语表}
 \label{sec:eqn}
 
-公式定义的内容包含在\verb|\begin{equation}|\verb|\end{equation}|之间。为方便，公式的编辑可以采用\textbf{在线的\LaTeX{}公式编辑器}（截至2023年，\href{https://www.latexlive.com/}{latexlive.com}可以视为一个不错的例子）。一般的\LaTeX{}编辑器如 TexStudio 也都会提供语法补全。
+公式有行内夹杂、独占整行两种。行内公式写在一对\verb|$|间，如 \verb|$m = \rho V$| 排版为 $m = \rho V$；独行公式则写在\verb|\begin{equation}|与\verb|\end{equation}|之间。
+
+为方便，可用 \href{https://www.latexlive.com/}{latexlive.com} 等网站\textbf{在线编辑}公式，或用 \href{https://mathpix.com/snipping-tool}{Mathpix Snipping Tool} 等\textbf{从图片转换}。一般的\LaTeX{}编辑器如 TeXstudio 也都会提供语法补全。
 
 {\bf{实例1：}} 以下是L-B非稳态流动升力模型，公式引用为公式\ref{eqn:LBmodel}。该公式的术语列表见 表 \ref{tab:LB-parameters}。
 \begin{equation}
- \label{eqn:LBmodel}
-   C_{L}=C_{L0}+C_{L\alpha }\left ( \frac{1+\sqrt{X}}{2} \right )\alpha 
+  \label{eqn:LBmodel}
+  C_{L} = C_{L0} + C_{L \alpha} \left( \frac{1+\sqrt{X}}{2} \right) \alpha 
 \end{equation}
 
 \begin{lstlisting}[language={[LaTeX]TeX}, caption={L-B非稳态流动升力模型}]
 \begin{equation}
- \label{eqn:LBmodel}
-   C_{L}=C_{L0}+C_{L\alpha }\left ( \frac{1+\sqrt{X}}{2} \right )\alpha 
+  \label{eqn:LBmodel}
+  C_{L} = C_{L0} + C_{L \alpha} \left( \frac{1+\sqrt{X}}{2} \right) \alpha 
 \end{equation}
 \end{lstlisting}
 
 \subsection{长公式排版}
 
 
-《Math mode》里有举一个长公式排版的例子如下。《Math mode》有十分丰富实用的例子，感兴趣的同学可以参考一下。
+\textit{Math mode} 有丰富实用例子，其中长公式一例如下，有需要的的同学可参考。
 
-\begin {multline}
-  \frac {1}{2}\Delta (f_{ij}f^{ij})=
-  2\left (\sum _{i<j}\chi _{ij}(\sigma _{i}-
-    \sigma _{j}) ^{2}+ f^{ij}\nabla _{j}\nabla _{i}(\Delta f)+\right .\\
-  \left .+\nabla _{k}f_{ij}\nabla ^{k}f^{ij}+
-    f^{ij}f^{k}\left [2\nabla _{i}R_{jk}-
-      \nabla _{k}R_{ij}\right ]\vphantom {\sum _{i<j}}\right )
+\begin{multline}
+  \frac{1}{2} \Delta (f_{ij} f^{ij}) =
+  2 \left(\sum_{i<j} \chi_{ij} (\sigma_{i} - \sigma_{j})^{2} +
+    f^{ij} \nabla_{j} \nabla_{i} (\Delta f) + \right. \\
+  \left. + \nabla_{k} f_{ij} \nabla^{k} f^{ij} + f^{ij} f^{k}
+    \left[2 \nabla_{i} R_{jk} - \nabla_{k} R_{ij} \right]
+    \vphantom {\sum_{i<j}} \right)
 \end{multline}
 
 \begin{lstlisting}[language={[LaTeX]TeX}, caption={长公式排版}]
-\begin {multline}
-  \frac {1}{2}\Delta(f_{ij}f^{ij})=
-  2\left(\sum_{i<j}\chi_{ij}(\sigma_{i}-
-    \sigma_{j}) ^{2}+ f^{ij}\nabla_{j}\nabla_{i}(\Delta f)+\right.\\
-  \left.+\nabla_{k}f_{ij}\nabla ^{k}f^{ij}+
-    f^{ij}f^{k}\left [2\nabla_{i}R_{jk}-
-      \nabla_{k}R_{ij}\right]\vphantom{\sum_{i<j}}\right )
+\begin{multline}
+  \frac{1}{2} \Delta (f_{ij} f^{ij}) =
+  2 \left(\sum_{i<j} \chi_{ij} (\sigma_{i} - \sigma_{j})^{2} +
+    f^{ij} \nabla_{j} \nabla_{i} (\Delta f) + \right. \\
+  \left. + \nabla_{k} f_{ij} \nabla^{k} f^{ij} + f^{ij} f^{k}
+    \left[2 \nabla_{i} R_{jk} - \nabla_{k} R_{ij} \right]
+    \vphantom {\sum_{i<j}} \right)
 \end{multline}
 \end{lstlisting}
 
@@ -88,7 +94,7 @@ algo(算法)，them(定理)，lem(引理)，prop(命题)，cor(推论)，defn(�
 
 \begin{lstlisting}[language={[LaTeX]TeX}, caption={定理环境}]
 \begin{them}[留数定理]
-假设$U$是复平面上的一个单连通开子集...... 
+假设$U$是复平面上的一个单连通开子集……
 \end{them}
 \end{lstlisting}
 
@@ -119,7 +125,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 
 最基本的图片插入示例可见图\ref{fig:diagram}，其代码如\ref{demo-figure1}所示。
 
-其中\verb+\centering+表示图片居中，\verb+\includegraphics[...]{...}+导入图片并制定图片大小，\verb+\caption{}+指定图片标题，而\verb+\label{...}+为图片加上引用标签。
+其中\verb+\centering+表示图片居中，\verb+\includegraphics[…]{…}+导入图片并指定图片大小，\verb+\caption{}+指定图片标题，而\verb+\label{…}+为图片加上引用标签。
 
 \begin{figure}
  \centering
@@ -163,8 +169,8 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 \subsection{长标题的换行}
 \label{sec:longcaption}
 
-图\ref{fig:longcaptionbad}和图\ref{fig:longcaptiongood}都有比较长图标题，通过对比发现，图\ref{fig:longcaptiongood}的换行效果更好一些。
-其中使用了minipage环境来限制整个浮动题的宽度。
+图\ref{fig:longcaptionbad}和图\ref{fig:longcaptiongood}的标题都比较长。对比可发现图\ref{fig:longcaptiongood}的标题换行效果更好一些，
+它使用了minipage环境来限制整个浮动体的宽度。
 
 不过在实际使用中，你可以根据排版的整体效果来自行决定。
 
@@ -327,10 +333,10 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 
 \BIThesis{}论文模板使用 \href{https://www.ctan.org/pkg/biblatex}{BibLaTeX} 处理参考文献。它的出现让我们摆脱手写参考文献条目
 的麻烦。
-当然，使用者也可以手动编参考文献item，直接插入文档中。但是，有BibLaTeX帮助，处理起参考文献更为简单。
+当然，使用者也可以手动编辑参考文献item，直接插入文档中。但是，有BibLaTeX帮助，处理起参考文献更为简单。
 
 参考文献的具体内容就是\isGraduateTF{\texttt{reference}文件夹下的\texttt{main.bib}}{\texttt{misc}文件夹下的\texttt{ref.bib}}，
-参考文献的元数据(名称、作者、出处等)以一定的格式保存在这些纯文本文件中。
+参考文献的元数据(名称、作者、出处等)以一定的格式保存在这些文本文件中。
 .bib文件也可以理解为参考文献的``数据库''，正文中所有引用的参考文件条目都会从这些文件中``析出''。
 控制参考文献条目``表现形式''(格式)的代码通过 main.tex 中的 \\ \verb|\usepackage[style=gb7714-2015,...]{biblatex}| 引入。
 按照学校要求，本模板使用的是国标GB/T 7714风格的参考文献析出格式（最新版本）。
@@ -366,7 +372,7 @@ i,j作为虚数单位时，也应该使用``直立体''，为了明显，还加�
 最后总结一些注意事项：
 \begin{itemize}
 \item  参考文献只有在正文中被引用了，才会在最后的参考文献列表中出现；
-\item  参考文献``数据库文件''.bib是纯文本文件，请使用~UTF-8~编码，不要使用~GBK~编码；
+\item  参考文献``数据库文件''.bib是文本文件，请使用~UTF-8~编码，不要使用~GBK~编码；
 \item  参考文献条目同样有“内容”和“表现形式”之分，这种可控性是BibLaTeX带来的。
 \end{itemize}
 
