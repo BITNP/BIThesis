@@ -1679,8 +1679,8 @@
 % 
 % 调整插图目录与表格目录的标题。
 %    \begin{macrocode}
-\cs_set:Npn \listfigurename {\@@_get_const:N {figure}}
-\cs_set:Npn \listtablename {\@@_get_const:N {table}}
+\cs_set:Npn \listfigurename {\currentpdfbookmark{\c__bithesis_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
+\cs_set:Npn \listtablename {\currentpdfbookmark{\c__bithesis_label_table_tl}{ch:tables}\@@_get_const:N {table}}
 %    \end{macrocode}
 % 
 % 预定义用户常用的证明环境。
@@ -1871,6 +1871,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \make_graduate_cover: {
   \cleardoublepage
+  \currentpdfbookmark{封面}{frontmatter:cover1}
   \begin{titlepage}
     {
       \heiti\zihao{5}
@@ -1899,6 +1900,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
+  \currentpdfbookmark{书脊}{frontmatter:paperback}
   \begin{titlepage}
    \vskip 5cm
    \begin{center}
@@ -1928,6 +1930,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
+  \currentpdfbookmark{中文题名页}{frontmatter:titlepage}
   \begin{titlepage}
       \begin{minipage}[t]{0.48\textwidth}
         % 密级、分类号
@@ -2025,6 +2028,7 @@
 % 制作英文封面页。
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_english_title_page: {
+  \currentpdfbookmark{英文题名页}{frontmatter:titlepageen}
   \begin{titlepage}
     \begin{center}
 
@@ -2108,8 +2112,13 @@
       % 原创性声明部分
       \begin{center}
         \@@_same_page:
+        \ctexset{
+          chapter = {
+            titleformat = {\heiti\zihao{-2}},
+          }
+        }
+        \currentpdfbookmark{\c_@@_graduate_label_originality_tl}{frontmatter:originality}
         \chapter*{
-          \heiti\zihao{-2}
           \c_@@_graduate_label_originality_tl
         }
       \end{center}
@@ -2128,8 +2137,13 @@
       % 使用授权声明部分。
       \begin{center}
         \@@_same_page:
+        \ctexset{
+          chapter = {
+            titleformat = {\heiti\zihao{-2}},
+          }
+        }
+        \currentpdfbookmark{\c_@@_graduate_label_authorization_tl}{frontmatter:originality1}
         \chapter*{
-          \heiti\zihao{-2}
           \c_@@_graduate_label_authorization_tl
         }
       \end{center}
@@ -2231,6 +2245,7 @@
     {
       {1}
       {
+        \currentpdfbookmark{封面}{frontmatter:cover}
         \begin{titlepage}
           \vspace*{16mm}
 
@@ -2479,6 +2494,7 @@
       {
         {1} 
         {
+          \currentpdfbookmark{声明}{frontmatter:originality}
           \pagestyle{BIThesis}
           \pagenumbering{gobble}
 
@@ -2629,6 +2645,8 @@
         \vspace{-8pt}
       }
 
+      % 添加目录书签
+      \currentpdfbookmark{\c__bithesis_label_toc_tl}{ch:toc}
       % 制作目录
       \tableofcontents
 
@@ -2692,8 +2710,8 @@
       \bool_if:NTF \l_@@_add_abstract_to_toc_bool {
         \chapter{\c_@@_label_abstract_tl}
       } {
-        \chapter*{\c_@@_label_abstract_tl}
         \currentpdfbookmark{\c_@@_label_abstract_tl}{ch:abstract}
+        \chapter*{\c_@@_label_abstract_tl}
       }
     }
     \vspace*{1mm}
@@ -2769,8 +2787,8 @@
       \bool_if:nTF {\l_@@_add_abstract_en_to_toc_bool} {
         \chapter{\c_@@_label_abstract_en_tl}
       } {
-        \chapter*{\c_@@_label_abstract_en_tl}
         \currentpdfbookmark{\c_@@_label_abstract_en_tl}{ch:abstract:en}
+        \chapter*{\c_@@_label_abstract_en_tl}
       }
     }
   }
