@@ -1607,7 +1607,7 @@
   \@ifpackagewith{algorithm}{chapter}{
     \cs_gset:Npn \thealgorithm
     {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
-  }
+  }{}
   % 针对 algorithm2e 宏包
   \@ifpackagewith{algorithm2e}{algochapter}{
     % 名字中的“cf”是指其作者 Christophe Fiorio。
