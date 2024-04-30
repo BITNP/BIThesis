@@ -733,9 +733,11 @@
     autoref / table .initial:n = {\g_@@_const_autoref_tab_tl},
     autoref / equ .tl_set:N = \equationautorefname,
     autoref / equ .initial:n = {\g_@@_const_autoref_equ_tl},
-    % 浮动体与正文之间的距离
+    % 浮动体相关的各种间距
     floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
     floatSeparation .initial:n = {0},
+    tabularRowSeparation .tl_set:N = \l_@@_misc_tabular_row_separation_tl,
+    tabularRowSeparation .initial:n = {1},
   }
 %    \end{macrocode}
 %    
@@ -1623,6 +1625,8 @@
   % 调整浮动体与文字之间的距离
   \addtolength{\intextsep}{\l_@@_misc_float_separation_tl\baselineskip}
   \addtolength{\textfloatsep}{\l_@@_misc_float_separation_tl\baselineskip}
+  % 调整表格各行之间的距离
+  \cs_set:Npn \arraystretch {\l_@@_misc_tabular_row_separation_tl}
 }
 %    \end{macrocode}
 % \end{macro}

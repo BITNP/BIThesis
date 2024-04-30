@@ -1332,6 +1332,21 @@ floatSeparation = (*(0)|\marg{实数}*)
 
 \end{function}
 
+\begin{function}[added=2024-04-30]{misc/tabularRowSeparation}
+\begin{bitsyntax}[emph={[1]tabularRowSeparation}]
+tabularRowSeparation = (*(1)|\marg{正实数}*)
+\end{bitsyntax}
+
+  \textit{此选项一般不需要用户自行修改。}
+
+  此选项用于调整表格各行之间的距离，允许小数。默认值为1，相当于不调整。
+
+  学校没有明文规定，不过设为1.25更接近本科Word模板实作，设为1.6更接近硕博Word模板实作。
+
+  \textit{请在导言区使用此选项。}
+
+\end{function}
+
 \subsubsection{常量名称覆盖}
 \label{sec:const}
 
