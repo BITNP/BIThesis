@@ -1550,14 +1550,21 @@
   \@@_if_thesis_english:TF {
     \setlength{\belowcaptionskip}{9pt}
   } {
-    % 为了满足 “前后一行空白的问题”，需要删除 Caption 下方的间距。
+    % 为了满足 “前后一行空白的问题”，需要删除 caption 下方的间距。
     % 详见 `caption` 宏包手册和
     % https://github.com/CTeX-org/forum/issues/86
     % 
     % 这里实际的 skip 在 15pt 左右，但是全部移除会导致当图片置于页面顶部时，
     % 图片与上方的间距过小，因此这里只移除 5pt。
-    % 当然，这样会导致文本间的图片的 Caption 下方的间距微微大于一行。
+    % 当然，这样会导致文本间的图片的 caption 下方的间距微微大于一行。
+    %
+    % 至于表格，虽然其caption位置在上方（而图片是在下方），
+    % 但 `caption` 宏包已考虑这种区别，统一设置 `belowskip` 即可。
     \captionsetup{belowskip=-5pt}
+
+    % 此外在浮动体内部，调整表格 caption 和表格本体间的距离。
+    % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
+    \captionsetup[table]{skip=5pt}
   }
 } {
   % 而研究生模板不存在这个问题。
