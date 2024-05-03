@@ -113,8 +113,8 @@ jobs:
           asset_name: ${{ matrix.cls }}.cls
           tag: ${{ github.ref }}
 
-  update_changelog:
-    name: Generate changelog
+  release_notes:
+    name: Populate release notes with latest changelog
     runs-on: ubuntu-latest
     # Makesure it's the last job.
     needs: [build, publish_cls, publish_templates]
@@ -189,7 +189,7 @@ jobs:
           to [CTAN](https://www.ctan.org/pkg/bithesis)." >> "$GITHUB_STEP_SUMMARY"
 
   changelog:
-    name: Update changelog
+    name: Update CHANGELOG
     runs-on: ubuntu-latest
     if: ${{ ! github.event.release.prerelease }}
     steps:
@@ -199,7 +199,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
 
-      - name: Generate a changelog
+      - name: Update CHANGELOG
         uses: orhun/git-cliff-action@v3
         with:
           config: cliff.toml
@@ -208,11 +208,20 @@ jobs:
           OUTPUT: CHANGELOG.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit
+      - name: Create a PR
+        # Changes must be made through the merge queue, therefore a PR is necessary.
+        id: pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: Update CHANGELOG for ${{ github.event.release.tag_name }}
+          title: Update CHANGELOG for ${{ github.event.release.tag_name }}
+
+      - name: Report status
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          set +e
-          git add CHANGELOG.md
-          git commit -m "Update changelog"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/BITNP/BIThesis.git ${{ github.event.repository.default_branch }}
+          echo "[Pull request #${{ steps.pr.outputs.pull-request-number }}](${{ steps.pr.outputs.pull-request-url }}) is created to update CHANGELOG." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Merge the PR
+        run: |
+          gh pr merge ${{ steps.pr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
