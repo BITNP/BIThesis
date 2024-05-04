@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
@@ -64,7 +64,7 @@ jobs:
             cls: bithesis
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v3
         with:
@@ -100,7 +100,7 @@ jobs:
         cls: [bithesis, bitreport, bitbeamer]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download *.cls
         uses: actions/download-artifact@v3
         with:
@@ -136,7 +136,7 @@ jobs:
           OUTPUT: CHANGES.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download PDF(s)
         uses: actions/download-artifact@v3
         with:
