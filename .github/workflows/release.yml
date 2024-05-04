@@ -66,11 +66,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download bithesis.pdf
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: bithesis
       - name: Download `*.cls`
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: cls
       - name: Copy manual to the template folder.
@@ -102,7 +102,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download *.cls
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: cls
       - name: Upload ${{ matrix.cls }}.cls to release
@@ -138,7 +138,7 @@ jobs:
 
       - uses: actions/checkout@v4
       - name: Download PDF(s)
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: bithesis
 
@@ -160,7 +160,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download bithesis.pdf
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: bithesis
       - run: make pkg-only
