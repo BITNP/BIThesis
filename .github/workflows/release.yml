@@ -20,12 +20,12 @@ jobs:
             fc-cache -f
             make doc
       - name: Upload bithesis.pdf for later usage.
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bithesis
           path: bithesis.pdf
       - name: Upload *.cls for later usage.
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cls
           path: "*.cls"
