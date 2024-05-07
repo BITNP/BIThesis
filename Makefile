@@ -55,7 +55,8 @@ test: doc copy FORCE_MAKE
 	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
 	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
 	cd $(TESTDIR)/autorefs && latexmk && cd ..
-	cd ./the-graduates-handbook && latexmk && cd ..
+	cd ./the-graduates-handbook && latexmk && latexmk -c \
+		&& GRADUATE=true latexmk && cd ..
 
 regression-test: cls
 	$(REGRESSION_TEST_COMMAND)
