@@ -25,6 +25,11 @@ jobs:
         with:
           name: bithesis
           path: bithesis.pdf
+      - name: Upload handbooks for later usage.
+        uses: actions/upload-artifact@v4
+        with:
+          name: handbooks
+          path: "the-graduates-handbook/*.pdf"
       - name: Upload *.cls for later usage.
         uses: actions/upload-artifact@v4
         with:
@@ -115,7 +120,7 @@ jobs:
           tag: ${{ github.ref }}
 
   release_notes:
-    name: Populate release notes with latest changelog
+    name: Populate release notes with latest changelog and PDFs
     runs-on: ubuntu-latest
     # Makesure it's the last job.
     needs: [build, publish_cls, publish_templates]
@@ -138,12 +143,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/checkout@v4
-      - name: Download PDF(s)
+
+      - name: Download bithesis.pdf
         uses: actions/download-artifact@v4
         with:
           name: bithesis
-
-      - name: Upload the releases notes
+      - name: Upload bithesis.pdf and changelog
         uses: svenstaro/upload-release-action@v2
         with:
           file: bithesis.pdf
@@ -152,6 +157,24 @@ jobs:
           overwrite: true
           body: |
             ${{ steps.git-cliff.outputs.content }}
+
+      - name: Download handbooks
+        uses: actions/download-artifact@v4
+        with:
+          name: handbooks
+          path: the-graduates-handbook
+      - name: Upload undergraduate-handbook
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: the-graduates-handbook/undergraduate-handbook.pdf
+          tag: ${{ github.ref }}
+      - name: Upload graduate-handbook
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: the-graduates-handbook/graduate-handbook.pdf
+          tag: ${{ github.ref }}
 
   upload_to_ctan:
     name: Upload to CTAN
