@@ -177,17 +177,7 @@
 根据 pub.bib 中的示例以及注释说明，为每个文献条目添加并设置
  \texttt{author+an} 字段。
 比如，如果作为张三的你的文献条目为：
-\begin{lstlisting}[language=TeX]
-@article{zhang2021,
-  author = {张三 and 李四 and 王五},
-  title = {论文标题},
-  journal = {期刊名},
-  year = {2021},
-  volume = {1},
-  pages = {1--10},
-  author+an = {1:myself="\Author"},
-}
-\end{lstlisting}
+\lstinputlisting[language=TeX]{chapters/ch2-example-pub.bib}
 通过设置 \texttt{author+an} 字段，我们可以在盲审模式打开时，
 将自己的名字自动替换为「第一作者」。
 %
