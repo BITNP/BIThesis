@@ -92,8 +92,12 @@
  \tl_gset:Nn \GRADUATE {}
  \getenv[\GRADUATE]{GRADUATE}
 
+  % 若为研究生，显示第一个参数；若为本科生，显示第二个参数。
+  % 命令内部不能使用 lstlisting 环境，原因如下。可用 \lstinputlisting 绕开。
+  % Verbatim material can't be placed in a macro argument because then the material got already parsed by TeX and the switching to verbatim mode comes to late.
+  % https://tex.stackexchange.com/a/122055
  \NewDocumentCommand{\isGraduateTF}{ m m } {
-   \tl_if_eq:nnTF {\GRADUATE} { true } { #1 } { #2 }
+   \str_if_eq:VnTF \GRADUATE { true } { #1 } { #2 }
  }
 
 \ExplSyntaxOff
