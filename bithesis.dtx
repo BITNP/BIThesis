@@ -1489,9 +1489,12 @@
   % 不过，在目前的代码实现中没有在封面
   % 之类的地方使用表格，所以目前即使放在
   % preamble 中也不会有影响。
-  \AtBeginEnvironment{tabular}{\zihao{\l_@@_misc_tabular_font_size_tl}}
-  \AtBeginEnvironment{tabular*}{\zihao{\l_@@_misc_tabular_font_size_tl}}
-  \AtBeginEnvironment{tabularx}{\zihao{\l_@@_misc_tabular_font_size_tl}}
+  %
+  % 调整表格各行之间的距离
+  \AtBeginEnvironment{tabular}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
+  \AtBeginEnvironment{tabular*}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
+  \AtBeginEnvironment{tabularx}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
+  \AtBeginEnvironment{longtable}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1632,8 +1635,6 @@
   % 调整浮动体与文字之间的距离
   \addtolength{\intextsep}{\l_@@_misc_float_separation_tl\baselineskip}
   \addtolength{\textfloatsep}{\l_@@_misc_float_separation_tl\baselineskip}
-  % 调整表格各行之间的距离
-  \cs_set:Npn \arraystretch {\l_@@_misc_tabular_row_separation_tl}
 }
 %    \end{macrocode}
 % \end{macro}
