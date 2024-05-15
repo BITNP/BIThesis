@@ -1461,6 +1461,8 @@
     {\hspace{.5em}\titlerule*{.}\contentspage}
 %    \end{macrocode}
 % 
+%  \subsubsection{定义样式相关函数}
+%
 % \begin{macro}{\frontmatter}
 % 定义前置内容的页面样式。
 %    \begin{macrocode}
@@ -1481,7 +1483,7 @@
   \linespread{1.53}\selectfont
   \pagestyle{BIThesis}
   
-  % 表格内容默认使用五号字。
+  % 调整表格内容字号（默认五号）和各行之间的距离。
   % 
   % 由于这种方式会影响所有的表格，
   % 所以我们尽可能延迟这种影响。
@@ -1490,11 +1492,22 @@
   % 之类的地方使用表格，所以目前即使放在
   % preamble 中也不会有影响。
   %
-  % 调整表格各行之间的距离
-  \AtBeginEnvironment{tabular}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
-  \AtBeginEnvironment{tabular*}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
-  \AtBeginEnvironment{tabularx}{\zihao{\l_@@_misc_tabular_font_size_tl}\linespread{\l_@@_misc_tabular_row_separation_tl}\selectfont}
-  \AtBeginEnvironment{longtable}{\zihao{\l_@@_misc_tabular_font_size_tl}}
+  % 支持标准tabular、tabular*环境和宏包tabularx、longtable。
+  \clist_map_inline:nn 
+    {tabular, tabular*, tabularx, longtable}
+    {
+      \AtBeginEnvironment {##1} {
+        % 字号只想设置表格内容，不想影响caption。
+        % 一般caption在环境之外，自然不受影响；
+        % 而longtable的caption虽在环境内，但caption宏包能正常处理。
+        \zihao{\l_@@_misc_tabular_font_size_tl}
+        % 各行间距只想影响表格，不想影响矩阵，因此也必须在钩子中设置。
+        % 另外，longtable宏包已经调节了空隙，我们就不重复调节了。
+        \str_if_eq:nnF {##1} {longtable} {
+          \cs_set:Npn \arraystretch {\l_@@_misc_tabular_row_separation_tl}
+        }
+      }
+    }
 }
 %    \end{macrocode}
 % \end{macro}

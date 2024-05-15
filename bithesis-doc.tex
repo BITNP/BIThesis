@@ -1236,7 +1236,7 @@ arialFont = (*\marg{字符串}*)
   在 Windows 和 MacOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
 \end{function}
 
-\begin{function}[added=2023-04-22]{misc/tabularFontSize}
+\begin{function}[added=2023-04-22, updated=2024-05-13]{misc/tabularFontSize}
 \begin{bitsyntax}[emph={[1]tabularFontSize}]
 tabularFontSize = (*(5)|其他字号*)
 \end{bitsyntax}
@@ -1247,6 +1247,8 @@ tabularFontSize = (*(5)|其他字号*)
 
   如果你需要临时调整表格中的字号，可以使用 |\BITSetup| 命令
   在局部范围内覆盖此选项（注意使用大括号）。
+
+  此选项影响的“表格”具体包括标准 |tabular|、|tabular*| 环境，以及 |tabularx| 和 |longtable| 宏包提供的环境。
 
 \begin{latex}
 {
@@ -1332,7 +1334,7 @@ floatSeparation = (*(0)|\marg{实数}*)
 
 \end{function}
 
-\begin{function}[added=2024-04-30]{misc/tabularRowSeparation}
+\begin{function}[added=2024-04-30, updated=2024-05-13]{misc/tabularRowSeparation}
 \begin{bitsyntax}[emph={[1]tabularRowSeparation}]
 tabularRowSeparation = (*(1)|\marg{正实数}*)
 \end{bitsyntax}
@@ -1342,6 +1344,8 @@ tabularRowSeparation = (*(1)|\marg{正实数}*)
   此选项用于调整表格各行之间的距离，允许小数。默认值为1，相当于不调整。
 
   学校没有明文规定，不过设为1.25更接近本科Word模板实作，设为1.6更接近硕博Word模板实作。
+
+  此选项影响的“表格”具体包括标准 |tabular|、|tabular*| 环境，以及 |tabularx| 宏包提供的环境。并不影响 |longtable| 宏包提供的环境，因为宏包已经调节了。
 
   \textit{请在导言区使用此选项。}
 
