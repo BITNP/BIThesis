@@ -1334,6 +1334,23 @@ floatSeparation = (*(0)|\marg{实数}*)
 
 \end{function}
 
+\begin{function}[added=2024-05-20]{misc/algorithmSeparation}
+\begin{bitsyntax}[emph={[1]algorithmSeparation}]
+floatSeparation = (*(12pt plus 4pt minus 4pt)|\marg{长度}*)
+\end{bitsyntax}
+
+ \textit{此选项一般不需要用户自行修改。}
+
+ 此选项用于调整算法与正文之间的距离。距离用\href{https://www.overleaf.com/learn/latex/Lengths_in_LaTeX}{长度}表示，例如 |0.5em| 大致是半个字高。默认值更复杂一些，它表示以12点为基准，允许上下浮动4点。
+
+ （学校既无明文规定，也无实例。）
+
+ 此选项目前只支持 |algorithm2e| 宏包的 |algorithm| 环境。
+
+ \textit{请在导言区使用此选项。}
+
+\end{function}
+
 \begin{function}[added=2024-04-30, updated=2024-05-13]{misc/tabularRowSeparation}
 \begin{bitsyntax}[emph={[1]tabularRowSeparation}]
 tabularRowSeparation = (*(1)|\marg{正实数}*)
