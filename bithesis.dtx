@@ -1924,24 +1924,23 @@
   \cleardoublepage
   \currentpdfbookmark{书脊}{frontmatter:paperback}
   \begin{titlepage}
-   \vskip 5cm
-   \begin{center}
+    \centering
+    % 实现竖排——将水平宽度设得很窄，让文字自动换行，并改小行距
     \linespread{1.1}\selectfont
-    \begin{minipage}[t][19.7cm]{2em}
-      \begin{center}
-        {
-          \heiti\zihao{3}
-          \tl_if_blank:VTF \l_@@_value_vertical_title_tl 
-            {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
-        }
-          \vfill
-        {\heiti\zihao{3}\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl}}
-          \vfill
-        {\heiti\zihao{3}\c_@@_label_university_tl}
-      \end{center}
+    \begin{minipage}[c][19.7cm]{2em}
+      \centering
+      {
+        \heiti\zihao{3}
+        \tl_if_blank:VTF \l_@@_value_vertical_title_tl 
+          {\l_@@_value_title_tl}{\l_@@_value_vertical_title_tl}
+      }
+      \par
+      \vspace{1em plus 1fill}
+      {\heiti\zihao{3}\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl\quad\g_@@_const_substitute_symbol_tl}}
+      \par
+      \vspace{1em plus 1fill}
+      {\heiti\zihao{3}\c_@@_label_university_tl}
     \end{minipage}
-   \end{center}
-   % \vskip 5cm
   \end{titlepage}
 }
 %    \end{macrocode}
@@ -2620,9 +2619,20 @@
 %    \begin{macrocode}
 \NewDocumentCommand \MakePaperBack {}
   {
+    % 上下各留出规定的边距，到下一页再恢复。
+    % 若标题超长，自然会向上下溢出。
+    %
+    % 必须在顶层操作，不然影响不确定。
+    % https://tex.stackexchange.com/q/718581
+    %
+    % 单纯`\newgeometry`再`\restoregeometry`相当于仅仅`\clearpage`，也无问题。
+    \newgeometry{
+      vmargin = 5cm,
+    }
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
       \make_paper_back:
     \end{blindPeerReview}
+    \restoregeometry
   }
 %    \end{macrocode}
 % \end{macro}
