@@ -736,6 +736,8 @@
     % 浮动体相关的各种间距
     floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
     floatSeparation .initial:n = {0},
+    algorithmSeparation .tl_set:N = \l_@@_misc_algorithm_separation_tl,
+    algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt},
     tabularRowSeparation .tl_set:N = \l_@@_misc_tabular_row_separation_tl,
     tabularRowSeparation .initial:n = {1},
   }
@@ -1648,6 +1650,12 @@
   % 调整浮动体与文字之间的距离
   \addtolength{\intextsep}{\l_@@_misc_float_separation_tl\baselineskip}
   \addtolength{\textfloatsep}{\l_@@_misc_float_separation_tl\baselineskip}
+  % 调整算法与文字之间的距离
+  % 针对 algorithm2e 宏包
+  \@ifpackageloaded{algorithm2e}{
+    % 宏包手册介绍可自定义宏，再`\SetAlgoSkip`；我们为简洁，直接覆写。
+    \renewcommand{\@algoskip}{\vspace{\l_@@_misc_algorithm_separation_tl}}
+  }{}
 }
 %    \end{macrocode}
 % \end{macro}
