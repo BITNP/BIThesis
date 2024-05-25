@@ -1351,7 +1351,7 @@ floatSeparation = (*(12pt plus 4pt minus 4pt)|\marg{长度}*)
 
 \end{function}
 
-\begin{function}[added=2024-04-30, updated=2024-05-13]{misc/tabularRowSeparation}
+\begin{function}[added=2024-04-30, updated=2024-05-25]{misc/tabularRowSeparation}
 \begin{bitsyntax}[emph={[1]tabularRowSeparation}]
 tabularRowSeparation = (*(1)|\marg{正实数}*)
 \end{bitsyntax}
@@ -1362,7 +1362,7 @@ tabularRowSeparation = (*(1)|\marg{正实数}*)
 
   学校没有明文规定，不过设为1.25更接近本科Word模板实作，设为1.6更接近硕博Word模板实作。
 
-  此选项影响的“表格”具体包括标准 |tabular|、|tabular*| 环境，以及 |tabularx| 宏包提供的环境。并不影响 |longtable| 宏包提供的环境，因为宏包已经调节了。
+  此选项影响的“表格”具体包括标准 |tabular|、|tabular*| 环境，以及 |tabularx| 和 |longtable| 宏包提供的环境。
 
   \textit{请在导言区使用此选项。}
 
