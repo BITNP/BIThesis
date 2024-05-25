@@ -1495,6 +1495,10 @@
   % preamble 中也不会有影响。
   %
   % 支持标准tabular、tabular*环境和宏包tabularx、longtable。
+  %
+  % 为保证各种表格效果一致，要先手动重置setspace宏包漏掉的longtable；
+  \AtBeginEnvironment {longtable} {\singlespacing}
+  % 之后再统一设置。
   \clist_map_inline:nn 
     {tabular, tabular*, tabularx, longtable}
     {
@@ -1504,10 +1508,7 @@
         % 而longtable的caption虽在环境内，但caption宏包能正常处理。
         \zihao{\l_@@_misc_tabular_font_size_tl}
         % 各行间距只想影响表格，不想影响矩阵，因此也必须在钩子中设置。
-        % 另外，longtable宏包已经调节了空隙，我们就不重复调节了。
-        \str_if_eq:nnF {##1} {longtable} {
-          \cs_set:Npn \arraystretch {\l_@@_misc_tabular_row_separation_tl}
-        }
+        \cs_set:Npn \arraystretch {\l_@@_misc_tabular_row_separation_tl}
       }
     }
 }
