@@ -1028,6 +1028,13 @@
   \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
   % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
   \setlength{\textfloatsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+  \AtBeginDocument {
+    % longtable 宏包有另外的机制，需专门调整
+    \@ifpackageloaded{longtable}{
+      \setlength{\LTpre}{0.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+    }{}
+  }
 }
 %    \end{macrocode}
 %
@@ -1580,7 +1587,7 @@
     % 至于表格，虽然其caption位置在上方（而图片是在下方），
     % 但 `caption` 宏包已考虑这种区别，统一设置 `belowskip` 即可。
     \captionsetup{belowskip=-5pt}
-    % 不过 longtable 宏包提供的环境比较奇怪，不设置 belowskip 时间距已较小，
+    % 不过 longtable 宏包有另外的机制，不设置 belowskip 时间距已可较小，
     % 设置成负数还导致 caption 和表格本体的距离变大。因此我们撤销更改。
     \captionsetup[longtable]{belowskip=0pt}
 
@@ -1654,6 +1661,11 @@
   % 调整浮动体与文字之间的距离
   \addtolength{\intextsep}{\l_@@_misc_float_separation_tl\baselineskip}
   \addtolength{\textfloatsep}{\l_@@_misc_float_separation_tl\baselineskip}
+  % longtable 宏包有另外的机制，需专门调整
+  \@ifpackageloaded{longtable}{
+    \addtolength{\LTpre}{\l_@@_misc_float_separation_tl\baselineskip}
+    \addtolength{\LTpost}{\l_@@_misc_float_separation_tl\baselineskip}
+  }{}
   % 调整算法与文字之间的距离
   % 针对 algorithm2e 宏包
   \@ifpackageloaded{algorithm2e}{
