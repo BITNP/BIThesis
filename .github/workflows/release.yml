@@ -156,6 +156,13 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           body: |
+            > [!TIP]
+            > 若是初次使用，可先参考**快速使用指南**（[本科][undergraduate-handbook]／[硕博][graduate-handbook]）或者 [Wiki 网站](https://bithesis.bitnp.net/)。有需要再进一步参考[详细配置手册`bithesis.pdf`][bithesis-pdf]。
+
+            [undergraduate-handbook]: ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/undergraduate-handbook.pdf
+            [graduate-handbook]: ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/graduate-handbook.pdf
+            [bithesis-pdf]: ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/bithesis.pdf
+
             ${{ steps.git-cliff.outputs.content }}
 
       - name: Download handbooks
