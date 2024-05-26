@@ -1580,6 +1580,9 @@
     % 至于表格，虽然其caption位置在上方（而图片是在下方），
     % 但 `caption` 宏包已考虑这种区别，统一设置 `belowskip` 即可。
     \captionsetup{belowskip=-5pt}
+    % 不过 longtable 宏包提供的环境比较奇怪，不设置 belowskip 时间距已较小，
+    % 设置成负数还导致 caption 和表格本体的距离变大。因此我们撤销更改。
+    \captionsetup[longtable]{belowskip=0pt}
 
     % 此外在浮动体内部，调整表格 caption 和表格本体间的距离。
     % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
