@@ -20,6 +20,7 @@ jobs:
             update-ms-fonts
             fc-cache -f
             make doc
+            make handbooks
       - name: Upload bithesis.pdf for later usage.
         uses: actions/upload-artifact@v4
         with:
