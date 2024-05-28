@@ -2693,14 +2693,15 @@
         \vspace{-8pt}
       }
 
-      % 添加目录书签
-      \currentpdfbookmark{\c__bithesis_label_toc_tl}{ch:toc}
       % 制作目录
       \tableofcontents
 
       % 在本科生全英文模板中，添加「目录」本身到目录中。
-      \@@_if_thesis_int_type:nT {3} {
-        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
+      \__bithesis_if_thesis_int_type:nTF {3} {
+        \addcontentsline{toc}{chapter}{\c__bithesis_label_toc_en_tl}
+      } {
+        % 添加目录书签
+        \currentpdfbookmark{\c__bithesis_label_toc_tl}{ch:toc}
       }
 
       % 单独成页
