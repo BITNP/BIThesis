@@ -11,6 +11,26 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.7.9] - 2024-05-30
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- Remove redundant `currentpdfbookmark` for English bachelor thesis ([95ef418](https://github.com/BITNP/BIThesis/commit/95ef418e8d3452d920c6b3aa3a3479c036803e54)) by @CreeperLKF
+- Toc entry in bookmarks should not point to the tail of toc in Chinese bachelor thesis ([9e1f0e4](https://github.com/BITNP/BIThesis/commit/9e1f0e4a2a16e4b048fcf814d1c49da73d2a9c09)) by @CreeperLKF in [#522](https://github.com/BITNP/BIThesis/pull/522)
+
+### <!-- 3 -->📚 Documentation
+
+- 更新生僻字使用提示，限制作用范围 ([31abab0](https://github.com/BITNP/BIThesis/commit/31abab00a1ea56620b2931be9edb63125c7f50e4)) by @YDX-2147483647 in [#521](https://github.com/BITNP/BIThesis/pull/521)
+- 在更多地方介绍如何添加水印 ([a9a1aa7](https://github.com/BITNP/BIThesis/commit/a9a1aa7c729c43db3c2e291968a3fcf3f1fc1adc)) by @YDX-2147483647 in [#520](https://github.com/BITNP/BIThesis/pull/520)
+- Add title property in `BITSetup.info` for undergraduate-thesis-en ([3f92180](https://github.com/BITNP/BIThesis/commit/3f9218014421a3278220073bff7ac39d08f333f2)) by @CreeperLKF
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- 编译快速使用手册 ([ef0e51e](https://github.com/BITNP/BIThesis/commit/ef0e51ef06765a459eb8e23d6e4a90a6f6e6d28f)) by @YDX-2147483647 in [#519](https://github.com/BITNP/BIThesis/pull/519)
+- Update bithesis.dtx version to 3.7.9 ([6d56033](https://github.com/BITNP/BIThesis/commit/6d56033f5cdcab31c89542959854e8ede368b9c7)) by @fky2015
+
+## New Contributors
+* @CreeperLKF made their first contribution in [#522](https://github.com/BITNP/BIThesis/pull/522)
 ## [3.7.8] - 2024-05-27
 
 ### <!-- 0 -->🚀 Features
