@@ -2,7 +2,7 @@
 # Modified by humans
 
 $ErrorActionPreference = "Stop"
-$USE_GHPROXY = $true
+$USE_GHPROXY = $false
 
 Push-Location (Split-Path -Path $MyInvocation.MyCommand.Path -Parent)
 Write-Host (Get-Location)

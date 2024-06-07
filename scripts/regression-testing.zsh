@@ -1,5 +1,5 @@
 set -e
-${USE_GHPROXY:=true}
+${USE_GHPROXY:=false}
 
 mypath=`realpath $0`
 cd `dirname $mypath`
