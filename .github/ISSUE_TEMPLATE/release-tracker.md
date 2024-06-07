@@ -6,5 +6,4 @@ labels: Release
 ---
 
 - [ ] 提升版本号到最新
-- [ ] 上传新的模板到 Overleaf
 - [ ] 发布新的 Release
