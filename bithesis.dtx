@@ -613,8 +613,17 @@
     underlineThickness .initial:n = {1pt},
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
-    hideCoverInPeerReview .bool_set:N = \l_@@_cover_hide_cover_in_peer_review_bool,
-    hideCoverInPeerReview .initial:n = {false},
+    hideCoverInPeerReview .choice:,
+    hideCoverInPeerReview / true .code:n = { \bool_set_true:N \l_@@_cover_hide_cover_in_peer_review_bool },
+    hideCoverInPeerReview / false .code:n = { \bool_set_false:N \l_@@_cover_hide_cover_in_peer_review_bool },
+    hideCoverInPeerReview / from-thesis-type .code:n = {
+      \@@_if_graduate:TF {
+        \bool_set_false:N \l_@@_cover_hide_cover_in_peer_review_bool
+      } {
+        \bool_set_true:N \l_@@_cover_hide_cover_in_peer_review_bool
+      }
+    },
+    hideCoverInPeerReview .initial:n = {from-thesis-type},
     % 研究生的「特殊类型」
     showSpecialTypeBox .bool_set:N = \l_@@_cover_show_special_type_box_bool,
     showSpecialTypeBox .initial:n = {false}
