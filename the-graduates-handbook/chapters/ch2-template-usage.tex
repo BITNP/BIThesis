@@ -223,4 +223,15 @@
   \item 在正文中使用 \verb|\cite{key}| 或 \verb|\parencite{key}| 等命令引用文献。
 \end{enumerate}
 
+\section{生成盲审版论文}
 
+提交论文用于匿名评阅（又名盲审或盲评）时，需要“隐去论文作者和导师姓名，以及致谢、论文成果等与作者有关的信息”。
+% 以上引文源于《北京理工大学关于本科毕业设计（论文）评阅的规定（试行）》（2023年4月修订）。
+
+此时请编辑 \texttt{main.tex}，给开头 \verb|\documentclass| 加上 \verb|blindPeerReview=true| 选项。
+修改后如下：
+\isGraduateTF{
+  \lstinputlisting[language=TeX]{chapters/ch2-example-master-blind.tex}
+}{
+  \lstinputlisting[language=TeX]{chapters/ch2-example-bachelor-blind.tex}
+}
