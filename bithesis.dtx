@@ -961,6 +961,9 @@
 \RequirePackage{geometry}
 \RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage{xeCJK}
+% 恢复数学行距（restoremathleading），同时避免改变正文行距。
+% （ctex 默认 linespread 1.3 × LaTeX 默认倍数 1.2 = 1.56）
+\RequirePackage[bodytextleadingratio=1.56]{zhlineskip}
 \RequirePackage{titletoc}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
