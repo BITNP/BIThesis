@@ -1847,8 +1847,15 @@ addTOC = (*<(true)|false>*)
 
 \textit{请事先安装 XITS 字体。}
 
+此外，如果使用 \TeX{} Gyre Pagella Math 等字面较大的字体，略微增加数学行距可能更美观：
+\begin{latex}
+\setmathfont{texgyrepagella-math.otf}
+\SetMathEnvironmentSinglespace{1.05}
+\end{latex}
+
 \textit{更多字体与使用方法请参考 
-\href{https://ctan.org/pkg/unicode-math?lang=zh}{unicode-math 手册}。}
+\href{https://ctan.org/pkg/unicode-math?lang=zh}{unicode-math 手册}和
+\href{https://ctan.org/pkg/zhlineskip}{zhlineskip 手册}。}
 
 \subsection{如何采用与 Word 相同的中文字体？} \label{sec:word-fonts}
 
