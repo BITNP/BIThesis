@@ -216,7 +216,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
 \cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
-\cs_new:Npn \__bithesis_if_thesis_int_type:nF #1#2 {\__bithesis_if_thesis_int_type:nTF {#1} {} {#2}}
+\cs_new:Npn \@@_if_thesis_int_type:nF #1#2 {\@@_if_thesis_int_type:nTF {#1} {} {#2}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1651,13 +1651,13 @@
   % 针对 algorithm 宏包
   \@ifpackagewith{algorithm}{chapter}{
     \cs_gset:Npn \thealgorithm
-    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
+    {\thechapter\g_@@_label_divide_char_tl\arabic{algorithm}}
   }{}
   % 针对 algorithm2e 宏包
   \@ifpackagewith{algorithm2e}{algochapter}{
     % 名字中的“cf”是指其作者 Christophe Fiorio。
     \cs_gset:Npn \thealgocf
-    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algocf}}
+    {\thechapter\g_@@_label_divide_char_tl\arabic{algocf}}
   }{}
 
   % 默认的情况下，保留公式和上下文的一定间距。（会比 Word 稍宽一些）
@@ -1724,8 +1724,8 @@
 %
 % 调整插图目录与表格目录的标题。
 %    \begin{macrocode}
-\cs_set:Npn \listfigurename {\currentpdfbookmark{\c__bithesis_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
-\cs_set:Npn \listtablename {\currentpdfbookmark{\c__bithesis_label_table_tl}{ch:tables}\@@_get_const:N {table}}
+\cs_set:Npn \listfigurename {\currentpdfbookmark{\c_@@_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
+\cs_set:Npn \listtablename {\currentpdfbookmark{\c_@@_label_table_tl}{ch:tables}\@@_get_const:N {table}}
 %    \end{macrocode}
 %
 % 预定义用户常用的证明环境。
@@ -2704,16 +2704,16 @@
       }
 
       % 添加目录书签
-      \__bithesis_if_thesis_int_type:nF {3} {
-        \currentpdfbookmark{\c__bithesis_label_toc_tl}{ch:toc}
+      \@@_if_thesis_int_type:nF {3} {
+        \currentpdfbookmark{\c_@@_label_toc_tl}{ch:toc}
       }
 
       % 制作目录
       \tableofcontents
 
       % 在本科生全英文模板中，添加「目录」本身到目录中。
-      \__bithesis_if_thesis_int_type:nT {3} {
-        \addcontentsline{toc}{chapter}{\c__bithesis_label_toc_en_tl}
+      \@@_if_thesis_int_type:nT {3} {
+        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
       }
 
       % 单独成页
