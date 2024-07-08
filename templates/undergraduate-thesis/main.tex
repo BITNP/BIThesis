@@ -1,5 +1,5 @@
 %%
-% The BIThesis Template for Bachelor Graduation Thesis
+% The BIThesis Template for Undergraduate Thesis
 %
 % 北京理工大学毕业设计（论文） —— 使用 XeLaTeX 编译
 %
@@ -30,12 +30,12 @@
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
   cover = {
-    % 在封面中载入有「北京理工大学」字样的图片，如无必要请勿改动。
+    % 封面需要「北京理工大学」字样图片，如无必要请勿修改该项。
     headerImage = images/header.png,
-    % 在封面标题中使用思源黑体，使用此选项可以保证与 Word 封面标题的字体一致。
+    % 封面标题需要“华文细黑”，如无必要请勿修改该项。
     xiheiFont = STXIHEI.TTF,
-    %% 使用以下参数来自定义封面日期
-    % date = 2022年6月,
+    % 可用以下参数自定义封面日期。
+    % date = 1955年11月,
   },
   info = {
     % 想要删除某项封面信息，直接删除该项即可。
@@ -57,6 +57,7 @@
   style = {
     % 开启 Windows 平台下的中易宋体伪粗体。
     % windowsSimSunFakeBold = true,
+    %
     % 开启该选项后，将用 Times New Roman 的开源字体 TeX Gyre Termes 作为正文字体。
     % 这个选项适用于以下情况：
     % 1. 不想在系统中安装 Times New Roman。
@@ -99,7 +100,6 @@
 \begin{document}
 
 % 标题页面：如无特殊需要，本部分无需改动
-% \input{misc/0_cover.tex}
 \MakeCover
 
 % 原创性声明：如无特殊需要，本部分无需改动
@@ -113,9 +113,9 @@
 % \input{./misc/1_originality.tex}
 % ====== 原创性声明（LaTeX 格式）======
 
-% 前置页面定义
+% 前置内容定义
 \frontmatter
-% 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
+% 摘要：在相应 TeX 文件撰写
 \input{chapters/0_abstract.tex}
 
 \MakeTOC
@@ -123,23 +123,22 @@
 % 正文开始
 \mainmatter
 
-% 第一章
+% 在这里引用各章 TeX 文件，按需添加
 \input{chapters/1_chapter1.tex}
-% 在这里添加第二章、第三章……TeX 文件的引用
 \input{chapters/2_chapter2.tex}
-% \input{chapters/3_chapter3.tex}
 
-% 后置部分
+% 后置内容
 \backmatter
 
-% 结论：在结论相应的 TeX 文件处进行结论部分的撰写
+% 结论：在相应 TeX 文件撰写
 \input{misc/2_conclusion.tex}
-% 参考文献：如无特殊需要，参考文献相应的 TeX 文件无需改动，添加参考文献请使用 BibTeX 的格式
-%   添加至 misc/ref.bib 中，并在正文的相应位置使用 \cite{xxx} 的格式引用参考文献
+% 参考文献：
+% 添加文献时，请按 BibTeX 格式添加至 misc/ref.bib，并在正文所需位置使用 \cite{…} 引用。
+% 如无特殊需要，无需改动相应 TeX 文件。
 \input{misc/3_reference.tex}
-% 附录：在附录相应的 TeX 文件处进行附录部分的撰写
+% 附录：在相应 TeX 文件撰写；不需要时可删除
 \input{misc/4_appendix.tex}
-% 致谢：在致谢相应的 TeX 文件处进行致谢部分的撰写
+% 致谢：在相应 TeX 文件撰写
 \input{misc/5_acknowledgements.tex}
 
 \end{document}
