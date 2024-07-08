@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: handbooks
-          path: "the-graduates-handbook/*.pdf"
+          path: "handbook/*.pdf"
       - name: Upload *.cls for later usage.
         uses: actions/upload-artifact@v4
         with:
@@ -170,18 +170,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: handbooks
-          path: the-graduates-handbook
+          path: handbook
       - name: Upload undergraduate-handbook
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: the-graduates-handbook/undergraduate-handbook.pdf
+          file: handbook/undergraduate-handbook.pdf
           tag: ${{ github.ref }}
       - name: Upload graduate-handbook
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: the-graduates-handbook/graduate-handbook.pdf
+          file: handbook/graduate-handbook.pdf
           tag: ${{ github.ref }}
 
   upload_to_ctan:
