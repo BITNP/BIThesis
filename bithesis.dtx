@@ -1489,13 +1489,7 @@
 % 定义前置内容的页面样式。
 %    \begin{macrocode}
 \RenewDocumentCommand \frontmatter {} {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
-  {
-    % 本科全英文专业论文，页码使用小罗马数字。
-    \pagenumbering{roman}
-  } {
-    \pagenumbering{Roman}
-  }
+  \pagenumbering{Roman}
   % 这部分的章节标题不进行编号。
   \ctexset{
     chapter = {
