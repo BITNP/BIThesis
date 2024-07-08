@@ -491,10 +491,12 @@
     {toc} {目\label_space: 录} {Table~of~Contents},
     {abstract} {摘\label_space: 要} {Abstract},
     {conclusion} {结\label_space: 论} {Conclusions},
+    % 附录部分的总标题
     {appendix} {附\label_space: 录} {Appendices},
     {ack} {致\label_space: 谢} {Acknowledgement},
     {figure} {插\label_space: 图} {Illustrations},
     {table} {表\label_space: 格} {Tables},
+    % 附录下各部分编号的前缀
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
@@ -2954,7 +2956,7 @@
     }
 
     \bool_if:NTF \l_@@_appendices_chapter_level_bool {
-      % 附录章节级别
+      % 使用以「chapter」为顶层的附录格式
 
       % 仅设置 \setcounter{chapter}{0} 时，pdf 目录会索引到正文章节。
       % 因此，需要使用 \appendix 重置计数器，并将附录后面的
@@ -2973,7 +2975,7 @@
         \Alph{chapter}
       }
     } {
-      % 附录节（section）级别
+      % 使用以「section」为顶层的附录格式
 
       % 因为不需要用到 chapter counter, 所以直接加一即可。
       \stepcounter{chapter}
