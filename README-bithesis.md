@@ -10,7 +10,7 @@ The current maintainer of this project is [Feng Kaiyu](https://github.com/fky201
 [![Latexmk](https://badgen.net/badge/compiler/latexmk/blue)](https://mg.readthedocs.io/latexmk.html)
 [![License](https://badgen.net/github/license/BITNP/BIThesis?color=008080&labelColor=2b2b2b)](./LICENSE)
 
-BIThesis is an unofficial LaTeX template set for your 
+BIThesis is an unofficial LaTeX template set for your
 **undergraduate, master, or doctoral thesis** as well as other academic writing here at BIT.
 
 This project is supported by the _[Dept. of Undergraduate Academic Affairs, BIT](https://jwb.bit.edu.cn/)_ and the _[School of Computer Science and Technology, BIT](https://cs.bit.edu.cn/)_. See [Acknowledgements - Official Sponsors](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors).
@@ -40,4 +40,3 @@ For more details, please see the [contributing doc](./contributing.md).
 ## Contributors
 
 For more information, please see: [GitHub Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) and [Acknowledgements](https://bithesis.bitnp.net/guide/acknowledgements.html).
-
