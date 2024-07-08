@@ -1140,18 +1140,22 @@ chapterLevel = (*<(false)|true>*)
 
 \begin{function}{appendices/title}
 \begin{bitsyntax}[emph={[1]title}]
-title = (*(附录)|\meta{字符串}*)
+title = (*\meta{字符串}*)
 \end{bitsyntax}
 
- 可以覆盖附录的标题名称，默认为「附录」。
+  附录部分的总标题。默认会按论文类型自动设置为「附录」、「附\quad{}录」或“Appendices”。
+
+  仅在 |appendices/chapterLevel| 为 |false| 时有效。
 \end{function}
 
 \begin{function}{appendices/TOCTitle}
 \begin{bitsyntax}[emph={[1]TOCTitle}]
-TOCTitle = (*(附录)|\meta{字符串}*)
+TOCTitle = (*\meta{字符串}*)
 \end{bitsyntax}
 
- 可以覆盖附录在目录中的名称，默认为「附录」。
+  附录在目录中的名称。默认会按论文类型自动设置为「附录」、「附\quad{}录」或“Appendices”。
+
+  仅在 |appendices/chapterLevel| 为 |false| 时有效。
 \end{function}
 
 \subsubsection{攻读学位期间发表论文与研究成果清单选项}
