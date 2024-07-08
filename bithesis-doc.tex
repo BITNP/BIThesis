@@ -48,7 +48,7 @@
 \noindent
 \begin{enumerate}
 \item 本模板的发布遵守 \LPPL ，使用前请认真阅读协议内容。
-\item 与\BIThesis 相关的文档内容采用 
+\item 与\BIThesis 相关的文档内容采用
  \href{https://github.com/BITNP/BIThesis-wiki/blob/main/LICENSE}{CC0-1.0 协议} 发布。
 \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，
  请严格遵守 \LaTeX{} Project Public License 协议。
@@ -124,7 +124,7 @@
   \item 在 2017 年之前，网络上已经出现一些北京理工大学学位论文 \LaTeX 模板。
     它们是“2012大眼小蚂蚁版”和“2016汪卫版”，均以上海交通大学的模板为基础。
   \item 2017 - 2018 年，计算机学院 2016 级研究生杨雅婷等人受研究生院委托，
-    制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis} 
+    制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis}
     研究生学位论文模板。
   \item 2019 - 2020 年，\BIThesis 最早由 2016 级的
     武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
@@ -132,7 +132,7 @@
     \item 此时，\BIThesis 仅支持本科生毕业论文的排版。
     \item 在此期间，\BIThesis 从无到有诞生了，包括使用手册、
       在线文档和开箱即用的模板。
-    \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX 
+    \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX
       的视频教程。
   \end{itemize}
   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人
@@ -147,7 +147,7 @@
       2022 毕业季收到的反馈对该项目进行维护升级。
   \begin{itemize}
     \item 在此期间，冯开宇合入了杨雅婷等人在 2017 年开发的研究生学位论文模板。
-    \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。 
+    \item 在项目架构上，BIThesis-scaffold 合入 BIThesis 以便于进一步维护。
     \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，
       向用户提供了简易易用的接口。
     \item 同时，也增加了本科全英文专业的毕设论文模板样式。
@@ -190,16 +190,16 @@
 \begin{tabular}{@{}l l p{6cm} @{}}
 \toprule
 项目                & 项目地址 & 主要目的 \\ \midrule
-BIThesis   &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}   
+BIThesis   &   \href{https://github.com/BITNP/BIThesis}{BITNP/BIThesis}
   &  主要存储 \BIThesis  宏包以及开箱即用的模板样式 \\
-BIThesis-wiki    
-  &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}  
+BIThesis-wiki
+  &   \href{https://github.com/BITNP/BIThesis-wiki}{BITNP/BIThesis-wiki}
   &  存储 \BIThesisLaTeX 项目在线文档   \\ \bottomrule
 \end{tabular}
 \end{table}
 
 如果你仅想解决「我如何使用 \BIThesisLaTeX 来帮助我完成实验论文？」这个问题，
-那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。 
+那么欢迎你访问我们的\href{https://bithesis.bitnp.net}{在线文档}以获得更多信息。
 
 如果你想深入了解 \BIThesisLaTeX 提供的接口的各种选项，那么请继续阅读。
 
@@ -217,7 +217,7 @@ BIThesis-wiki
 并采用了正规软件开发的流程，如版本控制、代码审查、持续集成等，来保证 \BIThesis 的可维护性。
 
 \subsection{\BIThesis 宏包的组成}
-为了适应用户的不同需求，我们将 \BIThesisMacroPackage 
+为了适应用户的不同需求，我们将 \BIThesisMacroPackage
 的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
 \begin{table}[H]
 \centering
@@ -227,12 +227,12 @@ BIThesis-wiki
 \toprule
 类别                   & 文件
   & 说明                             \\ \midrule
-\multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}  
+\multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}
   & 封装本科生与研究生的毕业论文样式。 \\
-& \cls{bitreport.cls}\ref{sec:bitreport} 
+& \cls{bitreport.cls}\ref{sec:bitreport}
   & 封装了本科生开题报告（已废弃）与实验报告样式。     \\ \cmidrule(l){2-3}
-& \cls{bitbeamer.cls} 
-  & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。     
+& \cls{bitbeamer.cls}
+  & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。
   \\ \cmidrule(l){2-3}
 \end{tabular}
 \end{table}
@@ -240,7 +240,7 @@ BIThesis-wiki
 \subsection{\BIThesisLaTeX 是如何发布的？}
 \label{sec:release}
 
-\BIThesisLaTeX 每一个版本会有三种发布方式： 
+\BIThesisLaTeX 每一个版本会有三种发布方式：
 
 \begin{itemize}
   \item  CTAN 发布：
@@ -316,7 +316,7 @@ tlmgr update bithesis
   在安装完发行版之后，还需要安装编辑 \LaTeX 所需的编辑器，在这里推荐 TeXstudio。
 }
 
-\textit{更多安装教程请访问我们的 
+\textit{更多安装教程请访问我们的
   \href{https://bithesis.bitnp.net}{wiki 网站}，那里收录了使用模板以外的信息。}
 
 \subsubsection{升级模板版本}
@@ -360,7 +360,7 @@ tlmgr update bithesis
 推荐使用\BIThesisRelease （开箱即用）。
 
 \BIThesisRelease 提供了多种最常用的模板，你可以在
-\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。 
+\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。
 
 使用此文档类的模板有：
 \begin{itemize}
@@ -466,7 +466,7 @@ quirks = (*<(false)|true>*)
 \end{bitsyntax}
 
   此选项用于开启针对北理工官方示例的兼容模式。
-  
+
   具体包括：
   \begin{itemize}
     \item \pkg{biblatex} 中的 |patent| 类型将不再采用国标 GB/T 7714-2015 的格式，
@@ -477,12 +477,12 @@ quirks = (*<(false)|true>*)
   与国标 GB/T 7714-2015 中的格式不一致；
   而这部分改动可能引入潜在的兼容性问题。
   而这些差异其实比较细微，所以我们将其作为一个默认不开启的选项。
-  
+
   在未来，如果持续有用户反馈问题，亦或是没有边界问题，
   我们可能会将其中的功能移入默认效果中。
 
 \end{function}
- 
+
 \begin{function}{twoside}
 \begin{bitsyntax}[emph={[1]twoside}]
 twoside = (*<(false)|true>*)
@@ -501,7 +501,7 @@ ctex = (*{传给 ctexbook 的模板选项}*)
 \end{bitsyntax}
 
   该选项用于传入模板选项至 ctexbook。
-  
+
   例如：想要同时修改 ctex 的字体参数和标点符号处理格式
   （更多选项请参考 ctex 手册）。
 
@@ -509,20 +509,20 @@ ctex = (*{传给 ctexbook 的模板选项}*)
 \documentclass[type=master,ctex={fontset=fandol,punct=banjiao}]{bithesis}
 \end{latex}
 \end{function}
- 
+
 \begin{function}[added=2023-03-10]{autoFakeBold}
 \begin{bitsyntax}[emph={[1]autoFakeBold}]
 autoFakeBold = (*<(3)|false|{数字}>*)
 \end{bitsyntax}
 
   该选项用于调整 \cls{xeCJK} 中 |AutoFakeBold| 选项以定义伪粗体的粗细程度。
-  
+
   默认为 3，一般按照经验来说，2.5–3 比较符合 Word 中的粗体样式。
-  
+
 \end{function}
- 
+
 \subsection{参数设置}
-  
+
 \begin{function}{\BITSetup}
 \begin{bitsyntax}[emph={[1]BITSetup}]
 \BITSetup = {(*\oarg{键值对}*)}
@@ -565,7 +565,7 @@ autoFakeBold = (*<(3)|false|{数字}>*)
 
 \textbf{请注意：以下选项根据模板的不同，可能会有不同的默认值。
  有些模板可能不会使用某些选项。使用与否以及使用方式是根据学校的论文撰写要求实现的。}
- 
+
 \subsubsection{封面选项} \label{sec:cover}
 
 \begin{function}{cover}
@@ -621,7 +621,7 @@ autoWidth = (*<(true)|false>*)
   \textit{此选项一般不需要用户自行修改。}
 
   自动计算封面中下划线的长度。
-  
+
   如果关闭了该选项，则建议配合\kvopt{cover/labelMaxWidth}{\meta{长度}}\\
   和\kvopt{cover/valueMaxWidth}{\meta{长度}}使用，以控制下划线的长度。
 \end{function}
@@ -642,7 +642,7 @@ autoWidthPadding = (*<\marg{任意长度}>*)
 \begin{bitsyntax}[emph={[1]labelMaxWidth}]
 labelMaxWidth = (*\marg{任意长度}*)
 \end{bitsyntax}
-  
+
   此选项仅当\kvopt{cover/autoWidth}{false}时生效。
 
   设置封面信息中标签的占位长度。
@@ -911,7 +911,7 @@ crossResearch = (*<(false)|true>*)
 \end{bitsyntax}
 
   特殊类型：交叉研究方向。（不勾选时不显示整个内容）
-  
+
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
 
@@ -921,7 +921,7 @@ internationalStudentUGP = (*<(false)|true>*)
 \end{bitsyntax}
 
   特殊类型：政府项目留学生。
-  
+
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
 
@@ -966,7 +966,7 @@ bibliographyIndent = (*(true)|false*)
   \textit{此选项一般不需要用户自行修改。}
 
   控制参考文献的每一项中，首行之后的行是否缩进。
-  
+
   之所以提供这个选项，
   是因为在（2023年以前的本科生） Word 模板中参考文献的格式（错误地）
   要求首行之后的行不缩进。
@@ -989,7 +989,7 @@ pageVerticalAlign = (*(top)|scattered*)
 \begin{bitsyntax}[emph={[1]mathFont}]
 mathFont = (*(cm)|asana|fira|...|xits|none*)
 \end{bitsyntax}
-设置数学字体，具体配置见表~\ref{tab:math-font}。除 |Computer Modern| （默认）字体以外，均使用 \pkg{unicode-math} 宏包调用字体。 
+设置数学字体，具体配置见表~\ref{tab:math-font}。除 |Computer Modern| （默认）字体以外，均使用 \pkg{unicode-math} 宏包调用字体。
 
 \end{function}
 
@@ -1053,7 +1053,7 @@ mathAboveDisplaySkip = (*(10pt)|任意长度*)
 
 默认值设置为 10pt——一个比较美观的宽度。
 如果你更习惯 Word 文档的公式上下文距离，可以设置为一个更小的值（比如 3pt），反之亦然。
-  
+
 \textit{请保证源码中的公式的环境（如}\verb|\begin{equation}|
   \textit{）与上一段落不要有空行。否则，公式和上文段落之间会有额外的空白。}
 
@@ -1265,7 +1265,7 @@ tabularFontSize = (*(5)|其他字号*)
 \begin{latex}
 {
  \BITSetup{ misc / tabularFontSize = -4}
- 
+
  \begin{table}[hbt]
    \centering
    \caption{水系聚氨酯分类} \label{tab:category}
@@ -1313,7 +1313,7 @@ autoref = {
 
   \textit{此选项的默认值实际上是受到 \autoref{sec:const} 中 |const/autoref/xxx| \\
   （如 \cmd{misc/autoref/algo}）选项的影响。}
-  
+
 \end{function}
 
 \begin{function}[added=2023-04-29]{misc/hideLinks}
@@ -1464,11 +1464,11 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   此时，如果用户需要换行，可以通过「\\」控制换行。
 
   当关闭自动计算下划线宽度后，
-  可以通过 
+  可以通过
 
-  \meta{labelMaxWidth=xxx} 
+  \meta{labelMaxWidth=xxx}
 
-  与 
+  与
 
   \meta{valueMaxWidth=xxx}
 
@@ -1527,7 +1527,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 \end{bitsyntax}
 
  摘要。
- 
+
  摘要的最后会显示关键词，关键词通过 \cs{BITSetup} 录入。
 
 \end{function}
@@ -1546,7 +1546,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 \end{bitsyntax}
 
  主要符号对照表。
- 
+
  主要符号对照表类似于一个列表环境，用以添加文章中使用的关键符号与缩略词。
 
 \end{function}
@@ -1740,7 +1740,7 @@ addTOC = (*<(true)|false>*)
 
   \pubsection{分类一}
   \printbibliography[heading=none,category=mypub,type=book,resetnumbers=true]
-  
+
   \pubsection{分类二}
   \printbibliography[heading=none,category=mypub,type=article,resetnumbers=true]
 \end{publications}
@@ -1853,7 +1853,7 @@ addTOC = (*<(true)|false>*)
 \SetMathEnvironmentSinglespace{1.05}
 \end{latex}
 
-\textit{更多字体与使用方法请参考 
+\textit{更多字体与使用方法请参考
 \href{https://ctan.org/pkg/unicode-math?lang=zh}{unicode-math 手册}和
 \href{https://ctan.org/pkg/zhlineskip}{zhlineskip 手册}。}
 
@@ -1867,7 +1867,7 @@ addTOC = (*<(true)|false>*)
 因此，用户有两种选择：
 \begin{itemize}
  \item 手动在系统中安装中易字库
- （一般包括 SimSun、SimHei、KaiTi、FangSong 等）。 
+ （一般包括 SimSun、SimHei、KaiTi、FangSong 等）。
  \textbf{请注意，是 KaiTi 而不是 SimKai。}
  并通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
  强制使用中易字库。
@@ -1920,7 +1920,7 @@ fc-cache -fv # 刷新字体缓存
 
 \BIThesisRelease 提供了多种最常用的模板，你可以在
 \href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}
-中找到它们。 
+中找到它们。
 
 使用此文档类的模板有：
 \begin{itemize}
@@ -1976,7 +1976,7 @@ ctex = (*传给 ctexbook 的模板选项*)
 \end{function}
 
 \subsection{参数设置}
-  
+
 \begin{function}{\BITSetup}
 \begin{bitsyntax}[emph={[1]BITSetup}]
 \BITSetup = {(*\oarg{键值对}*)}

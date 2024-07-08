@@ -35,7 +35,7 @@
 │   ├── 4_pub.tex
 │   ├── 5_acknowledgements.tex
 │   └── 6_resume.tex
-└── reference 
+└── reference
     ├── main.bib # 参考文献
     └── pub.bib # 个人成果清单
 ```

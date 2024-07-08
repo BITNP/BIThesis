@@ -65,7 +65,7 @@ latexmk
 ## 排版参考
 
 - 《本科-全英文 Thesis Format 2022》
-- 《本科-全英文 Thesis Sample 2021 with signature》 
+- 《本科-全英文 Thesis Sample 2021 with signature》
 
 [^1]: 关于如何升级模板的版本，请参考[手册][manual]中「版本号与升级」这一章节内容。
 
