@@ -106,11 +106,16 @@
 % 标题页面：如无特殊需要，本部分无需改动
 \MakeCover
 
+% 原创性声明：盲审结束前无需改动
+\MakeOriginality
+% 后续添加签名时，可考虑先用 Word 制作再导出到 misc/0_originality.pdf，
+% 同时注释以上 `\MakeOriginality`，解除注释以下三行代码。
+% \begin{blindPeerReview}
+%   \includepdf{misc/0_originality.pdf}\newpage
+% \end{blindPeerReview}
+
 % 前置内容定义
 \frontmatter
-
-\MakeOriginality
-
 % 摘要：在相应 TeX 文件撰写
 \input{chapters/0_abstract.tex}
 
