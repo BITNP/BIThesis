@@ -2586,7 +2586,10 @@
           \newpage
         }
         {3} {
-          \linespread{1.26}\selectfont
+          \currentpdfbookmark{Statements}{frontmatter:originality}
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
+
           % 原创性声明部分
           \begin{center}
             \vspace*{-2bp}
@@ -2597,7 +2600,7 @@
             }
           \end{center}~\par
 
-          % 本部分字号为小三
+          % 本部分字号为小四
           \zihao{-4}
           \c_@@_bachelor_english_label_originality_clause_tl
 
@@ -2605,7 +2608,7 @@
 
           Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
 
-          \vspace{6mm}
+          \vspace{\stretch{1}}
 
           % 使用授权声明部分
           \begin{center}
