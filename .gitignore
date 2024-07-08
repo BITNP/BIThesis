@@ -15,6 +15,7 @@
 *.pdf
 *.hd
 *.sty
+*.luabridge.lua
 
 ## Intermediate documents:
 *.dvi

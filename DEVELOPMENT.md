@@ -1,70 +1,76 @@
 # 开发者指南
 
-## 任务管理
+> [!TIP]
+>
+> 本项目采用 [GitHub Projects](https://github.com/BITNP/BIThesis/projects) 进行任务管理。
+> 你可以每次选择其中的一个小的 TODO 进行开发；来帮助项目一点一点前进。
 
-本项目采用 [GitHub Projects](https://github.com/BITNP/BIThesis/projects) 进行任务管理。
-你可以每次选择其中的一个小的 TODO 进行开发；来帮助项目一点一点前进。
+## 本地开发
 
-## 开发命令
+一般开发需求分为三种：
 
-Makefile 主要针对 Linux 和 MacOS 开发者；如果你使用 Windows 开发，可以使用 Git Bash 或 Cygwin，不过偶尔可能需要手动执行 Makefile 中具体的命令。
+- 修改 `templates/` 中某个模板
 
-当然，也欢迎你贡献更通用的开发脚本。
+  例：改进`ref.bib`中的示例，在 `main.tex` 中补充注释。
 
-### 生成 `.cls` 文件
+- 修改 `bithesis.dtx` 文件
 
-```Bash
-make cls
-```
+  例：添加新命令，更改 `\BITSetup` 选项。
 
-### 生成宏包手册
-
-```Bash
-make doc
-```
-
-### 本地开发
-
-一般开发需求分为三个部分：
-
-- 修改 `bithesis.dtx` 文件。
-- 修改 `templates/` 中某个模板。
 - 修改其他文件。
 
-#### bithesis.dtx 开发流程
+> [!TIP]
+>
+> Windows 开发者若运行 Makefile 遇到问题，请参考[后文](#Windows)。
 
-1. 如果需求涉及到添加新的命令，可以先在 `templates/` 中进行具体的实现。
-2. 然后，将实现的代码拷贝到 `bithesis.dtx`。
-3. 然后运行 `make copy` 将新的 `*.cls` 更新到 `templates/` 下。
-4. 不要忘记更新 `bithesis.dtx` 中的手册部分，添加相应说明。
-5. 运行 `make doc` 编译手册。
-6. 运行测试，确保你的改动不会影响到其他功能。
-
-#### 修改 `templates/` 中模板的行为
+### 修改 `templates/` 中某个模板
 
 如果改动仅仅涉及某个模板，那么相对简单一些：
 
-1. 直接修改模板中的样式
-2. 进行测试，确保你的改动能够正确编译；并且不会影响到其他效果。
+1. 初次开发前，运行 `make copy`，这会生成 `*.cls` 并更新到 `templates/` 下。
+2. 编辑模板。
+3. 测试，确保你的改动能够正确编译；并且不会影响到其他效果。
 
-#### 辅助命令
+### 修改 `bithesis.dtx` 文件
 
-由于我们常常需要实时预览代码编译的效果，而 LaTeX 本身没有提供实时编译的功能。
-因此我们常常需要来回运行 `make copy`、`latexmk` 以达成实时编译的效果。
+1. 编辑 `bithesis.dtx`。
+2. 运行 `make copy`，这会生成新的 `*.cls` 并更新到 `templates/` 下。
+3. 更新文档（`bithesis-doc.tex` 以及 `bithesis.dtx` 中的注释），然后运行 `make doc` 编译出手册`bithesis.pdf`。
+4. 测试，确保你的改动不会影响到其他功能。
 
-因此 Makefile 里面提供了一些辅助开发的命令（以 `dev-`）开头。
-可以帮助你自动化以上流程。
+> [!TIP]
+>
+> 如果要添加新命令，可以先在 `templates/` 中具体实现，再拷贝到 `bithesis.dtx`。
+
+## 参考资料
+
+- 本项目采用 LaTeX3，可以参考 [LaTeX3: Programming in LaTeX with Ease](https://www.alanshawn.com/tech/2020/10/04/latex3-tutorial.html)、[expl3 的文档](https://www.latex-project.org/help/documentation/)等。
+- 关于模板，[fduthesis 项目代码](https://github.com/stone-zeng/fduthesis)有很多最佳实践，可以参考。
+- 样式部分则应参考[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/)和教务部的相关文件和通知。
+
+## Makefile 的进一步介绍
+
+### Windows
+
+Makefile 主要针对 Linux 和 macOS 开发者；Windows 开发者要确保至少有：
+
+- GNU make——可按 [ScoopInstaller/Main: `make.json`](https://github.com/ScoopInstaller/Main/blob/master/bucket/make.json) 中的 `url` 下载。
+- GNU coreutils——可使用内置了 coreutils 的 Git Bash 或 Cygwin，或者[安装 uutils-coreutils](https://uutils.github.io/coreutils/docs/installation.html#windows)。
+
+当然，也欢迎你贡献更通用的开发脚本。
+
+### 辅助命令
+
+我们常常需要实时预览代码编译的效果，而 LaTeX 本身没有提供实时编译的功能，导致我们要来回运行 `make copy`、`latexmk`。
+
+为此 Makefile 提供了一些辅助命令，以 `dev-`开头，可以帮助你自动化以上流程。
 
 或者你可以使用类似 `rg --files | entr make copy` 以及 `rg --files | entr latexmk` 来达到
 「代码修改后立即重新编译」的效果。
 
-## 参考资料
+（这些命令未必适用于 Windows，可能要手动用 [watchexec](https://watchexec.github.io/) 等替代。）
 
-- 本项目 LaTeX3，因此可以参考的手册包括 [expl3 的文档](https://www.latex-project.org/help/documentation/)。
-- [fduthesis 项目代码](https://github.com/stone-zeng/fduthesis)有很多最佳实践，可以参考。
-- 样式部分，应该参考研究生院和教务部的相关文件和通知。
-
-## 单元测试和回归测试
+### 单元测试和回归测试
 
 运行 `make test` 将对所有的模板进行编译测试（同样被用于 GitHub Actions）。
 
@@ -75,13 +81,13 @@ make doc
 - [diff-pdf](https://vslavik.github.io/diff-pdf/)
 - [jq](https://jqlang.github.io/jq/)（仅用 Zsh 时需要）
 
-## 打包
+### 打包
 
 - `make overleaf version=X.X.X` 可以生成上传 overleaf 所需要的 zip 文件。
 - `make pkg` 可以生成上传 CTAN 所需要的 zip 文件。若已有手册而不想重新编译，可 `make pkg-only`。（同样被用于 GitHub Actions）
 - `make grad version=X.X.X` 可以生成用作研究生院官网附件的 zip 文件。
 
-## 上传 Overleaf 与更新
+### 上传 Overleaf 与更新
 
 > [!NOTE]
 > Overleaf 链接已利用 [`overleaf.com/docs` API](https://www.overleaf.com/devs) 自动指向最新发布版，不再需要手动更新。
