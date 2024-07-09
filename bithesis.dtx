@@ -877,6 +877,8 @@
   abstract .initial:n = {true},
   abstractEn .bool_set:N = \l_@@_add_abstract_en_to_toc_bool,
   abstractEn .initial:n = {true},
+  TOC .bool_set:N = \l_@@_add_toc_to_toc_bool,
+  TOC .initial:n = {false},
   symbols .bool_set:N = \l_@@_add_symbols_to_toc_bool,
   symbols .initial:n = {true},
 }
@@ -2713,7 +2715,7 @@
         \vspace{-8pt}
       }
 
-      \@@_if_thesis_int_type:nTF {3} {
+      \bool_if:NTF \l_@@_add_toc_to_toc_bool {
         % 添加「目录」本身到目录中，同时自动添加书签
         % 此处必须有`\phantomsection`，不然 hyperref 会把链接指向之前摘要的标题。
         \phantomsection
