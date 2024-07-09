@@ -985,6 +985,27 @@ pageVerticalAlign = (*(top)|scattered*)
 \end{optdesc}
 \end{function}
 
+\begin{function}[added=2024-07-09]{style/non-CJK-font-in-headings}
+\begin{bitsyntax}[emph={[1]non-CJK-font-in-headings}]
+non-CJK-font-in-headings = (*(serif)|sans*)
+\end{bitsyntax}
+
+\textit{对于中文模板，此选项一般不需要用户自行修改。}
+
+设置标题中拉丁字母、数字等非汉字部分的字体。
+大致 |serif| 对应 Times New Roman，|sans| 对应 Arial。
+默认为 |serif|。
+
+“标题”除了包含正文标题，还包含摘要页的论文题目、摘要标题，目录、参考文献、附录的标题等。
+
+学校官方规范中，目前描述较模糊；若从正文、封面类推，应为 Times New Roman。
+2024年学校（本科）教务部老师回答其它问题时提到：“所有毕业设计过程文件及论文涉及到的英文和数字用 Times New Roman。”
+当年实际提交时，用 Times New Roman、Arial 甚至字偶间距不正常的黑体都能通过。
+总之，“这不是重点，美观就行”。
+
+若设为 |sans|，请同时参考 |misc/arialFont| 选项。
+\end{function}
+
 \begin{function}[added=2023-03-29]{style/mathFont}
 \begin{bitsyntax}[emph={[1]mathFont}]
 mathFont = (*(cm)|asana|fira|...|xits|none*)
@@ -1268,7 +1289,7 @@ arialFont = (*\marg{字符串}*)
 
   \textit{此选项一般不需要用户自行修改。}
 
-  本科生毕业设计模板（全英文专业）需要设置 Arial 字体。
+  早期（2022年及以前）\BIThesisTemplates{UTE}需要设置 Arial 字体。
   在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
 \end{function}
 
