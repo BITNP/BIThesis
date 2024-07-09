@@ -1341,7 +1341,7 @@
 % 定义标题字体。
 %    \begin{macrocode}
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  \@@_if_thesis_int_type:nTF {3}
   {
     \arialfamily #1
   } {
@@ -2763,7 +2763,7 @@
     }
 
     \@@_if_bachelor_thesis:T {
-      \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+      \@@_if_thesis_int_type:nTF {3}
       {
         \ctexset{
           chapter/titleformat = {\heiti}
@@ -2833,7 +2833,7 @@
     }
 
     \@@_if_bachelor_thesis:TF {
-      \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+      \@@_if_thesis_int_type:nTF {3}
       {
         \ctexset{
           chapter = {
