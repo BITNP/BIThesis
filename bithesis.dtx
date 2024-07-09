@@ -844,6 +844,10 @@
       { \flushbottom }
   },
   pageVerticalAlign .initial:n = {top},
+  non-CJK-font-in-headings .choice:,
+  non-CJK-font-in-headings / serif .code:n = { \bool_set_false:N \l_@@_arial_as_title_font_bool },
+  non-CJK-font-in-headings / sans .code:n = { \bool_set_true:N \l_@@_arial_as_title_font_bool },
+  non-CJK-font-in-headings .initial:n = {serif},
   % 数学字体配置
   mathFont .choices:nn = {
     asana, bonum, cm, concrete, dejavu, erewhon, euler,
@@ -1207,21 +1211,20 @@
       }
     }
 
-  \@@_if_thesis_english:TF {
+  \bool_if:NTF \l_@@_arial_as_title_font_bool {
+    % 手动指定时要加载 Arial
+    \newfontfamily\arialfamily{Arial}
+  } {
+    % 即使未指定，本科全英文专业模板的声明也需要 Arial
     \@@_if_thesis_int_type:nT {3} {
-      % 对于本科全英文专业模板
-      % Font Arial is needed.
       \newfontfamily\arialfamily{Arial}
     }
-
-  } {
-    % 对于其他的中文模板，
-    % 需要加载细黑体。
-    \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {}
-    {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
-        {\l_@@_cover_xihei_font_path_tl}
-    }
+  }
+  % 无论中英文，封面都可能需要细黑体。
+  \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {}
+  {
+    \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
+      {\l_@@_cover_xihei_font_path_tl}
   }
 
   % 对于本科全英文专业模板，需要自定义日期格式。
@@ -1341,9 +1344,9 @@
 % 定义标题字体。
 %    \begin{macrocode}
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
-  \@@_if_thesis_int_type:nTF {3}
+  \bool_if:NTF \l_@@_arial_as_title_font_bool
   {
-    % 尽管是英文模板，但仍可能出现中文，因此需设置中文字体。
+    % 即使是英文模板，仍可能出现中文，也需设置中文字体。
     \heiti\arialfamily #1
   } {
     % 西文保持原本的 Times New Roman。黑体一般不搭配衬线体，但学校要求如此。
