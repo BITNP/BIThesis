@@ -1085,6 +1085,16 @@ TOC/(*\meta{key}*) = (*\meta{value}*)
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
+\begin{function}[added=2024-07-09]{TOC/title}
+\begin{bitsyntax}[emph={[1]title}]
+title = (*目录 | Table~of~Contents | \meta{字符串}*)
+\end{bitsyntax}
+
+  目录的标题。默认会按论文类型自动设置为「目录」、「目\quad{}录」或“Table~of~Contents”。
+
+  有的学院要求改为“Contents”，这时请自行修改。
+\end{function}
+
 \begin{function}{TOC/abstract,TOC/abstractEn}
 \begin{bitsyntax}[emph={[1]abstract,abstractEn}]
 abstract = (*(true)|false*)
