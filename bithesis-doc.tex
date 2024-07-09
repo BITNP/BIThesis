@@ -1442,11 +1442,21 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 \begin{bitsyntax}[emph={[1]degree,major}]
   info = {
     degree = (*(申请学位级别)|\marg{字符串}*),
-    major = (*(学科专业)|\marg{字符串}*),
+    major = (*专业 | 学科专业 | Degree | \marg{字符串}*),
   },
 \end{bitsyntax}
 
-  用于定义封面中个人信息条目的各个常量值。
+  用于定义封面中个人信息条目的各个常量值。默认按论文类型自动设置。
+\end{variable}
+
+\begin{variable}[added=2024-07-09]{const/heading/acknowledgements}
+\begin{bitsyntax}[emph={[1]acknowledgements}]
+  info = {
+    acknowledgements = (*致谢 | Acknowledgements | \marg{字符串}*),
+  },
+\end{bitsyntax}
+
+  用于定义一些固定章节的标题。默认按论文类型自动设置。
 \end{variable}
 
 \section{正文编写}

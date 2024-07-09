@@ -493,7 +493,7 @@
     {conclusion} {结\label_space: 论} {Conclusions},
     % 附录部分的总标题
     {appendix} {附\label_space: 录} {Appendices},
-    {ack} {致\label_space: 谢} {Acknowledgement},
+    {ack} {致\label_space: 谢} {Acknowledgements},
     {figure} {插\label_space: 图} {Illustrations},
     {table} {表\label_space: 格} {Tables},
     % 附录下各部分编号的前缀
@@ -762,6 +762,7 @@
     autoref .meta:nn = { bithesis / const / autoref } { #1 },
     style .meta:nn = { bithesis / const / style } { #1 },
     info .meta:nn = { bithesis / const / info } { #1 },
+    heading .meta:nn = { bithesis / const / heading } { #1 },
   }
 \keys_define:nn { bithesis / const / autoref }
   {
@@ -812,6 +813,13 @@
       } {
         \@@_get_const:N {major}
       }
+    },
+  }
+\keys_define:nn { bithesis / const / heading }
+  {
+    acknowledgements .tl_set:N = \g_@@_const_heading_acknowledgements_tl,
+    acknowledgements .initial:n = {
+      \@@_get_const:N {ack}
     },
   }
 %    \end{macrocode}
@@ -3032,11 +3040,7 @@
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
 
-      \@@_if_thesis_english:TF {
-        \chapter{\c_@@_label_ack_en_tl}
-      } {
-        \chapter{\c_@@_label_ack_tl}
-      }
+      \chapter{\g_@@_const_heading_acknowledgements_tl}
       \@@_if_graduate:TF {\fangsong}{}
       #1
     \end{blindPeerReview}
