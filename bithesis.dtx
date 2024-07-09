@@ -1343,8 +1343,10 @@
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
   \@@_if_thesis_int_type:nTF {3}
   {
-    \arialfamily #1
+    % 尽管是英文模板，但仍可能出现中文，因此需设置中文字体。
+    \heiti\arialfamily #1
   } {
+    % 西文保持原本的 Times New Roman。黑体一般不搭配衬线体，但学校要求如此。
     \heiti #1
   }
 }
@@ -2763,16 +2765,8 @@
     }
 
     \@@_if_bachelor_thesis:T {
-      \@@_if_thesis_int_type:nTF {3}
-      {
-        \ctexset{
-          chapter/titleformat = {\heiti}
-        }
-      }
-      {
-        \ctexset{
-          chapter/titleformat = {\textmd}
-        }
+      \ctexset{
+        chapter/titleformat = {\textmd}
       }
     }
 
@@ -2830,19 +2824,8 @@
     }
 
     \@@_if_bachelor_thesis:TF {
-      \@@_if_thesis_int_type:nTF {3}
-      {
-        \ctexset{
-          chapter = {
-            titleformat = {\heiti\zihao{3}\centering\textbf},
-          }
-        }
-      } {
-        \ctexset{
-          chapter = {
-            titleformat = {\heiti\zihao{-3}\centering\textmd},
-          }
-        }
+      \ctexset{
+        chapter/titleformat = {\zihao{-3}\textmd}
       }
     } {
       \ctexset {
