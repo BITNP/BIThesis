@@ -160,7 +160,7 @@
 %
 % \end{macro}
 %
-% \begin{macro}[added=2023-03-16]{\@@_get_const:}
+% \begin{macro}[added=2023-03-16]{\@@_get_const:N}
 % 获取标题、章节、表格、图形等的常量名称。
 % 会区别英文模式和中文模式。
 %   \begin{macrocode}
@@ -873,6 +873,10 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / TOC }
 {
+  title .tl_set:N = \l_@@_toc_title_tl,
+  title .initial:n = {
+    \@@_get_const:N {toc}
+  },
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
   abstract .initial:n = {true},
   abstractEn .bool_set:N = \l_@@_add_abstract_en_to_toc_bool,
@@ -2700,12 +2704,6 @@
         \renewcommand{\baselinestretch}{1.56}
       }
 
-      \@@_if_thesis_english:TF {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_en_tl}
-      } {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_tl}
-      }
-
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
@@ -2722,7 +2720,7 @@
         \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
       } {
         % 手动添加目录书签
-        \currentpdfbookmark{\c_@@_label_toc_tl}{ch:toc}
+        \currentpdfbookmark{\l_@@_toc_title_tl}{ch:toc}
       }
 
       % 制作目录
