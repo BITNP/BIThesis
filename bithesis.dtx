@@ -2713,18 +2713,18 @@
         \vspace{-8pt}
       }
 
-      % 添加目录书签
-      \@@_if_thesis_int_type:nF {3} {
+      \@@_if_thesis_int_type:nTF {3} {
+        % 添加「目录」本身到目录中，同时自动添加书签
+        % 此处必须有`\phantomsection`，不然 hyperref 会把链接指向之前摘要的标题。
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
+      } {
+        % 手动添加目录书签
         \currentpdfbookmark{\c_@@_label_toc_tl}{ch:toc}
       }
 
       % 制作目录
       \tableofcontents
-
-      % 在本科生全英文模板中，添加「目录」本身到目录中。
-      \@@_if_thesis_int_type:nT {3} {
-        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
-      }
 
       % 单独成页
       \clearpage
