@@ -721,6 +721,28 @@ showSpecialTypeBox = (*(false)|true*)
   因为美观原因默认关闭，和研究生院确认过这个信息框重要程度比较低。
 \end{function}
 
+\begin{function}[added=2024-07-11]{cover/prefer-zh}
+\begin{bitsyntax}[emph={[1]prefer-zh}]
+prefer-zh = (*(false)|true*)
+\end{bitsyntax}
+
+  是否强制使用中文封面，只适用于\BIThesisTemplates{UTE}。该模板默认封面是英文，而有些学院要求采用中文。
+
+  注意设置 |prefer-zh = true| 不会影响 |const/info/major| 等选项的默认值，请参考英文模板的 README 搭配使用。
+\end{function}
+
+\begin{function}[added=2024-07-11]{cover/reverse-titles}
+\begin{bitsyntax}[emph={[1]reverse-titles}]
+reverse-titles = (*(false)|true*)
+\end{bitsyntax}
+
+  是否调换中英文标题顺序，只适用于本科中文封面。
+  若为 |false|，中文在上，英文在下；若为 |true|，中文在下，英文在上。
+
+  适用于\BIThesisTemplates{UT}，此外\BIThesisTemplates{UTE}设置了 |cover/prefer-zh = true| 时也适用。
+  不适用于\BIThesisTemplates{PT}和硕士、博士学位论文。
+\end{function}
+
 \subsubsection{论文基本信息}
 
 \begin{function}{info}

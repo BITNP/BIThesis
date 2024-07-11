@@ -628,7 +628,13 @@
     hideCoverInPeerReview .initial:n = {from-thesis-type},
     % 研究生的「特殊类型」
     showSpecialTypeBox .bool_set:N = \l_@@_cover_show_special_type_box_bool,
-    showSpecialTypeBox .initial:n = {false}
+    showSpecialTypeBox .initial:n = {false},
+    % 本科英文模板也可以使用中文封面
+    prefer-zh .bool_set:N = \l_@@_cover_prefer_zh_bool,
+    prefer-zh .initial:n = {false},
+    % 本科英文模板使用中文封面时可能需要调换中英文标题顺序
+    reverse-titles .bool_set:N = \l_@@_cover_reverse_titles_bool,
+    reverse-titles .initial:n = {false},
   }
 %    \end{macrocode}
 %
@@ -2306,7 +2312,15 @@
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
     \group_begin:
 
-    \int_case:nn {\g_@@_thesis_type_int}
+    % 封面使用的 thesis-type 可能与整体不同。
+    \int_new:N \l_@@_thesis_type_int
+    \bool_if:NTF \l_@@_cover_prefer_zh_bool {
+      \int_set:Nn \l_@@_thesis_type_int {1}
+    } {
+      \int_set:Nn \l_@@_thesis_type_int \g_@@_thesis_type_int
+    }
+
+    \int_case:nn {\l_@@_thesis_type_int}
     {
       {1}
       {
@@ -2324,17 +2338,28 @@
 
           \zihao{-0}\textbf{\ziju{0.12}\songti{\l_@@_style_headline_tl}}\par
 
-          \vspace{16mm}
+          \vspace{0.5em plus 1fill}
 
-          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+          \group_begin:
+          % 中文标题
+          \tl_set:Nn \l_tmpa_tl {
+            \linespread{1.46}\selectfont
+            \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+          }
+          % 英文标题
+          \tl_set:Nn \l_tmpb_tl {
+            \linespread{1.65}\selectfont
+            \zihao{3}\textbf{\l_@@_value_title_en_tl}\par
+          }
 
-          \vspace{3mm}
+          \bool_if:NTF \l_@@_cover_reverse_titles_bool {
+            \l_tmpb_tl \vspace{3mm} \l_tmpa_tl
+          } {
+            \l_tmpa_tl \vspace{3mm} \l_tmpb_tl
+          }
+          \group_end:
 
-          \begin{spacing}{1.2}
-            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
-          \end{spacing}
-
-          \vspace{15mm}
+          \vspace{0em plus 1fill}
 
 
           \begin{spacing}{1.8}
@@ -2372,10 +2397,12 @@
             \end{center}
           \end{spacing}
 
-          \vspace*{\fill}
+          \vspace*{1.5em plus 1.5fill}
           \centering
           \zihao{3}\ziju{0.5}\songti{
             \tl_if_empty:NTF \l_@@_cover_date_tl {
+              % 英文模板中 ctex 不会预设日期格式，但仍要保证中文封面的日期按中文习惯
+              \ctexset{today=small}
               \today
             } {
               \l_@@_cover_date_tl
