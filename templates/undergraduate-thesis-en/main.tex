@@ -27,6 +27,7 @@
 
 \documentclass[type=bachelor_english]{bithesis}
 
+% 若需中文封面或在经管学院，请参考 ./README.md 中「BITSetup 学院变体」一节。
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
   cover = {
@@ -53,6 +54,10 @@
     % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
     % externalSupervisor = 左偏树,
   },
+  % 有些专业名带上“Bachelor of…”太长，学院可能建议把 degree 改成 major。
+  % 若要将封面的“Degree:”改为“Major:”，请解除下一行的注释。
+  % const/info/major = {Major},
+  %
   style = {
     % 页眉若要改为中文，请解除下一行的注释。
     % head = {北京理工大学本科生毕业设计（论文）},
@@ -67,18 +72,6 @@
     % 微调表格行间距
     tabularRowSeparation = 1.25,
   },
-  const = {
-    % 有些专业名带上“Bachelor of…”太长，学院可能建议把 degree 改成 major。
-    % 若要将封面的“Degree:”改为“Major:”，请解除下一行的注释。
-    % info/major = {Major},
-  },
-  %
-  % 标题若要按经管学院的要求，请解除以下几行的注释。
-  % % 将“Appendices”改为单数：
-  % appendices/title = {Appendix},
-  % appendices/TOCTitle = {Appendix},
-  % % 删掉“Table of ”：
-  % TOC/title = {Contents},
 }
 
 % 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
