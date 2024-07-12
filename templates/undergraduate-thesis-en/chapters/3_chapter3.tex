@@ -1,8 +1,36 @@
 \chapter{Engineering Design}
 
-Although engineering drawing still plays an important role in product design and manufacturing in many industrial sectors around the world, manual sketching for creating drawings has been gradually replaced by CAD (computer-aided design) software using computers. Beginning in the 1980s, CAD software reduced the need for draftsmen significantly, especially in small to mid-sized companies. The software’s affordability and ability to run on personal computers in the mid-1990s allowed engineers to do their own drafting and analytic work to some extent \ref{eq:1}.
+Although engineering drawing still plays an important role in product design and manufacturing in many industrial sectors around the world, manual sketching for creating drawings has been gradually replaced by CAD (computer-aided design) software using computers. Beginning in the 1980s, CAD software reduced the need for draftsmen significantly, especially in small to mid-sized companies. The software's affordability and ability to run on personal computers in the mid-1990s allowed engineers to do their own drafting and analytic work to some extent \ref{eq:1}.
 
 \begin{equation}
 x^n + y^n = z^n
 \label{eq:1}
 \end{equation}
+
+\section{注意事项}
+
+为保证封面、参考文献等支持中文，模板尽管是英文，仍使用了 \texttt{ctex} 及 \texttt{xeCJK} 宏包。
+请注意以下事项。
+
+\subsection{输入标点符号}
+
+% 此节删改自 lshort-zh-cn（GFDL v1.3）。
+% https://github.com/CTeX-org/lshort-zh-cn/blob/e95288a697822a6f63e6f2eb1b9160a6f324c566/src/chap/chap.02.text.tex#L160-L178
+
+\LaTeX{} 中，西文的单引号 ` 和\ ' 分别用 \verb|`| 和 \verb|'| 输入；双引号 `` 和\ '' 分别用 \verb|``| 和 \verb|''| 输入。
+若用其它方式，引号具体形状和宽度可能错误。
+（而中文的标点符号使用中文输入法输入即可，一般不需要过多留意。）
+
+\begin{lstlisting}
+``No, sir!'' All the pedant in Dean Hart was aroused.
+``In the English language, the word `majority' means `more than half'.
+Thirteen out of fourteen is a majority, nothing more.''
+
+“他不回答，对柜里说，‘温两碗酒，要一碟茴香豆。’便排出九文大钱。”
+\end{lstlisting}
+
+``No, sir!'' All the pedant in Dean Hart was aroused. ``In the English language, the word `majority' means `more than half'. Thirteen out of fourteen is a majority, nothing more.''
+
+“他不回答，对柜里说，‘温两碗酒，要一碟茴香豆。’便排出九文大钱。”
+
+% 如有特殊需要，可参考 https://github.com/CTeX-org/ctex-kit/issues/389 定制。
