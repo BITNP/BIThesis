@@ -598,7 +598,7 @@
     xiheiFont .tl_set:N = \l_@@_cover_xihei_font_path_tl,
     xiheiFont .default:n = {STXihei},
     %% cover entry
-    dilimiter .tl_set:N = \l_@@_cover_dilimiter_tl,
+    delimiter .tl_set:N = \l_@@_cover_delimiter_tl,
     labelAlign .tl_set:N = \l_@@_cover_label_align_tl,
     labelAlign .initial:n = {r},
     valueAlign .tl_set:N = \l_@@_cover_value_align_tl,
@@ -1793,7 +1793,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
@@ -2036,8 +2036,8 @@
       {
         \renewcommand{\baselinestretch}{2}
 
-        \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-          \tl_set:Nn \l_@@_cover_dilimiter_tl {\qquad}
+        \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+          \tl_set:Nn \l_@@_cover_delimiter_tl {\qquad}
         }
         \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
@@ -2092,8 +2092,8 @@
     \vskip \stretch{1}
 
     {
-      \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-        \tl_set:Nn \l_@@_cover_dilimiter_tl {:~}
+      \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+        \tl_set:Nn \l_@@_cover_delimiter_tl {:~}
       }
 
       \tl_set:Nn \l_@@_cover_label_align_tl {l}
@@ -2324,8 +2324,8 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-              \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {：}
             }
             % if not auto width, try override width
             \bool_if:NF \l_@@_cover_auto_width_bool {
@@ -2388,7 +2388,7 @@
 
           \begin{spacing}{1.8}
 
-            \tl_set:Nn \l_@@_cover_dilimiter_tl {\textbf{：}}
+            \tl_set:Nn \l_@@_cover_delimiter_tl {\textbf{：}}
             \bool_set_false:N \l_@@_cover_auto_width_bool
             \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
             \dim_set:Nn \l_@@_cover_value_max_width_dim {115mm}
@@ -2420,8 +2420,8 @@
           \vspace{\stretch{0.67}}
 
           \begin{spacing}{1.8}
-            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-              \tl_set:Nn \l_@@_cover_dilimiter_tl {：}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {：}
             }
 
             % 如果不是自动计算宽度，且用户没有自定义宽度，
@@ -2478,8 +2478,8 @@
 
           \begin{spacing}{1.8}
             \begin{center}
-            \tl_if_empty:NT \l_@@_cover_dilimiter_tl {
-              \tl_set:Nn \l_@@_cover_dilimiter_tl {:}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {:}
             }
 
             % if not auto width, try override width
@@ -3402,7 +3402,7 @@
     imagePath .tl_set:N = \l_bit_coverimagepath_tl,
     date .tl_set:N = \l_@@_cover_date_tl,
     %% cover entry
-    dilimiter .tl_set:N = \l_@@_cover_dilimiter_tl,
+    delimiter .tl_set:N = \l_@@_cover_delimiter_tl,
     labelAlign .tl_set:N = \l_@@_cover_label_align_tl,
     labelAlign .initial:n = {r},
     valueAlign .tl_set:N = \l_@@_cover_value_align_tl,
@@ -3513,7 +3513,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_dilimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
