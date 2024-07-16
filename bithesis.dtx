@@ -160,7 +160,7 @@
 %
 % \end{macro}
 %
-% \begin{macro}[added=2023-03-16]{\@@_get_const:}
+% \begin{macro}[added=2023-03-16]{\@@_get_const:N}
 % 获取标题、章节、表格、图形等的常量名称。
 % 会区别英文模式和中文模式。
 %   \begin{macrocode}
@@ -216,7 +216,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
 \cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
-\cs_new:Npn \__bithesis_if_thesis_int_type:nF #1#2 {\__bithesis_if_thesis_int_type:nTF {#1} {} {#2}}
+\cs_new:Npn \@@_if_thesis_int_type:nF #1#2 {\@@_if_thesis_int_type:nTF {#1} {} {#2}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -491,10 +491,12 @@
     {toc} {目\label_space: 录} {Table~of~Contents},
     {abstract} {摘\label_space: 要} {Abstract},
     {conclusion} {结\label_space: 论} {Conclusions},
+    % 附录部分的总标题
     {appendix} {附\label_space: 录} {Appendices},
-    {ack} {致\label_space: 谢} {Acknowledgement},
+    {ack} {致\label_space: 谢} {Acknowledgements},
     {figure} {插\label_space: 图} {Illustrations},
     {table} {表\label_space: 格} {Tables},
+    % 附录下各部分编号的前缀
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
     {university} {北京理工大学} {Beijing~Institute~of~Technology},
@@ -626,7 +628,13 @@
     hideCoverInPeerReview .initial:n = {from-thesis-type},
     % 研究生的「特殊类型」
     showSpecialTypeBox .bool_set:N = \l_@@_cover_show_special_type_box_bool,
-    showSpecialTypeBox .initial:n = {false}
+    showSpecialTypeBox .initial:n = {false},
+    % 本科英文模板也可以使用中文封面
+    prefer-zh .bool_set:N = \l_@@_cover_prefer_zh_bool,
+    prefer-zh .initial:n = {false},
+    % 本科英文模板使用中文封面时可能需要调换中英文标题顺序
+    reverse-titles .bool_set:N = \l_@@_cover_reverse_titles_bool,
+    reverse-titles .initial:n = {false},
   }
 %    \end{macrocode}
 %
@@ -760,6 +768,7 @@
     autoref .meta:nn = { bithesis / const / autoref } { #1 },
     style .meta:nn = { bithesis / const / style } { #1 },
     info .meta:nn = { bithesis / const / info } { #1 },
+    heading .meta:nn = { bithesis / const / heading } { #1 },
   }
 \keys_define:nn { bithesis / const / autoref }
   {
@@ -812,6 +821,13 @@
       }
     },
   }
+\keys_define:nn { bithesis / const / heading }
+  {
+    acknowledgements .tl_set:N = \g_@@_const_heading_acknowledgements_tl,
+    acknowledgements .initial:n = {
+      \@@_get_const:N {ack}
+    },
+  }
 %    \end{macrocode}
 %
 % 定义 |bithesis/style| 键值对类。
@@ -834,6 +850,10 @@
       { \flushbottom }
   },
   pageVerticalAlign .initial:n = {top},
+  non-CJK-font-in-headings .choice:,
+  non-CJK-font-in-headings / serif .code:n = { \bool_set_false:N \l_@@_arial_as_title_font_bool },
+  non-CJK-font-in-headings / sans .code:n = { \bool_set_true:N \l_@@_arial_as_title_font_bool },
+  non-CJK-font-in-headings .initial:n = {serif},
   % 数学字体配置
   mathFont .choices:nn = {
     asana, bonum, cm, concrete, dejavu, erewhon, euler,
@@ -863,10 +883,16 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / TOC }
 {
+  title .tl_set:N = \l_@@_toc_title_tl,
+  title .initial:n = {
+    \@@_get_const:N {toc}
+  },
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
   abstract .initial:n = {true},
   abstractEn .bool_set:N = \l_@@_add_abstract_en_to_toc_bool,
   abstractEn .initial:n = {true},
+  TOC .bool_set:N = \l_@@_add_toc_to_toc_bool,
+  TOC .initial:n = {false},
   symbols .bool_set:N = \l_@@_add_symbols_to_toc_bool,
   symbols .initial:n = {true},
 }
@@ -1191,21 +1217,20 @@
       }
     }
 
-  \@@_if_thesis_english:TF {
+  \bool_if:NTF \l_@@_arial_as_title_font_bool {
+    % 手动指定时要加载 Arial
+    \newfontfamily\arialfamily{Arial}
+  } {
+    % 即使未指定，本科全英文专业模板的声明也需要 Arial
     \@@_if_thesis_int_type:nT {3} {
-      % 对于本科全英文专业模板
-      % Font Arial is needed.
       \newfontfamily\arialfamily{Arial}
     }
-
-  } {
-    % 对于其他的中文模板，
-    % 需要加载细黑体。
-    \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {}
-    {
-      \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
-        {\l_@@_cover_xihei_font_path_tl}
-    }
+  }
+  % 无论中英文，封面都可能需要细黑体。
+  \tl_if_blank:VTF \l_@@_cover_xihei_font_path_tl {}
+  {
+    \setCJKfamilyfont{xihei}[AutoFakeBold,AutoFakeSlant]
+      {\l_@@_cover_xihei_font_path_tl}
   }
 
   % 对于本科全英文专业模板，需要自定义日期格式。
@@ -1325,10 +1350,12 @@
 % 定义标题字体。
 %    \begin{macrocode}
 \cs_new:Npn \l_@@_title_font_cs:n #1 {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
+  \bool_if:NTF \l_@@_arial_as_title_font_bool
   {
-    \arialfamily #1
+    % 即使是英文模板，仍可能出现中文，也需设置中文字体。
+    \heiti\arialfamily #1
   } {
+    % 西文保持原本的 Times New Roman。黑体一般不搭配衬线体，但学校要求如此。
     \heiti #1
   }
 }
@@ -1489,13 +1516,7 @@
 % 定义前置内容的页面样式。
 %    \begin{macrocode}
 \RenewDocumentCommand \frontmatter {} {
-  \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
-  {
-    % 本科全英文专业论文，页码使用小罗马数字。
-    \pagenumbering{roman}
-  } {
-    \pagenumbering{Roman}
-  }
+  \pagenumbering{Roman}
   % 这部分的章节标题不进行编号。
   \ctexset{
     chapter = {
@@ -1657,13 +1678,13 @@
   % 针对 algorithm 宏包
   \@ifpackagewith{algorithm}{chapter}{
     \cs_gset:Npn \thealgorithm
-    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algorithm}}
+    {\thechapter\g_@@_label_divide_char_tl\arabic{algorithm}}
   }{}
   % 针对 algorithm2e 宏包
   \@ifpackagewith{algorithm2e}{algochapter}{
     % 名字中的“cf”是指其作者 Christophe Fiorio。
     \cs_gset:Npn \thealgocf
-    {\thechapter\g__bithesis_label_divide_char_tl\arabic{algocf}}
+    {\thechapter\g_@@_label_divide_char_tl\arabic{algocf}}
   }{}
 
   % 默认的情况下，保留公式和上下文的一定间距。（会比 Word 稍宽一些）
@@ -1730,8 +1751,8 @@
 %
 % 调整插图目录与表格目录的标题。
 %    \begin{macrocode}
-\cs_set:Npn \listfigurename {\currentpdfbookmark{\c__bithesis_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
-\cs_set:Npn \listtablename {\currentpdfbookmark{\c__bithesis_label_table_tl}{ch:tables}\@@_get_const:N {table}}
+\cs_set:Npn \listfigurename {\currentpdfbookmark{\c_@@_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
+\cs_set:Npn \listtablename {\currentpdfbookmark{\c_@@_label_table_tl}{ch:tables}\@@_get_const:N {table}}
 %    \end{macrocode}
 %
 % 预定义用户常用的证明环境。
@@ -2291,7 +2312,15 @@
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
     \group_begin:
 
-    \int_case:nn {\g_@@_thesis_type_int}
+    % 封面使用的 thesis-type 可能与整体不同。
+    \int_new:N \l_@@_thesis_type_int
+    \bool_if:NTF \l_@@_cover_prefer_zh_bool {
+      \int_set:Nn \l_@@_thesis_type_int {1}
+    } {
+      \int_set:Nn \l_@@_thesis_type_int \g_@@_thesis_type_int
+    }
+
+    \int_case:nn {\l_@@_thesis_type_int}
     {
       {1}
       {
@@ -2309,17 +2338,28 @@
 
           \zihao{-0}\textbf{\ziju{0.12}\songti{\l_@@_style_headline_tl}}\par
 
-          \vspace{16mm}
+          \vspace{0.5em plus 1fill}
 
-          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+          \group_begin:
+          % 中文标题
+          \tl_set:Nn \l_tmpa_tl {
+            \linespread{1.46}\selectfont
+            \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+          }
+          % 英文标题
+          \tl_set:Nn \l_tmpb_tl {
+            \linespread{1.65}\selectfont
+            \zihao{3}\textbf{\l_@@_value_title_en_tl}\par
+          }
 
-          \vspace{3mm}
+          \bool_if:NTF \l_@@_cover_reverse_titles_bool {
+            \l_tmpb_tl \vspace{3mm} \l_tmpa_tl
+          } {
+            \l_tmpa_tl \vspace{3mm} \l_tmpb_tl
+          }
+          \group_end:
 
-          \begin{spacing}{1.2}
-            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
-          \end{spacing}
-
-          \vspace{15mm}
+          \vspace{0em plus 1fill}
 
 
           \begin{spacing}{1.8}
@@ -2357,10 +2397,12 @@
             \end{center}
           \end{spacing}
 
-          \vspace*{\fill}
+          \vspace*{1.5em plus 1.5fill}
           \centering
           \zihao{3}\ziju{0.5}\songti{
             \tl_if_empty:NTF \l_@@_cover_date_tl {
+              % 英文模板中 ctex 不会预设日期格式，但仍要保证中文封面的日期按中文习惯
+              \ctexset{today=small}
               \today
             } {
               \l_@@_cover_date_tl
@@ -2496,7 +2538,7 @@
 
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_en_tl} {\l_@@_value_school_tl},
-              {\c_@@_label_major_en_tl} {\l_@@_value_major_tl},
+              {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
               {\c_@@_label_author_en_tl} {\l_@@_value_author_tl},
               {\c_@@_label_student_id_en_tl} {\l_@@_value_student_id_tl},
               {\c_@@_label_supervisor_en_tl} {\l_@@_value_supervisor_tl},
@@ -2592,7 +2634,10 @@
           \newpage
         }
         {3} {
-          \linespread{1.26}\selectfont
+          \currentpdfbookmark{Statements}{frontmatter:originality}
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
+
           % 原创性声明部分
           \begin{center}
             \vspace*{-2bp}
@@ -2603,7 +2648,7 @@
             }
           \end{center}~\par
 
-          % 本部分字号为小三
+          % 本部分字号为小四
           \zihao{-4}
           \c_@@_bachelor_english_label_originality_clause_tl
 
@@ -2611,7 +2656,7 @@
 
           Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
 
-          \vspace{6mm}
+          \vspace{\stretch{1}}
 
           % 使用授权声明部分
           \begin{center}
@@ -2691,12 +2736,6 @@
         \renewcommand{\baselinestretch}{1.56}
       }
 
-      \@@_if_thesis_english:TF {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_en_tl}
-      } {
-        \tl_set:Nn \l_@@_toc_title_tl {\c_@@_label_toc_tl}
-      }
-
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
@@ -2706,18 +2745,18 @@
         \vspace{-8pt}
       }
 
-      % 添加目录书签
-      \__bithesis_if_thesis_int_type:nF {3} {
-        \currentpdfbookmark{\c__bithesis_label_toc_tl}{ch:toc}
+      \bool_if:NTF \l_@@_add_toc_to_toc_bool {
+        % 添加「目录」本身到目录中，同时自动添加书签
+        % 此处必须有`\phantomsection`，不然 hyperref 会把链接指向之前摘要的标题。
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
+      } {
+        % 手动添加目录书签
+        \currentpdfbookmark{\l_@@_toc_title_tl}{ch:toc}
       }
 
       % 制作目录
       \tableofcontents
-
-      % 在本科生全英文模板中，添加「目录」本身到目录中。
-      \__bithesis_if_thesis_int_type:nT {3} {
-        \addcontentsline{toc}{chapter}{\c__bithesis_label_toc_en_tl}
-      }
 
       % 单独成页
       \clearpage
@@ -2756,16 +2795,8 @@
     }
 
     \@@_if_bachelor_thesis:T {
-      \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
-      {
-        \ctexset{
-          chapter/titleformat = {\heiti}
-        }
-      }
-      {
-        \ctexset{
-          chapter/titleformat = {\textmd}
-        }
+      \ctexset{
+        chapter/titleformat = {\textmd}
       }
     }
 
@@ -2810,11 +2841,8 @@
         \centering
         \vspace*{-2bp}
 
-        \@@_if_thesis_int_type:nTF {3} {
-          \arialfamily\zihao{-2}\textbf
-          \l_@@_value_title_en_tl\\
-        } {
-          \heiti\zihao{3}\textbf
+        \l_@@_title_font_cs:n {
+          \zihao{3}\textbf
           \l_@@_value_title_en_tl\\
         }
       \end{spacing}
@@ -2826,19 +2854,8 @@
     }
 
     \@@_if_bachelor_thesis:TF {
-      \int_compare:nNnTF {\g_@@_thesis_type_int} = {3}
-      {
-        \ctexset{
-          chapter = {
-            titleformat = {\heiti\zihao{3}\centering\textbf},
-          }
-        }
-      } {
-        \ctexset{
-          chapter = {
-            titleformat = {\heiti\zihao{-3}\centering\textmd},
-          }
-        }
+      \ctexset{
+        chapter/titleformat = {\zihao{-3}\textmd}
       }
     } {
       \ctexset {
@@ -2957,7 +2974,7 @@
     }
 
     \bool_if:NTF \l_@@_appendices_chapter_level_bool {
-      % 附录章节级别
+      % 使用以「chapter」为顶层的附录格式
 
       % 仅设置 \setcounter{chapter}{0} 时，pdf 目录会索引到正文章节。
       % 因此，需要使用 \appendix 重置计数器，并将附录后面的
@@ -2976,7 +2993,7 @@
         \Alph{chapter}
       }
     } {
-      % 附录节（section）级别
+      % 使用以「section」为顶层的附录格式
 
       % 因为不需要用到 chapter counter, 所以直接加一即可。
       \stepcounter{chapter}
@@ -3033,11 +3050,7 @@
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
 
-      \@@_if_thesis_english:TF {
-        \chapter{\c_@@_label_ack_en_tl}
-      } {
-        \chapter{\c_@@_label_ack_tl}
-      }
+      \chapter{\g_@@_const_heading_acknowledgements_tl}
       \@@_if_graduate:TF {\fangsong}{}
       #1
     \end{blindPeerReview}

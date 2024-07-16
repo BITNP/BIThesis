@@ -28,12 +28,12 @@
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
   cover = {
-    % 在封面中载入有「北京理工大学」字样的图片，如无必要请勿改动。
+    % 封面需要「北京理工大学」字样图片，如无必要请勿修改该项。
     headerImage = images/header.png,
-    % 在封面标题中使用思源黑体，使用此选项可以保证与 Word 封面标题的字体一致。
+    % 封面标题需要“华文细黑”，如无必要请勿修改该项。
     xiheiFont = STXIHEI.TTF,
-    %% 使用以下参数来自定义封面日期
-    % date = 2023年6月,
+    % 可用以下参数自定义封面日期。
+    % date = 1955年11月,
   },
   info = {
     % 想要删除某项封面信息，直接删除该项即可。
@@ -54,6 +54,12 @@
     headline = 本科生读书报告,
     % 开启 Windows 平台下的中易宋体伪粗体。
     % windowsSimSunFakeBold = true,
+    %
+    % 开启该选项后，将用 Times New Roman 的开源字体 TeX Gyre Termes 作为正文字体。
+    % 这个选项适用于以下情况：
+    % 1. 不想在系统中安装 Times New Roman。
+    % 2. 在 Linux/macOS 下遇到 `\textsc` 无法正常显示的问题。
+    % betterTimesNewRoman = true,
   },
   misc = {
     % 微调表格行间距
@@ -84,19 +90,13 @@
 % 参考文献引用文件位于 misc/ref.bib
 \addbibresource{misc/ref.bib}
 
-% 如果要按照计算机学院的要求，
-% 在外文翻译报告中使用带有“北京理工大学”水印
-% 请使用此 issue 提供的方法：
-% https://github.com/BITNP/BIThesis/issues/350#issuecomment-1565974141
-
 % 文档开始
 \begin{document}
 
 % 标题页面：如无特殊需要，本部分无需改动
-% \input{misc/0_cover.tex}
 \MakeCover
 
-% 前置页面定义
+% 前置内容定义
 \frontmatter
 
 \MakeTOC
@@ -104,19 +104,18 @@
 % 正文开始
 \mainmatter
 
-% 第一章
+% 在这里引用各章 TeX 文件，按需添加
 \input{chapters/1_chapter1.tex}
-% 在这里添加第二章、第三章……TeX 文件的引用
 \input{chapters/2_chapter2.tex}
-% \input{chapters/3_chapter3.tex}
 
-% 后置部分
+% 后置内容
 \backmatter
 
-% 结论：在结论相应的 TeX 文件处进行结论部分的撰写
+% 结论：在相应 TeX 文件撰写
 \input{misc/1_conclusion.tex}
-% 参考文献：如无特殊需要，参考文献相应的 TeX 文件无需改动，添加参考文献请使用 BibTeX 的格式
-%   添加至 misc/ref.bib 中，并在正文的相应位置使用 \cite{xxx} 的格式引用参考文献
+% 参考文献：
+% 添加文献时，请按 BibTeX 格式添加至 misc/ref.bib，并在正文所需位置使用 \cite{…} 引用。
+% 如无特殊需要，无需改动相应 TeX 文件。
 \input{misc/2_reference.tex}
 
 \end{document}

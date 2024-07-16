@@ -18,7 +18,6 @@
 % The Current Maintainer of this work is Feng Kaiyu.
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
-%%
 
 % !TeX program = xelatex
 % !BIB program = biber
@@ -28,6 +27,7 @@
 
 \documentclass[type=bachelor_english]{bithesis}
 
+% 若需中文封面或在经管学院，请参考 ./README.md 中「BITSetup 学院变体」一节。
 % 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
   cover = {
@@ -35,8 +35,8 @@
     headerImage = images/header.png,
     % 封面标题需要“华文细黑”，如无必要请勿修改该项。
     xiheiFont = STXIHEI.TTF,
-    % 修改封面日期
-    % date = May 31 2023,
+    % 可用以下参数自定义封面日期。
+    % date = {November 5, 1955},
   },
   info = {
     % 想要删除某项封面信息，直接删除该项即可。
@@ -54,12 +54,19 @@
     % 如果你的毕设为校外毕设，请将下面这一行语句解除注释（删除第一个百分号字符）并填写你的校外毕设导师名字
     % externalSupervisor = 左偏树,
   },
+  % 有些专业名带上“Bachelor of…”太长，学院可能建议把 degree 改成 major。
+  % 若要将封面的“Degree:”改为“Major:”，请解除下一行的注释。
+  % const/info/major = {Major},
+  %
   style = {
-    % 保持参考文献的缩进样式与 Word 模板一致。
-    % 如果你不需要此样式，请将此行注释掉。
-    bibliographyIndent = false,
-    % 如无必要请勿修改该项。
-    % head = {自定义页眉文字}
+    % 页眉若要改为中文，请解除下一行的注释。
+    % head = {北京理工大学本科生毕业设计（论文）},
+    %
+    % 开启该选项后，将用 Times New Roman 的开源字体 TeX Gyre Termes 作为正文字体。
+    % 这个选项适用于以下情况：
+    % 1. 不想在系统中安装 Times New Roman。
+    % 2. 在 Linux/macOS 下遇到 `\textsc` 无法正常显示的问题。
+    % betterTimesNewRoman = true,
   },
   misc = {
     % 微调表格行间距
@@ -69,10 +76,12 @@
 
 % 使用 listings 宏包进行代码块使用，并使用了预定义的样式，
 % 你也可以选用自己的喜欢的其他宏包，如 minted；
-% 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的建议性考虑，我们没有提供 minted 进行代码块书写的示例。
-% 但是，我们仍旧非常建议你使用 minted。
+% 然而由于 minted 依赖 Python 的 Pygments 库作为外部依赖，因此出于模板的简洁程度考虑，我们没有提供 minted 进行代码块书写的示例。
 \usepackage{listings}
 
+
+% 大部分关于参考文献样式的修改，都可以通过此处的选项进行配置。
+% 详情请搜索「biblatex-gb7714-2015 文档」进行阅读。
 \usepackage[
   backend=biber,
   style=gb7714-2015,
@@ -95,15 +104,19 @@
 \begin{document}
 
 % 标题页面：如无特殊需要，本部分无需改动
-% \input{misc/0_cover.tex}
 \MakeCover
 
-% 前置页面定义
-\frontmatter
-
+% 原创性声明：盲审结束前无需改动
 \MakeOriginality
+% 后续添加签名时，可考虑先用 Word 制作再导出到 misc/0_originality.pdf，
+% 同时注释以上 `\MakeOriginality`，解除注释以下三行代码。
+% \begin{blindPeerReview}
+%   \includepdf{misc/0_originality.pdf}\newpage
+% \end{blindPeerReview}
 
-% 摘要：在摘要相应的 TeX 文件处进行摘要部分的撰写
+% 前置内容定义
+\frontmatter
+% 摘要：在相应 TeX 文件撰写
 \input{chapters/0_abstract.tex}
 
 \MakeTOC
@@ -111,23 +124,23 @@
 % 正文开始
 \mainmatter
 
-% 第一章
+% 在这里引用各章 TeX 文件，按需添加
 \input{chapters/1_chapter1.tex}
-% 在这里添加第二章、第三章的 TeX 文件的引用
 \input{chapters/2_chapter2.tex}
 \input{chapters/3_chapter3.tex}
 
 % 后置内容
 \backmatter
 
-% 结论：在结论相应的 TeX 文件处进行结论部分的撰写
+% 结论：在相应 TeX 文件撰写
 \input{misc/1_conclusions.tex}
-% 参考文献：如无特殊需要，参考文献相应的 TeX 文件无需改动，添加参考文献请使用 BibTeX 的格式
-%   添加至 misc/ref.bib 中，并在正文的相应位置使用 \cite{xxj} 的格式引用参考文献
+% 参考文献：
+% 添加文献时，请按 BibTeX 格式添加至 misc/ref.bib，并在正文所需位置使用 \cite{…} 引用。
+% 如无特殊需要，无需改动相应 TeX 文件。
 \input{misc/2_references.tex}
-% 附录：在附录相应的 TeX 文件处进行附录部分的撰写
+% 附录：在相应 TeX 文件撰写；不需要时可删除
 \input{misc/3_appendices.tex}
-% 致谢：在致谢相应的 TeX 文件处进行致谢部分的撰写
+% 致谢：在相应 TeX 文件撰写
 \input{misc/4_acknowledgements.tex}
 
 \end{document}
