@@ -721,6 +721,28 @@ showSpecialTypeBox = (*(false)|true*)
   因为美观原因默认关闭，和研究生院确认过这个信息框重要程度比较低。
 \end{function}
 
+\begin{function}[added=2024-07-11]{cover/prefer-zh}
+\begin{bitsyntax}[emph={[1]prefer-zh}]
+prefer-zh = (*(false)|true*)
+\end{bitsyntax}
+
+  是否强制使用中文封面，只适用于\BIThesisTemplates{UTE}。该模板默认封面是英文，而有些学院要求采用中文。
+
+  注意设置 |prefer-zh = true| 不会影响 |const/info/major| 等选项的默认值，请参考英文模板的 README 搭配使用。
+\end{function}
+
+\begin{function}[added=2024-07-11]{cover/reverse-titles}
+\begin{bitsyntax}[emph={[1]reverse-titles}]
+reverse-titles = (*(false)|true*)
+\end{bitsyntax}
+
+  是否调换中英文标题顺序，只适用于本科中文封面。
+  若为 |false|，中文在上，英文在下；若为 |true|，中文在下，英文在上。
+
+  适用于\BIThesisTemplates{UT}，此外\BIThesisTemplates{UTE}设置了 |cover/prefer-zh = true| 时也适用。
+  不适用于\BIThesisTemplates{PT}和硕士、博士学位论文。
+\end{function}
+
 \subsubsection{论文基本信息}
 
 \begin{function}{info}
@@ -985,6 +1007,27 @@ pageVerticalAlign = (*(top)|scattered*)
 \end{optdesc}
 \end{function}
 
+\begin{function}[added=2024-07-09]{style/non-CJK-font-in-headings}
+\begin{bitsyntax}[emph={[1]non-CJK-font-in-headings}]
+non-CJK-font-in-headings = (*(serif)|sans*)
+\end{bitsyntax}
+
+\textit{对于中文模板，此选项一般不需要用户自行修改。}
+
+设置标题中拉丁字母、数字等非汉字部分的字体。
+大致 |serif| 对应 Times New Roman，|sans| 对应 Arial。
+默认为 |serif|。
+
+“标题”除了包含正文标题，还包含摘要页的论文题目、摘要标题，目录、参考文献、附录的标题等。
+
+学校官方规范中，目前描述较模糊；若从正文、封面类推，应为 Times New Roman。
+2024年学校（本科）教务部老师回答其它问题时提到：“所有毕业设计过程文件及论文涉及到的英文和数字用 Times New Roman。”
+当年实际提交时，用 Times New Roman、Arial 甚至字偶间距不正常的黑体都能通过。
+总之，“这不是重点，美观就行”。
+
+若设为 |sans|，请同时参考 |misc/arialFont| 选项。
+\end{function}
+
 \begin{function}[added=2023-03-29]{style/mathFont}
 \begin{bitsyntax}[emph={[1]mathFont}]
 mathFont = (*(cm)|asana|fira|...|xits|none*)
@@ -1085,6 +1128,16 @@ TOC/(*\meta{key}*) = (*\meta{value}*)
  该选项包含许多子项目，用于调整其他选项。具体内容见下：
 \end{function}
 
+\begin{function}[added=2024-07-09]{TOC/title}
+\begin{bitsyntax}[emph={[1]title}]
+title = (*目录 | Table~of~Contents | \meta{字符串}*)
+\end{bitsyntax}
+
+  目录的标题。默认会按论文类型自动设置为「目录」、「目\quad{}录」或“Table~of~Contents”。
+
+  有的学院要求改为“Contents”，这时请自行修改。
+\end{function}
+
 \begin{function}{TOC/abstract,TOC/abstractEn}
 \begin{bitsyntax}[emph={[1]abstract,abstractEn}]
 abstract = (*(true)|false*)
@@ -1093,6 +1146,16 @@ abstract = (*(true)|false*)
   \textit{此选项一般不需要用户自行修改。}
 
   是否在目录中索引摘要。
+\end{function}
+
+\begin{function}[added=2024-07-09]{TOC/TOC}
+\begin{bitsyntax}[emph={[1]TOC}]
+TOC = (*(false)|true*)
+\end{bitsyntax}
+
+  \textit{此选项一般不需要用户自行修改。}
+
+  是否在目录中索引目录本身。
 \end{function}
 
 \begin{function}{TOC/symbols}
@@ -1140,18 +1203,22 @@ chapterLevel = (*<(false)|true>*)
 
 \begin{function}{appendices/title}
 \begin{bitsyntax}[emph={[1]title}]
-title = (*(附录)|\meta{字符串}*)
+title = (*\meta{字符串}*)
 \end{bitsyntax}
 
- 可以覆盖附录的标题名称，默认为「附录」。
+  附录部分的总标题。默认会按论文类型自动设置为「附录」、「附\quad{}录」或“Appendices”。
+
+  仅在 |appendices/chapterLevel| 为 |false| 时有效。
 \end{function}
 
 \begin{function}{appendices/TOCTitle}
 \begin{bitsyntax}[emph={[1]TOCTitle}]
-TOCTitle = (*(附录)|\meta{字符串}*)
+TOCTitle = (*\meta{字符串}*)
 \end{bitsyntax}
 
- 可以覆盖附录在目录中的名称，默认为「附录」。
+  附录在目录中的名称。默认会按论文类型自动设置为「附录」、「附\quad{}录」或“Appendices”。
+
+  仅在 |appendices/chapterLevel| 为 |false| 时有效。
 \end{function}
 
 \subsubsection{攻读学位期间发表论文与研究成果清单选项}
@@ -1244,7 +1311,7 @@ arialFont = (*\marg{字符串}*)
 
   \textit{此选项一般不需要用户自行修改。}
 
-  本科生毕业设计模板（全英文专业）需要设置 Arial 字体。
+  早期（2022年及以前）\BIThesisTemplates{UTE}需要设置 Arial 字体。
   在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
 \end{function}
 
@@ -1434,15 +1501,25 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   盲审模式下用于替换个人信息的替换符号。
 \end{variable}
 
-\begin{variable}[added=2023-06-11]{const/info/degree,const/info/major}
+\begin{variable}[added=2023-06-11, updated=2024-07-09]{const/info/degree,const/info/major}
 \begin{bitsyntax}[emph={[1]degree,major}]
   info = {
     degree = (*(申请学位级别)|\marg{字符串}*),
-    major = (*(学科专业)|\marg{字符串}*),
+    major = (*专业 | 学科专业 | Degree | \marg{字符串}*),
   },
 \end{bitsyntax}
 
-  用于定义封面中个人信息条目的各个常量值。
+  用于定义封面中个人信息条目的各个常量值。默认按论文类型自动设置。
+\end{variable}
+
+\begin{variable}[added=2024-07-09]{const/heading/acknowledgements}
+\begin{bitsyntax}[emph={[1]acknowledgements}]
+  info = {
+    acknowledgements = (*致谢 | Acknowledgements | \marg{字符串}*),
+  },
+\end{bitsyntax}
+
+  用于定义一些固定章节的标题。默认按论文类型自动设置。
 \end{variable}
 
 \section{正文编写}
