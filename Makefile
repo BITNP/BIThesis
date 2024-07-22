@@ -1,6 +1,10 @@
 # 以下命令仅保证能在 Linux 或 macOS 环境下执行。
 # 如果你是 Windows 用户，可以使用 Git Bash 或者 Cygwin 来执行；
 # 或者可以考虑将此脚本移植为 PowerShell。
+
+# Required for brace expansion
+SHELL = /bin/bash
+
 PACKAGE = bithesis
 
 SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
@@ -67,18 +71,21 @@ test: doc copy FORCE_MAKE
 regression-test: cls
 	$(REGRESSION_TEST_COMMAND)
 
+.PHONY: copy-only
+copy-only:
+	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis
+	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis-en
+	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/paper-translation
+	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/graduate-thesis
+	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/reading-report
+	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/doctor-thesis
+	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/autorefs
+	cp {bithesis.cls,assets/latexmkrc} ./handbook
+	cp {bitreport.cls,assets/latexmkrc} $(SCAFFOLDDIR)/lab-report
+	cp {bitbeamer.cls,assets/latexmkrc} $(SCAFFOLDDIR)/presentation-slide
+
 .PHONY: copy
-copy: cls
-	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis
-	cp bithesis.cls $(SCAFFOLDDIR)/undergraduate-thesis-en
-	cp bithesis.cls $(SCAFFOLDDIR)/paper-translation
-	cp bithesis.cls $(SCAFFOLDDIR)/graduate-thesis
-	cp bithesis.cls $(SCAFFOLDDIR)/reading-report
-	cp bithesis.cls $(TESTDIR)/doctor-thesis
-	cp bithesis.cls $(TESTDIR)/autorefs
-	cp bithesis.cls ./handbook
-	cp bitreport.cls $(SCAFFOLDDIR)/lab-report
-	cp bitbeamer.cls $(SCAFFOLDDIR)/presentation-slide
+copy: cls copy-only
 
 # Generate scaffolds for overleaf
 .PHONY: overleaf
