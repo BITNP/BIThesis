@@ -54,6 +54,21 @@ jobs:
             undergraduate-thesis-en,
             reading-report,
           ]
+        include:
+          - template: graduate-thesis
+            label: 硕博·学位论文
+          - template: undergraduate-thesis
+            label: 本科·毕业设计·论文
+          - template: lab-report
+            label: 实验报告
+          - template: paper-translation
+            label: 本科·毕业设计·外文翻译
+          - template: presentation-slide
+            label: 演示文档
+          - template: undergraduate-thesis-en
+            label: 本科·毕业设计·论文（全英文专业）
+          - template: reading-report
+            label: 本科·读书报告
 
     steps:
       - uses: actions/checkout@v4
@@ -75,12 +90,11 @@ jobs:
         run: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
         working-directory: ./templates
       - name: Upload ${{ matrix.template }}.zip to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./templates/${{ matrix.template }}.zip
-          asset_name: ${{ matrix.template }}.zip
-          tag: ${{ github.ref }}
+        run: |
+          gh release upload ${{ github.ref }} \
+            "./templates/${{ matrix.template }}.zip#模板包·${{ matrix.label }} — ${{ matrix.template }}.zip"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish_cls:
     name: Publish ${{ matrix.cls }}
@@ -89,7 +103,13 @@ jobs:
 
     strategy:
       matrix:
-        cls: [bithesis, bitreport, bitbeamer]
+        cls:
+          - name: bithesis
+            label: 论文
+          - name: bitreport
+            label: 实验报告
+          - name: bitbeamer
+            label: 幻灯片
 
     steps:
       - uses: actions/checkout@v4
@@ -97,13 +117,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cls
-      - name: Upload ${{ matrix.cls }}.cls to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.cls }}.cls
-          asset_name: ${{ matrix.cls }}.cls
-          tag: ${{ github.ref }}
+      - name: Upload ${{ matrix.cls.name }}.cls to release
+        run: |
+          gh release upload ${{ github.ref }} \
+            "${{ matrix.cls.name }}.cls#文档类·${{ matrix.cls.label }} — ${{ matrix.cls.name }}.cls（用于升级替换）"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release_notes:
     name: Populate release notes with latest changelog and PDFs
@@ -156,18 +175,14 @@ jobs:
         with:
           name: handbooks
           path: handbook
-      - name: Upload undergraduate-handbook
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: handbook/undergraduate-handbook.pdf
-          tag: ${{ github.ref }}
-      - name: Upload graduate-handbook
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: handbook/graduate-handbook.pdf
-          tag: ${{ github.ref }}
+      - name: Upload handbooks
+        run: |
+          gh release upload ${{ github.ref }} \
+            "handbook/undergraduate-handbook.pdf#快速使用指南·本科"
+          gh release upload ${{ github.ref }} \
+            "handbook/graduate-handbook.pdf#快速使用指南·硕博"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   upload_to_ctan:
     name: Upload to CTAN
