@@ -91,7 +91,7 @@ jobs:
         working-directory: ./templates
       - name: Upload ${{ matrix.template }}.zip to release
         run: |
-          gh release upload ${{ github.ref }} \
+          gh release upload ${{ github.event.release.tag_name }} \
             "./templates/${{ matrix.template }}.zip#模板包·${{ matrix.label }} — ${{ matrix.template }}.zip"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -119,7 +119,7 @@ jobs:
           name: cls
       - name: Upload ${{ matrix.cls.name }}.cls to release
         run: |
-          gh release upload ${{ github.ref }} \
+          gh release upload ${{ github.event.release.tag_name }} \
             "${{ matrix.cls.name }}.cls#文档类·${{ matrix.cls.label }} — ${{ matrix.cls.name }}.cls（用于升级替换）"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -177,9 +177,9 @@ jobs:
           path: handbook
       - name: Upload handbooks
         run: |
-          gh release upload ${{ github.ref }} \
+          gh release upload ${{ github.event.release.tag_name }} \
             "handbook/undergraduate-handbook.pdf#快速使用指南·本科"
-          gh release upload ${{ github.ref }} \
+          gh release upload ${{ github.event.release.tag_name }} \
             "handbook/graduate-handbook.pdf#快速使用指南·硕博"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
