@@ -694,9 +694,9 @@ underlineOffset = (*(-10pt)|\marg{任意长度}*)
   设置封面信息中下划线的偏移量。
 \end{function}
 
-\begin{function}[added=2023-05-09, updated=2024-06-14]{cover/hideCoverInPeerReview}
+\begin{function}[added=2023-05-09, updated=2024-08-28]{cover/hideCoverInPeerReview}
 \begin{bitsyntax}[emph={[1]hideCoverInPeerReview}]
-hideCoverInPeerReview = (*(from-thesis-type)|false|true*)
+hideCoverInPeerReview = (*false|true*)
 \end{bitsyntax}
 
   \textit{此选项默认值会按论文类型自动设置，一般已满足要求，不需要用户自行修改。}
@@ -706,7 +706,7 @@ hideCoverInPeerReview = (*(from-thesis-type)|false|true*)
   \begin{itemize}
     \item 若设为 |true|，盲审模式下直接删除封面。
     \item 若设为 |false|，盲审模式下保留封面，只是隐去个人信息。
-    \item （默认）若设为 |from-thesis-type|，自动根据论文类型设置。具体来说，本科生设为 |true|，研究生设为 |false|。
+    \item （默认）若未设置，自动根据论文类型设置。具体来说，本科生设为 |true|，研究生设为 |false|。
   \end{itemize}
 
   未启用盲审模式时，此选项无效果。
