@@ -142,7 +142,7 @@ jobs:
         id: git-cliff
         with:
           config: cliff.toml
-          args: -vv --latest --strip header
+          args: -vv ${{ github.event.release.prerelease && '--unreleased' || '--latest' }} --strip header
         env:
           OUTPUT: CHANGES.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
