@@ -615,17 +615,9 @@
     underlineThickness .initial:n = {1pt},
     underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
     underlineOffset .initial:n = { -10pt },
-    hideCoverInPeerReview .choice:,
-    hideCoverInPeerReview / true .code:n = { \bool_set_true:N \l_@@_cover_hide_cover_in_peer_review_bool },
-    hideCoverInPeerReview / false .code:n = { \bool_set_false:N \l_@@_cover_hide_cover_in_peer_review_bool },
-    hideCoverInPeerReview / from-thesis-type .code:n = {
-      \@@_if_graduate:TF {
-        \bool_set_false:N \l_@@_cover_hide_cover_in_peer_review_bool
-      } {
-        \bool_set_true:N \l_@@_cover_hide_cover_in_peer_review_bool
-      }
-    },
-    hideCoverInPeerReview .initial:n = {from-thesis-type},
+    hideCoverInPeerReview .bool_set:N = \l_@@_cover_hide_cover_in_peer_review_bool,
+    % 此处暂且填充默认值为`false`，待确定`\g_@@_thesis_type_int`后再根据论文类型覆盖默认值
+    hideCoverInPeerReview .initial:n = {false},
     % 研究生的「特殊类型」
     showSpecialTypeBox .bool_set:N = \l_@@_cover_show_special_type_box_bool,
     showSpecialTypeBox .initial:n = {false},
@@ -935,6 +927,14 @@
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
+%    \end{macrocode}
+% 确定 |bithesis/option| 中的 |\g_@@_thesis_type_int| 后，根据论文类型自动覆盖某些选项的默认值。
+%    \begin{macrocode}
+\@@_if_graduate:TF {
+  \keys_set:nn {bithesis} {cover/hideCoverInPeerReview = false}
+} {
+  \keys_set:nn {bithesis} {cover/hideCoverInPeerReview = true}
+}
 %    \end{macrocode}
 %
 % \subsubsection{处理模板选项}
