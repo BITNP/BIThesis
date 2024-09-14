@@ -627,6 +627,9 @@
     % 本科英文模板使用中文封面时可能需要调换中英文标题顺序
     reverse-titles .bool_set:N = \l_@@_cover_reverse_titles_bool,
     reverse-titles .initial:n = {false},
+    % 本科英文模板需要加入中文标题
+    addTitleZh .bool_set:N = \l_@@_cover_add_titlezh_bool,
+    addTitleZh .initial:n = {true},
   }
 %    \end{macrocode}
 %
@@ -2512,6 +2515,11 @@
           \zihao{1}\textbf{\ziju{0.12}\l_@@_style_headline_tl}\par
 
           \vspace{18mm}
+
+          \bool_if:NT \l_@@_cover_add_titlezh_bool {
+            \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+            \vspace{16mm}
+          }
 
           \zihao{2}\textbf{\xihei:n \l_@@_value_title_en_tl}\par
 
