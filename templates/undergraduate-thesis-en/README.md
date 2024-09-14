@@ -8,6 +8,23 @@
 
 ## BITSetup 学院变体
 
+### 英文封面隐藏中文标题
+
+默认封面虽是英文，但也有中文标题。如果您想隐藏封面的中文标题，请编辑`main.tex`，找到`\BITSetup{…}`，设置`cover/addTitleZh = false`：
+
+```latex
+\BITSetup{
+  cover = {
+    …
+    % date = {November 5, 1955},
+    addTitleZh = false,
+  },
+  …
+}
+```
+
+另外注意，即使封面隐藏了中文标题，中文摘要也有，故仍需在`info/title`填写中文标题信息。
+
 ### 中文封面
 
 默认封面是英文，有些学院要求采用中文。这时请编辑`main.tex`，找到`\BITSetup{…}`，替换为以下内容。此外注意中文封面比英文封面多班号信息（`info/class`）。

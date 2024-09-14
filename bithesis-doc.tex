@@ -743,6 +743,16 @@ reverse-titles = (*(false)|true*)
   不适用于\BIThesisTemplates{PT}和硕士、博士学位论文。
 \end{function}
 
+\begin{function}[added=2024-09-14]{cover/addTitleZh}
+\begin{bitsyntax}[emph={[1]addTitleZh}]
+addTitleZh = (*(true)|false*)
+\end{bitsyntax}
+
+  是否添加中文标题，只适用于本科英文封面。
+
+  只适用于\BIThesisTemplates{UTE}，不适用于其它模板。而且若切换为中文封面（|cover/prefer-zh = true|），此选项也无效。
+\end{function}
+
 \subsubsection{论文基本信息}
 
 \begin{function}{info}
