@@ -243,7 +243,7 @@ jobs:
       - name: Create a PR
         # Changes must be made through the merge queue, therefore a PR is necessary.
         id: pr
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: Update CHANGELOG for ${{ github.event.release.tag_name }}
           title: Update CHANGELOG for ${{ github.event.release.tag_name }}
