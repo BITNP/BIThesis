@@ -247,6 +247,8 @@ jobs:
         with:
           commit-message: Update CHANGELOG for ${{ github.event.release.tag_name }}
           title: Update CHANGELOG for ${{ github.event.release.tag_name }}
+          # Ignore binaries installed by git-cliff-action.
+          add-paths: CHANGELOG.md
 
       - name: Report status
         run: |
