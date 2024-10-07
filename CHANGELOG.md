@@ -11,6 +11,67 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.0] - 2024-10-07
+
+### <!-- 0 -->🚀 Features
+
+- 自动设置`hideCoverInPeerReview` ([286fa70](https://github.com/BITNP/BIThesis/commit/286fa7003888dfd65686925fef1d3ee519b714b4)) by @YDX-2147483647
+- 改小数学行距至西文水平 ([bcae36c](https://github.com/BITNP/BIThesis/commit/bcae36c8438cfa2b113e625697305602b5e1c676)) by @YDX-2147483647 in [#537](https://github.com/BITNP/BIThesis/pull/537)
+- [**breaking**] 致谢标题支持用`const/heading/acknowledgements`调整，同时英文模板默认值从单数改为复数 ([e524e6b](https://github.com/BITNP/BIThesis/commit/e524e6bb34afcd039dfe080ca780cd9f426f5ff2)) by @YDX-2147483647
+- 目录标题支持用`TOC/title`调整 ([3f5f938](https://github.com/BITNP/BIThesis/commit/3f5f9387c41b833c674efc9d6ce1c8c5aa9b8e6b)) by @YDX-2147483647
+- *(UTE)* 支持英文模板采用中文封面 ([f14ec56](https://github.com/BITNP/BIThesis/commit/f14ec56b96018f8dea855c6e95ebd0147f24e2a4)) by @YDX-2147483647 in [#539](https://github.com/BITNP/BIThesis/pull/539)
+- 本科毕设英文模板封面按照要求加入中文标题 ([8aecf33](https://github.com/BITNP/BIThesis/commit/8aecf330dfe984e7e2c4de7abe47c25b5ac816d1)) by @CreeperLKF
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- 统一更新本科若干模板的注释 ([eb03d24](https://github.com/BITNP/BIThesis/commit/eb03d24af28dd86989971a6d3311749bed9d924d)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板前置部分的页码从小写罗马数字改为大写 ([c721bd2](https://github.com/BITNP/BIThesis/commit/c721bd2ff1f2eea43de3f80c7cc87e089e175ec6)) by @YDX-2147483647
+- *(UTE)* 本科英文模板也应支持`const/info/major` ([0ecd8db](https://github.com/BITNP/BIThesis/commit/0ecd8db4cfeca6cfa80fdccff24ce891609a38c8)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板的声明页删除页码，并与中文模板统一格式 ([0ec02cc](https://github.com/BITNP/BIThesis/commit/0ec02cc9b64d18f8577f8b3fb04c0731f6644f73)) by @YDX-2147483647
+- 目录包含「目录」本身时，页码应为目录的首页而非末页 ([6e32fd3](https://github.com/BITNP/BIThesis/commit/6e32fd3d3072ae9a54776e9c3fc2b947c4f6f363)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板的目录默认不再包含目录本身 ([aa2fa1e](https://github.com/BITNP/BIThesis/commit/aa2fa1ed41789173a5d34fc63d9579b92a9864e2)) by @YDX-2147483647
+- 硕博模板中`cover/hideCoverInPeerReview`应仍默认为 false ([c845fef](https://github.com/BITNP/BIThesis/commit/c845fefcb34ce3a9b47cc51e3159d780b75350b1)) by @YDX-2147483647 in [#549](https://github.com/BITNP/BIThesis/pull/549)
+
+### <!-- 2 -->🚜 Refactor
+
+- 统一使用`\@@_if_thesis_int_type:nTF` ([e43a008](https://github.com/BITNP/BIThesis/commit/e43a008f7387c3e6c89aa71f7147e2bb32e9cba3)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板英文摘要上方的论文标题改为三号（16 bp），与中文模板一致 ([39a7093](https://github.com/BITNP/BIThesis/commit/39a70936a43103375434bc53b5466222941cb54c)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板标题中的中文改为黑体，取消摘要标题加粗，与中文模板一致 ([832c1fb](https://github.com/BITNP/BIThesis/commit/832c1fb6bc03205a958308bb4a206b02cd177cf0)) by @YDX-2147483647
+- *(UTE)* [**breaking**] 本科英文模板的 Arial 换为 Times，与中文模板一致 ([b302128](https://github.com/BITNP/BIThesis/commit/b30212808c81537ae05a6901fa7da6a119666578)) by @YDX-2147483647
+- `cover/dilimiter`选项改为`cover/delimiter` ([49cae71](https://github.com/BITNP/BIThesis/commit/49cae716a771ee100336e625e11bbf8b5dada689)) by @YDX-2147483647 in [#542](https://github.com/BITNP/BIThesis/pull/542)
+
+### <!-- 3 -->📚 Documentation
+
+- 提示更改外文翻译模板的页眉，并更新相关注释 ([fe5d1f7](https://github.com/BITNP/BIThesis/commit/fe5d1f7245f2bbace01938eae92fb2f9c7ef5d1f)) by @YDX-2147483647 in [#529](https://github.com/BITNP/BIThesis/pull/529)
+- 更新 Overleaf 情况 ([6a20fff](https://github.com/BITNP/BIThesis/commit/6a20fffb5915694a5671991f21eb4f9d899492aa)) by @YDX-2147483647
+- 更新开发指南 ([2bfe946](https://github.com/BITNP/BIThesis/commit/2bfe94694d846d771dea1806d2868bbaf04c2e4e)) by @YDX-2147483647 in [#530](https://github.com/BITNP/BIThesis/pull/530)
+- 补充介绍`\AuthorEn` ([3439553](https://github.com/BITNP/BIThesis/commit/34395534334fb6c279fca11866568dd8a2a922fc)) by @YDX-2147483647 in [#535](https://github.com/BITNP/BIThesis/pull/535)
+- *(handbook)* 生成盲评版论文 ([24a7e5d](https://github.com/BITNP/BIThesis/commit/24a7e5dd8bdc47cb8ebc2858733f99161034bfa7)) by @YDX-2147483647 in [#534](https://github.com/BITNP/BIThesis/pull/534)
+- *(UTE)* 可以调换中英文摘要顺序 ([2625d43](https://github.com/BITNP/BIThesis/commit/2625d436af40d36d29b054082cd61e187969883b)) by @YDX-2147483647
+- `appendices/title`等选项 ([7b89ffa](https://github.com/BITNP/BIThesis/commit/7b89ffacad6c07efdf757101394258f8098549ba)) by @YDX-2147483647
+- *(UTE)* 更新英文模板示例 ([9104d6a](https://github.com/BITNP/BIThesis/commit/9104d6a0a7ec958124f6f7808aa583068d619c91)) by @YDX-2147483647 in [#541](https://github.com/BITNP/BIThesis/pull/541)
+- `cover/addTitleZh` ([bee5642](https://github.com/BITNP/BIThesis/commit/bee56420895cc0b0a45296e52b64afae90641012)) by @YDX-2147483647 in [#552](https://github.com/BITNP/BIThesis/pull/552)
+
+### <!-- 5 -->🎨 Styling
+
+- Trim trailing whitespace and make sure files end in a newline and only a newline ([5e439b0](https://github.com/BITNP/BIThesis/commit/5e439b01a9495768b3245a4cb32d18fe36620221)) by @YDX-2147483647 in [#538](https://github.com/BITNP/BIThesis/pull/538)
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Fix typo ([f950040](https://github.com/BITNP/BIThesis/commit/f95004032360d2d0a2707fea300070e9007ed3e3)) by @fky2015
+- 更新开发文档、脚本等资料 ([1f0f4f7](https://github.com/BITNP/BIThesis/commit/1f0f4f73b1d51ceec18bfa85856d8b1a4ed5d582)) by @YDX-2147483647
+- DocStrip 统一用`@@`而非`_bithesis_` ([ac3b973](https://github.com/BITNP/BIThesis/commit/ac3b973e861d65380f517f88ae4aeb3a4883bf83)) by @YDX-2147483647
+- 所有`latexmkrc`统一启用 SyncTeX 并关闭`-shell-escape` ([3ed9359](https://github.com/BITNP/BIThesis/commit/3ed9359ef07688ac56b8dc8ea090df5ba9a406ce)) by @YDX-2147483647 in [#545](https://github.com/BITNP/BIThesis/pull/545)
+- 标注中文显示名 ([cd01f88](https://github.com/BITNP/BIThesis/commit/cd01f887454af19dc39ddbbb09af6601c8b8bd99)) by @YDX-2147483647 in [#546](https://github.com/BITNP/BIThesis/pull/546)
+- `gh release upload`应当使用`tag_name` ([424e5b8](https://github.com/BITNP/BIThesis/commit/424e5b851df44d42cbf26900874480b5de58484a)) by @YDX-2147483647
+- Fix release notes of pre-releases ([25055b3](https://github.com/BITNP/BIThesis/commit/25055b3146e64568dcd63c9bc6aa7c1b72f78e94)) by @YDX-2147483647 in [#550](https://github.com/BITNP/BIThesis/pull/550)
+- Update version to 3.8.0 ([0c94ca5](https://github.com/BITNP/BIThesis/commit/0c94ca50efc1daba24715be6e4e6e5a41a6c800f)) by @fky2015
+
+### Build
+
+- *(deps)* Bump orhun/git-cliff-action from 3 to 4 ([a1fee78](https://github.com/BITNP/BIThesis/commit/a1fee787a97c8575af6154c35630849bad25f3ba)) by @dependabot[bot] in [#551](https://github.com/BITNP/BIThesis/pull/551)
+- *(deps)* Bump peter-evans/create-pull-request from 6 to 7 ([a6cb98c](https://github.com/BITNP/BIThesis/commit/a6cb98c04cf01a21753b7a962a9d63bb5cbcfd52)) by @dependabot[bot] in [#553](https://github.com/BITNP/BIThesis/pull/553)
+
 ## [3.7.9] - 2024-05-30
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -29,8 +90,6 @@ Acronyms:
 - 编译快速使用手册 ([ef0e51e](https://github.com/BITNP/BIThesis/commit/ef0e51ef06765a459eb8e23d6e4a90a6f6e6d28f)) by @YDX-2147483647 in [#519](https://github.com/BITNP/BIThesis/pull/519)
 - Update bithesis.dtx version to 3.7.9 ([6d56033](https://github.com/BITNP/BIThesis/commit/6d56033f5cdcab31c89542959854e8ede368b9c7)) by @fky2015
 
-## New Contributors
-* @CreeperLKF made their first contribution in [#522](https://github.com/BITNP/BIThesis/pull/522)
 ## [3.7.8] - 2024-05-27
 
 ### <!-- 0 -->🚀 Features
