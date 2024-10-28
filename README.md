@@ -45,7 +45,7 @@ BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学�
 > 本项目获得了[北京理工大学研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)、[北京理工大学教务部](http://jwb.bit.edu.cn/)和[北京理工大学计算机学院](http://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
 
 > [!WARNING]
-> 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
+> 重要提示：建议 macOS 用户使用最新版的 [texlive 2023或以上版本](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
 
 <h2>特性</h2>
 
