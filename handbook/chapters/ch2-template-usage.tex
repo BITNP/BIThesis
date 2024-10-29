@@ -82,10 +82,11 @@
   \item 补充在\texttt{misc/}\isGraduateTF{、\texttt{references/}}{}文件夹中的其他内容。
 \end{enumerate}
 
-更棒的是，我们可以通过修改配置一键生成支持盲审的论文版本——一次写作，
+更棒的是，我们可以\hyperref[sec:blind]{通过修改配置一键生成支持盲审的论文版本}——一次写作，
 多种格式！
 
 \section{个人信息录入}
+\label{sec:BITSetup}
 
 在 \texttt{main.tex} 中，我们可以看到如下的代码：
 \begin{lstlisting}[language=TeX]
@@ -99,6 +100,7 @@
     author = 张三,
     major = 材料科学与工程,
     school = 材料学院,
+    keywords = {…；…},
     % ...
   },
   % ...
@@ -117,10 +119,7 @@
 
 \section{摘要和关键字}
 
-摘要内容，放置在 \texttt{chapters/} 文件夹中的 \texttt{\isGraduateTF{}{0\_}abstract.tex} 文件中。
-其中，摘要的关键字可在 \texttt{main.tex} 中「信息录入」的部分进行配置。
-
-中英文摘要通过如下方式进行书写：
+中英文摘要在 \texttt{chapters/} 文件夹中的 \texttt{\isGraduateTF{}{0\_}abstract.tex} 编写：
 
 \begin{lstlisting}[language=TeX]
 \begin{abstract}
@@ -132,6 +131,7 @@
 \end{abstractEn}
 \end{lstlisting}
 
+至于摘要后的关键字，可编辑 \texttt{main.tex}，在\hyperref[sec:BITSetup]{「信息录入」}中配置 \texttt{info/keywords}、\texttt{info/keywordsEn}。
 
 \section{论文主体}
 
@@ -224,6 +224,7 @@
 \end{enumerate}
 
 \section{生成盲审版论文}
+\label{sec:blind}
 
 提交论文用于匿名评阅（又名盲审或盲评）时，需要“隐去论文作者和导师姓名，以及致谢、论文成果等与作者有关的信息”。
 % 以上引文源于《北京理工大学关于本科毕业设计（论文）评阅的规定（试行）》（2023年4月修订）。
