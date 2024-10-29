@@ -1844,17 +1844,33 @@ addTOC = (*<(true)|false>*)
 
 \textit{通常在「攻读学位期间发表论文与研究成果清单」的 |.bib| 文件中使用。}
 \begin{itemize}
-  \item 在普通模式下，输出作者姓名。
+  \item 普通模式：
 
-  （作者姓名由用户在 |info/author| 中配置。）
+  \begin{itemize}
+    \item 默认输出作者姓名。
 
-  \item 如果指定了覆盖普通模式下内容，则输出覆盖内容。
+    （作者姓名由用户在 |info/author| 中配置。）
 
-  \item 在盲审模式下，输出「第n作者」。
+    \item 如果指定了覆盖普通模式下内容，则输出覆盖内容。
+  \end{itemize}
 
-  （具体情况：|\Author| 输出中文，如|第一作者|；|\AuthorEn| 输出英文，如 |First Author|。）
+  \item 盲审模式：
 
-  \item 如果指定了覆盖盲审模式下内容，则输出覆盖内容。
+  \begin{itemize}
+    \item 默认输出「第n作者」。
+
+    （具体情况：|\Author| 输出中文，如|第一作者|；|\AuthorEn| 输出英文，如 |First Author|。）
+
+    \item 如果指定了覆盖盲审模式下内容，则输出覆盖内容。
+  \end{itemize}
+\end{itemize}
+
+使用示例：
+\begin{itemize}
+  \item |\Author| 输出作者姓名（普通）或|第n作者|（盲审），具体编号取决于 |.bib| 文件中 |author+an| 字段标注的位置。
+  \item |\Author[][][第一发明人]| 输出作者姓名（普通）或|第一发明人|（盲审）。
+  \item |\AuthorEn[2]| 输出作者姓名（普通）或|Second Author|（盲审）。
+  \item |\Author[][][共同二作]| 输出作者姓名（普通）或|共同二作|（盲审）。
 \end{itemize}
 \end{function}
 

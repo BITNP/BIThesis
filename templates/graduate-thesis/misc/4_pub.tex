@@ -36,16 +36,19 @@
   % 如果想要分为多个列表，可以使用以下的命令。
   % 主要针对博士生。
   % \pubsection{文章}
-  %
   % \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
   %
   % \pubsection{一些书}
-  %
   % \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
   %
   % \pubsection{另一些书}
-  %
   % \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
+  %
+  % 关于 \printbibliography 的筛选参数：
+  % 0. 请保留“category=mypub”。（这样只列出成果，不列出正文参考文献。）
+  % 1. 设置“type=…”，每次只输出某一类型。
+  % 2. 若需继续细分，请在 pub.bib 的条目里记录“keywords = {…, …}”，然后在此用“keyword=…”筛选。
+  % 3. 如果还有要求，可用notkeyword、subtype等筛选方法，请参考 biblatex 手册。
 
   % 以下内容提供了一个可以同时和 \printbibliography 共存的自定义列表格式。
   % \zihao{5} % 字号改为五号
