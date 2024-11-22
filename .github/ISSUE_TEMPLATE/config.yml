@@ -1,0 +1,12 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 讨论区 Discussions Zone
+    url: https://github.com/BITNP/BIThesis/discussions 
+    about: |
+      有疑问或不知怎样操作？（而非发现错误或提出需求）请在这里讨论。
+      Do you have a question? (instead of a specific bug or feature request) Please discuss it here.
+  - name: 🐧 QQ群 737548118
+    url: https://jq.qq.com/?_wv=1027&k=KYDrmS5z
+    about: |
+      只想问个小问题？LaTeX环境安装不对？可去QQ群聊。
+      Just a small question? Weird LaTeX environment? Join and chat in the QQ group.
