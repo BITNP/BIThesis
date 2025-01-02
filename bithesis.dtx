@@ -3133,15 +3133,18 @@
 % \begin{macro}{\pubsection}
 % 设置小标题。
 %    \begin{macrocode}
-\NewDocumentCommand \pubsection {m} {
+\NewDocumentCommand \pubsection {s m} {
   {
-    % 自增计数器
-    \par\stepcounter{pub}
+    \par
+    \IfBooleanF {#1} {
+      % 自增计数器
+      \stepcounter{pub}
+    }
     % 设置小标题，暂时没有考虑英文模式
     \noindent
     \textbf{
       \heiti{
-        \zhnumber{\thepub}、#1
+        \IfBooleanF {#1} {\zhnumber{\thepub}、}#2
       }
     }\par
   }
