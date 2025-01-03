@@ -11,6 +11,26 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.1] - 2025-01-03
+
+### <!-- 0 -->🚀 Features
+
+- 支持不编号的`\pubsection*` ([7d372ea](https://github.com/BITNP/BIThesis/commit/7d372ea80eef66eafcc04fd01b5c790fd62314f0)) by @YDX-2147483647 in [#567](https://github.com/BITNP/BIThesis/pull/567)
+
+### <!-- 3 -->📚 Documentation
+
+- *(handbook)* 增加链接 ([e8708f2](https://github.com/BITNP/BIThesis/commit/e8708f24420409d44a2e0c459438096648f36e58)) by @YDX-2147483647
+- 改进「攻读学位期间发表论文与研究成果清单」相关文档 ([0fd8034](https://github.com/BITNP/BIThesis/commit/0fd8034dab5fa9431f432ec9acbc2aa4a8e9d700)) by @YDX-2147483647 in [#559](https://github.com/BITNP/BIThesis/pull/559)
+- 修复GitHub议题模板 ([8e2d6f5](https://github.com/BITNP/BIThesis/commit/8e2d6f513ed325dd48a556362b420725d0e771f7)) by @YDX-2147483647
+- 给`titleEn`示例添加括号 ([c5c88e3](https://github.com/BITNP/BIThesis/commit/c5c88e32d5dfbfe4aacbcb2af817b92d36d9e844)) by @YDX-2147483647 in [#565](https://github.com/BITNP/BIThesis/pull/565)
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Ignore binaries installed by git-cliff-action ([426991b](https://github.com/BITNP/BIThesis/commit/426991b4f8adba2046e4046e99152762114b57fe)) by @YDX-2147483647 in [#557](https://github.com/BITNP/BIThesis/pull/557)
+- Remove assets added accidentally ([eb0adc8](https://github.com/BITNP/BIThesis/commit/eb0adc8b0077b60d1d6f816b4d7a8231ab64112b)) by @YDX-2147483647
+- Texlive 2024 ([5c41393](https://github.com/BITNP/BIThesis/commit/5c41393184279e8c5228b16b6ce248ac631cbc1d)) by @everything411
+- Update version to 3.8.1 ([a6a1209](https://github.com/BITNP/BIThesis/commit/a6a12090dc6a3f1c017ff640a893b62214003a72)) by @YDX-2147483647
+
 ## [3.8.0] - 2024-10-07
 
 ### <!-- 0 -->🚀 Features
@@ -90,6 +110,8 @@ Acronyms:
 - 编译快速使用手册 ([ef0e51e](https://github.com/BITNP/BIThesis/commit/ef0e51ef06765a459eb8e23d6e4a90a6f6e6d28f)) by @YDX-2147483647 in [#519](https://github.com/BITNP/BIThesis/pull/519)
 - Update bithesis.dtx version to 3.7.9 ([6d56033](https://github.com/BITNP/BIThesis/commit/6d56033f5cdcab31c89542959854e8ede368b9c7)) by @fky2015
 
+## New Contributors
+* @CreeperLKF made their first contribution in [#522](https://github.com/BITNP/BIThesis/pull/522)
 ## [3.7.8] - 2024-05-27
 
 ### <!-- 0 -->🚀 Features
@@ -457,6 +479,7 @@ Acronyms:
 
 ## New Contributors
 * @spaceskynet made their first contribution
+* @SinCerely023 made their first contribution
 * @Zeqiang-Lai made their first contribution
 ## [3.5.4] - 2023-04-30
 
@@ -530,6 +553,8 @@ Acronyms:
 
 - 本科毕设封面添加班号信息 ([e3ed05f](https://github.com/BITNP/BIThesis/commit/e3ed05f639cd1c87213e3a88a615f9a75e81842b)) by @ZoroGH
 
+## New Contributors
+* @ZoroGH made their first contribution
 ## [3.5.1] - 2023-04-07
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -693,6 +718,8 @@ Acronyms:
 
 - Make sure all templates are updated. ([0f109e9](https://github.com/BITNP/BIThesis/commit/0f109e970c3d6fe82254d44b733e38505116a34b)) by @fky2015
 
+## New Contributors
+* @YDX-2147483647 made their first contribution
 ## [3.2.3] - 2022-12-30
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -707,6 +734,8 @@ Acronyms:
 
 - Typo. ([3a1f651](https://github.com/BITNP/BIThesis/commit/3a1f651b2deb6bc05767419361caca2ab6cb96ac)) by @fky2015
 
+## New Contributors
+* @scliubit made their first contribution in [#199](https://github.com/BITNP/BIThesis/pull/199)
 ## [3.2.2] - 2022-12-22
 
 ### <!-- 7 -->⚙️ Miscellaneous Tasks
@@ -1262,6 +1291,8 @@ Acronyms:
 
 ## New Contributors
 * @DeltaHao made their first contribution
+* @dependabot[bot] made their first contribution
+* @phy25 made their first contribution
 ## [1.2.0] - 2020-06-01
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -1283,10 +1314,13 @@ Acronyms:
 - *(contributing)* Add contributing.md ([24aee3d](https://github.com/BITNP/BIThesis/commit/24aee3d9c4c3c3c89a0f175649fd6d90e4ee27cd)) by @fky2015
 
 ## New Contributors
+* @fky2015 made their first contribution
 * @felinae98 made their first contribution
 * @shoopshoop made their first contribution
 ## [1.0.2] - 2020-05-04
 
+## New Contributors
+* @Lancern made their first contribution
 ## [1.0.1] - 2020-04-26
 
 ## New Contributors
@@ -1332,4 +1366,7 @@ Acronyms:
 
 - *(toc)* Fix content style ([13fd215](https://github.com/BITNP/BIThesis/commit/13fd2153cee260e9a4be103b7dcb3b8199bb1e8d)) by @Silverster98
 
+## New Contributors
+* @spencerwooo made their first contribution
+* @Silverster98 made their first contribution
 
