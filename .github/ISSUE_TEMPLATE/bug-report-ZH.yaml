@@ -13,7 +13,7 @@ body:
     attributes:
       label: 发生了什么？
       description: 请描述你遇到的问题。
-      placeholder: _清晰而简明地描述我所遇到的问题。_
+      placeholder: 清晰而简明地描述我所遇到的问题。
     validations:
       required: true
   - type: textarea
@@ -21,7 +21,7 @@ body:
     attributes:
       label: 你期望的结果
       description: 提供一下你期望的结果。
-      placeholder: _简述我期望得到的正确结果。_
+      placeholder: 简述我期望得到的正确结果。
     validations:
       required: false
   - type: textarea
@@ -30,22 +30,38 @@ body:
       label: 问题复现的步骤（或者截图）
       description: 我们如何才能帮你复现这个问题? （如果问题比较复杂，请考虑提供一个能够供我们编译的、可复现的示例。）
       placeholder: |
-        1. 打开 '...'
-        2. 点击 '...'
-        3. 移动到 '...'
-        4. 就能看见这个问题 '...'
+        1. 打开……
+        2. 点击……
+        3. 移动到……
+        4. 就能看见这个问题……
+
+        ```latex
+        % 复杂问题可提供代码示例
+        ```
     validations:
       required: true
+  - type: dropdown
+    id: templates
+    attributes:
+      label: BIThesis 模板
+      description: 你遇到问题的模板有哪些？
+      multiple: true
+      options:
+        - 硕博·学位论文 — graduate-thesis
+        - 本科·毕业设计或读书报告 — undergraduate-thesis[-en]、paper-translation、reading-report
+        - 演示文档 — presentation-slide
+        - 实验报告 — lab-report
   - type: dropdown
     id: os
     attributes:
       label: 操作系统或平台
       description: 你使用的操作系统或平台是什么？
+      multiple: true
       options:
         - Windows
         - macOS
         - Linux
-        - Overleaf
+        - Overleaf等在线平台
     validations:
       required: false
   - type: input
@@ -55,20 +71,6 @@ body:
       placeholder: TexLive 2024
     validations:
       required: false
-  - type: dropdown
-    id: templates
-    attributes:
-      label: BIThesis 模板
-      description: 你遇到问题的模板有哪些？
-      multiple: true
-      options:
-        - lab-report
-        - master-thesis
-        - paper-translation
-        - presentation-slide
-        - undergraduate-proposal-report
-        - undergraduate-thesis
-        - graduate-thesis
   - type: textarea
     id: logs
     attributes:
