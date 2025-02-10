@@ -42,6 +42,29 @@
 >
 > 如果要添加新命令，可以先在 `templates/` 中具体实现，再拷贝到 `bithesis.dtx`。
 
+> [!NOTE]
+> 
+> 文档有两部分。
+>
+> - `bithesis-doc.tex`面向最终使用者，对应手册`bithesis.pdf`大部分内容。
+> - `bithesis.dtx`中的注释面向开发者。
+>
+>   <details>
+>   <summary>注释中为何有 LaTeX 代码？</summary>
+>
+>   `bithesis.dtx`最顶层的注释包含 LaTeX 代码，可输出为手册结尾「实现细节」一节；不过默认不输出，一般也无需单独检查输出结果。
+>
+>   如需输出，请如下编辑`bithesis.dtx`（`\jobname`的值是`bithesis`，`\filename`的值是`bithesis.dtx`），然后照常编译手册。
+>
+>   ```diff
+>    \begin{document}
+>   -  \DocInput{\jobname-doc.tex}
+>   +  \DocInput{\jobname-doc.tex,\filename}
+>   ```
+>
+>   相关功能的文档位于 [DocStrip](https://texdoc.org/serve/docstrip/0) 和 [l3doc](https://texdoc.org/serve/l3doc/0)。
+>   </details>
+
 ## 参考资料
 
 - 本项目采用 LaTeX3，可以参考 [LaTeX3: Programming in LaTeX with Ease](https://www.alanshawn.com/tech/2020/10/04/latex3-tutorial.html)、[expl3 的文档](https://www.latex-project.org/help/documentation/)等。
