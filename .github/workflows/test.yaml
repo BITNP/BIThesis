@@ -29,8 +29,21 @@ jobs:
       - name: Check spelling of bithesis.dtx
         uses: crate-ci/typos@master
 
-  markdown-link-check:
+  check-links:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      - uses: actions/checkout@v4
+      - name: Restore the cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --config .github/lychee.toml
+            .
