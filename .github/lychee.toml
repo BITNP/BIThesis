@@ -1,0 +1,12 @@
+cache = true
+max_cache_age = "30 days"
+
+max_retries = 5
+retry_wait_time = 30 # seconds
+
+exclude = [
+  '^https://(grd|jwb|mirrors|cs)\.bit\.edu\.cn',
+  '^https://tex\.stackexchange\.com',
+  '^https://www\.tablesgenerator\.com',
+  'file://.*/bithesis\.pdf$', # Generated
+]

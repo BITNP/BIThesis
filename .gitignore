@@ -302,3 +302,5 @@ scripts/*
 .DS_Store
 
 BIT-bithesis-graduates*
+
+.lycheecache
