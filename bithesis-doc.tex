@@ -249,7 +249,7 @@ BIThesis-wiki
     \href{https://github.com/BITNP/BIThesis/releases}{GitHub Releases}
     \footnote{最推荐使用此种方式}
   \item  Overleaf 发布：
-    \href{https://bithesis.bitnp.net}{Overleaf Templates}
+    \href{https://bithesis.bitnp.net/guide/preface.html#q-bithesis-都包含哪些模板}{Overleaf Templates}
 \end{itemize}
 其中，CTAN 上发布的是 bithesis 宏包，也就是 |*.cls| 组成的文件，
 它们可以通过 \TeX 发行版自带的包管理器 tlmgr 来更新。
@@ -292,7 +292,7 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 
 \begin{itemize}
 \item Windows、Linux用户推荐安装 TeX Live 套装，
-  并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装；对于 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）
+  并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装；对于 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）
 \item OSX用户推荐安装 Mac TeX。
 \item 由于CTeX套装所含宏包比较陈旧，可能会导致编译无法通过，故不推荐安装。
   如果已安装 CTeX，\textbf{建议将其卸载}。
@@ -600,7 +600,7 @@ xiheiFont = (*\marg{字体路径}*)
 
   配置此选项以在部分模板封面中使用“华文细黑”，保证与 Word 模板中的字体一致。
 
-  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
+  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装（如果你是 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）。
 \end{function}
 
 \begin{function}{cover/delimiter}
@@ -1260,7 +1260,7 @@ sorting = (*(true)|false*)
 
   \item 在发表时间顺序上微调，把个别的提到最前——保留默认的 |true|，同时在 |*.bib| 文件中给个别项加上 |sortkey| 字段。
 
-    具体例子可参考\href{https://bithesis.bitnp.net/faq/bib-sort.html#sortkey}{疑难杂症}，详细解释可参考 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015 宏包手册（中文）}或 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex 宏包手册（英文）}。
+    具体例子可参考\href{https://bithesis.bitnp.net/faq/bib-sort.html#sortkey}{疑难杂症：怎么调整「攻读学位期间发表论文与研究成果清单」的顺序}，详细解释可参考 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015 宏包手册（中文）}或 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex 宏包手册（英文）}。
 \end{itemize}
 
 \textit{注意，如果编译后编号产生错误，
@@ -1322,7 +1322,7 @@ arialFont = (*\marg{字符串}*)
   \textit{此选项一般不需要用户自行修改。}
 
   早期（2022年及以前）\BIThesisTemplates{UTE}需要设置 Arial 字体。
-  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\ref{sec:word-fonts}直接使用 Windows 下的字体）。
+  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）。
 \end{function}
 
 \begin{function}[added=2023-04-22, updated=2024-05-13]{misc/tabularFontSize}
@@ -1673,7 +1673,7 @@ addTOC = (*<(true)|false>*)
 
   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
 
-  其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考 \ref{sec:algorithm}。
+  其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考\href{https://bithesis.bitnp.net/faq/algorithm.html}{疑难杂症：如何排版算法（伪代码）}。
 \end{function}
 
 \begin{table}[]
@@ -1898,125 +1898,9 @@ addTOC = (*<(true)|false>*)
 
 \section{常见问题和疑难解答}
 
-\subsection{如何排版算法（伪代码）？} \label{sec:algorithm}
+请参考\href{https://bithesis.bitnp.net/faq/}{在线文档的「疑难杂症」部分}，此处仅略作枚举。
 
-有以下三种互不兼容的方式。
-
-\begin{itemize}
-  \item |algorithm|+X 方式
-
-  引入 |algorithm| 宏包时，要加上选项 |chapter| 才能按学校要求分章编号，示例如下。
-
-\begin{bitsyntax}[emph={[1]chapter}]
-\usepackage[chapter]{algorithm}
-\usepackage{algorithmic} % 也可替换为 algpseudocode 或 algcompatible
-\end{bitsyntax}
-
-  使用示例请参考 \href{https://www.overleaf.com/learn/latex/Algorithms}{Algorithms - Overleaf 文档}。
-
-  \item |algorithm2e| 方式
-
-  引入宏包时，要加上选项 |algochapter| 才能按学校要求分章编号，示例如下。
-
-\begin{bitsyntax}[emph={[1]algochapter}]
-\usepackage[ruled, algochapter]{algorithm2e}
-\end{bitsyntax}
-
-  使用示例请参考 \href{https://www.overleaf.com/learn/latex/Algorithms#The_algorithm2e_package}{Algorithms - Overleaf 文档的 The |algorithm2e| package 一节}。
-
-  \item 使用模板提供的 |algo| 环境
-
-  这是表~\ref{tab:theorem}中的数学环境之一，不额外依赖宏包，但功能有限，基本只支持编号。
-\end{itemize}
-
-\subsection{为什么我的研究生模板开头有间隔的空白页？}
-
-根据《北京理工大学研究生学位论文撰写规范》，摘要前的页面需要单面打印，之后的内容需要双面打印。
-因此多出的空白页可以让你免于切换单、双面打印的烦恼——统一使用双面打印即可。
-
-或者，你可以关闭 |twoside| \ref{doc/function//twoside} 选项来去除这些空白。
-
-\subsection{如何修改数学公式的字体？}
-
-可以在导言区引入 \pkg{unicode-math} 宏包，
-并使用 |\setmathfont{XITS Math}| 修改数学环境下字体：
-
-\begin{latex}
-\usepackage{unicode-math}
-\unimathsetup{
-  math-style = ISO,
-  bold-style = ISO,
-}
-\setmathfont{XITSMath-Regular.otf}
-\end{latex}
-
-\textit{请事先安装 XITS 字体。}
-
-此外，如果使用 \TeX{} Gyre Pagella Math 等字面较大的字体，略微增加数学行距可能更美观：
-\begin{latex}
-\setmathfont{texgyrepagella-math.otf}
-\SetMathEnvironmentSinglespace{1.05}
-\end{latex}
-
-\textit{更多字体与使用方法请参考
-\href{https://ctan.org/pkg/unicode-math?lang=zh}{unicode-math 手册}和
-\href{https://ctan.org/pkg/zhlineskip}{zhlineskip 手册}。}
-
-\subsection{如何采用与 Word 相同的中文字体？} \label{sec:word-fonts}
-
-首先需要明确的是，我们所指的 Word 中的中文字体属于「中易字库」。
-
-对于 Windows 用户，一般无需修改设置，开箱即用。
-
-对于 Linux 和 macOS 用户，由于版权问题，系统中并不包含中易字库。
-因此，用户有两种选择：
-\begin{itemize}
- \item 手动在系统中安装中易字库
- （一般包括 SimSun、SimHei、KaiTi、FangSong 等）。
- \textbf{请注意，是 KaiTi 而不是 SimKai。}
- 并通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
- 强制使用中易字库。
- \item 在 Windows 系统下编译最终的 PDF 文件。
-\end{itemize}
-
-此外，对于 WSL 用户，你可以将 Windows 的字体目录软链接到 WSL 的字体目录，直接使用 Windows 下的字体文件。通过 WSL 的命令行按序执行：
-\begin{shell}[morekeywords={ln}]
-sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/win-fonts
-fc-cache -fv # 刷新字体缓存
-\end{shell}
-之后通过 |\documentclass[...,ctex={fontset=windows}]{bithesis}| 选项
-强制使用中易字库即可。
-
-\subsection{列表项的间距过大该如何解决？}
-
-相比 Word，$\LaTeX$ 的列表项间距会比行间距更大一些。
-这样做在一个列表项中包含多行时，可以更好地区分不同的列表项。
-但是，如果你只是想要一个简单的列表，这种间距可能会显得过大。
-想要\textbf{临时}取消这种间距，可以在环境中添加选项 |nosep|：
-
-\begin{latex}
-\begin{itemize}[nosep]
-  \item 选项一
-  \item 选项二
-\end{itemize}
-\end{latex}
-
-想要\textbf{永久}取消这种间距，可以在导言区添加如下代码：
-
-\begin{latex}
-\setlist{nosep}
-\end{latex}
-
-详见：https://github.com/BITNP/BIThesis/issues/293
-
-\textit{以上功能由 \pkg{enumitem} 宏包支持。通过导入 \pkg{bithesis}
-，该宏包已经被自动导入。}
-
-\subsection{想要让某一个页面自动从奇数页开始}
-
-首先，请保证开启了 |twoside| 模式。
-然后，请在你想要奇数页排版的页面之前
-（|\chapter|之前）插入 |\cleardoublepage|。
+\input{assets/faq.tex}
 
 \section{\cls{bitreport.cls} 使用与配置}
 \label{sec:bitreport}
