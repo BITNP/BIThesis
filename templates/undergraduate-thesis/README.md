@@ -4,7 +4,8 @@
 
 此文件夹中包含了北京理工大学毕业设计（论文）的全部内容，有关模板的使用方法更为详细的介绍，请参考：[bithesis 使用手册][manual]。
 
-> :warning: 重要提示：建议 macOS 用户使用最新版的 [texlive 2023](https://www.tug.org/mactex/mactex-download.html)，否则可能会遇到参考文献被查重的情况。详见 https://github.com/BITNP/BIThesis/issues/326
+> [!WARNING]
+> 重要提示：建议 macOS 用户更新到 [TeX Live / MacTeX 2023 或更新版本](https://www.tug.org/mactex/mactex-download.html)，否则[参考文献等可能会被错误查重](https://bithesis.bitnp.net/faq/false-duplicate.html)。
 
 ## 特性
 
