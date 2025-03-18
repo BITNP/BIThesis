@@ -1054,23 +1054,6 @@
 }
 %    \end{macrocode}
 %
-% 根据学校的要求，在本科生模板图片前后加上一行空白。
-%    \begin{macrocode}
-\@@_if_bachelor_thesis:T {
-  % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
-  \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-  % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
-  \setlength{\textfloatsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-  \AtBeginDocument {
-    % longtable 宏包有另外的机制，需专门调整
-    \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{0.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-      \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-    }{}
-  }
-}
-%    \end{macrocode}
-%
 %  \subsubsection{定义字体相关选项}
 %
 % 设置 Times New Roman 字体。
@@ -1597,39 +1580,122 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% 定义标题的前后间距。
+% 设置图表浮动体与前后正文的间距，以及浮动体内部的图表本体与 caption 的间距。
+%
+% 此处只满足学校要求；后续`misc/floatSeparation`等设置会在此基础上叠加。
+%
+% 学校要求：
+%
+% - 本科生
+%   - 图表与上下文之间各空一行。
+%   - 空行一边是 caption，一边是正文，字号不同。空行的字号具体采用哪个没有说明。
+% - 研究生
+%   - 图序、图题、表序、表题单倍行距，段前6磅，段后6磅。
+%   - 图表本体与正文的间距没有明确规定，不过Word模板实作明显窄于LaTeX默认间距（甚至小于行距），特别是表格。
+%
+% 这些间距在LaTeX中比较复杂：
+%
+% - 图表 caption 的布局位置相反，却共用术语
+%
+%   图自上而下的布局顺序是“正文 → 图本体 → caption → 正文”，而表是“正文 → caption → 表本体 → 正文”。
+%   按照图的布局，caption 的 below 指“caption 🡘 正文”距离，above 指“图表本体 🡘 caption”距离。
+%   这种 below、above 说法外推到了表的布局，导致表的所谓 below、above 与实际空间关系相反。
+%   详见`caption`宏包手册。
+%
+% - 间距是多个设置之和
+%
+%   可能涉及以下四类设置。
+%   1. 浮动体设置 intextsep、textfloatsep、floatsep ——默认是一段非零的弹性长度（由 LaTeX 和 CTeX 共同提供），可`setlength`。
+%   2. caption 设置 belowcaptionskip、abovecaptionskip ——默认为零，可直接`setlength`，或间接用`captionsetup`设置。
+%   3. `caption`宏包加的 strut——这部分为零，因为引入宏包时已设置`strut=off`。
+%   4. 行距——捉摸不定（因为间距两边字号不同），并且难以修改。
+%   详见 https://github.com/CTeX-org/forum/issues/86 和 https://tex.stackexchange.com/q/26521/266758。
+%
+% - 图表具体形式多样
+%
+%   图可能包含子图，子图还可能有多行，要避免各行间遮挡。
+%   表除了普通 table，还可能有 longtable，后者有另外的`LTpre`、`LTpost`机制。
+%
 %    \begin{macrocode}
-\setlength{\abovecaptionskip}{11pt}
+%
+% 1. 设置相对简单的浮动体内部“图表本体 🡘 caption”距离。
+%
 \@@_if_bachelor_thesis:TF {
+  \setlength{\abovecaptionskip}{11pt}
+
+  % 调整表格 caption 和表格本体间的距离。
+  \@@_if_thesis_english:TF {
+    % 英文模板缺乏规定，只调整中文模板
+  } {
+    % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
+    \captionsetup[table]{skip=5pt}
+  }
+} {
+  \captionsetup[table]{skip=8bp}
+}
+%
+% 2. 设置比较复杂的图表浮动体与前后正文的间距。
+%    a. 首先设置浮动体，保证“图表本体 🡘 caption”距离；
+%    b. 然后设置 caption，在浮动体设置的基础上，补正“caption 🡘 正文”距离。
+%    c. 同时适配 subcaption、longtable 等宏包。
+%
+\@@_if_bachelor_thesis:TF {
+  % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
+  \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+  % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
+  \setlength{\textfloatsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+
   \@@_if_thesis_english:TF {
     \setlength{\belowcaptionskip}{9pt}
   } {
-    % 为了满足 “前后一行空白的问题”，需要删除 caption 下方的间距。
-    % 详见 `caption` 宏包手册和
-    % https://github.com/CTeX-org/forum/issues/86
+    % 为了满足“前后一行空白的问题”，需要删除 caption 下方的间距。
     %
     % 这里实际的 skip 在 15pt 左右，但是全部移除会导致当图片置于页面顶部时，
     % 图片与上方的间距过小，因此这里只移除 5pt。
     % 当然，这样会导致文本间的图片的 caption 下方的间距微微大于一行。
     %
-    % 至于表格，虽然其caption位置在上方（而图片是在下方），
-    % 但 `caption` 宏包已考虑这种区别，统一设置 `belowskip` 即可。
+    % 至于表格，`caption`宏包已考虑布局区别，统一设置 belowskip 即可。
     \captionsetup{belowskip=-5pt}
     % 不过 longtable 宏包有另外的机制，不设置 belowskip 时间距已可较小，
     % 设置成负数还导致 caption 和表格本体的距离变大。因此我们撤销更改。
     \captionsetup[longtable]{belowskip=0pt}
 
-    % 此外在浮动体内部，调整表格 caption 和表格本体间的距离。
-    % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
-    \captionsetup[table]{skip=5pt}
+  }
+  \AtBeginDocument {
+    % longtable 宏包有另外的机制，需专门调整
+    \@ifpackageloaded{longtable}{
+      \setlength{\LTpre}{0.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+    }{}
   }
 } {
-  % 而研究生模板不存在这个问题。
-  \setlength{\belowcaptionskip}{9pt}
+  % 保留“正文 🡘 图片本体”距离不动，缩小“表格本体 🡘 正文”实际距离，使二者相近
+  \AtBeginEnvironment{table}{
+    \setlength{\intextsep}{3bp plus 1pt minus 1pt}
+  }
+
+  % 调整“正文 🡘 表格 caption”距离
+  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
+
+  % 调整“图片 caption 🡘 正文”距离
+  % 这一距离是 intextsep 与 belowcaptionskip 之和。
+  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
+  % 计算下来，后者应设置为 14.0pt - 6bp 左右。
+  \captionsetup[figure]{belowskip = -12pt}
+  % 适配子图
+  \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
+
+  \AtBeginDocument {
+    % longtable 宏包有另外的机制，需专门调整
+    \@ifpackageloaded{longtable}{
+      \setlength{\LTpre}{-0.8\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+    }{}
+  }
 }
 %    \end{macrocode}
 %
-% 定义分隔字符。
+% 定义图表标题中的分隔字符。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
   \tl_set:Nn \g_@@_label_divide_char_tl {.}
