@@ -1064,16 +1064,30 @@
 %
 % 根据学校的要求，在本科生模板图片前后加上一行空白。
 %    \begin{macrocode}
-\@@_if_bachelor_thesis:T {
-  % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
+\@@_if_bachelor_thesis:TF {
+  % 浮动体位于正文中间时，设置浮动体与上下正文之间的距离，即“前后加上一行空白”
   \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-  % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
+  % 浮动体位于页面顶部或底部时，设置浮动体与正文之间的距离，后或前加上一行空白
   \setlength{\textfloatsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
   \AtBeginDocument {
     % longtable 宏包有另外的机制，需专门调整
     \@ifpackageloaded{longtable}{
       \setlength{\LTpre}{0.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
       \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+    }{}
+  }
+} {
+  % 研究生模板不用加一行空白，也没有明确规定
+  % 不过Word模板实作明显窄于LaTeX默认间距（甚至小于行距），特别是表格
+  % 为了缩小表格下方与正文的间距，这里不得不重置`\intextsep`
+  \AtBeginEnvironment{table}{
+    \setlength{\intextsep}{3bp}
+  }
+  \AtBeginDocument {
+    % longtable 宏包有另外的机制，需专门调整
+    \@ifpackageloaded{longtable}{
+      \setlength{\LTpre}{-0.95\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
     }{}
   }
 }
@@ -1605,7 +1619,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% 定义标题的前后间距。
+% 定义标题的上下间距。
 %    \begin{macrocode}
 \setlength{\abovecaptionskip}{11pt}
 \@@_if_bachelor_thesis:TF {
@@ -1632,8 +1646,19 @@
     \captionsetup[table]{skip=5pt}
   }
 } {
-  % 而研究生模板不存在这个问题。
-  \setlength{\belowcaptionskip}{9pt}
+  % 研究生模板明确规定：图序、图题、表序、表题单倍行距，段前6磅，段后6磅。
+
+  % 因此，caption 与正文的间距应该为 6 点。
+  % 这一间距是`\intextsep`与`\belowcaptionskip`之和。
+  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们尽量不改。
+  % 计算下来，后者应设置为 14.0pt - 6bp。
+  \setlength{\belowcaptionskip}{-8bp}
+  % 对于表格，为了缩小表格下方与正文的间距，已经重置了`\intextsep`，要另外设计。
+  % 经过测试，如下设置时，图表的 caption 与正文的间距相等。
+  \captionsetup[table]{belowskip=14bp}
+
+  % 此外在浮动体内部，设置表格 caption 和表格本体间的距离。
+  \captionsetup[table]{skip=9bp}
 }
 %    \end{macrocode}
 %
