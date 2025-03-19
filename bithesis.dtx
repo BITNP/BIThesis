@@ -1628,22 +1628,23 @@
 %
 % 1. 设置相对简单的浮动体内部“图表本体 🡘 caption”距离。
 %
-\setlength{\abovecaptionskip}{11pt}
-% 调整表格 caption 和表格本体间的距离。
 \@@_if_bachelor_thesis:TF {
+  \setlength{\abovecaptionskip}{11pt}
+
+  % 调整表格 caption 和表格本体间的距离。
   % 英文模板缺乏规定，只调整中文模板
   \@@_if_thesis_english:F {
     % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
     \captionsetup[table]{skip=5pt}
   }
 } {
-  \captionsetup[table]{skip=9bp}
+  \captionsetup[table]{skip=8bp}
 }
 %
 % 2. 设置比较复杂的图表浮动体与前后正文的间距。
 %    a. 首先设置浮动体，保证“图表本体 🡘 caption”距离；
 %    b. 然后设置 caption，在浮动体设置的基础上，补正“caption 🡘 正文”距离。
-%    c. 适配 subcaption、longtable 等宏包。
+%    c. 同时适配 subcaption、longtable 等宏包。
 %
 \@@_if_bachelor_thesis:TF {
   % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
@@ -1675,24 +1676,26 @@
     }{}
   }
 } {
-  % 为了缩小表格下方与正文的间距，这里不得不重置 intextsep
+  % 保留“正文 🡘 图片本体”距离不动，缩小“表格本体 🡘 正文”实际距离，使二者相近
   \AtBeginEnvironment{table}{
-    \setlength{\intextsep}{3bp}
+    \setlength{\intextsep}{3bp plus 1pt minus 1pt}
   }
-  
-  % 根据研究生规定，caption 与正文的间距应该为 6 点。
-  % 这一间距是 intextsep 与 belowcaptionskip 之和。
-  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们尽量不改。
-  % 计算下来，后者应设置为 14.0pt - 6bp。
-  \setlength{\belowcaptionskip}{-8bp}
-  % 对于表格，为了缩小表格下方与正文的间距，已经重置了 intextsep，要另外设计。
-  % 经过测试，如下设置时，图表的 caption 与正文的间距相等。
-  \captionsetup[table]{belowskip=14bp}
+
+  % 调整“正文 🡘 表格 caption”距离
+  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
+
+  % 调整“图片 caption 🡘 正文”距离
+  % 这一距离是 intextsep 与 belowcaptionskip 之和。
+  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
+  % 计算下来，后者应设置为 14.0pt - 6bp 左右。
+  \captionsetup[figure]{belowskip = -12pt}
+  % 适配子图
+  \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
 
   \AtBeginDocument {
     % longtable 宏包有另外的机制，需专门调整
     \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{-0.95\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpre}{-0.8\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
       \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
     }{}
   }
