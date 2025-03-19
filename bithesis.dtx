@@ -703,19 +703,7 @@
     tabularFontSize .tl_set:N = \l_@@_misc_tabular_font_size_tl,
     tabularFontSize .initial:n = {5},
     arialFont .tl_set:N = \l_@@_misc_arial_font_path_tl,
-    autoref / algo .code:n = {
-      \AtBeginDocument{
-        % 定义算法标题
-        % 针对 algorithm 宏包
-        \tl_set:Nn \ALG@name {#1}
-        % 针对 algorithm2e 宏包
-        \tl_set:Nn \algorithmcfname {#1}
-
-        % 定义算法的 autoref
-        % algorithm2e 宏包会覆写它，所以我们必须AtBeginDocument时再修改
-        \tl_set:Nn \algorithmautorefname {#1}
-      }
-    },
+    autoref / algo .tl_set:N = \l_@@_misc_autoref_algo_tl,
     autoref / algo .initial:n = {\g_@@_const_autoref_algo_tl},
     autoref / them .tl_set:N = \themautorefname,
     autoref / them .initial:n = {\g_@@_const_autoref_them_tl},
@@ -985,6 +973,10 @@
 % \subsubsection{定义模板类样式}
 %
 % 加载所需的宏包。
+%
+% 在加载宏包之前，尽量不使用 AtBeginDocument 等 hook。
+% 因为 listings 等宏包也会用这些 hook。若在加载它们之前使用 hook，会导致我们所有 hook 在这些宏包“之前”运行。
+%
 %    \begin{macrocode}
 \RequirePackage{geometry}
 \RequirePackage[table,xcdraw]{xcolor}
@@ -1674,6 +1666,16 @@
 \AtBeginDocument{
   \cs_gset:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
+
+  % 定义算法标题
+  % 针对 algorithm 宏包
+  \tl_set:Nn \ALG@name {\l_@@_misc_autoref_algo_tl}
+  % 针对 algorithm2e 宏包
+  \tl_set:Nn \algorithmcfname {\l_@@_misc_autoref_algo_tl}
+
+  % 定义算法的 autoref
+  % algorithm2e 宏包会覆写它，所以我们必须AtBeginDocument时再修改
+  \tl_set:Nn \algorithmautorefname {\l_@@_misc_autoref_algo_tl}
 
   % 算法变成「章节号-序号」
   % 为了减少修改，我们只适配按章编号的情况。
