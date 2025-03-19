@@ -1632,8 +1632,9 @@
   \setlength{\abovecaptionskip}{11pt}
 
   % 调整表格 caption 和表格本体间的距离。
-  % 英文模板缺乏规定，只调整中文模板
-  \@@_if_thesis_english:F {
+  \@@_if_thesis_english:TF {
+    % 英文模板缺乏规定，只调整中文模板
+  } {
     % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
     \captionsetup[table]{skip=5pt}
   }
