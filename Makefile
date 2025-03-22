@@ -25,7 +25,7 @@ endif
 
 .PHONY: all FORCE_MAKE
 
-$(PACKAGE).pdf: cls FORCE_MAKE
+$(PACKAGE).pdf: cls assets/faq.tex FORCE_MAKE
 	@$(LATEXMK) -xelatex $(PACKAGE).dtx
 
 $(CLSFILE): $(SOURCES)
@@ -37,6 +37,9 @@ cls: $(CLSFILE)
 .PHONY: doc
 doc: $(PACKAGE).pdf
 
+assets/faq.tex:
+	curl https://bithesis.bitnp.net/faq/index.tex -o assets/faq.tex
+
 .PHONY: viewdoc
 viewdoc: doc
 	$(LATEXMK) -pv $(PACKAGE).dtx
@@ -45,6 +48,7 @@ viewdoc: doc
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx
 	-rm -rf *.glo $(CLSFILE)
+	-rm assets/faq.tex
 
 .PHONY: clean-dist
 clean-dist:

@@ -26,7 +26,7 @@
 
   % **默认情况下，这里的内容将按照学校要求，以发表时间排序。**
   % - 如果想要按照引用顺序排序，可以开启 `publications/sorting` 选项。
-  % - 如果想要微调，详见 https://github.com/BITNP/BIThesis/discussions/407#discussioncomment-8630685 。
+  % - 如果想要微调，详见 https://bithesis.bitnp.net/faq/bib-sort.html#sortkey 。
   % 更多信息请参考「bithesis.pdf」手册。
   \addpubs{myCiteKey,myCiteKey2,dummy:1,dummy:2}
 
@@ -50,7 +50,9 @@
   % 2. 若需继续细分，请在 pub.bib 的条目里记录“keywords = {…, …}”，然后在此用“keyword=…”筛选。
   % 3. 如果还有要求，可用notkeyword、subtype等筛选方法，请参考 biblatex 手册。
 
-  % 以下内容提供了一个可以同时和 \printbibliography 共存的自定义列表格式。
+  % 如果想绕过 pub.bib 直接记录项目（例如获奖），请参考以下内容，
+  % 定义一个能和 \printbibliography 共存的列表。
+  % https://bithesis.bitnp.net/faq/pub-manual.html
   % \zihao{5} % 字号改为五号
   % \renewcommand{\labelenumi}{[\theenumi]} % 编号改用中括号
   %
