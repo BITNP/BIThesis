@@ -185,7 +185,7 @@
 }{}
 \subsection{交叉引用}
 
-\subsubsection{公式和图标引用}
+\subsubsection{公式和图表引用}
 
 交叉引用的前提是需要在定义章节、公式和图表的时候都对其进行命名标签
 （即\label{sec:labelName} 命令），在实际使用过程中通过标签进行引用。根据引用
@@ -196,15 +196,15 @@
   \caption{章节设置关键字}     % title of Table
   \label{tab:setSection}    % label of Table
   \begin{tabular}{cl}
-    \hline
+    \toprule
     章节级别        & 关键字     \\
-    \hline
+    \midrule
      章        & \verb|\chapter| \\
      节        & \verb|\section | \\
     子节      & \verb|\subsection |\\
     表格名称       & \verb|\caption{标题名称}| \\
     引用标签       & \verb|\label{引用名称}| \\
-    \hline
+    \bottomrule
   \end{tabular}
 \end{table}
 
