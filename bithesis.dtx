@@ -1620,8 +1620,8 @@
 %
 % 1. 设置相对简单的浮动体内部“图表本体 🡘 caption”距离。
 %
+\setlength{\abovecaptionskip}{11pt}
 \@@_if_bachelor_thesis:TF {
-  \setlength{\abovecaptionskip}{11pt}
 
   % 调整表格 caption 和表格本体间的距离。
   \@@_if_thesis_english:TF {
@@ -1631,7 +1631,7 @@
     \captionsetup[table]{skip=5pt}
   }
 } {
-  \captionsetup[table]{skip=8bp}
+  \setlength{\belowcaptionskip}{9pt}
 }
 %
 % 2. 设置比较复杂的图表浮动体与前后正文的间距。
@@ -1669,29 +1669,7 @@
     }{}
   }
 } {
-  % 保留“正文 🡘 图片本体”距离不动，缩小“表格本体 🡘 正文”实际距离，使二者相近
-  \AtBeginEnvironment{table}{
-    \setlength{\intextsep}{3bp plus 1pt minus 1pt}
-  }
-
-  % 调整“正文 🡘 表格 caption”距离
-  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
-
-  % 调整“图片 caption 🡘 正文”距离
-  % 这一距离是 intextsep 与 belowcaptionskip 之和。
-  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
-  % 计算下来，后者应设置为 14.0pt - 6bp 左右。
-  \captionsetup[figure]{belowskip = -12pt}
-  % 适配子图
-  \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
-
-  \AtBeginDocument {
-    % longtable 宏包有另外的机制，需专门调整
-    \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{-0.8\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-      \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-    }{}
-  }
+  % TODO: 研究生模板待调整
 }
 %    \end{macrocode}
 %
