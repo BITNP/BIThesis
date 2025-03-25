@@ -1752,9 +1752,8 @@
   \setlength{\abovecaptionskip}{11pt}
 
   % 调整表格 caption 和表格本体间的距离。
-  \@@_if_thesis_english:TF {
-    % 英文模板缺乏规定，只调整中文模板
-  } {
+  % 英文模板缺乏规定，只调整中文模板
+  \@@_if_thesis_english:F {
     % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
     \captionsetup[table]{skip=5pt}
   }
@@ -1897,12 +1896,50 @@
 % equation
 \cs_set:Npn \theequation {\thechapter\g_@@_label_divide_char_tl\arabic{equation}}
 
+% 适配 cleveref 宏包
+% 在 AtBeginDocument 之外，保证最终作者可以覆写
+\ctex_at_end_package:nn {cleveref} {
+  % cleveref 支持同一处引用多个标签，英文涉及单复数两个值；
+  % 而 BITSetup 主要为中文设计，接口只允许一个值，无法简单套用到英文。
+  % 再考虑到我校缺乏英文规范，我们干脆只给中文适配，英文沿用 cleveref 默认，最终作者有需要可以覆写。
+  \@@_if_thesis_english:F {
+    % “第……”格式在编号后有字，autoref 无法可靠设置，BITSetup 也难以预留接口
+    \crefformat{chapter}{第~#2#1#3~章}
+    \crefformat{section}{第~#2#1#3~节}
+    \crefformat{subsection}{第~#2#1#3~小节}
+    \crefformat{subsubsection}{第~#2#1#3~小节}
+    % 普通格式沿用 autoref 设置
+    \crefname{figure}{\figureautorefname}{\figureautorefname}
+    \crefname{table}{\tableautorefname}{\tableautorefname}
+    \crefname{listing}{\c_@@_label_code_tl}{\c_@@_label_code_tl}
+    \crefname{algorithm}{\l_@@_misc_autoref_algo_tl}{\l_@@_misc_autoref_algo_tl}
+    \crefname{algo}{\l_@@_misc_autoref_algo_tl}{\l_@@_misc_autoref_algo_tl}
+    \crefname{them}{\themautorefname}{\themautorefname}
+    \crefname{lem}{\lemautorefname}{\lemautorefname}
+    \crefname{prop}{\propautorefname}{\propautorefname}
+    \crefname{cor}{\corautorefname}{\corautorefname}
+    \crefname{axi}{\axiautorefname}{\axiautorefname}
+    \crefname{defn}{\defnautorefname}{\defnautorefname}
+    \crefname{conj}{\conjautorefname}{\conjautorefname}
+    \crefname{exmp}{\exmpautorefname}{\exmpautorefname}
+    \crefname{case}{\caseautorefname}{\caseautorefname}
+    \crefname{rem}{\remautorefname}{\remautorefname}
+    % 同一处引用多个公式较为常见，专门适配
+    % #2、#3 标识的链接范围不可包含括号，否则影响标点挤压。
+    \crefformat{equation}{\equationautorefname（#2#1#3）}
+    \crefrangeformat{equation}{\equationautorefname（#3#1#4）至（#5#2#6）}
+    \crefmultiformat{equation}{\equationautorefname（#2#1#3）}{和（#2#1#3）}{、（#2#1#3）}{和（#2#1#3）}
+  }
+}
+
 % code snippet
 \AtBeginDocument{
   \cs_gset:Npn \thelstlisting {\thechapter\g_@@_label_divide_char_tl\arabic{lstlisting}}
   \cs_gset:Npn \lstlistingname {\c_@@_label_code_tl}
 
   % 定义算法标题
+  % 针对模板的 algo 环境
+  \tl_set:Nn \algoautorefname {\l_@@_misc_autoref_algo_tl}
   % 针对 algorithm 宏包
   \tl_set:Nn \ALG@name {\l_@@_misc_autoref_algo_tl}
   % 针对 algorithm2e 宏包
