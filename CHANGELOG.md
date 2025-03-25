@@ -11,6 +11,35 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.2] - 2025-03-25
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- Listings 代码编号中的分隔标签 ([7c37def](https://github.com/BITNP/BIThesis/commit/7c37def77a9b809af1b4dcee26a04ca393df226e)) by @YDX-2147483647 in [#590](https://github.com/BITNP/BIThesis/pull/590)
+- *(GT)* [**breaking**] 参照规定调整浮动体附近的间距 (#587) ([e485b46](https://github.com/BITNP/BIThesis/commit/e485b4699bf6edd02e76444378106c93b2b5cbf9)) by @YDX-2147483647
+- *(GT)* 浮动体连续排列时的间距不能过窄 ([7bd201d](https://github.com/BITNP/BIThesis/commit/7bd201da9953423a1e2215463c8e4d8e587a7c2e)) by @YDX-2147483647 in [#595](https://github.com/BITNP/BIThesis/pull/595)
+
+### <!-- 3 -->📚 Documentation
+
+- 改正`misc/algorithmSeparation`的文档 ([eb2b93d](https://github.com/BITNP/BIThesis/commit/eb2b93d358eda69cbdb0e6dced1d80c53d8958b4)) by @YDX-2147483647 in [#571](https://github.com/BITNP/BIThesis/pull/571)
+- 更新 [Bug] 模板 ([5497443](https://github.com/BITNP/BIThesis/commit/549744380f2a443fcefd9d10c6cb09dffaa2aaf2)) by @YDX-2147483647 in [#573](https://github.com/BITNP/BIThesis/pull/573)
+- 更新开发文档 ([6c66799](https://github.com/BITNP/BIThesis/commit/6c667997701e8e3e385285fd92c4f31de414f67a)) by @YDX-2147483647 in [#576](https://github.com/BITNP/BIThesis/pull/576)
+- 改正`cover/{label,value}Align`选项的文档 ([b7a9dbd](https://github.com/BITNP/BIThesis/commit/b7a9dbd1117173da28f727e4eb2977ad691ca094)) by @YDX-2147483647
+- Http → https ([0f0d47b](https://github.com/BITNP/BIThesis/commit/0f0d47bbf5544e96da86127e99e23a0fbe4568cb)) by @YDX-2147483647 in [#578](https://github.com/BITNP/BIThesis/pull/578)
+- 将 GitHub Discussions 链接更新为疑难杂症单独页面 ([25d9f7a](https://github.com/BITNP/BIThesis/commit/25d9f7a8303dd1c056f20d6aba418cf93c27e7f3)) by @YDX-2147483647 in [#585](https://github.com/BITNP/BIThesis/pull/585)
+- 链接优先指向 🥑 疑难杂症 (bithesis.bitnp.net/faq) ([2ed79ae](https://github.com/BITNP/BIThesis/commit/2ed79ae3ccf50ffe8248b1aa64e8ed776c8b1794)) by @YDX-2147483647
+- 更正`const/heading/acknowledgements`选项的文档 ([f7ce6de](https://github.com/BITNP/BIThesis/commit/f7ce6de0c544af4b35ecc46edf792212a2043920)) by @YDX-2147483647 in [#588](https://github.com/BITNP/BIThesis/pull/588)
+- 将生僻字、断字等“部分正确”的注释换成FAQ ([4e27fa9](https://github.com/BITNP/BIThesis/commit/4e27fa9078524600c2c7727c1b9c33d14f1a1e10)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- 缓存链接检查结果 ([b86ba69](https://github.com/BITNP/BIThesis/commit/b86ba6971535d4c58feeb86396b571bd227bed1d)) by @YDX-2147483647
+- Update version to 3.8.2 ([5b9f990](https://github.com/BITNP/BIThesis/commit/5b9f990c50a5550e4134266d994573e1490cab20)) by @YDX-2147483647 in [#597](https://github.com/BITNP/BIThesis/pull/597)
+
+### <!-- 9 -->◀️ Revert
+
+- *(GT)* 撤销 #587 修改的浮动体间距 ([09f16ab](https://github.com/BITNP/BIThesis/commit/09f16ab6b5056449099b914d3c20b4f99e2edfe8)) by @YDX-2147483647
+
 ## [3.8.1] - 2025-01-03
 
 ### <!-- 0 -->🚀 Features
