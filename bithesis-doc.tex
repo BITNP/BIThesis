@@ -218,23 +218,26 @@ BIThesis-wiki
 
 \subsection{\BIThesis 宏包的组成}
 为了适应用户的不同需求，我们将 \BIThesisMacroPackage
-的主要功能设计安排在两个中文文档类当中，具体的组成见 \ref{tab:classes}。
+的主要功能设计安排在两个中文文档类当中，具体的组成见表~\ref{tab:classes}。
 \begin{table}[H]
-\centering
-\caption{测试}
-\label{tab:classes}
-\begin{tabular}{@{}lll@{}}
-\toprule
-类别                   & 文件
-  & 说明                             \\ \midrule
-\multirow{2}{*}{文档类} & \cls{bithesis.cls}\ref{sec:bithesis}
-  & 封装本科生与研究生的毕业论文样式。 \\
-& \cls{bitreport.cls}\ref{sec:bitreport}
-  & 封装了本科生开题报告（已废弃）与实验报告样式。     \\ \cmidrule(l){2-3}
-& \cls{bitbeamer.cls}
-  & 对应 ctexbeamer.cls ，提供了北理工的 Beamer 模板样式。
-  \\ \cmidrule(l){2-3}
-\end{tabular}
+  \centering
+  \caption{文档类组成} \label{tab:classes}
+  \begin{tabular}{lll}
+    \toprule
+    文档类  & 文件
+         & 说明
+    \\ \midrule
+    论文   & \hyperref[sec:bithesis]{\cls{bithesis.cls}}
+         & 本科生、研究生的毕业论文及其衍生样式
+    \\
+    实验报告 & \hyperref[sec:bitreport]{\cls{bitreport.cls}}
+         & 本科生开题报告（已废弃）与实验报告样式
+    \\
+    幻灯片  & \cls{bitbeamer.cls}
+         & 对应 ctexbeamer，提供了北理工的 beamer 模板样式
+    \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \subsection{\BIThesisLaTeX 是如何发布的？}
@@ -360,13 +363,14 @@ tlmgr update bithesis
 推荐使用\BIThesisRelease （开箱即用）。
 
 \BIThesisRelease 提供了多种最常用的模板，你可以在
-\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases}中找到它们。
+\href{https://github.com/BITNP/BIThesis/releases}{主项目的 Releases} 中找到它们。
 
 使用此文档类的模板有：
 \begin{itemize}
  \item \BIThesisTemplates{UT}
  \item \BIThesisTemplates{UTE}
  \item \BIThesisTemplates{PT}
+ \item \BIThesisTemplates{RR}
  \item \BIThesisTemplates{GT}
 \end{itemize}
 
@@ -430,7 +434,7 @@ type = (*<(bachelor)|\mbox{bachelor_translation}|\mbox{bachelor_english}|master|
 \end{bitsyntax}
   选择论文类型，它们分别对应：
   \begin{itemize}
-    \item \BIThesisTemplates{UT}
+    \item \BIThesisTemplates{UT}、\BIThesisTemplates{RR}
     \item \BIThesisTemplates{PT}
     \item \BIThesisTemplates{UTE}
     \item \BIThesisTemplates{GT} 研究生
