@@ -4304,7 +4304,7 @@
 }
 
 \lstnewenvironment{latex}[1][]{\lstset{style=lstStyleLaTeX, #1}}{}
-\lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
+\lstnewenvironment{shell}[1][]{\lstset{style=lstStyleShell, #1}}{}
 \lstnewenvironment{bitsyntax}[1][]{\lstset{style=lstStyleSyntax, #1}}{}
 
 \def\orbar{\textup{\textbar}}

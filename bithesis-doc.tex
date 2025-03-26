@@ -1061,7 +1061,7 @@ ctex 会默认选择较为美观的楷体代替粗体宋体。
 
 \end{function}
 
-\begin{table}[]
+\begin{table}[ht]
 \begin{tabular}{cc|cc}
 \toprule
 \textbf{选项名称}                          & \textbf{字体名称}                                & \textbf{选项名称}                  & \textbf{字体名称}                                    \\ \midrule
@@ -1602,7 +1602,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   此时页码会使用罗马数字进行计数。
 \end{function}
 
-\begin{function}[updated=2023-02-17]{abstract}
+\begin{function}[updated=2023-02-17, label=env.abstract]{abstract}
 \begin{bitsyntax}[emph={[1]abstract}]
 \begin{abstract}
    (*\meta{中文摘要}*)
@@ -1610,7 +1610,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 \end{bitsyntax}
 \end{function}
 
-\begin{function}[updated=2023-02-17]{abstractEn}
+\begin{function}[updated=2023-02-17, label=env.abstractEn]{abstractEn}
 \begin{bitsyntax}[emph={[1]abstractEn}]
 \begin{abstractEn}
    (*\meta{英文摘要}*)
@@ -1680,7 +1680,7 @@ addTOC = (*<(true)|false>*)
   其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考\href{https://bithesis.bitnp.net/faq/algorithm.html}{疑难杂症：如何排版算法（伪代码）}。
 \end{function}
 
-\begin{table}[]
+\begin{table}[p]
 \caption{预定义的数学环境}
 \centering
 \subfloat[][plain样式]{
@@ -1735,7 +1735,7 @@ addTOC = (*<(true)|false>*)
 
 \end{function}
 
-\begin{function}{conclusion}
+\begin{function}[label=env.conclusion]{conclusion}
 \begin{bitsyntax}[emph={[1]conclusion}]
 \begin{conclusion}
    (*\meta{结论}*)
@@ -1743,7 +1743,7 @@ addTOC = (*<(true)|false>*)
 \end{bitsyntax}
 \end{function}
 
-\begin{function}{bibprint}
+\begin{function}[label=env.bibprint]{bibprint}
 \begin{bitsyntax}[emph={[1]bibprint}]
 \begin{bibprint}
    \printbibliography[heading=none]
@@ -1767,7 +1767,7 @@ addTOC = (*<(true)|false>*)
 \end{latex}
 \end{function}
 
-\begin{function}{appendices}
+\begin{function}[label=env.appendices]{appendices}
 \begin{bitsyntax}[emph={[1]appendices}]
 \begin{appendices}
   \section{附录A题目}
@@ -1780,7 +1780,7 @@ addTOC = (*<(true)|false>*)
  附录。
 \end{function}
 
-\begin{function}{publications}
+\begin{function}[label=env.publications]{publications}
 \begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
 文献较少的时候。
 \begin{publications}
@@ -1880,7 +1880,7 @@ addTOC = (*<(true)|false>*)
 \end{itemize}
 \end{function}
 
-\begin{function}{acknowledgements}
+\begin{function}[label=env.acknowledgements]{acknowledgements}
 \begin{bitsyntax}[emph={[1]acknowledgements}]
 \begin{acknowledgements}
   (*\meta{致谢内容}*)
@@ -1890,7 +1890,7 @@ addTOC = (*<(true)|false>*)
   致谢。
 \end{function}
 
-\begin{function}{resume}
+\begin{function}[label=env.resume]{resume}
 \begin{bitsyntax}[emph={[1]resume}]
 \begin{resume}
   (*\meta{个人简介内容}*)
@@ -1943,7 +1943,9 @@ addTOC = (*<(true)|false>*)
 \documentclass(*\oarg{模板选项}*){bithesis}
 \end{latex}
 
-\begin{function}{type}
+% l3doc 的 function 环境会按函数名称自动设置标签，默认与之前 bithesis.cls 的标签重复，故需手动指定标签
+
+\begin{function}[label=bitreport.type]{type}
 \begin{bitsyntax}[emph={[1]type}]
 type = (*<(common)|\mbox{undergraduate_proposal}>*)
 \end{bitsyntax}
@@ -1954,7 +1956,7 @@ type = (*<(common)|\mbox{undergraduate_proposal}>*)
   \end{itemize}
 \end{function}
 
-\begin{function}{ctex}
+\begin{function}[label=bitreport.ctex]{ctex}
 \begin{bitsyntax}[emph={[1]ctex}]
 ctex = (*传给 ctexbook 的模板选项*)
 \end{bitsyntax}
@@ -1970,7 +1972,7 @@ ctex = (*传给 ctexbook 的模板选项*)
 
 \subsection{参数设置}
 
-\begin{function}{\BITSetup}
+\begin{function}[label=bitreport.BITSetup]{\BITSetup}
 \begin{bitsyntax}[emph={[1]BITSetup}]
 \BITSetup = {(*\oarg{键值对}*)}
 \end{bitsyntax}
@@ -2012,7 +2014,7 @@ ctex = (*传给 ctexbook 的模板选项*)
 
 \subsubsection{封面选项}
 
-\begin{function}{cover}
+\begin{function}[label=bitreport.cover]{cover}
 \begin{bitsyntax}[emph={[1]cover}]
 cover = (*\marg{键值列表}*)
 cover/(*\meta{key}*) = (*\meta{value}*)
@@ -2021,7 +2023,7 @@ cover/(*\meta{key}*) = (*\meta{value}*)
   该选项包含许多子项目，用于设置论文格式。具体内容见下。
 \end{function}
 
-\begin{function}{cover/date}
+\begin{function}[label=bitreport.cover/date]{cover/date}
 \begin{bitsyntax}[emph={[1]date}]
 date = (*\marg{任意字符串}*)
 \end{bitsyntax}
@@ -2031,7 +2033,7 @@ date = (*\marg{任意字符串}*)
 
 \subsubsection{文档基本信息}
 
-\begin{function}{info}
+\begin{function}[label=bitreport.info]{info}
 \begin{bitsyntax}[emph={[1]info}]
 info = (*\marg{键值列表}*)
 info/(*\meta{key}*) = (*\meta{value}*)
@@ -2040,7 +2042,7 @@ info/(*\meta{key}*) = (*\meta{value}*)
  该选项包含许多子项目，用于录入论文信息。具体内容见下。
 \end{function}
 
-\begin{function}{info/title}
+\begin{function}[label=bitreport.info/title]{info/title}
 \begin{bitsyntax}[emph={[1]title}]
 title = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2048,7 +2050,7 @@ title = (*\marg{字符串}*)
   论文或报告标题。
 \end{function}
 
-\begin{function}{info/school}
+\begin{function}[label=bitreport.info/school]{info/school}
 \begin{bitsyntax}[emph={[1]school}]
 school = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2056,7 +2058,7 @@ school = (*\marg{字符串}*)
   学院名称。
 \end{function}
 
-\begin{function}{info/major}
+\begin{function}[label=bitreport.info/major]{info/major}
 \begin{bitsyntax}[emph={[1]major}]
 major = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2064,7 +2066,7 @@ major = (*\marg{字符串}*)
   专业名称。
 \end{function}
 
-\begin{function}{info/author}
+\begin{function}[label=bitreport.info/author]{info/author}
 \begin{bitsyntax}[emph={[1]author}]
 author = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2072,7 +2074,7 @@ author = (*\marg{字符串}*)
   作者姓名。
 \end{function}
 
-\begin{function}{info/studentId}
+\begin{function}[label=bitreport.info/studentId]{info/studentId}
 \begin{bitsyntax}[emph={[1]studentId}]
 studentId = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2080,7 +2082,7 @@ studentId = (*\marg{字符串}*)
   学号。
 \end{function}
 
-\begin{function}{info/supervisor}
+\begin{function}[label=bitreport.info/supervisor]{info/supervisor}
 \begin{bitsyntax}[emph={[1]supervisor}]
 supervisor = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2088,7 +2090,7 @@ supervisor = (*\marg{字符串}*)
   指导教师。
 \end{function}
 
-\begin{function}{info/externalSupervisor}
+\begin{function}[label=bitreport.info/externalSupervisor]{info/externalSupervisor}
 \begin{bitsyntax}[emph={[1]externalSupervisor}]
 externalSupervisor = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2096,7 +2098,7 @@ externalSupervisor = (*\marg{字符串}*)
   校外指导教师。
 \end{function}
 
-\begin{function}{info/class}
+\begin{function}[label=bitreport.info/class]{info/class}
 \begin{bitsyntax}[emph={[1]class}]
 class = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -2106,7 +2108,7 @@ class = (*\marg{字符串}*)
 
 \subsubsection{其他选项}
 
-\begin{function}{misc}
+\begin{function}[label=bitreport.misc]{misc}
 \begin{bitsyntax}[emph={[1]misc}]
 misc = (*\marg{键值列表}*)
 misc/(*\meta{key}*) = (*\meta{value}*)
@@ -2115,7 +2117,7 @@ misc/(*\meta{key}*) = (*\meta{value}*)
  该选项包含许多子项目，用于额外的控制。具体内容见下。
 \end{function}
 
-\begin{function}{misc/reviewTable}
+\begin{function}[label=bitreport.misc/reviewTable]{misc/reviewTable}
 \begin{bitsyntax}[emph={[1]reviewTable}]
 reviewTable = (*\marg{指向评审表的路径}*)
 \end{bitsyntax}
