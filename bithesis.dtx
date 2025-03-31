@@ -2069,8 +2069,17 @@
     \vspace*{65mm}
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
-    % 黑体 小三
-    {\heiti \zihao{-3} \@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl}}
+    {
+      % 渲染信息。
+      \clist_set:Nn \l_@@_input_clist {
+        {姓名：} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
+        {学号：} {\@@_secret_info:N \l_@@_value_student_id_tl},
+        {学院：} {\l_@@_value_school_tl},
+      }
+      \linespread{2.0}\selectfont
+      % 黑体 小三
+      \heiti \zihao{-3} \@@_render_cover_entry:n \l_@@_input_clist
+    }
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l_@@_cover_date_tl}
