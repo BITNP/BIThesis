@@ -199,7 +199,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\@@_if_graduate:TF}
+% \begin{macro}{\@@_if_graduate:TF,\@@_if_graduate:T}
 % 是否为研究生学位论文。
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_graduate:TF #1#2 {
@@ -207,6 +207,7 @@
       {#1}
       {#2}
   }
+\cs_new:Npn \@@_if_graduate:T #1 {\@@_if_graduate:TF {#1} {}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1425,8 +1426,8 @@
     titleformat = {},
     aftername = \hspace{9bp},
     pagestyle = BIThesis,
-    beforeskip = 8bp,
-    afterskip = 32bp,
+    beforeskip = \@@_if_graduate:TF {13bp} {8bp},
+    afterskip = \@@_if_graduate:TF {24.5bp} {32bp},
     fixskip = true,
     lofskip = 0cm,
     lotskip = 0cm,
@@ -1439,8 +1440,8 @@
     nameformat = {},
     titleformat = {},
     aftername = \hspace{8bp},
-    beforeskip = 20bp,
-    afterskip = 17bp,
+    beforeskip = \@@_if_graduate:TF {26bp} {20bp},
+    afterskip = \@@_if_graduate:TF {18bp} {17bp},
     fixskip = true,
   }
 }
@@ -1612,7 +1613,7 @@
       format = {
         \l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}
       },
-      afterskip = 26bp,
+      afterskip = \@@_if_graduate:TF {31bp} {26bp},
     }
   }
 }
@@ -2928,6 +2929,7 @@
     \cleardoublepage
     \linespread{1.53}\selectfont
 
+    % 本科模板在标题「摘要」二字上方另有毕业设计题目
     \@@_if_bachelor_thesis:T {
       \begin{center}
         \vspace*{-17bp}
@@ -2953,6 +2955,12 @@
         chapter/titleformat = {\textmd}
       }
     }
+
+    % 微调硕博模板标题上下的间距
+    \@@_if_graduate:T { \ctexset{ chapter = {
+      beforeskip = 13bp,
+      afterskip = 24bp,
+    } } }
 
     {
       \@@_same_page:
@@ -3016,6 +3024,12 @@
         chapter/titleformat = {\heiti\zihao{3}\centering\textbf}
       }
     }
+
+    % 微调硕博模板标题上下的间距
+    \@@_if_graduate:T { \ctexset{ chapter = {
+      beforeskip = 19bp,
+      afterskip = 35bp,
+    } } }
 
     {
       \@@_same_page:
