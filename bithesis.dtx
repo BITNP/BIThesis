@@ -2082,6 +2082,12 @@
 % \begin{macro}{\make_paper_back:}
 % 制作书脊。
 %    \begin{macrocode}
+% TODO: 使用统一方式警告
+\msg_new:nnn { bithesis } { paper-back/missing-degree-type-icon-file }
+  {
+    Failed~to~find~the~file~for~degree~type~in~the~papaer~back:~#1.\\
+    Please~download~from~https://github.com/BITNP/BIThesis/blob/main/templates/graduate-thesis/ #1.
+  }
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
   \currentpdfbookmark{书脊}{frontmatter:paperback}
@@ -2091,6 +2097,17 @@
     \linespread{1.1}\selectfont
     \begin{minipage}[c][19.7cm]{2em}
       \centering
+      {  
+        \tl_new:N \l_@@_icon_path_tl
+        \tl_set:Nx \l_@@_icon_path_tl { misc/icon_ \l_@@_value_degree_type_tl .jpg }
+        \file_if_exist:nTF {\l_@@_icon_path_tl} {
+          \includegraphics[width=1.5em]{\l_@@_icon_path_tl}
+        } {
+          \msg_warning:nnV {bithesis} {paper-back/missing-degree-type-icon-file} {\l_@@_icon_path_tl}
+        }
+      }
+      \vspace{1em plus 1fill}
+      \par
       {
         \heiti\zihao{3}
         \tl_if_blank:VTF \l_@@_value_vertical_title_tl
