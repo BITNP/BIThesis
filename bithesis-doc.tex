@@ -721,7 +721,7 @@ hideCoverInPeerReview = (*false|true*)
 showSpecialTypeBox = (*(false)|true*)
 \end{bitsyntax}
 
-  展示「特殊类型」（研究生模板）的那个信息框。
+  展示「学生类型」（研究生模板）的那个信息框。
   因为美观原因默认关闭，和研究生院确认过这个信息框重要程度比较低。
 \end{function}
 
@@ -848,6 +848,15 @@ supervisorEn = (*\marg{字符串}*)
   指导教师。
 \end{function}
 
+\begin{function}{info/industrialMentor,info/industrialMentorEn}
+\begin{bitsyntax}[emph={[1]industrialMentor,industrialMentorEn}]
+industrialMentor = (*\marg{字符串}*)
+industrialMentorEn = (*\marg{字符串}*)
+\end{bitsyntax}
+
+  专业型研究生的行业合作导师。
+\end{function}
+
 \begin{function}{info/externalSupervisor}
 \begin{bitsyntax}[emph={[1]externalSupervisor}]
 externalSupervisor = (*\marg{字符串}*)
@@ -941,12 +950,24 @@ classifiedLevel = (*\marg{字符串}*)
   密级。
 \end{function}
 
+\begin{function}[added=2025-03-31]{info/工程硕博士专项}
+\begin{bitsyntax}[emph={[1]工程硕博士专项}]
+工程硕博士专项 = (*<(false)|true>*)
+\end{bitsyntax}
+
+  学生类型：工程硕博士专项。
+
+  不勾选时默认不显示整个内容，可通过 \hyperref[doc/function//cover/showSpecialTypeBox]{|cover/showSpecialTypeBox| 选项}设置。
+\end{function}
+
 \begin{function}[added=2024-03-22]{info/crossResearch}
 \begin{bitsyntax}[emph={[1]crossResearch}]
 crossResearch = (*<(false)|true>*)
 \end{bitsyntax}
 
-  特殊类型：交叉研究方向。（不勾选时不显示整个内容）
+  学生类型：交叉研究方向。
+
+  不勾选时默认不显示整个内容，可通过 \hyperref[doc/function//cover/showSpecialTypeBox]{|cover/showSpecialTypeBox| 选项}设置。
 
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
@@ -956,7 +977,9 @@ crossResearch = (*<(false)|true>*)
 internationalStudentUGP = (*<(false)|true>*)
 \end{bitsyntax}
 
-  特殊类型：政府项目留学生。
+  学生类型：政府项目留学生。
+
+  不勾选时默认不显示整个内容，可通过 \hyperref[doc/function//cover/showSpecialTypeBox]{|cover/showSpecialTypeBox| 选项}设置。
 
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
@@ -1518,8 +1541,8 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 \begin{variable}[added=2023-06-11, updated=2024-07-09]{const/info/degree,const/info/major}
 \begin{bitsyntax}[emph={[1]degree,major}]
   info = {
-    degree = (*(申请学位级别)|\marg{字符串}*),
-    major = (*专业 | 学科专业 | Degree | \marg{字符串}*),
+    degree = (*申请学位 | 申请类别 |\marg{字符串}*),
+    major = (*专业 | 学科专业 | 一级学科 | 学位领域 | Degree | \marg{字符串}*),
   },
 \end{bitsyntax}
 
@@ -1542,7 +1565,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 
 \subsection{封面及基本信息}
 
-\begin{function}{\MakeCover}
+\begin{function}[updated=2025-03-31]{\MakeCover}
 
   \textit{封面内容会根据模板选项（具体参见节
     \ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
@@ -1578,7 +1601,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   否则，将使用第二个参数替换内容。
 \end{function}
 
-\begin{function}{\MakePaperBack}
+\begin{function}[updated=2025-03-31]{\MakePaperBack}
 
   绘制书脊。
 \end{function}

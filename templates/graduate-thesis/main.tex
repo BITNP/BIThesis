@@ -54,32 +54,53 @@
     % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在织物中的应用},
     titleEn = {Synthesis and Application on textile of the Shape Memory Polyurethane},
     author = 张三,
+    authorEn = San Zhang,
+    studentId = 31xxxxxxxx,
+    school = 材料学院,
+    schoolEn = Materials Science and Engineering,
+    supervisor = 李四教授,  % 指导教师
+    supervisorEn = Prof. Si Li,
+    chairman = 王五教授,  % 答辩委员会主席
+    chairmanEn = Prof. Wang Wu,
+    % -------------
+    % 请按自身研究生类型填写以下项目
+    %
+    % --- 学术型 ---
+    % degreeType = academic,
+    % degree = 工学博士,  % 申请学位
+    % degreeEn = Doctor of Engineering,
+    % major = 材料科学与工程,  % 一级学科
+    % majorEn = Materials Science and Engineering,
+    %
+    % --- 专业型 ---
+    degreeType = professional,
+    industrialMentor = 李五教授,  % 行业合作导师
+    industrialMentorEn = Prof. Wu Li,
+    degree = 材料与化工博士,  % 申请类别
+    degreeEn = {Doctor of Materials \\ and Chemical Engineering},
+    major = 材料工程,  % 学位领域
+    majorEn = Materials Science and Engineering,
+    % -------------
+    %
     % 如果想要手动控制盲审模式下的隐藏信息，可以使用宏 \SecretInfo{}。使用方式有两种，如：
     % major = \SecretInfo{材料科学与工程} 可以得到 ******* （用等量的替换符号替代）
     % major = \SecretInfo{材料科学与工程}[ABCDEF] 可以得到 ABCDEF （用你自定义的内容替代）
-    major = 材料科学与工程,
-    school = 材料学院,
-    degree = 工学硕士,
-    chairman = 王五教授,
-    defenseDate = 2022年6月1日,
-    supervisor = 李四教授,
-    authorEn = San Zhang,
-    schoolEn = Materials Science and Engineering,
-    supervisorEn = Prof. Si Li,
-    chairmanEn = Prof. Wang Wu,
-    degreeEn = Master of Philosophy,
-    majorEn = Materials Science and Engineering,
-    defenseDateEn = {June, 12th, 2022},
-    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。）}——请在“main.tex”开头设置},
+    %
+    defenseDate = 2025年6月,
+    defenseDateEn = {June, 2025},
+    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。【提醒】关键词不要与学科或专业名称等专有名词一致或相近。）}——请在“main.tex”开头设置},
     keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
+    %
     % 必要时置于封面右上角，并按照国家规定进行标记。
     % classifiedLevel = 密级\BigStar 保密期限,
     %
-    % 以下两个选项不勾选时将会隐藏显示。
+    % 特别类型——工程硕博士专项
+    % 工程硕博士专项 = true,
     % 特别类型——交叉研究方向（一般不用勾选）
     % crossResearch = true,
     % 特别类型——政府项目留学生（一般不用勾选）
     % internationalStudentUGP = true,
+    % 以上三个选项不勾选时将会隐藏显示。
   },
   % 在目录页中不显示摘要和主要符号对照表的标题。
   TOC = {
@@ -103,19 +124,19 @@
     % 更详细的说明请见手册。
     maxbibnames = 10,
     minbibnames = 10,
-    % 「攻读学位期间发表论文与研究成果清单」默认按照发表时间排序，
-    % 可以通过此选项关闭。关闭后将按照引用顺序排序。
+    % 「攻读学位期间发表论文与研究成果清单」默认按学校要求，“按发表的时间顺序列出”。
+    % 如需调整，可修改以下选项，详见 https://bithesis.bitnp.net/faq/bib-sort.html
     % sorting = false
   },
   % 采用章节标题级别的附录格式
   appendices / chapterLevel = true,
   const = {
-    % 由于现存的 Word 模板、旧有 LaTeX 模板与《北京理工大学研究生学位论文撰写规范》的规定不一致，
-    % 论文封面的某些字段内容需要用户根据自己的情况进行手动调整。
-    % 目前给出的默认值是按照 2018 年发布的《北京理工大学研究生学位论文撰写规范》中的要求进行设置的。
-    % 比如注释掉的这一行：将会修改封面中的「申请学位级别」为「申请学位」。
-    % info / degree = {申\quad{}请\quad{}学\quad{}位},
-    % info / major = {学\quad{}科\hspace{5pt}/\hspace{5pt}类\quad{}别}
+    % 关于题名页的字段名称，截至2025年三月末，以下几项规定不完全一致：
+    %     Word 模板（学位论文模版-{学术型,专业型}-2025.doc）、研函〔2018〕60号《北京理工大学研究生学位论文撰写规范》、GB/T 7713.1—2006《学位论文编写规则》
+    % 目前的默认值按照 Word 模板，可能需要手动调整。
+    % 例如取消注释下一行，会将「申请学位/类别」改为「申请学位级别」。
+    % info / degree = {申\hspace{0.45ex}请\hspace{0.45ex}学\hspace{0.45ex}位\hspace{0.45ex}级\hspace{0.45ex}别},
+    % 详见 https://bithesis.bitnp.net/faq/edit-const.html
   },
   misc = {
     % 关闭后，链接会用多种颜色表示，便于检查。
@@ -208,5 +229,7 @@
 % 个人简介（仅博士生需要此项）
 \input{./misc/6_resume.tex}
 
-% 加入目录
+% 在全文最后，博士附《博士学位论文答辩表》前2页决议含签字的扫描版，硕士不用附。
+% 建议用 Word 模板填写该表，扫描后拼接 PDF。
+
 \end{document}

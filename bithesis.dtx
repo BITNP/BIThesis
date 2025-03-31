@@ -345,7 +345,8 @@
     {classification} {中图分类号：},
     {classified_level} {密级},
     {type} {种类},
-    {special_type} {特别类型},
+    {special_type} {学生类型},
+    {engineering_special_plan} {工程硕博士专项},
     {cross_research} {交叉研究方向},
     {international_student_ugp} {政府项目留学生},
   }
@@ -453,14 +454,16 @@
 %    \begin{macrocode}
 \clist_map_inline:nn
   {
+    % TODO: 自动实现汉字均排
     {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
+    {industrial_mentor} {行\smallgap: 业\smallgap: 合\smallgap: 作\smallgap: 导\smallgap: 师} {Industry~Collaboration~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
-    {degree}
-      {申\quad 请\quad 学\quad 位}
-      {Degree~Applied},
-    {major} {学\quad 科\hspace{0.8ex} / \hspace{0.8ex}  类\quad 别} {Major},
+    % degree、major 的中文与 degreeType 有关，此处以 academic 为准，其余情况通过 \c_@@_auto_tl 处理
+    % 英文倒是无关。
+    {degree} {申\quad 请\quad 学\quad 位} {Degree~Applied},
+    {major} {一\quad 级\quad 学\quad 科} {Major},
     {institute}
       {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位}
       {Degree~by},
@@ -544,6 +547,13 @@
 % \end{variable}
 %
 % \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |\c_@@_auto_tl|
+% 选项设为它时，表示智能默认值，稍后由 |\@@_resolve_auto_values:| 根据其它信息自动填充。
+% 参考 https://typst.app/docs/reference/foundations/auto/ 的设计。
+%    \begin{macrocode}
+\tl_const:Nn \c_@@_auto_tl { BIThesis-auto-magic }
+%    \end{macrocode}
 %
 % 定义 |bithesis| 键值对类。
 %    \begin{macrocode}
@@ -669,7 +679,15 @@
     % UDC 分类号，研究生学位论文使用
     UDC .tl_set:N = \l_@@_value_udc_tl,
     UDC .initial:n = {540（示例）},
+    % 学术型/专业型，研究生学位论文使用
+    degreeType .choice:,
+    degreeType .choices:nn = {professional, academic} {
+      \tl_set:Nn \l_@@_value_degree_type_tl {#1}
+    },
+    degreeType .initial:n = academic,
     chairman .tl_set:N = \l_@@_value_chairman_tl,
+    industrialMentor .tl_set:N = \l_@@_value_industrial_mentor_tl,
+    industrialMentorEn .tl_set:N = \l_@@_value_industrial_mentor_en_tl,
     degree .tl_set:N = \l_@@_value_degree_tl,
     degreeEn .tl_set:N = \l_@@_value_degree_en_tl,
     institute .tl_set:N = \l_@@_value_institute_tl,
@@ -686,10 +704,13 @@
     defenseDateEn .initial:n = {June,~2019~(example)},
     % 因为默认不显示，所以不需要设置初始值。
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
-    % 特别类型-交叉研究方向
+    % 学生类型-工程硕博士专项
+    工程硕博士专项 .bool_set:N = \l_@@_value_engineering_special_plan_bool,
+    工程硕博士专项 .initial:n = {false},
+    % 学生类型-交叉研究方向
     crossResearch .bool_set:N = \l_@@_value_cross_research_bool,
     crossResearch .initial:n = {false},
-    % 特别类型-政府项目留学生
+    % 学生类型-政府项目留学生
     internationalStudentUGP .bool_set:N = \l_@@_value_international_student_ugp_bool,
     internationalStudentUGP .initial:n = {false},
   }
@@ -791,17 +812,9 @@
 \keys_define:nn { bithesis / const / info }
   {
     degree .tl_set:N = \g_@@_const_info_degree_tl,
-    degree .initial:n = {
-      \c_@@_graduate_label_degree_tl
-    },
+    degree .initial:n = {\c_@@_auto_tl},
     major .tl_set:N = \g_@@_const_info_major_tl,
-    major .initial:n = {
-      \@@_if_graduate:TF {
-        \c_@@_graduate_label_major_tl
-      } {
-        \@@_get_const:N {major}
-      }
-    },
+    major .initial:n = {\c_@@_auto_tl},
   }
 \keys_define:nn { bithesis / const / heading }
   {
@@ -927,7 +940,33 @@
 }
 %    \end{macrocode}
 %
-% \subsubsection{处理模板选项}
+% \subsubsection{l3keys 键值对预处理}
+%
+% 计算 auto 并替换为标准的值
+%    \begin{macrocode}
+\cs_new:Npn \@@_resolve_auto_values: {
+  \tl_if_eq:NnT \g_@@_const_info_degree_tl {\c_@@_auto_tl} {
+    \tl_if_eq:NnTF \l_@@_value_degree_type_tl {academic} {
+      \keys_set:nn {bithesis} {const/info/degree = \c_@@_graduate_label_degree_tl}
+    } {
+      \keys_set:nn {bithesis} {const/info/degree = 申\quad 请\quad 类\quad 别}
+    }
+  }
+  \tl_if_eq:NnT \g_@@_const_info_major_tl {\c_@@_auto_tl} {
+    \@@_if_graduate:TF {
+      \tl_if_eq:NnTF \l_@@_value_degree_type_tl {academic} {
+        \keys_set:nn {bithesis} {const/info/major = \c_@@_graduate_label_major_tl}
+      } {
+        \keys_set:nn {bithesis} {const/info/major = 学\quad 位\quad 领\quad 域}
+      }
+    } {
+      \keys_set:nn {bithesis} {const/info/major = \@@_get_const:N {major}}
+    }
+  }
+}
+%    \end{macrocode}
+%
+% \subsubsection{应用模板选项}
 %
 % 英文模板需要开启 ctexbook 宏包的英文选项。
 %    \begin{macrocode}
@@ -2030,8 +2069,17 @@
     \vspace*{65mm}
     {\heiti\zihao{-2} \l_@@_value_title_tl}
     \vskip 60mm
-    % 黑体 小三
-    {\heiti \zihao{-3} \@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl~\g_@@_const_substitute_symbol_tl}}
+    {
+      % 渲染信息。
+      \clist_set:Nn \l_@@_input_clist {
+        {姓名：} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
+        {学号：} {\@@_secret_info:N \l_@@_value_student_id_tl},
+        {学院：} {\l_@@_value_school_tl},
+      }
+      \linespread{2.0}\selectfont
+      % 黑体 小三
+      \heiti \zihao{-3} \@@_render_cover_entry:n \l_@@_input_clist
+    }
     \vskip 10mm
     % 黑体 小三
     {\heiti \zihao{-3} \l_@@_cover_date_tl}
@@ -2043,6 +2091,12 @@
 % \begin{macro}{\make_paper_back:}
 % 制作书脊。
 %    \begin{macrocode}
+% TODO: 使用统一方式警告
+\msg_new:nnn { bithesis } { paper-back/missing-degree-type-icon-file }
+  {
+    Failed~to~find~the~file~for~degree~type~in~the~paper~back:~#1.\\
+    Please~download~from~https://github.com/BITNP/BIThesis/blob/main/templates/graduate-thesis/ #1.
+  }
 \cs_new:Npn \make_paper_back: {
   \cleardoublepage
   \currentpdfbookmark{书脊}{frontmatter:paperback}
@@ -2052,6 +2106,17 @@
     \linespread{1.1}\selectfont
     \begin{minipage}[c][19.7cm]{2em}
       \centering
+      {  
+        \tl_new:N \l_@@_icon_path_tl
+        \tl_set:Nx \l_@@_icon_path_tl { misc/icon_ \l_@@_value_degree_type_tl .jpg }
+        \file_if_exist:nTF {\l_@@_icon_path_tl} {
+          \includegraphics[width=1.5em]{\l_@@_icon_path_tl}
+        } {
+          \msg_warning:nnV {bithesis} {paper-back/missing-degree-type-icon-file} {\l_@@_icon_path_tl}
+        }
+      }
+      \vspace{1em plus 1fill}
+      \par
       {
         \heiti\zihao{3}
         \tl_if_blank:VTF \l_@@_value_vertical_title_tl
@@ -2085,9 +2150,9 @@
 
       \hfill
 
-      % 以下内容是「特别类型」的内容，
+      % 以下内容是「学生类型」的内容，
       % 在没有勾选的时候隐藏。
-      \bool_if:nT {\l_@@_cover_show_special_type_box_bool || \l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool} {
+      \bool_if:nT {\l_@@_cover_show_special_type_box_bool || \l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool || \l_@@_value_engineering_special_plan_bool} {
         \begin{minipage}[t]{0.48\textwidth}
           \vspace{-12pt}
           \begin{flushright}
@@ -2096,6 +2161,12 @@
             \noindent\begin{minipage}{0.48\linewidth}
               \heiti \zihao{-4}
               \scalebox{1.1}\BigStar{}\hspace{4pt} \c_@@_label_special_type_tl\\
+
+              {
+                \zihao{4}
+                \bool_if:NTF \l_@@_value_engineering_special_plan_bool {\boxcheck:} {\boxempty:}
+              }
+              \hspace{1pt}\c_@@_label_engineering_special_plan_tl\\
 
               {
                 \zihao{4}
@@ -2151,6 +2222,7 @@
             {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
             {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:N{\l_@@_value_supervisor_tl}},
+            {\c_@@_graduate_label_industrial_mentor_tl} {\@@_secret_info:N{\l_@@_value_industrial_mentor_tl}},
             {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:N{\l_@@_value_chairman_tl}},
             {\g_@@_const_info_degree_tl} {\l_@@_value_degree_tl},
             {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
@@ -2209,6 +2281,7 @@
           {\c_@@_graduate_label_author_en_tl} {\@@_secret_info:N{\l_@@_value_author_en_tl}},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
           {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info:N{\l_@@_value_supervisor_en_tl}},
+          {\c_@@_graduate_label_industrial_mentor_en_tl} {\@@_secret_info:N{\l_@@_value_industrial_mentor_en_tl}},
           {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info:N{\l_@@_value_chairman_en_tl}},
           {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
@@ -2317,7 +2390,10 @@
 % 提供用户配置的接口。
 %    \begin{macrocode}
 \DeclareDocumentCommand \BITSetup { m }
-  { \keys_set:nn { bithesis } { #1 }}
+  {
+    \keys_set:nn { bithesis } { #1 }
+    \@@_resolve_auto_values:
+  }
 %    \end{macrocode}
 % \end{macro}
 %
