@@ -549,7 +549,7 @@
 % \subsubsection{l3keys 接口键值对定义}
 %
 % 定义 |\c_@@_auto_tl|
-% 选项设为它时，表示智能默认值，稍后由`\@@_resolve_auto_values:`根据其它信息自动填充。
+% 选项设为它时，表示智能默认值，稍后由 |\@@_resolve_auto_values:| 根据其它信息自动填充。
 % 参考 https://typst.app/docs/reference/foundations/auto/ 的设计。
 %    \begin{macrocode}
 \tl_const:Nn \c_@@_auto_tl { BIThesis-auto-magic }
@@ -960,7 +960,7 @@
         \keys_set:nn {bithesis} {const/info/major = 学\quad 位\quad 领\quad 域}
       }
     } {
-      \@@_get_const:N {major}
+      \keys_set:nn {bithesis} {const/info/major = \@@_get_const:N {major}}
     }
   }
 }
