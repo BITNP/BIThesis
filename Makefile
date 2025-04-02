@@ -58,7 +58,7 @@ clean-dist:
 clean-all: clean clean-dist FORCE_MAKE
 
 .PHONY: test
-test: doc copy FORCE_MAKE
+test: copy FORCE_MAKE
 	SCAFFOLDDIR=$(SCAFFOLDDIR) TESTDIR=$(TESTDIR) \
 		python scripts/test.py
 
