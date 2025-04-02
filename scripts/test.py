@@ -5,6 +5,7 @@ from os import environ
 from pathlib import Path
 from subprocess import CalledProcessError, run
 from sys import stderr
+from time import perf_counter
 from typing import Any
 
 ROOT_DIR = Path(__file__).parent.parent
@@ -48,6 +49,7 @@ class TestCase:
         args: list[str] = ["latexmk"],
         env: dict[str, str] | None = None,
     ) -> None:
+        assert directory.exists()
         self.icon = icon
         self.directory = directory
         self.name = name or directory.name
@@ -57,7 +59,7 @@ class TestCase:
     def execute(self) -> CalledProcessError | None:
         """Execute the test case."""
         print(f"🟡 Compiling `{self}`", file=stderr)
-        assert self.directory.exists()
+        start = perf_counter()
         try:
             run(
                 self.args,
@@ -66,10 +68,12 @@ class TestCase:
                 env=None if self.env is None else {**environ, **self.env},
                 check=True,
             )
-            log(f"✅{self.icon} 可正常编译 {self.name}。")
         except CalledProcessError as error:
             log(f"💥{self.icon} 无法编译 {self.name}。")
             return error
+
+        duration = perf_counter() - start
+        log(f"✅{self.icon} 可正常编译 {self.name}：⌛ {duration:.1f} 秒。")
 
 
 TESTS = [
