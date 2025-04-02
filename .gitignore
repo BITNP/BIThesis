@@ -301,6 +301,7 @@ scripts/*
 !scripts/*.sh
 !scripts/*.zsh
 !scripts/*.ps1
+!scripts/*.py
 
 .DS_Store
 

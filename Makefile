@@ -59,17 +59,8 @@ clean-all: clean clean-dist FORCE_MAKE
 
 .PHONY: test
 test: doc copy FORCE_MAKE
-	cd $(SCAFFOLDDIR)/undergraduate-thesis && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/paper-translation && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/undergraduate-thesis-en && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/graduate-thesis && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/reading-report && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/lab-report && latexmk && cd ..
-	cd $(SCAFFOLDDIR)/presentation-slide && latexmk && cd ..
-	cd $(TESTDIR)/doctor-thesis && latexmk && cd ..
-	cd $(TESTDIR)/autorefs && latexmk && cd ..
-	cd ./handbook && latexmk \
-		&& GRADUATE=true latexmk -gg && cd ..
+	SCAFFOLDDIR=$(SCAFFOLDDIR) TESTDIR=$(TESTDIR) \
+		python scripts/test.py
 
 .PHONY: regression-test
 regression-test: cls
