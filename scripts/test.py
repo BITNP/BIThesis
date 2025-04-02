@@ -46,7 +46,7 @@ class TestCase:
         /,
         *,
         name: str | None = None,
-        args: list[str] = ["latexmk"],
+        args: list[str] = ["latexmk", "-g"],
         env: dict[str, str] | None = None,
     ) -> None:
         assert directory.exists()
