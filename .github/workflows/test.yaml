@@ -13,14 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: xu-cheng/texlive-action@v2
+      - uses: teatimeguest/setup-texlive-action@v3
         with:
-          scheme: full
-          run: |
-            apk add make msttcorefonts-installer fontconfig
-            update-ms-fonts
-            fc-cache -f
-            make test
+          packages: |
+            scheme-full
+      - name: Setup fonts
+        run: |
+          sudo apt update
+          sudo apt install make fontconfig
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt install ttf-mscorefonts-installer
+          fc-cache -f
+      - run: make test
 
   check_typos:
     runs-on: ubuntu-latest
