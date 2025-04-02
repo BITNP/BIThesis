@@ -35,6 +35,7 @@ class TestCase:
     icon: str
     directory: Path
     name: str
+    args: list[str]
     env: dict[str, str] | None = None
 
     def __init__(
@@ -44,11 +45,13 @@ class TestCase:
         /,
         *,
         name: str | None = None,
+        args: list[str] = ["latexmk"],
         env: dict[str, str] | None = None,
     ) -> None:
         self.icon = icon
         self.directory = directory
         self.name = name or directory.name
+        self.args = args
         self.env = env
 
     def execute(self) -> CalledProcessError | None:
@@ -57,7 +60,7 @@ class TestCase:
         assert self.directory.exists()
         try:
             run(
-                ["latexmk"],
+                self.args,
                 cwd=self.directory,
                 # Append to the original env
                 env=None if self.env is None else {**environ, **self.env},
@@ -82,6 +85,7 @@ TESTS = [
     TestCase(
         "📖", ROOT_DIR / "handbook", name="graduate-handbook", env={"GRADUATE": "true"}
     ),
+    TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
 ]
 
 # Execute all test cases, and raise the first error.
