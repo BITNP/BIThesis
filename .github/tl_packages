@@ -1,0 +1,50 @@
+scheme-minimal
+
+collection-latex
+collection-xetex
+
+# collection-binextra
+latexmk
+
+# collection-langchinese
+ctex
+zhlineskip
+
+# collection-bibtexextra
+biber
+biblatex
+biblatex-gb7714-2015
+
+# collection-latexextra
+enumitem
+fmtcount
+multirow
+titlesec
+xint # indirect
+xstring # indirect
+
+# collection-latexrecommended
+booktabs
+caption
+hologo
+listings
+mathtools # indirect
+metalogo
+pdflscape # indirect
+pdfpages
+setspace
+subfig
+underscore # indirect
+unicode-math
+
+# collection-plaingeneric
+dirtree
+poormanlog # indirect
+
+# collection-fontsextra
+asana-math
+fontawesome5 # indirect
+xits
+
+# collection-fontsrecommended
+tex-gyre
