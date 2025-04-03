@@ -1,5 +1,6 @@
 """Compile all projects, used by `make test`."""
 
+from collections.abc import Generator
 from dataclasses import dataclass
 from os import environ
 from pathlib import Path
@@ -20,13 +21,27 @@ SUMMARY = Path(environ.get("GITHUB_STEP_SUMMARY", ROOT_DIR / "scripts/test-resul
 
 
 def log(message: str | Any) -> None:
-    """Write to stdout and the SUMMARY file."""
+    """Write markdown `message` to stdout and the SUMMARY file."""
     if not isinstance(message, str):
         message = str(message)
 
-    print(message)
+    print(message, end="\n\n")
     with SUMMARY.open("a", encoding="utf-8") as f:
-        f.write(message + "\n")
+        f.write(message + "\n\n")
+
+
+def parse_log(file: Path) -> Generator[str]:
+    """Collect key errors from a log file."""
+    with file.open(encoding="utf-8") as f:
+        for line in f:
+            if line.startswith("!"):
+                yield line.strip()
+
+
+def collect_errors(directory: Path) -> Generator[tuple[Path, Generator[str]]]:
+    """Read all log files in the `directory` and collect key errors."""
+    for file in directory.glob("*.log"):
+        yield file.relative_to(directory), parse_log(file)
 
 
 @dataclass
@@ -68,9 +83,19 @@ class TestCase:
                 env=None if self.env is None else {**environ, **self.env},
                 check=True,
             )
-        except CalledProcessError as error:
+        except CalledProcessError as running_error:
             log(f"💥{self.icon} 无法编译 {self.name}。")
-            return error
+            for file, errors in collect_errors(self.directory):
+                log(
+                    "\n".join(
+                        [
+                            f"- `{file}`:",
+                            # LaTeX 习惯写 `file.sty'，需避免 markdown 解析
+                            *(f"  - ```{e}```" for e in errors),
+                        ]
+                    )
+                )
+            return running_error
 
         duration = perf_counter() - start
         log(f"✅{self.icon} 可正常编译 {self.name}：⌛ {duration:.1f} 秒。")
