@@ -69,6 +69,7 @@ float
 adjustbox # indirect
 alphalph # indirect
 awesomebox
+cleveref
 csquotes # indirect
 csvsimple # indirect
 framed
