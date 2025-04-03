@@ -1,3 +1,5 @@
+# ----- 1. 编译基础中文文档需要 -----
+
 scheme-minimal
 
 collection-latex
@@ -15,6 +17,8 @@ biber
 biblatex
 biblatex-gb7714-2015
 
+# ----- 2. 编译 templates/* 需要 -----
+
 # collection-latexextra
 enumitem
 fmtcount
@@ -22,6 +26,7 @@ multirow
 titlesec
 xint # indirect
 xstring # indirect
+mwe # for `example-image*` files
 
 # collection-latexrecommended
 booktabs
@@ -48,3 +53,25 @@ xits
 
 # collection-fontsrecommended
 tex-gyre
+
+# Not included in any collection
+float
+
+# ----- 3. 编译 handbook 和 bithesis.pdf 需要 -----
+
+# collection-latexextra
+adjustbox # indirect
+alphalph # indirect
+awesomebox
+csquotes # indirect
+csvsimple # indirect
+framed
+hypdoc
+markdown
+menukeys
+relsize
+was # for upgreek
+wrapfig
+
+# Not included in any collection
+fancyvrb # indirect
