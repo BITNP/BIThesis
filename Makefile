@@ -51,6 +51,10 @@ clean-dist:
 .PHONY: clean-all
 clean-all: clean clean-dist FORCE_MAKE
 
+.PHONY: check
+check: cls FORCE_MAKE
+	explcheck $(if $(CI),--warnings-are-errors) ./*.cls ./dtx-style.sty $$(fd --extension tex)
+
 .PHONY: test
 test: copy FORCE_MAKE
 	SCAFFOLDDIR=$(SCAFFOLDDIR) TESTDIR=$(TESTDIR) \
