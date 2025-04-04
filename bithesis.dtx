@@ -1420,7 +1420,7 @@
 %    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
-    format = { \@@_title_font:n \bfseries \centering \zihao{3}},
+    format = { \@@_title_font:n \bfseries \centering \zihao{3}}, % noqa: W302
     nameformat = {},
     titleformat = {},
     aftername = \hspace{9bp},
@@ -1435,7 +1435,7 @@
 
 \ctexset{section={
     number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
-    format = {\@@_title_font:n \raggedright \bfseries \zihao{4}},
+    format = {\@@_title_font:n \raggedright \bfseries \zihao{4}}, % noqa: W302
     nameformat = {},
     titleformat = {},
     aftername = \hspace{8bp},
@@ -1453,7 +1453,7 @@
         \arabic{subsection}
       }
     },
-    format = {\@@_title_font:n \bfseries \raggedright \zihao{-4}},
+    format = {\@@_title_font:n \bfseries \raggedright \zihao{-4}}, % noqa: W302
     nameformat = {},
     titleformat = {},
     aftername = \hspace{7bp},
@@ -1475,7 +1475,7 @@
         \arabic{subsubsection}
       }
     },
-    format={\@@_title_font:n \raggedright \zihao{-4}},
+    format={\@@_title_font:n \raggedright \zihao{-4}}, % noqa: W302
     nameformat = {},
     titleformat = {},
     beforeskip=14bp,
@@ -1610,7 +1610,7 @@
       numbering = false,
       beforeskip = 18bp,
       format = {
-        \@@_title_font:n \@@_unnumchapter_style:n \centering \zihao{3}
+        \@@_title_font:n \@@_unnumchapter_style:n \centering \zihao{3} % noqa: W302
       },
       afterskip = \@@_if_graduate:TF {31bp} {26bp},
     }
