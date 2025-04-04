@@ -278,19 +278,19 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\smallgap:}
+% \begin{macro}{\@@_smallgap:}
 % 标签文字之间的间距。
 %    \begin{macrocode}
-\cs_new:Npn \smallgap: {
+\cs_new:Npn \@@_smallgap: {
   \hspace{0.45ex}
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\boxempty:}
+% \begin{macro}{\@@_boxempty:}
 % 空的选框。
 %    \begin{macrocode}
-\cs_new:Npn \boxempty:
+\cs_new:Npn \@@_boxempty:
 {
   \makebox[1em][l]
   {
@@ -305,10 +305,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\boxcheck:}
+% \begin{macro}{\@@_boxcheck:}
 % 打了勾的选框。
 %    \begin{macrocode}
-\cs_new:Npn \boxcheck:
+\cs_new:Npn \@@_boxcheck:
 {
   \makebox[1em][l]
   {
@@ -323,10 +323,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\label_space:}
+% \begin{macro}{\@@_label_space:}
 % 标签与内容之间的空白间距。
 %    \begin{macrocode}
-\cs_new:Npn \label_space: {
+\cs_new:Npn \@@_label_space: {
   \@@_if_bachelor_thesis:T {
     \quad
   }
@@ -428,11 +428,11 @@
   {
     {originality} {研究成果声明},
     {originality_clause} {本人郑重声明：所提交的学位论文是我本人在指导教师的指导下独立完成的研究成果。文中所撰写内容符合以下学术规范（请勾选）：
-\par \boxcheck:\hspace{0.5em} 论文综述遵循“适当引用”的规范，全部引用的内容不超过50\%。
-\par \boxcheck:\hspace{0.5em} 论文中的研究数据及结果不存在篡改、剽窃、抄袭、伪造等学术不端行为，并愿意承担因学术不端行为所带来的一切后果和法律责任。
-\par \boxcheck:\hspace{0.5em} 文中依法引用他人的成果，均已做出明确标注或得到许可。
-\par \boxcheck:\hspace{0.5em} 论文内容未包含法律意义上已属于他人的任何形式的研究成果，也不包含本人已用于其他学位申请的论文或成果。
-\par \boxcheck:\hspace{0.5em} 与本人一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。
+\par \@@_boxcheck:\hspace{0.5em} 论文综述遵循“适当引用”的规范，全部引用的内容不超过50\%。
+\par \@@_boxcheck:\hspace{0.5em} 论文中的研究数据及结果不存在篡改、剽窃、抄袭、伪造等学术不端行为，并愿意承担因学术不端行为所带来的一切后果和法律责任。
+\par \@@_boxcheck:\hspace{0.5em} 文中依法引用他人的成果，均已做出明确标注或得到许可。
+\par \@@_boxcheck:\hspace{0.5em} 论文内容未包含法律意义上已属于他人的任何形式的研究成果，也不包含本人已用于其他学位申请的论文或成果。
+\par \@@_boxcheck:\hspace{0.5em} 与本人一同工作的合作者对此研究工作所做的任何贡献均已在学位论文中作了明确的说明并表示了谢意。
 \par~特此声明。},
     {authorization} {关于学位论文使用权的说明},
     {authorization_clause} {本人完全了解北京理工大学有关保管、使用学位论文的规定，其中包括：
@@ -458,17 +458,17 @@
     {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
     {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
-    {industrial_mentor} {行\smallgap: 业\smallgap: 合\smallgap: 作\smallgap: 导\smallgap: 师} {Industry~Collaboration~Mentor},
+    {industrial_mentor} {行\@@_smallgap: 业\@@_smallgap: 合\@@_smallgap: 作\@@_smallgap: 导\@@_smallgap: 师} {Industry~Collaboration~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
     % degree、major 的中文与 degreeType 有关，此处以 academic 为准，其余情况通过 \c_@@_auto_tl 处理
     % 英文倒是无关。
     {degree} {申\quad 请\quad 学\quad 位} {Degree~Applied},
     {major} {一\quad 级\quad 学\quad 科} {Major},
     {institute}
-      {学\smallgap: 位\smallgap: 授\smallgap: 予\smallgap: 单\smallgap: 位}
+      {学\@@_smallgap: 位\@@_smallgap: 授\@@_smallgap: 予\@@_smallgap: 单\@@_smallgap: 位}
       {Degree~by},
     {defense_date}
-      {论\smallgap: 文\smallgap: 答\smallgap: 辩\smallgap: 日\smallgap: 期}
+      {论\@@_smallgap: 文\@@_smallgap: 答\@@_smallgap: 辩\@@_smallgap: 日\@@_smallgap: 期}
       {The~Date~of~Defence},
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 %    \end{macrocode}
@@ -490,14 +490,14 @@
     {teacher} {任课教师} {Teacher},
     {semester} {上课学期} {Semester},
     {keywords} {关键词：} {Key~Words:~},
-    {toc} {目\label_space: 录} {Table~of~Contents},
-    {abstract} {摘\label_space: 要} {Abstract},
-    {conclusion} {结\label_space: 论} {Conclusions},
+    {toc} {目\@@_label_space: 录} {Table~of~Contents},
+    {abstract} {摘\@@_label_space: 要} {Abstract},
+    {conclusion} {结\@@_label_space: 论} {Conclusions},
     % 附录部分的总标题
-    {appendix} {附\label_space: 录} {Appendices},
-    {ack} {致\label_space: 谢} {Acknowledgements},
-    {figure} {插\label_space: 图} {Illustrations},
-    {table} {表\label_space: 格} {Tables},
+    {appendix} {附\@@_label_space: 录} {Appendices},
+    {ack} {致\@@_label_space: 谢} {Acknowledgements},
+    {figure} {插\@@_label_space: 图} {Illustrations},
+    {table} {表\@@_label_space: 格} {Tables},
     % 附录下各部分编号的前缀
     {appendix_prefix} {附录} {Appendix},
     {reference} {参考文献} {References},
@@ -1349,10 +1349,10 @@
 }
 %    \end{macrocode}
 %
-% \begin{macro}{\xihei:n}
+% \begin{macro}{\@@_xihei:n}
 % 定义细黑字体。
 %    \begin{macrocode}
-\cs_new:Npn \xihei:n #1 {
+\cs_new:Npn \@@_xihei:n #1 {
   \xeCJK_family_if_exist:nTF {xihei} {
     \CJKfamily{xihei} #1
   }{
@@ -1362,10 +1362,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\l_@@_title_font_cs:n}
+% \begin{macro}{\@@_title_font:n}
 % 定义标题字体。
 %    \begin{macrocode}
-\cs_new:Npn \l_@@_title_font_cs:n #1 {
+\cs_new:Npn \@@_title_font:n #1 {
   \bool_if:NTF \l_@@_arial_as_title_font_bool
   {
     % 即使是英文模板，仍可能出现中文，也需设置中文字体。
@@ -1378,10 +1378,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\l_@@_unnumchapter_style_cs:n}
+% \begin{macro}{\@@_unnumchapter_style:n}
 % 定义无序章节的样式。
 %    \begin{macrocode}
-\cs_new:Npn \l_@@_unnumchapter_style_cs:n #1 {
+\cs_new:Npn \@@_unnumchapter_style:n #1 {
   % 本科全英文、研究生学位论文需要加粗
   \int_compare:nNnTF {\g_@@_thesis_type_int} > {2}
   {
@@ -1420,7 +1420,7 @@
 %    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
-    format = { \l_@@_title_font_cs:n \bfseries \centering \zihao{3}},
+    format = { \@@_title_font:n \bfseries \centering \zihao{3}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{9bp},
@@ -1435,7 +1435,7 @@
 
 \ctexset{section={
     number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
-    format = {\l_@@_title_font_cs:n \raggedright \bfseries \zihao{4}},
+    format = {\@@_title_font:n \raggedright \bfseries \zihao{4}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{8bp},
@@ -1453,7 +1453,7 @@
         \arabic{subsection}
       }
     },
-    format = {\l_@@_title_font_cs:n \bfseries \raggedright \zihao{-4}},
+    format = {\@@_title_font:n \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{7bp},
@@ -1475,7 +1475,7 @@
         \arabic{subsubsection}
       }
     },
-    format={\l_@@_title_font_cs:n \raggedright \zihao{-4}},
+    format={\@@_title_font:n \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
     beforeskip=14bp,
@@ -1610,7 +1610,7 @@
       numbering = false,
       beforeskip = 18bp,
       format = {
-        \l_@@_title_font_cs:n \l_@@_unnumchapter_style_cs:n \centering \zihao{3}
+        \@@_title_font:n \@@_unnumchapter_style:n \centering \zihao{3}
       },
       afterskip = \@@_if_graduate:TF {31bp} {26bp},
     }
@@ -1981,7 +1981,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_parse_entry}
+% \begin{macro}{\@@_parse_entry:nn}
 % 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
@@ -1994,7 +1994,7 @@
 % 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
 %
 %    \begin{macrocode}
-\cs_new:Npn \@@_parse_entry #1 #2 {
+\cs_new:Npn \@@_parse_entry:nn #1 #2 {
   \seq_clear:N \l_@@_tmp_left_seq
   \seq_clear:N \l_@@_tmp_right_seq
 
@@ -2027,7 +2027,7 @@
     % label - value 对。
     % 比如 {label_1} {value \\ 1} 会被转换成
     % { {label_1} {value}, {} {1} }
-    \@@_parse_entry ##1
+    \@@_parse_entry:nn ##1
     % 然后将这些 label - value 对添加到 \l_@@_right_seq
     % 或者 \l_@@_left_sql 中。
     % left 就是 label，right 就是 value。
@@ -2057,10 +2057,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\make_graduate_cover:}
+% \begin{macro}{\@@_make_graduate_cover:}
 % 制作研究生论文模板封面。
 %    \begin{macrocode}
-\cs_new:Npn \make_graduate_cover: {
+\cs_new:Npn \@@_make_graduate_cover: {
   \cleardoublepage
   \currentpdfbookmark{封面}{frontmatter:cover1}
   \begin{titlepage}
@@ -2095,7 +2095,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\make_paper_back:}
+% \begin{macro}{\@@_make_paper_back:}
 % 制作书脊。
 %    \begin{macrocode}
 % TODO: 使用统一方式警告
@@ -2104,7 +2104,7 @@
     Failed~to~find~the~file~for~degree~type~in~the~paper~back:~#1.\\
     Please~download~from~https://github.com/BITNP/BIThesis/blob/main/templates/graduate-thesis/ #1.
   }
-\cs_new:Npn \make_paper_back: {
+\cs_new:Npn \@@_make_paper_back: {
   \cleardoublepage
   \currentpdfbookmark{书脊}{frontmatter:paperback}
   \begin{titlepage}
@@ -2171,19 +2171,19 @@
 
               {
                 \zihao{4}
-                \bool_if:NTF \l_@@_value_engineering_special_plan_bool {\boxcheck:} {\boxempty:}
+                \bool_if:NTF \l_@@_value_engineering_special_plan_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_engineering_special_plan_tl\\
 
               {
                 \zihao{4}
-                \bool_if:NTF \l_@@_value_cross_research_bool {\boxcheck:} {\boxempty:}
+                \bool_if:NTF \l_@@_value_cross_research_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_cross_research_tl\\
 
               {
                 \zihao{4}
-                \bool_if:NTF \l_@@_value_international_student_ugp_bool {\boxcheck:} {\boxempty:}
+                \bool_if:NTF \l_@@_value_international_student_ugp_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_international_student_ugp_tl
             \end{minipage}
@@ -2501,7 +2501,7 @@
           % 中文标题
           \tl_set:Nn \l_tmpa_tl {
             \linespread{1.46}\selectfont
-            \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+            \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
           }
           % 英文标题
           \tl_set:Nn \l_tmpb_tl {
@@ -2608,7 +2608,7 @@
 
           \vspace{\stretch{1}}
 
-          \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+          \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
 
           \vspace{3mm}
 
@@ -2671,11 +2671,11 @@
           \vspace{18mm}
 
           \bool_if:NT \l_@@_cover_add_titlezh_bool {
-            \zihao{2}\textbf{\xihei:n \l_@@_value_title_tl}\par
+            \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
             \vspace{16mm}
           }
 
-          \zihao{2}\textbf{\xihei:n \l_@@_value_title_en_tl}\par
+          \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_en_tl}\par
 
           \vspace{10mm}
 
@@ -2724,10 +2724,10 @@
         \end{titlepage}
       }
       {4} {
-        \make_graduate_cover:
+        \@@_make_graduate_cover:
       }
       {5} {
-        \make_graduate_cover:
+        \@@_make_graduate_cover:
       }
     }
     \group_end:
@@ -2866,7 +2866,7 @@
       vmargin = 5cm,
     }
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
-      \make_paper_back:
+      \@@_make_paper_back:
     \end{blindPeerReview}
     \restoregeometry
   }
@@ -2901,8 +2901,8 @@
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
-        \l_@@_unnumchapter_style_cs:n
-          \l_@@_title_font_cs:n
+        \@@_unnumchapter_style:n
+          \@@_title_font:n
             {\l_@@_toc_title_tl}
         \vspace{-8pt}
       }
@@ -3010,7 +3010,7 @@
         \centering
         \vspace*{-2bp}
 
-        \l_@@_title_font_cs:n {
+        \@@_title_font:n {
           \zihao{3}\textbf
           \l_@@_value_title_en_tl\\
         }
@@ -3759,7 +3759,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_parse_entry}
+% \begin{macro}{\@@_parse_entry:nn}
 % 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
@@ -3772,7 +3772,7 @@
 % 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
 %
 %    \begin{macrocode}
-\cs_new:Npn \@@_parse_entry #1 #2 {
+\cs_new:Npn \@@_parse_entry:nn #1 #2 {
   \seq_clear:N \l_@@_tmp_left_seq
   \seq_clear:N \l_@@_tmp_right_seq
 
@@ -3805,7 +3805,7 @@
     % label - value 对。
     % 比如 {label_1} {value \\ 1} 会被转换成
     % { {label_1} {value}, {} {1} }
-    \@@_parse_entry ##1
+    \@@_parse_entry:nn ##1
     % 然后将这些 label - value 对添加到 \l_@@_right_seq
     % 或者 \l_@@_left_sql 中。
     % left 就是 label，right 就是 value。
@@ -4110,10 +4110,10 @@
 %    \end{macrocode}
 %
 %
-% \begin{macro}{\CJKhl:nn}
+% \begin{macro}{\@@_CJKhl:nn}
 % 高亮中文字符。
 %    \begin{macrocode}
-\cs_new:Npn \CJKhl:nn #1 #2
+\cs_new:Npn \@@_CJKhl:nn #1 #2
   { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
 %    \end{macrocode}
 % \end{macro}
@@ -4143,7 +4143,7 @@
 % \subsubsection{定义用户接口}
 %
 %    \begin{macrocode}
-\cs_new_eq:NN \CJKhl \CJKhl:nn
+\cs_new_eq:NN \CJKhl \@@_CJKhl:nn
 %    \end{macrocode}
 %
 %    \begin{macrocode}
