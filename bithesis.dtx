@@ -1961,8 +1961,8 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1: |dim| 用于存储最大宽度。
-%   \item \#2: |seq| 用于存储文本。
+%   \item \#1: |dim| 用于输出最大宽度。
+%   \item \#2: |seq| 用于输入文本。
 % \end{itemize}
 %    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
@@ -1975,8 +1975,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
-          % 在两边加上空白，避免文本太靠边。
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
         }
     \group_end:
   }
@@ -2033,6 +2032,8 @@
   \bool_if:NT \l_@@_cover_auto_width_bool {
     \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
+    % 在 value 两边加上空白，避免文本太靠边。
+    \dim_add:Nn \l_@@_cover_value_max_width_dim { \l_@@_cover_auto_width_padding_dim * 2 }
   }
 
 
@@ -3731,8 +3732,8 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1: |dim| 用于存储最大宽度。
-%   \item \#2: |seq| 用于存储文本。
+%   \item \#1: |dim| 用于输出最大宽度。
+%   \item \#2: |seq| 用于输入存储文本。
 % \end{itemize}
 %    \begin{macrocode}
 \cs_new:Npn \@@_get_max_text_width:NN #1#2
@@ -3745,8 +3746,7 @@
         {
           \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
           \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
-          % 在两边加上空白，避免文本太靠边。
-          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim + \l_@@_cover_auto_width_padding_dim * 2} }
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
         }
     \group_end:
   }
@@ -3803,6 +3803,8 @@
   \bool_if:NT \l_@@_cover_auto_width_bool {
     \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
+    % 在 value 两边加上空白，避免文本太靠边。
+    \dim_add:Nn \l_@@_cover_value_max_width_dim { \l_@@_cover_auto_width_padding_dim * 2 }
   }
 
 
