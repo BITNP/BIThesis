@@ -159,11 +159,10 @@
 %
 % \end{macro}
 %
-% \begin{macro}[added=2023-03-16]{\@@_get_const:N}
-% 获取标题、章节、表格、图形等的常量名称。
+% \begin{macro}[added=2023-03-16, updated=2025-04-04]{\@@_get_const:n} 获取标题、章节、表格、图形等的常量名称。
 % 会区别英文模式和中文模式。
 %   \begin{macrocode}
-\cs_new:Npn \@@_get_const:N #1 {
+\cs_new:Npn \@@_get_const:n #1 {
   \@@_if_thesis_english:TF {
     \use:c {c_@@_label_ #1 _en_tl}
   } {
@@ -777,33 +776,33 @@
 \keys_define:nn { bithesis / const / autoref }
   {
     algo .tl_set:N = \g_@@_const_autoref_algo_tl,
-    algo .initial:n = {\@@_get_const:N {algo}},
+    algo .initial:n = {\@@_get_const:n {algo}},
     them .tl_set:N = \g_@@_const_autoref_them_tl,
-    them .initial:n = {\@@_get_const:N {them}},
+    them .initial:n = {\@@_get_const:n {them}},
     lem .tl_set:N = \g_@@_const_autoref_lem_tl,
-    lem .initial:n = {\@@_get_const:N {lem}},
+    lem .initial:n = {\@@_get_const:n {lem}},
     prop .tl_set:N = \g_@@_const_autoref_prop_tl,
-    prop .initial:n = {\@@_get_const:N {prop}},
+    prop .initial:n = {\@@_get_const:n {prop}},
     cor .tl_set:N = \g_@@_const_autoref_cor_tl,
-    cor .initial:n = {\@@_get_const:N {cor}},
+    cor .initial:n = {\@@_get_const:n {cor}},
     axi .tl_set:N = \g_@@_const_autoref_axi_tl,
-    axi .initial:n = {\@@_get_const:N {axi}},
+    axi .initial:n = {\@@_get_const:n {axi}},
     defn .tl_set:N = \g_@@_const_autoref_defn_tl,
-    defn .initial:n = {\@@_get_const:N {defn}},
+    defn .initial:n = {\@@_get_const:n {defn}},
     conj .tl_set:N = \g_@@_const_autoref_conj_tl,
-    conj .initial:n = {\@@_get_const:N {conj}},
+    conj .initial:n = {\@@_get_const:n {conj}},
     exmp .tl_set:N = \g_@@_const_autoref_exmp_tl,
-    exmp .initial:n = {\@@_get_const:N {exmp}},
+    exmp .initial:n = {\@@_get_const:n {exmp}},
     case .tl_set:N = \g_@@_const_autoref_case_tl,
-    case .initial:n = {\@@_get_const:N {case}},
+    case .initial:n = {\@@_get_const:n {case}},
     rem .tl_set:N = \g_@@_const_autoref_rem_tl,
-    rem .initial:n = {\@@_get_const:N {rem}},
+    rem .initial:n = {\@@_get_const:n {rem}},
     figure .tl_set:N = \g_@@_const_autoref_fig_tl,
-    figure .initial:n =  {\@@_get_const:N {fig}},
+    figure .initial:n =  {\@@_get_const:n {fig}},
     table .tl_set:N = \g_@@_const_autoref_tab_tl,
-    table .initial:n =  {\@@_get_const:N {tab}},
+    table .initial:n =  {\@@_get_const:n {tab}},
     equ .tl_set:N = \g_@@_const_autoref_equ_tl,
-    equ .initial:n = {\@@_get_const:N {equ}},
+    equ .initial:n = {\@@_get_const:n {equ}},
   }
 \keys_define:nn { bithesis / const / style }
   {
@@ -821,7 +820,7 @@
   {
     acknowledgements .tl_set:N = \g_@@_const_heading_acknowledgements_tl,
     acknowledgements .initial:n = {
-      \@@_get_const:N {ack}
+      \@@_get_const:n {ack}
     },
   }
 %    \end{macrocode}
@@ -881,7 +880,7 @@
 {
   title .tl_set:N = \l_@@_toc_title_tl,
   title .initial:n = {
-    \@@_get_const:N {toc}
+    \@@_get_const:n {toc}
   },
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
   abstract .initial:n = {true},
@@ -961,7 +960,7 @@
         \keys_set:nn {bithesis} {const/info/major = 学\quad 位\quad 领\quad 域}
       }
     } {
-      \keys_set:nn {bithesis} {const/info/major = \@@_get_const:N {major}}
+      \keys_set:nn {bithesis} {const/info/major = \@@_get_const:n {major}}
     }
   }
 }
@@ -1864,26 +1863,26 @@
 %
 % 调整插图目录与表格目录的标题。
 %    \begin{macrocode}
-\cs_set:Npn \listfigurename {\currentpdfbookmark{\c_@@_label_figure_tl}{ch:figures}\@@_get_const:N {figure}}
-\cs_set:Npn \listtablename {\currentpdfbookmark{\c_@@_label_table_tl}{ch:tables}\@@_get_const:N {table}}
+\cs_set:Npn \listfigurename {\currentpdfbookmark{\c_@@_label_figure_tl}{ch:figures}\@@_get_const:n {figure}}
+\cs_set:Npn \listtablename {\currentpdfbookmark{\c_@@_label_table_tl}{ch:tables}\@@_get_const:n {table}}
 %    \end{macrocode}
 %
 % 预定义用户常用的证明环境。
 %    \begin{macrocode}
 \theoremstyle{plain}
-  \newtheorem{algo}{\@@_get_const:N {algo}}[chapter]
-  \newtheorem{them}{\@@_get_const:N {them}}[chapter]
-  \newtheorem{lem}{\@@_get_const:N {lem}}[chapter]
-  \newtheorem{prop}{\@@_get_const:N {prop}}[chapter]
-  \newtheorem{cor}{\@@_get_const:N {cor}}[chapter]
-  \newtheorem{axi}{\@@_get_const:N {axi}}[chapter]
+  \newtheorem{algo}{\@@_get_const:n {algo}}[chapter]
+  \newtheorem{them}{\@@_get_const:n {them}}[chapter]
+  \newtheorem{lem}{\@@_get_const:n {lem}}[chapter]
+  \newtheorem{prop}{\@@_get_const:n {prop}}[chapter]
+  \newtheorem{cor}{\@@_get_const:n {cor}}[chapter]
+  \newtheorem{axi}{\@@_get_const:n {axi}}[chapter]
 \theoremstyle{definition}
-  \newtheorem{defn}{\@@_get_const:N {defn}}[chapter]
-  \newtheorem{conj}{\@@_get_const:N {conj}}[chapter]
-  \newtheorem{exmp}{\@@_get_const:N {exmp}}[chapter]
-  \newtheorem{case}{\@@_get_const:N {case}}
+  \newtheorem{defn}{\@@_get_const:n {defn}}[chapter]
+  \newtheorem{conj}{\@@_get_const:n {conj}}[chapter]
+  \newtheorem{exmp}{\@@_get_const:n {exmp}}[chapter]
+  \newtheorem{case}{\@@_get_const:n {case}}
 \theoremstyle{remark}
-  \newtheorem{rem}{\@@_get_const:N {rem}}
+  \newtheorem{rem}{\@@_get_const:n {rem}}
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 %    \end{macrocode}
 %
@@ -3451,7 +3450,7 @@
         \l_@@_publications_minbibnames_int
       }
 
-      \chapter{\@@_get_const:N {publications}}
+      \chapter{\@@_get_const:n {publications}}
       #1
     \end{blindPeerReview}
   }
@@ -3474,7 +3473,7 @@
         subsection/number = \arabic{section}. \arabic{subsection},
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
-      \chapter{\@@_get_const:N{resume}}
+      \chapter{\@@_get_const:n {resume}}
       #1
     \end{blindPeerReview}
   }
@@ -3489,9 +3488,9 @@
 \NewDocumentEnvironment {symbols} {}
   {
     \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
-      \chapter{\@@_get_const:N {symbols}}
+      \chapter{\@@_get_const:n {symbols}}
     } {
-      \chapter*{\@@_get_const:N {symbols}}
+      \chapter*{\@@_get_const:n {symbols}}
       \currentpdfbookmark{\c_@@_label_symbols_tl}{ch:symbols}
     }
     \zihao{-4}
