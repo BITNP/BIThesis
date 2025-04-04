@@ -42,6 +42,19 @@ jobs:
 
       - run: make test
 
+  check-latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: |
+            scheme-minimal
+            xetex
+            expltools
+      - run: make cls
+      - run: make check
+
   check_typos:
     runs-on: ubuntu-latest
     steps:
