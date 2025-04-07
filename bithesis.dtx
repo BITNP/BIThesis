@@ -1918,7 +1918,7 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#1 |{token_list}| 为封面信息条目的名称，含分隔符。
 %   \item \#2 |{token_list}| 为封面信息条目的内容。
 % \end{itemize}
 %
@@ -1927,7 +1927,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
@@ -1983,7 +1983,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目。
+% 解析封面信息条目，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -1999,7 +1999,7 @@
   \seq_map_inline:Nn \l_@@_tmp_right_seq {
     \seq_put_right:Nn \l_@@_tmp_left_seq {}
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
+  \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
@@ -3689,7 +3689,7 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#1 |{token_list}| 为封面信息条目的名称，含分隔符。
 %   \item \#2 |{token_list}| 为封面信息条目的内容。
 % \end{itemize}
 %
@@ -3698,7 +3698,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
@@ -3754,7 +3754,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目。
+% 解析封面信息条目，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -3770,7 +3770,7 @@
   \seq_map_inline:Nn \l_@@_tmp_right_seq {
     \seq_put_right:Nn \l_@@_tmp_left_seq {}
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
+  \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
   \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
