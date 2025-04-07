@@ -1362,32 +1362,30 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_title_font:n}
+% \begin{macro}{\@@_title_font:}
 % 定义标题字体。
 %    \begin{macrocode}
-\cs_new:Npn \@@_title_font:n #1 {
-  \bool_if:NTF \l_@@_arial_as_title_font_bool
-  {
+\cs_new:Npn \@@_title_font: {
+  \bool_if:NTF \l_@@_arial_as_title_font_bool {
     % 即使是英文模板，仍可能出现中文，也需设置中文字体。
-    \heiti\arialfamily #1
+    \heiti\arialfamily
   } {
     % 西文保持原本的 Times New Roman。黑体一般不搭配衬线体，但学校要求如此。
-    \heiti #1
+    \heiti
   }
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_unnumchapter_style:n}
+% \begin{macro}{\@@_unnumchapter_style:}
 % 定义无序章节的样式。
 %    \begin{macrocode}
-\cs_new:Npn \@@_unnumchapter_style:n #1 {
+\cs_new:Npn \@@_unnumchapter_style: {
   % 本科全英文、研究生学位论文需要加粗
-  \int_compare:nNnTF {\g_@@_thesis_type_int} > {2}
-  {
-    \bfseries #1
+  \int_compare:nNnTF {\g_@@_thesis_type_int} > {2} {
+    \bfseries
   } {
-    \mdseries #1
+    \mdseries
   }
 }
 %    \end{macrocode}
@@ -1420,7 +1418,7 @@
 %    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
-    format = { \@@_title_font:n \bfseries \centering \zihao{3}},
+    format = { \@@_title_font: \bfseries \centering \zihao{3}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{9bp},
@@ -1435,7 +1433,7 @@
 
 \ctexset{section={
     number = {\arabicHeiti{\thechapter.\hspace{1bp}\arabic{section}}},
-    format = {\@@_title_font:n \raggedright \bfseries \zihao{4}},
+    format = {\@@_title_font: \raggedright \bfseries \zihao{4}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{8bp},
@@ -1453,7 +1451,7 @@
         \arabic{subsection}
       }
     },
-    format = {\@@_title_font:n \bfseries \raggedright \zihao{-4}},
+    format = {\@@_title_font: \bfseries \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
     aftername = \hspace{7bp},
@@ -1475,7 +1473,7 @@
         \arabic{subsubsection}
       }
     },
-    format={\@@_title_font:n \raggedright \zihao{-4}},
+    format={\@@_title_font: \raggedright \zihao{-4}},
     nameformat = {},
     titleformat = {},
     beforeskip=14bp,
@@ -1610,7 +1608,7 @@
       numbering = false,
       beforeskip = 18bp,
       format = {
-        \@@_title_font:n \@@_unnumchapter_style:n \centering \zihao{3}
+        \@@_title_font: \@@_unnumchapter_style: \centering \zihao{3}
       },
       afterskip = \@@_if_graduate:TF {31bp} {26bp},
     }
@@ -2901,9 +2899,7 @@
       % 自定义目录样式
       \cs_set:Npn \contentsname {
         \fontsize{16pt}{\baselineskip}
-        \@@_unnumchapter_style:n
-          \@@_title_font:n
-            {\l_@@_toc_title_tl}
+        { \@@_unnumchapter_style: \@@_title_font: \l_@@_toc_title_tl }
         \vspace{-8pt}
       }
 
@@ -3010,7 +3006,8 @@
         \centering
         \vspace*{-2bp}
 
-        \@@_title_font:n {
+        {
+          \@@_title_font:
           \zihao{3}\textbf
           \l_@@_value_title_en_tl\\
         }
