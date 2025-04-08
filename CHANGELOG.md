@@ -11,6 +11,42 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.3] - 2025-04-08
+
+### <!-- 0 -->🚀 Features
+
+- *(GT)* 适应2025年三月末新研究生模板 ([03e05f9](https://github.com/BITNP/BIThesis/commit/03e05f94b3f7b433714b99e9ef64cd5eb08edefc)) by @YDX-2147483647 in [#605](https://github.com/BITNP/BIThesis/pull/605)
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- *(GT)* 参照Word模板微调摘要、正文、结论等标题上下的间距，并展示省略号写法 ([3433a53](https://github.com/BITNP/BIThesis/commit/3433a539def1ed7ee85269a1d009047d3d73e411)) by @YDX-2147483647 in [#606](https://github.com/BITNP/BIThesis/pull/606)
+- 调大`cover/autoWidthPadding`时，题名页信息应该整体居中 ([3c5e397](https://github.com/BITNP/BIThesis/commit/3c5e39729497701ec52d70691058bffe99cd02d6)) by @YDX-2147483647 in [#611](https://github.com/BITNP/BIThesis/pull/611)
+
+### <!-- 3 -->📚 Documentation
+
+- 2023 → 2025 ([c82d688](https://github.com/BITNP/BIThesis/commit/c82d688249a521f01e011d10950b08d655d4e39c)) by @Aaron-Gp in [#599](https://github.com/BITNP/BIThesis/pull/599)
+- 更正文档类组成 ([af20679](https://github.com/BITNP/BIThesis/commit/af20679a1a3548e1f378ab7d1be783edf9733ebf)) by @YDX-2147483647
+- Fix 24 warnings ([e7ed4f8](https://github.com/BITNP/BIThesis/commit/e7ed4f8e23eddcca0799e403333623e93bc474a6)) by @YDX-2147483647 in [#600](https://github.com/BITNP/BIThesis/pull/600)
+- Update README to v3.8.3-alpha-1 ([ab73edb](https://github.com/BITNP/BIThesis/commit/ab73edbb7de5727a3132d9cfc1b3cbc8ef90a84b)) by @YDX-2147483647 in [#609](https://github.com/BITNP/BIThesis/pull/609)
+- *(handbook)* Clean obsolete codes, add manual `\clearpage` ([7200ebd](https://github.com/BITNP/BIThesis/commit/7200ebd3b54a0dbf9b9a96abae9835def28a73d8)) by @YDX-2147483647
+
+### <!-- 6 -->🧪 Testing
+
+- Refactor `make test` with `test.py` for easier debugging ([6f8a9f7](https://github.com/BITNP/BIThesis/commit/6f8a9f7bd2a6f9b38e10f34362cf3b4751184500)) by @YDX-2147483647
+- Move `make doc` into `test.py ([ae28957](https://github.com/BITNP/BIThesis/commit/ae2895755557b70b11a0e7254ff778724c59eb4d)) by @YDX-2147483647
+- Record durations ([c4bb27b](https://github.com/BITNP/BIThesis/commit/c4bb27bc27baa3f60126f2627891be296bdb2a0d)) by @YDX-2147483647
+- Force latexmk to process document fully ([c76efbb](https://github.com/BITNP/BIThesis/commit/c76efbba79ccf6df13be376e35682a17cfcbc1b5)) by @YDX-2147483647 in [#607](https://github.com/BITNP/BIThesis/pull/607)
+- Collect key errors from log files ([6e23060](https://github.com/BITNP/BIThesis/commit/6e230608e35a6942bd2b9c01dec222c9645ce816)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Switch from xu-cheng/texlive-action to teatimeguest/setup-texlive-action ([08614f9](https://github.com/BITNP/BIThesis/commit/08614f9b906499c7f6f6ff8eeb9b6aac6f06e472)) by @YDX-2147483647
+- Minimize packages ([5685220](https://github.com/BITNP/BIThesis/commit/5685220a0b40c3ba3367239b35bdb1217f0e2b0e)) by @YDX-2147483647
+- Fix packages ([4ef7ce0](https://github.com/BITNP/BIThesis/commit/4ef7ce06aef9e9a8d01441a6553e4f566cbc62e3)) by @YDX-2147483647 in [#610](https://github.com/BITNP/BIThesis/pull/610)
+- Update version to 3.8.3 ([dfb29fe](https://github.com/BITNP/BIThesis/commit/dfb29fec28ff90ce0f4769dc2604ad79f1153d3e)) by @YDX-2147483647
+
+## New Contributors
+* @Aaron-Gp made their first contribution in [#599](https://github.com/BITNP/BIThesis/pull/599)
 ## [3.8.2] - 2025-03-25
 
 ### <!-- 1 -->🐛 Bug Fixes
