@@ -1983,7 +1983,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目，并添加分隔符。
+% 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -1992,15 +1992,23 @@
 % \end{itemize}
 % |\\| 会被视为换行符，从而实现信息条目换行的效果。
 %
+% 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
+%
 %    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
-  \seq_map_inline:Nn \l_@@_tmp_right_seq {
-    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  \seq_clear:N \l_@@_tmp_right_seq
+
+  % 只处理 value 非空的项
+  \tl_set:Nn \l_tmpa_tl {#2}
+  \tl_if_empty:xTF \l_tmpa_tl {} {
+    \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
+    \seq_map_inline:Nn \l_@@_tmp_right_seq {
+      \seq_put_right:Nn \l_@@_tmp_left_seq {}
+    }
+    \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
+    \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
-  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2043,9 +2051,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
-          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
-        }
+        \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
       }
   \group_end:
 }
@@ -3754,7 +3760,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目，并添加分隔符。
+% 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -3763,15 +3769,23 @@
 % \end{itemize}
 % |\\| 会被视为换行符，从而实现信息条目换行的效果。
 %
+% 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
+%
 %    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
-  \seq_map_inline:Nn \l_@@_tmp_right_seq {
-    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  \seq_clear:N \l_@@_tmp_right_seq
+
+  % 只处理 value 非空的项
+  \tl_set:Nn \l_tmpa_tl {#2}
+  \tl_if_empty:xTF \l_tmpa_tl {} {
+    \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
+    \seq_map_inline:Nn \l_@@_tmp_right_seq {
+      \seq_put_right:Nn \l_@@_tmp_left_seq {}
+    }
+    \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
+    \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
-  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3814,9 +3828,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
-          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
-        }
+        \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
       }
   \group_end:
 }
