@@ -25,7 +25,7 @@ from collections.abc import Generator
 from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path
 from subprocess import run
-from threading import Lock
+from threading import Event, Lock
 from typing import Literal, TypeAlias
 from zipfile import ZipFile
 
@@ -200,20 +200,40 @@ def cli(
 
     # 4. 执行测试
 
+    failed = Event()
     diff_lock = Lock()
 
     def diff_runner(
         ref_dir: Path, actual_dir: Path, ref_built: Future, actual_built: Future
     ) -> None:
         # 等待 build 结束再 diff
-        ref_built.result()
-        actual_built.result()
+        try:
+            # 出错概率大的在前
+            actual_built.result()
+            ref_built.result()
+        except Exception as e:
+            failed.set()
+            click.echo(f"💥 无法编译 {ref_dir.name}，回归测试失败。")
+            raise e
+
         click.echo(f"👓 完成编译 {ref_dir.name}，准备比较。")
 
         # diff 涉及图形界面，并行不方便操作，故同时只允许一个运行
         with diff_lock:
+            if failed.is_set():
+                click.echo(f"💀 回归测试已失败，不再比较 {ref_dir.name}。")
+                return
+
             diff_template(ref_dir, actual_dir, diff)
-            click.echo(f"✅ 完成比较 {ref_dir.name}。")
+
+            answer = input(
+                "🔴 输入 x 判定回归测试失败并中止，🟢 输入任意其它内容（或直接回车）继续 >> "
+            )
+            if answer.lower().strip() == "x":
+                failed.set()
+                click.echo(f"💥 回归测试 {ref_dir.name} 失败。")
+            else:
+                click.echo(f"✅ 完成比较 {ref_dir.name}。")
 
     with ThreadPoolExecutor() as build_executor, ThreadPoolExecutor() as diff_executor:
         for ref_dir, actual_dir in dir_pairs:
@@ -227,6 +247,9 @@ def cli(
             diff_executor.submit(
                 diff_runner, ref_dir, actual_dir, ref_built, actual_built
             )
+
+    # Exit with 1 if failed
+    click.get_current_context().exit(failed.is_set())
 
 
 if __name__ == "__main__":
