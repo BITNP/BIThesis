@@ -1,5 +1,14 @@
 """回归测试
 
+功能与 make regression-test 相同。
+
+```shell
+$ uv run scripts/regression_test.py --help
+Usage: regression_test.py [OPTIONS] [COMPILE_COMMAND]...
+  Regression test.
+  ……
+```
+
 先决条件：
 
 - https://cli.github.com
@@ -15,8 +24,10 @@
 
 import json
 from collections.abc import Generator
+from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path
 from subprocess import run
+from threading import Lock
 from typing import Literal, TypeAlias
 from zipfile import ZipFile
 
@@ -137,28 +148,61 @@ def cli(
     templates_root = Path(__file__).parent.parent / "templates"
     assert templates_root.exists() and templates_root.is_dir()
 
+    # 1. 检查输入
+
     filter = templates.split(",") if templates is not None else None
 
     if len(compile_command) == 0:
         compile_command = ("latexmk", "-g", "-silent")
 
+    # 2. 准备文件
+
     tag = against or get_latest_tag()
     click.echo(f"🔎 与 {tag} 比较……")
     template_dirs = download_release(tag, cache_dir)
+
+    # 3. 计划任务
+
+    dir_pairs: list[tuple[Path, Path]] = []
+    """reference and actual directories"""
 
     for ref_dir in template_dirs:
         if filter is not None and ref_dir.name not in filter:
             click.echo(f"👻 跳过 {ref_dir.name}。")
             continue
 
-        click.echo(f"📁 正在比较 {ref_dir.name}……")
         actual_dir = templates_root / ref_dir.name
+        dir_pairs.append((ref_dir, actual_dir))
 
-        build_template(ref_dir, compile_command)
-        build_template(actual_dir, compile_command)
+    # 4. 执行测试
 
-        diff_template(ref_dir, actual_dir, diff)
-        click.echo(f"✅ 已比较 {ref_dir.name}。")
+    diff_lock = Lock()
+
+    def diff_runner(
+        ref_dir: Path, actual_dir: Path, ref_built: Future, actual_built: Future
+    ) -> None:
+        # 等待 build 结束再 diff
+        ref_built.result()
+        actual_built.result()
+        click.echo(f"👓 完成编译 {ref_dir.name}，准备比较。")
+
+        # diff 涉及图形界面，并行不方便操作，故同时只允许一个运行
+        with diff_lock:
+            diff_template(ref_dir, actual_dir, diff)
+            click.echo(f"✅ 完成比较 {ref_dir.name}。")
+
+    with ThreadPoolExecutor() as build_executor, ThreadPoolExecutor() as diff_executor:
+        for ref_dir, actual_dir in dir_pairs:
+            click.echo(f"📁 编译 {ref_dir.name}……")
+            # 启动 build
+            ref_built = build_executor.submit(build_template, ref_dir, compile_command)
+            actual_built = build_executor.submit(
+                build_template, actual_dir, compile_command
+            )
+
+            diff_executor.submit(
+                diff_runner, ref_dir, actual_dir, ref_built, actual_built
+            )
 
 
 if __name__ == "__main__":
