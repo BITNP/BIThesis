@@ -1,6 +1,4 @@
-"""回归测试
-
-功能与 make regression-test 相同。
+"""回归测试，用于`make regression-test`
 
 ```shell
 $ uv run scripts/regression_test.py --help
@@ -115,12 +113,35 @@ def diff_template(
 
 
 @click.command(
-    epilog="""\b
-示例：
+    epilog="""
+【示例】
+
+\b
+按默认方式执行回归测试：
 regression_test.py
-regression_test.py --against v3.8.3
+
+\b
+默认与 GitHub 上最新版比较（不算测试版）；
+也可用`--against`指定比较版本，例如 v3.8.3-alpha-1：
+regression_test.py --against v3.8.3-alpha-1
+
+\b
+默认测试所有模板；也可只测试个别模板，例如：
 regression_test.py --templates undergraduate-thesis
+测试多个模板请用`,`分隔：
+regression_test.py --templates undergraduate-thesis,lab-report
+
+\b
+默认用 vslavik/diff-pdf 比较PDF；也可用 rubypdf/diffpdf：
+regression_test.py --diff vslavik
+regression_test.py --diff rubypdf
+
+\b
+默认用`latexmk -g -silent`编译，这并不清除缓存，但保证每个文件都至少编译一次；
+也可指定编译命令，例如清除缓存从零编译请用`latexmk -gg`：
 regression_test.py -- latexmk -gg
+而完全继承缓存请用`latexmk`：
+regression_test.py latexmk
 """
 )
 @click.option(
@@ -141,7 +162,10 @@ def cli(
     compile_command: tuple[str, ...],
     diff: DiffChoice,
 ) -> None:
-    """Regression test."""
+    """Regression test.
+
+    COMPILE_COMMAND 默认`latexmk -g -silent`
+    """
     cache_dir = Path(__file__).parent / "cache"
     cache_dir.mkdir(exist_ok=True)
 
