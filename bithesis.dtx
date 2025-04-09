@@ -1918,7 +1918,7 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#1 |{token_list}| 为封面信息条目的名称，含分隔符。
 %   \item \#2 |{token_list}| 为封面信息条目的内容。
 % \end{itemize}
 %
@@ -1927,7 +1927,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}
@@ -1983,7 +1983,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目。
+% 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -1992,15 +1992,23 @@
 % \end{itemize}
 % |\\| 会被视为换行符，从而实现信息条目换行的效果。
 %
+% 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
+%
 %    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
-  \seq_map_inline:Nn \l_@@_tmp_right_seq {
-    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  \seq_clear:N \l_@@_tmp_right_seq
+
+  % 只处理 value 非空的项
+  \tl_set:Nn \l_tmpa_tl {#2}
+  \tl_if_empty:xTF \l_tmpa_tl {} {
+    \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
+    \seq_map_inline:Nn \l_@@_tmp_right_seq {
+      \seq_put_right:Nn \l_@@_tmp_left_seq {}
+    }
+    \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
+    \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
-  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2043,9 +2051,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
-          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
-        }
+        \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
       }
   \group_end:
 }
@@ -3690,7 +3696,7 @@
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1 |{token_list}| 为封面信息条目的名称。
+%   \item \#1 |{token_list}| 为封面信息条目的名称，含分隔符。
 %   \item \#2 |{token_list}| 为封面信息条目的内容。
 % \end{itemize}
 %
@@ -3699,7 +3705,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
-    \tl_if_blank:VTF #1 {} {#1\l_@@_cover_delimiter_tl}
+    \tl_if_blank:VTF #1 {} {#1}
   }
   \hspace{1ex}
   \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
@@ -3755,7 +3761,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_parse_entry}
-% 解析封面信息条目。
+% 解析封面信息条目，丢弃空项，并添加分隔符。
 %
 % 参数如下：
 % \begin{itemize}
@@ -3764,15 +3770,23 @@
 % \end{itemize}
 % |\\| 会被视为换行符，从而实现信息条目换行的效果。
 %
+% 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
+%
 %    \begin{macrocode}
 \cs_new:Npn \@@_parse_entry #1 #2 {
-  \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
   \seq_clear:N \l_@@_tmp_left_seq
-  \seq_map_inline:Nn \l_@@_tmp_right_seq {
-    \seq_put_right:Nn \l_@@_tmp_left_seq {}
+  \seq_clear:N \l_@@_tmp_right_seq
+
+  % 只处理 value 非空的项
+  \tl_set:Nn \l_tmpa_tl {#2}
+  \tl_if_empty:xTF \l_tmpa_tl {} {
+    \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
+    \seq_map_inline:Nn \l_@@_tmp_right_seq {
+      \seq_put_right:Nn \l_@@_tmp_left_seq {}
+    }
+    \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
+    \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
   }
-  \seq_put_left:Nn \l_@@_tmp_left_seq {#1}
-  \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3815,9 +3829,7 @@
       {
         \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
         \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
-        \tl_if_empty:xTF \l_@@_tmpb_tl {} {
-          \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
-        }
+        \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
       }
   \group_end:
 }
