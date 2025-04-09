@@ -16,12 +16,6 @@ SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
 EXAMPLEDIR = ./examples
 
-ifeq ($(OS), Windows_NT)
-	REGRESSION_TEST_COMMAND=pwsh ./scripts/regression-testing.ps1
-else
-	REGRESSION_TEST_COMMAND=zsh ./scripts/regression-testing.zsh
-endif
-
 
 .PHONY: all FORCE_MAKE
 
@@ -64,7 +58,7 @@ test: copy FORCE_MAKE
 
 .PHONY: regression-test
 regression-test: cls
-	$(REGRESSION_TEST_COMMAND)
+	uv run scripts/regression_test.py $(args)
 
 .PHONY: copy-only
 copy-only:
