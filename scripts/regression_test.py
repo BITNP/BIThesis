@@ -159,12 +159,16 @@ regression_test.py latexmk
     default="vslavik",
     help="PDF 比较器，https://vslavik.github.io/diff-pdf/（默认）或 https://soft.rubypdf.com/software/diffpdf",
 )
+@click.option(
+    "--max-workers", type=int, default=None, help="允许使用的线程数上限；默认无限制"
+)
 @click.argument("compile_command", nargs=-1)
 def cli(
     against: str | None,
     templates: str | None,
     compile_command: tuple[str, ...],
     diff: DiffChoice,
+    max_workers: int | None,
 ) -> None:
     """Regression test.
 
@@ -239,7 +243,10 @@ def cli(
             else:
                 click.echo(f"✅ 完成比较 {ref_dir.name}。")
 
-    with ThreadPoolExecutor() as build_executor, ThreadPoolExecutor() as diff_executor:
+    with (
+        ThreadPoolExecutor(max_workers=max_workers) as build_executor,
+        ThreadPoolExecutor() as diff_executor,
+    ):
         for ref_dir, actual_dir in dir_pairs:
             click.echo(f"📁 编译 {ref_dir.name}……")
             # 启动 build
