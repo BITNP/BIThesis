@@ -86,7 +86,11 @@ def download_release(tag: str, cache_dir: Path) -> Generator[Path]:
                 f.extractall(cache_dir / tag)
 
         assert template_dir.exists() and template_dir.is_dir()
-        yield template_dir
+
+    # 自行制作缓存时，允许只准备文件夹，不放置 ZIP，故需重新扫描
+    for template_dir in (cache_dir / tag).iterdir():
+        if template_dir.is_dir():
+            yield template_dir
 
 
 def build_template(template_dir: Path, compile_command: tuple[str, ...]) -> None:
