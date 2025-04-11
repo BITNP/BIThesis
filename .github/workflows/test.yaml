@@ -17,13 +17,29 @@ jobs:
         with:
           package-file: |
             .github/tl_packages
-      - name: Setup fonts
-        run: |
+      - run: |
           sudo apt update
           sudo apt install make fontconfig
+
+      - name: Restore Microsoft fonts cache
+        id: microsoft-fonts
+        uses: actions/cache@v4
+        with:
+          path: /usr/share/fonts/truetype/msttcorefonts
+          key: microsoft-fonts
+      - name: Install Microsoft fonts
+        if: steps.microsoft-fonts.outputs.cache-hit != 'true'
+        run: |
           echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
           sudo apt install ttf-mscorefonts-installer
-          fc-cache -f
+          fc-cache --force
+
+      - name: Setup TeX Live fonts
+        run: |
+          mkdir -p ~/.fonts
+          ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
+          fc-cache
+
       - run: make test
 
   check_typos:

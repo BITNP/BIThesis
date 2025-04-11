@@ -1,5 +1,6 @@
 """Compile all projects, used by `make test`."""
 
+import re
 from collections.abc import Generator
 from dataclasses import dataclass
 from os import environ
@@ -30,11 +31,15 @@ def log(message: str | Any) -> None:
         f.write(message + "\n\n")
 
 
+# https://github.com/James-Yu/LaTeX-Workshop/blob/6f59af5bcaaf64bca1430fbdc31fda5813d4ce91/src/parse/parser/latexlog.ts#L9
+LaTeX_LOG_ERROR_PATTERN = re.compile(r"^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$")
+
+
 def parse_log(file: Path) -> Generator[str]:
     """Collect key errors from a log file."""
     with file.open(encoding="utf-8") as f:
         for line in f:
-            if line.startswith("!"):
+            if file.stem == "missfont" or LaTeX_LOG_ERROR_PATTERN.match(line):
                 yield line.strip()
 
 
@@ -117,11 +122,12 @@ TESTS = [
     TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
 ]
 
-# Execute all test cases, and raise the first error.
-first_error = None
-for t in TESTS:
-    result = t.execute()
-    if result is not None and first_error is None:
-        first_error = result
-if first_error is not None:
-    raise first_error
+if __name__ == "__main__":
+    # Execute all test cases, and raise the first error.
+    first_error = None
+    for t in TESTS:
+        result = t.execute()
+        if result is not None and first_error is None:
+            first_error = result
+    if first_error is not None:
+        raise first_error
