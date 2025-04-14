@@ -546,14 +546,16 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \subsubsection{l3keys 接口键值对定义}
+% \subsubsection{BITSetup l3keys 接口键值对定义}
 %
+% \begin{macro}{\c_@@_auto_tl}
 % 定义 |\c_@@_auto_tl|
 % 选项设为它时，表示智能默认值，稍后由 |\@@_resolve_auto_values:| 根据其它信息自动填充。
 % 参考 https://typst.app/docs/reference/foundations/auto/ 的设计。
 %    \begin{macrocode}
 \tl_const:Nn \c_@@_auto_tl { BIThesis-auto-magic }
 %    \end{macrocode}
+% \end{macro}
 %
 % 定义 |bithesis| 键值对类。
 %    \begin{macrocode}
@@ -927,6 +929,8 @@
 }
 %    \end{macrocode}
 %
+% \subsubsection{内部 l3keys 接口键值对定义}
+%
 % 除了 |\BITSetup|，有些用户接口也是键值对，在此通过 |bithesis-internal| 实现。
 % 约定它只用于内部解析用户命令传入的参数，不直接面向最终作者，而且每个用户命令都不记忆之前设置的值。
 % 此处只定义数据结构，默认值等逻辑由各命令自行处理。
@@ -941,11 +945,14 @@
 }
 %    \end{macrocode}
 %
+% \subsubsection{BITSetup l3keys 接口键值对预处理}
+%
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis|
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
 \ProcessKeysOptions { bithesis / option }
 %    \end{macrocode}
+%
 % 确定 |bithesis/option| 中的 |\g_@@_thesis_type_int| 后，根据论文类型自动覆盖某些选项的默认值。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
@@ -955,8 +962,7 @@
 }
 %    \end{macrocode}
 %
-% \subsubsection{l3keys 键值对预处理}
-%
+% \begin{macro}{\@@_resolve_auto_values:}
 % 计算 auto 并替换为标准的值
 %    \begin{macrocode}
 \cs_new:Npn \@@_resolve_auto_values: {
@@ -980,6 +986,7 @@
   }
 }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{应用模板选项}
 %
