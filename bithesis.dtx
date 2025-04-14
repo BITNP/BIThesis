@@ -926,6 +926,21 @@
   minbibnames .initial:n = {10},
 }
 %    \end{macrocode}
+%
+% 除了 |\BITSetup|，有些用户接口也是键值对，在此通过 |bithesis-internal| 实现。
+% 约定它只用于内部解析用户命令传入的参数，不直接面向最终作者，而且每个用户命令都不记忆之前设置的值。
+% 此处只定义数据结构，默认值等逻辑由各命令自行处理。
+%
+% 定义 |bithesis-internal / pre-frontmatter|，用于设置 |\frontmatter| 之前的 |\MakeCover|、|\MakeTitle| 等。
+% 目前这些部分的接口相同，故共用 |pre-frontmatter|。
+%    \begin{macrocode}
+\keys_define:nn { bithesis-internal / pre-frontmatter }
+{
+  % 是否将标题加入PDF书签
+  bookmarked .bool_set:N = \l_@@_internal__pre_frontmatter__bookmarked_bool,
+}
+%    \end{macrocode}
+%
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis|
 % 宏包的模板选项可以在宏加载时生效。
 %    \begin{macrocode}
@@ -2060,7 +2075,9 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_graduate_cover: {
   \cleardoublepage
-  \currentpdfbookmark{封面}{frontmatter:cover1}
+  \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+    \currentpdfbookmark{封面}{pre-frontmatter:cover}
+  }
   \begin{titlepage}
     {
       \heiti\zihao{5}
@@ -2104,7 +2121,9 @@
   }
 \cs_new:Npn \@@_make_paper_back: {
   \cleardoublepage
-  \currentpdfbookmark{书脊}{frontmatter:paperback}
+  \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+    \currentpdfbookmark{书脊}{pre-frontmatter:paperback}
+  }
   \begin{titlepage}
     \centering
     % 实现竖排——将水平宽度设得很窄，让文字自动换行，并改小行距
@@ -2144,7 +2163,9 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_chinese_title_page: {
   \cleardoublepage
-  \currentpdfbookmark{中文题名页}{frontmatter:titlepage}
+  \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+    \currentpdfbookmark{中文题名页}{pre-frontmatter:titlepage-zh}
+  }
   \begin{titlepage}
       \begin{minipage}[t]{0.48\textwidth}
         % 密级、分类号
@@ -2249,7 +2270,9 @@
 % 制作英文封面页。
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_english_title_page: {
-  \currentpdfbookmark{英文题名页}{frontmatter:titlepageen}
+  \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+    \currentpdfbookmark{英文题名页}{pre-frontmatter:titlepage-en}
+  }
   \begin{titlepage}
     \begin{center}
 
@@ -2340,7 +2363,9 @@
             titleformat = {\heiti\zihao{-2}},
           }
         }
-        \currentpdfbookmark{\c_@@_graduate_label_originality_tl}{frontmatter:originality}
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{\c_@@_graduate_label_originality_tl}{pre-frontmatter:originality}
+        }
         \chapter*{
           \c_@@_graduate_label_originality_tl
         }
@@ -2365,7 +2390,9 @@
             titleformat = {\heiti\zihao{-2}},
           }
         }
-        \currentpdfbookmark{\c_@@_graduate_label_authorization_tl}{frontmatter:originality1}
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{\c_@@_graduate_label_authorization_tl}{pre-frontmatter:originality-authorization}
+        }
         \chapter*{
           \c_@@_graduate_label_authorization_tl
         }
@@ -2462,10 +2489,14 @@
 % \begin{macro}{\MakeCover}
 % 制作封面。
 %    \begin{macrocode}
-\DeclareDocumentCommand \MakeCover {}
+\DeclareDocumentCommand \MakeCover { O{} }
   {
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
     \group_begin:
+
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
 
     % 封面使用的 thesis-type 可能与整体不同。
     \int_new:N \l_@@_thesis_type_int
@@ -2479,7 +2510,9 @@
     {
       {1}
       {
-        \currentpdfbookmark{封面}{frontmatter:cover}
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{封面}{pre-frontmatter:cover}
+        }
         \begin{titlepage}
           \vspace*{16mm}
 
@@ -2567,6 +2600,9 @@
       }
       {2}
       {
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{封面}{pre-frontmatter:cover}
+        }
         \begin{titlepage}
           \centering
 
@@ -2653,6 +2689,9 @@
         \end{titlepage}
       }
       {3} {
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{Cover}{pre-frontmatter:cover}
+        }
         \begin{titlepage}
           \vspace*{16mm}
 
@@ -2738,15 +2777,21 @@
 % \begin{macro}{\MakeOriginality}
 % 原创性声明。
 %    \begin{macrocode}
-\NewDocumentCommand \MakeOriginality {}
+\NewDocumentCommand \MakeOriginality { O{} }
   {
     \group_begin:
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
       \int_case:nn {\g_@@_thesis_type_int}
       {
         {1}
         {
-          \currentpdfbookmark{声明}{frontmatter:originality}
+          \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+            \currentpdfbookmark{声明}{pre-frontmatter:originality}
+          }
           \pagestyle{BIThesis}
           \pagenumbering{gobble}
 
@@ -2794,7 +2839,9 @@
           \newpage
         }
         {3} {
-          \currentpdfbookmark{Statements}{frontmatter:originality}
+          \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+            \currentpdfbookmark{Statements}{pre-frontmatter:originality}
+          }
           \pagestyle{BIThesis}
           \pagenumbering{gobble}
 
@@ -2849,9 +2896,9 @@
 % \end{macro}
 %
 % \begin{macro}{\MakePaperBack}
-% 生成书脊。
+% 生成书脊。（研究生）
 %    \begin{macrocode}
-\NewDocumentCommand \MakePaperBack {}
+\NewDocumentCommand \MakePaperBack { O{} }
   {
     % 上下各留出规定的边距，到下一页再恢复。
     % 若标题超长，自然会向上下溢出。
@@ -2864,7 +2911,14 @@
       vmargin = 5cm,
     }
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+      \group_begin:
+      % 解析传入参数
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
       \@@_make_paper_back:
+
+      \group_end:
     \end{blindPeerReview}
     \restoregeometry
   }
@@ -2874,11 +2928,18 @@
 % \begin{macro}{\MakeTitle}
 % 生成标题页。（研究生）
 %    \begin{macrocode}
-\NewDocumentCommand \MakeTitle {}
+\NewDocumentCommand \MakeTitle { O{} }
   {
     \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+      \group_begin:
+      % 解析传入参数
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
       \@@_make_chinese_title_page:
       \@@_make_english_title_page:
+
+      \group_end:
     \end{blindPeerReview}
   }
 %    \end{macrocode}

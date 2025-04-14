@@ -1079,7 +1079,7 @@ windowsSimSunFakeBold = (*(false)|true*)
 \end{bitsyntax}
 
 在 Windows 平台下，由于中易宋体没有粗体字重；
-ctex 会默认选择较为美观的楷体代替粗体宋体。
+ctex 会默认选择较为美观的黑体代替粗体宋体。
 开启此选项可以开启伪粗体的渲染，从而渲染宋体伪粗体。
 
 \end{function}
@@ -1565,7 +1565,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
 
 \subsection{封面及基本信息}
 
-\begin{function}[updated=2025-03-31]{\MakeCover}
+\begin{function}[updated=2025-04-15]{\MakeCover}
 
   \textit{封面内容会根据模板选项（具体参见节
     \ref{sec:template-options}）中\meta{type=xxx}的值而变化。}
@@ -1575,7 +1575,7 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   绘制封面。
 
   在默认配置下，封面中的下划线会自动计算最大宽度。
-  此时，如果用户需要换行，可以通过「\\」控制换行。
+  此时，如果用户需要换行，可以通过「|\\|」控制换行。
 
   当关闭自动计算下划线宽度后，
   可以通过
@@ -1587,6 +1587,8 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   \meta{valueMaxWidth=xxx}
 
   来指定下划线的宽度。一般情况下，我们不建议您这样做。
+
+  默认加入PDF书签。如需隐去，可设置 |\MakeCover[bookmarked = false]|。
 \end{function}
 
 \begin{function}{\SecretInfo{}[]}
@@ -1601,19 +1603,25 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   否则，将使用第二个参数替换内容。
 \end{function}
 
-\begin{function}[updated=2025-03-31]{\MakePaperBack}
+\begin{function}[updated=2025-04-15]{\MakePaperBack}
 
-  绘制书脊。
+  绘制书脊，用于\BIThesisTemplates{GT}。
+
+  默认加入PDF书签。如需隐去，可设置 |\MakePaperBack[bookmarked = false]|。
 \end{function}
 
-\begin{function}{\MakeTitle}
+\begin{function}[updated=2025-04-15]{\MakeTitle}
 
-  绘制中英文信息页。
+  绘制中英文信息页，用于\BIThesisTemplates{GT}。
+
+  默认两页均加入PDF书签。如需共同隐去，可设置 |\MakeTitle[bookmarked = false]|。
 \end{function}
 
-\begin{function}{\MakeOriginality}
+\begin{function}[updated=2025-04-15]{\MakeOriginality}
 
-  绘制中英文信息页。
+  绘制原创性声明、关于使用授权的声明（本科）或研究成果声明、关于学位论文使用权的说明（硕博）。
+
+  默认加入PDF书签。如需隐去，可设置 |\MakeOriginality[bookmarked = false]|。
 \end{function}
 
 \subsection{前置部分}
