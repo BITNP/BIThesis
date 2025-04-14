@@ -1766,12 +1766,21 @@ addTOC = (*<(true)|false>*)
 
 \end{function}
 
-\begin{function}[label=env.conclusion]{conclusion}
+\begin{function}[updated=2025-04-15, label=env.conclusion]{conclusion}
 \begin{bitsyntax}[emph={[1]conclusion}]
 \begin{conclusion}
    (*\meta{结论}*)
 \end{conclusion}
 \end{bitsyntax}
+
+  标题默认按论文类型自动设置。如需更改，可如下设置 |title|。
+
+\begin{latex}[emph={[1]conclusion}]
+\begin{conclusion}[title = 结论与 $\lim_{t \to +\infty}$]
+  结论作为学位论文正文的最后部分单独排写，但不加章号。
+\end{conclusion}
+\end{latex}
+
 \end{function}
 
 \begin{function}[label=env.bibprint]{bibprint}
