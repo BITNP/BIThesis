@@ -945,6 +945,15 @@
 }
 %    \end{macrocode}
 %
+% 定义 |bithesis-internal / conclusion|，用于设置 |conclusion| 环境。
+%    \begin{macrocode}
+\keys_define:nn { bithesis-internal / conclusion }
+{
+  title .tl_set:N = \l_@@_internal__conclusion__title_tl,
+}
+%    \end{macrocode}
+%
+%
 % \subsubsection{BITSetup l3keys 接口键值对预处理}
 %
 % 在宏加载时，处理 |bithesis/option| 中的值。使得 |bithesis|
@@ -3132,17 +3141,25 @@
 % \begin{environment}{conclusion}
 % 生成结论。需要放在 \cs{macrocode} 之后。
 %    \begin{macrocode}
-\NewDocumentEnvironment {conclusion} {}
+\NewDocumentEnvironment {conclusion} { O{} }
   {
+    \group_begin:
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / conclusion } {
+      title = \@@_if_thesis_english:TF {
+        \c_@@_label_conclusion_en_tl
+      } {
+        \c_@@_label_conclusion_tl
+      },
+    }
+    \keys_set:nn { bithesis-internal / conclusion } { #1 }
+
     \ctexset{
       section/number = \arabic{section}
     }
 
-    \@@_if_thesis_english:TF {
-      \chapter{\c_@@_label_conclusion_en_tl}
-    } {
-      \chapter{\c_@@_label_conclusion_tl}
-    }
+    \chapter{\l_@@_internal__conclusion__title_tl}
+    \group_end:
   }
   {}
 %    \end{macrocode}
