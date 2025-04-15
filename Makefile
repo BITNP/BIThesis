@@ -61,7 +61,7 @@ test: copy FORCE_MAKE
 		python scripts/test.py
 
 .PHONY: regression-test
-regression-test: cls
+regression-test: copy
 	uv run scripts/regression_test.py $(args)
 
 .PHONY: copy-only
