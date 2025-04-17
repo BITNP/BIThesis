@@ -8,4 +8,4 @@ nd = "nd"
 thm = "thm"
 
 [files]
-extend-exclude = ["CHANGELOG.md", "main.bib", "latexmkrc"]
+extend-exclude = ["CHANGELOG.md", "main.bib", "latexmkrc", "ruff.toml"]

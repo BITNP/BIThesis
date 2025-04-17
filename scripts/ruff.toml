@@ -1,0 +1,9 @@
+[lint]
+extend-select = ["I", "UP", "TYP", "D"]
+ignore = [
+    "D107", # undocumented-public-init
+    "D415", # missing-terminal-punctuation
+]
+
+[lint.pydocstyle]
+convention = "google"

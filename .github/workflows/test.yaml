@@ -80,3 +80,15 @@ jobs:
             --no-progress
             --config .github/lychee.toml
             .
+
+  check-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install ruff
+      - name: Ruff check
+        run: |
+          cd scripts && ruff check --output-format=github .
+      - name: Ruff format
+        run: |
+          cd scripts && ruff format --check --diff
