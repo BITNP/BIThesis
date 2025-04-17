@@ -109,20 +109,23 @@ dev-doc:
 pkg-only:
 	rm -rf ./bithesis ./bithesis.zip
 	mkdir bithesis
-	cp bithesis.ins bithesis.dtx bithesis.pdf ./README*.md ./contributing*.md ./bithesis
+	cp bithesis.ins bithesis.dtx bithesis-doc.tex bithesis.pdf ./README*.md ./contributing*.md ./bithesis
 	mv ./bithesis/README-bithesis.md ./bithesis/README.md
+	cp ./handbook/graduate-handbook.pdf ./bithesis/bithesis-handbook-graduate.pdf
+	cp ./handbook/undergraduate-handbook.pdf ./bithesis/bithesis-handbook-undergraduate.pdf
 	zip -r bithesis.zip bithesis
+	rm -r ./bithesis
 
 .PHONY: pkg
-pkg: doc pkg-only
+pkg: doc handbooks pkg-only
 
 GRAD_DEST_DIR = ./BIThesis-graduate-thesis-template
 
 .PHONY: handbooks
 handbooks: copy FORCE_MAKE
 	cd handbook \
-		&& GRADUATE=true latexmk -gg && mv main.pdf graduate-handbook.pdf \
-		&& latexmk -gg && mv main.pdf undergraduate-handbook.pdf && cd -
+		&& GRADUATE=true latexmk -g && mv main.pdf graduate-handbook.pdf \
+		&& latexmk -g && mv main.pdf undergraduate-handbook.pdf && cd -
 
 # 用于提供给研究生院
 .PHONY: grad
