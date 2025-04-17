@@ -11,6 +11,51 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.4] - 2025-04-17
+
+### <!-- 0 -->🚀 Features
+
+- 支持在PDF书签中隐去封面、书脊、题名页、声明，如`\MakeCover[bookmarked = false]` ([186e09a](https://github.com/BITNP/BIThesis/commit/186e09a741f2e4e8d712afc7db4dd59627554100)) by @YDX-2147483647
+- 支持用`title`修改`conclusion`环境内的标题 ([0eb90b6](https://github.com/BITNP/BIThesis/commit/0eb90b699246895cbb5a9b25dc00b27d6d33a92e)) by @YDX-2147483647
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- `cover/delimiter`较宽时，封面信息整体不能向左偏 ([fd8efd2](https://github.com/BITNP/BIThesis/commit/fd8efd2f68a7ff95ea6fa93bc82938be7fb99f84)) by @YDX-2147483647
+- 封面信息整体居中时，不应计入隐藏项 ([8c17bf6](https://github.com/BITNP/BIThesis/commit/8c17bf666fd47f891eec4fb8db3446f7fe8c374e)) by @YDX-2147483647 in [#614](https://github.com/BITNP/BIThesis/pull/614)
+- *(GT)* 封皮、题名页标题的行距不应过小 ([0814adb](https://github.com/BITNP/BIThesis/commit/0814adb3117ddf3a1b078a753fc262e31477b1cf)) by @YDX-2147483647 in [#618](https://github.com/BITNP/BIThesis/pull/618)
+
+### <!-- 3 -->📚 Documentation
+
+- Fix IPA font ([c6b883a](https://github.com/BITNP/BIThesis/commit/c6b883a98412a553c5a47cf4d8b0a2cf5e110aa4)) by @YDX-2147483647
+- `make regression-test` ([e999609](https://github.com/BITNP/BIThesis/commit/e999609c93848e0760eb539ab85c0ad4a267e1ac)) by @YDX-2147483647
+- 改进 DocStrip 里的文档 ([05bc34f](https://github.com/BITNP/BIThesis/commit/05bc34f7f2a2acb502c48d58b3bf869f69301514)) by @YDX-2147483647
+- *(handbook)* 更新快速使用指南开头 ([e572618](https://github.com/BITNP/BIThesis/commit/e5726187b225d406c8b87fac89698866e635a38b)) by @YDX-2147483647
+- *(handbook)* Fix warnings and reformat ([390191c](https://github.com/BITNP/BIThesis/commit/390191cbd79121054f2f16e5db6333506d27ca6c)) by @YDX-2147483647 in [#627](https://github.com/BITNP/BIThesis/pull/627)
+
+### <!-- 5 -->🎨 Styling
+
+- Fix E300 unexpected function call argument ([42eb640](https://github.com/BITNP/BIThesis/commit/42eb640cbe498128383ecb0b01b732142ddb1e74)) by @YDX-2147483647
+- Fix S205 malformed function name ([23db46c](https://github.com/BITNP/BIThesis/commit/23db46c58cf6555f7d3871146fcea0dc07c7b8b3)) by @YDX-2147483647
+- Fix W302 unbraced n-type function call argument ([55f8b49](https://github.com/BITNP/BIThesis/commit/55f8b492df620480b32567a720b928d713d933ef)) by @YDX-2147483647
+
+### <!-- 6 -->🧪 Testing
+
+- Collect more errors ([d6a274b](https://github.com/BITNP/BIThesis/commit/d6a274bc09ffee905301425633a1af7cc0cd9a9f)) by @YDX-2147483647
+- 允许手动准备回归测试比较对象 ([39ee2d8](https://github.com/BITNP/BIThesis/commit/39ee2d8ecd6ab682dd4b097823597f7cba0b6fbf)) by @YDX-2147483647
+- 支持限制线程数 ([c97d797](https://github.com/BITNP/BIThesis/commit/c97d7975e8a7fc52ad5af64c82e84e22458437b2)) by @YDX-2147483647 in [#612](https://github.com/BITNP/BIThesis/pull/612)
+- `make regression-test` needs `*.cls` ([3ac2789](https://github.com/BITNP/BIThesis/commit/3ac278927c621274ae05a55525b5105ed693725e)) by @YDX-2147483647 in [#624](https://github.com/BITNP/BIThesis/pull/624)
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Fix font cache ([92da744](https://github.com/BITNP/BIThesis/commit/92da7441ea3a4e647744e08f273ad5f056589fa7)) by @YDX-2147483647 in [#620](https://github.com/BITNP/BIThesis/pull/620)
+- 改写 zsh 为`scripts/regression_test.py` ([fbd02a1](https://github.com/BITNP/BIThesis/commit/fbd02a1711663f114a5397c287c6afa101dc374b)) by @YDX-2147483647
+- 并行化`scripts/regression_test.py` ([94a0b94](https://github.com/BITNP/BIThesis/commit/94a0b94c9d6c3b60e3c5e6bd8b3928cd40a7919a)) by @YDX-2147483647
+- 允许`make regression_test`提前中止 ([bb44f06](https://github.com/BITNP/BIThesis/commit/bb44f069d5fcaac9549681d77dc3b6cb1390dd6f)) by @YDX-2147483647 in [#619](https://github.com/BITNP/BIThesis/pull/619)
+- Check expl3 ([ecf90e2](https://github.com/BITNP/BIThesis/commit/ecf90e2929d1214c1dd93bd6adeab36f1d7a3220)) by @YDX-2147483647
+- `update_version.py` ([f3b7cc0](https://github.com/BITNP/BIThesis/commit/f3b7cc01b1d5908807f7fff413b3f8d163c5e0fb)) by @YDX-2147483647
+- 上传快速使用指南到 CTAN ([9a6b27f](https://github.com/BITNP/BIThesis/commit/9a6b27fd154c1fee17e351bb535ad6129cfdfe8c)) by @YDX-2147483647
+- Update version to 3.8.4 ([ac63574](https://github.com/BITNP/BIThesis/commit/ac635744e937baafc19db3b881974b17fdd09e9e)) by @YDX-2147483647
+
 ## [3.8.3] - 2025-04-08
 
 ### <!-- 0 -->🚀 Features
