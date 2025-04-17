@@ -6,8 +6,9 @@
 学术、学位论文有严格的格式要求。校方一般提供 Word 模板。虽然一般同学更常用 Word，但是：
 \begin{center}
   \kaishu
-  如果你有足够多使用 Word 的经历，一定会体验过「同一份 Word 文档，在不同地方打开
-  就变得不同」这样的魔幻现实主义色彩的经历。
+  如果你有足够多使用 Word 的经历，一定会体验过\\
+  「同一份 Word 文档，在不同地方打开就变得不同」\\
+  这样的魔幻现实主义色彩的经历。
 \end{center}
 
 \LaTeX{} 适用于学术论文排版，使用者能将关注点更多放在内容质量，避免繁琐的格式调整。
@@ -48,21 +49,12 @@
 
 \paragraph{一些工具的安装} 在 \LaTeX{} 的世界中，我们的「一些工具」包括将
 \LaTeX{} 源码按照格式转换为 PDF 文档的「编译器」，和支撑部分 \LaTeX{} 格式语法的
-「宏包」。我们将他们统称为一个 \LaTeX{} 发行版 --- 也就是我们需要在自己的电脑上
+「宏包」。我们将他们统称为一个 \LaTeX{} 发行版——也就是我们需要在自己的电脑上
 安装的软件。
 
-根据同学们使用的操作系统，可以安装相应的 \LaTeX{} 发行版：
+一般用的标准 \LaTeX{} 发行版就是 \TeX{}Live（macOS 上又名 Mac\TeX{}），安装方法见\autoref{sec:local-compile}。
 
-\begin{itemize}[noitemsep]
-  \item \textbf{Windows 或 Linux}：下载安装 \TeX{}Live。以 Windows 为例，访问
-  \href{https://www.tug.org/texlive/windows.html}{TeX Live on Windows - Easy
-  install}，并下载运行 \texttt{install-tl-windows.exe}；
-  \item \textbf{macOS}：下载安装 Mac\TeX{}，即访问
-  \href{https://www.tug.org/mactex/mactex-download.html}{MacTeX - Downloading
-  MacTeX 2022} 并下载安装 \texttt{MacTeX.pkg}；
-\end{itemize}
-
-\paragraph{文本文件} 我们撰写的 \LaTeX{} 文档，确实是「无格式」的文本文档。
+\paragraph{文本文件} 我们撰写的 \LaTeX{} 文档，其实是「无格式」的文本文档。
 也因此，任何能够编辑文本的工具我们其实都可以使用。但是，专业的\LaTeX{} 编辑器
 一般会提供 \LaTeX{} 源码的编辑和预览功能。虽然不是必要的，但是使用编辑器可以大大
 提高\LaTeX{} 的使用效率。
@@ -71,7 +63,7 @@
 \TeX{}Shop），可直接使用。集成的编辑环境，比如 \TeX{}studio 也是推荐大家使用的。
 另外，比如 VS Code 和 Vim 等通用代码编辑器，也可以借助插件的安装，提升 \LaTeX{}
 的撰写体验。
-更具体的指南可参考\href{https://bithesis.bitnp.net/guide/configure-and-compile.html}{编辑器配置与模板编译 | BIThesis-wiki}。
+更具体的指南可参考\href{https://bithesis.bitnp.net/guide/configure-and-compile.html}{编辑器配置与模板编译 | BIThesis}。
 
 \textit{
 到此，我们其实就可以直接使用本模板，在自己的电脑上进行论文的编写了。如果想再了解
@@ -79,28 +71,23 @@
 否则，大家可以直接跳转到\autoref{sec:using-bithesis}，了解模板的使用方法。
 }
 
-\section{本地编辑或是 Overleaf 在线平台，我改使用哪一个？}
+\section{本地编译与在线平台，我该使用哪一个？}
 \label{sec:online-overleaf}
 
-Overleaf 是一个在线的 \LaTeX{} 编辑器，可以直接在网页上进行 \LaTeX{} 的编辑和预
-览。大家可以访问注册 \url{https://overleaf.com} 使用 Overleaf 在线编写
-\LaTeX{}。选用 Overleaf 有优点也有缺点：
+\href{https://cn.overleaf.com}{Overleaf}、\href{https://www.texpage.com/zh/}{TeXPage} 等在线平台在浏览器中提供了 \LaTeX{} 编辑器，可以直接在网页上编辑预览 \LaTeX{}。
+选用在线平台既有优点也有缺点：
 \begin{itemize}[noitemsep]
-  \item 优点在于：
+  \item \textbf{优点}
     \begin{itemize}[noitemsep]
-      \item 不需要安装 \LaTeX{} 发行版，不需要配置编辑器，直接在网页上进行
-      \LaTeX{} 的编辑和预览。
-      \item 数据保存在云端，可以在多个设备上进行编辑和预览。
-      \item 可以共享项目，方便多人协作。（对于毕业论文来说，这个优点并不是很重
-      要。）
+      \item ​​注册即用，无需自己安装 \LaTeX{} 发行版并配置编辑器。
+      \item 云端同步，文档可以跨设备编辑预览。
+      \item 协作便捷，可以共享项目，能让前辈实时批注。
     \end{itemize}
-  \item 缺点在于：
+  \item \textbf{缺点}
     \begin{itemize}[noitemsep]
-      \item 由于 Overleaf 是一个在线的编辑器，所以需要保持网络连接，否则无法进行
-      编辑和预览。
-      \item 很多同学使用了第三方的文献管理软件，如 Zotero。Overleaf 无法直接与这
-      些软件进行集成，需要手动导入文献。
-      \item 网页版的编辑器功能有限，无法进行复杂的自定义配置。
+      \item 依赖网络，信号一差就无法操作，且不能涉及秘密内容。
+      \item 编译受限，特别是免费时长有限\footnote{2025年，\href{https://cn.overleaf.com/user/subscription/choose-your-plan}{免费版 Overleaf 是 20 s}，\href{https://www.texpage.com/}{免费版 TeXPage 是 1 min}。}，参考文献、图片特别多时，只能\href{https://bithesis.bitnp.net/faq/slow.html}{变通}。
+      \item 集成困难，例如若用 \href{https://www.zotero.org}{Zotero} 等文献管理软件，很难自动连接。
     \end{itemize}
 \end{itemize}
 
@@ -109,7 +96,7 @@ Overleaf 是一个在线的 \LaTeX{} 编辑器，可以直接在网页上进行 
 \section{如何将自己电脑上的论文转到 Overleaf}
 
 \textit{
-\autoref{sec:overleaf-compile}介绍了如何从 \url{https://bithesis.bitnp.net} 新建项目，那样通常更简单；不过若您已在本地用了模板，想转到 Overleaf（例如为了调试），请参考此节。
+\autoref{sec:overleaf-compile}介绍了如何从 \href{https://bithesis.bitnp.net}{BIThesis.bitnp.net} 新建项目，那样通常更简单；不过若您已在本地用了模板，想转到 Overleaf，请参考此节。
 }
 
 \begin{enumerate}
@@ -119,7 +106,7 @@ Overleaf 是一个在线的 \LaTeX{} 编辑器，可以直接在网页上进行 
 
     参考\autoref{fig:overleaf-recompile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \isGraduateTF{\texttt{graduate-thesis/}}{\texttt{undergraduate-thesis/}} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
 
-    详细操作如下。访问 \url{https://www.overleaf.com/project}，单击左上角\texttt{New Project}，然后有下面两种方法。
+    详细操作如下。访问 \href{https://cn.overleaf.com/project}{overleaf.com/project}，单击左上角\texttt{New Project}，然后有下面两种方法。
 
     \begin{itemize}
       \item 选择\texttt{Blank Project}，稍等片刻。待创建完成后，选择左上角\texttt{Upload}按钮，逐一上传文件（\texttt{Select files}）或一次性上传文件夹（\texttt{Select a folder}）。

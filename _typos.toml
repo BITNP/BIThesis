@@ -6,6 +6,7 @@ multline = "multline"
 Winn = "Winn"
 nd = "nd"
 thm = "thm"
+unx = "unx"  # install-tl-unx
 
 [files]
 extend-exclude = ["CHANGELOG.md", "main.bib", "latexmkrc", "ruff.toml"]
