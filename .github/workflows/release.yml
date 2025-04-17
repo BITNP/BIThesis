@@ -195,6 +195,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: bithesis
+      - name: Download handbooks
+        uses: actions/download-artifact@v4
+        with:
+          name: handbooks
       - run: make pkg-only
       - name: Determine version
         id: version
