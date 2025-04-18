@@ -11,7 +11,7 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
-## [3.8.4] - 2025-04-17
+## [3.8.4] - 2025-04-18
 
 ### <!-- 0 -->🚀 Features
 
@@ -294,7 +294,7 @@ Acronyms:
 
 - Update version to 3.7.6 ([c5a624f](https://github.com/BITNP/BIThesis/commit/c5a624f3f8ecf453030c5437dcd1f47806b6129b)) by @fky2015
 
-## [3.7.5] - 2024-04-24
+## [3.7.5] - 2024-04-25
 
 ### <!-- 1 -->🐛 Bug Fixes
 
@@ -337,7 +337,7 @@ Acronyms:
 - Add star history in readme ([97195c0](https://github.com/BITNP/BIThesis/commit/97195c0576005a3bb19075256ab84d9a3b75df05)) by @fky2015 in [#458](https://github.com/BITNP/BIThesis/pull/458)
 - Update version to 3.7.4 ([8f6f509](https://github.com/BITNP/BIThesis/commit/8f6f5095708170362a14f3017dc7702b2b5dd9f5)) by @fky2015 in [#460](https://github.com/BITNP/BIThesis/pull/460)
 
-## [3.7.3] - 2024-04-11
+## [3.7.3] - 2024-04-12
 
 ### <!-- 0 -->🚀 Features
 
@@ -440,7 +440,7 @@ Acronyms:
 
 ## New Contributors
 * @Manpopp made their first contribution
-## [3.6.2] - 2024-02-26
+## [3.6.2] - 2024-02-27
 
 ### <!-- 1 -->🐛 Bug Fixes
 
@@ -488,7 +488,7 @@ Acronyms:
 
 ## New Contributors
 * @lsylusiyao made their first contribution in [#391](https://github.com/BITNP/BIThesis/pull/391)
-## [3.6.0] - 2023-10-01
+## [3.6.0] - 2023-10-02
 
 ### <!-- 0 -->🚀 Features
 
@@ -1465,7 +1465,7 @@ Acronyms:
 
 - *(all)* Modify chapter style ([0e1bf37](https://github.com/BITNP/BIThesis/commit/0e1bf37d521ffc959c2a11bee672085b80183ade)) by @Silverster98
 
-## [0.0.1] - 2020-02-29
+## [0.0.1] - 2020-03-01
 
 ### <!-- 0 -->🚀 Features
 
