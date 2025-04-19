@@ -23,10 +23,6 @@ jobs:
           package-file: |
             .github/tl_packages
             ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
-      - name: Setup prerequisites
-        run: |
-          sudo apt update
-          sudo apt install make fontconfig
       - uses: taiki-e/install-action@v2
         with:
           tool: fd-find
