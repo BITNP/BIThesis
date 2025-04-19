@@ -1,0 +1,44 @@
+\documentclass[type=bachelor]{bithesis}
+
+\usepackage[ruled, algochapter]{algorithm2e}
+
+\begin{document}
+\frontmatter
+\mainmatter
+
+% 孔乙己（1948年本）
+口口魯鎭的酒店的格局，是和別處不同的：都是當街一個曲尺形的大櫃臺，櫃裏面豫備着熱水，可以隨時温酒。做工的人，傍午傍晚散了工，每每花四文銅錢，買一碗酒——這是二十多年前的事，現在每碗要漲到十文，——靠櫃外站着，熱熱的喝了休息；倘肯多花一文，便可以買一碟鹽煮筍，或者茴香豆，做下酒物了，如果出到了十幾文，那就能買一樣葷菜，但這些顧客，多是短衣幫，大抵沒有這樣闊綽。
+
+\begin{algorithm}[H]
+  \caption{口口如何编写算法口口} \label{algo:test}
+
+  \SetKwFunction{FindCompress}{FindCompress}
+  \KwIn{口口一个大小为 $w\times l$ 的位图 $I_m$}
+  \KwOut{位图的一个分区}
+
+  \BlankLine
+
+  \KwData{这段文字}
+  \KwResult{如何用 \LaTeX2e 编写算法}
+
+  \emph{对第一行进行特殊处理}\;
+  \For{$i\leftarrow 2$ \KwTo $l$}{
+    \lForEach{第 $i$ 行的元素 $e$}{\FindCompress{p}}
+  }
+
+  初始化\;
+  \While{未到达文档末尾}{
+    读取当前内容\;
+    \eIf{理解}{
+      进入下一节\;
+      当前节变为此节\;
+    }{
+      返回当前节的开头\;
+    }}
+\end{algorithm}
+
+只有穿長衫的，纔踱進店面隔壁的房子裏，要酒要菜，慢慢地坐喝。
+
+auto ref: 起\autoref{algo:test}止
+
+\end{document}
