@@ -14,7 +14,6 @@ LATEXMK = latexmk
 
 SCAFFOLDDIR = ./templates
 TESTDIR = ./tests
-EXAMPLEDIR = ./examples
 
 
 .PHONY: all FORCE_MAKE
@@ -66,16 +65,12 @@ regression-test: copy
 
 .PHONY: copy-only
 copy-only:
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis-en
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/paper-translation
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/graduate-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/reading-report
-	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/doctor-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/autorefs
+	fd . --exclude '$(SCAFFOLDDIR)/(lab-report|presentation-slide)' $(SCAFFOLDDIR) $(TESTDIR) \
+		--type=directory --max-depth=1 --exec cp {bithesis.cls,assets/latexmkrc}
 	cp {bithesis.cls,assets/latexmkrc} ./handbook
 	cp {bitreport.cls,assets/latexmkrc} $(SCAFFOLDDIR)/lab-report
 	cp {bitbeamer.cls,assets/latexmkrc} $(SCAFFOLDDIR)/presentation-slide
+	cp $(SCAFFOLDDIR)/graduate-thesis/misc/icon_{academic,professional}.jpg $(TESTDIR)/doctor-thesis/misc/
 
 .PHONY: copy
 copy: cls copy-only
@@ -173,10 +168,3 @@ undergrad: doc copy handbooks FORCE_MAKE
 	rmdir ${UNDERGRAD_DEST_DIR}-${version}/undergraduate-thesis-en
 	rmdir ${UNDERGRAD_DEST_DIR}-${version}/paper-translation
 	zip -r ${UNDERGRAD_DEST_DIR}-${version}.zip ${UNDERGRAD_DEST_DIR}-${version}
-
-.PHONY: examples
-examples: cls
-	cp bithesis.cls $(EXAMPLEDIR)/cover/
-	cp bithesis.cls $(EXAMPLEDIR)/publications/
-	cd $(EXAMPLEDIR)/cover && latexmk && cd -
-	cd $(EXAMPLEDIR)/publications && latexmk && cd -

@@ -9,17 +9,23 @@ on:
       - main
 
 jobs:
-  build_latex:
+  build-latex:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tl-version: [2021, 2022, 2023, 2024, 2025]
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
       - uses: teatimeguest/setup-texlive-action@v3
         with:
+          version: ${{ matrix.tl-version }}
           package-file: |
             .github/tl_packages
-      - run: |
-          sudo apt update
-          sudo apt install make fontconfig
+            ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find, ripgrep
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
@@ -40,7 +46,7 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
-      - run: make test
+      - run: ${{ matrix.tl-version < 2024 && 'TEST_SKIP_DOC="1"' || '' }} make test
 
   check-latex:
     runs-on: ubuntu-latest

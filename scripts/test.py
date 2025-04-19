@@ -1,10 +1,18 @@
-"""Compile all projects, used by `make test`."""
+"""Compile all projects, used by `make test`.
+
+Prerequisites:
+- [ripgrep (rg)](https://crates.io/crates/ripgrep)
+
+`% tlmgr install …` comments are respected.
+"""
 
 import re
 from collections.abc import Generator
 from dataclasses import dataclass
+from itertools import chain
 from os import environ
 from pathlib import Path
+from shutil import which
 from subprocess import CalledProcessError, run
 from sys import stderr
 from time import perf_counter
@@ -17,8 +25,13 @@ assert SCAFFOLD_DIR.exists()
 TEST_DIR = Path(environ["TESTDIR"])
 assert TEST_DIR.exists()
 
+SKIP_DOC = environ.get("TEST_SKIP_DOC", default="") not in ["", "0", "false"]
+
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-job-summary
 SUMMARY = Path(environ.get("GITHUB_STEP_SUMMARY", ROOT_DIR / "scripts/test-result.md"))
+
+TLMGR: str = which("tlmgr")  # type: ignore
+assert TLMGR is not None
 
 
 def log(message: str | Any) -> None:
@@ -76,9 +89,55 @@ class TestCase:
         self.args = args
         self.env = env
 
+    def install_deps(self) -> CalledProcessError | None:
+        """Install dependencies with TeX Live package manager."""
+        try:
+            result = run(
+                [
+                    "rg",
+                    "% tlmgr install (.+)$",
+                    self.directory,
+                    "--only-matching",
+                    "--no-filename",
+                    "--replace=$1",
+                    "--type=tex",
+                ],
+                check=False,  # rg exits with 1 if no match
+                capture_output=True,
+                text=True,
+            )
+        except CalledProcessError as error:
+            log(f"❌{self.icon} 未能检查 {self.name} 是否需补充安装依赖：{error}")
+            return error
+
+        packages = list(
+            chain.from_iterable(
+                args.split() for args in result.stdout.strip().splitlines()
+            )
+        )
+        if len(packages) == 0:
+            print(f"⚪{self.icon} 无需为 {self.name} 补充装依赖。", file=stderr)
+        else:
+            print(
+                f"📥{self.icon} 为 `{self.name}` 而从 TeX Live 安装 {', '.join(packages)}……",
+                file=stderr,
+            )
+            try:
+                run([TLMGR, "install", *packages], check=True)
+            except CalledProcessError as error:
+                log(f"❌{self.icon} 未能安装 {self.name} 的依赖 {packages}：{error}")
+                return error
+
     def execute(self) -> CalledProcessError | None:
         """Execute the test case."""
         print(f"🟡 Compiling `{self}`", file=stderr)
+
+        try:
+            self.install_deps()
+        except CalledProcessError as error:
+            log(f"❌{self.icon} 安装依赖失败：{error}")
+            return error
+
         start = perf_counter()
         try:
             run(
@@ -107,19 +166,22 @@ class TestCase:
 
 
 TESTS = [
-    TestCase("📁", SCAFFOLD_DIR / "undergraduate-thesis"),
-    TestCase("📁", SCAFFOLD_DIR / "paper-translation"),
-    TestCase("📁", SCAFFOLD_DIR / "graduate-thesis"),
-    TestCase("📁", SCAFFOLD_DIR / "reading-report"),
-    TestCase("📁", SCAFFOLD_DIR / "lab-report"),
-    TestCase("📁", SCAFFOLD_DIR / "presentation-slide"),
-    TestCase("🧪", TEST_DIR / "doctor-thesis"),
-    TestCase("🧪", TEST_DIR / "autorefs"),
-    TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),
-    TestCase(
-        "📖", ROOT_DIR / "handbook", name="graduate-handbook", env={"GRADUATE": "true"}
+    *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
+    *(TestCase("🧪", d) for d in TEST_DIR.iterdir() if d.is_dir()),
+    *(
+        [
+            TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),
+            TestCase(
+                "📖",
+                ROOT_DIR / "handbook",
+                name="graduate-handbook",
+                env={"GRADUATE": "true"},
+            ),
+            TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
+        ]
+        if not SKIP_DOC
+        else []
     ),
-    TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
 ]
 
 if __name__ == "__main__":

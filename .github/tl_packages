@@ -1,3 +1,7 @@
+# TeX Live packages
+#
+# 注释 indirect 表示模板未直接使用，可能是被某个包依赖而未声明。
+
 # ----- 1. 编译基础中文文档需要 -----
 
 scheme-minimal
@@ -20,13 +24,14 @@ biblatex-gb7714-2015
 # ----- 2. 编译 templates/* 需要 -----
 
 # collection-latexextra
+datetime2
 enumitem
 fmtcount
 multirow
+mwe # for `example-image*` files
 titlesec
 xint # indirect
 xstring # indirect
-mwe # for `example-image*` files
 
 # collection-latexrecommended
 booktabs

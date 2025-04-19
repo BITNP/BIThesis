@@ -21,7 +21,7 @@
 
 > [!TIP]
 >
-> Windows 开发者若运行 Makefile 遇到问题，请参考[后文](#Windows)。
+> 运行 Makefile 需要[安装 fd](https://github.com/sharkdp/fd/#installation)，通常下载可执行文件即可。此外 Windows 开发者若遇到问题，请参考[后文](#Windows)。
 
 ### 修改 `templates/` 中某个模板
 

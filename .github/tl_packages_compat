@@ -1,0 +1,8 @@
+# 兼容旧版 TeX Live 需补充指定的包
+#
+# 这些包新版 TeX Live 可能也需安装，但模板只是间接使用，无需单独指定。
+
+# ----- 2. 编译 templates/* 需要 -----
+
+# Not included in any collection
+tracklang # indirect，因 datetime2——确定 2021 必需、2022 无需

@@ -219,11 +219,12 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\@@_if_thesis_english:T,\@@_if_thesis_english:TF}
+% \begin{macro}{\@@_if_thesis_english:T,\@@_if_thesis_english:F,\@@_if_thesis_english:TF}
 % 是否为英文模板，这里包括全英文专业和研究生模板的英文模式。
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_english:TF #1#2 {\bool_if:nTF {\g_@@_thesis_type_english_bool} {#1} {#2}}
 \cs_new:Npn \@@_if_thesis_english:T #1 {\@@_if_thesis_english:TF {#1}{}}
+\cs_new:Npn \@@_if_thesis_english:F #1 {\@@_if_thesis_english:TF {}{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1766,7 +1767,7 @@
 }
 %    \end{macrocode}
 %
-% 定义图表标题中的分隔字符。
+% 定义图表标题中的分隔字符，同时调整字号。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
   \tl_set:Nn \g_@@_label_divide_char_tl {.}
@@ -1784,6 +1785,35 @@
   \captionsetup[table]{font=small,labelsep=space}
   \captionsetup[lstlisting]{font=small,labelsep=space}
   \captionsetup[algorithm]{font=small,labelsep=space}
+}
+% 为了不强制导入宏包，且允许最终作者在导言区覆写，不使用`\@ifpackageloaded`或`\AtBeginDocument`
+\ctex_at_end_package:nn {algorithm2e} {
+  \SetAlCapFnt{\small}
+  \SetAlCapNameFnt{\small}
+}
+%    \end{macrocode}
+%
+% 调整算法环境内部的字号。
+%
+% 学校无规定，但默认与正文相同，很怪。需要调小至与 caption 相同。
+%    \begin{macrocode}
+\AtBeginEnvironment {algorithmic} {\small}
+\ctex_at_end_package:nn {algorithm2e} { \SetAlFnt{\small} }
+%    \end{macrocode}
+%
+% 汉化宏包。
+%    \begin{macrocode}
+\@@_if_thesis_english:F {
+  \ctex_at_end_package:nn {algorithm2e} {
+    \SetKwInput{KwData}{数据}
+    \SetKwInput{KwResult}{结果}
+    \SetKwInput{KwIn}{输入}
+    \SetKwInput{KwOut}{输出}
+  }
+  \ctex_at_end_package:nn {algorithmic} {
+    \renewcommand*{\algorithmicrequire}{\textbf{输入：}}
+    \renewcommand*{\algorithmicensure}{\textbf{输出：}}
+  }
 }
 %    \end{macrocode}
 %
