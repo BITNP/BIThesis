@@ -25,7 +25,7 @@ jobs:
             ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find
+          tool: fd-find, ripgrep
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
