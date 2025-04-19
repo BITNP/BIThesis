@@ -12,15 +12,40 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: xu-cheng/texlive-action@v2
+      - uses: teatimeguest/setup-texlive-action@v3
         with:
-          scheme: full
-          run: |
-            apk add make msttcorefonts-installer fontconfig
-            update-ms-fonts
-            fc-cache -f
-            make doc
-            make handbooks
+          version: 2024
+          package-file: |
+            .github/tl_packages
+      - name: Setup prerequisites
+        run: |
+          sudo apt update
+          sudo apt install make fontconfig
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find
+
+      - name: Restore Microsoft fonts cache
+        id: microsoft-fonts
+        uses: actions/cache@v4
+        with:
+          path: /usr/share/fonts/truetype/msttcorefonts
+          key: microsoft-fonts
+      - name: Install Microsoft fonts
+        if: steps.microsoft-fonts.outputs.cache-hit != 'true'
+        run: |
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt install ttf-mscorefonts-installer
+          fc-cache --force
+
+      - name: Setup TeX Live fonts
+        run: |
+          mkdir -p ~/.fonts
+          ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
+          fc-cache
+
+      - run: make doc handbooks
+
       - name: Upload bithesis.pdf for later usage.
         uses: actions/upload-artifact@v4
         with:
