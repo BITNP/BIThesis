@@ -14,6 +14,7 @@ jobs:
     strategy:
       matrix:
         tl-version: [2021, 2022, 2023, 2024, 2025]
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
       - uses: teatimeguest/setup-texlive-action@v3
@@ -21,6 +22,7 @@ jobs:
           version: ${{ matrix.tl-version }}
           package-file: |
             .github/tl_packages
+            ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
       - name: Setup prerequisites
         run: |
           sudo apt update
