@@ -17,6 +17,8 @@ assert SCAFFOLD_DIR.exists()
 TEST_DIR = Path(environ["TESTDIR"])
 assert TEST_DIR.exists()
 
+SKIP_DOC = environ.get("TEST_SKIP_DOC", default="") not in ["", "0", "false"]
+
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-job-summary
 SUMMARY = Path(environ.get("GITHUB_STEP_SUMMARY", ROOT_DIR / "scripts/test-result.md"))
 
@@ -109,11 +111,20 @@ class TestCase:
 TESTS = [
     *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
     *(TestCase("🧪", d) for d in TEST_DIR.iterdir() if d.is_dir()),
-    TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),
-    TestCase(
-        "📖", ROOT_DIR / "handbook", name="graduate-handbook", env={"GRADUATE": "true"}
+    *(
+        [
+            TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),
+            TestCase(
+                "📖",
+                ROOT_DIR / "handbook",
+                name="graduate-handbook",
+                env={"GRADUATE": "true"},
+            ),
+            TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
+        ]
+        if not SKIP_DOC
+        else []
     ),
-    TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
 ]
 
 if __name__ == "__main__":

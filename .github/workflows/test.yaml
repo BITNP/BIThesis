@@ -9,12 +9,16 @@ on:
       - main
 
 jobs:
-  build_latex:
+  build-latex:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tl-version: [2021, 2022, 2023, 2024, 2025]
     steps:
       - uses: actions/checkout@v4
       - uses: teatimeguest/setup-texlive-action@v3
         with:
+          version: ${{ matrix.tl-version }}
           package-file: |
             .github/tl_packages
       - name: Setup prerequisites
@@ -44,7 +48,7 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
-      - run: make test
+      - run: ${{ matrix.tl-version < 2024 && 'TEST_SKIP_DOC="1"' || '' }} make test
 
   check-latex:
     runs-on: ubuntu-latest
