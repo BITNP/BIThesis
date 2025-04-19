@@ -107,14 +107,8 @@ class TestCase:
 
 
 TESTS = [
-    TestCase("📁", SCAFFOLD_DIR / "undergraduate-thesis"),
-    TestCase("📁", SCAFFOLD_DIR / "paper-translation"),
-    TestCase("📁", SCAFFOLD_DIR / "graduate-thesis"),
-    TestCase("📁", SCAFFOLD_DIR / "reading-report"),
-    TestCase("📁", SCAFFOLD_DIR / "lab-report"),
-    TestCase("📁", SCAFFOLD_DIR / "presentation-slide"),
-    TestCase("🧪", TEST_DIR / "doctor-thesis"),
-    TestCase("🧪", TEST_DIR / "autorefs"),
+    *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
+    *(TestCase("🧪", d) for d in TEST_DIR.iterdir() if d.is_dir()),
     TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),
     TestCase(
         "📖", ROOT_DIR / "handbook", name="graduate-handbook", env={"GRADUATE": "true"}

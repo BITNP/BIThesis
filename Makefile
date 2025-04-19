@@ -66,13 +66,8 @@ regression-test: copy
 
 .PHONY: copy-only
 copy-only:
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/undergraduate-thesis-en
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/paper-translation
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/graduate-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(SCAFFOLDDIR)/reading-report
-	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/doctor-thesis
-	cp {bithesis.cls,assets/latexmkrc} $(TESTDIR)/autorefs
+	fd . --exclude '$(SCAFFOLDDIR)/(lab-report|presentation-slide)' $(SCAFFOLDDIR) $(TESTDIR) \
+		--type=directory --max-depth=1 --exec cp {bithesis.cls,assets/latexmkrc}
 	cp {bithesis.cls,assets/latexmkrc} ./handbook
 	cp {bitreport.cls,assets/latexmkrc} $(SCAFFOLDDIR)/lab-report
 	cp {bitbeamer.cls,assets/latexmkrc} $(SCAFFOLDDIR)/presentation-slide
