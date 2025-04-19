@@ -1,0 +1,37 @@
+\documentclass[type=bachelor]{bithesis}
+
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+\frontmatter
+\mainmatter
+
+% 孔乙己（1948年本）
+口口我從十二歲起，便在鎭口的咸亨酒店裏當夥計，掌櫃說，樣子太傻，怕侍候不了長衫主顧，就在外面做點事罷。外面的短衣主顧，雖然容易說話，但嘮嘮叨叨纏夾不清的也很不少。他們往往要親眼看着黃酒從罎子裏舀出，看過壺子底裏有水沒有，又親眼看將壺子放在熱水裏，然後放心：在這嚴重監督之下，羼水也很爲難。所以過了幾天，掌櫃又說我幹不了這事。
+
+% H 的行距会比 h/t/b/p 大，应该是 algorithms 包的缺陷
+\begin{algorithm}[h]
+  \caption{口口信号张量CPD算法} \label{algo:test}
+  \begin{algorithmic}[1]
+    \REQUIRE 口口带噪信号张量 $\hat{\mathcal{Y}}$，最大迭代次数$I_{\textrm{max}}$，收敛阈值 $\epsilon$；
+    \STATE \textbf{步骤一：因子矩阵粗估计}
+    \STATE 按照某式进行空域平滑形成增广信号张量 $\hat{\mathcal{Y}}_{\textrm{sps}}$；
+    \STATE $i\gets 10$
+    \IF {$i\geq 5$}
+    \STATE $i\gets i-1$
+    \ELSE
+    \IF {$i\leq 3$}
+    \STATE $i\gets i+2$
+    \ENDIF
+    \ENDIF
+    \ENSURE 因子矩阵 $\{ \mathbf{A}_1, \mathbf{B}_2, \mathbf{B}_3 \}$。
+    \RETURN $(x+y)/2$
+  \end{algorithmic}
+\end{algorithm}
+
+幸虧薦頭的情面大，辭退不得，便改爲專管温酒的一種無聊職務了。
+
+auto ref: 起\autoref{algo:test}止
+
+\end{document}
