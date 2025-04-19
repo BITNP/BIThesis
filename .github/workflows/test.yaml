@@ -17,9 +17,13 @@ jobs:
         with:
           package-file: |
             .github/tl_packages
-      - run: |
+      - name: Setup prerequisites
+        run: |
           sudo apt update
           sudo apt install make fontconfig
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
