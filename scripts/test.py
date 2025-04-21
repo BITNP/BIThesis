@@ -107,7 +107,7 @@ class TestCase:
                 text=True,
             )
         except CalledProcessError as error:
-            log(f"❌{self.icon} 未能检查 {self.name} 是否需补充安装依赖：{error}")
+            log(f"❌{self.icon} 未能检查 {self.name} 是否需补装依赖：{error}")
             return error
 
         packages = list(
@@ -116,7 +116,7 @@ class TestCase:
             )
         )
         if len(packages) == 0:
-            print(f"⚪{self.icon} 无需为 {self.name} 补充装依赖。", file=stderr)
+            print(f"⚪{self.icon} 无需为 {self.name} 补装依赖。", file=stderr)
         else:
             print(
                 f"📥{self.icon} 为 `{self.name}` 而从 TeX Live 安装 {', '.join(packages)}……",
