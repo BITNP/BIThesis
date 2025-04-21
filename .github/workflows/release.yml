@@ -237,7 +237,7 @@ jobs:
             pkg: bithesis
             version: ${{ steps.version.outputs.number }} ${{ steps.version.outputs.date }}
             author: Feng Kaiyu
-            email: loveress01@outlook.com
+            email: bithesis@bitnp.net
             uploader: Feng Kaiyu
       - name: Report
         run: >
