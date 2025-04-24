@@ -98,6 +98,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v4
         with:
