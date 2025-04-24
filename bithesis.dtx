@@ -187,6 +187,14 @@
 \cs_generate_variant:Nn \tl_if_empty:nTF {x}
 \cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
 %    \end{macrocode}
+%
+% 为兼容旧版生成变体。
+%    \begin{macrocode}
+% 兼容 TeX Live 2022/2023 及更早版本（l3msg 与 TeX Live 并不同步更新，2023 支持与否均有可能）
+\cs_if_exist:NF \msg_warning:nnV {
+    \cs_generate_variant:Nn \msg_warning:nnn { nnV }
+  }
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\@@_same_page:}
