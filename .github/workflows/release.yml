@@ -40,6 +40,11 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
+      - name: Update version if prerelease
+        if: ${{ github.event.release.prerelease }}
+        # 目前发布正式版时，会手动提升版本号
+        run: python scripts/update_version.py
+
       - run: make doc handbooks
 
       - name: Upload bithesis.pdf for later usage.
