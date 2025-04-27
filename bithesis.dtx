@@ -3074,11 +3074,12 @@
       }
     }
 
-    % 微调硕博模板标题上下的间距
-    \@@_if_graduate:T { \ctexset{ chapter = {
-      beforeskip = 13bp,
-      afterskip = 24bp,
-    } } }
+    % 摘要对页数很敏感，标题上下间距应有弹性；其中硕博模板的基础长度参考 Word 实作微调过。
+    \ctexset{ chapter = {
+      % 最短均为 8bp
+      beforeskip = \@@_if_graduate:TF {13bp minus 5bp} {8bp},
+      afterskip = \@@_if_graduate:TF {24bp minus 16bp} {32bp minus 24bp},
+    } }
 
     {
       \@@_same_page:
@@ -3094,7 +3095,8 @@
   }
   {
     \par
-    \vspace{4ex}
+    % 摘要对页数很敏感，关键词上方间距应有弹性
+    \vspace{4ex minus 4ex}
     \noindent
     \@@_if_graduate:TF {
       % 研究生模板中，“关键词”宋体小四加粗
@@ -3127,7 +3129,8 @@
           \l_@@_value_title_en_tl\\
         }
       \end{spacing}
-      \vspace*{10mm}
+      % 最短缩到与中文摘要相同
+      \vspace*{10mm minus 8mm}
     }
 
     \ctexset{
@@ -3144,11 +3147,12 @@
       }
     }
 
-    % 微调硕博模板标题上下的间距
-    \@@_if_graduate:T { \ctexset{ chapter = {
-      beforeskip = 19bp,
-      afterskip = 35bp,
-    } } }
+    % 摘要对页数很敏感，标题上下间距应有弹性；其中硕博模板的基础长度参考 Word 实作微调过。
+    \ctexset{ chapter = {
+      % 最短均为 8bp
+      beforeskip = \@@_if_graduate:TF {19bp minus 11bp} {8bp},
+      afterskip = \@@_if_graduate:TF {35bp minus 27bp} {32bp minus 24bp},
+    } }
 
     {
       \@@_same_page:
@@ -3161,7 +3165,8 @@
     }
   }
   {
-    \par\vspace{3ex}\noindent
+    % 摘要对页数很敏感，关键词上方间距应有弹性
+    \par\vspace{3ex minus 3ex}\noindent
     \@@_if_graduate:TF {
       % Times New Roman小四号字，行距22磅
       % “Key Words”
