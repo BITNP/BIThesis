@@ -136,6 +136,7 @@
 %
 % \begin{macro}[added=2023-05-06,updated=2023-07-04]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n}
 % 普通模式下显示参数一，盲审模式下显示参数二。
+% 无参数二时，替换为等量 |\g_@@_const_substitute_symbol_tl|，换行也会被替换。
 % \begin{macrocode}
 \cs_new:Npn \@@_hide:n #1 {
   \g_@@_const_substitute_symbol_tl
@@ -156,7 +157,22 @@
   \@@_secret_info:nn {#1} {\tl_map_function:NN {#1} \@@_hide:n }
 }
 % \end{macrocode}
+% \end{macro}
 %
+% \begin{macro}[added=2025-04-30]{\@@_secret_info_fixed:Nn}
+% 普通模式下显示参数一，盲审模式下显示参数二个数的 |\g_@@_const_substitute_symbol_tl|。
+% 例外：若参数一为空，也输出空。这样允许 |\@@_render_cover_entry:nn| 隐藏此项。
+% 为了实现例外，参数一必须是 N 而非 n，不然难以检测是否真正为空。
+%
+%    \begin{macrocode}
+\cs_new:Npn \@@_secret_info_fixed:Nn #1 #2 {
+  \tl_if_blank:VF #1 {
+    \@@_secret_info:nn {#1} {
+      \prg_replicate:nn {#2} {\g_@@_const_substitute_symbol_tl}
+    }
+  }
+}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}[added=2023-03-16, updated=2025-04-04]{\@@_get_const:n} 获取标题、章节、表格、图形等的常量名称。
@@ -2152,7 +2168,7 @@
     {
       % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
-        {姓名：} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
+        {姓名：} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
         {学号：} {\@@_secret_info:N \l_@@_value_student_id_tl},
         {学院：} {\l_@@_value_school_tl},
       }
@@ -2302,12 +2318,13 @@
         }
 
         % 渲染信息。
+        % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
         \clist_set:Nn \l_@@_input_clist {
-            {\c_@@_graduate_label_author_tl} {\@@_secret_info:nn{\l_@@_value_author_tl}{\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl\g_@@_const_substitute_symbol_tl}},
+            {\c_@@_graduate_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
             {\c_@@_graduate_label_school_tl} {\l_@@_value_school_tl},
-            {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info:N{\l_@@_value_supervisor_tl}},
-            {\c_@@_graduate_label_industrial_mentor_tl} {\@@_secret_info:N{\l_@@_value_industrial_mentor_tl}},
-            {\c_@@_graduate_label_chairman_tl} {\@@_secret_info:N{\l_@@_value_chairman_tl}},
+            {\c_@@_graduate_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
+            {\c_@@_graduate_label_industrial_mentor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_industrial_mentor_tl {5}},
+            {\c_@@_graduate_label_chairman_tl} {\@@_secret_info_fixed:Nn \l_@@_value_chairman_tl {5}},
             {\g_@@_const_info_degree_tl} {\l_@@_value_degree_tl},
             {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
             {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
@@ -2364,12 +2381,13 @@
       }
 
       % 渲染信息。
+      % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
       \clist_set:Nn \l_@@_input_clist {
-          {\c_@@_graduate_label_author_en_tl} {\@@_secret_info:N{\l_@@_value_author_en_tl}},
+          {\c_@@_graduate_label_author_en_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_en_tl {9}},
           {\c_@@_graduate_label_school_en_tl} {\l_@@_value_school_en_tl},
-          {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info:N{\l_@@_value_supervisor_en_tl}},
-          {\c_@@_graduate_label_industrial_mentor_en_tl} {\@@_secret_info:N{\l_@@_value_industrial_mentor_en_tl}},
-          {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info:N{\l_@@_value_chairman_en_tl}},
+          {\c_@@_graduate_label_supervisor_en_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_en_tl {12}},
+          {\c_@@_graduate_label_industrial_mentor_en_tl} {\@@_secret_info_fixed:Nn \l_@@_value_industrial_mentor_en_tl {12}},
+          {\c_@@_graduate_label_chairman_en_tl} {\@@_secret_info_fixed:Nn \l_@@_value_chairman_en_tl {12}},
           {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
           {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
@@ -2623,16 +2641,17 @@
               }
             }
 
+            % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_semester_tl} {\l_@@_value_semester_tl},
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
               {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
-              {\c_@@_label_author_tl} {\@@_secret_info:N \l_@@_value_author_tl},
+              {\c_@@_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
               {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
               {\c_@@_label_course_tl} {\l_@@_value_course_tl},
-              {\c_@@_label_supervisor_tl} {\@@_secret_info:N \l_@@_value_supervisor_tl},
-              {\c_@@_label_co_supervisor_tl} {\@@_secret_info:N \l_@@_value_external_supervisor_tl},
+              {\c_@@_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
+              {\c_@@_label_co_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_external_supervisor_tl {5}},
               {\c_@@_label_teacher_tl} {\l_@@_value_teacher_tl},
             }
 
@@ -2728,14 +2747,16 @@
 
             \zihao{3}
 
-        % 渲染信息。
+            % 渲染信息。
+            % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
             \clist_set:Nn \l_@@_input_clist {
               {\c_@@_label_school_tl} {\l_@@_value_school_tl},
               {\c_@@_label_major_tl} {\l_@@_value_major_tl},
               {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
-              {\c_@@_label_author_tl} {\@@_secret_info:N \l_@@_value_author_tl},
+              {\c_@@_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
               {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
-              {\c_@@_label_supervisor_tl} {\@@_secret_info:N \l_@@_value_supervisor_tl},
+              {\c_@@_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
+              % co-supervisor 并非所有人都有，由最终作者自行处理
               {\c_@@_label_co_supervisor_tl} {\@@_secret_info:N \l_@@_value_external_supervisor_tl},
             }
 
