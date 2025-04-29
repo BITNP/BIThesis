@@ -187,8 +187,45 @@ def install_deps(test: TestCase) -> CalledProcessError | None:
             return error
 
 
+def enable_blind_peer_review(test: TestCase) -> CalledProcessError | None:
+    """启用盲审模式"""
+    main = test.directory / "main.tex"
+    main.write_text(
+        re.sub(
+            r"^(\\documentclass\[.+)(\]\{bithesis\})$",
+            r"\1, blindPeerReview=true\2",
+            main.read_text(encoding="utf-8"),
+            count=1,
+            flags=re.MULTILINE,
+        ),
+        encoding="utf-8",
+    )
+
+
+def revert_blind_peer_review(test: TestCase) -> CalledProcessError | None:
+    """取消设置盲审模式"""
+    main = test.directory / "main.tex"
+    main.write_text(
+        re.sub(
+            r"^(\\documentclass\[.+), blindPeerReview=true(\]\{bithesis\})$",
+            r"\1\2",
+            main.read_text(encoding="utf-8"),
+            count=1,
+            flags=re.MULTILINE,
+        ),
+        encoding="utf-8",
+    )
+
+
 TESTS = [
     *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
+    *(
+        TestCase(
+            "📁🎩", d, pre=[enable_blind_peer_review], post=[revert_blind_peer_review]
+        )
+        for d in SCAFFOLD_DIR.iterdir()
+        if d.is_dir() and "thesis" in d.stem
+    ),
     *(TestCase("🧪", d, pre=[install_deps]) for d in TEST_DIR.iterdir() if d.is_dir()),
     *(
         [
