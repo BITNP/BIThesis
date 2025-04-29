@@ -2056,6 +2056,7 @@
 % 这里用 |group| 确保局部变量不会被污染。
     \group_begin:
       \seq_set_eq:NN \l_@@_tmpa_seq #2
+      \dim_zero:N #1
       \dim_zero_new:N \l_@@_tmpa_dim
       \bool_until_do:nn { \seq_if_empty_p:N \l_@@_tmpa_seq }
         {
