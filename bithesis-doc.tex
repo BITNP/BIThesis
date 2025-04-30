@@ -24,6 +24,10 @@
 \def\indexname{索引}
 \IndexPrologue{\section{\indexname}}
 
+\ExplSyntaxOn
+\luabridge_now:n { require("assets.faq").setup("assets/faq.tex") }
+\ExplSyntaxOff
+
 \title{\includegraphics[width=0.3\textwidth]{images/icon.png}
 \\[1cm]
 \bfseries 北京理工大学{\LaTeX}学位论文及报告模板 }
@@ -295,7 +299,7 @@ GitHub 同时提供了独立的 |*.cls| 文件，可以仅下载 |*.cls| 文件�
 
 \begin{itemize}
 \item Windows、Linux用户推荐安装 TeX Live 套装，
-  并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装；对于 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）
+  并更新宏包（Linux系统由于版权问题，未能预装宋体等 Windows 下的字体，需要手动安装；对于 WSL 用户，可参照\FAQ{word-font}[wsl]直接使用 Windows 下的字体）
 \item OSX用户推荐安装 Mac TeX。
 \item 由于CTeX套装所含宏包比较陈旧，可能会导致编译无法通过，故不推荐安装。
   如果已安装 CTeX，\textbf{建议将其卸载}。
@@ -604,7 +608,7 @@ xiheiFont = (*\marg{字体路径}*)
 
   配置此选项以在部分模板封面中使用“华文细黑”，保证与 Word 模板中的字体一致。
 
-  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装（如果你是 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）。
+  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中一般需要用户自行安装（如果你是 WSL 用户，可参照\FAQ{word-font}[wsl]直接使用 Windows 下的字体）。
 \end{function}
 
 \begin{function}{cover/delimiter}
@@ -1287,7 +1291,7 @@ sorting = (*(true)|false*)
 
   \item 在发表时间顺序上微调，把个别的提到最前——保留默认的 |true|，同时在 |*.bib| 文件中给个别项加上 |sortkey| 字段。
 
-    具体例子可参考\href{https://bithesis.bitnp.net/faq/bib-sort.html#sortkey}{疑难杂症：怎么调整「攻读学位期间发表论文与研究成果清单」的顺序}，详细解释可参考 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015 宏包手册（中文）}或 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex 宏包手册（英文）}。
+    具体例子可参考\FAQ{bib-sort}[sortkey]，详细解释可参考 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015 宏包手册（中文）}或 \href{https://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex 宏包手册（英文）}。
 \end{itemize}
 
 \textit{注意，如果编译后编号产生错误，
@@ -1349,7 +1353,7 @@ arialFont = (*\marg{字符串}*)
   \textit{此选项一般不需要用户自行修改。}
 
   早期（2022年及以前）\BIThesisTemplates{UTE}需要设置 Arial 字体。
-  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\href{https://bithesis.bitnp.net/faq/word-font.html}{疑难杂症：如何采用与 Word 相同的中文字体}直接使用 Windows 下的字体）。
+  在 Windows 和 macOS 中，该字体已经安装；在 Linux 中需要用户自行安装（如果你是 WSL 用户，可参照\FAQ{word-font}[wsl]直接使用 Windows 下的字体）。
 \end{function}
 
 \begin{function}[added=2023-04-22, updated=2024-05-13]{misc/tabularFontSize}
@@ -1708,7 +1712,7 @@ addTOC = (*<(true)|false>*)
 
   一系列预定义的数学环境。具体含义见表~\ref{tab:theorem}。
 
-  其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考\href{https://bithesis.bitnp.net/faq/algorithm.html}{疑难杂症：如何排版算法（伪代码）}。
+  其中提供了算法环境 |algo|，但模板也适配了一些更专业的宏包，请参考\FAQ{algorithm}。
 \end{function}
 
 \begin{table}[p]
