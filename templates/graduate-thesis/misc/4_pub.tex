@@ -7,7 +7,7 @@
 % 2. 在下方 `\addpubs` 添加该文献（参考下方示例）。
 
 % **注意：如果发现渲染出来的文献编号不正确，请同时使用以下两个方式解决：**
-% 1. 请清除缓存后重新编译（比如使用 `latexmk -c`）。
+% 1. 请清除缓存重新编译，比如`latexmk -gg`，详见 https://bithesis.bitnp.net/faq/clean.html 。
 % 2. 请确保无编译错误。
 
 \begin{publications}
@@ -27,10 +27,10 @@
   % \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
   %
   % \pubsection{一些书}
-  % \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
+  % \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]
   %
   % \pubsection{另一些书}
-  % \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
+  % \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]
   %
   % 关于 \printbibliography 的筛选参数：
   % 0. 请保留“category=mypub”。（这样只列出成果，不列出正文参考文献。）
