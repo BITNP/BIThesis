@@ -13,39 +13,36 @@
 [![GitHub Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
 [![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
 
-**有关如何安装 LaTeX、编译 BIThesis 模板的全面指南，请参阅 BIThesis 的 Wiki。👇**
-
-[![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)][wiki]
-
-**有关 BIThesis 提供的配置选项和命令，请参阅 BIThesis 的模板使用手册。👇**
-
-[![BIThesis Documentation](https://img.shields.io/badge/bithesis-Documentation-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](https://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis.pdf)
-
-_（此文档已被包含在 [Releases][releases] 的文件中）_
-
 </div>
 
-<div align="center">
-
-</div>
-
-> [!NOTE]
-> :raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎[与我们取得联系](mailto:bithesis@bitnp.net)，加入我们。
+> [!TIP]
 >
-> 如果本项目有帮助到你的话，欢迎引用我们，让更多同学知道。（见右侧 “Cite this repository”）
+> 若是初次使用，可先参考**快速使用指南**（[本科][undergraduate-handbook]／[硕博][graduate-handbook]）或者：
+>
+> <div align="center">
+>
+> [![BIThesis Wiki](https://img.shields.io/badge/BIThesis-Wiki-009944?logo=wikipedia&labelColor=2b2b2b&style=for-the-badge)][wiki]
+>
+> </div>
+>
+> 有需要再进一步参考：
+>
+> <div align="center">
+>
+> [![BIThesis 详细配置手册](https://img.shields.io/badge/bithesis-详细配置手册-008080?logo=LaTeX&labelColor=2b2b2b&style=for-the-badge)](https://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis.pdf)
+>
+> </div>
 
 <h2>欢迎</h2>
 
 BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
+本项目获得了北京理工大学[教务部](https://mp.weixin.qq.com/s/I1SsP9VSaQ90a_2tW4zQUg)、[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)和[计算机学院](https://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
+
 > [!CAUTION]
-> [研究生院在 2025-03-28 前后发布了新的模板](https://github.com/BITNP/BIThesis/issues/603)，本项目已经根据最新模板更新，请同学们使用 [v3.8.3-alpha-1](https://github.com/BITNP/BIThesis/releases/tag/v3.8.3-alpha-1) 及以上的 BIThesis 模板。
+> [研究生院在 2025-03-28 前后发布了新的模板](https://github.com/BITNP/BIThesis/issues/603)，本项目已经根据最新模板更新，请同学们使用 [v3.8.3 及以上版本 BIThesis][releases]。
 
-> [!NOTE]
-> 本项目获得了[北京理工大学研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)、[北京理工大学教务部](https://jwb.bit.edu.cn/)和[北京理工大学计算机学院](https://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
-
-> [!WARNING]
-> 重要提示：建议 macOS 用户更新到 [TeX Live / MacTeX 2023 或更新版本](https://www.tug.org/mactex/mactex-download.html)，否则[参考文献等可能会被错误查重](https://bithesis.bitnp.net/faq/false-duplicate.html)。
+如果本项目有帮助到你的话，欢迎引用我们，让更多同学知道。（见右侧 “Cite this repository”）
 
 <h2>特性</h2>
 
@@ -69,56 +66,32 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 - 最新更新：[Release](https://github.com/BITNP/BIThesis/releases)
 - 新功能请求与问题报告：[Issues](https://github.com/BITNP/BIThesis/issues)
 
-如果你更习惯聊天群，也可以：
-
-[![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
-
-<h2>内容</h2>
-
-- [项目内容](#项目内容)
-- [使用方法](#使用方法)
-- [开发者指南](#开发者指南)
-- [参考规范](#参考规范)
-- [贡献者指南](#贡献者指南)
-- [贡献者](#贡献者)
-- [特别感谢](#特别感谢)
-- [发布状态](#发布状态)
+如果你更习惯聊天群，也可以：[![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 
 ## 项目内容
 
 详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
 
+参考规范详见[更新说明](https://bithesis.bitnp.net/news/)中各年份“相关通知”。
+
 ## 使用方法
 
 1. 安装或升级最新的 LaTeX 套装，详见 [wiki](https://bithesis.bitnp.net/guide/getting-started.html)。
-2. 根据需要，下载[最新的 Releases](https://github.com/BITNP/BIThesis/releases/latest)。
+2. 根据需要，[下载发布的模板包](https://bithesis.bitnp.net/guide/downloading-using-templates.html)。（⛔ 注意，无须克隆仓库）
 3. 开始撰写。
 
 > 或者使用 [Overleaf 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
 
-## 开发者指南
+**如果你是普通用户，请参考我们的[在线文档][wiki]；本页后续内容仅用于开发。**
 
-**以下内容供开发者使用，如果你是普通用户的话，请参考我们的[在线文档][wiki] 。**
+## 开发指南
 
-详见[开发者指南](./DEVELOPMENT.md)。
+初步贡献力量请参考[贡献者指南](./contributing-zh.md)，进一步开发请参考 [开发者指南](./DEVELOPMENT.md)。
 
-## 参考规范
+> [!NOTE]
+> :raised_hand: **BIThesis 正在招募项目维护者！** :raised_hand: 如果你对 LaTeX 有使用经验、有兴趣进一步学习、有 Git 使用经验、并且希望帮助这个项目变得更好的话。欢迎[与我们取得联系](mailto:bithesis@bitnp.net)，加入我们。
 
-- 本科生
-  - [北京理工大学教务部 - 关于2023届本科生毕业设计（论文）工作安排的通知](https://jwb.bit.edu.cn//tzgg/9b6fd5d2adda4185bafe988347225292.htm)
-  - 《本科-全英文 Thesis Format 2022》
-  - 《本科-全英文 Thesis Sample 2021 with signature》
-- 研究生
-  - [北京理工大学研究生院 - 研究生学位论文模版](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b119746.htm)
-  - 《北京理工大学研究生学位论文撰写规范》
-
-## 贡献者指南
-
-详情请查看[贡献者指南](./contributing-zh.md)。
-
-## 贡献者
-
-参见 [GitHub Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/guide/acknowledgements.html)。
+历年贡献者参见 [GitHub Contributors](https://github.com/BITNP/BIThesis/graphs/contributors) 与 [BIThesis - 致谢](https://bithesis.bitnp.net/guide/acknowledgements.html)。
 
 ## 特别感谢
 
@@ -148,6 +121,8 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 Maintained with help from [contributors](https://github.com/BITNP/BIThesis/graphs/contributors).
 
+[undergraduate-handbook]: http://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis-handbook-undergraduate.pdf
+[graduate-handbook]: http://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis-handbook-graduate.pdf
 [releases]: https://github.com/BITNP/BIThesis/releases/latest
 [wiki]: https://bithesis.bitnp.net
 
