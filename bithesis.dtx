@@ -213,6 +213,19 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_warning_footer:n}
+% 用 l3msg 创建警告时，需后缀的内容。
+% 参数建议为 ⟨message⟩，即 |\msg_new:nnn| 系列函数的第二个参数。
+%
+% 之所以设置此函数，是因为 VS Code 插件 LaTeX Workshop 无法识别随意放置的 |\msg_line_context:|，只好专门适配。
+% https://github.com/James-Yu/LaTeX-Workshop/blob/c62e327b8233e20d61814bfda305811bea1ae83f/src/parse/parser/latexlog.ts#L17
+%    \begin{macrocode}
+\cs_new:Npn \@@_warning_footer:n #1 {
+    —The~“#1”\\warning~on~input~line~\msg_line_number:.
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\@@_same_page:}
 % 取消换页。
 %    \begin{macrocode}
@@ -2023,6 +2036,15 @@
 }
 %    \end{macrocode}
 % \end{macro}
+
+% \begin{macro}{|@@_cover_entry_rendered_width:}
+% 预估 |\@@_render_cover_entry:nn| 会占用的宽度，可用于判断行是否会溢出
+%    \begin{macrocode}
+\cs_new:Nn \@@_cover_entry_rendered_width: {
+  \l_@@_cover_label_max_width_dim + 1ex + \l_@@_cover_value_max_width_dim
+}
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
 % 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
@@ -2103,6 +2125,12 @@
 % \begin{macro}{\@@_render_cover_entry}
 % 渲染封面信息项。此函数为主函数。
 %    \begin{macrocode}
+\msg_new:nnn { bithesis } { render-cover-entry/overfull-hbox }
+  {
+    One~or~more~cover~entries~are~too~wide,~which~may~result~in~poor~layout.\\
+    To~fix~it,~please~split~long~entries~into~multiple~lines~by~inserting~“\c_backslash_str\c_backslash_str”.\\
+    \@@_warning_footer:n { render-cover-entry/overfull-hbox }
+  }
 \cs_new:Npn \@@_render_cover_entry:N #1 {
   % 左边是标签，右边是值。
   % 形如：
@@ -2129,6 +2157,9 @@
     \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
     % 在 value 两边加上空白，避免文本太靠边。
     \dim_add:Nn \l_@@_cover_value_max_width_dim { \l_@@_cover_auto_width_padding_dim * 2 }
+  }
+  \dim_compare:nNnT { \linewidth } < { \@@_cover_entry_rendered_width: } {
+    \msg_warning:nn {bithesis} {render-cover-entry/overfull-hbox}
   }
 
 
@@ -2188,11 +2219,11 @@
 % \begin{macro}{\@@_make_paper_back:}
 % 制作书脊。
 %    \begin{macrocode}
-% TODO: 使用统一方式警告
 \msg_new:nnn { bithesis } { paper-back/missing-degree-type-icon-file }
   {
     Failed~to~find~the~file~for~degree~type~in~the~paper~back:~#1.\\
-    Please~download~from~https://github.com/BITNP/BIThesis/blob/main/templates/graduate-thesis/ #1.
+    Please~download~from~https://github.com/BITNP/BIThesis/blob/main/templates/graduate-thesis/ #1.\\
+    \@@_warning_footer:n { paper-back/missing-degree-type-icon-file }
   }
 \cs_new:Npn \@@_make_paper_back: {
   \cleardoublepage
@@ -2757,8 +2788,7 @@
               {\c_@@_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
               {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
               {\c_@@_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
-              % co-supervisor 并非所有人都有，由最终作者自行处理
-              {\c_@@_label_co_supervisor_tl} {\@@_secret_info:N \l_@@_value_external_supervisor_tl},
+              {\c_@@_label_co_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_external_supervisor_tl {5}},
             }
 
             \@@_render_cover_entry:N \l_@@_input_clist
