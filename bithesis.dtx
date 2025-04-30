@@ -1161,7 +1161,7 @@
 %    \begin{macrocode}
 \cs_new:Npn \@@_font_path:
   {
-    \str_if_eq:NNTF { \l_@@_font_type_tl } { font }
+    \str_if_eq:VnTF \l_@@_font_type_tl { font }
       { }
       { Path = \l_@@_font_path_tl / , }
   }
