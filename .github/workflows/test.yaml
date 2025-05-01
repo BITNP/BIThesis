@@ -58,6 +58,9 @@ jobs:
             scheme-minimal
             xetex
             expltools
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find
       - run: make cls
       - run: make check
 
