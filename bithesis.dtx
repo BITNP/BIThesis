@@ -1623,10 +1623,6 @@
   % preamble 中也不会有影响。
   %
   % 支持标准tabular、tabular*环境和宏包tabularx、longtable。
-  %
-  % 为保证各种表格效果一致，要先手动重置setspace宏包漏掉的longtable；
-  \AtBeginEnvironment {longtable} {\singlespacing}
-  % 之后再统一设置。
   \clist_map_inline:nn
     {tabular, tabular*, tabularx, longtable}
     {
@@ -1774,7 +1770,7 @@
   \AtBeginDocument {
     % longtable 宏包有另外的机制，需专门调整
     \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{0.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpre}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
       \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
     }{}
   }
@@ -1801,7 +1797,7 @@
   \AtBeginDocument {
     % longtable 宏包有另外的机制，需专门调整
     \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{-0.8\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpre}{0.2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
       \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
     }{}
   }
@@ -1831,6 +1827,15 @@
 \ctex_at_end_package:nn {algorithm2e} {
   \SetAlCapFnt{\small}
   \SetAlCapNameFnt{\small}
+}
+%    \end{macrocode}
+%
+% 为保证各种表格、算法效果一致，要手动重置 setspace 宏包漏掉的情况，具体包括 longtable 和任意 H 型浮动体。
+% 由于浮动体的 H 很难检测，干脆统一设置。（H 未必由 float 宏包提供，例如 algorithm2e 的 H 就不是。）
+% 未使用 |\singlespacing|，因为它会在 |\setstretch{1}| 基础上空一行，添加多余空白。
+%    \begin{macrocode}
+\clist_map_inline:nn {longtable, table, algorithm} {
+  \AtBeginEnvironment {#1} { \setstretch{1} }
 }
 %    \end{macrocode}
 %
