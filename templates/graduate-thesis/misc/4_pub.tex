@@ -3,8 +3,9 @@
 % This file has no copyright assigned and is placed in the Public Domain.
 %%
 
-% 1. 在 `./reference/pub.bib` 中添加数据。
-% 2. 在下方 `\addpubs` 添加该文献（参考下方示例）。
+% ==== 攻读学位期间发表论文与研究成果清单 ====
+% 1. 在 `../reference/pub.bib` 中添加数据。
+% 2. 在本文件下方 `\addpubs` 添加该文献（参考下方示例）。
 
 % **注意：如果发现渲染出来的文献编号不正确，请同时使用以下两个方式解决：**
 % 1. 请清除缓存重新编译，比如`latexmk -gg`，详见 https://bithesis.bitnp.net/faq/clean.html 。
@@ -13,7 +14,7 @@
 \begin{publications}
 
   % **默认情况下，这里的内容将按照学校要求，以发表时间排序。**
-  % - 如果想要按照引用顺序排序，可以开启 `publications/sorting` 选项。
+  % - 如果想要按照引用顺序排序，可在`main.tex`设置`publications/sorting = false`。
   % - 如果想要微调，详见 https://bithesis.bitnp.net/faq/bib-sort.html#sortkey 。
   % 更多信息请参考「bithesis.pdf」手册。
   \addpubs{myCiteKey,myCiteKey2,dummy:1,dummy:2}

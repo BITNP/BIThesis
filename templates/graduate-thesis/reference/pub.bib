@@ -5,22 +5,22 @@
 
 % ==== 攻读学位期间发表论文与研究成果清单 ====
 % 以下内容存放个人的攻读学位期间发表论文与研究成果清单中的文献。
-% 详细用法请参考 `./misc/pub.tex` 中的注释。
+% 请先参考`../misc/pub.tex`中的注释。
 
-% 以下语句 `author+an = {1:myself="\Author"}` 用于指定论文作者的位置。
-% 其中，
+% 字段`author+an = {…}`标注论文作者的位置，可使用以下网页生成代码。
+% https://bithesis.bitnp.net/faq/pub-author-an.html
+%
+% 例如`author+an = {1:myself="\Author"}`表示：
 % - `1` 表示论文作者的位置，即论文作者的位置是第 1 个。
 % - `myself` 为固定标记不需要修改
 % - `\Author` 是一个 LaTeX 命令，会替换为作者的中文名，并在盲审模式下默认替换为「第一作者」。
-
+%
 % 比如，若论文作者为「李四、张三、王五」，则应该写成：
 % `author+an = {2:myself="\Author[2]"}`
 % 再比如，若论文作者为「李四、张三、王五、赵六」（你是共同二作），则应该写成：
 % `author+an = {2:myself="\Author[][][共同二作]"}`
-% **\Author 的具体用法请参考手册**。
-% https://bithesis.bitnp.net/faq/bib-author.html
 
-% `annotation = {}` 一句用于指定条目的补充内容。
+% 字段`annotation = {…}`指定条目的补充内容。
 
 % **注意：如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
 % 请将条目分别添加进入 main.bib 与 pub.bib 文件中，并修改它们的key以避免重名；切勿重复使用。**
