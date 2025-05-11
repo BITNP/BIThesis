@@ -1919,13 +1919,17 @@ addTOC = (*<(true)|false>*)
   \end{itemize}
 \end{itemize}
 
+注意「第n作者」的n取决于 |\Author| 的参数——目前无法自动读取 |.bib| 文件中 |author+an| 字段标注的位置。
+
 使用示例：
 \begin{itemize}
-  \item |\Author| 输出作者姓名（普通）或|第n作者|（盲审），具体编号取决于 |.bib| 文件中 |author+an| 字段标注的位置。
+  \item |\Author| 输出作者姓名（普通）或|第一作者|（盲审）。
   \item |\Author[][][第一发明人]| 输出作者姓名（普通）或|第一发明人|（盲审）。
   \item |\AuthorEn[2]| 输出作者姓名（普通）或|Second Author|（盲审）。
   \item |\Author[][][共同二作]| 输出作者姓名（普通）或|共同二作|（盲审）。
 \end{itemize}
+
+此外，可用\FAQ{pub-author-an}生成代码。
 \end{function}
 
 \begin{function}[label=env.acknowledgements]{acknowledgements}
