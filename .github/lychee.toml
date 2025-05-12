@@ -10,3 +10,7 @@ exclude = [
   '^https://www\.tablesgenerator\.com',
   'file://.*/bithesis\.pdf$', # Generated
 ]
+
+exclude_path = [
+  'CHANGELOG.md', # Generated
+]
