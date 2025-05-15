@@ -228,6 +228,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: handbooks
+          path: handbook
       - run: make pkg-only
       - name: Determine version
         id: version
