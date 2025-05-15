@@ -967,6 +967,15 @@
 }
 %    \end{macrocode}
 %
+% 定义 |bithesis/acknowledgements| 键值对类。
+%    \begin{macrocode}
+\keys_define:nn { bithesis / acknowledgements }
+{
+  showTitleInPeerReview .bool_set:N = \l__bithesis_acknowledgements_show_title_in_peer_review_bool,
+  showTitleInPeerReview .initial:n = {false},
+}
+%    \end{macrocode}
+%
 % \subsubsection{内部 l3keys 接口键值对定义}
 %
 % 除了 |\BITSetup|，有些用户接口也是键值对，在此通过 |bithesis-internal| 实现。
@@ -3400,7 +3409,8 @@
 %    \begin{macrocode}
 \NewDocumentEnvironment {acknowledgements} {+b}
   {
-    \begin{blindPeerReview}
+    % 同时设置 acknowledgements / showTitle = false 以及 blindPeerReview 才能跳过此章节生成。
+    \begin{blindPeerReview}[!\l__bithesis_acknowledgements_show_title_in_peer_review_bool]
       % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
       % 不知为何，需要手动重置 section 计数器。
       \setcounter{section}{0}
@@ -3411,9 +3421,16 @@
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
 
-      \chapter{\g_@@_const_heading_acknowledgements_tl}
-      \@@_if_graduate:TF {\fangsong}{}
-      #1
+      \chapter{\g__bithesis_const_heading_acknowledgements_tl}
+
+      \bool_if:nTF {\g__bithesis_blind_mode_bool && \l__bithesis_acknowledgements_show_title_in_peer_review_bool} {
+        % 盲审模式显示标题
+        % 不渲染内容
+      } {
+        % 普通模式
+        \__bithesis_if_graduate:TF {\fangsong}{}
+        #1
+      }
     \end{blindPeerReview}
   } {}
 %    \end{macrocode}
