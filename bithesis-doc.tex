@@ -1336,6 +1336,35 @@ minbibnames = (*(10)|\marg{正整数}*)
 
 \end{function}
 
+\subsubsection{致谢选项}
+
+\begin{function}{acknowledgements}
+\begin{bitsyntax}[emph={[1]acknowledgements}]
+acknowledgements = (*\marg{键值列表}*)
+acknowledgements/(*\meta{key}*) = (*\meta{value}*)
+\end{bitsyntax}
+
+ 该选项包含许多子项目，用于调整其他选项。具体内容见下：
+\end{function}
+
+\begin{function}{acknowledgements/showTitleInPeerReview}
+\begin{bitsyntax}[emph={[1]showTitleInPeerReview}]
+showTitleInPeerReview = (*(false)|true*)
+\end{bitsyntax}
+
+\textit{此选项默认值一般已满足要求，不需要用户自行修改。}
+
+在盲审模式下，是否显示致谢题目。
+
+\begin{itemize}
+  \item （默认）若设为 |false|，盲审模式下直接删除致谢。
+  \item 若设为 |true|，盲审模式下致谢题目，只是隐去致谢内容。
+\end{itemize}
+
+未启用盲审模式时，此选项无效果。
+
+\end{function}
+
 \subsubsection{其他配置}
 
 \begin{function}{misc}
