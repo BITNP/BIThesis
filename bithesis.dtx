@@ -607,6 +607,7 @@
   TOC .meta:nn = { bithesis / TOC } {#1},
   appendices .meta:nn = { bithesis / appendices } {#1},
   publications .meta:nn = { bithesis / publications } {#1},
+  acknowledgements .meta:nn = { bithesis / acknowledgements } {#1},
   const .meta:nn = { bithesis / const } {#1},
 }
 %    \end{macrocode}
@@ -943,7 +944,7 @@
 }
 %    \end{macrocode}
 %
-% 定义 |bithesis/appendices| 键值对类。
+% 定义 |bithesis/publications| 键值对类。
 %    \begin{macrocode}
 \keys_define:nn { bithesis / publications }
 {
@@ -964,6 +965,16 @@
   maxbibnames .initial:n = {10},
   minbibnames .int_set:N = \l_@@_publications_minbibnames_int,
   minbibnames .initial:n = {10},
+}
+%    \end{macrocode}
+%
+% 定义 |bithesis/acknowledgements| 键值对类。
+%    \begin{macrocode}
+\keys_define:nn { bithesis / acknowledgements }
+{
+  showTitleInPeerReview .bool_set:N = \l_@@_acknowledgements_show_title_in_peer_review_bool,
+  % 此处暂且填充默认值为`false`，待确定`\g_@@_thesis_type_int`后再根据论文类型覆盖默认值
+  showTitleInPeerReview .initial:n = {false},
 }
 %    \end{macrocode}
 %
@@ -1003,9 +1014,15 @@
 % 确定 |bithesis/option| 中的 |\g_@@_thesis_type_int| 后，根据论文类型自动覆盖某些选项的默认值。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
-  \keys_set:nn {bithesis} {cover/hideCoverInPeerReview = false}
+  \keys_set:nn {bithesis} {
+    cover / hideCoverInPeerReview = false,
+    acknowledgements / showTitleInPeerReview = true,
+  }
 } {
-  \keys_set:nn {bithesis} {cover/hideCoverInPeerReview = true}
+  \keys_set:nn {bithesis} {
+    cover / hideCoverInPeerReview = true,
+    acknowledgements / showTitleInPeerReview = false,
+  }
 }
 %    \end{macrocode}
 %
@@ -3400,7 +3417,9 @@
 %    \begin{macrocode}
 \NewDocumentEnvironment {acknowledgements} {+b}
   {
-    \begin{blindPeerReview}
+    % 有三种可能：完全显示、只显示标题、完全隐藏。
+    % 若同时设置 acknowledgements / showTitleInPeerReview = false 以及 blindPeerReview，则完全隐藏。
+    \begin{blindPeerReview}[!\l_@@_acknowledgements_show_title_in_peer_review_bool]
       % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
       % 不知为何，需要手动重置 section 计数器。
       \setcounter{section}{0}
@@ -3411,9 +3430,14 @@
         subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
       }
 
+      % 如果不是完全隐藏，就需显示标题
       \chapter{\g_@@_const_heading_acknowledgements_tl}
-      \@@_if_graduate:TF {\fangsong}{}
-      #1
+
+      % 如果不是盲审模式，就需渲染内容
+      \bool_if:NF \g_@@_blind_mode_bool {
+        \@@_if_graduate:T {\fangsong}
+        #1
+      }
     \end{blindPeerReview}
   } {}
 %    \end{macrocode}
