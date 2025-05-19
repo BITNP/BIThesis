@@ -3151,6 +3151,10 @@
         chapter/titleformat = {\textmd}
       }
     }
+    \@@_if_thesis_english:T {
+      % 英文模板中，ctex 不会自动调整中文摘要的首行缩进，需手动调整
+      \ctexset{ autoindent = 2 }
+    }
 
     % 摘要对页数很敏感，标题上下间距应有弹性；其中硕博模板的基础长度参考 Word 实作微调过。
     \ctexset{ chapter = {
