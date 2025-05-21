@@ -2825,7 +2825,7 @@
           \currentpdfbookmark{Cover}{pre-frontmatter:cover}
         }
         \begin{titlepage}
-          \vspace*{16mm}
+          \vspace*{16mm minus 16mm}
 
           \centering
 
@@ -2837,16 +2837,16 @@
 
           \zihao{1}\textbf{\ziju{0.12}\l_@@_style_headline_tl}\par
 
-          \vspace{18mm}
+          \vspace{0.5em plus 1fill}
 
           \bool_if:NT \l_@@_cover_add_titlezh_bool {
             \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
-            \vspace{16mm}
+            \vspace{0.5em plus 0.5fill minus 0.5em}
           }
 
           \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_en_tl}\par
 
-          \vspace{10mm}
+          \vspace{0.5em plus 1fill}
 
 
           \begin{spacing}{1.8}
@@ -2881,7 +2881,7 @@
             \end{center}
           \end{spacing}
 
-          \vspace*{\fill}
+          \vspace*{1.5em plus 1.5fill}
           \centering
           \zihao{3}\ziju{0.5}\songti{
             \tl_if_empty:NTF \l_@@_cover_date_tl {
