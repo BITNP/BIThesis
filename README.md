@@ -12,6 +12,7 @@
 [![Join on QQ Chat Group](https://img.shields.io/badge/QQ%E7%BE%A4-737548118-green)](https://jq.qq.com/?_wv=1027&k=KYDrmS5z)
 [![GitHub Checks](https://badgen.net/github/checks/BITNP/BIThesis)](https://github.com/BITNP/BIThesis/actions)
 [![CTAN Version](https://badgen.net/ctan/v/bithesis)](https://www.ctan.org/pkg/bithesis)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/BITNP/BIThesis)
 
 </div>
 
