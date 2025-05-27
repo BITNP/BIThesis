@@ -2200,6 +2200,10 @@
 %
 % \begin{macro}{\@@_make_graduate_cover:}
 % 制作研究生论文模板封面。
+%
+% 学校会发一个彩色封皮，上半部分带有“北京理工大学”“博士学位论文”“（专业型）”等通用标题。
+% 这里制造的封面包含文章信息，打印店会把它打印到通用封皮上。
+% 因此，这里生成的内容要避让封皮的通用内容，不能随意扩张。
 %    \begin{macrocode}
 \cs_new:Npn \@@_make_graduate_cover: {
   \cleardoublepage
@@ -2216,9 +2220,9 @@
       }
     }
     \centering
-    \vspace*{65mm}
+    \vspace*{90mm}
     {\heiti\zihao{-2} \l_@@_value_title_tl \par}
-    \vskip 60mm
+    \vskip 50mm
     {
       % 渲染信息。
       \clist_set:Nn \l_@@_input_clist {
@@ -2227,6 +2231,7 @@
         {学院：} {\l_@@_value_school_tl},
       }
       \linespread{2.0}\selectfont
+      \dim_set:Nn \l_@@_cover_auto_width_padding_dim {2em}
       % 黑体 小三
       \heiti \zihao{-3} \@@_render_cover_entry:N \l_@@_input_clist
     }
