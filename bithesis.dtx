@@ -1580,7 +1580,7 @@
 \@@_if_graduate:TF {
   % 对于研究生模板，定义各章标题为宋体四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{4}}
-  {\thecontentslabel\hspace{\ccwd}}{}
+  {\thecontentslabel\unskip\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
   % section 标题为宋体小四号。缩进为两个字符宽度。
   \titlecontents{section}[2\ccwd]{\songti \zihao{-4}}
@@ -1593,7 +1593,7 @@
 } {
   % 对于其他，定义各章标题为宋体小四号。
   \titlecontents{chapter}[0pt]{\songti \zihao{-4}}
-  {\thecontentslabel\hspace{\ccwd}}{}
+  {\thecontentslabel\unskip\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
   % section 标题为宋体小四号。
   \titlecontents{section}[1\ccwd]{\songti \zihao{-4}}
