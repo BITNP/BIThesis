@@ -169,8 +169,13 @@
 % 中文信息与英文信息
 \MakeTitle
 
-% 论文原创性声明和使用授权
+% 论文原创性声明和使用授权：盲审结束前无需改动
 \MakeOriginality
+% 后续添加签名时，可考虑先用 Word 制作再导出到 misc/originality.pdf，
+% 同时注释以上`\MakeOriginality`，解除注释以下三行代码。
+% \begin{blindPeerReview}
+%   \includepdf[pages=-]{misc/originality.pdf}\newpage
+% \end{blindPeerReview}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 前置部分
