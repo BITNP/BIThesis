@@ -1578,16 +1578,18 @@
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
 
 \@@_if_graduate:TF {
-  % 对于研究生模板，定义各章标题为宋体四号。
-  \titlecontents{chapter}[0pt]{\songti \zihao{4}}
+  % 对于研究生模板，《撰写规范》要求各级标题字号不同，且缩进 2n 字符。
+  % 为尽可能视觉对齐，缩进的字宽统一按四号 14pt，页码统一按小四。
+  % chapter 不缩进，标题四号，页码小四。行距为保持与其它项相同，设定为：原本 baselinestretch 1.56 × 小四 12pt / 四号 14pt = 1.33714 倍。
+  \titlecontents{chapter}[0pt]{\songti \zihao{4} \linespread{1.33714}\selectfont}
   {\thecontentslabel\unskip\hspace{\ccwd}}{}
-  {\hspace{.5em}\titlerule*{.}\contentspage}
-  % section 标题为宋体小四号。缩进为两个字符宽度。
-  \titlecontents{section}[2\ccwd]{\songti \zihao{-4}}
+  {\hspace{.5em}\zihao{-4}\titlerule*{.}\contentspage}
+  % section 缩进两字，全部小四。
+  \titlecontents{section}[14pt * 2]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
-  % subsection 标题为宋体小四号。缩进为四个字符宽度。
-  \titlecontents{subsection}[4\ccwd]{\songti \zihao{-4}}
+  % subsection 缩进四字，全部小四。
+  \titlecontents{subsection}[14pt * 4]{\songti \zihao{-4}}
   {\thecontentslabel\hspace{\ccwd}}{}
   {\hspace{.5em}\titlerule*{.}\contentspage}
 } {
