@@ -3,4 +3,5 @@ ignored_issues = [
   # TODO: Improve styles after *.dtx is directly supported. https://github.com/Witiko/expltools/issues/20
   "S103",  # line too long
   "S204",  # missing stylistic whitespaces
+  "W401",  # unused private function
 ]
