@@ -1,0 +1,39 @@
+% 以下两个表格各行的间距应完全一致
+
+\documentclass[type=bachelor]{bithesis}
+
+\usepackage{float}
+
+\begin{document}
+\frontmatter
+\mainmatter
+
+\begin{table}[h]
+  \centering
+  \caption{h}
+  \begin{tabular}{ccccc}
+    \toprule
+    U    & V    & X    & Y   & Z    \\
+    \midrule
+    A    & 1000  & 10000 & 500  & 50\%  \\
+    B   & 5500  & 5000  & 220  & 22\%  \\
+    C & 1100  & 1000  & 280  & 28\%  \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[H]
+  \centering
+  \caption{H}
+  \begin{tabular}{ccccc}
+    \toprule
+    U    & V    & X    & Y   & Z    \\
+    \midrule
+    A    & 1000  & 10000 & 500  & 50\%  \\
+    B   & 5500  & 5000  & 220  & 22\%  \\
+    C & 1100  & 1000  & 280  & 28\%  \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+\end{document}

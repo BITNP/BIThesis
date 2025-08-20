@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: teatimeguest/setup-texlive-action@v3
+      - uses: TeX-Live/setup-texlive-action@v3
         with:
           version: 2024
           package-file: |
@@ -39,6 +39,11 @@ jobs:
           mkdir -p ~/.fonts
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
+
+      - name: Update version if prerelease
+        if: ${{ github.event.release.prerelease }}
+        # 目前发布正式版时，会手动提升版本号
+        run: python scripts/update_version.py
 
       - run: make doc handbooks
 
@@ -93,6 +98,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: fd-find
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v4
         with:
@@ -220,6 +228,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: handbooks
+          path: handbook
       - run: make pkg-only
       - name: Determine version
         id: version
@@ -237,7 +246,7 @@ jobs:
             pkg: bithesis
             version: ${{ steps.version.outputs.number }} ${{ steps.version.outputs.date }}
             author: Feng Kaiyu
-            email: loveress01@outlook.com
+            email: bithesis@bitnp.net
             uploader: Feng Kaiyu
       - name: Report
         run: >

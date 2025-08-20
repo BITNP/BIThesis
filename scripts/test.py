@@ -6,8 +6,9 @@ Prerequisites:
 `% tlmgr install …` comments are respected.
 """
 
+from __future__ import annotations
+
 import re
-from collections.abc import Generator
 from dataclasses import dataclass
 from itertools import chain
 from os import environ
@@ -16,7 +17,11 @@ from shutil import which
 from subprocess import CalledProcessError, run
 from sys import stderr
 from time import perf_counter
-from typing import Any
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
+    from typing import Any, Callable, Self
 
 ROOT_DIR = Path(__file__).parent.parent
 assert ROOT_DIR.exists()
@@ -72,6 +77,9 @@ class TestCase:
     args: list[str]
     env: dict[str, str] | None = None
 
+    pre_hooks: list[Callable[[Self]]] | None = None
+    post_hooks: list[Callable[[Self]]] | None = None
+
     def __init__(
         self,
         icon: str,
@@ -81,6 +89,8 @@ class TestCase:
         name: str | None = None,
         args: list[str] = ["latexmk", "-g"],
         env: dict[str, str] | None = None,
+        pre: list[Callable[[Self]]] | None = None,
+        post: list[Callable[[Self]]] | None = None,
     ) -> None:
         assert directory.exists()
         self.icon = icon
@@ -88,55 +98,21 @@ class TestCase:
         self.name = name or directory.name
         self.args = args
         self.env = env
+        self.pre_hooks = pre
+        self.post_hooks = post
 
-    def install_deps(self) -> CalledProcessError | None:
-        """Install dependencies with TeX Live package manager."""
-        try:
-            result = run(
-                [
-                    "rg",
-                    "% tlmgr install (.+)$",
-                    self.directory,
-                    "--only-matching",
-                    "--no-filename",
-                    "--replace=$1",
-                    "--type=tex",
-                ],
-                check=False,  # rg exits with 1 if no match
-                capture_output=True,
-                text=True,
-            )
-        except CalledProcessError as error:
-            log(f"❌{self.icon} 未能检查 {self.name} 是否需补充安装依赖：{error}")
-            return error
-
-        packages = list(
-            chain.from_iterable(
-                args.split() for args in result.stdout.strip().splitlines()
-            )
-        )
-        if len(packages) == 0:
-            print(f"⚪{self.icon} 无需为 {self.name} 补充装依赖。", file=stderr)
-        else:
-            print(
-                f"📥{self.icon} 为 `{self.name}` 而从 TeX Live 安装 {', '.join(packages)}……",
-                file=stderr,
-            )
-            try:
-                run([TLMGR, "install", *packages], check=True)
-            except CalledProcessError as error:
-                log(f"❌{self.icon} 未能安装 {self.name} 的依赖 {packages}：{error}")
-                return error
-
-    def execute(self) -> CalledProcessError | None:
+    def execute(
+        self,
+    ) -> CalledProcessError | None:
         """Execute the test case."""
         print(f"🟡 Compiling `{self}`", file=stderr)
 
-        try:
-            self.install_deps()
-        except CalledProcessError as error:
-            log(f"❌{self.icon} 安装依赖失败：{error}")
-            return error
+        for hook in self.pre_hooks or []:
+            try:
+                hook(self)
+            except CalledProcessError as error:
+                log(f"❌{self.icon} failed to run a pre hook: {hook}")
+                return error
 
         start = perf_counter()
         try:
@@ -160,14 +136,97 @@ class TestCase:
                     )
                 )
             return running_error
+        finally:
+            duration = perf_counter() - start
 
-        duration = perf_counter() - start
+            for hook in self.post_hooks or []:
+                try:
+                    hook(self)
+                except CalledProcessError as error:
+                    log(f"❌{self.icon} failed to run a post hook: {hook}")
+                    return error
+
         log(f"✅{self.icon} 可正常编译 {self.name}：⌛ {duration:.1f} 秒。")
+
+
+def install_deps(test: TestCase) -> CalledProcessError | None:
+    """Install dependencies with TeX Live package manager."""
+    try:
+        result = run(
+            [
+                "rg",
+                "% tlmgr install (.+)$",
+                test.directory,
+                "--only-matching",
+                "--no-filename",
+                "--replace=$1",
+                "--type=tex",
+            ],
+            check=False,  # rg exits with 1 if no match
+            capture_output=True,
+            text=True,
+        )
+    except CalledProcessError as error:
+        log(f"❌{test.icon} 未能检查 {test.name} 是否需补装依赖：{error}")
+        return error
+
+    packages = list(
+        chain.from_iterable(args.split() for args in result.stdout.strip().splitlines())
+    )
+    if len(packages) == 0:
+        print(f"⚪{test.icon} 无需为 {test.name} 补装依赖。", file=stderr)
+    else:
+        print(
+            f"📥{test.icon} 为 `{test.name}` 而从 TeX Live 安装 {', '.join(packages)}……",
+            file=stderr,
+        )
+        try:
+            run([TLMGR, "install", *packages], check=True)
+        except CalledProcessError as error:
+            log(f"❌{test.icon} 未能安装 {test.name} 的依赖 {packages}：{error}")
+            return error
+
+
+def enable_blind_peer_review(test: TestCase) -> CalledProcessError | None:
+    """启用盲审模式"""
+    main = test.directory / "main.tex"
+    main.write_text(
+        re.sub(
+            r"^(\\documentclass\[.+)(\]\{bithesis\})$",
+            r"\1, blindPeerReview=true\2",
+            main.read_text(encoding="utf-8"),
+            count=1,
+            flags=re.MULTILINE,
+        ),
+        encoding="utf-8",
+    )
+
+
+def revert_blind_peer_review(test: TestCase) -> CalledProcessError | None:
+    """取消设置盲审模式"""
+    main = test.directory / "main.tex"
+    main.write_text(
+        re.sub(
+            r"^(\\documentclass\[.+), blindPeerReview=true(\]\{bithesis\})$",
+            r"\1\2",
+            main.read_text(encoding="utf-8"),
+            count=1,
+            flags=re.MULTILINE,
+        ),
+        encoding="utf-8",
+    )
 
 
 TESTS = [
     *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
-    *(TestCase("🧪", d) for d in TEST_DIR.iterdir() if d.is_dir()),
+    *(
+        TestCase(
+            "📁🎩", d, pre=[enable_blind_peer_review], post=[revert_blind_peer_review]
+        )
+        for d in SCAFFOLD_DIR.iterdir()
+        if d.is_dir() and "thesis" in d.stem
+    ),
+    *(TestCase("🧪", d, pre=[install_deps]) for d in TEST_DIR.iterdir() if d.is_dir()),
     *(
         [
             TestCase("📖", ROOT_DIR / "handbook", name="undergraduate-handbook"),

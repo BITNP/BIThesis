@@ -25,6 +25,7 @@ biblatex-gb7714-2015
 
 # collection-latexextra
 datetime2
+datetime2-english # for datetime2 en-US
 enumitem
 fmtcount
 multirow

@@ -2,9 +2,10 @@
 
 # The `bithesis` Class
 
-$\LaTeX$ thesis template for Beijing Institute of Technology.
+$\LaTeX$ thesis template for [Beijing Institute of Technology (BIT)](https://bit.edu.cn).
 
-The current maintainer of this project is [Feng Kaiyu](https://github.com/fky2015).
+This project is maintained by [BITNP (Net Pioneer Association of BIT)](https://bitnp.net), the de facto TUG at BIT.
+Maintainers are listed on [the BIThesis website](https://bithesis.bitnp.net/guide/acknowledgements.html).
 
 [![BIThesis](./assets/bithesis_badge_solid.svg)](https://bithesis.bitnp.net/)
 [![Latexmk](https://badgen.net/badge/compiler/latexmk/blue)](https://mg.readthedocs.io/latexmk.html)

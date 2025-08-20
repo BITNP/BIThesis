@@ -11,6 +11,73 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.5] - 2025-05-15
+
+### <!-- 0 -->🚀 Features
+
+- 给摘要页竖直间距增加弹性，允许写更多内容 ([15c9e32](https://github.com/BITNP/BIThesis/commit/15c9e32f1766810b2114442485c169b551106e66)) by @YDX-2147483647 in [#647](https://github.com/BITNP/BIThesis/pull/647)
+- 允许用 lualatex 编译 ([43cbc14](https://github.com/BITNP/BIThesis/commit/43cbc14f8b3f60c9d26e7004db171d3de17de29e)) by @YDX-2147483647 in [#653](https://github.com/BITNP/BIThesis/pull/653)
+- 渲染题名页时若发现行溢出，发出警告并提示换行 ([2869f29](https://github.com/BITNP/BIThesis/commit/2869f2968249bf86d9ab0137bdc40edc15477d89)) by @YDX-2147483647 in [#650](https://github.com/BITNP/BIThesis/pull/650)
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- 汉化 algorithms 和 algorithm2e 包，并更正字号 ([76579b9](https://github.com/BITNP/BIThesis/commit/76579b9cff54fd08495feb0df50dbfed9c47cf2b)) by @YDX-2147483647
+- TeX Live 2022/2023 或更早版本无法发出警告 ([bdfc3cc](https://github.com/BITNP/BIThesis/commit/bdfc3cce8d88362392af7624b1326bad8b42212b)) by @YDX-2147483647 in [#636](https://github.com/BITNP/BIThesis/pull/636)
+- 限制盲审模式题名页`***`长度，以防行溢出 ([952f223](https://github.com/BITNP/BIThesis/commit/952f223be334226eed642a178004d6cac2b1e4d4)) by @YDX-2147483647
+- *(GT)* 英文题名页宽度不应受前面中文影响 ([ef775e9](https://github.com/BITNP/BIThesis/commit/ef775e99be260f93a0e02a6208d6f835473018a4)) by @YDX-2147483647
+- `H`与`htbp`型浮动体（表格、算法）内的行间距应当相同 ([66b220b](https://github.com/BITNP/BIThesis/commit/66b220b0a89903e5c496cc628378b4fe1e476a94)) by @YDX-2147483647
+
+### <!-- 2 -->🚜 Refactor
+
+- *(license)* Release graduate thesis template to public domain ([a959e15](https://github.com/BITNP/BIThesis/commit/a959e15e50933665cb4161b22eff955dd6042791)) by @everything411
+- *(license)* Release experiment report template to public domain ([839716d](https://github.com/BITNP/BIThesis/commit/839716d188166b90ca5cd43f9f3745bb57eb3f0e)) by @everything411
+- *(license)* Release bachelor paper translation template to public domain ([4b4ea2f](https://github.com/BITNP/BIThesis/commit/4b4ea2f1d0ecd7e9c920de6611cdbd8b99de5e79)) by @everything411
+- *(license)* Release presentation template to public domain ([2e2eac5](https://github.com/BITNP/BIThesis/commit/2e2eac572fa5a18987c972c0e6db57f551aa8788)) by @everything411
+- *(license)* Release reading report template to public domain ([b3e1d8d](https://github.com/BITNP/BIThesis/commit/b3e1d8d8ec38856dfc142419bdb088a1f4b6be20)) by @everything411
+- *(license)* Release undergraduate thesis template to public domain ([687fc47](https://github.com/BITNP/BIThesis/commit/687fc470f1636226f64787176c4c0150bc058d30)) by @everything411
+- *(license)* Release English undergraduate thesis template to public domain ([e4abb2b](https://github.com/BITNP/BIThesis/commit/e4abb2bb66a561f6335ee3801d2a4424870d900c)) by @everything411
+
+### <!-- 3 -->📚 Documentation
+
+- *(GT)* 更新`pub.tex`中的注释 ([7db4024](https://github.com/BITNP/BIThesis/commit/7db4024fe3db02da58c9b756dc3438d403adf2c8)) by @YDX-2147483647
+- 定义`\FAQ{bib-sort}[sortkey]` ([8e9f6d2](https://github.com/BITNP/BIThesis/commit/8e9f6d284185cedc8dde146c6f660cca7a94427f)) by @YDX-2147483647
+- 补充 FAQ 链接，标注有些功能不限于导言区 ([01e6f67](https://github.com/BITNP/BIThesis/commit/01e6f6727267b8d7cf0ca96d9c3deb8594959d1e)) by @YDX-2147483647
+- 重整 README ([7319884](https://github.com/BITNP/BIThesis/commit/73198849011769ffdcf8e0851a066a780c01315b)) by @YDX-2147483647 in [#652](https://github.com/BITNP/BIThesis/pull/652)
+- 更新`pub.bib`相关文档和注释 ([445c114](https://github.com/BITNP/BIThesis/commit/445c114fe0116f680c62889785cecf615e1ab4dd)) by @YDX-2147483647 in [#656](https://github.com/BITNP/BIThesis/pull/656)
+
+### <!-- 5 -->🎨 Styling
+
+- Fix E300 unexpected function call argument ([c5ecb71](https://github.com/BITNP/BIThesis/commit/c5ecb71335e3a547f6091ba683910a4adb746022)) by @YDX-2147483647
+- Fix W302 unbraced n-type function call argument ([dcf34bb](https://github.com/BITNP/BIThesis/commit/dcf34bb4e0b50ec716d313cf68e8e04cd23a274e)) by @YDX-2147483647
+
+### <!-- 6 -->🧪 Testing
+
+- 默认测试所有文件夹 ([1c6fbf4](https://github.com/BITNP/BIThesis/commit/1c6fbf4af92554d6e7547762fb217196a8ea35f4)) by @YDX-2147483647
+- 测试 TeX Live 2021–2025，其中仅 2024–2025 测试编译文档 ([3e4326b](https://github.com/BITNP/BIThesis/commit/3e4326bcb1225492ccf20728131c592d04e68f95)) by @YDX-2147483647
+- 支持补充安装依赖 ([bfdfc09](https://github.com/BITNP/BIThesis/commit/bfdfc0907aac59f50ed741b65afa9452197e0b46)) by @YDX-2147483647 in [#632](https://github.com/BITNP/BIThesis/pull/632)
+- 测试 l3msg 的警告功能 ([eccb4a2](https://github.com/BITNP/BIThesis/commit/eccb4a2454bb8dc88ed6a0f5645f9868c1274d22)) by @YDX-2147483647
+- Refactor out `install_deps` ([8f443c9](https://github.com/BITNP/BIThesis/commit/8f443c929829ecf63182f02ed1ba9cfcb54e4b6f)) by @YDX-2147483647
+- 验证盲审可以编译GT、UT、UTE ([df09d4b](https://github.com/BITNP/BIThesis/commit/df09d4b1dd5ac80f65dfcffb233bc73ec645f4f0)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- *(git-cliff)* 修正时区，更新配置 ([03ef745](https://github.com/BITNP/BIThesis/commit/03ef7453ea262c28e4eb791be42307732914b279)) by @YDX-2147483647 in [#630](https://github.com/BITNP/BIThesis/pull/630)
+- 合并`examples/`到`tests/` ([277d76f](https://github.com/BITNP/BIThesis/commit/277d76f775d8206f10ee976364450e54d3e5969f)) by @YDX-2147483647
+- Switch release CI from xu-cheng/texlive-action to teatimeguest/setup-texlive-action ([9a1201b](https://github.com/BITNP/BIThesis/commit/9a1201bc7f5c3fd692cf439f8bf00fcabfe22e38)) by @YDX-2147483647
+- 更新 TeX Live 包 ([44ce211](https://github.com/BITNP/BIThesis/commit/44ce2119de31b9722482f0b8f4e622a04de64a3d)) by @YDX-2147483647
+- 删除多余的`apt install make fontconfig` ([022c726](https://github.com/BITNP/BIThesis/commit/022c726cd34efaa2d52a0933106ff89cef6b1d17)) by @YDX-2147483647
+- 更新邮箱 ([b86b225](https://github.com/BITNP/BIThesis/commit/b86b2251e3c3fa4f9d9579a2b62a3f8fc240af8d)) by @YDX-2147483647
+- Fix typo ([2e1bddc](https://github.com/BITNP/BIThesis/commit/2e1bddcb4fc386eac75f7a00ca7aa6c034a6a4c8)) by @YDX-2147483647
+- 更新邮箱 webmaster → bithesis ([9573c8b](https://github.com/BITNP/BIThesis/commit/9573c8b9b7b940e3b96bc460cebebc5d3d9b7f34)) by @YDX-2147483647
+- 更新联系方式 ([6b4c0f2](https://github.com/BITNP/BIThesis/commit/6b4c0f29f290f45e872fbb23a77b92167a538c64)) by @YDX-2147483647 in [#633](https://github.com/BITNP/BIThesis/pull/633)
+- 设置测试版的版本号 ([b7cf5d6](https://github.com/BITNP/BIThesis/commit/b7cf5d65c5c093f44f91360a0d3d790c3b44a6c7)) by @YDX-2147483647 in [#637](https://github.com/BITNP/BIThesis/pull/637)
+- Fix `fd: command not found` ([4e312e8](https://github.com/BITNP/BIThesis/commit/4e312e8afc2a2510317a238ce4def96a72416d78)) by @YDX-2147483647 in [#638](https://github.com/BITNP/BIThesis/pull/638)
+- Some minor format fix ([c7f6e0e](https://github.com/BITNP/BIThesis/commit/c7f6e0efa3f7b793108582629c27c74d39beb135)) by @everything411 in [#643](https://github.com/BITNP/BIThesis/pull/643)
+- *(check-latex)* Fix command fd not found ([b81924e](https://github.com/BITNP/BIThesis/commit/b81924ea572f62845ef7432578edd850f9a506a8)) by @YDX-2147483647 in [#651](https://github.com/BITNP/BIThesis/pull/651)
+- *(check-links)* Ignore CHANGELOG ([181c0ce](https://github.com/BITNP/BIThesis/commit/181c0ce1aa715ae51aa6b8bbffad60a2718a7fcc)) by @YDX-2147483647
+- *(test)* Support merge queues ([ad31d18](https://github.com/BITNP/BIThesis/commit/ad31d186ea50ed553325d25558fd791c5cb6ae1a)) by @YDX-2147483647
+- Update version to 3.8.5 ([a1b1d01](https://github.com/BITNP/BIThesis/commit/a1b1d0136006c7ce85c54b0374665f43034abaf8)) by @YDX-2147483647
+
 ## [3.8.4] - 2025-04-18
 
 ### <!-- 0 -->🚀 Features

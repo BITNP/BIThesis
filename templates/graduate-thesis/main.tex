@@ -1,22 +1,10 @@
 %%
-% The BIThesis Template for Graduate Thesis
-%
-% Copyright 2020-2023 Yang Yating, BITNP
-%
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%   https://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-%
-% This work has the LPPL maintenance status `maintained'.
-%
-% The Current Maintainer of this work is Feng Kaiyu.
-%
+% BIThesis 研究生学位论文模板 The BIThesis Template for Graduate Thesis
+% This file has no copyright assigned and is placed in the Public Domain.
 % Compile with: xelatex -> biber -> xelatex -> xelatex
+%%
 
+% 请勿删除下面两行注释，以免影响编译。
 % !TeX program = xelatex
 % !BIB program = biber
 
@@ -26,10 +14,8 @@
 % 开启双面打印模式 twoside=true (如：[type=master,twoside=true]）
 %     在双面打印模式下，需要放在奇数页的页面后会自动插入一个空白页，以方便直接在打印机上“双面打印”。
 %
-% 在 Linux 和 macOS 系统下，由于版权问题，中文字体和 Windows 系统下的字体不同。
-% 如果想要获得与 Word 文档相同的效果，你有两个选择：
-% 1. 使用 Windows 系统编译最终的论文。
-% 2. 自己手动安装中易字库并添加选项：`\documentclass[...,ctex={fontset=windows}]{bithesis}`。
+% 在 Linux 和 macOS 系统下，LaTeX 发行版默认使用的中文字体和 Windows 系统下的字体不同。
+% 如果想要获得与 Word 文档相同的效果，请参阅在线帮助 https://bithesis.bitnp.net/faq/word-font.html
 %
 % **更多使用说明请参考 bithesis.pdf **
 
@@ -183,8 +169,13 @@
 % 中文信息与英文信息
 \MakeTitle
 
-% 论文原创性声明和使用授权
+% 论文原创性声明和使用授权：盲审结束前无需改动
 \MakeOriginality
+% 后续添加签名时，可考虑先用 Word 制作再导出到 misc/originality.pdf，
+% 同时注释以上`\MakeOriginality`，解除注释以下三行代码。
+% \begin{blindPeerReview}
+%   \includepdf[pages=-]{misc/originality.pdf}\newpage
+% \end{blindPeerReview}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 前置部分
