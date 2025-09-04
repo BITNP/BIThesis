@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: TeX-Live/setup-texlive-action@v3
         with:
           version: 2024
@@ -97,7 +97,7 @@ jobs:
             label: 本科·读书报告
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: taiki-e/install-action@v2
         with:
           tool: fd-find
@@ -141,7 +141,7 @@ jobs:
             label: 幻灯片
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Download *.cls
         uses: actions/download-artifact@v4
         with:
@@ -162,7 +162,7 @@ jobs:
       release_body: ${{ steps.git-cliff.outputs.content }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -176,7 +176,7 @@ jobs:
           OUTPUT: CHANGES.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v4
@@ -219,7 +219,7 @@ jobs:
     needs: build
     if: ${{ ! github.event.release.prerelease }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v4
         with:
@@ -260,7 +260,7 @@ jobs:
     if: ${{ ! github.event.release.prerelease }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
