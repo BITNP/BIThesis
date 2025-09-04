@@ -132,6 +132,13 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\l_@@_input_clist}
+% 定义渲染信息所用临时列表，每次使用前必须 |\clist_set|。
+%    \begin{macrocode}
+\clist_new:N \l_@@_input_clist
+%    \end{macrocode}
+% \end{variable}
+%
 % \subsubsection{辅助函数与常量}
 %
 % \begin{macro}[added=2023-05-06,updated=2023-07-04]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n}
@@ -280,14 +287,6 @@
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_thesis_type_clist
     { bachelor, bachelor_translation, bachelor_english, master, doctor}
-%    \end{macrocode}
-% \end{variable}
-%
-% \begin{variable}{\c_@@_publication_modes_clist}
-% 定义「攻读学位期间发表论文与研究成果清单」管理方式。
-%    \begin{macrocode}
-\clist_const:Nn \c_@@_publication_modes_clist
-    { biblatex, custom }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -643,6 +642,12 @@
 %
 % 定义 |bithesis/cover| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_cover_label_align_tl
+\dim_new:N \l_@@_cover_auto_width_padding_dim
+\dim_new:N \l_@@_cover_underline_offset_dim
+%
+% Declare keys
 \keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l_@@_cover_date_tl,
@@ -868,6 +873,10 @@
 %
 % 定义 |bithesis/style| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_style_head_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
@@ -948,15 +957,6 @@
 %    \begin{macrocode}
 \keys_define:nn { bithesis / publications }
 {
-  % mode .choice:,
-  % mode .value_required:n = true,
-  % mode .choices:Vn =
-  %   \c_@@_publication_modes_clist
-  %   {
-  %     \int_new:N \l_@@_publication_mode_int
-  %     \int_set:Nn \l_@@_publication_mode_int \l_keys_choice_int
-  %   },
-  % mode .initial:n = biblatex,
   sorting .bool_set:N = \l_@@_publications_sorting_bool,
   sorting .initial:n = {true},
   omit .bool_set:N = \l_@@_publications_omit_bool,
@@ -2365,7 +2365,7 @@
         \tl_if_empty:NT \l_@@_cover_delimiter_tl {
           \tl_set:Nn \l_@@_cover_delimiter_tl {\qquad}
         }
-        \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+        \dim_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
         % 如果不是自动计算宽度，且用户没有自定义宽度，
         % 则尝试提供一个默认宽度。
@@ -2428,7 +2428,7 @@
       }
 
       \tl_set:Nn \l_@@_cover_label_align_tl {l}
-      \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+      \dim_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
       % 如果不是自动计算宽度，且用户没有自定义宽度，
       % 则尝试提供一个默认宽度。
