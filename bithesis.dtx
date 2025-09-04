@@ -132,6 +132,13 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\l_@@_input_clist}
+% 定义渲染信息所用临时列表，每次使用前必须 |\clist_set|。
+%    \begin{macrocode}
+\clist_new:N \l_@@_input_clist
+%    \end{macrocode}
+% \end{variable}
+%
 % \subsubsection{辅助函数与常量}
 %
 % \begin{macro}[added=2023-05-06,updated=2023-07-04]{\@@_secret_info:nn,\@@_secret_info:N,\@@_secret_info:n}
@@ -635,6 +642,12 @@
 %
 % 定义 |bithesis/cover| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_cover_label_align_tl
+\dim_new:N \l_@@_cover_auto_width_padding_dim
+\dim_new:N \l_@@_cover_underline_offset_dim
+%
+% Declare keys
 \keys_define:nn { bithesis / cover }
   {
     date .tl_set:N = \l_@@_cover_date_tl,
@@ -860,6 +873,10 @@
 %
 % 定义 |bithesis/style| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_style_head_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
