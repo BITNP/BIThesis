@@ -2365,7 +2365,7 @@
         \tl_if_empty:NT \l_@@_cover_delimiter_tl {
           \tl_set:Nn \l_@@_cover_delimiter_tl {\qquad}
         }
-        \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+        \dim_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
         % 如果不是自动计算宽度，且用户没有自定义宽度，
         % 则尝试提供一个默认宽度。
@@ -2428,7 +2428,7 @@
       }
 
       \tl_set:Nn \l_@@_cover_label_align_tl {l}
-      \tl_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
+      \dim_set:Nn \l_@@_cover_underline_offset_dim {-5pt}
 
       % 如果不是自动计算宽度，且用户没有自定义宽度，
       % 则尝试提供一个默认宽度。
