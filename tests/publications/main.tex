@@ -20,30 +20,33 @@
 
 \begin{document}
 
+% Test traditional approach with addpubs
 \begin{publications}
   \addpubs{a1,a2,a3,a4}
-
-  % 主要针对硕士生
   \printbibliography[heading=none,category=mypub,resetnumbers=true,keyword=a]
 \end{publications}
 
-\begin{publications}
-  \addpubs{b1,b2,b3,b4}
+% Test new refsection approach
+\begin{refsection}[pub.bib]
+  \begin{publications}
+    % 使用 \nocite{*} 自动包含所有条目，无需手动 \addpubs
+    \nocite{*}
+    
+    % Test filtering with keywords to match previous behavior 
+    如果想要分为多个列表，可以使用以下的命令。
+    主要针对博士生。
+    \pubsection{文章}
 
-  如果想要分为多个列表，可以使用以下的命令。
-  主要针对博士生。
-  \pubsection{文章}
+    \printbibliography[heading=none,type=article,resetnumbers=true,notkeyword=a]{}
 
-  \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true,notkeyword=a]{}
+    \pubsection{一些书}
 
-  \pubsection{一些书}
+    \printbibliography[heading=none,type=book,resetnumbers=true,notkeyword=dummy,notkeyword=a]{}
 
-  \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy,notkeyword=a]{}
+    \pubsection{另一些书}
 
-  \pubsection{另一些书}
-
-  \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true,notkeyword=a]{}
-
-\end{publications}
+    \printbibliography[heading=none,type=book,keyword=dummy,resetnumbers=true,notkeyword=a]{}
+  \end{publications}
+\end{refsection}
 
 \end{document}
