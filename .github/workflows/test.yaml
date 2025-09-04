@@ -18,7 +18,7 @@ jobs:
         tl-version: [2021, 2022, 2023, 2024, 2025]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: TeX-Live/setup-texlive-action@v3
         with:
           version: ${{ matrix.tl-version }}
@@ -53,7 +53,7 @@ jobs:
   check-latex:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: TeX-Live/setup-texlive-action@v3
         with:
           packages: |
@@ -69,14 +69,14 @@ jobs:
   check_typos:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Check spelling of bithesis.dtx
         uses: crate-ci/typos@master
 
   check-links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Restore the cache
         uses: actions/cache@v4
         with:
@@ -95,7 +95,7 @@ jobs:
   check-python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: pipx install ruff
       - name: Ruff check
         run: |
