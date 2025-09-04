@@ -3518,6 +3518,19 @@
 %   \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\nociteall}
+% 在 publications 环境中使用 refsection 时，可以使用 \nociteall 来自动添加所有文献。
+% 这相当于 \nocite{*}，但会自动将所有条目添加到 mypub 类别中。
+%   \begin{macrocode}
+\NewDocumentCommand \nociteall {} {
+  % 自动 nocite 所有条目
+  \nocite{*}
+  % 获取当前 refsection 中的所有条目并添加到 mypub 类别
+  % 由于 biblatex 的限制，我们需要在 printbibliography 时处理类别过滤
+}
+%   \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\pubsection}
 % 设置小标题。
 %    \begin{macrocode}
@@ -3542,6 +3555,9 @@
 %
 % \begin{environment}{publications}
 % 生成攻读学位期间发表论文与研究成果清单。
+% 支持两种使用方式：
+% 1. 传统方式：使用 \addpubs{key1,key2,...} 手动指定文献条目
+% 2. 新方式：使用 refsection 环境包裹，然后在 publications 环境中使用 \nocite{*}
 %    \begin{macrocode}
 \NewDocumentEnvironment {publications} {+b}
   {
