@@ -1148,7 +1148,7 @@
 % 首先计算了相应的偏移量。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
-  \int_set:Nn \g_@@_head_zihao_int {5}
+  \int_gset:Nn \g_@@_head_zihao_int {5}
   \geometry{
     a4paper,
     left=2.7cm,
@@ -1162,7 +1162,7 @@
     footskip = 2.5cm + 7bp - 1.8cm,
   }
 } {
-  \int_set:Nn \g_@@_head_zihao_int {4}
+  \int_gset:Nn \g_@@_head_zihao_int {4}
   \geometry{
     a4paper,
     left=3cm,
@@ -1826,7 +1826,7 @@
 % 定义图表标题中的分隔字符，同时调整字号。
 %    \begin{macrocode}
 \@@_if_graduate:TF {
-  \tl_set:Nn \g_@@_label_divide_char_tl {.}
+  \tl_gset:Nn \g_@@_label_divide_char_tl {.}
   % 研究生模板要求 "图序和图题间空1个中文字距"
   \captionsetup[figure]{font=small,labelsep=quad}
   % 研究生模板要求 "表序和题目间空1个中文字距"
@@ -1835,7 +1835,7 @@
   \captionsetup[lstlisting]{font=small,labelsep=quad}
   \captionsetup[algorithm]{font=small,labelsep=quad}
 } {
-  \tl_set:Nn \g_@@_label_divide_char_tl {-}
+  \tl_gset:Nn \g_@@_label_divide_char_tl {-}
   % 本科生模板无 caption 字距要求
   \captionsetup[figure]{font=small,labelsep=space}
   \captionsetup[table]{font=small,labelsep=space}
