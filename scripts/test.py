@@ -20,8 +20,8 @@ from time import perf_counter
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from collections.abc import Generator
-    from typing import Any, Callable, Self
+    from collections.abc import Callable, Generator
+    from typing import Any, Self
 
 ROOT_DIR = Path(__file__).parent.parent
 assert ROOT_DIR.exists()
