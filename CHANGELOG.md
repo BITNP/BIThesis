@@ -11,6 +11,50 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.6] - 2025-10-17
+
+### <!-- 0 -->🚀 Features
+
+- 支持盲审模式显示致谢标题 ([d1c19f4](https://github.com/BITNP/BIThesis/commit/d1c19f4ff9243fc0934f0b3fadc00f7e6b988ef8)) by @SinCerely023
+- 按论文类型自动设置`acknowledgements/showTitleInPeerReview`，并简化逻辑 ([c9f53e1](https://github.com/BITNP/BIThesis/commit/c9f53e121b57e8041aa7e7eaf9f5ff6a0acf4104)) by @YDX-2147483647
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- Annotation in bithesis.dtx ([3f00c99](https://github.com/BITNP/BIThesis/commit/3f00c99cab5ac667b65585303c311a51735b3687)) by @SinCerely023
+- 致谢选项键值对定义 ([d569a81](https://github.com/BITNP/BIThesis/commit/d569a8117c53da8fc3638fbfeae1e220f7e455cf)) by @SinCerely023
+- *(UTE)* Add the package datetime2-english ([af0f4d7](https://github.com/BITNP/BIThesis/commit/af0f4d79f46b1835a53c1c86e25c60ee5d17adaf)) by @YDX-2147483647
+- *(UTE)* 改正英文模板中文摘要的首行缩进 ([cbdcbb7](https://github.com/BITNP/BIThesis/commit/cbdcbb70a9b676ee223ec68aaabd0ae7a224d474)) by @YDX-2147483647
+- *(UTE)* 给题名页间距增加弹性，以容纳更多内容 ([c9c7bc3](https://github.com/BITNP/BIThesis/commit/c9c7bc3b75258557e57d7520cbc37f37ae3f3d5e)) by @YDX-2147483647
+- *(GT)* `\MakeCover`应避让封皮预置内容 ([906d2ef](https://github.com/BITNP/BIThesis/commit/906d2ef5e14ac9e9330221f5c4f2f78a244f948c)) by @YDX-2147483647
+- 目录中“第○章”与标题应只空一个字 ([038d3ee](https://github.com/BITNP/BIThesis/commit/038d3ee312f8218da7212925fd2c5afe8a64a845)) by @YDX-2147483647
+- *(GT)* 改进目录样式 ([0a61548](https://github.com/BITNP/BIThesis/commit/0a61548abac7c657bf568ee1903fa3c86c4fe074)) by @YDX-2147483647
+
+### <!-- 3 -->📚 Documentation
+
+- 盲审模式显示致谢标题 ([f39a294](https://github.com/BITNP/BIThesis/commit/f39a294bac3c4de128c40b0388946e715f8ebcff)) by @SinCerely023
+- *(UTE)* 从中文模板复制注释到英文模板 ([b1c1d09](https://github.com/BITNP/BIThesis/commit/b1c1d096f7db7d517f88c3ef60315f3736d99f97)) by @YDX-2147483647
+- Add DeepWiki Badge ([f689810](https://github.com/BITNP/BIThesis/commit/f68981003cf3ca0212acabfbdb01ee7c83b74ca3)) by @YDX-2147483647
+- *(GT)* 介绍如何加签名页 ([3786969](https://github.com/BITNP/BIThesis/commit/3786969859c812d7939ffa29afe4dca0b33fb589)) by @YDX-2147483647
+- 添加反馈问卷 ([b3ff9bb](https://github.com/BITNP/BIThesis/commit/b3ff9bb0e07b7b0514471ee6f9b71289c6f7c494)) by @YDX-2147483647
+
+### <!-- 5 -->🎨 Styling
+
+- Run `ruff check --fix` ([dc9c3aa](https://github.com/BITNP/BIThesis/commit/dc9c3aac21edaba4bee127a95de28a9e66e9f158)) by @YDX-2147483647
+- Fix E420 locally setting a global variable ([1738ed7](https://github.com/BITNP/BIThesis/commit/1738ed7625dd26459cdf5145d1a84c05982042ad)) by @YDX-2147483647
+- Fix explcheck warnings ([9f461ae](https://github.com/BITNP/BIThesis/commit/9f461ae14a9707b02c938c1ff0b0e187cd9c4ee4)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Fix `make pkg-only` ([f36d825](https://github.com/BITNP/BIThesis/commit/f36d82573081a993bbc70b85021838d0f8e2e190)) by @YDX-2147483647
+- Reroute setup-texlive-action ([2c1d029](https://github.com/BITNP/BIThesis/commit/2c1d0293526ec3ee2fdde1dd13d81498f12d74d9)) by @YDX-2147483647
+- Ignore W401 unused private function ([2d926ec](https://github.com/BITNP/BIThesis/commit/2d926ec3696d8ae92c3f54e1ab052b6ed5fb58fc)) by @YDX-2147483647
+- Fix T422 using a variable of an incompatible type: !(tl <= dim) ([f83ccc6](https://github.com/BITNP/BIThesis/commit/f83ccc60d38824f50bd7f0e06b137c9df859d1c4)) by @YDX-2147483647
+- Remove unused variables and constants ([2c02e80](https://github.com/BITNP/BIThesis/commit/2c02e800f3704fe73e31aa048aa5b86792fcc1b2)) by @YDX-2147483647
+- Add missing variable declarations ([40429ce](https://github.com/BITNP/BIThesis/commit/40429cec536144e3b6818eb22710956bea34fb1b)) by @YDX-2147483647
+- Update version to 3.8.6 ([dfab711](https://github.com/BITNP/BIThesis/commit/dfab711316dc5569eb86cd50e823aecf41ace309)) by @YDX-2147483647
+
+## New Contributors
+* @github-actions[bot] made their first contribution in [#659](https://github.com/BITNP/BIThesis/pull/659)
 ## [3.8.5] - 2025-05-15
 
 ### <!-- 0 -->🚀 Features
@@ -1493,7 +1537,7 @@ Acronyms:
 ## New Contributors
 * @fky2015 made their first contribution
 * @felinae98 made their first contribution
-* @shoopshoop made their first contribution
+* @jiangchenwo made their first contribution
 ## [1.0.2] - 2020-05-04
 
 ## New Contributors
