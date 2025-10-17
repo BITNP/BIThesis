@@ -643,7 +643,10 @@
 % 定义 |bithesis/cover| 键值对类。
 %    \begin{macrocode}
 % Declare variables used by keys
+\tl_new:N \l_@@_cover_delimiter_tl
 \tl_new:N \l_@@_cover_label_align_tl
+\dim_new:N \l_@@_cover_label_max_width_dim
+\dim_new:N \l_@@_cover_value_max_width_dim
 \dim_new:N \l_@@_cover_auto_width_padding_dim
 \dim_new:N \l_@@_cover_underline_offset_dim
 %
@@ -2271,7 +2274,7 @@
         \file_if_exist:nTF {\l_@@_icon_path_tl} {
           \includegraphics[width=1.5em]{\l_@@_icon_path_tl}
         } {
-          \msg_warning:nnV {bithesis} {paper-back/missing-degree-type-icon-file} {\l_@@_icon_path_tl}
+          \msg_warning:nnV {bithesis} {paper-back/missing-degree-type-icon-file} \l_@@_icon_path_tl
         }
       }
       \vspace{1em plus 1fill}
@@ -2602,7 +2605,7 @@
     \clearpage
     \bool_if:NT \g_@@_twoside_bool
       {
-        \int_if_odd:nF \c@page
+        \int_if_odd:nF {\c@page}
           { \hbox:n { } \thispagestyle { empty } \newpage }
       }
   }
@@ -2640,7 +2643,7 @@
     \bool_if:NTF \l_@@_cover_prefer_zh_bool {
       \int_set:Nn \l_@@_thesis_type_int {1}
     } {
-      \int_set:Nn \l_@@_thesis_type_int \g_@@_thesis_type_int
+      \int_set:Nn \l_@@_thesis_type_int {\g_@@_thesis_type_int}
     }
 
     \int_case:nn {\l_@@_thesis_type_int}
@@ -4286,6 +4289,9 @@
 %
 % 定义 |bitbeamer| 文档类的接口键值对。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_bit_framelogo_tl
+% Declare keys
 \keys_define:nn { bitbeamer }
   {
     titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
