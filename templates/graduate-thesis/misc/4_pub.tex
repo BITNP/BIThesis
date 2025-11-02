@@ -5,22 +5,34 @@
 
 % ==== 攻读学位期间发表论文与研究成果清单 ====
 % 1. 在 `../reference/pub.bib` 中添加数据。
-% 2. 在本文件下方 `\addpubs` 添加该文献（参考下方示例）。
+% 2. 有两种使用方式：
+%    方式一（传统方式）：在本文件下方 `\addpubs` 添加该文献（参考下方示例）。
+%    方式二（推荐）：使用 refsection 包裹，然后使用 \nocite{*} 自动包含所有文献。
 
 % **注意：如果发现渲染出来的文献编号不正确，请同时使用以下两个方式解决：**
 % 1. 请清除缓存重新编译，比如`latexmk -gg`，详见 https://bithesis.bitnp.net/faq/clean.html 。
 % 2. 请确保无编译错误。
 
-\begin{publications}
+% 方式一：传统方式
+% \begin{publications}
+%   % **默认情况下，这里的内容将按照学校要求，以发表时间排序。**
+%   % - 如果想要按照引用顺序排序，可在`main.tex`设置`publications/sorting = false`。
+%   % - 如果想要微调，详见 https://bithesis.bitnp.net/faq/bib-sort.html#sortkey 。
+%   % 更多信息请参考「bithesis.pdf」手册。
+%   \addpubs{myCiteKey,myCiteKey2,dummy:1,dummy:2}
+% 
+%   % 主要针对硕士生
+%   \printbibliography[heading=none,category=mypub,resetnumbers=true]
+% \end{publications}
 
-  % **默认情况下，这里的内容将按照学校要求，以发表时间排序。**
-  % - 如果想要按照引用顺序排序，可在`main.tex`设置`publications/sorting = false`。
-  % - 如果想要微调，详见 https://bithesis.bitnp.net/faq/bib-sort.html#sortkey 。
-  % 更多信息请参考「bithesis.pdf」手册。
-  \addpubs{myCiteKey,myCiteKey2,dummy:1,dummy:2}
-
-  % 主要针对硕士生
-  \printbibliography[heading=none,category=mypub,resetnumbers=true]
+% 方式二：使用 refsection（推荐）
+\begin{refsection}[../reference/pub.bib]
+  \begin{publications}
+    % 使用 \nocite{*} 自动包含所有条目，无需手动 \addpubs
+    \nocite{*}
+    
+    % 主要针对硕士生
+    \printbibliography[heading=none,resetnumbers=true]
 
   % 如果想要分为多个列表，可以使用以下的命令。
   % 主要针对博士生。
@@ -50,4 +62,5 @@
   %   \item 于《新青年》发表论文一篇，本人第一作者。
   %   \item 于\textit{La Jeunesse}发表论文一篇，导师第一作者，本人第二作者。
   % \end{enumerate}
-\end{publications}
+  \end{publications}
+\end{refsection}
