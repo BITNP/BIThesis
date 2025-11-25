@@ -5,3 +5,7 @@ ignored_issues = [
   "S204",  # missing stylistic whitespaces
   "W401",  # unused private function
 ]
+
+# Support TeX Live from 2021 to 2025
+l3obsolete_max_deprecated_date = "2021-03-01"
+l3prefixes_max_first_registered_date = "2021-03-01"
