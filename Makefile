@@ -52,7 +52,11 @@ clean-all: clean clean-dist FORCE_MAKE
 
 .PHONY: check
 check: cls FORCE_MAKE
-	explcheck $(if $(CI),--warnings-are-errors) ./*.cls ./dtx-style.sty $$(fd --extension tex)
+	explcheck $(if $(CI),--warnings-are-errors) ./*.cls ./dtx-style.sty $$(fd --extension tex --exclude bithesis-doc.tex)
+	explcheck $(if $(CI),--warnings-are-errors) --no-config-file bithesis-doc.tex
+# Templates are targeting TeX Live from 2021 to 2025, but docs are targeting the latest TeX Live.
+# Therefore, we check them separately.
+# Example: lt3luabridge introduced `\luabridge_now:n` on 2022-06-25, so it can be used in docs, but not templates.
 
 .PHONY: test
 test: copy FORCE_MAKE
