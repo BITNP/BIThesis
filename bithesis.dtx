@@ -807,7 +807,7 @@
     floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
     floatSeparation .initial:n = {0},
     algorithmSeparation .tl_set:N = \l_@@_misc_algorithm_separation_tl,
-    algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt},
+    algorithmSeparation .initial:n = {6pt plus 2pt minus 2pt},
     tabularRowSeparation .tl_set:N = \l_@@_misc_tabular_row_separation_tl,
     tabularRowSeparation .initial:n = {1},
   }
@@ -1803,15 +1803,16 @@
   }
 
   % 调整“正文 🡘 表格 caption”距离
-  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
+  \captionsetup[table]{belowskip = 3bp}
 
   % 调整“图片 caption 🡘 正文”距离
   % 这一距离是 intextsep 与 belowcaptionskip 之和。
   % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
   % 计算下来，后者应设置为 14.0pt - 6bp 左右。
-  \captionsetup[figure]{belowskip = -12pt}
+  % 减少负间距，避免过于紧密 (原: -12pt)
+  \captionsetup[figure]{belowskip = -6pt}
   % 浮动体连续排列时，补偿以上负间距
-  \addtolength{\floatsep}{12pt}
+  \addtolength{\floatsep}{6pt}
 
   % 适配子图
   \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
