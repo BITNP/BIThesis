@@ -17,7 +17,7 @@
 \BITSetup{
   cover = {
     % 封面需要「北京理工大学」字样图片，如无必要请勿修改该项。
-    headerImage = images/header.png,
+    headerImage = images/bit_text.pdf,
     % 封面标题需要“华文细黑”，如无必要请勿修改该项。
     xiheiFont = STXIHEI.TTF,
     % 可用以下参数自定义封面日期。
@@ -92,9 +92,9 @@
 % 后续添加签名时，可考虑先用 Word 制作再覆盖 misc/1_originality.pdf。
 % 不过如无特殊需要，本部分的代码仍无需改动。
 \begin{blindPeerReview}
-  \includepdf{misc/1_originality.pdf}\newpage
+  % \includepdf{misc/1_originality.pdf}\newpage
+  \input{misc/1_originality.tex}
 \end{blindPeerReview}
-% \input{misc/1_originality.tex}
 
 % 前置内容定义
 \frontmatter

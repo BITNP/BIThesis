@@ -12,7 +12,7 @@
 *.cb2
 .*.lb
 *.cls
-*.pdf
+#*.pdf
 *.hd
 *.sty
 *.luabridge.lua
