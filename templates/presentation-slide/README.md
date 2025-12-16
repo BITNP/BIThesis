@@ -15,7 +15,7 @@
 ├── README.md
 ├── bithesis.pdf # bithesis 使用手册
 ├── images
-│   └── bit.png
+│   └── bit_logo.pdf
 ├── main.tex
 └── ref.bib
 ```

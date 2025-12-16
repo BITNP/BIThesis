@@ -27,7 +27,7 @@
 │   └── 2_chapter2.tex
 ├── images
 │   ├── bit_logo.png
-│   └── header.png
+│   └── header.pdf
 ├── main.pdf
 ├── main.tex
 └── misc

@@ -71,9 +71,20 @@ regression-test: copy
 copy-only:
 	fd . --exclude '$(SCAFFOLDDIR)/(lab-report|presentation-slide)' $(SCAFFOLDDIR) $(TESTDIR) \
 		--type=directory --max-depth=1 --exec cp {bithesis.cls,assets/latexmkrc}
+	fd . --exclude '$(SCAFFOLDDIR)/(lab-report|presentation-slide)' $(SCAFFOLDDIR) \
+		--type=directory --max-depth=1 --exec mkdir -p {}/images/
+	fd . --exclude '$(SCAFFOLDDIR)/(lab-report|presentation-slide)' $(SCAFFOLDDIR) \
+		--type=directory --max-depth=1 --exec cp assets/bit_text.pdf {}/images/header.pdf
+
 	cp {bithesis.cls,assets/latexmkrc} ./handbook
+
 	cp {bitreport.cls,assets/latexmkrc} $(SCAFFOLDDIR)/lab-report
+	cp assets/bit_logo_with_text.pdf $(SCAFFOLDDIR)/lab-report/assets/
+
 	cp {bitbeamer.cls,assets/latexmkrc} $(SCAFFOLDDIR)/presentation-slide
+	mkdir -p $(SCAFFOLDDIR)/presentation-slide/images/
+	cp assets/bit_logo.pdf $(SCAFFOLDDIR)/presentation-slide/images/
+
 	cp $(SCAFFOLDDIR)/graduate-thesis/misc/icon_{academic,professional}.jpg $(TESTDIR)/doctor-thesis/misc/
 
 .PHONY: copy
