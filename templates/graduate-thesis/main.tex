@@ -12,7 +12,11 @@
 % 博士论文模板 type=doctor
 % 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
 % 开启双面打印模式 twoside=true (如：[type=master,twoside=true]）
-%     在双面打印模式下，需要放在奇数页的页面后会自动插入一个空白页，以方便直接在打印机上“双面打印”。
+%   研函〔2018〕60号《撰写规范》要求：“论文稿件……双面打印，其中摘要之前部分使用单页打印。”这种效果有以下两种方法实现。
+%   - 保持 twoside=false，让打印店帮你操作
+%   - 设置 twoside=true，让 LaTeX 自动加若干空白页，然后统一双面打印
+%   二者价格差异可忽略不计——校内几家实体打印店（菜市场、国防科技园）都是双面每页￥0.1，很便宜。（截至2024年6月）
+%   此外，提交电子版时，一般请保持 twoside=false。
 %
 % 在 Linux 和 macOS 系统下，LaTeX 发行版默认使用的中文字体和 Windows 系统下的字体不同。
 % 如果想要获得与 Word 文档相同的效果，请参阅在线帮助 https://bithesis.bitnp.net/faq/word-font.html
@@ -86,7 +90,7 @@
     % crossResearch = true,
     % 特别类型——政府项目留学生（一般不用勾选）
     % internationalStudentUGP = true,
-    % 以上三个选项不勾选时将会隐藏显示。
+    % 若以上三种类型都不是，封面「学生类型」信息框会为美观而默认关闭。（2024年和研究生院确认过，信息框重要程度较低。）也可用 cover/showSpecialTypeBox 手动开启：https://bithesis.bitnp.net/faq/bitsetup.html#cover/showSpecialTypeBox=true
   },
   % 在目录页中不显示摘要和主要符号对照表的标题。
   TOC = {
@@ -172,9 +176,12 @@
 % 论文原创性声明和使用授权：盲审结束前无需改动
 \MakeOriginality
 % 后续添加签名时，可考虑先用 Word 制作再导出到 misc/originality.pdf，
-% 同时注释以上`\MakeOriginality`，解除注释以下三行代码。
+% 同时注释以上`\MakeOriginality`，解除注释以下几行代码。
 % \begin{blindPeerReview}
+%   \cleardoublepage
 %   \includepdf[pages=-]{misc/originality.pdf}\newpage
+%   % 以上“pages=-”表示插入所有页面。如果你开启了 twoside 双面打印模式，可修改这一参数，例如依次插入第一页、空白页、第二页、空白页：
+%   % \includepdf[pages={1, {}, 2, {}}]{misc/originality.pdf}\newpage
 % \end{blindPeerReview}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

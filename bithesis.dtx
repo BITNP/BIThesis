@@ -2501,6 +2501,7 @@
         \ctexset{
           chapter = {
             titleformat = {\heiti\zihao{-2}},
+            afterskip = 30pt,
           }
         }
         \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
@@ -2511,8 +2512,10 @@
         }
       \end{center}
 
-      % 本部分字号为三号。
+      % 本部分字号为三号，且 Word 行距为 28 pt（≈ 1.46 × 1.2 基础行距 × 16 pt 三号字）。
       \zihao{3}
+      \linespread{1.46}\selectfont
+     
       \qquad\c_@@_graduate_label_originality_clause_tl
       \vspace{3\baselineskip}
 
@@ -2520,7 +2523,7 @@
         \c_@@_graduate_label_originality_author_signature_tl\par
       \end{flushright}
 
-      \vspace{3\baselineskip}
+      \cleardoublepage
 
       % 使用授权声明部分。
       \begin{center}
@@ -2528,6 +2531,7 @@
         \ctexset{
           chapter = {
             titleformat = {\heiti\zihao{-2}},
+            afterskip = 30pt,
           }
         }
         \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
@@ -2540,7 +2544,7 @@
 
       \qquad\c_@@_graduate_label_authorization_clause_tl
 
-      \vspace*{15mm}
+      \vspace{3\baselineskip}
 
       \begin{flushright}
         \begin{spacing}{1.65}
@@ -3030,6 +3034,7 @@
         {5} {\@@_graduate_originality:}
       }
     % 单独成页
+    % 本科教务部声明单面、双面打印均可；而硕博虽要求此处单面打印，但已由 graduate_originality 实现。因此，两种情况下这里都不必 cleardoublepage。
     \clearpage
     \end{blindPeerReview}
     \group_end:
