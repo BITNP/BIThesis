@@ -48,7 +48,7 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
-      - run: ${{ matrix.tl-version < 2024 && 'TEST_SKIP_DOC="1"' || '' }} make test
+      - run: ${{ matrix.tl-version < 2025 && 'TEST_SKIP_DOC="1"' || '' }} make test
 
   check-latex:
     runs-on: ubuntu-latest

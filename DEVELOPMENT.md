@@ -65,6 +65,28 @@
 >   相关功能的文档位于 [DocStrip](https://texdoc.org/serve/docstrip/0) 和 [l3doc](https://texdoc.org/serve/l3doc/0)。
 >   </details>
 
+## TeX Live 版本
+
+- 模板：需要保证自 2021 起的 TeX Live 都能使用
+
+- 文档：只需保证最新版 TeX Live（当前为 2025）能编译
+
+建议开发时使用最新版 TeX Live，通过 pull request 的 CI 保证支持旧版。
+
+<details><summary>建议开发使用最新版 TeX Live 的原因</summary>
+
+- 目前遇到的兼容性问题主要是不兼容新版，而非不兼容旧版。
+
+  最近 LaTeX 团队为了改进 PDF 可访问性，修改很多宏的定义，导致不兼容。
+
+- 目前文档只能使用最新版 TeX Live 编译。
+
+  - `bithesis-doc.tex`使用了 [lt3luabridge](https://www.ctan.org/pkg/lt3luabridge) 提供的`\luabridge_now:n`，该命令在 2022-06-26 才引入。
+  - `handbook/*`使用了 [cleveref](https://www.ctan.org/pkg/cleveref)，该包[在特定版本的 TeX Live 2024 与 ctex 不兼容](https://github.com/CTeX-org/ctex-kit/issues/725)。
+  - TeX Live 2023 或更早时，某些包声明的依赖不全，导致单纯安装[`tl_packages`](./.github/tl_packages)列出的包不够，难以测试。
+
+</details>
+
 ## 参考资料
 
 - 本项目采用 LaTeX3，可以参考 [LaTeX3: Programming in LaTeX with Ease](https://www.alanshawn.com/tech/2020/10/04/latex3-tutorial.html)、[expl3 的文档](https://www.latex-project.org/help/documentation/)等。
