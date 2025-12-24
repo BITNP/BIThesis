@@ -1858,35 +1858,46 @@ addTOC = (*<(true)|false>*)
 \end{function}
 
 \begin{function}[label=env.publications]{publications}
-\begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography}]
-文献较少的时候。
+\begin{bitsyntax}[emph={[1]publications,addpubs,printbibliography,refsection,nocite}]
+传统方式（手动指定文献）：
 \begin{publications}
   \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
 
   \printbibliography[heading=none,category=mypub,resetnumbers=true]
 \end{publications}
 
-文献较多，需要分类的时候。
-\begin{publications}
-  \addpubs{\meta{引用内容的key},\meta{引用内容的key2}}
-  \pubsection{文章}
+推荐方式（使用 refsection 和 \nocite{*}）：
+\begin{refsection}[\meta{pub.bib文件路径}]
+  \begin{publications}
+    \nocite{*}
+    \printbibliography[heading=none,resetnumbers=true]
+  \end{publications}
+\end{refsection}
 
-  \printbibliography[heading=none,type=article,category=mypub,resetnumbers=true]{}
+文献较多，需要分类的时候：
+\begin{refsection}[\meta{pub.bib文件路径}]
+  \begin{publications}
+    \nocite{*}
+    \pubsection{文章}
+    \printbibliography[heading=none,type=article,resetnumbers=true]{}
 
-  \pubsection{一些书}
+    \pubsection{一些书}
+    \printbibliography[heading=none,type=book,resetnumbers=true,notkeyword=dummy]{}
 
-  \printbibliography[heading=none,type=book,category=mypub,resetnumbers=true,notkeyword=dummy]{}
-
-  \pubsection{另一些书}
-
-  \printbibliography[heading=none,type=book,category=mypub,keyword=dummy,resetnumbers=true]{}
-\end{publications}
+    \pubsection{另一些书}
+    \printbibliography[heading=none,type=book,keyword=dummy,resetnumbers=true]{}
+  \end{publications}
+\end{refsection}
 \end{bitsyntax}
 
-  攻读学位期间发表论文与研究成果清单。
+攻读学位期间发表论文与研究成果清单。
+
+BIThesis 从 v3.3.0 开始推荐使用 biblatex 的 |refsection| 环境配合 |\nocite{*}| 
+来替代手动使用 |\addpubs| 的方式。这样可以自动包含 pub.bib 中的所有条目，
+无需手动指定每个引用的 key，避免了 pub.bib 和 ref.bib 共存时可能出现的问题。
 \end{function}
 
-\begin{function}[added=2022-10-23]{\addpubs,\addpub}
+\begin{function}[added=2022-10-23, updated=2025-01-02]{\addpubs,\addpub}
 \begin{bitsyntax}[emph={[1]publications,addpubs,addpub}]
 \begin{publications}
   \addpub{\meta{单条引用内容的key}}
@@ -1894,8 +1905,12 @@ addTOC = (*<(true)|false>*)
 \end{publications}
 \end{bitsyntax}
 
-\textbf{请注意，如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
-请将条目分别添加进入两个 |.bib| 文件中，并修改它们的key以避免重名；切勿重复使用。}
+\textbf{请注意，从 v3.3.0 开始，推荐使用 refsection 配合 \nocite{*} 的方式，
+详见 publications 环境的说明。传统的 \addpubs 方式仍然支持，但不再推荐。}
+
+\textbf{如果你的参考文献同时出现在「攻读学位期间发表论文与研究成果清单」和「参考文献」中，
+使用新的 refsection 方式可以避免 pub.bib 和 ref.bib 共存的问题。
+传统方式下需要将条目分别添加进入两个 |.bib| 文件中，并修改它们的key以避免重名；切勿重复使用。}
 
 \textit{在「攻读学位期间发表论文与研究成果清单」环境中使用。}
 用于添加个人成果，添加过的成果可以通过 |printbibliography| 打印。
