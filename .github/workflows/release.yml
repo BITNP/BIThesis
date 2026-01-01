@@ -23,7 +23,7 @@ jobs:
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/share/fonts/truetype/msttcorefonts
           key: microsoft-fonts
