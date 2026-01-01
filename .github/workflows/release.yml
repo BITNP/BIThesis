@@ -48,17 +48,17 @@ jobs:
       - run: make doc handbooks
 
       - name: Upload bithesis.pdf for later usage.
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: bithesis
           path: bithesis.pdf
       - name: Upload handbooks for later usage.
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: handbooks
           path: "handbook/*.pdf"
       - name: Upload *.cls for later usage.
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: cls
           path: "*.cls"
