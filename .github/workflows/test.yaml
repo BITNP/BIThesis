@@ -1,6 +1,6 @@
 name: Test
 
-on: 
+on:
   push:
     branches:
       - main
@@ -27,7 +27,7 @@ jobs:
             ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find, ripgrep
+          tool: fd-find, ripgrep, just
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
@@ -48,7 +48,7 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
-      - run: ${{ matrix.tl-version < 2025 && 'TEST_SKIP_DOC="1"' || '' }} make test
+      - run: ${{ matrix.tl-version < 2025 && 'TEST_SKIP_DOC="1"' || '' }} just test
 
   check-latex:
     runs-on: ubuntu-latest
@@ -63,9 +63,9 @@ jobs:
             expltools
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find
-      - run: make cls
-      - run: make check
+          tool: fd-find, just
+      - run: just cls
+      - run: just check
 
   check_typos:
     runs-on: ubuntu-latest

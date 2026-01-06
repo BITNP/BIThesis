@@ -26,7 +26,7 @@ At present, `bithesis` only supports XeTeX and LuaTeX engines. `bithesis` only a
 tlmgr install bithesis
 ```
 
-Or make a clone from our [repo](https://github.com/BITNP/BIThesis). Then run: `make cls` to generate class files.
+Or make a clone from our [repo](https://github.com/BITNP/BIThesis). Then run: `make -C src cls` to generate class files.
 
 ## How Do I Use BIThesis?
 

@@ -19,7 +19,7 @@ jobs:
             .github/tl_packages
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find
+          tool: fd-find, just
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
@@ -45,7 +45,7 @@ jobs:
         # 目前发布正式版时，会手动提升版本号
         run: python scripts/update_version.py
 
-      - run: make doc handbooks
+      - run: just doc handbooks
 
       - name: Upload bithesis.pdf for later usage.
         uses: actions/upload-artifact@v6
@@ -100,7 +100,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find
+          tool: fd-find, just
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v7
         with:
@@ -112,7 +112,7 @@ jobs:
       - name: Copy manual to the template folder.
         run: |
           mv bithesis.pdf ./templates/${{ matrix.template }}
-          make copy-only
+          just copy-only
       - name: Install zip
         uses: montudor/action-zip@v1
       - name: Zip files under ./${{ matrix.template }}
@@ -220,6 +220,9 @@ jobs:
     if: ${{ ! github.event.release.prerelease }}
     steps:
       - uses: actions/checkout@v6
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: just
       - name: Download bithesis.pdf
         uses: actions/download-artifact@v7
         with:
@@ -229,7 +232,7 @@ jobs:
         with:
           name: handbooks
           path: handbook
-      - run: make pkg-only
+      - run: just pkg-only
       - name: Determine version
         id: version
         run: |

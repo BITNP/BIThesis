@@ -1,4 +1,4 @@
-"""回归测试，用于`make regression-test`
+"""回归测试，用于`just regression-test`
 
 ```shell
 $ uv run scripts/regression_test.py --help
