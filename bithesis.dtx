@@ -242,17 +242,6 @@
 }
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\@@_if_graduate:TF,\@@_if_graduate:T}
-% 是否为研究生学位论文。
-%    \begin{macrocode}
-\cs_new:Npn \@@_if_graduate:TF #1#2 {
-    \int_compare:nNnTF {3} < {\g_@@_thesis_type_int}
-      {#1}
-      {#2}
-  }
-\cs_new:Npn \@@_if_graduate:T #1 {\@@_if_graduate:TF {#1} {}}
-%    \end{macrocode}
-% \end{macro}
 
 % \begin{macro}{\@@_if_thesis_int_type:nT,\@@_if_thesis_int_type:nTF}
 % 是否某一特定模板。
@@ -272,13 +261,12 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_if_bachelor_thesis:TF,\@@_if_bachelor_thesis:T,\@@_if_master_thesis:TF,\@@_if_doctor_thesis:TF}
-% 是否为本科、硕士、博士学位论文。
+% \begin{macro}{\@@_if_graduate:TF,\@@_if_graduate:T,\@@_if_bachelor:T}
+% 是否为本科或硕博学位论文。二者互为对立事件。
 %    \begin{macrocode}
-\cs_new:Npn \@@_if_bachelor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} < {4} {#1} {#2}}
-\cs_new:Npn \@@_if_bachelor_thesis:T #1 {\@@_if_bachelor_thesis:TF {#1} {}}
-\cs_new:Npn \@@_if_master_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {4} {#1} {#2}}
-\cs_new:Npn \@@_if_doctor_thesis:TF #1#2 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {5} {#1} {#2}}
+\cs_new:Npn \@@_if_graduate:TF #1#2 {\int_compare:nNnTF {3} < {\g_@@_thesis_type_int} {#1} {#2}}
+\cs_new:Npn \@@_if_graduate:T #1 {\@@_if_graduate:TF {#1} {}}
+\cs_new:Npn \@@_if_bachelor:T #1 {\@@_if_graduate:TF {} {#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -364,7 +352,7 @@
 % 标签与内容之间的空白间距。
 %    \begin{macrocode}
 \cs_new:Npn \@@_label_space: {
-  \@@_if_bachelor_thesis:T {
+  \@@_if_bachelor:T {
     \quad
   }
 }
@@ -1747,7 +1735,9 @@
 %
 % 1. 设置相对简单的浮动体内部“图表本体 🡘 caption”距离。
 %
-\@@_if_bachelor_thesis:TF {
+\@@_if_graduate:TF {
+  \captionsetup[table]{skip=8bp}
+} {
   \setlength{\abovecaptionskip}{11pt}
 
   % 调整表格 caption 和表格本体间的距离。
@@ -1756,8 +1746,6 @@
     % 本来默认有一定空隙，现改为紧贴，这样更接近Word模板实作。
     \captionsetup[table]{skip=5pt}
   }
-} {
-  \captionsetup[table]{skip=8bp}
 }
 %
 % 2. 设置比较复杂的图表浮动体与前后正文的间距。
@@ -1765,7 +1753,34 @@
 %    b. 然后设置 caption，在浮动体设置的基础上，补正“caption 🡘 正文”距离。
 %    c. 同时适配 subcaption、longtable 等宏包。
 %
-\@@_if_bachelor_thesis:TF {
+\@@_if_graduate:TF {
+  % 保留“正文 🡘 图片本体”距离不动，缩小“表格本体 🡘 正文”实际距离，使二者相近
+  \AtBeginEnvironment{table}{
+    \setlength{\intextsep}{3bp plus 1pt minus 1pt}
+  }
+
+  % 调整“正文 🡘 表格 caption”距离
+  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
+
+  % 调整“图片 caption 🡘 正文”距离
+  % 这一距离是 intextsep 与 belowcaptionskip 之和。
+  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
+  % 计算下来，后者应设置为 14.0pt - 6bp 左右。
+  \captionsetup[figure]{belowskip = -12pt}
+  % 浮动体连续排列时，补偿以上负间距
+  \addtolength{\floatsep}{12pt}
+
+  % 适配子图
+  \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
+
+  \AtBeginDocument {
+    % longtable 宏包有另外的机制，需专门调整
+    \@ifpackageloaded{longtable}{
+      \setlength{\LTpre}{0.2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+      \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+    }{}
+  }
+} {
   % 浮动体位于正文中间时，调整浮动体与上下正文之间的距离，即"前后加上一行空白"
   \setlength{\intextsep}{1.80\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
   % 浮动体位于页面顶部或底部时，调整浮动体与正文之间的距离，后或前加上一行空白
@@ -1792,33 +1807,6 @@
     \@ifpackageloaded{longtable}{
       \setlength{\LTpre}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
       \setlength{\LTpost}{1.60\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-    }{}
-  }
-} {
-  % 保留“正文 🡘 图片本体”距离不动，缩小“表格本体 🡘 正文”实际距离，使二者相近
-  \AtBeginEnvironment{table}{
-    \setlength{\intextsep}{3bp plus 1pt minus 1pt}
-  }
-
-  % 调整“正文 🡘 表格 caption”距离
-  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
-
-  % 调整“图片 caption 🡘 正文”距离
-  % 这一距离是 intextsep 与 belowcaptionskip 之和。
-  % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
-  % 计算下来，后者应设置为 14.0pt - 6bp 左右。
-  \captionsetup[figure]{belowskip = -12pt}
-  % 浮动体连续排列时，补偿以上负间距
-  \addtolength{\floatsep}{12pt}
-
-  % 适配子图
-  \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
-
-  \AtBeginDocument {
-    % longtable 宏包有另外的机制，需专门调整
-    \@ifpackageloaded{longtable}{
-      \setlength{\LTpre}{0.2\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-      \setlength{\LTpost}{0.1\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
     }{}
   }
 }
@@ -3134,10 +3122,10 @@
 \DeclareDocumentCommand \MakeTOC {}
   {
     {
-      \@@_if_bachelor_thesis:TF {
-        \renewcommand{\baselinestretch}{1.35}
-      } {
+      \@@_if_graduate:TF {
         \renewcommand{\baselinestretch}{1.56}
+      } {
+        \renewcommand{\baselinestretch}{1.35}
       }
 
       % 自定义目录样式
@@ -3177,7 +3165,7 @@
     \linespread{1.53}\selectfont
 
     % 本科模板在标题「摘要」二字上方另有毕业设计题目
-    \@@_if_bachelor_thesis:T {
+    \@@_if_bachelor:T {
       \begin{center}
         \vspace*{-17bp}
         \heiti\zihao{-2}\textbf{
@@ -3197,7 +3185,7 @@
       chapter/numbering = false,
     }
 
-    \@@_if_bachelor_thesis:T {
+    \@@_if_bachelor:T {
       \ctexset{
         chapter/titleformat = {\textmd}
       }
@@ -3251,7 +3239,7 @@
   {
     \linespread{1.53}\selectfont
 
-    \@@_if_bachelor_thesis:T {
+    \@@_if_bachelor:T {
       \begin{spacing}{0.95}
         \centering
         \vspace*{-2bp}
@@ -3270,13 +3258,13 @@
       chapter/numbering = false,
     }
 
-    \@@_if_bachelor_thesis:TF {
+    \@@_if_graduate:TF {
       \ctexset{
-        chapter/titleformat = {\zihao{-3}\textmd}
+        chapter/titleformat = {\heiti\zihao{3}\centering\textbf}
       }
     } {
       \ctexset {
-        chapter/titleformat = {\heiti\zihao{3}\centering\textbf}
+        chapter/titleformat = {\zihao{-3}\textmd}
       }
     }
 
