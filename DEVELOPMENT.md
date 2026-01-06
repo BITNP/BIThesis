@@ -13,7 +13,7 @@
 
   例：改进`ref.bib`中的示例，在 `main.tex` 中补充注释。
 
-- 修改 `bithesis.dtx` 文件
+- 修改 `bithesis*.dtx` 文件
 
   例：添加新命令，更改 `\BITSetup` 选项。
 
@@ -31,35 +31,35 @@
 2. 编辑模板。
 3. 测试，确保你的改动能够正确编译；并且不会影响到其他效果。
 
-### 修改 `bithesis.dtx` 文件
+### 修改 `bithesis*.dtx` 文件
 
-1. 编辑 `src/bithesis.dtx`。
+1. 编辑 `src/bithesis*.dtx`。
 2. 运行 `just copy`，这会生成新的 `*.cls` 并更新到 `templates/` 下。
-3. 更新文档（`src/bithesis-doc.tex` 以及 `src/bithesis.dtx` 中的注释），然后运行 `just doc` 编译出手册`src/bithesis.pdf`。
+3. 更新文档（`src/bithesis-doc.tex` 以及 `src/bithesis*.dtx` 中的注释），然后运行 `just doc` 编译出手册`src/bithesis.pdf`。
 4. 测试，确保你的改动不会影响到其他功能。
 
 > [!TIP]
 >
-> 如果要添加新命令，可以先在 `templates/` 中具体实现，再拷贝到 `bithesis.dtx`。
+> 如果要添加新命令，可以先在 `templates/` 中具体实现，再拷贝到 `bithesis*.dtx`。
 
 > [!NOTE]
 >
 > 文档有两部分。
 >
 > - `bithesis-doc.tex`面向最终使用者，对应手册`bithesis.pdf`大部分内容。
-> - `bithesis.dtx`中的注释面向开发者。
+> - `bithesis*.dtx`中的注释面向开发者。
 >
 >   <details>
 >   <summary>注释中为何有 LaTeX 代码？</summary>
 >
->   `bithesis.dtx`最顶层的注释包含 LaTeX 代码，可输出为手册结尾「实现细节」一节；不过默认不输出，一般也无需单独检查输出结果。
+>   `bithesis*.dtx`最顶层的注释包含 LaTeX 代码，可输出为手册结尾「实现细节」一节；不过默认不输出，一般也无需单独检查输出结果。
 >
->   如需输出，请如下编辑`bithesis.dtx`（`\jobname`的值是`bithesis`，`\filename`的值是`bithesis.dtx`），然后照常编译手册。
+>   如需输出，请如下编辑`src/bithesis.dtx`（`\jobname`的值是`bithesis`，`\filename`的值是`bithesis.dtx`），然后照常编译手册。
 >
 >   ```diff
 >    \begin{document}
 >   -  \DocInput{\jobname-doc.tex}
->   +  \DocInput{\jobname-doc.tex,\filename}
+>   +  \DocInput{\jobname-doc.tex,\filename,bithesis-thesis.dtx,bithesis-thesis-exports.dtx,bithesis-report.dtx,bithesis-beamer.dtx,bithesis-doc-style.dtx,bithesis-finale.dtx}
 >   ```
 >
 >   相关功能的文档位于 [DocStrip](https://texdoc.org/serve/docstrip/0) 和 [l3doc](https://texdoc.org/serve/l3doc/0)。
