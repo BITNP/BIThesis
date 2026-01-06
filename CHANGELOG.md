@@ -11,6 +11,35 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.7] - 2026-01-06
+
+### <!-- 0 -->🚀 Features
+
+- 适配汉化 cleveref 宏包 ([9f6c5b7](https://github.com/BITNP/BIThesis/commit/9f6c5b7629752ea9f673ff69b0644ed3f0cb0347)) by @YDX-2147483647
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- *(GT)* 启用 twoside 时，声明页应有两个空白页 ([239040b](https://github.com/BITNP/BIThesis/commit/239040bd9edf617967768dc1e9271466c5022b2a)) by @YDX-2147483647
+
+### <!-- 2 -->🚜 Refactor
+
+- 将各模板中的学校图标替换为更清晰的 PDF 矢量图 (#694) ([f553785](https://github.com/BITNP/BIThesis/commit/f553785e255b6ca084534217f46c1e1a76f36c1b)) by @noteas in [#694](https://github.com/BITNP/BIThesis/pull/694)
+- Unify `\@@_if_bachelor_thesis:TF` into `\@@_if_graduate:TR` ([0cf070e](https://github.com/BITNP/BIThesis/commit/0cf070ebdd030802777fac0d1dc67c9c854f7dee)) by @YDX-2147483647
+
+### <!-- 5 -->🎨 Styling
+
+- Ignore deprecation warnings appeared newly on 2025-09-29 ([5c72adf](https://github.com/BITNP/BIThesis/commit/5c72adf748726844e271b6eb7d6f6364968e8038)) by @YDX-2147483647
+- Clean up codes ([548cfc3](https://github.com/BITNP/BIThesis/commit/548cfc3f5312081f807e20ace8d7c05d6f20fc1c)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update TeX Live versions (release: 2025, check: 2021 to 2025) ([b73adf4](https://github.com/BITNP/BIThesis/commit/b73adf4083e99a49b02afd27fcd6ccac26f07686)) by @YDX-2147483647
+- *(deps)* Add cleveref ([49d7c3c](https://github.com/BITNP/BIThesis/commit/49d7c3cb1a62aa8ed604939d42e9e832dca2acfa)) by @YDX-2147483647
+- 不再测试 handbook 与 TeX Live 2024 的兼容情况 ([d6cea44](https://github.com/BITNP/BIThesis/commit/d6cea44652538cf5922428fa0d438c44ac2b23e3)) by @YDX-2147483647
+- Update version to 3.8.7 ([fa8a27e](https://github.com/BITNP/BIThesis/commit/fa8a27e0313073c261d96b46ef203d424f30dfaa)) by @YDX-2147483647
+
+## New Contributors
+* @noteas made their first contribution in [#694](https://github.com/BITNP/BIThesis/pull/694)
 ## [3.8.6] - 2025-10-17
 
 ### <!-- 0 -->🚀 Features
