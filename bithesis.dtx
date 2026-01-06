@@ -1114,7 +1114,6 @@
 \RequirePackage{titletoc}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage{pdfpages}
 \RequirePackage[nodisplayskipstretch]{setspace}
 \RequirePackage{booktabs}
 \RequirePackage{multirow}
@@ -1498,8 +1497,8 @@
   % 定义页眉、页码
   \fancyhead[C]{
     \zihao{\int_use:N \g_@@_head_zihao_int}
-    \ziju{0.08}
-    \songti{\tl_use:N \l_@@_style_head_tl}
+    \ziju{0.08}\songti
+    \tl_use:N \l_@@_style_head_tl
   }
   \fancyfoot[C]{\songti\zihao{5} \thepage}
   % 页眉分割线稍微粗一些
