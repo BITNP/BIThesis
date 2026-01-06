@@ -171,7 +171,10 @@
 \isGraduateTF{
 \subsection{「攻读学位期间发表论文与研究成果清单」}
 这部分用 \texttt{pub.bib} 记录文献，用 \texttt{4\_pub.tex} 列出清单。
-增添成果需首先在 \texttt{pub.bib} 中添加新的文献条目。%
+
+从 BIThesis v3.3.0 开始，推荐使用 biblatex 的 \texttt{refsection} 环境配合 \texttt{\textbackslash nocite\{*\}} 的方式来管理发表论文清单。这样可以避免 \texttt{pub.bib} 和 \texttt{ref.bib} 共存时可能出现的问题，也无需手动指定每个文献的 key。
+
+传统方式仍然支持：增添成果需首先在 \texttt{pub.bib} 中添加新的文献条目，然后在 \texttt{4\_pub.tex} 中使用 \texttt{\textbackslash addpubs} 手动指定。%
 %
 而如果你想要在盲审模式中隐藏自己的名字，那么你需要
 根据 pub.bib 中的示例以及注释说明，为每个文献条目添加并设置
