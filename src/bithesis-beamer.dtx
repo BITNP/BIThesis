@@ -1,0 +1,89 @@
+% \subsection{bitbeamer.cls 文档类}
+%
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitbeamer| 文档类的接口键值对。
+%    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_bit_framelogo_tl
+% Declare keys
+\keys_define:nn { bitbeamer }
+  {
+    titlegraphic .tl_set:N = \l_bit_titlegraphic_tl,
+    framelogo .tl_set:N = \l_bit_framelogo_tl,
+  }
+%    \end{macrocode}
+%
+% 在宏加载时，处理 |bitbeamer| 中的值。使得 |bitbeamer|
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
+\ProcessKeysOptions { bitbeamer }
+%    \end{macrocode}
+%
+% Pass every option not explicitly defined to `ctexbeamer`.
+%    \begin{macrocode}
+\DeclareOption*{
+  \PassOptionsToClass{\CurrentOption}{ctexbeamer}
+}
+%    \end{macrocode}
+%
+% Executes the code for each option.
+% Load.
+%    \begin{macrocode}
+\ProcessOptions\relax
+\LoadClass{ctexbeamer}
+%    \end{macrocode}
+%
+% \subsubsection{定义模板类样式}
+%
+% 加载所需的宏包。
+%    \begin{macrocode}
+\RequirePackage{xeCJKfntef}
+\RequirePackage{tikz}
+%    \end{macrocode}
+%
+% 设置主题与主题色。
+%    \begin{macrocode}
+\usetheme{Madrid}
+\definecolor{bitred}{HTML}{A13E0B}
+\definecolor{bitgreen}{HTML}{0A8F30}
+\definecolor{bitdarkgreen}{HTML}{005B30}
+\colorlet{beamer@blendedblue}{bitdarkgreen}
+%    \end{macrocode}
+%
+%
+% \begin{macro}{\@@_CJKhl:nn}
+% 高亮中文字符。
+%    \begin{macrocode}
+\cs_new:Npn \@@_CJKhl:nn #1 #2
+  { \CJKsout*[thickness=2.5ex, format=\color{#1}]{#2} }
+%    \end{macrocode}
+% \end{macro}
+%
+% Set header if logo path is provided.
+%    \begin{macrocode}
+\tl_if_empty:NF \l_bit_titlegraphic_tl {
+  % BIT Logo
+  \titlegraphic{
+      \includegraphics[width=2cm]{\l_bit_titlegraphic_tl}
+  }
+}
+%    \end{macrocode}
+%
+% Set title logo if logo path is provided.
+%    \begin{macrocode}
+\tl_if_empty:NF \l_bit_framelogo_tl {
+  \addtobeamertemplate{frametitle}{}{%
+    \begin{tikzpicture}[remember~picture,overlay]
+      \node[anchor=north~east,yshift=2pt] at (current~page.north~east)
+        {\includegraphics[height=0.8cm]{\tl_use:N \l_bit_framelogo_tl}};
+    \end{tikzpicture}
+  }
+}
+%    \end{macrocode}
+%
+% \subsubsection{定义用户接口}
+%
+%    \begin{macrocode}
+\cs_new_eq:NN \CJKhl \@@_CJKhl:nn
+%    \end{macrocode}

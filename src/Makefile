@@ -9,7 +9,7 @@ bithesis.pdf: cls assets/faq.tex FORCE_MAKE
 .PHONY: cls
 cls: $(CLSFILE)
 
-$(CLSFILE): bithesis.ins bithesis.dtx
+$(CLSFILE): bithesis.ins $(wildcard bithesis*.dtx)
 	yes y | xetex bithesis.ins
 
 assets/faq.tex:
