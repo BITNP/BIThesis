@@ -4,6 +4,8 @@ on:
   release:
     types:
       - published
+  workflow_dispatch:
+    # Allow testing the release process without publishing a real release.
 
 jobs:
   build:
@@ -12,6 +14,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Fetch more history for workflow_dispatch, required by `just update-version`.
+          fetch-depth: ${{ github.event_name == 'workflow_dispatch' && 100 || 1 }}
+          fetch-tags: ${{ github.event_name == 'workflow_dispatch' }}
       - uses: TeX-Live/setup-texlive-action@v3
         with:
           version: 2025
@@ -41,9 +47,9 @@ jobs:
           fc-cache
 
       - name: Update version if prerelease
-        if: ${{ github.event.release.prerelease }}
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.release.prerelease }}
         # 目前发布正式版时，会手动提升版本号
-        run: python scripts/update_version.py
+        run: just update-version
 
       - run: just doc handbooks
 
@@ -51,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: bithesis
-          path: bithesis.pdf
+          path: src/bithesis.pdf
       - name: Upload handbooks for later usage.
         uses: actions/upload-artifact@v6
         with:
@@ -61,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: cls
-          path: "*.cls"
+          path: "src/*.cls"
 
   publish_templates:
     name: Publish ${{ matrix.template }}
@@ -105,13 +111,15 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: bithesis
+          path: src
       - name: Download `*.cls`
         uses: actions/download-artifact@v7
         with:
           name: cls
+          path: src
       - name: Copy manual to the template folder.
         run: |
-          mv bithesis.pdf ./templates/${{ matrix.template }}
+          mv src/bithesis.pdf ./templates/${{ matrix.template }}
           just copy-only
       - name: Install zip
         uses: montudor/action-zip@v1
@@ -119,6 +127,7 @@ jobs:
         run: zip -qq -r ./${{ matrix.template }}.zip ./${{ matrix.template }}
         working-directory: ./templates
       - name: Upload ${{ matrix.template }}.zip to release
+        if: ${{ github.event_name == 'release' }}
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
             "./templates/${{ matrix.template }}.zip#模板包·${{ matrix.label }} — ${{ matrix.template }}.zip"
@@ -126,7 +135,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish_cls:
-    name: Publish ${{ matrix.cls }}
+    name: Publish ${{ matrix.cls.name }}.cls
     runs-on: ubuntu-latest
     needs: build
 
@@ -146,17 +155,19 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: cls
+          path: src
       - name: Upload ${{ matrix.cls.name }}.cls to release
+        if: ${{ github.event_name == 'release' }}
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            "${{ matrix.cls.name }}.cls#文档类·${{ matrix.cls.label }} — ${{ matrix.cls.name }}.cls（用于升级替换）"
+            "src/${{ matrix.cls.name }}.cls#文档类·${{ matrix.cls.label }} — ${{ matrix.cls.name }}.cls（用于升级替换）"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release_notes:
     name: Populate release notes with latest changelog and PDFs
     runs-on: ubuntu-latest
-    # Makesure it's the last job.
+    # Make sure it's the last job.
     needs: [build, publish_cls, publish_templates]
     outputs:
       release_body: ${{ steps.git-cliff.outputs.content }}
@@ -182,10 +193,12 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: bithesis
+          path: src
       - name: Upload bithesis.pdf and changelog
         uses: svenstaro/upload-release-action@v2
+        if: ${{ github.event_name == 'release' }}
         with:
-          file: bithesis.pdf
+          file: src/bithesis.pdf
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           overwrite: true
@@ -205,6 +218,7 @@ jobs:
           name: handbooks
           path: handbook
       - name: Upload handbooks
+        if: ${{ github.event_name == 'release' }}
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
             "handbook/undergraduate-handbook.pdf#快速使用指南·本科"
@@ -226,6 +240,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: bithesis
+          path: src
       - name: Download handbooks
         uses: actions/download-artifact@v7
         with:
@@ -235,7 +250,7 @@ jobs:
       - uses: actions/upload-artifact@v6
         with:
           name: ctan-pkg
-          path: bithesis.zip
+          path: target/bithesis.zip
       - name: Determine version
         id: version
         run: |
@@ -244,10 +259,10 @@ jobs:
           echo "date=$(date '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
       - name: Upload to CTAN
         uses: paolobrasolin/ctan-submit-action@v1
-        if: ${{ ! github.event.release.prerelease }}
+        if: ${{ github.event_name == 'release' && ! github.event.release.prerelease }}
         with:
           action: upload
-          file_path: bithesis.zip
+          file_path: target/bithesis.zip
           fields: |
             update: "true"
             pkg: bithesis
@@ -256,7 +271,7 @@ jobs:
             email: bithesis@bitnp.net
             uploader: Feng Kaiyu
       - name: Report
-        if: ${{ ! github.event.release.prerelease }}
+        if: ${{ github.event_name == 'release' && ! github.event.release.prerelease }}
         run: >
           echo "🎉 Successfully upload
           ${{ steps.version.outputs.number }} (${{ steps.version.outputs.date }})
@@ -265,7 +280,7 @@ jobs:
   changelog:
     name: Update CHANGELOG
     runs-on: ubuntu-latest
-    if: ${{ ! github.event.release.prerelease }}
+    if: ${{ github.event_name == 'release' && ! github.event.release.prerelease }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6

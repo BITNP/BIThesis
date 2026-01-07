@@ -97,6 +97,11 @@ regression-test *ARGS: copy
 target-dir:
     @mkdir -p target
 
+# Update the version number for prereleases (mainly for CI)
+[group('release')]
+update-version SUFFIX="":
+    python scripts/update_version.py {{ SUFFIX }}
+
 # Build the ZIP for submission to CTAN (mainly for CI)
 [group('release')]
 pkg: doc handbooks pkg-only
