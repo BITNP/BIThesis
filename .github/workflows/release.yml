@@ -182,10 +182,21 @@ jobs:
         id: git-cliff
         with:
           config: cliff.toml
-          args: -vv ${{ github.event.release.prerelease && '--unreleased' || '--latest' }} --strip header
+          # Partially override cliff.toml to generate better release notes.
+          # - For public releases, show changes since the last _public_ release.
+          # - For pre-releases, show changes since the last release (either public or pre-release).
+          # - For testing (workflow_dispatch), show changes not belonging to any release.
+          args: >-
+            -vv
+            --strip header
+            ${{ github.event_name == 'release' && '--current' || '--unreleased' }}
+            ${{ github.event_name == 'release' && (github.event.release.prerelease && '--ignore-tags ""' || '--tag-pattern ''^v\d+\.\d+\.\d+$''') }}
         env:
           OUTPUT: CHANGES.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Write release notes to the job summary
+        run: |
+          cat CHANGES.md >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/checkout@v6
 
