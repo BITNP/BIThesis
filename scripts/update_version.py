@@ -70,7 +70,7 @@ def get_date() -> datetime:
 
 def update(human_version: str | None = None) -> None:
     """Update versions in `bithesis.dtx` with an optional `human_version` suffix."""
-    file = Path(__file__).parent.parent / "bithesis.dtx"
+    file = Path(__file__).parent.parent / "src/bithesis.dtx"
     doc = file.read_text(encoding="utf-8")
 
     version = get_version()
