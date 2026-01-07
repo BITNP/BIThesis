@@ -96,7 +96,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 特别感谢
 
-- [biblatex-gb7714-2015 ](https://github.com/hushidong/biblatex-gb7714-2015)：提供了易用的国标引用格式和细心指导。
+- [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)：提供了易用的国标引用格式和细心指导。
 - [北京理工大学硕士（博士）学位论文 LaTeX 模板](https://github.com/BIT-thesis/LaTeX-template)：提供了研究生论文样式的代码参考。
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)：提供了包编写的最佳实践。
 - [ThuThesis（清华大学论文模板）](https://github.com/tuna/thuthesis)：提供了 dtx 样式的参考。

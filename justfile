@@ -39,10 +39,10 @@ cls: (make "cls")
 [group('build')]
 [working-directory('handbook')]
 handbooks: copy
-    GRADUATE=true latexmk -g
+    GRADUATE=true latexmk -gt
     mv main.pdf graduate-handbook.pdf
 
-    latexmk -g
+    latexmk -gt
     mv main.pdf undergraduate-handbook.pdf
 
 # Copy necessary files to templates/*/ and relevant directories
@@ -92,58 +92,76 @@ test: copy
 regression-test *ARGS: copy
     uv run scripts/regression_test.py {{ ARGS }}
 
-# Build bithesis.zip for submission to CTAN (mainly for CI)
+# Prepare the cache directory
+[private]
+target-dir:
+    @mkdir -p target
+
+# Build the ZIP for submission to CTAN (mainly for CI)
 [group('release')]
 pkg: doc handbooks pkg-only
 
 # Same as `just pkg`, but without building dependencies (only for CI)
 [private]
-pkg-only:
-    rm -rf ./bithesis ./bithesis.zip
+[working-directory('target')]
+pkg-only: target-dir
+    rm -rf ./bithesis ./bithesis-doc-src ./bithesis.zip
     mkdir bithesis
 
-    cp src/bithesis{.ins,.dtx,-doc.tex,.pdf} ./README*.md ./contributing*.md ./bithesis
-    mv ./bithesis/README-bithesis.md ./bithesis/README.md
-    cp ./handbook/graduate-handbook.pdf ./bithesis/bithesis-handbook-graduate.pdf
-    cp ./handbook/undergraduate-handbook.pdf ./bithesis/bithesis-handbook-undergraduate.pdf
+    cp ../src/bithesis{.ins,.pdf} ../src/bithesis*.dtx ../contributing*.md ./bithesis
+    cp ../README-bithesis.md ./bithesis/README.md
+    cp ../handbook/graduate-handbook.pdf ./bithesis/bithesis-handbook-graduate.pdf
+    cp ../handbook/undergraduate-handbook.pdf ./bithesis/bithesis-handbook-undergraduate.pdf
 
-    zip -r bithesis.zip bithesis
-    rm -r ./bithesis
+    # TeX Live needs TeX sources of all PDF files, because otherwise they are not considered as “open source”.
+    mkdir -p bithesis-doc-src/bithesis-pdf/assets/
+    cp ../src/bithesis-doc.tex ./bithesis-doc-src/bithesis-pdf/
+    cp ../src/assets/{faq.lua,icon.png} ./bithesis-doc-src/bithesis-pdf/assets/
+    mkdir -p ./bithesis-doc-src/handbook/
+    cp -r ../handbook/{main.tex,chapters/,figures/,imgs/,reference/} ./bithesis-doc-src/handbook/
+    cp ../assets/latexmkrc ./bithesis-doc-src/handbook/
+    cd ./bithesis-doc-src && zip -rm ../bithesis/bithesis-doc-src.zip .
+    rmdir ./bithesis-doc-src
+
+    zip -rm bithesis.zip bithesis
+    # 🎉 Successfully created target/bithesis.zip
 
 # 生成提供给研究生院的压缩包
 [group('release')]
 [arg("version", pattern='\d+\.\d+\.\d+', help="The version of the template you want to generate, e.g., 1.0.0")]
 [arg("dest", help="The prefix for the destination directory")]
-grad version dest="BIThesis-graduate-thesis-template": doc copy handbooks
+[working-directory('target')]
+grad version dest="BIThesis-graduate-thesis-template": doc copy handbooks target-dir
     rm -rf {{dest}}-{{version}} {{dest}}-{{version}}.zip
     mkdir {{dest}}-{{version}}
 
-    cd templates/graduate-thesis && latexmk && latexmk -c
-    cp -r templates/graduate-thesis/ {{dest}}-{{version}}/graduate-thesis/
+    cd ../templates/graduate-thesis && latexmk && latexmk -c
+    cp -r ../templates/graduate-thesis/ {{dest}}-{{version}}/graduate-thesis/
     cd {{dest}}-{{version}}/graduate-thesis/ && zip -rm ../"1-BIThesis-论文模板-{{version}}".zip .
     rmdir {{dest}}-{{version}}/graduate-thesis
 
-    cp src/bithesis.pdf {{dest}}-{{version}}/'3-详细配置手册'.pdf
-    cp handbook/graduate-handbook.pdf {{dest}}-{{version}}/'2-快速使用手册'.pdf
+    cp ../src/bithesis.pdf {{dest}}-{{version}}/'3-详细配置手册'.pdf
+    cp ../handbook/graduate-handbook.pdf {{dest}}-{{version}}/'2-快速使用手册'.pdf
 
-    zip -r {{dest}}-{{version}}.zip {{dest}}-{{version}}
-    # 🎉 Successfully created {{dest}}-{{version}}.zip
+    zip -rm {{dest}}-{{version}}.zip {{dest}}-{{version}}
+    # 🎉 Successfully created target/{{dest}}-{{version}}.zip
 
 # 生成提供给教务部的压缩包
 [group('release')]
 [arg("version", pattern='\d+\.\d+\.\d+', help="The version of the template you want to generate, e.g., 1.0.0")]
 [arg("dest", help="The prefix for the destination directory")]
-undergrad version dest="BIThesis-undergraduate-thesis-templates": doc copy handbooks
+[working-directory('target')]
+undergrad version dest="BIThesis-undergraduate-thesis-templates": doc copy handbooks target-dir
     rm -rf {{dest}}-{{version}} {{dest}}-{{version}}.zip
     mkdir {{dest}}-{{version}}
 
-    cd templates/undergraduate-thesis && latexmk && latexmk -c
-    cd templates/undergraduate-thesis-en && latexmk && latexmk -c
-    cd templates/paper-translation && latexmk && latexmk -c
+    cd ../templates/undergraduate-thesis && latexmk && latexmk -c
+    cd ../templates/undergraduate-thesis-en && latexmk && latexmk -c
+    cd ../templates/paper-translation && latexmk && latexmk -c
 
-    cp -r templates/undergraduate-thesis/ {{dest}}-{{version}}/undergraduate-thesis/
-    cp -r templates/undergraduate-thesis-en/ {{dest}}-{{version}}/undergraduate-thesis-en/
-    cp -r templates/paper-translation/ {{dest}}-{{version}}/paper-translation/
+    cp -r ../templates/undergraduate-thesis/ {{dest}}-{{version}}/undergraduate-thesis/
+    cp -r ../templates/undergraduate-thesis-en/ {{dest}}-{{version}}/undergraduate-thesis-en/
+    cp -r ../templates/paper-translation/ {{dest}}-{{version}}/paper-translation/
 
     cd {{dest}}-{{version}}/undergraduate-thesis/ && zip -rm ../"1-BIThesis-本科毕设论文模板-{{version}}".zip .
     cd {{dest}}-{{version}}/undergraduate-thesis-en/ && zip -rm ../"2-BIThesis-本科毕设论文模板（全英文）-{{version}}".zip .
@@ -153,8 +171,8 @@ undergrad version dest="BIThesis-undergraduate-thesis-templates": doc copy handb
     rmdir {{dest}}-{{version}}/undergraduate-thesis-en
     rmdir {{dest}}-{{version}}/paper-translation
 
-    cp src/bithesis.pdf {{dest}}-{{version}}/'4-详细配置手册'.pdf
-    cp handbook/undergraduate-handbook.pdf {{dest}}-{{version}}/'5-快速使用手册'.pdf
+    cp ../src/bithesis.pdf {{dest}}-{{version}}/'4-详细配置手册'.pdf
+    cp ../handbook/undergraduate-handbook.pdf {{dest}}-{{version}}/'5-快速使用手册'.pdf
 
-    zip -r {{dest}}-{{version}}.zip {{dest}}-{{version}}
-    # 🎉 Successfully created {{dest}}-{{version}}.zip
+    zip -rm {{dest}}-{{version}}.zip {{dest}}-{{version}}
+    # 🎉 Successfully created target/{{dest}}-{{version}}.zip
