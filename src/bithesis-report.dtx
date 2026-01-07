@@ -1,0 +1,529 @@
+% \subsection{bitreport.cls 模板类}
+%
+% \subsubsection{全局变量与临时变量}
+%
+% \begin{variable}{\g_@@_thesis_type_int}
+% 论文类型，取值从 1 开始，分别对应:
+%  \begin{enumerate}
+%      \item 课程实验报告
+%      \item （计算机学院）本科生毕业（设计）开题报告（已废弃）
+%  \end{enumerate}
+%    \begin{macrocode}
+\int_new:N \g_@@_report_type_int
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_report_type_clist}
+% 定义报告类型的列表。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_report_type_clist
+    { common, undergraduate_proposal}
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\l_@@_right_seq,\l_@@_left_seq}
+% 临时变量。
+%    \begin{macrocode}
+\seq_new:N \l_@@_right_seq
+\seq_new:N \l_@@_left_seq
+%    \end{macrocode}
+% \end{variable}
+%
+% 手动开启伪粗体、伪斜体。
+%    \begin{macrocode}
+\PassOptionsToPackage{AutoFakeBold,AutoFakeSlant}{xeCJK}
+%    \end{macrocode}
+%
+% \subsubsection{l3keys 接口键值对定义}
+%
+% 定义 |bitreport| 模板类的键值对。
+%    \begin{macrocode}
+\keys_define:nn { bitreport }
+  {
+    option .meta:nn = {bitreport / option } {#1},
+    cover .meta:nn = { bitreport / cover  } {#1},
+    info .meta:nn = { bitreport / info } {#1},
+    misc .meta:nn = { bitreport / misc } {#1}
+  }
+%    \end{macrocode}
+%
+% 定义 |bitreport/option| 模板类的键值对。
+%    \begin{macrocode}
+\keys_define:nn { bitreport / option }
+  {
+    type .choice:,
+    type .value_required:n = true,
+    type .choices:Vn =
+      \c_@@_report_type_clist
+      {
+        \int_set_eq:NN \g_@@_report_type_int \l_keys_choice_int
+      },
+    type .initial:n = common,
+    ctex .tl_set:N = \l_@@_options_to_ctex_tl,
+  }
+%    \end{macrocode}
+%
+% 定义 |bitreport/cover| 模板类的键值对。
+%    \begin{macrocode}
+\keys_define:nn { bitreport / cover }
+  {
+    imagePath .tl_set:N = \l_bit_coverimagepath_tl,
+    date .tl_set:N = \l_@@_cover_date_tl,
+    %% cover entry
+    delimiter .tl_set:N = \l_@@_cover_delimiter_tl,
+    labelAlign .tl_set:N = \l_@@_cover_label_align_tl,
+    labelAlign .initial:n = {r},
+    valueAlign .tl_set:N = \l_@@_cover_value_align_tl,
+    valueAlign .initial:n = {c},
+    labelMaxWidth .dim_set:N = \l_@@_cover_label_max_width_dim,
+    valueMaxWidth .dim_set:N = \l_@@_cover_value_max_width_dim,
+    autoWidthPadding .dim_set:N = \l_@@_cover_auto_width_padding_dim,
+    autoWidthPadding .initial:n = {0.25em},
+    autoWidth .bool_set:N = \l_@@_cover_auto_width_bool,
+    autoWidth .initial:n = {true},
+    underlineThickness .dim_set:N = \l_@@_cover_underline_thickness_dim,
+    underlineThickness .initial:n = {1pt},
+    underlineOffset .dim_set:N = \l_@@_cover_underline_offset_dim,
+    underlineOffset .initial:n = { -10pt },
+  }
+%    \end{macrocode}
+%
+% 定义 |bitreport/info| 模板类的键值对。
+%    \begin{macrocode}
+\keys_define:nn { bitreport / info }
+  {
+    title .tl_set:N = \l_@@_value_title_tl,
+    school .tl_set:N = \l_@@_value_school_tl,
+    major .tl_set:N = \l_@@_value_major_tl,
+    class .tl_set:N = \l_@@_value_class_tl,
+    author .tl_set:N = \l_@@_value_author_tl,
+    supervisor .tl_set:N = \l_@@_value_supervisor_tl,
+    externalSupervisor .tl_set:N = \l_@@_value_external_supervisor_tl,
+    studentId .tl_set:N = \l_@@_value_student_id_tl,
+  }
+%    \end{macrocode}
+%
+% 定义 |bitreport/misc| 模板类的键值对。
+%    \begin{macrocode}
+\keys_define:nn { bitreport / misc }
+  {
+    reviewTable .tl_set:N = \l_bit_reviewtable_tl,
+  }
+%    \end{macrocode}
+%
+% 将 |bithesis/option/ctex| 中的值传递给 ctexbook 模板类。
+%    \begin{macrocode}
+\DeclareOption*{
+  \PassOptionsToClass{\l_@@_options_to_ctex_tl}{ctexart}
+}
+%    \end{macrocode}
+%
+% 加载 ctexbook 模板类。
+%    \begin{macrocode}
+\ProcessOptions\relax
+\LoadClass[zihao=-4]{ctexart}
+%    \end{macrocode}
+%
+% \subsubsection{定义模板类样式}
+% 加载所需的宏包。
+%    \begin{macrocode}
+\RequirePackage[a4paper,left=3cm,right=2.4cm,top=2.6cm,bottom=2.38cm,includeheadfoot]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{pdfpages}
+%    \end{macrocode}
+%
+% 在宏加载时，处理 |bitreport/option| 中的值。使得 |bitreport|
+% 宏包的模板选项可以在宏加载时生效。
+%    \begin{macrocode}
+\ProcessKeysOptions { bitreport / option }
+%    \end{macrocode}
+%
+% \subsubsection{辅助函数与常量}
+%
+% \begin{macro}{\tl_if_empty:xTF,\seq_set_split:Nnx}
+% 生成变体。
+%    \begin{macrocode}
+\cs_generate_variant:Nn \tl_if_empty:nTF {x}
+\cs_generate_variant:Nn \seq_set_split:Nnn {Nnx}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_dunderline:nnn}
+% 用于渲染下划线。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
+%   \item \#2 |dim| 长度。
+%   \item \#3 |tl| 文字内容。
+% \end{itemize}
+%    \begin{macrocode}
+\cs_new:Npn \@@_dunderline:nnn #1#2#3 {
+  {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{|@@_render_cover_entry:nn}
+% 用于渲染封面的辅助函数。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |{token_list}| 为封面信息条目的名称，含分隔符。
+%   \item \#2 |{token_list}| 为封面信息条目的内容。
+% \end{itemize}
+%
+% 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
+% 存储已经计算出来的最大宽度。
+%    \begin{macrocode}
+\cs_new:Npn \@@_render_cover_entry:nn #1#2 {
+  \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
+    \tl_if_blank:VTF #1 {} {#1}
+  }
+  \hspace{1ex}
+  \@@_dunderline:nnn{\l_@@_cover_underline_offset_dim}{\l_@@_cover_underline_thickness_dim}{
+    \makebox[\l_@@_cover_value_max_width_dim][\l_@@_cover_value_align_tl]{#2}
+  }\par
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{|@@_get_text_width:Nn,\@@_get_text_width:NV}
+% 计算 \#2 所占用的宽度，将结果存储在 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1 |dim| 存储宽度的变量。
+%   \item \#2 |tl| 要计算宽度的文本。
+% \end{itemize}
+%    \begin{macrocode}
+% Get text with from #2, then set to #1.
+\cs_new:Npn \@@_get_text_width:Nn #1#2
+  {
+    \hbox_set:Nn \l_tmpa_box {#2}
+    \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
+  }
+\cs_generate_variant:Nn \@@_get_text_width:Nn { NV }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_get_max_text_width:NN}
+% 从 \#2 中获取最大的文本宽度，然后设置到 \#1 中。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |dim| 用于输出最大宽度。
+%   \item \#2: |seq| 用于输入存储文本。
+% \end{itemize}
+%    \begin{macrocode}
+\cs_new:Npn \@@_get_max_text_width:NN #1#2
+  {
+% 这里用 |group| 确保局部变量不会被污染。
+    \group_begin:
+      \seq_set_eq:NN \l_@@_tmpa_seq #2
+      \dim_zero_new:N \l_@@_tmpa_dim
+      \bool_until_do:nn { \seq_if_empty_p:N \l_@@_tmpa_seq }
+        {
+          \seq_pop_left:NN \l_@@_tmpa_seq \l_@@_tmpa_tl
+          \@@_get_text_width:NV \l_@@_tmpa_dim \l_@@_tmpa_tl
+          \dim_gset:Nn #1 { \dim_max:nn {#1} { \l_@@_tmpa_dim } }
+        }
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_parse_entry:nn}
+% 解析封面信息条目，丢弃空项，并添加分隔符。
+%
+% 参数如下：
+% \begin{itemize}
+%   \item \#1: |tl| 为封面信息条目的名称。
+%   \item \#2: |tl| 为封面信息条目的内容。
+% \end{itemize}
+% |\\| 会被视为换行符，从而实现信息条目换行的效果。
+%
+% 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
+%
+%    \begin{macrocode}
+\cs_new:Npn \@@_parse_entry:nn #1 #2 {
+  \seq_clear:N \l_@@_tmp_left_seq
+  \seq_clear:N \l_@@_tmp_right_seq
+
+  % 只处理 value 非空的项
+  \tl_set:Nn \l_tmpa_tl {#2}
+  \tl_if_empty:xTF {\l_tmpa_tl} {} {
+    \seq_set_split:Nnx \l_@@_tmp_right_seq {\\} {#2}
+    \seq_map_inline:Nn \l_@@_tmp_right_seq {
+      \seq_put_right:Nn \l_@@_tmp_left_seq {}
+    }
+    \seq_put_left:Nn \l_@@_tmp_left_seq {#1\l_@@_cover_delimiter_tl}
+    \seq_pop_right:NN \l_@@_tmp_left_seq \g_@@_trashcan_tl
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_render_cover_entry}
+% 渲染封面信息项。此函数为主函数。
+%    \begin{macrocode}
+\cs_new:Npn \@@_render_cover_entry:n #1 {
+  % 左边是标签，右边是值。
+  % 形如：
+  % { {label_1} {value_1}, {label_2} {value 2} }
+  % 首先转换成 seq 类型。
+  \seq_set_from_clist:NN \l_@@_input_seq #1
+  \seq_map_inline:Nn \l_@@_input_seq {
+    % 然后对于每一对 label 和 value，首先查找
+    % value 中是否含有 \\ 字符，如果有，则将其分割成多个
+    % label - value 对。
+    % 比如 {label_1} {value \\ 1} 会被转换成
+    % { {label_1} {value}, {} {1} }
+    \@@_parse_entry:nn ##1
+    % 然后将这些 label - value 对添加到 \l_@@_right_seq
+    % 或者 \l_@@_left_sql 中。
+    % left 就是 label，right 就是 value。
+    \seq_concat:NNN \l_@@_right_seq \l_@@_right_seq \l_@@_tmp_right_seq
+    \seq_concat:NNN \l_@@_left_seq \l_@@_left_seq \l_@@_tmp_left_seq
+  }
+
+  % 如果用户选择自动计算最大宽度，则计算最大宽度。
+  \bool_if:NT \l_@@_cover_auto_width_bool {
+    \@@_get_max_text_width:NN \l_@@_cover_label_max_width_dim \l_@@_left_seq
+    \@@_get_max_text_width:NN \l_@@_cover_value_max_width_dim \l_@@_right_seq
+    % 在 value 两边加上空白，避免文本太靠边。
+    \dim_add:Nn \l_@@_cover_value_max_width_dim { \l_@@_cover_auto_width_padding_dim * 2 }
+  }
+
+
+  % 最后，根据宽度渲染 label 和 value 对。
+  \group_begin:
+    \bool_until_do:nn { \seq_if_empty_p:N \l_@@_left_seq }
+      {
+        \seq_pop_left:NN \l_@@_left_seq \l_@@_tmpa_tl
+        \seq_pop_left:NN \l_@@_right_seq \l_@@_tmpb_tl
+        \@@_render_cover_entry:nn {\l_@@_tmpa_tl} {\l_@@_tmpb_tl}
+      }
+  \group_end:
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{定义用户接口}
+%
+% \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BITSetup { m }
+  { \keys_set:nn { bitreport } { #1 }}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeCover}
+% 渲染封面。
+%    \begin{macrocode}
+\DeclareDocumentCommand \MakeCover {}
+  {
+    \group_begin:
+    \int_case:nn {\g_@@_report_type_int} {
+      {1} {
+        \begin{titlepage}
+          \centering
+
+          \vspace{23mm}
+
+          \tl_if_empty:NF \l_bit_coverimagepath_tl {
+            \includegraphics[width=.5\textwidth]{\l_bit_coverimagepath_tl}\\
+          }
+
+          \vspace{10mm}
+
+          \heiti\fontsize{24pt}{24pt}\selectfont{\l_@@_value_title_tl}\\
+
+          \vspace{67mm}
+
+          \begin{spacing}{2.2}
+            \songti\zihao{3}
+
+            \clist_set:Nn \l_@@_input_clist {
+                {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
+                {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
+                {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
+                {\textbf{学\qquad 号：}} {\l_@@_value_student_id_tl},
+                {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
+                {\textbf{任课教师：}} {\l_@@_value_supervisor_tl},
+            }
+
+            \@@_render_cover_entry:n \l_@@_input_clist
+
+          \end{spacing}
+
+          \vspace*{\fill}
+
+          \centering
+
+          \songti\fontsize{12pt}{12pt}\selectfont{
+            \tl_if_empty:NTF \l_@@_cover_date_tl {
+              \today
+            } {
+              \l_@@_cover_date_tl
+            }
+          }
+        \end{titlepage}
+      }
+      {2} {
+        % Main code for \MakeCover
+        \begin{titlepage}
+          \topskip=0pt
+          \vspace*{-16mm}
+          \centering
+          \hspace{-6mm}
+          \songti\fontsize{22pt}{22pt}
+          \selectfont{北京理工大学}\par
+
+          \vspace{13mm}
+
+          \hspace{-6mm}
+          \heiti\fontsize{24pt}{24pt}
+          \selectfont{本科生毕业设计（论文）开题报告}\par
+
+          \vspace{53mm}
+
+          \begin{spacing}{2.2}
+            \songti\zihao{3}
+            \clist_set:Nn \l_@@_input_clist {
+                {\textbf{学\qquad 院：}} {\l_@@_value_school_tl},
+                {\textbf{专\qquad 业：}} {\l_@@_value_major_tl},
+                {\textbf{班\qquad 级：}} {\l_@@_value_class_tl},
+                {\textbf{姓\qquad 名：}} {\l_@@_value_author_tl},
+                {\textbf{指导教师：}} {\l_@@_value_supervisor_tl},
+                {\textbf{校外指导教师：}} {\l_@@_value_external_supervisor_tl},
+            }
+
+          \@@_render_cover_entry:n \l_@@_input_clist
+
+          \end{spacing}
+
+          \vspace*{\fill}
+
+          \centering
+          \hspace{-6mm}\songti\fontsize{12pt}{12pt}\selectfont{\today}
+
+        \end{titlepage}
+      }
+    }
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeReviewTable}
+% 渲染评阅表。
+%    \begin{macrocode}
+\DeclareDocumentCommand \MakeReviewTable {}
+  {
+    \group_begin:
+      \begin{titlepage}
+        \includepdf[pages=-]{\l_bit_reviewtable_tl}
+      \end{titlepage}
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% 定义 caption 字体为楷体
+%    \begin{macrocode}
+\DeclareCaptionFont{kaiticaption}{\kaishu \normalsize}
+%    \end{macrocode}
+%
+% 设置图片的 caption 格式
+%    \begin{macrocode}
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+%    \end{macrocode}
+%
+% 设置表格的 caption 格式
+%    \begin{macrocode}
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\captionsetup[table]{font=small,labelsep=space,skip=10bp,labelfont=bf,font=kaiticaption}
+%    \end{macrocode}
+%
+% 输出大写数字日期
+%    \begin{macrocode}
+\ctexset{today=big}
+%    \end{macrocode}
+%
+% 将西文字体设置为 Times New Roman
+%    \begin{macrocode}
+\setromanfont{Times~New~Roman}
+%    \end{macrocode}
+%
+% 设置文档标题深度
+%    \begin{macrocode}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+%    \end{macrocode}
+%
+% 设置一级标题、二级标题格式。
+%    \begin{macrocode}
+% 一级标题：小三，宋体，加粗，段前段后各半行。
+\ctexset{section={
+  format={
+    \raggedright \bfseries \songti \zihao{-3}
+  },
+  beforeskip = 24bp plus 1ex minus .2ex,
+  afterskip = 24bp plus .2ex,
+  fixskip = true,
+  name = {,.\quad}
+  }
+}
+% 二级标题：小四，宋体，加粗，段前段后各半行。
+\ctexset{subsection={
+  format = {
+    \bfseries \songti \raggedright \zihao{4}
+  },
+  beforeskip = 24bp plus 1ex minus .2ex,
+  afterskip = 24bp plus .2ex,
+  fixskip = true,
+  }
+}
+%    \end{macrocode}
+%
+% 页眉和页脚（页码）的格式设定。
+%    \begin{macrocode}
+\fancyhf{}
+\int_case:nn {\g_@@_report_type_int} {
+  {1} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{\l_@@_value_title_tl}
+    }
+  }
+  {2} {
+    \fancyhead[R]{
+      \fontsize{10.5pt}{10.5pt}
+      \selectfont{北京理工大学本科生毕业设计（论文）开题报告}
+    }
+  }
+}
+\fancyfoot[R]{\fontsize{9pt}{9pt}\selectfont{\thepage}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+%    \end{macrocode}
+%
+% 正文开始
+%    \begin{macrocode}
+\pagestyle{fancy}
+\setcounter{page}{1}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+% 正文 22 磅的行距，段前段后间距为 0
+% \setlength{\parskip}{0em}
+\cs_set:Npn \baselinestretch {1.53}
+% 正文首行悬挂 1.02cm
+% \setlength{\parindent}{1.02cm}
+%    \end{macrocode}

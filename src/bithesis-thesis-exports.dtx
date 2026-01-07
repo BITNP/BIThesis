@@ -1,0 +1,1180 @@
+% \subsubsection{定义用户接口}
+%
+% \begin{macro}{\BITSetup}
+% 提供用户配置的接口。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BITSetup { m }
+  {
+    \keys_set:nn { bithesis } { #1 }
+    \@@_resolve_auto_values:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BigStar}
+% 提供密级选项中需要的五角星，在普通环境中使用。
+%    \begin{macrocode}
+\DeclareDocumentCommand \BigStar { }
+  { \ding{72} }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{blindPeerReview}
+% 用于包裹涉及个人信息的内容。
+%
+% 在启用盲审模式时，其中的内容会被隐藏。
+%
+% 本环境提供了一个可选参数，可以传入一个 bool 值，用于在盲审模式下关闭
+% 隐藏行为。
+%    \begin{macrocode}
+  \NewDocumentEnvironment {blindPeerReview} {O{\c_true_bool} +b}
+  {
+    \bool_if:nTF {\g_@@_blind_mode_bool && #1} {} {
+      #2
+    }
+  } {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\cleardoublepage}
+% 重定义 \tn{cleardoublepage}，
+% 使得偶数页面在没有内容时也不显示页眉页脚。见：
+% \url{https://tex.stackexchange.com/a/1683}。
+%    \begin{macrocode}
+\RenewDocumentCommand \cleardoublepage { }
+  {
+    \clearpage
+    \bool_if:NT \g_@@_twoside_bool
+      {
+        \int_if_odd:nF {\c@page}
+          { \hbox:n { } \thispagestyle { empty } \newpage }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\SecretInfo}
+% 用于包裹涉及个人信息的内容。
+%   \begin{macrocode}
+\DeclareDocumentCommand \SecretInfo { m o }
+  {
+    \IfValueTF {#2} {
+      \@@_secret_info:nn {#1} {#2}
+    } {
+      \@@_secret_info:n {#1}
+    }
+  }
+%   \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeCover}
+% 制作封面。
+%    \begin{macrocode}
+\DeclareDocumentCommand \MakeCover { O{} }
+  {
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+    \group_begin:
+
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
+    % 封面使用的 thesis-type 可能与整体不同。
+    \int_new:N \l_@@_thesis_type_int
+    \bool_if:NTF \l_@@_cover_prefer_zh_bool {
+      \int_set:Nn \l_@@_thesis_type_int {1}
+    } {
+      \int_set:Nn \l_@@_thesis_type_int {\g_@@_thesis_type_int}
+    }
+
+    \int_case:nn {\l_@@_thesis_type_int}
+    {
+      {1}
+      {
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{封面}{pre-frontmatter:cover}
+        }
+        \begin{titlepage}
+          \vspace*{16mm}
+
+          \centering
+
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=9.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
+
+          \vspace*{-3mm}
+
+          \zihao{-0}\textbf{\ziju{0.12}\songti{\l_@@_style_headline_tl}}\par
+
+          \vspace{0.5em plus 1fill}
+
+          \group_begin:
+          % 中文标题
+          \tl_set:Nn \l_tmpa_tl {
+            \linespread{1.46}\selectfont
+            \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
+          }
+          % 英文标题
+          \tl_set:Nn \l_tmpb_tl {
+            \linespread{1.65}\selectfont
+            \zihao{3}\textbf{\l_@@_value_title_en_tl}\par
+          }
+
+          \bool_if:NTF \l_@@_cover_reverse_titles_bool {
+            \l_tmpb_tl \vspace{3mm} \l_tmpa_tl
+          } {
+            \l_tmpa_tl \vspace{3mm} \l_tmpb_tl
+          }
+          \group_end:
+
+          \vspace{0em plus 1fill}
+
+
+          \begin{spacing}{1.8}
+            \begin{center}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {：}
+            }
+            % if not auto width, try override width
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+              }
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {78mm}
+              }
+            }
+
+            % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_semester_tl} {\l_@@_value_semester_tl},
+              {\c_@@_label_school_tl} {\l_@@_value_school_tl},
+              {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
+              {\c_@@_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
+              {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
+              {\c_@@_label_course_tl} {\l_@@_value_course_tl},
+              {\c_@@_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
+              {\c_@@_label_co_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_external_supervisor_tl {5}},
+              {\c_@@_label_teacher_tl} {\l_@@_value_teacher_tl},
+            }
+
+            \zihao{3}
+
+            \@@_render_cover_entry:N \l_@@_input_clist
+
+            \end{center}
+          \end{spacing}
+
+          \vspace*{1.5em plus 1.5fill}
+          \centering
+          \zihao{3}\ziju{0.5}\songti{
+            \tl_if_empty:NTF \l_@@_cover_date_tl {
+              % 英文模板中 ctex 不会预设日期格式，但仍要保证中文封面的日期按中文习惯
+              \ctexset{today=small}
+              \today
+            } {
+              \l_@@_cover_date_tl
+            }
+          }
+        \end{titlepage}
+      }
+      {2}
+      {
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{封面}{pre-frontmatter:cover}
+        }
+        \begin{titlepage}
+          \centering
+
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=6.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
+
+          \vspace{1.2mm}
+
+          \zihao{2}\textbf{\songti{\l_@@_style_headline_tl}}
+
+          % 外文翻译封面有两组中英文标题，行数变化范围大，因此采用 fill 比例布局
+          \vspace{\stretch{1}}
+
+          {
+
+          \begin{spacing}{1.8}
+
+            \tl_set:Nn \l_@@_cover_delimiter_tl {\textbf{：}}
+            \bool_set_false:N \l_@@_cover_auto_width_bool
+            \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+            \dim_set:Nn \l_@@_cover_value_max_width_dim {115mm}
+
+            \clist_set:Nn \l_@@_input_clist {
+              {\songti\zihao{4}\textbf{外文原文题目}} {\l_@@_value_trans_origin_title_tl},
+              {\songti\zihao{4}\textbf{中文翻译题目}} {\l_@@_value_trans_title_tl},
+            }
+
+            \zihao{-3}
+            \centering
+
+            \@@_render_cover_entry:N \l_@@_input_clist
+
+          \end{spacing}
+
+          }
+
+          \vspace{\stretch{1}}
+
+          \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
+
+          \vspace{3mm}
+
+          \begin{spacing}{1.2}
+            \zihao{3}\selectfont{\textbf{\l_@@_value_title_en_tl}}\par
+          \end{spacing}
+
+          \vspace{\stretch{0.67}}
+
+          \begin{spacing}{1.8}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {：}
+            }
+
+            % 如果不是自动计算宽度，且用户没有自定义宽度，
+            % 则尝试提供一个默认宽度。
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {35mm}
+              }
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {78mm}
+              }
+            }
+
+            \zihao{3}
+
+            % 渲染信息。
+            % 此处必须限制盲审模式替换符号数量，不然会泄露信息，还可能导致行溢出
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_school_tl} {\l_@@_value_school_tl},
+              {\c_@@_label_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_class_tl} {\@@_secret_info:N \l_@@_value_class_tl},
+              {\c_@@_label_author_tl} {\@@_secret_info_fixed:Nn \l_@@_value_author_tl {3}},
+              {\c_@@_label_student_id_tl} {\@@_secret_info:N \l_@@_value_student_id_tl},
+              {\c_@@_label_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_supervisor_tl {5}},
+              {\c_@@_label_co_supervisor_tl} {\@@_secret_info_fixed:Nn \l_@@_value_external_supervisor_tl {5}},
+            }
+
+            \@@_render_cover_entry:N \l_@@_input_clist
+
+          \end{spacing}
+
+          \vspace{\stretch{0.67}}
+        \end{titlepage}
+      }
+      {3} {
+        \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+          \currentpdfbookmark{Cover}{pre-frontmatter:cover}
+        }
+        \begin{titlepage}
+          \vspace*{16mm minus 16mm}
+
+          \centering
+
+          \tl_if_blank:VTF \l_bit_coverheaderimage_tl {} {
+            \includegraphics[width=9.87cm]{\l_bit_coverheaderimage_tl}\\
+          }
+
+          \vspace*{-3mm}
+
+          \zihao{1}\textbf{\ziju{0.12}\l_@@_style_headline_tl}\par
+
+          \vspace{0.5em plus 1fill}
+
+          \bool_if:NT \l_@@_cover_add_titlezh_bool {
+            \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_tl}\par
+            \vspace{0.5em plus 0.5fill minus 0.5em}
+          }
+
+          \zihao{2}\textbf{\@@_xihei:n \l_@@_value_title_en_tl}\par
+
+          \vspace{0.5em plus 1fill}
+
+
+          \begin{spacing}{1.8}
+            \begin{center}
+            \tl_if_empty:NT \l_@@_cover_delimiter_tl {
+              \tl_set:Nn \l_@@_cover_delimiter_tl {:}
+            }
+
+            % if not auto width, try override width
+            \bool_if:NF \l_@@_cover_auto_width_bool {
+              \dim_compare:nNnT {\l_@@_cover_label_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_label_max_width_dim {20mm}
+              }
+              \dim_compare:nNnT {\l_@@_cover_value_max_width_dim} = {0pt} {
+                \dim_set:Nn \l_@@_cover_value_max_width_dim {105mm}
+              }
+            }
+
+            \zihao{4}
+
+            \clist_set:Nn \l_@@_input_clist {
+              {\c_@@_label_school_en_tl} {\l_@@_value_school_tl},
+              {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
+              {\c_@@_label_author_en_tl} {\l_@@_value_author_tl},
+              {\c_@@_label_student_id_en_tl} {\l_@@_value_student_id_tl},
+              {\c_@@_label_supervisor_en_tl} {\l_@@_value_supervisor_tl},
+              {\c_@@_label_co_supervisor_en_tl} {\l_@@_value_external_supervisor_tl},
+            }
+
+            \@@_render_cover_entry:N \l_@@_input_clist
+
+            \end{center}
+          \end{spacing}
+
+          \vspace*{1.5em plus 1.5fill}
+          \centering
+          \zihao{3}\ziju{0.5}\songti{
+            \tl_if_empty:NTF \l_@@_cover_date_tl {
+              \today
+            } {
+              \l_@@_cover_date_tl
+            }
+          }
+        \end{titlepage}
+      }
+      {4} {
+        \@@_make_graduate_cover:
+      }
+      {5} {
+        \@@_make_graduate_cover:
+      }
+    }
+    \group_end:
+    \end{blindPeerReview}
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MakeOriginality}
+% 原创性声明。
+%    \begin{macrocode}
+\NewDocumentCommand \MakeOriginality { O{} }
+  {
+    \group_begin:
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+    \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+      \int_case:nn {\g_@@_thesis_type_int}
+      {
+        {1}
+        {
+          \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+            \currentpdfbookmark{声明}{pre-frontmatter:originality}
+          }
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
+
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{\heiti\zihao{2}\c_@@_bachelor_label_originality_tl}
+          \end{center}~\par
+
+          % 本部分字号为小三。
+          \zihao{-3}
+          \c_@@_bachelor_label_originality_clause_tl
+
+          \vspace{17mm}
+
+          \begin{flushright}
+            \c_@@_bachelor_label_originality_author_signature_tl\par
+          \end{flushright}
+
+          \vspace{16mm}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{2}
+              \c_@@_bachelor_label_authorization_tl
+            }
+          \end{center}~\par
+
+          \c_@@_bachelor_label_authorization_clause_tl
+
+          \vspace*{3mm}
+
+          \begin{flushright}
+            \begin{spacing}{1.65}
+              \zihao{-3}
+              % \hspace{5mm}\raisebox{-2ex}{\includegraphics[width=30mm]{example-image}}\hspace{5mm}
+              \c_@@_bachelor_label_originality_author_signature_tl\par
+              \c_@@_bachelor_label_originality_supervisor_signature_tl\par
+            \end{spacing}
+          \end{flushright}
+
+          \newpage
+        }
+        {3} {
+          \bool_if:NT \l_@@_internal__pre_frontmatter__bookmarked_bool {
+            \currentpdfbookmark{Statements}{pre-frontmatter:originality}
+          }
+          \pagestyle{BIThesis}
+          \pagenumbering{gobble}
+
+          % 原创性声明部分
+          \begin{center}
+            \vspace*{-2bp}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_originality_tl
+            }
+          \end{center}~\par
+
+          % 本部分字号为小四
+          \zihao{-4}
+          \c_@@_bachelor_english_label_originality_clause_tl
+
+          \bigbreak
+
+          Student~(Signature):~\dunderline[-1pt]{1pt}{\makebox[18mm]{}}~Date:\par
+
+          \vspace{\stretch{1}}
+
+          % 使用授权声明部分
+          \begin{center}
+            \@@_same_page:
+            \chapter*{
+              \heiti\zihao{-2}
+              \c_@@_bachelor_english_label_authorization_tl
+            }
+          \end{center}~\par
+
+          \c_@@_bachelor_english_label_authorization_clause_tl
+
+          \bigbreak
+          Student~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm + 16bp]{}}~
+            \hspace{2mm}Date:\par
+          Supervisor~(Signature):~
+            \dunderline[-1pt]{1pt}{\makebox[18mm]{}}~
+            \hspace{2mm}Date:\par
+        }
+        {4} {\@@_graduate_originality:}
+        {5} {\@@_graduate_originality:}
+      }
+    % 单独成页
+    % 本科教务部声明单面、双面打印均可；而硕博虽要求此处单面打印，但已由 graduate_originality 实现。因此，两种情况下这里都不必 cleardoublepage。
+    \clearpage
+    \end{blindPeerReview}
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakePaperBack}
+% 生成书脊。（研究生）
+%    \begin{macrocode}
+\NewDocumentCommand \MakePaperBack { O{} }
+  {
+    % 上下各留出规定的边距，到下一页再恢复。
+    % 若标题超长，自然会向上下溢出。
+    %
+    % 必须在顶层操作，不然影响不确定。
+    % https://tex.stackexchange.com/q/718581
+    %
+    % 单纯`\newgeometry`再`\restoregeometry`相当于仅仅`\clearpage`，也无问题。
+    \newgeometry{
+      vmargin = 5cm,
+    }
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+      \group_begin:
+      % 解析传入参数
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
+      \@@_make_paper_back:
+
+      \group_end:
+    \end{blindPeerReview}
+    \restoregeometry
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeTitle}
+% 生成标题页。（研究生）
+%    \begin{macrocode}
+\NewDocumentCommand \MakeTitle { O{} }
+  {
+    \begin{blindPeerReview}[\l_@@_cover_hide_cover_in_peer_review_bool]
+      \group_begin:
+      % 解析传入参数
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { bookmarked = true }
+      \keys_set:nn { bithesis-internal / pre-frontmatter } { #1 }
+
+      \@@_make_chinese_title_page:
+      \@@_make_english_title_page:
+
+      \group_end:
+    \end{blindPeerReview}
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\MakeTOC}
+% 生成目录。
+%    \begin{macrocode}
+\DeclareDocumentCommand \MakeTOC {}
+  {
+    {
+      \@@_if_graduate:TF {
+        \renewcommand{\baselinestretch}{1.56}
+      } {
+        \renewcommand{\baselinestretch}{1.35}
+      }
+
+      % 自定义目录样式
+      \cs_set:Npn \contentsname {
+        \fontsize{16pt}{\baselineskip}
+        { \@@_unnumchapter_style: \@@_title_font: \l_@@_toc_title_tl }
+        \vspace{-8pt}
+      }
+
+      \bool_if:NTF \l_@@_add_toc_to_toc_bool {
+        % 添加「目录」本身到目录中，同时自动添加书签
+        % 此处必须有`\phantomsection`，不然 hyperref 会把链接指向之前摘要的标题。
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
+      } {
+        % 手动添加目录书签
+        \currentpdfbookmark{\l_@@_toc_title_tl}{ch:toc}
+      }
+
+      % 制作目录
+      \tableofcontents
+
+      % 单独成页
+      \clearpage
+    }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{abstract}
+% 生成摘要。
+%    \begin{macrocode}
+\NewDocumentEnvironment {abstract} {}
+  {
+
+    \cleardoublepage
+    \linespread{1.53}\selectfont
+
+    % 本科模板在标题「摘要」二字上方另有毕业设计题目
+    \@@_if_bachelor:T {
+      \begin{center}
+        \vspace*{-17bp}
+        \heiti\zihao{-2}\textbf{
+          \int_case:nn {\g_@@_thesis_type_int}
+          {
+            {1} {\l_@@_value_title_tl}
+            {2} {\l_@@_value_trans_title_tl}
+            {3} {\l_@@_value_title_tl}
+          }
+        }
+      \end{center}
+
+      \vspace*{2mm}
+    }
+
+    \ctexset{
+      chapter/numbering = false,
+    }
+
+    \@@_if_bachelor:T {
+      \ctexset{
+        chapter/titleformat = {\textmd}
+      }
+    }
+    \@@_if_thesis_english:T {
+      % 英文模板中，ctex 不会自动调整中文摘要的首行缩进，需手动调整
+      \ctexset{ autoindent = 2 }
+    }
+
+    % 摘要对页数很敏感，标题上下间距应有弹性；其中硕博模板的基础长度参考 Word 实作微调过。
+    \ctexset{ chapter = {
+      % 最短均为 8bp
+      beforeskip = \@@_if_graduate:TF {13bp minus 5bp} {8bp},
+      afterskip = \@@_if_graduate:TF {24bp minus 16bp} {32bp minus 24bp},
+    } }
+
+    {
+      \@@_same_page:
+      \bool_if:NTF \l_@@_add_abstract_to_toc_bool {
+        \chapter{\c_@@_label_abstract_tl}
+      } {
+        \currentpdfbookmark{\c_@@_label_abstract_tl}{ch:abstract}
+        \chapter*{\c_@@_label_abstract_tl}
+      }
+    }
+    \vspace*{1mm}
+    \par
+  }
+  {
+    \par
+    % 摘要对页数很敏感，关键词上方间距应有弹性
+    \vspace{4ex minus 4ex}
+    \noindent
+    \@@_if_graduate:TF {
+      % 研究生模板中，“关键词”宋体小四加粗
+      % 关键词为宋体小四号字。
+      \textbf{\c_@@_label_keywords_tl}\l_@@_value_keywords_tl\par
+    } {
+      % 本科生模板中，关键词为黑体加粗
+      \textbf{\heiti \c_@@_label_keywords_tl \l_@@_value_keywords_tl}\par
+    }
+    \newpage
+  }
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{abstractEn}
+% 生成英文摘要。
+%    \begin{macrocode}
+\NewDocumentEnvironment {abstractEn} {}
+  {
+    \linespread{1.53}\selectfont
+
+    \@@_if_bachelor:T {
+      \begin{spacing}{0.95}
+        \centering
+        \vspace*{-2bp}
+
+        {
+          \@@_title_font:
+          \zihao{3}\textbf
+          \l_@@_value_title_en_tl\\
+        }
+      \end{spacing}
+      % 最短缩到与中文摘要相同
+      \vspace*{10mm minus 8mm}
+    }
+
+    \ctexset{
+      chapter/numbering = false,
+    }
+
+    \@@_if_graduate:TF {
+      \ctexset{
+        chapter/titleformat = {\heiti\zihao{3}\centering\textbf}
+      }
+    } {
+      \ctexset {
+        chapter/titleformat = {\zihao{-3}\textmd}
+      }
+    }
+
+    % 摘要对页数很敏感，标题上下间距应有弹性；其中硕博模板的基础长度参考 Word 实作微调过。
+    \ctexset{ chapter = {
+      % 最短均为 8bp
+      beforeskip = \@@_if_graduate:TF {19bp minus 11bp} {8bp},
+      afterskip = \@@_if_graduate:TF {35bp minus 27bp} {32bp minus 24bp},
+    } }
+
+    {
+      \@@_same_page:
+      \bool_if:nTF {\l_@@_add_abstract_en_to_toc_bool} {
+        \chapter{\c_@@_label_abstract_en_tl}
+      } {
+        \currentpdfbookmark{\c_@@_label_abstract_en_tl}{ch:abstract:en}
+        \chapter*{\c_@@_label_abstract_en_tl}
+      }
+    }
+  }
+  {
+    % 摘要对页数很敏感，关键词上方间距应有弹性
+    \par\vspace{3ex minus 3ex}\noindent
+    \@@_if_graduate:TF {
+      % Times New Roman小四号字，行距22磅
+      % “Key Words”
+      % Times New Roman小四号字加粗
+      \textbf{\c_@@_label_keywords_en_tl} \l_@@_value_keywords_en_tl
+    } {
+      \textbf{\c_@@_label_keywords_en_tl \l_@@_value_keywords_en_tl}
+    }
+    \newpage
+  }
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{conclusion}
+% 生成结论。需要放在 \cs{macrocode} 之后。
+%    \begin{macrocode}
+\NewDocumentEnvironment {conclusion} { O{} }
+  {
+    \group_begin:
+    % 解析传入参数
+    \keys_set:nn { bithesis-internal / conclusion } {
+      title = \@@_if_thesis_english:TF {
+        \c_@@_label_conclusion_en_tl
+      } {
+        \c_@@_label_conclusion_tl
+      },
+    }
+    \keys_set:nn { bithesis-internal / conclusion } { #1 }
+
+    \ctexset{
+      section/number = \arabic{section}
+    }
+
+    \chapter{\l_@@_internal__conclusion__title_tl}
+    \group_end:
+  }
+  {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{bibprint}
+% 生成参考文献。需要放在 \cs{backmatter} 之后。
+%    \begin{macrocode}
+\NewDocumentEnvironment {bibprint} {}
+  {
+    % 设置参考文献字号为 5 号
+    \renewcommand*{\bibfont}{\zihao{5}}
+    % 设置参考文献各个项目之间的垂直距离为 0
+    \setlength{\bibitemsep}{0ex}
+    \setlength{\bibnamesep}{0ex}
+    \setlength{\bibinitsep}{0ex}
+    \@@_if_graduate:TF {
+    } {
+      % 「本科生」设置单倍行距
+      \renewcommand{\baselinestretch}{1.2}
+    }
+    % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+    \setlength{\biblabelsep}{1.7mm}
+
+    \bool_if:NF \l_@@_style_bibliography_indent_bool {
+      % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+      % See: https://github.com/hushidong/biblatex-gb7714-2015
+      %      如何修参考文献表的缩进？
+      \cs_set:Npn \itemcmd {
+        \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+        %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+        \setlength{\lengthid}{0pt}
+        \addtolength{\lengthid}{-\biblabelsep}
+        \setlength{\lengthlw}{\textwidth}
+        \addtolength{\lengthlw}{-\lengthid}
+        \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+        \hangindent\lengthid
+        \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+        \hspace{\biblabelsep}
+      }
+    }
+
+    \@@_if_thesis_english:TF {
+      \chapter{\c_@@_label_reference_en_tl}
+    } {
+      \chapter{\c_@@_label_reference_tl}
+    }
+  }
+  {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{appendices}
+% 生成附录。
+%    \begin{macrocode}
+\NewDocumentEnvironment {appendices} {}
+  {
+    % Used in chapter, ToC.
+    \tl_new:N \l_@@_appendix_plain_label_tl
+    % Used before reference label.
+    \tl_new:N \l_@@_appendix_default_title_tl
+
+    \@@_if_thesis_english:TF {
+      \tl_set:Nn \l_@@_appendix_plain_label_tl {\c_@@_label_appendix_prefix_en_tl}
+      \tl_set:Nn \l_@@_appendix_default_title_tl {\c_@@_label_appendix_en_tl}
+    } {
+      \tl_set:Nn \l_@@_appendix_plain_label_tl {\c_@@_label_appendix_prefix_tl}
+      \tl_set:Nn \l_@@_appendix_default_title_tl {\c_@@_label_appendix_tl}
+    }
+
+    \bool_if:NTF \l_@@_appendices_chapter_level_bool {
+      % 使用以「chapter」为顶层的附录格式
+
+      % 仅设置 \setcounter{chapter}{0} 时，pdf 目录会索引到正文章节。
+      % 因此，需要使用 \appendix 重置计数器，并将附录后面的
+      % 几个章节视为特殊的附录页。
+      \appendix
+
+      \ctexset{
+        chapter/numbering = true,
+        chapter/name = {},
+        chapter/number = \l_@@_appendix_plain_label_tl\hspace{1ex}\Alph{chapter},
+        section/number = \Alph{chapter}. \arabic{section},
+        subsection/number = \Alph{chapter}. \arabic{section}. \arabic{subsection},
+      }
+
+      \cs_set:Npn \thechapter {
+        \Alph{chapter}
+      }
+    } {
+      % 使用以「section」为顶层的附录格式
+
+      % 因为不需要用到 chapter counter, 所以直接加一即可。
+      \stepcounter{chapter}
+      \setcounter{section}{0}
+      % （与上面方法至少用一个）
+      % 需要让 section 在 pdf bookmark 中输出字母而不是数字。
+      % 详见 hyperref 代码。
+      \gdef\theHsection{\Alph{section}}
+
+      % 定义 \thefigure 采用节而不是章
+\cs_set:Npn \thefigure {\theHsection \g_@@_label_divide_char_tl\arabic{figure}}
+
+      \ctexset{
+        section/number = \l_@@_appendix_plain_label_tl\hspace{1ex}\Alph{section},
+        subsection/number = \Alph{section}. \arabic{subsection},
+      }
+
+      \cs_gset:Npn \thechapter {
+        \Alph{section}
+      }
+      % \gdef \thechapter{\Alph{section}}
+
+      \tl_if_blank:VTF \l_@@_appendices_title_tl {
+        \chapter{\l_@@_appendix_default_title_tl}
+      } {
+        \chapter*{\l_@@_appendices_title_tl}
+        \stepcounter{chapter}
+        \tl_if_blank:VTF \l_@@_appendix_toc_title_tl {
+          \addcontentsline{toc}{chapter}{\l_@@_appendix_default_title_tl}
+        } {
+          \addcontentsline{toc}{chapter}{\l_@@_appendix_toc_title_tl}
+        }
+      }
+    }
+  }
+  {
+  }
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{acknowledgements}
+% 生成致谢。
+%    \begin{macrocode}
+\NewDocumentEnvironment {acknowledgements} {+b}
+  {
+    % 有三种可能：完全显示、只显示标题、完全隐藏。
+    % 若同时设置 acknowledgements / showTitleInPeerReview = false 以及 blindPeerReview，则完全隐藏。
+    \begin{blindPeerReview}[!\l_@@_acknowledgements_show_title_in_peer_review_bool]
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
+      \ctexset{
+        appendix/numbering = false,
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+      }
+
+      % 如果不是完全隐藏，就需显示标题
+      \chapter{\g_@@_const_heading_acknowledgements_tl}
+
+      % 如果不是盲审模式，就需渲染内容
+      \bool_if:NF \g_@@_blind_mode_bool {
+        \@@_if_graduate:T {\fangsong}
+        #1
+      }
+    \end{blindPeerReview}
+  } {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\Author,\AuthorEn}
+% 在普通模式下，输出作者姓名。
+% 在盲审模式下，输出「第 n 作者」。
+%    \begin{macrocode}
+\NewDocumentCommand \Author {O{1} o o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      \IfValueTF {#3} {
+        #3
+      } {
+        第\zhnumber{#1}作者
+      }
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_tl
+      }
+    }
+  }
+
+% 英文姓名
+\NewDocumentCommand \AuthorEn {O{1} o o}
+  {
+    \bool_if:NTF \g_@@_blind_mode_bool {
+      % 盲审模式
+      \IfValueTF {#3} {
+        #3
+      } {
+        \Ordinalstringnum{#1}~Author
+      }
+    } {
+      % 普通模式
+      \IfValueTF {#2} {
+        % 覆盖默认的 \author 命令
+        #2
+      } {
+        % 默认采用作者姓名
+        \l_@@_value_author_en_tl
+      }
+    }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\addpub,\addpubs}
+% 添加一个或多个参考文献。
+%   \begin{macrocode}
+\NewDocumentCommand \addpub {m} {
+  \nocite{#1}
+  \addtocategory{mypub}{#1}
+}
+
+\NewDocumentCommand \addpubs {m} {
+  % apply a clist
+  \clist_map_function:nN {#1} \addpub
+}
+%   \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pubsection}
+% 设置小标题。
+%    \begin{macrocode}
+\NewDocumentCommand \pubsection {s m} {
+  {
+    \par
+    \IfBooleanF {#1} {
+      % 自增计数器
+      \stepcounter{pub}
+    }
+    % 设置小标题，暂时没有考虑英文模式
+    \noindent
+    \textbf{
+      \heiti{
+        \IfBooleanF {#1} {\zhnumber{\thepub}、}#2
+      }
+    }\par
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{publications}
+% 生成攻读学位期间发表论文与研究成果清单。
+%    \begin{macrocode}
+\NewDocumentEnvironment {publications} {+b}
+  {
+    % 同时设置 omit 以及 blindPeerReview 才能跳过此章节生成。
+    \begin{blindPeerReview}[\l_@@_publications_omit_bool]
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
+      \ctexset{
+        appendix/numbering = false,
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+      }
+      % 设置参考文献字号为 5 号
+      \renewcommand*{\bibfont}{\zihao{5}}
+      % 设置参考文献各个项目之间的垂直距离为 0
+      \setlength{\bibitemsep}{0ex}
+      \setlength{\bibnamesep}{0ex}
+      \setlength{\bibinitsep}{0ex}
+      % 设置参考文献顺序标签 `[1]` 与文献内容 `作者. 文献标题...` 的间距
+      \setlength{\biblabelsep}{1.7mm}
+
+      \bool_if:NF \l_@@_style_bibliography_indent_bool {
+        % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
+        % See: https://github.com/hushidong/biblatex-gb7714-2015
+        %      如何修参考文献表的缩进？
+        \cs_set:Npn \itemcmd {
+          \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
+          %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
+          \setlength{\lengthid}{0pt}
+          \addtolength{\lengthid}{-\biblabelsep}
+          \setlength{\lengthlw}{\textwidth}
+          \addtolength{\lengthlw}{-\lengthid}
+          \addvspace{\bibitemsep}%恢复\bibitemsep的作用
+          \hangindent\lengthid
+          \leavevmode\mkgbnumlabel{\printfield{labelnumber}}%
+          \hspace{\biblabelsep}
+        }
+      }
+
+      % If in blindPeerReview mode, omit delimiters in author field.
+      \bool_if:NT \g_@@_blind_mode_bool {
+        % 如果有多个作者，不修改此项的话，作者与标题之间会有逗号。
+        \DeclareDelimFormat[bib,biblist]{finalnamedelim}{}
+        % 如果自己不是第一个作者，不修改此项的话，会在最开始有逗号。
+        \DeclareDelimFormat{multinamedelim}{}
+        % 如果覆盖的是英文作者，不修改此项的话，会在最开始有空格。
+        \DeclareDelimFormat{bibnamedelimd}{}
+
+        % 如果作者太多而被截断，不修改的话，会多余逗号、“等”云云。
+        % 被截断的充要条件：作者数量大于通过`\BITSetup`设置的`publications/maxbibnames`。
+        % 故设置标点来去掉逗号，
+        \DeclareDelimFormat[bib,biblist]{andothersdelim}{}
+        % 并设置本地化字符串来去掉“等”。
+        \setlocalbibstring{andothers}{}
+        \setlocalbibstring{andotherscn}{}
+        % 另外注意，我们仍尊重`maxbibnames`和`minbibnames`，保证若开盲审时显示作者，则关盲审时也正常。
+      }
+
+      % ===== 上方定义与「参考文献」部分相同
+
+      % 中文姓名下，此部分不参与输出。
+      \cs_set:Npn \mkbibnamegiven ##1 {
+        \haspartannotation{myself}{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出内容
+          } {
+            % 普通模式
+            ##1
+          }
+        }
+      }
+
+      \cs_set:Npn \mkbibnamefamily ##1 {
+        \haspartannotation{myself}{
+          % 作者为自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式
+            \getpartannotation{myself}
+          } {
+            % 普通模式
+            \textbf{##1}
+          }
+        }{
+          % 作者不是自己
+          \bool_if:NTF \g_@@_blind_mode_bool {
+            % 盲审模式，不输出
+          } {
+            % 普通模式
+            ##1
+          }
+        }
+      }
+
+      \if_cs_exist:N \c@pub {
+        % 重置计数器
+        \setcounter{pub}{0}
+      } \else: {
+        % 设置计数器
+        \newcounter{pub}
+      } \fi:
+
+      % 设置参考文献的排序
+      \bool_if:NTF \l_@@_publications_sorting_bool {
+        % Sorting by year, name, type.
+        \newrefcontext[sorting=ynt]
+      } {
+        % Do not sort.
+        \newrefcontext
+      }
+
+      % 根据 maxbibnames 的设置，覆盖 \blx@maxbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@maxbibnames {
+        \l_@@_publications_maxbibnames_int
+      }
+
+      % 根据 minbibnames 的设置，覆盖 \blx@minbibnames 选项，保证所有作者都能显示。
+      \cs_set:Npn \blx@minbibnames {
+        \l_@@_publications_minbibnames_int
+      }
+
+      \chapter{\@@_get_const:n {publications}}
+      #1
+    \end{blindPeerReview}
+  }
+  {}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{resume}
+% 生成个人简历。
+%    \begin{macrocode}
+\NewDocumentEnvironment {resume} {+b}
+  {
+    \begin{blindPeerReview}
+      % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
+      % 不知为何，需要手动重置 section 计数器。
+      \setcounter{section}{0}
+      \ctexset{
+        appendix/numbering = false,
+        section/number = \arabic{section},
+        subsection/number = \arabic{section}. \arabic{subsection},
+        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+      }
+      \chapter{\@@_get_const:n {resume}}
+      #1
+    \end{blindPeerReview}
+  }
+  {
+  }
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{symbols}
+% 生成主要术语对照表。
+%    \begin{macrocode}
+\NewDocumentEnvironment {symbols} {}
+  {
+    \bool_if:NTF \l_@@_add_symbols_to_toc_bool {
+      \chapter{\@@_get_const:n {symbols}}
+    } {
+      \chapter*{\@@_get_const:n {symbols}}
+      \currentpdfbookmark{\c_@@_label_symbols_tl}{ch:symbols}
+    }
+    \zihao{-4}
+    \begin{itemize}[
+      labelwidth=2.5cm,
+      labelsep=0.5cm,
+      leftmargin=3cm,
+      itemindent=0cm,
+      % 不再在两项之间增加额外的间距（1.5 倍的行间距已经够宽了）（未来可以提供一个接口以供用户手动设置间距）
+      itemsep=-0.5ex,
+    ]
+    \cs_set:Npn \makelabel ##1 {##1\hfil}
+  }
+  {
+    \end{itemize}
+
+    % 单独一页
+    \clearpage
+  }
+%    \end{macrocode}
+% \end{environment}

@@ -14,7 +14,7 @@
 %%
 %% This work has the LPPL maintenance status `maintained'.
 %%
-%% The Current Mainteiner of this work is Feng Kaiyu.
+%% The Current Maintainer of this work is Feng Kaiyu.
 %% --------------------------------------------------------------------------
 
 \input docstrip.tex
@@ -46,10 +46,33 @@
 \generate
   {
     \usedir{tex/latex/bithesis}
-    \file{bithesis.cls}           {\from{\jobname.dtx}{cls,thesis}}
-    \file{bitbeamer.cls}          {\from{\jobname.dtx}{cls,beamer}}
-    \file{bitreport.cls}          {\from{\jobname.dtx}{cls,report}}
-    \file{dtx-style.sty}          {\from{\jobname.dtx}{dtx-style}}
+    % DocStrip requires the file order to be “compatible”.
+    % To do so, specify a compatible order in the first file using `\needed`.
+    % The command itself generates nothing.
+    \file{bithesis.cls} {
+      \from{\jobname.dtx}{cls,thesis}
+      \from{bithesis-thesis.dtx}{}
+      \from{bithesis-thesis-exports.dtx}{}
+      \needed{bithesis-report.dtx}
+      \needed{bithesis-beamer.dtx}
+      \needed{bithesis-doc-style.dtx}
+      \from{bithesis-finale.dtx}{}
+    }
+    \file{bitbeamer.cls} {
+      \from{\jobname.dtx}{cls,beamer}
+      \from{bithesis-beamer.dtx}{}
+      \from{bithesis-finale.dtx}{}
+    }
+    \file{bitreport.cls} {
+      \from{\jobname.dtx}{cls,report}
+      \from{bithesis-report.dtx}{}
+      \from{bithesis-finale.dtx}{}
+    }
+    \file{dtx-style.sty} {
+      \from{\jobname.dtx}{dtx-style}
+      \from{bithesis-doc-style.dtx}{}
+      \from{bithesis-finale.dtx}{}
+    }
   }
 
 \obeyspaces

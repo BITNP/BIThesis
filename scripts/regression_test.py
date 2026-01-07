@@ -1,4 +1,4 @@
-"""回归测试，用于`make regression-test`
+"""回归测试，用于`just regression-test`
 
 ```shell
 $ uv run scripts/regression_test.py --help
@@ -174,8 +174,9 @@ def cli(
 
     COMPILE_COMMAND 默认`latexmk -g -silent`
     """
-    cache_dir = Path(__file__).parent / "cache"
-    cache_dir.mkdir(exist_ok=True)
+    root_dir = Path(__file__).parent.parent
+    cache_dir = root_dir / "target/regression-cache"
+    cache_dir.mkdir(exist_ok=True, parents=True)
 
     templates_root = Path(__file__).parent.parent / "templates"
     assert templates_root.exists() and templates_root.is_dir()
