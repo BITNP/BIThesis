@@ -128,9 +128,9 @@
   \item 在 2017 年之前，网络上已经出现一些北京理工大学学位论文 \LaTeX 模板。
     它们是“2012大眼小蚂蚁版”和“2016汪卫版”，均以上海交通大学的模板为基础。
   \item 2017 - 2018 年，计算机学院 2016 级研究生杨雅婷等人受研究生院委托，
-    制作了\href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis}
+    制作了 \href{https://github.com/BIT-thesis/LaTeX-template}{BIT-Thesis}
     研究生学位论文模板。
-  \item 2019 - 2020 年，\BIThesis 最早由 2016 级的
+  \item 2019 - 2020 年，\href{https://github.com/BITNP/BIThesis/}{\BIThesis} 最早由 2016 级的
     武上博、王赞、唐誉铭、牟思睿和詹熠莎等人维护。
   \begin{itemize}
     \item 此时，\BIThesis 仅支持本科生毕业论文的排版。
@@ -138,14 +138,15 @@
       在线文档和开箱即用的模板。
     \item 同时，2017 级的赵池等同学完成了一系列 \BIThesisLaTeX
       的视频教程。
+    \item 武上博推进了教务部对 \BIThesis{} 的认可。
   \end{itemize}
   \item 2020 - 2021 年，2017 级的冯开宇、杨思云、郝正亮和顾骁等人
       接管了维护开发工作。
   \begin{itemize}
-    \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 CTAN 上。
-    \item 项目代码也随之被拆分成了 \BIThesisMacroPackage，
-      \BIThesisWiki 和 \BIThesisScaffold。
-    \item 此版本是 V2 版本，代号为 Birthday Cake.
+    \item 在此期间，冯开宇将原来的 .tex 文件制作成了宏包，并发布到 \href{https://www.ctan.org/pkg/bithesis}{CTAN} 上。
+    \item 项目代码也随之被拆分成了 \BIThesisMacroPackage、
+      \href{https://github.com/BITNP/BIThesis-wiki}{\BIThesisWiki} 和 \href{https://github.com/BITNP/BIThesis-scaffold}{\BIThesisScaffold}。
+    \item 此版本是 V2 版本，代号为 Birthday Cake。
   \end{itemize}
   \item 2021 - 2022 年，2021 级（硕士研究生）的冯开宇针对 2021、
       2022 毕业季收到的反馈对该项目进行维护升级。
@@ -155,13 +156,53 @@
     \item 次年暑假期间，冯开宇用 \pkg{expl3} 重构了\LaTeX 样式代码，
       向用户提供了简易易用的接口。
     \item 同时，也增加了本科全英文专业的毕设论文模板样式。
-    \item 此版本是 V3 版本，代号为 Summer Time.
+    \item 此版本是 V3 版本，代号为 Summer Time。
   \end{itemize}
   \item 2023 年，冯开宇在此版本上增加了多种新的功能，并修复了一些已知的问题。
-  并推进了官方（教务部、研究生院）对 \BIThesis 的认可。
+  并推进了官方（教务部、研究生院）对 \BIThesis 的认可，特别是面向没有太多计算机基础的同学\href{https://github.com/BITNP/BIThesis/pull/242}{起草了《\BIThesis 研究生学位论文\LaTeX{}模板快速使用指南》}。
   另外，2020级的徐元昌改正了文档、手册、注释中若干错误或过时信息（其中有些源于QQ群），增加了读书报告模板。
-  \item 2024 年，冯开宇和徐元昌推动了对研究生院原官方模板的替换。
+  \item 2024 年，冯开宇、徐元昌、张正等继续维护开发。
+  \begin{itemize}
+    \item 硕博方面，冯开宇和徐元昌推动了对研究生院原\href{https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm}{官方模板}的替换。
+    \item 本科方面，年初\href{https://github.com/BITNP/BIThesis/discussions/396}{毕业设计相关模板被系统地比对更新}；毕业季前后，徐元昌又\href{https://github.com/BITNP/BIThesis/issues/496}{针对全英文毕业论文调查了各学院要求和应届学生需求}，并根据实际情况扩展了模板。
+    \item 技术支持方面，QQ群中的重复性问答开始添加到精华消息或汇编到 \href{https://github.com/BITNP/BIThesis/discussions?discussions_q=}{GitHub Discussions}，《快速使用指南》也增加了本科版本并持续发布于 \href{https://github.com/BITNP/BIThesis/releases}{GitHub Releases}。
+  \end{itemize}
+  \item 2025 年
+  \begin{itemize}
+    \item \textbf{模板核心维护}
+    \begin{itemize}
+      \item \textbf{联系学校机构}\hspace{\ccwd}
+      国家新《学位法》自元旦起实施并替代1981年《学位条例》，当年春\href{https://github.com/BITNP/BIThesis/issues/603}{研究生院将学位论文模板拆分为学术型、专业型}，于是徐元昌相应更新了 \BIThesis 硕博模板，冯开宇随后推进了官方网站的替换。
+      \item \textbf{完善模板细节}\hspace{\ccwd}
+      高鹏和徐元昌\href{https://github.com/BITNP/BIThesis/pull/596}{适配汉化了 \pkg{cleveref}}，noteas和徐元昌将模板中的校名、校徽替换为矢量图并与\href{https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/}{学校视觉形象识别系统}对齐。此外，双面打印、间距、布局、成果清单等细节也得到了改进。
+    \end{itemize}
+    \item \textbf{模板周边优化}
+    \begin{itemize}
+      \item \textbf{发布渠道}\hspace{\ccwd}
+      \href{https://www.githubstatus.com/incidents/jfvgcls9swln}{GitHub四月}更新配置时意外导致中国未登录用户无法访问，张正、蒋浩天遂向\href{https://mirrors.bit.edu.cn/}{校内镜像站}增设\verb|/github-release/|并添加 \BIThesis，徐元昌也将\href{https://bithesis.bitnp.net/news/}{更新说明}备份到在线文档、将《快速使用指南》备份到CTAN。
+      \item \textbf{编译时长}\hspace{\ccwd}
+      近年受国际环境影响，Overleaf、TeXPage、LoongTeX 等在线平台均缩短了免费编译时长，其中 \href{https://github.com/BITNP/BIThesis/issues/543}{Overleaf 甚至于夏秋缩至十秒，难以编译中文论文}。为此，张正整理了\href{https://github.com/BITNP/BIThesis-wiki/issues/445#issuecomment-2740471477}{自建 Overleaf 实例的教程}，徐元昌在 GitHub Actions 增加了编译时长监测，并联系国产平台 TeXPage 开发测试了\verb|zip_url| API。
+      \item \textbf{环境兼容}\hspace{\ccwd}
+      首次确定了编译所需的最小宏包集合，重新确定编译所需最低 TeX Live 版本为2021，并添加持续测试以确保兼容性不再被破坏。徐元昌据此更新了\href{https://bithesis.bitnp.net/guide/getting-started.html}{安装指南}，网络开拓者协会多位成员进行了测试。
+    \end{itemize}
+    \item \textbf{相关技术支持}
+    \begin{itemize}
+      \item \textbf{整理疑难杂症}\hspace{\ccwd}
+      过去资料散落于 GitHub Discussions、QQ群精华消息、\LaTeX 源代码等各处，而在线文档原有的七条疑难杂症均写于 2023年或更早，其中半数已过时。
+      2025年参考 \href{https://typst.dev/guide/FAQ.html}{Typst 中文社区导航「常见问题」}重构了\href{https://bithesis.bitnp.net/faq/}{在线文档的「疑难杂症」版块}。截至年末已整理近六十条解答，覆盖字体、行内、段落、页面、宏包等十个标签。针对著录成果清单等高门槛、低频次需求，还开发了交互页面，只需填表即可生成代码。
+      为让集中了的资料更容易发现，同时优化了网站搜索，并从模板示例内容、《快速使用指南》、\verb|bithesis.pdf| 链接到「疑难杂症」，特别是 \verb|bithesis-doc.tex| 为检测无效链接首次利用 \pkg{lt3luabridge} 添加了 Lua 代码。
+      \item \textbf{探索智能应用}\hspace{\ccwd}
+      人工智能开始广泛落地，徐元昌将多位同学的经验整理到在线文档的\href{https://bithesis.bitnp.net/guide/ask-computer.html}{「询问人工智能」}。
+      当年春天，联系网信中心\footnote{
+        2025年5月网络信息技术中心 (Information Technology Center) 更名为数字化与智算技术中心 (Digital Intelligence Technology Center)，英文缩写保持ITC不变。
+      }建设\href{https://agent.bit.edu.cn}{学校智能体广场}，并在早期创建「LaTeX-BIThesis帮助」知识库、智能体并沟通反馈。针对智能体广场存在的缺陷，适配 \BIThesis 网站、PDF、sitemap；同时开发\href{https://github.com/YDX-2147483647/faq-bot}{NoneBot机器人}连接QQ群与智能体。然而智能体效果较差，在\href{https://github.com/BITNP/BIThesis/issues/671}{调研问卷}中评价倒数第一，盛夏后使用率也降至最初的六分之一。
+      此外，认证了 \href{https://deepwiki.com/BITNP/BIThesis}{DeepWiki}、\href{https://context7.com/bitnp/bithesis-wiki}{Context7} 等公共服务。
+    \end{itemize}
+  \end{itemize}
 \end{itemize}
+% \iffalse
+% 以上的简化版本需同步更新到 handbook/chapters/appendices.tex
+% \fi
 
 \subsection{\BIThesis 是什么？}
 \BIThesis 之名是英文单词 Beijing Institution of Technology（北京理工大学）
@@ -2026,7 +2067,9 @@ addTOC = (*<(true)|false>*)
 \documentclass(*\oarg{模板选项}*){bithesis}
 \end{latex}
 
+% \iffalse
 % l3doc 的 function 环境会按函数名称自动设置标签，默认与之前 bithesis.cls 的标签重复，故需手动指定标签
+% \fi
 
 \begin{function}[label=bitreport.type]{type}
 \begin{bitsyntax}[emph={[1]type}]
