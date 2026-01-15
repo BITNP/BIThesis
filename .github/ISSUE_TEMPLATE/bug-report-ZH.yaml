@@ -68,7 +68,7 @@ body:
     id: software
     attributes:
       label: LaTeX 发行版以及发行年份
-      placeholder: TexLive 2024
+      placeholder: TeX Live 2025
     validations:
       required: false
   - type: textarea
