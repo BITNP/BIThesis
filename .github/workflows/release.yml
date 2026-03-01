@@ -108,12 +108,12 @@ jobs:
         with:
           tool: fd-find, just
       - name: Download bithesis.pdf
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: bithesis
           path: src
       - name: Download `*.cls`
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: cls
           path: src
@@ -152,7 +152,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Download *.cls
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: cls
           path: src
@@ -201,7 +201,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Download bithesis.pdf
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: bithesis
           path: src
@@ -224,7 +224,7 @@ jobs:
             ${{ steps.git-cliff.outputs.content }}
 
       - name: Download handbooks
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: handbooks
           path: handbook
@@ -248,12 +248,12 @@ jobs:
         with:
           tool: just
       - name: Download bithesis.pdf
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: bithesis
           path: src
       - name: Download handbooks
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: handbooks
           path: handbook
