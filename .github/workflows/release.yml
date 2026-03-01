@@ -54,17 +54,17 @@ jobs:
       - run: just doc handbooks
 
       - name: Upload bithesis.pdf for later usage.
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bithesis
           path: src/bithesis.pdf
       - name: Upload handbooks for later usage.
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: handbooks
           path: "handbook/*.pdf"
       - name: Upload *.cls for later usage.
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: cls
           path: "src/*.cls"
@@ -258,7 +258,7 @@ jobs:
           name: handbooks
           path: handbook
       - run: just pkg-only
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: ctan-pkg
           path: target/bithesis.zip
