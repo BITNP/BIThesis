@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tl-version: [2021, 2022, 2023, 2024, 2025]
+        tl-version: [2021, 2022, 2023, 2024, 2025, 2026]
       fail-fast: false
     steps:
       - uses: actions/checkout@v6
