@@ -761,13 +761,18 @@ hideCoverInPeerReview = (*false|true*)
   未启用盲审模式时，此选项无效果。
 \end{function}
 
-\begin{function}[added=2024-03-22]{cover/showSpecialTypeBox}
+\begin{function}[added=2024-03-22,updated=2026-03-11]{cover/showSpecialTypeBox}
 \begin{bitsyntax}[emph={[1]showSpecialTypeBox}]
-showSpecialTypeBox = (*(false)|true*)
+showSpecialTypeBox = (*false|(true)*)
 \end{bitsyntax}
 
-  展示「学生类型」（研究生模板）的那个信息框。
-  因为美观原因默认关闭，和研究生院确认过这个信息框重要程度比较低。
+  展示「学生类型」（研究生模板）的那个信息框。|true|（默认）表示始终显示；|false| 表示允许隐藏——至少勾选框中一项时显示，无一勾选时隐藏。
+
+  此选项现在默认为 |true|，但曾经默认为 |false|。最初2024年信息框重要程度较低，可为美观而关闭；后来2026年重要程度变高了，遂改为始终显示。
+
+  只适用于\BIThesisTemplates{GT}，对其它模板无影响。
+
+  \textit{此选项一般不需要用户自行修改。}
 \end{function}
 
 \begin{function}[added=2024-07-11]{cover/prefer-zh}
@@ -1014,8 +1019,6 @@ crossResearch = (*<(false)|true>*)
 
   学生类型：交叉研究方向。
 
-  不勾选时默认不显示整个内容，可通过 \hyperref[doc/function//cover/showSpecialTypeBox]{|cover/showSpecialTypeBox| 选项}设置。
-
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
 
@@ -1025,8 +1028,6 @@ internationalStudentUGP = (*<(false)|true>*)
 \end{bitsyntax}
 
   学生类型：政府项目留学生。
-
-  不勾选时默认不显示整个内容，可通过 \hyperref[doc/function//cover/showSpecialTypeBox]{|cover/showSpecialTypeBox| 选项}设置。
 
   \textit{此选项一般不需要用户自行修改。}
 \end{function}
