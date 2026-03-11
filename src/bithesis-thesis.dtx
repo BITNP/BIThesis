@@ -182,12 +182,11 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\@@_if_thesis_int_type:nT,\@@_if_thesis_int_type:nTF}
+% \begin{macro}{\@@_if_thesis_int_type:nTF,\@@_if_thesis_int_type:nT}
 % 是否某一特定模板。
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_thesis_int_type:nTF #1#2#3 {\int_compare:nNnTF {\g_@@_thesis_type_int} = {#1} {#2} {#3}}
 \cs_new:Npn \@@_if_thesis_int_type:nT #1#2 {\@@_if_thesis_int_type:nTF {#1} {#2} {}}
-\cs_new:Npn \@@_if_thesis_int_type:nF #1#2 {\@@_if_thesis_int_type:nTF {#1} {} {#2}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -353,7 +352,7 @@
         是本人在指导老师的指导下独立进行研究所取得的成果。除文中已经注明引用的内容外，
         本文不包含任何其他个人或集体已经发表或撰写过的研究成果。
         对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。特此申明。\par
-        \arialfamily I,\dunderline[-1pt]{1pt}{\makebox[18mm]{}},~solemnly~
+        \arialfamily I,\@@_dunderline:n{\makebox[18mm]{}},~solemnly~
         declare:~the~submitted~graduation~design~(thesis),~
         is~the~research~achievement~completed~independently~by~myself~
         under~the~guidance~of~the~supervisor.~This~article~does~not~contain~
@@ -620,6 +619,11 @@
 %
 % 定义 |bithesis/info| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_value_vertical_title_tl
+\tl_new:N \l_@@_value_classified_level_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -875,6 +879,11 @@
 %
 % 定义 |bithesis/appendices| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_appendices_title_tl
+\tl_new:N \l_@@_appendix_toc_title_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / appendices }
 {
   chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
@@ -1129,18 +1138,6 @@
   }
 }
 %    \end{macrocode}
-%
-% \begin{macro}{\@@_font_path:}
-% 当选择使用字体文件配置字体时，设置字体文件路径。
-%    \begin{macrocode}
-\cs_new:Npn \@@_font_path:
-  {
-    \str_if_eq:VnTF \l_@@_font_type_tl { font }
-      { }
-      { Path = \l_@@_font_path_tl / , }
-  }
-%    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{\@@_load_unicode_math_pkg:}
 % 加载\pkg{unicode-math}宏包。
@@ -1976,29 +1973,24 @@
   \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 %    \end{macrocode}
 %
-% \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:nn,\@@_dunderline:n}
+% \begin{macro}{\@@_dunderline:nnn,\@@_dunderline:n}
 % 用于渲染下划线。
 %
 % 参数如下：
 % \begin{itemize}
-%   \item \#1 位置，可选值为 \texttt{c}enter、\texttt{l}eft、\texttt{r}ight。
-%   \item \#2 |dim| 长度。
+%   \item \#1 |dim| 线的竖直偏移量，例如 |-10pt|。
+%   \item \#2 |dim| 线宽（粗细），例如 |1pt|。
 %   \item \#3 |tl| 文字内容。
 % \end{itemize}
+% 
+% 前两个可以统一不提供，此时分别默认为 |-1pt|、|1pt|。
 %    \begin{macrocode}
 \cs_new:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
-\cs_new:Npn \@@_dunderline:nn #1#2 {
-  \@@_dunderline:nnn {#1} {1pt} {#2}
-}
 \cs_new:Npn \@@_dunderline:n #1 {
-  \@@_dunderline:nnn {-10pt} {1pt} {#1}
+  \@@_dunderline:nnn {-1pt} {1pt} {#1}
 }
-% 遗留代码，等待重构。
-\newcommand\dunderline[3][-1pt]{{%
-  \setbox0=\hbox{#3}
-  \ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
 %    \end{macrocode}
 % \end{macro}
 %
