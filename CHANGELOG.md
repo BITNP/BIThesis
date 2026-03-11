@@ -11,6 +11,38 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.8] - 2026-03-11
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- 恢复`\parskip`弹性以重新支持跨页对齐底部 ([e982545](https://github.com/BITNP/BIThesis/commit/e98254535867b81e399a1aa4a470e4bc40bbb041)) by @YDX-2147483647
+- *(GT)* [**breaking**] 不再默认因美观而隐藏「学生类型」信息框 ([5d51caa](https://github.com/BITNP/BIThesis/commit/5d51caa5e646156829e848d32551798dd035a1a9)) by @YDX-2147483647
+
+### <!-- 2 -->🚜 Refactor
+
+- Split dtx files ([aa76d0c](https://github.com/BITNP/BIThesis/commit/aa76d0c6316a86ebccd6c72e7c7cac0daffabc3b)) by @YDX-2147483647
+- Remove unused private functions ([f03eec9](https://github.com/BITNP/BIThesis/commit/f03eec93dc68083ebd9b13c42d46d4a4b12d488e)) by @YDX-2147483647
+
+### <!-- 3 -->📚 Documentation
+
+- *(dev)* Update descriptions for DocStrip ([37094c4](https://github.com/BITNP/BIThesis/commit/37094c461c5d2ef2e0962fa2b43daea79a270e47)) by @YDX-2147483647
+- 同步并记录历史 ([2c346ed](https://github.com/BITNP/BIThesis/commit/2c346ed425007421dfde488025a22862534a2dfc)) by @YDX-2147483647
+- Update notes to 2026 ([c246e19](https://github.com/BITNP/BIThesis/commit/c246e19fc5d13d19c6da44f8f15dc6b58d287028)) by @YDX-2147483647
+
+### <!-- 5 -->🎨 Styling
+
+- Fix explcheck warnings ([172064e](https://github.com/BITNP/BIThesis/commit/172064e2714c4b1b029c76a1ff1240010ad4f9bc)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Move core files to `src/` and create `justfile` ([368ee1a](https://github.com/BITNP/BIThesis/commit/368ee1af7fea1b2a64e7a15a4716b5d7c8f9af43)) by @YDX-2147483647
+- Submit `doc-src.zip` to CTAN and organize cache dirs ([f365713](https://github.com/BITNP/BIThesis/commit/f365713497a906949f60618cca8f048f492fe096)) by @YDX-2147483647
+- Correct file paths and allow testing `release.yml` ([4ee58de](https://github.com/BITNP/BIThesis/commit/4ee58de9b27187bc6117487af103184e435a6066)) by @YDX-2147483647
+- Improve release notes for pre-releases ([bbac219](https://github.com/BITNP/BIThesis/commit/bbac2194c94b49adb83fde4f35ffbdf4c75cb170)) by @YDX-2147483647
+- Update copyright years ([ab02937](https://github.com/BITNP/BIThesis/commit/ab02937072e339823375232dadaf0701bec4d18b)) by @YDX-2147483647
+- 测试 TeX Live 2026 ([2e2e892](https://github.com/BITNP/BIThesis/commit/2e2e892fb1594d1c9a9a378c290f5a32a5f1e251)) by @YDX-2147483647
+- Update version to 3.8.8 ([137cf2e](https://github.com/BITNP/BIThesis/commit/137cf2e2058bfb8a9673a633ecd5fea3154fb29e)) by @YDX-2147483647
+
 ## [3.8.7] - 2026-01-06
 
 ### <!-- 0 -->🚀 Features
