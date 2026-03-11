@@ -1600,8 +1600,8 @@
   % 页码使用阿拉伯数字。
   \pagenumbering{arabic}
   \pagestyle{BIThesis}
-  % 正文 22 磅的行距
-  \setlength{\parskip}{0em}
+  % 正文行距 22 磅，同时略保有弹性以支持 style/pageVerticalAlign = scattered
+  \setlength{\parskip}{0em plus 0.2em}
   \linespread{1.53}\selectfont
   % 修复脚注出现跨页的问题
   \interfootnotelinepenalty=10000
