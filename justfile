@@ -78,7 +78,7 @@ copy: cls copy-only
 check: cls
     explcheck {{ explcheck_args }} src/*.cls src/dtx-style.sty $(fd --extension tex --exclude src/bithesis-doc.tex)
     explcheck {{ explcheck_args }} --no-config-file src/bithesis-doc.tex
-# Templates are targeting TeX Live from 2021 to 2025, but docs are targeting the latest TeX Live.
+# Templates are targeting TeX Live from 2021 to 2026, but docs are targeting the latest TeX Live.
 # Therefore, we check them separately.
 # Example: lt3luabridge introduced `\luabridge_now:n` on 2022-06-25, so it can be used in docs, but not templates.
 
