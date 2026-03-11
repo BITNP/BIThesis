@@ -620,6 +620,11 @@
 %
 % 定义 |bithesis/info| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_value_vertical_title_tl
+\tl_new:N \l_@@_value_classified_level_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / info }
   {
     title .tl_set:N = \l_@@_value_title_tl,
@@ -875,6 +880,11 @@
 %
 % 定义 |bithesis/appendices| 键值对类。
 %    \begin{macrocode}
+% Declare variables used by keys
+\tl_new:N \l_@@_appendices_title_tl
+\tl_new:N \l_@@_appendix_toc_title_tl
+%
+% Declare keys
 \keys_define:nn { bithesis / appendices }
 {
   chapterLevel .bool_set:N = \l_@@_appendices_chapter_level_bool,
