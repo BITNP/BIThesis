@@ -61,14 +61,14 @@ body:
         - Windows
         - macOS
         - Linux
-        - Overleaf等在线平台
+        - Overleaf、TeXPage 等在线平台
     validations:
       required: false
   - type: input
     id: software
     attributes:
       label: LaTeX 发行版以及发行年份
-      placeholder: TeX Live 2025
+      placeholder: TeX Live 2026
     validations:
       required: false
   - type: textarea

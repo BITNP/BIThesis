@@ -67,12 +67,12 @@
 
 \textit{
 到此，我们其实就可以直接使用本模板，在自己的电脑上进行论文的编写了。如果想再了解
-有关在线编辑平台 Overleaf 的相关内容，请继续阅读\cref{sec:online-overleaf}；
+有关在线编辑平台 Overleaf/TeXPage 的相关内容，请继续阅读\cref{sec:online-local-compare}；
 否则，大家可以直接跳转到\cref{sec:using-bithesis}，了解模板的使用方法。
 }
 
 \section{本地编译与在线平台，我该使用哪一个？}
-\label{sec:online-overleaf}
+\label{sec:online-local-compare}
 
 \href{https://cn.overleaf.com}{Overleaf}、\href{https://www.texpage.com/zh/}{TeXPage} 等在线平台在浏览器中提供了 \LaTeX{} 编辑器，可以直接在网页上编辑预览 \LaTeX{}。
 选用在线平台既有优点也有缺点：
@@ -86,7 +86,7 @@
   \item \textbf{缺点}
     \begin{itemize}[noitemsep]
       \item 依赖网络，信号一差就无法操作，且不能涉及秘密内容。
-      \item 编译受限，特别是免费时长有限\footnote{2025年，\href{https://cn.overleaf.com/user/subscription/choose-your-plan}{免费版 Overleaf 是 20 s}，\href{https://www.texpage.com/}{免费版 TeXPage 是 1 min}。}，参考文献、图片特别多时，只能\href{https://bithesis.bitnp.net/faq/slow.html}{变通}。
+      \item 编译受限，特别是免费时长有限\footnote{2026年3月，\href{https://cn.overleaf.com/blog/changes-to-free-compile-timeout\#:~:text=timeout\%20limit\%20to-,10\%20seconds,-.\%20We\%20made}{免费版 Overleaf 是 10 s}，\href{https://www.texpage.com/zh/pricing/}{免费版 TeXPage 是 30 s}。}，参考文献、图片特别多时，只能\href{https://bithesis.bitnp.net/faq/slow.html}{变通}。
       \item 集成困难，例如若用 \href{https://www.zotero.org}{Zotero} 等文献管理软件，很难自动连接。
     \end{itemize}
 \end{itemize}
@@ -94,9 +94,11 @@
 因此，需要使用者根据自己的需求进行选择。
 
 \section{如何将自己电脑上的论文转到 Overleaf}
+\label{sec:overleaf-quirks}
 
 \textit{
-\cref{sec:overleaf-compile}介绍了如何从 \href{https://bithesis.bitnp.net}{BIThesis.bitnp.net} 新建项目，那样通常更简单；不过若您已在本地用了模板，想转到 Overleaf，请参考此节。
+\cref{sec:online-compile}介绍了如何从 \href{https://bithesis.bitnp.net}{BIThesis.bitnp.net} 新建项目，那样通常更简单；不过若您已在本地用了模板，想转到 Overleaf，请参考此节。
+另外，若想转到 TeXPage，直接按网页提示操作即可；以下特别设置只有 Overleaf 需要。
 }
 
 \begin{enumerate}
@@ -104,7 +106,7 @@
 
     （原因：嵌套文件夹可能导致无法统计字数；不过不影响编译。）
 
-    参考\cref{fig:overleaf-recompile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \isGraduateTF{\texttt{graduate-thesis/}}{\texttt{undergraduate-thesis/}} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
+    类似 TeXPage 的\cref{fig:online-compile}，文件 \texttt{main.tex}、文件夹 \texttt{chapters/} 等在根目录，而没有嵌套在 \isGraduateTF{\texttt{graduate-thesis/}}{\texttt{undergraduate-thesis/}} 文件夹中。若您已嵌套，可到左侧文件列表单击再拖动来移动文件。
 
     详细操作如下。访问 \href{https://cn.overleaf.com/project}{overleaf.com/project}，单击左上角\texttt{New Project}，然后有下面两种方法。
 
