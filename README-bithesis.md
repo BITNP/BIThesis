@@ -37,7 +37,7 @@ This section describes how to generate the following PDF documentations from `bi
 - Package documentation: `bithesis.pdf`
 - Quick start handbooks: `bithesis-handbook-{undergraduate,graduate}.pdf`
 
-However, it is much easier to generate them by cloning our [repo](https://github.com/BITNP/BIThesis) and run `just doc handbooks`. Details can be found in `DEVELOPMENT.md` there.
+However, it is much easier to generate them by cloning our [repo](https://github.com/BITNP/BIThesis) and running `just doc handbooks`. Details can be found in `DEVELOPMENT.md` there.
 
 ### Package documentation
 

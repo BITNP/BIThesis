@@ -5,7 +5,7 @@
 成功编译出一份符合学校要求的毕业论文。}
 
 其中，\cref{sec:local-compile}介绍在本地电脑上编译生成 PDF；
-\cref{sec:overleaf-compile}介绍在 Overleaf（浏览器）上编译生成 PDF。这两种方法相互独立，你可以根据喜好自行选择其中一种。
+\cref{sec:online-compile}介绍在 TeXPage（浏览器）上编译生成 PDF。这两种方法相互独立，你可以根据喜好自行选择其中一种。
 
 \section{方法一：在本地电脑上编译生成 PDF}
 \label{sec:local-compile}
@@ -84,32 +84,36 @@
 \end{figure}
 
 \clearpage
-\section{方法二：在 Overleaf（浏览器）上编译生成 PDF}
-\label{sec:overleaf-compile}
+\section{方法二：在 TeXPage（浏览器）上编译生成 PDF}
+\label{sec:online-compile}
 
-\BIThesis 项目已经在 Overleaf 上分享了多个模板，它们
+\BIThesis 项目已经在 TeXPage 上分享了多个模板，它们
 会与最新版本保持同步\footnote{需要注意，你复制的模板不会自动更新。}。
-因此，你可以直接在 Overleaf 上复制并使用这些模板。
+因此，你可以直接在 TeXPage 上复制并使用这些模板。
+
+\BIThesis 也支持 \href{https://cn.overleaf.com}{Overleaf}，继续阅读本节并适当变通即可；不过由于种种原因\footnote{
+  不推荐 Overleaf 主要是因为它对中文支持较差。首先，2025年夏秋 Overleaf 把免费编译时长降到十秒，\href{https://github.com/BITNP/BIThesis/issues/543}{不够处理中文学术文章}。其次，Overleaf 未预装中易字库，默认宋体的\href{https://bithesis.bitnp.net/faq/weird-font.html}{逗号不像宋体}，还缺少很多姓名常用字。此外，若自行上传到 Overleaf（而不按本节自动创建项目），那么需要特别设置才能编译中文，详见\cref{sec:overleaf-quirks}。
+}，并不推荐 Overleaf。另外如想用 TeXPage、Overleaf 以外的在线平台，请按\cref{sec:download}下载模板压缩包，然后手动上传。
 
 \vspace{\fill}
-\subsection{注册 Overleaf 账号}
+\subsection{注册 TeXPage 账号}
 
-访问 \href{https://cn.overleaf.com}{overleaf.com}（如\cref{fig:overleaf-register} 所示），点击右上角的 ``Register'' 按钮，注册账号并登录。
+访问 \href{https://www.texpage.com}{texpage.com}，单击右上角「注册」，如\cref{fig:online-register} 注册账号并登录。
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.85\textwidth]{imgs/overleaf-register.png}
+    \includegraphics[width=0.6\textwidth]{imgs/texpage-register.png}
   \end{center}
-  \caption{Overleaf 注册页面}
-  \label{fig:overleaf-register}
+  \caption{TeXPage 注册页面}
+  \label{fig:online-register}
 \end{figure}
 
 \vspace{\fill}
-\subsection{访问 \BIThesis 的 Overleaf 模板}
+\subsection{访问 \BIThesis 的 TeXPage 模板}
 
-访问 \href{https://bithesis.bitnp.net/guide/preface.html#q-bithesis-都包含哪些模板}{BIThesis.bitnp.net →（右上角）Overleaf}，即可跳转到模板页面。
+访问 \href{https://bithesis.bitnp.net/guide/preface.html#q-bithesis-都包含哪些模板}{BIThesis.bitnp.net →（右上角）在线模板}，跳转到模板表格，如\cref{fig:wiki-choose-template}。
 
-找到\isGraduateTF{“研究生·学位论文”}{“本科生·毕业设计·论文”}模板，点击 ``open in Overleaf'' 按钮，即可跳转到 Overleaf 上分享的项目中。
+找到\isGraduateTF{“研究生·学位论文”}{“本科生·毕业设计·论文”}模板，单击 ``open in TeXPage''，即可跳转到 TeXPage 并自动创建项目。
 
 \isGraduateTF{}{
   \textit{若为全英文专业，请选择“本科生·毕业设计·论文（全英文专业）”。}
@@ -120,25 +124,21 @@
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.85\textwidth]{imgs/overleaf-choose-template.png}
+    \includegraphics[width=0.85\textwidth]{imgs/wiki-choose-template.png}
   \end{center}
   \caption{在 BIThesis 网站上，选择合适的模板并跳转}
-  \label{fig:overleaf-template}
+  \label{fig:wiki-choose-template}
 \end{figure}
 
 \vspace{\fill}
 \subsection{编译生成 PDF}
 
-点击 ``Recompile'' 按钮，即可编译生成 PDF。
+如\cref{fig:online-compile}，单击上方中央偏右的「编译」按钮，即可编译生成 PDF。
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.85\textwidth]{imgs/overleaf-compile.png}
+    \includegraphics[width=0.85\textwidth]{imgs/texpage-compile.png}
   \end{center}
   \caption{编译生成 PDF}
-  \label{fig:overleaf-recompile}
+  \label{fig:online-compile}
 \end{figure}
-
-\vspace{\fill}
-
-此外，\BIThesis 也支持 \href{https://www.texpage.com/zh/}{TeXPage} 等国产在线平台。请按\cref{sec:download}下载模板压缩包，然后手动上传至在线平台。
