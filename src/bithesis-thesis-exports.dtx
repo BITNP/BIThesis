@@ -510,7 +510,7 @@
 % \end{macro}
 %
 % \begin{macro}{\MakeTitle}
-% 生成标题页。（研究生）
+% 生成题名页。（研究生）
 %    \begin{macrocode}
 \NewDocumentCommand \MakeTitle { O{} }
   {
@@ -552,7 +552,7 @@
         % 添加「目录」本身到目录中，同时自动添加书签
         % 此处必须有`\phantomsection`，不然 hyperref 会把链接指向之前摘要的标题。
         \phantomsection
-        \addcontentsline{toc}{chapter}{\c_@@_label_toc_en_tl}
+        \addcontentsline{toc}{chapter}{\l_@@_toc_title_tl}
       } {
         % 手动添加目录书签
         \currentpdfbookmark{\l_@@_toc_title_tl}{ch:toc}
@@ -617,15 +617,27 @@
 
     {
       \@@_same_page:
+
+      % 硕博写论文题目，本科写“摘要”
+      \@@_if_graduate:TF {
+        \tl_set:Nn \l_tmpa_tl {\l_@@_value_title_tl}
+      } {
+        \tl_set:Nn \l_tmpa_tl {\c_@@_label_abstract_tl}
+      }
+
       \bool_if:NTF \l_@@_add_abstract_to_toc_bool {
-        \chapter{\c_@@_label_abstract_tl}
+        \chapter[\c_@@_label_abstract_tl]{\l_tmpa_tl}
       } {
         \currentpdfbookmark{\c_@@_label_abstract_tl}{ch:abstract}
-        \chapter*{\c_@@_label_abstract_tl}
+        \chapter*{\l_tmpa_tl}
       }
     }
     \vspace*{1mm}
     \par
+
+    \@@_if_graduate:T {
+      \noindent\textbf{\c_@@_label_abstract_tl ：}
+    }
   }
   {
     \par
@@ -690,12 +702,24 @@
 
     {
       \@@_same_page:
+
+      % 硕博写论文题目，本科写“Abstract”
+      \@@_if_graduate:TF {
+        \tl_set:Nn \l_tmpa_tl {\l_@@_value_title_en_tl}
+      } {
+        \tl_set:Nn \l_tmpa_tl {\c_@@_label_abstract_en_tl}
+      }
+
       \bool_if:nTF {\l_@@_add_abstract_en_to_toc_bool} {
-        \chapter{\c_@@_label_abstract_en_tl}
+        \chapter[\c_@@_label_abstract_en_tl]{\l_tmpa_tl}
       } {
         \currentpdfbookmark{\c_@@_label_abstract_en_tl}{ch:abstract:en}
-        \chapter*{\c_@@_label_abstract_en_tl}
+        \chapter*{\l_tmpa_tl}
       }
+    }
+
+    \@@_if_graduate:T {
+      \noindent\textbf{\c_@@_label_abstract_en_tl :}
     }
   }
   {
@@ -763,8 +787,8 @@
 
     \bool_if:NF \l_@@_style_bibliography_indent_bool {
       % 设置参考文献后文缩进为 0（与 Word 模板保持一致）
-      % See: https://github.com/hushidong/biblatex-gb7714-2015
-      %      如何修参考文献表的缩进？
+      % See: 如何修参考文献表的缩进？https://github.com/hushidong/biblatex-gb7714-2015
+      % https://github.com/hushidong/biblatex-gb7714-2015/blob/b66344b/README.md?plain=1#L670-L692
       \cs_set:Npn \itemcmd {
         \settowidth{\lengthid}{\mkgbnumlabel{\printfield{labelnumber}}}
         %%这里是所做的调整，以下两句通过调整\lengthid来调整缩进
@@ -822,6 +846,10 @@
         section/number = \Alph{chapter}. \arabic{section},
         subsection/number = \Alph{chapter}. \arabic{section}. \arabic{subsection},
       }
+      % 硕博模板从2026年3月开始，要求附录编号与标题间换行
+      \@@_if_graduate:T {
+        \ctexset{ chapter/aftername = \par }
+      }
 
       \cs_set:Npn \thechapter {
         \Alph{chapter}
@@ -876,18 +904,32 @@
     % 有三种可能：完全显示、只显示标题、完全隐藏。
     % 若同时设置 acknowledgements / showTitleInPeerReview = false 以及 blindPeerReview，则完全隐藏。
     \begin{blindPeerReview}[!\l_@@_acknowledgements_show_title_in_peer_review_bool]
-      % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
-      % 不知为何，需要手动重置 section 计数器。
-      \setcounter{section}{0}
-      \ctexset{
-        appendix/numbering = false,
-        section/number = \arabic{section},
-        subsection/number = \arabic{section}. \arabic{subsection},
-        subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
-      }
+      \@@_if_graduate:TF {
+        % 硕博模板从2026年3月开始，致谢位于前置部分，样式更接近题名页。
+        % 取消页眉页脚
+        \ctexset { chapter / pagestyle = empty }
+        % 不计入页码
+        \pagenumbering{gobble}
 
-      % 如果不是完全隐藏，就需显示标题
-      \chapter{\g_@@_const_heading_acknowledgements_tl}
+        % 如果不是完全隐藏，就需显示标题
+        % 标题不加章号，也不计入目录，但计入PDF书签
+        \currentpdfbookmark{\g_@@_const_heading_acknowledgements_tl}{ch:acknowledgements}
+        \chapter*{\g_@@_const_heading_acknowledgements_tl}
+      } {
+        % 本科模板的致谢位于后置部分，样式更接近附录。
+        % 将此章节视为特殊的附录页，关闭附录编号，重定义 section 编号。
+        % 不知为何，需要手动重置 section 计数器。
+        \setcounter{section}{0}
+        \ctexset{
+          appendix/numbering = false,
+          section/number = \arabic{section},
+          subsection/number = \arabic{section}. \arabic{subsection},
+          subsubsection/number = \arabic{section}. \arabic{subsection}. \arabic{subsubsection},
+        }
+
+        % 如果不是完全隐藏，就需显示标题
+        \chapter{\g_@@_const_heading_acknowledgements_tl}
+      }
 
       % 如果不是盲审模式，就需渲染内容
       \bool_if:NF \g_@@_blind_mode_bool {
@@ -895,7 +937,17 @@
         #1
       }
     \end{blindPeerReview}
-  } {}
+  } {
+    \begin{blindPeerReview}[!\l_@@_acknowledgements_show_title_in_peer_review_bool]
+      \@@_if_graduate:T {
+        % 保证 gobble 页码设置生效
+        \newpage
+        % 致谢位于摘要以前，需单面打印；不过学校没有专门考虑致谢多页的情况（以前硕博的致谢和本科一样，也位于后置部分）。
+        % 如果致谢多页，此设置会保证摘要首页位于某页纸的正面，而不是致谢页的背面；但致谢本身仍双面打印。
+        \cleardoublepage
+      }
+    \end{blindPeerReview}
+  }
 %    \end{macrocode}
 % \end{environment}
 %

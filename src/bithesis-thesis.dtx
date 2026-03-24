@@ -306,6 +306,7 @@
     {code} {代码},
     {udc} {UDC分类号：},
     {classification} {中图分类号：},
+    {university_code} {学校代码：},
     {classified_level} {密级},
     {type} {种类},
     {special_type} {学生类型},
@@ -419,7 +420,7 @@
   {
     % TODO: 自动实现汉字均排
     {author} {作\quad 者\quad 姓\quad 名} {Candidate~Name},
-    {school} {学\quad 院\quad 名\quad 称} {School~or~Department},
+    {school} {二\@@_smallgap: 级\@@_smallgap: 培\@@_smallgap: 养\@@_smallgap: 单\@@_smallgap: 位} {School~or~Department},
     {supervisor} {指\quad 导\quad 教\quad 师} {Faculty~Mentor},
     {industrial_mentor} {行\@@_smallgap: 业\@@_smallgap: 合\@@_smallgap: 作\@@_smallgap: 导\@@_smallgap: 师} {Industry~Collaboration~Mentor},
     {chairman} {答辩委员会主席} {Chair,~Thesis~Committee},
@@ -430,9 +431,9 @@
     {institute}
       {学\@@_smallgap: 位\@@_smallgap: 授\@@_smallgap: 予\@@_smallgap: 单\@@_smallgap: 位}
       {Degree~by},
-    {defense_date}
-      {论\@@_smallgap: 文\@@_smallgap: 答\@@_smallgap: 辩\@@_smallgap: 日\@@_smallgap: 期}
-      {The~Date~of~Defence},
+    {submission_date}
+      {论\@@_smallgap: 文\@@_smallgap: 提\@@_smallgap: 交\@@_smallgap: 日\@@_smallgap: 期}
+      {Submission~date~of~the~paper},
   } {\@@_define_label_by_thesis_type:nnnn {graduate} #1}
 %    \end{macrocode}
 % \end{variable}
@@ -453,7 +454,6 @@
     {teacher} {任课教师} {Teacher},
     {semester} {上课学期} {Semester},
     {keywords} {关键词：} {Key~Words:~},
-    {toc} {目\@@_label_space: 录} {Table~of~Contents},
     {abstract} {摘\@@_label_space: 要} {Abstract},
     {conclusion} {结\@@_label_space: 论} {Conclusions},
     % 附录部分的总标题
@@ -659,6 +659,9 @@
     % UDC 分类号，研究生学位论文使用
     UDC .tl_set:N = \l_@@_value_udc_tl,
     UDC .initial:n = {540（示例）},
+    % 学校代码，研究生学位论文使用
+    universityCode .tl_set:N = \l_@@_value_university_code_tl,
+    universityCode .initial:n = {10007},
     % 学术型/专业型，研究生学位论文使用
     degreeType .choice:,
     degreeType .choices:nn = {professional, academic} {
@@ -672,7 +675,7 @@
     degreeEn .tl_set:N = \l_@@_value_degree_en_tl,
     institute .tl_set:N = \l_@@_value_institute_tl,
     institute .initial:n = {\tl_use:N \c_@@_label_university_tl},
-    defenseDate .tl_set:N = \l_@@_value_defense_date_tl,
+    submissionDate .tl_set:N = \l_@@_value_submission_date_tl,
     authorEn .tl_set:N = \l_@@_value_author_en_tl,
     schoolEn .tl_set:N = \l_@@_value_school_en_tl,
     supervisorEn .tl_set:N = \l_@@_value_supervisor_en_tl,
@@ -680,8 +683,7 @@
     majorEn .tl_set:N = \l_@@_value_major_en_tl,
     instituteEn .tl_set:N = \l_@@_value_institute_en_tl,
     instituteEn .initial:n = {\c_@@_label_university_en_tl},
-    defenseDateEn .tl_set:N = \l_@@_value_defense_date_en_tl,
-    defenseDateEn .initial:n = {June,~2019~(example)},
+    submissionDateEn .tl_set:N = \l_@@_value_submission_date_en_tl,
     % 因为默认不显示，所以不需要设置初始值。
     classifiedLevel .tl_set:N = \l_@@_value_classified_level_tl,
     % 学生类型-工程硕博士专项
@@ -864,7 +866,11 @@
 {
   title .tl_set:N = \l_@@_toc_title_tl,
   title .initial:n = {
-    \@@_get_const:n {toc}
+    \@@_if_thesis_english:TF {
+      Table~of~Contents
+    } {
+      \@@_if_graduate:TF {目次} {目\@@_label_space: 录}
+    }    
   },
   abstract .bool_set:N = \l_@@_add_abstract_to_toc_bool,
   abstract .initial:n = {true},
@@ -1434,6 +1440,7 @@
 %    \begin{macrocode}
 \ctexset{chapter={
     number = {\arabicHeiti{ \arabic{chapter} }},
+    % 对于硕博模板，此处样式会被 \mainmatter 继续修改
     format = { \@@_title_font: \bfseries \centering \zihao{3}},
     nameformat = {},
     titleformat = {},
@@ -1445,6 +1452,10 @@
     lofskip = 0cm,
     lotskip = 0cm,
   }
+}
+% 硕博模板于2026年3月将“第1章”改为“1”
+\@@_if_graduate:T {
+  \ctexset{ chapter / name = {} }
 }
 
 \ctexset{section={
@@ -1595,6 +1606,12 @@
   \ctexset{
     chapter = {
       numbering = true,
+    }
+  }
+  % 硕博模板于2026年3月将正文部分的章标题改为顶左，但其它仍居中；本科模板全文样式统一，此处不必继续设置
+  \@@_if_graduate:T {
+    \ctexset{
+      chapter / format+ = { \raggedright}
     }
   }
   % 页码使用阿拉伯数字。
@@ -2264,7 +2281,8 @@
         % 密级、分类号
         {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
         \l_@@_value_classification_tl\\
-        {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl
+        {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl\\
+        {\heiti \zihao{5} \c_@@_label_university_code_tl}  \l_@@_value_university_code_tl
       \end{minipage}
 
       \hfill
@@ -2347,7 +2365,7 @@
             {\g_@@_const_info_degree_tl} {\l_@@_value_degree_tl},
             {\g_@@_const_info_major_tl} {\l_@@_value_major_tl},
             {\c_@@_graduate_label_institute_tl} {\l_@@_value_institute_tl},
-            {\c_@@_graduate_label_defense_date_tl} {\l_@@_value_defense_date_tl},
+            {\c_@@_graduate_label_submission_date_tl} {\l_@@_value_submission_date_tl},
          }
 
         \heiti\zihao{-3}
@@ -2410,7 +2428,7 @@
           {\c_@@_graduate_label_degree_en_tl} {\l_@@_value_degree_en_tl},
           {\c_@@_graduate_label_major_en_tl} {\l_@@_value_major_en_tl},
           {\c_@@_graduate_label_institute_en_tl} {\l_@@_value_institute_en_tl},
-          {\c_@@_graduate_label_defense_date_en_tl} {\l_@@_value_defense_date_en_tl},
+          {\c_@@_graduate_label_submission_date_en_tl} {\l_@@_value_submission_date_en_tl},
        }
 
       \zihao{-3}

@@ -36,11 +36,11 @@
 │   ├── 2_reference.tex
 │   ├── 3_appendices.tex
 │   ├── 4_pub.tex
-│   ├── 5_acknowledgements.tex
-│   └── 6_resume.tex
+│   ├── 5_resume.tex
+│   └── acknowledgements.tex
 └── reference
     ├── main.bib # 参考文献
-    └── pub.bib # 个人成果清单
+    └── pub.bib # 成果清单
 ```
 
 ## 编译方式
@@ -69,7 +69,7 @@ latexmk
 
 ## 排版参考
 
-- 《北京理工大学研究生学位毕业论文排版规范》
+- 研函〔2026〕024 号《北京理工大学研究生学位论文撰写规范》
 
 [^1]: 关于如何升级模板的版本，请参考[手册][manual]中「版本号与升级」这一章节内容。
 

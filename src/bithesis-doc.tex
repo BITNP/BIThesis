@@ -947,7 +947,7 @@ translationOriginTitleEn = (*\marg{字符串}*)
 classification = (*\marg{字符串}*)
 \end{bitsyntax}
 
-  中图分类号。
+  中图分类号，用于\BIThesisTemplates{GT}。
 \end{function}
 
 \begin{function}{info/UDC}
@@ -955,7 +955,17 @@ classification = (*\marg{字符串}*)
 UDC = (*\marg{字符串}*)
 \end{bitsyntax}
 
-  UDC分类号。
+  UDC分类号，用于\BIThesisTemplates{GT}。
+\end{function}
+
+\begin{function}[added=2026-03-21]{info/universityCode}
+\begin{bitsyntax}[emph={[1]universityCode}]
+universityCode = (*\marg{字符串}*)
+\end{bitsyntax}
+
+  学校代码，用于\BIThesisTemplates{GT}。
+
+  \textit{此选项一般不需要用户自行修改。}
 \end{function}
 
 \begin{function}{info/chairman,info/chairmanEn}
@@ -985,13 +995,13 @@ instituteEn = (*(Beijing~Institute~of~Technology)|\marg{字符串}*)
   学位授予单位。
 \end{function}
 
-\begin{function}{info/defenseDate,info/defenseDateEn}
-\begin{bitsyntax}[emph={[1]defenseDate,defenseDateEn}]
-defenseDate = (*\marg{字符串}*)
-defenseDateEn = (*\marg{字符串}*)
+\begin{function}[updated=2026-03-21]{info/submissionDate,info/submissionDateEn}
+\begin{bitsyntax}[emph={[1]submissionDate,submissionDateEn}]
+submissionDate = (*\marg{字符串}*)
+submissionDateEn = (*\marg{字符串}*)
 \end{bitsyntax}
 
-  答辩日期。
+  论文提交日期。
 \end{function}
 
 \begin{function}{info/classifiedLevel}
@@ -1687,9 +1697,9 @@ substituteSymbol = (*(*)|\marg{字符串}*),
   默认加入PDF书签。如需隐去，可设置 |\MakePaperBack[bookmarked = false]|。
 \end{function}
 
-\begin{function}[updated=2025-04-15]{\MakeTitle}
+\begin{function}[updated=2026-03-24]{\MakeTitle}
 
-  绘制中英文信息页，用于\BIThesisTemplates{GT}。
+  绘制中英文题名页，用于\BIThesisTemplates{GT}。
 
   默认两页均加入PDF书签。如需共同隐去，可设置 |\MakeTitle[bookmarked = false]|。
 \end{function}
@@ -2003,7 +2013,7 @@ addTOC = (*<(true)|false>*)
 此外，可用\FAQ{pub-author-an}生成代码。
 \end{function}
 
-\begin{function}[label=env.acknowledgements]{acknowledgements}
+\begin{function}[updated=2026-03-24,label=env.acknowledgements]{acknowledgements}
 \begin{bitsyntax}[emph={[1]acknowledgements}]
 \begin{acknowledgements}
   (*\meta{致谢内容}*)
