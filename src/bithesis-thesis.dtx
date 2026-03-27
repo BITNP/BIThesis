@@ -490,15 +490,13 @@
 % \end{variable}
 %
 % \begin{variable}{\c_@@_bachelor_thesis_header_clist,\c_@@_bachelor_thesis_headline_clist}
-% 本科生模板的页眉标题与封面大标题常量列表，其中封面大标题不适用于硕士、博士学位论文，只适用于本科生毕业设计（论文）及其衍生物。
+% 本科生模板的页眉标题与封面大标题常量列表，只适用于本科生毕业设计（论文）及其衍生物；硕士、博士学位论文自2026年3月起，为符合学位中心抽检要求，删去了页眉及页眉线。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_bachelor_thesis_header_clist
   {
     北京理工大学本科生毕业设计（论文）,
     北京理工大学本科生毕业设计（论文）外文翻译,
     Beijing~Institute~of~Technology~Bachelor's~Thesis,
-    北京理工大学硕士学位论文,
-    北京理工大学博士学位论文,
   }
 \clist_const:Nn \c_@@_bachelor_thesis_headline_clist
   {
@@ -1424,15 +1422,21 @@
 %    \begin{macrocode}
 \fancypagestyle{BIThesis}{
   \fancyhf{}
-  % 定义页眉、页码
-  \fancyhead[C]{
-    \zihao{\int_use:N \g_@@_head_zihao_int}
-    \ziju{0.08}\songti
-    \tl_use:N \l_@@_style_head_tl
+  \@@_if_graduate:TF {
+    % 硕博模板自2026年3月起，为符合学位中心抽检要求，删去了页眉及页眉线
+    \renewcommand{\headrulewidth}{0pt}
+  } {
+    % 定义本科模板页眉
+    \fancyhead[C]{
+      \zihao{\int_use:N \g_@@_head_zihao_int}
+      \ziju{0.08}\songti
+      \tl_use:N \l_@@_style_head_tl
+    }
+    % 页眉分割线稍微粗一些
+    \renewcommand{\headrulewidth}{0.6pt}
   }
+  % 定义页码
   \fancyfoot[C]{\songti\zihao{5} \thepage}
-  % 页眉分割线稍微粗一些
-  \RenewDocumentCommand \headrulewidth {} {0.6pt}
 }
 %    \end{macrocode}
 %
