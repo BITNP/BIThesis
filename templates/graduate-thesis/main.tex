@@ -130,13 +130,17 @@
   },
 }
 
-% 大部分关于参考文献样式的修改，都可以通过此处的选项进行配置。
-% 详情请搜索「biblatex-gb7714-2015 文档」进行阅读。
+% 配置参考文献样式
+% 现行国标为 GB/T 7714—2015，但其 2025 版将从 2026-07-01 起实施；2026年3月，研究生院老师表示按两版国标均可。
+% 以下主要按 2015 版配置，但 gbnamefmt 更接近 2025 版。
+% 如果课题组或盲审老师另有特殊要求，您也可修改配置。详情请参考 biblatex-gb7714-2015 的 PDF 文档。
+% https://www.ctan.org/pkg/biblatex-gb7714-2015
 \usepackage[
   defernumbers=true,
   backend=biber,
   style=gb7714-2015,
   gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
   gbpub=false,
   gbannote=true,
   gbpunctin=false,
