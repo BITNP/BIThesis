@@ -18,17 +18,13 @@
 %
 % Compile with: xelatex -> biber -> xelatex -> xelatex
 
-% 硕士论文模板 type=master
-% 博士论文模板 type=doctor
-% 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
-% 开启双面打印 twoside=true (如：[type=master,twoside=true]）
-
+% 本文件夹只用于测试 type=doctor，一般博士论文写作请使用 graduate-thesis。
 \documentclass[type=doctor]{bithesis}
 
 \BITSetup{
   cover = {
-    %% 使用以下参数来自定义封面日期
-    date = 2022年6月,
+    date = 2026年6月,
+    autoWidthPadding = 0.25em,
   },
   info = {
     % 想要删除某项封面信息，直接删除该项即可。
@@ -36,29 +32,44 @@
     % 如需要换行，则用 “\\” 符号分割。
     classification = TQ028.1,
     UDC = 540,
-    title = 形状记忆聚氨酯的合成及其在织物中的应用,
+    title = 形状记忆聚氨酯的合成及其在纺织中的应用,
     % 如需覆盖竖排标题，请配置以下选项。
     % 下面的例子展示了如何在竖排标题中使用垂直或者旋转的英文。
-    % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在织物中的应用},
-    titleEn = Synthesisand Application on textile of the Shape Memory Polyurethane,
+    verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在纺织中的应用},
+    titleEn = {Synthesis and Application on textile of the Shape Memory Polyurethane},
     author = 张三,
-    major = 材料科学与工程,
+    authorEn = Zhang San,
+    studentId = 31xxxxxxxx,
     school = 材料学院,
-    degree = 工学硕士,
-    chairman = 王五教授,
-    defenseDate = 2022年6月1日,
-    supervisor = 李四教授,
-    authorEn = San Zhang,
     schoolEn = Materials Science and Engineering,
-    supervisorEn = Prof. Si Li,
+    supervisor = 李四教授,  % 指导教师
+    supervisorEn = Prof. Li Si,
+    chairman = 王五教授,  % 答辩委员会主席
     chairmanEn = Prof. Wang Wu,
-    degreeEn = Master of Philosophy,
+    % -------------
+    % 请按自身研究生类型填写以下项目
+    %
+    % --- 学术型 ---
+    degreeType = academic,
+    degree = 工学博士,  % 申请学位
+    degreeEn = Doctor of Engineering,
+    major = 材料科学与工程,  % 一级学科
     majorEn = Materials Science and Engineering,
-    defenseDateEn = {June, 12th, 2022},
-    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。）}},
-    keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
-    % 必要时置于封面右上角，并按照国家规定进行标记。
-    % classifiedLevel = 密级 $\bigstar$ 保密期限,
+    %
+    % --- 专业型 ---
+    % degreeType = professional,
+    % industrialMentor = 李五教授,  % 行业合作导师
+    % industrialMentorEn = Prof. Li Wu,
+    % degree = 材料与化工博士,  % 申请类别
+    % degreeEn = {Doctor of Materials \\ and Chemical Engineering},
+    % major = 材料工程,  % 学位领域
+    % majorEn = Materials Science and Engineering,
+    % -------------
+    %
+    submissionDate = 2026年6月,
+    submissionDateEn = {June, 2026},
+    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（\textbf{硕士}一般选3～6个单词或专业术语，\textbf{博士}一般选3～8个单词或专业术语，且中英文关键词必须对应。【提醒】关键词不要与学科或专业名称等专有名词一致或相近。）}——请在“main.tex”开头设置},
+    keywordsEn = {shape memory properties; polyurethane; textile; synthesis; application},
   },
   % 在目录页中不显示摘要和主要符号对照表的标题。
   TOC = {
@@ -75,8 +86,9 @@
   backend=biber,
   style=gb7714-2015,
   gbalign=gb7714-2015,
-  gbnamefmt=lowercase,
   gbpub=false,
+  gbannote=true,
+  gbpunctin=false,
   doi=false,
   url=false,
   eprint=false,
@@ -93,36 +105,29 @@
 
 \begin{document}
 
-% 封面绘制
-\MakeCover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 前置部分
 
-% 打印书脊
-\MakePaperBack
-
-% 中文信息与英文信息
-\MakeTitle
+\MakeCover % 封面
+\MakePaperBack % 书脊
+\MakeTitle % 中英文题名页
 
 % 论文原创性声明和使用授权
 \MakeOriginality
 
+\input{./misc/acknowledgements.tex} % 致谢
+
+\frontmatter % 前置部分有两种页面样式，从此切换到第二种
+
+\input{./chapters/abstract.tex} % 摘要
+
+\MakeTOC % 目次
+\listoffigures % 插图清单
+\listoftables % 附表清单
+\input{./misc/0_symbols.tex} % 主要符号对照表
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 前置部分
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\frontmatter
-
-% 摘要
-\input{./chapters/abstract.tex}
-
-% 制作目录
-\MakeTOC
-
-% 插图目录
-\listoffigures
-% 表格目录
-\listoftables
-
-% 主要符号对照表
-\input{./misc/0_symbols.tex}
+% 正文部分
 
 \mainmatter
 
@@ -132,21 +137,14 @@
 
 \backmatter
 
-% 结论
-\input{./misc/1_conclusion.tex}
-% 参考文献
-\input{./misc/2_reference.tex}
+\input{./misc/1_conclusion.tex} % 结论
 
-% 附录
-\input{./misc/3_appendices.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 后置部分
 
-% 个人成果
-\input{./misc/4_pub.tex}
+\input{./misc/2_reference.tex} % 参考文献
+\input{./misc/3_appendices.tex} % 附录
+\input{./misc/4_pub.tex} % 成果清单
+\input{./misc/5_resume.tex} % 作者简介
 
-% 致谢
-\input{./misc/5_acknowledgements.tex}
-% 个人简介（仅博士生需要此项）
-\input{./misc/6_resume.tex}
-
-% 加入目录
 \end{document}

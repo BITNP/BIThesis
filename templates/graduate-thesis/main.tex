@@ -8,28 +8,30 @@
 % !TeX program = xelatex
 % !BIB program = biber
 
+% 为方便您填写内容，模板注释会引用《撰写规范》。该文件是指研函〔2026〕024 号《北京理工大学研究生学位论文撰写规范》，可从以下链接下载。
+% https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117825.htm
+
+\documentclass[type=master,twoside=false]{bithesis}
 % 硕士论文模板 type=master
 % 博士论文模板 type=doctor
 % 开启盲审格式 blindPeerReview=true (如：[type=master,blindPeerReview=true])
 % 开启双面打印模式 twoside=true (如：[type=master,twoside=true]）
-%   研函〔2018〕60号《撰写规范》要求：“论文稿件……双面打印，其中摘要之前部分使用单页打印。”这种效果有以下两种方法实现。
+%   《撰写规范》：“论文稿件……双面打印，其中摘要之前部分使用单页打印。”这种效果有以下两种方法实现。
 %   - 保持 twoside=false，让打印店帮你操作
 %   - 设置 twoside=true，让 LaTeX 自动加若干空白页，然后统一双面打印
 %   二者价格差异可忽略不计——校内几家实体打印店（菜市场、国防科技园）都是双面每页￥0.1，很便宜。（截至2024年6月）
 %   此外，提交电子版时，一般请保持 twoside=false。
 %
-% 在 Linux 和 macOS 系统下，LaTeX 发行版默认使用的中文字体和 Windows 系统下的字体不同。
+% 在 Linux、macOS、Overleaf/TeXPage 等平台，LaTeX 默认使用的中文字体和 Windows 下的字体不同。
 % 如果想要获得与 Word 文档相同的效果，请参阅在线帮助 https://bithesis.bitnp.net/faq/word-font.html
 %
-% **更多使用说明请参考 bithesis.pdf **
+% 更多使用说明请参考 bithesis.pdf https://mirrors.ctan.org/macros/unicodetex/latex/bithesis/bithesis.pdf
 
-\documentclass[type=master,twoside=false]{bithesis}
-
-% 此处仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
+% 以下仅列出常用的配置。全部配置用法请见「bithesis.pdf」手册。
 \BITSetup{
   cover = {
-    %% 使用以下参数来自定义封面日期
-    date = 2022年6月,
+    % 使用 date 参数设置封面日期。按《撰写规范》第3页，此处填写论文提交日期、答辩日期或终版论文提交日期，三种均可。
+    date = 2026年6月,
     autoWidthPadding = 0.25em,
   },
   info = {
@@ -38,18 +40,18 @@
     % 如需要换行，则用 “\\” 符号分割。
     classification = TQ028.1,
     UDC = 540,
-    title = 形状记忆聚氨酯的合成及其在织物中的应用,
+    title = 形状记忆聚氨酯的合成及其在纺织中的应用,
     % 如需覆盖竖排标题，请配置以下选项。
     % 下面的例子展示了如何在竖排标题中使用垂直或者旋转的英文。
-    % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在织物中的应用},
+    % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在纺织中的应用},
     titleEn = {Synthesis and Application on textile of the Shape Memory Polyurethane},
     author = 张三,
-    authorEn = San Zhang,
+    authorEn = Zhang San,
     studentId = 31xxxxxxxx,
     school = 材料学院,
     schoolEn = Materials Science and Engineering,
     supervisor = 李四教授,  % 指导教师
-    supervisorEn = Prof. Si Li,
+    supervisorEn = Prof. Li Si,
     chairman = 王五教授,  % 答辩委员会主席
     chairmanEn = Prof. Wang Wu,
     % -------------
@@ -65,7 +67,7 @@
     % --- 专业型 ---
     degreeType = professional,
     industrialMentor = 李五教授,  % 行业合作导师
-    industrialMentorEn = Prof. Wu Li,
+    industrialMentorEn = Prof. Li Wu,
     degree = 材料与化工博士,  % 申请类别
     degreeEn = {Doctor of Materials \\ and Chemical Engineering},
     major = 材料工程,  % 学位领域
@@ -76,13 +78,10 @@
     % major = \SecretInfo{材料科学与工程} 可以得到 ******* （用等量的替换符号替代）
     % major = \SecretInfo{材料科学与工程}[ABCDEF] 可以得到 ABCDEF （用你自定义的内容替代）
     %
-    defenseDate = 2026年6月,
-    defenseDateEn = {June, 2026},
-    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。【提醒】关键词不要与学科或专业名称等专有名词一致或相近。）}——请在“main.tex”开头设置},
-    keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
-    %
-    % 必要时置于封面右上角，并按照国家规定进行标记。
-    % classifiedLevel = 密级\BigStar 保密期限,
+    submissionDate = 2026年6月,
+    submissionDateEn = {June, 2026},
+    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（\textbf{硕士}一般选3～6个单词或专业术语，\textbf{博士}一般选3～8个单词或专业术语，且中英文关键词必须对应。【提醒】关键词不要与学科或专业名称等专有名词一致或相近。）}——请在“main.tex”开头设置},
+    keywordsEn = {shape memory properties; polyurethane; textile; synthesis; application},
     %
     % 特别类型——工程硕博士专项
     % 工程硕博士专项 = true,
@@ -90,6 +89,9 @@
     % crossResearch = true,
     % 特别类型——政府项目留学生（一般不用勾选）
     % internationalStudentUGP = true,
+    %
+    % 必要时置于封面右上角，并按照国家规定进行标记（一般不用标记）
+    % classifiedLevel = 密级\BigStar 保密期限,
   },
   % 在目录页中不显示摘要和主要符号对照表的标题。
   TOC = {
@@ -119,21 +121,13 @@
   },
   % 采用章节标题级别的附录格式
   appendices / chapterLevel = true,
-  const = {
-    % 关于题名页的字段名称，截至2025年三月末，以下几项规定不完全一致：
-    %     Word 模板（学位论文模版-{学术型,专业型}-2025.doc）、研函〔2018〕60号《北京理工大学研究生学位论文撰写规范》、GB/T 7713.1—2006《学位论文编写规则》
-    % 目前的默认值按照 Word 模板，可能需要手动调整。
-    % 例如取消注释下一行，会将「申请学位/类别」改为「申请学位级别」。
-    % info / degree = {申\hspace{0.45ex}请\hspace{0.45ex}学\hspace{0.45ex}位\hspace{0.45ex}级\hspace{0.45ex}别},
-    % 详见 https://bithesis.bitnp.net/faq/edit-const.html
-  },
   misc = {
     % 关闭后，链接会用多种颜色表示，便于检查。
     % 无论是否开启，都不会影响打印效果。
     hideLinks = true,
     % 微调表格行间距
     tabularRowSeparation = 1.6,
-  }
+  },
 }
 
 % 大部分关于参考文献样式的修改，都可以通过此处的选项进行配置。
@@ -143,7 +137,6 @@
   backend=biber,
   style=gb7714-2015,
   gbalign=gb7714-2015,
-  gbnamefmt=lowercase,
   gbpub=false,
   gbannote=true,
   gbpunctin=false,
@@ -163,14 +156,12 @@
 
 \begin{document}
 
-% 封面绘制
-\MakeCover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 前置部分
 
-% 打印书脊
-\MakePaperBack
-
-% 中文信息与英文信息
-\MakeTitle
+\MakeCover % 封面
+\MakePaperBack % 书脊
+\MakeTitle % 中英文题名页
 
 % 论文原创性声明和使用授权：盲审结束前无需改动
 \MakeOriginality
@@ -183,24 +174,19 @@
 %   % \includepdf[pages={1, {}, 2, {}}]{misc/originality.pdf}\newpage
 % \end{blindPeerReview}
 
+\input{./misc/acknowledgements.tex} % 致谢
+
+\frontmatter % 前置部分有两种页面样式，从此切换到第二种
+
+\input{./chapters/abstract.tex} % 摘要
+
+\MakeTOC % 目次
+\listoffigures % 插图清单
+\listoftables % 附表清单
+\input{./misc/0_symbols.tex} % 主要符号对照表
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 前置部分
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\frontmatter
-
-% 摘要
-\input{./chapters/abstract.tex}
-
-% 制作目录
-\MakeTOC
-
-% 插图目录
-\listoffigures
-% 表格目录
-\listoftables
-
-% 主要符号对照表
-\input{./misc/0_symbols.tex}
+% 正文部分
 
 \mainmatter
 
@@ -210,21 +196,16 @@
 
 \backmatter
 
-% 结论
-\input{./misc/1_conclusion.tex}
-% 参考文献
-\input{./misc/2_reference.tex}
+\input{./misc/1_conclusion.tex} % 结论
 
-% 附录
-\input{./misc/3_appendices.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 后置部分
 
-% 个人成果
-\input{./misc/4_pub.tex}
+\input{./misc/2_reference.tex} % 参考文献
+\input{./misc/3_appendices.tex} % 附录
+\input{./misc/4_pub.tex} % 成果清单
+\input{./misc/5_resume.tex} % 作者简介（仅博士生可能需要此项）
 
-% 致谢
-\input{./misc/5_acknowledgements.tex}
-% 个人简介（仅博士生需要此项）
-\input{./misc/6_resume.tex}
 
 % 在全文最后，博士附《博士学位论文答辩表》前2页决议含签字的扫描版，硕士不用附。
 % 建议用 Word 模板填写该表，扫描后拼接 PDF。
