@@ -1053,7 +1053,7 @@ style/(*\meta{key}*) = (*\meta{value}*)
  该选项包含许多子项目，用于调整样式。具体内容见下。
 \end{function}
 
-\begin{function}[updated=2026-03-27]{style/head}
+\begin{function}[updated=2026-03-28]{style/head}
 \begin{bitsyntax}[emph={[1]head}]
 head = (*\marg{字符串}*)
 \end{bitsyntax}
@@ -1064,7 +1064,9 @@ head = (*\marg{字符串}*)
 
   \BIThesisTemplates{PT}的默认值含“外文翻译”几字，有的学院要求去掉，这时请自行修改。
 
-  此选项对\BIThesisTemplates{GT}无影响。2026年3月，为符合学位中心抽检要求，硕博模板删去了页眉及页眉线。
+  若此选项设置为空，则不仅会清空页眉文字，还会一同删除页眉线。从2026年3月开始，\BIThesisTemplates{GT}的默认值改为了这种情况，以符合学位中心抽检要求。
+
+  若需保留页眉线但清空文字，可设置此选项为空白字符，例如 |{~}|。
 \end{function}
 
 \begin{function}{style/headline}
