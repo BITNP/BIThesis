@@ -11,6 +11,32 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.9] - 2026-03-31
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- *(GT)* 与研究生院沟通后，按2025版国标加回`gbnamefmt=lowercase` ([1c7007e](https://github.com/BITNP/BIThesis/commit/1c7007e816947fa1f6ffe5d9635161ffa0e8b523)) by @YDX-2147483647
+- *(GT)* 允许启用页眉及页眉线 ([1e7280a](https://github.com/BITNP/BIThesis/commit/1e7280a0b26031b556b14d9da5f793ec09adb8c1)) by @YDX-2147483647
+
+### <!-- 2 -->🚜 Refactor
+
+- *(GT)* [**breaking**] 参考2026年《撰写规范》更新 ([ef2903e](https://github.com/BITNP/BIThesis/commit/ef2903eff210c4dcc69cea2554ea38d21637b70c)) by @YDX-2147483647
+- *(GT)* 为符合学位中心抽检要求，删去页眉及页眉线 ([0d1961f](https://github.com/BITNP/BIThesis/commit/0d1961f5da868cf23f067d749a1ed35e892fdf76)) by @YDX-2147483647
+
+### <!-- 3 -->📚 Documentation
+
+- 将《快速使用指南》推荐在线平台从 Overleaf 改为 TeXPage，并零碎更新其它文档 ([ce006ad](https://github.com/BITNP/BIThesis/commit/ce006ad82df46ea2a1fe073394d577ea6bfb9197)) by @YDX-2147483647
+- *(handbook)* 将参考文献移到后置部分 ([afd269e](https://github.com/BITNP/BIThesis/commit/afd269ebd4350abc65919e692c2d8534e2c82e75)) by @YDX-2147483647
+- 近年访问 texstudio.org 需要科学上网，故增加镜像站链接 ([fc3c986](https://github.com/BITNP/BIThesis/commit/fc3c986183873ef25826c4f26ac29235083b3907)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update version to 3.8.9 ([3645d96](https://github.com/BITNP/BIThesis/commit/3645d965ccab7a4c7e78eb6fee65a2c38d47f9cb)) by @YDX-2147483647
+
+### <!-- 9 -->◀️ Revert
+
+- *(GT)* 按研究生院要求，再加回页眉 ([a7a499b](https://github.com/BITNP/BIThesis/commit/a7a499bbfc999e4a50bd8b6a087d8479faa7490d)) by @YDX-2147483647
+
 ## [3.8.8] - 2026-03-11
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -1558,9 +1584,9 @@ Acronyms:
 - *(readme)* Add period. ([0374e3e](https://github.com/BITNP/BIThesis/commit/0374e3efd952e73d85522a3d29b5ebbe4b2333fb)) by @fky2015
 - Add more dev docs. ([27cd897](https://github.com/BITNP/BIThesis/commit/27cd897e66a6cc236e438ebff4257245ad0dbd4c)) by @fky2015
 - *(readme, doc)* Repair the invalid links. ([167657c](https://github.com/BITNP/BIThesis/commit/167657ce9dc7b891425319961dfbbd6ff6fe593c)) by @fky2015
-- *(readme,doc)* Upadate the links' text ([618c01c](https://github.com/BITNP/BIThesis/commit/618c01c4743adfceff20efdd5f9ceb5f0afa4874)) by @DeltaHao
-- *(doc.pdf)* Repair ([300e7b2](https://github.com/BITNP/BIThesis/commit/300e7b2ee6b7b9da4a37a130b0cf682df65be1a9)) by @DeltaHao
-- *(doc)* Domain ([a9fe9fc](https://github.com/BITNP/BIThesis/commit/a9fe9fc342ee0c8b0b7d38305dccc5dbff014e6e)) by @DeltaHao
+- *(readme,doc)* Upadate the links' text ([618c01c](https://github.com/BITNP/BIThesis/commit/618c01c4743adfceff20efdd5f9ceb5f0afa4874)) by @leonzlhao
+- *(doc.pdf)* Repair ([300e7b2](https://github.com/BITNP/BIThesis/commit/300e7b2ee6b7b9da4a37a130b0cf682df65be1a9)) by @leonzlhao
+- *(doc)* Domain ([a9fe9fc](https://github.com/BITNP/BIThesis/commit/a9fe9fc342ee0c8b0b7d38305dccc5dbff014e6e)) by @leonzlhao
 
 ### <!-- 7 -->⚙️ Miscellaneous Tasks
 
@@ -1572,7 +1598,7 @@ Acronyms:
 - Add pkg build command to makefile. ([e9dcf6d](https://github.com/BITNP/BIThesis/commit/e9dcf6d8395292ec78bb20abda9b4cbf87adf749)) by @fky2015
 
 ## New Contributors
-* @DeltaHao made their first contribution
+* @leonzlhao made their first contribution
 * @dependabot[bot] made their first contribution
 * @phy25 made their first contribution
 ## [1.2.0] - 2020-06-01
