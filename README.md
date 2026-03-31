@@ -38,10 +38,7 @@
 
 BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
-本项目获得了北京理工大学[教务部](https://mp.weixin.qq.com/s/I1SsP9VSaQ90a_2tW4zQUg)、[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)和[计算机学院](https://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#官方赞助-official-sponsors)。
-
-> [!CAUTION]
-> [研究生院在 2025-03-28 前后发布了新的模板](https://github.com/BITNP/BIThesis/issues/603)，本项目已经根据最新模板更新，请同学们使用 [v3.8.3 及以上版本 BIThesis][releases]。
+本项目获得了北京理工大学[教务部](https://mp.weixin.qq.com/s/I1SsP9VSaQ90a_2tW4zQUg)、[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)和[计算机学院](https://cs.bit.edu.cn/)的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#官方赞助-official-sponsors)。
 
 如果本项目有帮助到你的话，欢迎引用我们，让更多同学知道。（见右侧 “Cite this repository”）
 
