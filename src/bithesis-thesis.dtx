@@ -497,9 +497,8 @@
     北京理工大学本科生毕业设计（论文）,
     北京理工大学本科生毕业设计（论文）外文翻译,
     Beijing~Institute~of~Technology~Bachelor's~Thesis,
-    % 硕博模板自2026年3月起，为符合学位中心抽检要求，删去了页眉及页眉线
-    {},
-    {},
+    北京理工大学硕士学位论文,
+    北京理工大学博士学位论文,
   }
 \clist_const:Nn \c_@@_bachelor_thesis_headline_clist
   {
@@ -817,8 +816,9 @@
 \keys_define:nn { bithesis / style }
 {
   head .tl_set:N = \l_@@_style_head_tl,
-  % 此处 head 必须用 \c_@@_auto_tl，详见 \@@_resolve_auto_values: 中的注释
-  head .initial:n = {\c_@@_auto_tl},
+  head .initial:n = {
+    \clist_item:Nn \c_@@_bachelor_thesis_header_clist \g_@@_thesis_type_int
+  },
   headline .tl_set:N = \l_@@_style_headline_tl,
   headline .initial:n = {
     \clist_item:Nn \c_@@_bachelor_thesis_headline_clist \g_@@_thesis_type_int
@@ -991,15 +991,6 @@
       }
     } {
       \keys_set:nn {bithesis} {const/info/major = \@@_get_const:n {major}}
-    }
-  }
-
-  \tl_if_eq:NnT \l_@@_style_head_tl {\c_@@_auto_tl} {
-    % 之后 \l_@@_style_head_tl 会被判断 \tl_if_empty；然而由于 style/head 可能填写 \LaTeX 这样的宏，判断时不能随便按 e/x 展开，只好按 N。
-    % 为保证之后按 N 判断的结果正确，\l_@@_style_head_tl 不能像 style/headline 那样直接设置，而必须先设为 \c_@@_auto_tl 并在这里提前按 e/x 展开。
-    % 这里选 x，因为 TeX Live 2022 和更早版本不支持 \keys_set:ne。
-    \keys_set:nx {bithesis} {
-      style/head = {\clist_item:Nn \c_@@_bachelor_thesis_header_clist \g_@@_thesis_type_int}
     }
   }
 }
@@ -1433,11 +1424,12 @@
 %    \begin{macrocode}
 \fancypagestyle{BIThesis}{
   \fancyhf{}
+  % 此处按 N 判断是因为 style/head 可能填写 \LaTeX 这样的宏，不能随便按 e/x 展开；模板默认值虽需展开才能判断，但部分非空，所以不展开亦可。
   \tl_if_empty:NTF \l_@@_style_head_tl {
-    % 若 style/head 为空（例如硕博模板默认），则不仅页眉文字为空，页眉线也应删除
+    % 若 style/head 为空，则不仅页眉文字为空，页眉线也应删除
     \renewcommand{\headrulewidth}{0pt}
   } {
-    % 定义页眉（例如本科模板默认）
+    % 定义页眉（模板默认）
     \fancyhead[C]{
       \zihao{\int_use:N \g_@@_head_zihao_int}
       \ziju{0.08}\songti
