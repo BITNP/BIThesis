@@ -18,7 +18,7 @@ jobs:
           # Fetch more history for workflow_dispatch, required by `just update-version`.
           fetch-depth: ${{ github.event_name == 'workflow_dispatch' && 100 || 1 }}
           fetch-tags: ${{ github.event_name == 'workflow_dispatch' }}
-      - uses: TeX-Live/setup-texlive-action@v3
+      - uses: TeX-Live/setup-texlive-action@v4
         with:
           version: 2025
           package-file: |
