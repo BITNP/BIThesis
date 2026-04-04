@@ -2284,9 +2284,9 @@
     \currentpdfbookmark{中文题名页}{pre-frontmatter:titlepage-zh}
   }
   \begin{titlepage}
-      \begin{minipage}[t]{0.48\textwidth}
-        % 密级、分类号
-        {\heiti \zihao{5} \noindent \c_@@_label_classification_tl}
+      \noindent\begin{minipage}[t]{0.48\textwidth}
+        % 分类号、学校代码
+        {\heiti \zihao{5} \c_@@_label_classification_tl}
         \l_@@_value_classification_tl\\
         {\heiti \zihao{5} \c_@@_label_udc_tl}  \l_@@_value_udc_tl\\
         {\heiti \zihao{5} \c_@@_label_university_code_tl}  \l_@@_value_university_code_tl
@@ -2295,7 +2295,7 @@
       \hfill
 
       % 以下内容是「学生类型」的内容，
-      % 在没有勾选的时候隐藏。
+      % 若 cover/showSpecialTypeBox 为 false 且没有任何勾选，则隐藏。
       \bool_if:nT {\l_@@_cover_show_special_type_box_bool || \l_@@_value_international_student_ugp_bool || \l_@@_value_cross_research_bool || \l_@@_value_engineering_special_plan_bool} {
         \begin{minipage}[t]{0.48\textwidth}
           \vspace{-12pt}
@@ -2303,23 +2303,23 @@
           \setlength\fboxrule{1pt}\setlength\fboxsep{3mm}
           \fbox{
             \noindent\begin{minipage}{0.48\linewidth}
-              \heiti \zihao{-4}
+              \heiti \zihao{5}
               \scalebox{1.1}\BigStar{}\hspace{4pt} \c_@@_label_special_type_tl\\
 
               {
-                \zihao{4}
+                \zihao{-4}
                 \bool_if:NTF \l_@@_value_engineering_special_plan_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_engineering_special_plan_tl\\
 
               {
-                \zihao{4}
+                \zihao{-4}
                 \bool_if:NTF \l_@@_value_cross_research_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_cross_research_tl\\
 
               {
-                \zihao{4}
+                \zihao{-4}
                 \bool_if:NTF \l_@@_value_international_student_ugp_bool {\@@_boxcheck:} {\@@_boxempty:}
               }
               \hspace{1pt}\c_@@_label_international_student_ugp_tl
