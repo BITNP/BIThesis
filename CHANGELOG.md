@@ -11,6 +11,22 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.10] - 2026-04-21
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- *(GT)* 避免「学生类型」触发`Overfull \hbox (6.33167pt too wide)`提示 ([dbd2898](https://github.com/BITNP/BIThesis/commit/dbd289835c314e11d6be512b60fd157f5e4a4401)) by @YDX-2147483647
+- *(GT,UTE)* 将《使用说明》等处中文中的 ASCII 标点改为全宽标点 ([51ef60d](https://github.com/BITNP/BIThesis/commit/51ef60d7fb8eda67ba82df794e511e531809b45d)) by @YDX-2147483647
+
+### <!-- 3 -->📚 Documentation
+
+- 更新 README 和开发文档中的过时内容 ([bf04673](https://github.com/BITNP/BIThesis/commit/bf04673fbbc3628df3d8c7f6894fcf5c9441b683)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- *(UT)* 将`1_originality.pdf`中的 ASCII 标点改为全宽标点 ([a971320](https://github.com/BITNP/BIThesis/commit/a971320221d9b7f1e533866e802f8589eb76aacc)) by @YDX-2147483647
+- Update version to 3.8.10 ([ebb4e49](https://github.com/BITNP/BIThesis/commit/ebb4e49eeb19db00461742aa4542932abe58d0cf)) by @YDX-2147483647
+
 ## [3.8.9] - 2026-03-31
 
 ### <!-- 1 -->🐛 Bug Fixes
