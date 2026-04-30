@@ -11,6 +11,18 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.11] - 2026-04-30
+
+### <!-- 3 -->📚 Documentation
+
+- *(GT)* 提示题名页信息栏长项需手动换行 ([465558a](https://github.com/BITNP/BIThesis/commit/465558a83a0d8422cb58e15284a7faba9ef9e87d)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- *(GT)* 参照最新Word模板，将英文题名页的 submission date of the paper 改为 submission date ([10c4853](https://github.com/BITNP/BIThesis/commit/10c4853398ac5458722cee29d2a15b1ebc248b84)) by @YDX-2147483647
+- *(GT)* 参照最新Word模板，修改学术型 Degree Applied 示例（Doctor of {Engineering → Philosophy}） ([6421275](https://github.com/BITNP/BIThesis/commit/642127512e6dfefba843033b291804e6e299fa12)) by @YDX-2147483647
+- Update version to 3.8.11 ([2ffb0a3](https://github.com/BITNP/BIThesis/commit/2ffb0a32869e46760fa2c68ede437083dab29f22)) by @YDX-2147483647
+
 ## [3.8.10] - 2026-04-21
 
 ### <!-- 1 -->🐛 Bug Fixes
