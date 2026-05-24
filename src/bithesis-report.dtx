@@ -161,7 +161,7 @@
 %   \item \#3 |tl| 文字内容。
 % \end{itemize}
 %    \begin{macrocode}
-\cs_new:Npn \@@_dunderline:nnn #1#2#3 {
+\cs_new_protected:Npn \@@_dunderline:nnn #1#2#3 {
   {\setbox0=\hbox{#3}\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}
 }
 %    \end{macrocode}
@@ -179,7 +179,7 @@
 % 需要在 |\l_@@_cover_label_max_width_dim| 和 |\l_@@_cover_value_max_width_dim|
 % 存储已经计算出来的最大宽度。
 %    \begin{macrocode}
-\cs_new:Npn \@@_render_cover_entry:nn #1#2 {
+\cs_new_protected:Npn \@@_render_cover_entry:nn #1#2 {
   \makebox[\l_@@_cover_label_max_width_dim][\l_@@_cover_label_align_tl]{
     \tl_if_blank:VTF #1 {} {#1}
   }
@@ -201,7 +201,7 @@
 % \end{itemize}
 %    \begin{macrocode}
 % Get text with from #2, then set to #1.
-\cs_new:Npn \@@_get_text_width:Nn #1#2
+\cs_new_protected:Npn \@@_get_text_width:Nn #1#2
   {
     \hbox_set:Nn \l_tmpa_box {#2}
     \dim_set:Nn #1 { \box_wd:N \l_tmpa_box }
@@ -219,7 +219,7 @@
 %   \item \#2: |seq| 用于输入存储文本。
 % \end{itemize}
 %    \begin{macrocode}
-\cs_new:Npn \@@_get_max_text_width:NN #1#2
+\cs_new_protected:Npn \@@_get_max_text_width:NN #1#2
   {
 % 这里用 |group| 确保局部变量不会被污染。
     \group_begin:
@@ -249,7 +249,7 @@
 % 结果会存储到 |\l_@@_tmp_left_seq| 和 |\l_@@_tmp_right_seq|。
 %
 %    \begin{macrocode}
-\cs_new:Npn \@@_parse_entry:nn #1 #2 {
+\cs_new_protected:Npn \@@_parse_entry:nn #1 #2 {
   \seq_clear:N \l_@@_tmp_left_seq
   \seq_clear:N \l_@@_tmp_right_seq
 
@@ -270,7 +270,7 @@
 % \begin{macro}{\@@_render_cover_entry}
 % 渲染封面信息项。此函数为主函数。
 %    \begin{macrocode}
-\cs_new:Npn \@@_render_cover_entry:n #1 {
+\cs_new_protected:Npn \@@_render_cover_entry:n #1 {
   % 左边是标签，右边是值。
   % 形如：
   % { {label_1} {value_1}, {label_2} {value 2} }
