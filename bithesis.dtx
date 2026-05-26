@@ -1806,6 +1806,7 @@
   % 这一距离是 intextsep 与 belowcaptionskip 之和。
   % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
   % 计算下来，后者应设置为 14.0pt - 6bp 左右。
+  % 此前是 -12pt，实测过于紧凑，改为 -6pt 以缓和 caption 后正文拥挤问题。
   \captionsetup[figure]{belowskip = -6pt}
   % 浮动体连续排列时，补偿以上负间距
   \addtolength{\floatsep}{6pt}
@@ -1857,6 +1858,7 @@
   \AtBeginEnvironment {#1} { \setstretch{1} }
 }
 % 研究生模板中的算法与上下文默认距离偏大，在保留用户手动设置兼容性的前提下，压缩默认值。
+% 注意这里需与 `algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt}` 保持一致。
 \@@_if_graduate:T {
   \tl_if_eq:NnT \l_@@_misc_algorithm_separation_tl {12pt plus 4pt minus 4pt} {
     \tl_set:Nn \l_@@_misc_algorithm_separation_tl {6pt plus 2pt minus 2pt}
