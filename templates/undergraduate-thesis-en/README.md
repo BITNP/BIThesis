@@ -144,7 +144,7 @@
 │   ├── 2_chapter2.tex
 │   └── 3_chapter3.tex
 ├── images
-│   └── header.png
+│   └── header.pdf
 ├── main.pdf
 ├── main.tex
 └── misc

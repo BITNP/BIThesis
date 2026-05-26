@@ -38,10 +38,7 @@
 
 BIThesis 是针对北京理工大学本科生毕业设计论文、研究生学位论文的一个非官方的 LaTeX 模板，BIThesis 同时也包括其他本科学习中涉及到的文献综述、实验报告等的 LaTeX 模板。
 
-本项目获得了北京理工大学[教务部](https://mp.weixin.qq.com/s/I1SsP9VSaQ90a_2tW4zQUg)、[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)和[计算机学院](https://cs.bit.edu.cn/) 的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#%E5%AE%98%E6%96%B9%E8%B5%9E%E5%8A%A9-official-sponsors)。
-
-> [!CAUTION]
-> [研究生院在 2025-03-28 前后发布了新的模板](https://github.com/BITNP/BIThesis/issues/603)，本项目已经根据最新模板更新，请同学们使用 [v3.8.3 及以上版本 BIThesis][releases]。
+本项目获得了北京理工大学[教务部](https://mp.weixin.qq.com/s/I1SsP9VSaQ90a_2tW4zQUg)、[研究生院](https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117824.htm)和[计算机学院](https://cs.bit.edu.cn/)的认可、背书与大力支持。详见：[致谢 - 官方赞助](https://bithesis.bitnp.net/guide/acknowledgements.html#官方赞助-official-sponsors)。
 
 如果本项目有帮助到你的话，欢迎引用我们，让更多同学知道。（见右侧 “Cite this repository”）
 
@@ -71,7 +68,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 项目内容
 
-详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)
+详见[在线文档 - BIThesis 都包含哪些模板？](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-都包含哪些模板)
 
 参考规范详见[更新说明](https://bithesis.bitnp.net/news/)中各年份“相关通知”。
 
@@ -81,7 +78,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 2. 根据需要，[下载发布的模板包](https://bithesis.bitnp.net/guide/downloading-using-templates.html)。（⛔ 注意，无须克隆仓库）
 3. 开始撰写。
 
-> 或者使用 [Overleaf 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-%E9%83%BD%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E6%A8%A1%E6%9D%BF)。
+> 或者使用 [Overleaf/TeXPage 模板](https://bithesis.bitnp.net/guide/preface.html#q-bithesis-都包含哪些模板)。
 
 **如果你是普通用户，请参考我们的[在线文档][wiki]；本页后续内容仅用于开发。**
 
@@ -96,7 +93,7 @@ _订阅更新，询问问题，提出需求……请加入北理 BIThesis 官方
 
 ## 特别感谢
 
-- [biblatex-gb7714-2015 ](https://github.com/hushidong/biblatex-gb7714-2015)：提供了易用的国标引用格式和细心指导。
+- [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)：提供了易用的国标引用格式和细心指导。
 - [北京理工大学硕士（博士）学位论文 LaTeX 模板](https://github.com/BIT-thesis/LaTeX-template)：提供了研究生论文样式的代码参考。
 - [fduthesis（复旦大学论文模板）](https://github.com/stone-zeng/fduthesis)：提供了包编写的最佳实践。
 - [ThuThesis（清华大学论文模板）](https://github.com/tuna/thuthesis)：提供了 dtx 样式的参考。

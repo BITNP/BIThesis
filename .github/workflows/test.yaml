@@ -1,6 +1,6 @@
 name: Test
 
-on: 
+on:
   push:
     branches:
       - main
@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tl-version: [2021, 2022, 2023, 2024, 2025]
+        tl-version: [2021, 2022, 2023, 2024, 2025, 2026]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v4
-      - uses: TeX-Live/setup-texlive-action@v3
+      - uses: actions/checkout@v6
+      - uses: TeX-Live/setup-texlive-action@v4
         with:
           version: ${{ matrix.tl-version }}
           package-file: |
@@ -27,11 +27,11 @@ jobs:
             ${{ matrix.tl-version < 2024 && '.github/tl_packages_compat' || '' }}
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find, ripgrep
+          tool: fd-find, ripgrep, just
 
       - name: Restore Microsoft fonts cache
         id: microsoft-fonts
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/share/fonts/truetype/msttcorefonts
           key: microsoft-fonts
@@ -48,37 +48,38 @@ jobs:
           ln -s $(kpsewhich -var-value=TEXMFDIST)/fonts/ ~/.fonts/texmf-dist-fonts
           fc-cache
 
-      - run: ${{ matrix.tl-version < 2024 && 'TEST_SKIP_DOC="1"' || '' }} make test
+      - run: ${{ matrix.tl-version < 2025 && 'TEST_SKIP_DOC="1"' || '' }} just test
 
   check-latex:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: TeX-Live/setup-texlive-action@v3
+      - uses: actions/checkout@v6
+      - uses: TeX-Live/setup-texlive-action@v4
         with:
+          version: latest
           packages: |
             scheme-minimal
             xetex
             expltools
       - uses: taiki-e/install-action@v2
         with:
-          tool: fd-find
-      - run: make cls
-      - run: make check
+          tool: fd-find, just
+      - run: just cls
+      - run: just check
 
   check_typos:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check spelling of bithesis.dtx
         uses: crate-ci/typos@master
 
   check-links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Restore the cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .lycheecache
           key: lychee-${{ github.sha }}
@@ -95,7 +96,7 @@ jobs:
   check-python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: pipx install ruff
       - name: Ruff check
         run: |

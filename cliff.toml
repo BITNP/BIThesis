@@ -26,9 +26,21 @@ body = """
   https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
 {%- endmacro -%}
 
-{% if version %}\
+{#- Same as git.ignore_tags in cliff.toml, but won't be overridden from CLI -#}
+{%- set ignore_tags = ".*alpha|beta|-.*" -%}
+
+{% if version and version is not matching(ignore_tags) %}\
+    {#- when generating CHANGELOG.md or release notes for _public_ releases #}\
     ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d", timezone="Asia/Shanghai") }}
+{% elif version %}\
+    {#- when generating release notes for _pre_-releases #}\
+    ## [unreleased]
+
+    The following are new unreleased changes \
+    introduced in [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d", timezone="Asia/Shanghai") }} \
+    compared to [{{ previous.version | trim_start_matches(pat="v") }}] - {{ previous.timestamp | date(format="%Y-%m-%d", timezone="Asia/Shanghai") }}.
 {% else %}\
+    {#- when testing #}\
     ## [unreleased]
 {% endif %}\
 {% for group, commits in commits | unique(attribute="id") | group_by(attribute="group") %}

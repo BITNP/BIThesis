@@ -1,4 +1,4 @@
-"""Compile all projects, used by `make test`.
+"""Compile all projects, used by `just test`.
 
 Prerequisites:
 - [ripgrep (rg)](https://crates.io/crates/ripgrep)
@@ -20,14 +20,14 @@ from time import perf_counter
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from collections.abc import Generator
-    from typing import Any, Callable, Self
+    from collections.abc import Callable, Generator
+    from typing import Any, Self
 
 ROOT_DIR = Path(__file__).parent.parent
 assert ROOT_DIR.exists()
-SCAFFOLD_DIR = Path(environ["SCAFFOLDDIR"])
-assert SCAFFOLD_DIR.exists()
-TEST_DIR = Path(environ["TESTDIR"])
+TEMPLATE_DIR = Path("templates")
+assert TEMPLATE_DIR.exists()
+TEST_DIR = Path("tests")
 assert TEST_DIR.exists()
 
 SKIP_DOC = environ.get("TEST_SKIP_DOC", default="") not in ["", "0", "false"]
@@ -218,12 +218,12 @@ def revert_blind_peer_review(test: TestCase) -> CalledProcessError | None:
 
 
 TESTS = [
-    *(TestCase("📁", d) for d in SCAFFOLD_DIR.iterdir() if d.is_dir()),
+    *(TestCase("📁", d) for d in TEMPLATE_DIR.iterdir() if d.is_dir()),
     *(
         TestCase(
             "📁🎩", d, pre=[enable_blind_peer_review], post=[revert_blind_peer_review]
         )
-        for d in SCAFFOLD_DIR.iterdir()
+        for d in TEMPLATE_DIR.iterdir()
         if d.is_dir() and "thesis" in d.stem
     ),
     *(TestCase("🧪", d, pre=[install_deps]) for d in TEST_DIR.iterdir() if d.is_dir()),
@@ -236,7 +236,7 @@ TESTS = [
                 name="graduate-handbook",
                 env={"GRADUATE": "true"},
             ),
-            TestCase("📖", ROOT_DIR, name="bithesis.pdf", args=["make", "doc"]),
+            TestCase("📖", ROOT_DIR / "src", name="bithesis.pdf", args=["just", "doc"]),
         ]
         if not SKIP_DOC
         else []
