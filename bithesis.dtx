@@ -759,6 +759,8 @@
 %
 % 定义 |bithesis/misc| 键值对类。
 %    \begin{macrocode}
+\tl_const:Nn \c_@@_misc_algorithm_separation_default_tl {12pt plus 4pt minus 4pt}
+\tl_const:Nn \c_@@_misc_algorithm_separation_graduate_tl {6pt plus 2pt minus 2pt}
 \keys_define:nn { bithesis / misc }
   {
     % 表格字体大小，默认为 5 号字体。
@@ -799,7 +801,7 @@
     floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
     floatSeparation .initial:n = {0},
     algorithmSeparation .tl_set:N = \l_@@_misc_algorithm_separation_tl,
-    algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt},
+    algorithmSeparation .initial:n = {\c_@@_misc_algorithm_separation_default_tl},
     tabularRowSeparation .tl_set:N = \l_@@_misc_tabular_row_separation_tl,
     tabularRowSeparation .initial:n = {1},
   }
@@ -1858,10 +1860,10 @@
   \AtBeginEnvironment {#1} { \setstretch{1} }
 }
 % 研究生模板中的算法与上下文默认距离偏大，在保留用户手动设置兼容性的前提下，压缩默认值。
-% 注意这里需与 `algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt}` 保持一致。
+% 仅在用户没有手动设置 algorithmSeparation 时，把默认值从 12pt 降为 6pt。
 \@@_if_graduate:T {
-  \tl_if_eq:NnT \l_@@_misc_algorithm_separation_tl {12pt plus 4pt minus 4pt} {
-    \tl_set:Nn \l_@@_misc_algorithm_separation_tl {6pt plus 2pt minus 2pt}
+  \tl_if_eq:NNT \l_@@_misc_algorithm_separation_tl \c_@@_misc_algorithm_separation_default_tl {
+    \tl_set_eq:NN \l_@@_misc_algorithm_separation_tl \c_@@_misc_algorithm_separation_graduate_tl
   }
 }
 %    \end{macrocode}
