@@ -11,6 +11,21 @@ Acronyms:
 
 **Bolded text highlights its importance.**
 
+## [3.8.12] - 2026-05-28
+
+### <!-- 3 -->📚 Documentation
+
+- *(dev)* 更正`bithesis-report.dtx`中`\@@_dunderline:nnn`的注释 ([676d2a0](https://github.com/BITNP/BIThesis/commit/676d2a0dbf5f97a556331a766c90e2570199f669)) by @YDX-2147483647
+
+### <!-- 5 -->🎨 Styling
+
+- Fix explcheck W429 warnings ([fa2fef3](https://github.com/BITNP/BIThesis/commit/fa2fef32bed611cc47d999b2d2d719e8473e7e65)) by @YDX-2147483647
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- *(GT)* 参照最新要求，更改英文题名页三处文本 ([f76b5ab](https://github.com/BITNP/BIThesis/commit/f76b5abe75fbf730b245e15c8658b5571160a667)) by @YDX-2147483647
+- Update version to 3.8.12 ([401339c](https://github.com/BITNP/BIThesis/commit/401339cb20d6be3bbf68464ba11814ae9dfcf02b)) by @YDX-2147483647
+
 ## [3.8.11] - 2026-04-30
 
 ### <!-- 3 -->📚 Documentation
