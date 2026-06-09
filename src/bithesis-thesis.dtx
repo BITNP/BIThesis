@@ -476,6 +476,7 @@
     {prop} {命题} {Proposition},
     {cor} {推论} {Corollary},
     {axi} {公理} {Axiom},
+    {assm} {假设} {Assumption},
     {defn} {定义} {Definition},
     {conj} {猜想} {Conjecture},
     {exmp} {例} {Example},
@@ -718,6 +719,8 @@
     autoref / cor .initial:n = {\g_@@_const_autoref_cor_tl},
     autoref / axi .tl_set:N = \axiautorefname,
     autoref / axi .initial:n = {\g_@@_const_autoref_axi_tl},
+    autoref / assm .tl_set:N = \assmautorefname,
+    autoref / assm .initial:n = {\g_@@_const_autoref_assm_tl},
     autoref / defn .tl_set:N = \defnautorefname,
     autoref / defn .initial:n = {\g_@@_const_autoref_defn_tl},
     autoref / conj .tl_set:N = \conjautorefname,
@@ -769,6 +772,8 @@
     cor .initial:n = {\@@_get_const:n {cor}},
     axi .tl_set:N = \g_@@_const_autoref_axi_tl,
     axi .initial:n = {\@@_get_const:n {axi}},
+    assm .tl_set:N = \g_@@_const_autoref_assm_tl,
+    assm .initial:n = {\@@_get_const:n {assm}},
     defn .tl_set:N = \g_@@_const_autoref_defn_tl,
     defn .initial:n = {\@@_get_const:n {defn}},
     conj .tl_set:N = \g_@@_const_autoref_conj_tl,
@@ -1866,6 +1871,7 @@
     \crefname{prop}{\propautorefname}{\propautorefname}
     \crefname{cor}{\corautorefname}{\corautorefname}
     \crefname{axi}{\axiautorefname}{\axiautorefname}
+    \crefname{assm}{\assmautorefname}{\assmautorefname}
     \crefname{defn}{\defnautorefname}{\defnautorefname}
     \crefname{conj}{\conjautorefname}{\conjautorefname}
     \crefname{exmp}{\exmpautorefname}{\exmpautorefname}
@@ -1987,6 +1993,7 @@
   \newtheorem{prop}{\@@_get_const:n {prop}}[chapter]
   \newtheorem{cor}{\@@_get_const:n {cor}}[chapter]
   \newtheorem{axi}{\@@_get_const:n {axi}}[chapter]
+  \newtheorem{assm}{\@@_get_const:n {assm}}[chapter]
 \theoremstyle{definition}
   \newtheorem{defn}{\@@_get_const:n {defn}}[chapter]
   \newtheorem{conj}{\@@_get_const:n {conj}}[chapter]
