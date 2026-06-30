@@ -21,23 +21,26 @@
 .
 ├── README.md
 ├── bithesis.pdf # bithesis 使用手册
-├── chapters
+├── STXIHEI.TTF
+├── main.tex
+├── main.pdf
+├── chapters/
 │   ├── 0_abstract.tex
 │   ├── 1_chapter1.tex
 │   └── 2_chapter2.tex
-├── images
+├── images/
 │   ├── bit_logo.png
 │   └── header.pdf
-├── main.pdf
-├── main.tex
-└── misc
-    ├── 1_originality.tex
+└── misc/
+    ├── 1_originality.pdf # 原创性声明，盲审结束后替换，详见 main.tex 中注释
     ├── 2_conclusion.tex
     ├── 3_reference.tex
     ├── 4_appendix.tex
     ├── 5_acknowledgements.tex
     └── ref.bib
 ```
+
+其中`STXIHEI.TTF`是华文细黑字体，用于封面论文题目。考虑到部分系统未预装此字体，BIThesis 将它打包进了模板，保留在`main.tex`旁边即可让 LaTeX 调用。
 
 ## 编译方式
 
