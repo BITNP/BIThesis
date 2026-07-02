@@ -1,0 +1,63 @@
+\documentclass[type=doctor]{bithesis}
+
+\usepackage{float}
+\usepackage[ruled, algochapter]{algorithm2e} % tlmgr install algorithm2e
+% The package depends collection-latexextra:
+% tlmgr install endfloat ifoddpage tocbibind
+
+\begin{document}
+\frontmatter
+\mainmatter
+
+章标题后的正文，用于观察图表与正文间距。
+
+\section{浮动体间距测试}
+
+\begin{figure}[hbt]
+  \centering
+  \rule{0.6\textwidth}{0.2\textwidth}
+  \caption{研究生模板 floating figure}
+\end{figure}
+
+浮动图后的正文。
+
+\begin{figure}[H]
+  \centering
+  \rule{0.6\textwidth}{0.2\textwidth}
+  \caption{研究生模板 H figure}
+\end{figure}
+
+\begin{table}[hbt]
+  \centering
+  \caption{研究生模板 floating table}
+  \begin{tabular}{cc}
+    \toprule
+    A & B \\
+    \midrule
+    1 & 2 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{研究生模板 H table}
+  \begin{tabular}{cc}
+    \toprule
+    A & B \\
+    \midrule
+    3 & 4 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{algorithm}[H]
+  \caption{研究生模板 algorithm spacing}
+  \KwData{输入数据}
+  \KwResult{输出结果}
+  初始化\;
+\end{algorithm}
+
+算法后的正文。
+
+\end{document}

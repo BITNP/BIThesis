@@ -700,6 +700,8 @@
 %
 % 定义 |bithesis/misc| 键值对类。
 %    \begin{macrocode}
+\tl_const:Nn \c_@@_misc_algorithm_separation_default_tl {12pt plus 4pt minus 4pt}
+\tl_const:Nn \c_@@_misc_algorithm_separation_graduate_tl {6pt plus 2pt minus 2pt}
 \keys_define:nn { bithesis / misc }
   {
     % 表格字体大小，默认为 5 号字体。
@@ -740,7 +742,7 @@
     floatSeparation .tl_set:N = \l_@@_misc_float_separation_tl,
     floatSeparation .initial:n = {0},
     algorithmSeparation .tl_set:N = \l_@@_misc_algorithm_separation_tl,
-    algorithmSeparation .initial:n = {12pt plus 4pt minus 4pt},
+    algorithmSeparation .initial:n = {\c_@@_misc_algorithm_separation_default_tl},
     tabularRowSeparation .tl_set:N = \l_@@_misc_tabular_row_separation_tl,
     tabularRowSeparation .initial:n = {1},
   }
@@ -1720,15 +1722,16 @@
   }
 
   % 调整“正文 🡘 表格 caption”距离
-  \captionsetup[table]{belowskip = 6bp + 0.25\baselineskip}
+  \captionsetup[table]{belowskip = 3bp}
 
   % 调整“图片 caption 🡘 正文”距离
   % 这一距离是 intextsep 与 belowcaptionskip 之和。
   % 前者在小四 ctexbook 中默认为`14.0pt plus 4.0pt minus 4.0pt`，我们未改。
   % 计算下来，后者应设置为 14.0pt - 6bp 左右。
-  \captionsetup[figure]{belowskip = -12pt}
+  % 此前是 -12pt，实测过于紧凑，改为 -6pt 以缓和 caption 后正文拥挤问题。
+  \captionsetup[figure]{belowskip = -6pt}
   % 浮动体连续排列时，补偿以上负间距
-  \addtolength{\floatsep}{12pt}
+  \addtolength{\floatsep}{6pt}
 
   % 适配子图
   \captionsetup[subfigure]{aboveskip = 3bp, belowskip = 3bp}
@@ -1804,6 +1807,13 @@
 %    \begin{macrocode}
 \clist_map_inline:nn {longtable, table, algorithm} {
   \AtBeginEnvironment {#1} { \setstretch{1} }
+}
+% 研究生模板中的算法与上下文默认距离偏大，在保留用户手动设置兼容性的前提下，压缩默认值。
+% 仅在用户没有手动设置 algorithmSeparation 时，把默认值从 12pt 降为 6pt。
+\@@_if_graduate:T {
+  \tl_if_eq:NNT \l_@@_misc_algorithm_separation_tl \c_@@_misc_algorithm_separation_default_tl {
+    \tl_set_eq:NN \l_@@_misc_algorithm_separation_tl \c_@@_misc_algorithm_separation_graduate_tl
+  }
 }
 %    \end{macrocode}
 %
