@@ -9,6 +9,7 @@ exclude = [
   '^https://tex\.stackexchange\.com',
   '^https://www\.tablesgenerator\.com',
   'file://.*/bithesis\.pdf$', # Generated
+  '^https://github\.com/BITNP/BIThesis/projects', # 400 Bad Request
 ]
 
 exclude_path = [
