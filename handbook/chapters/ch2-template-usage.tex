@@ -1,8 +1,8 @@
 \chapter{模板组成与使用}
 \label{sec:using-bithesis}
 
-在本章中，我们将介绍本模板的组成部分，以及如何使用本模板和基本
-的\LaTeX 语法进行论文写作。
+本章将介绍本模板的组成部分，以及如何使用本模板和基本
+\LaTeX 语法撰写论文。
 
 
 \section{认识模板组成}
@@ -171,17 +171,15 @@
 \isGraduateTF{
 \subsection{「攻读学位期间发表论文与研究成果清单」}
 这部分用 \texttt{pub.bib} 记录文献，用 \texttt{4\_pub.tex} 列出清单。
-增添成果需首先在 \texttt{pub.bib} 中添加新的文献条目。%
-%
-而如果你想要在盲审模式中隐藏自己的名字，那么你需要
-根据 pub.bib 中的示例以及注释说明，为每个文献条目添加并设置
- \texttt{author+an} 字段。
-比如，如果作为张三的你的文献条目为：
+增添成果需首先在 \texttt{pub.bib} 中添加新的文献条目，然后在 \texttt{4\_pub.tex} 中引用。
+
+如想在盲审模式隐藏自己的名字，那么请参考 pub.bib 中的示例以及注释说明，
+或利用 \href{https://bithesis.bitnp.net/faq/pub-author-an.html}{BIThesis 网站的代码生成器}，
+向每条文献添加 \texttt{author+an} 字段。
+比如，作为张三的你如下设置文献条目，那么你的名字会在盲审模式自动替换为「第一作者」。
 \lstinputlisting[language=TeX]{chapters/ch2-example-pub.bib}
-通过设置 \texttt{author+an} 字段，我们可以在盲审模式打开时，
-将自己的名字自动替换为「第一作者」。
-%
-此外，如需调整排序、分组、手动列表等，请参考 \texttt{pub.bib}、\texttt{4\_pub.tex} 等中的注释或者\href{https://bithesis.bitnp.net/faq/?tag=pub\#faq-list}{BIThesis 网站疑难杂症版块}，以及 \texttt{bithesis.pdf} 中的说明。
+
+此外，如需调整排序、分组、手动列表等，请参考 \texttt{pub.bib}、\texttt{4\_pub.tex} 等中的注释或者 \href{https://bithesis.bitnp.net/faq/?tag=pub\#faq-list}{BIThesis 网站疑难杂症版块}，以及 \texttt{bithesis.pdf} 中的说明。
 }{}
 \subsection{交叉引用}
 
@@ -226,7 +224,7 @@
 \section{生成盲审版论文}
 \label{sec:blind}
 
-提交论文用于匿名评阅（又名盲审或盲评）时，需要“隐去论文作者和导师姓名，以及致谢、论文成果等与作者有关的信息”。
+提交论文用于匿名评阅（又名盲审或盲评）时，需要「隐去论文作者和导师姓名，以及致谢、论文成果等与作者有关的信息」。
 % 以上引文源于《北京理工大学关于本科毕业设计（论文）评阅的规定（试行）》（2023年4月修订）。
 
 此时请编辑 \texttt{main.tex}，给开头 \verb|\documentclass| 加上 \verb|blindPeerReview=true| 选项。
@@ -235,4 +233,11 @@
   \lstinputlisting[language=TeX]{chapters/ch2-example-master-blind.tex}
 }{
   \lstinputlisting[language=TeX]{chapters/ch2-example-bachelor-blind.tex}
+}
+
+\isGraduateTF{}{
+  \section{提交答辩版、存档版论文}
+  完成匿名评阅后，还会再提交答辩版和存档版论文。大部分学院要求这两版论文开头的《原创性声明》和《关于使用授权的声明》应有签名。如果选择电子签名，考虑到签名图片需要调整位置、透明度，用 Word 制作 \texttt{originality.pdf} 再导入 \LaTeX 比较方便，详见 \texttt{main.tex} 中注释；当然打印后签在纸上一般也无问题。
+
+  另外，个别学院要求论文每页有水印，操作方法请参考\href{https://bithesis.bitnp.net/faq/watermark.html}{如何添加「北京理工大学」水印 | BIThesis}。
 }

@@ -15,25 +15,25 @@
 
 ```sh
 .
-├── README.md # 相关信息
+├── README.md
 ├── bithesis.pdf # bithesis 使用手册
-├── chapters
+├── STXIHEI.TTF
+├── main.tex
+├── main.pdf
+├── chapters/
 │   ├── 0_abstract.tex
 │   └── 1_chapter1.tex
-├── images
+├── images/
 │   ├── bit_logo.png
 │   └── header.pdf
-├── main.pdf
-├── main.tex
-└── misc
-    ├── 0_cover.tex
-    ├── 2_toc.tex
-    ├── 3_conclusion.tex
-    ├── 4_reference.tex
-    ├── 5_appendix.tex
-    ├── 6_acknowledgements.tex
+└── misc/
+    ├── 1_conclusion.tex
+    ├── 2_reference.tex
+    ├── 3_appendix.tex
     └── ref.bib
 ```
+
+其中`STXIHEI.TTF`是华文细黑字体，用于封面论文题目。考虑到部分系统未预装此字体，BIThesis 将它打包进了模板，保留在`main.tex`旁边即可让 LaTeX 调用。
 
 ## 编译方式
 

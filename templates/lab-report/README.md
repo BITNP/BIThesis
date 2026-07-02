@@ -15,14 +15,12 @@
 
 ```sh
 .
-├── README.md # 相关信息
+├── README.md
 ├── bithesis.pdf # bithesis 使用手册
 ├── main.tex
 ├── main.pdf
-├── misc
-│   └── refs.bib
-└── assets
-    └── ……
+├── misc/refs.bib
+└── assets/*.{jpg,png,…}
 ```
 
 ## 编译方式

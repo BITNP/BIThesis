@@ -8,7 +8,7 @@ set shell := ["bash", "-uc"]
 explcheck_args := if env("CI", "false") != "false" { "--warnings-are-errors" } else { "" }
 
 # Execute a command in each thesis template directory
-fd_thesis_templates_exec := "fd . --exclude 'templates/(lab-report|presentation-slide)' templates --type=directory --max-depth=1 --exec"
+fd_thesis_templates_exec := "fd . --exclude '{lab-report,presentation-slide}' templates --type=directory --max-depth=1 --exec"
 
 # List available recipes
 [default]

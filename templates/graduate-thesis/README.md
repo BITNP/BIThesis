@@ -20,25 +20,26 @@
 
 ```sh
 .
-├── README.md # 相关信息
+├── README.md
 ├── bithesis.pdf # bithesis 使用手册
-├── chapters
+├── main.tex
+├── main.pdf
+├── chapters/
 │   ├── abstract.tex
 │   ├── chapter1.tex
 │   └── chapter2.tex
-├── figures
+├── figures/
 │   └── figure1.png
-├── main.pdf
-├── main.tex
-├── misc
+├── misc/
 │   ├── 0_symbols.tex
 │   ├── 1_conclusion.tex
 │   ├── 2_reference.tex
 │   ├── 3_appendices.tex
 │   ├── 4_pub.tex
 │   ├── 5_resume.tex
-│   └── acknowledgements.tex
-└── reference
+│   ├── acknowledgements.tex
+│   └── icon_{academic,professional}.jpg
+└── reference/
     ├── main.bib # 参考文献
     └── pub.bib # 成果清单
 ```
