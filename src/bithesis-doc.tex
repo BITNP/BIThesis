@@ -1478,7 +1478,7 @@ tabularFontSize = (*(5)|其他字号*)
 \end{function}
 
 \begin{function}[added=2023-04-22,updated=2023-05-09]{misc/autoref/algo, misc/autoref/them, misc/autoref/lem,
- misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/defn, misc/autoref/conj,
+ misc/autoref/prop, misc/autoref/cor, misc/autoref/axi, misc/autoref/assm, misc/autoref/defn, misc/autoref/conj,
  misc/autoref/exmp, misc/autoref/case, misc/autoref/rem,misc/autoref/fig,misc/autoref/tab,misc/autoref/equ}
 \begin{bitsyntax}[emph={[1]tabularFontSize}]
 autoref = {
@@ -1488,6 +1488,7 @@ autoref = {
   prop = (*(命题)|\marg{字符串}*),
   cor = (*(推论)|\marg{字符串}*),
   axi = (*(公理)|\marg{字符串}*),
+  assm = (*(假设)|\marg{字符串}*),
   defn = (*(定义)|\marg{字符串}*),
   conj = (*(猜想)|\marg{字符串}*),
   exmp = (*(例)|\marg{字符串}*),
@@ -1589,7 +1590,7 @@ const/(*\meta{key}*) = (*\meta{value}*)
 \end{function}
 
 \begin{variable}[added=2023-04-22,updated=2023-05-09]{const/autoref/algo,const/autoref/them,
-const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,
+const/autoref/lem,const/autoref/prop,const/autoref/cor,const/autoref/axi,const/autoref/assm,
 const/autoref/defn,const/autoref/conj,const/autoref/exmp,
 const/autoref/case,const/autoref/rem,
 const/autoref/fig,const/autoref/tab,const/autoref/equ}
@@ -1601,6 +1602,7 @@ autoref = {
   prop = (*(命题)|\marg{字符串}*),
   cor = (*(推论)|\marg{字符串}*),
   axi = (*(公理)|\marg{字符串}*),
+  assm = (*(假设)|\marg{字符串}*),
   defn = (*(定义)|\marg{字符串}*),
   conj = (*(猜想)|\marg{字符串}*),
   exmp = (*(例)|\marg{字符串}*),
@@ -1786,7 +1788,7 @@ addTOC = (*<(true)|false>*)
 \subsubsection{定理类环境}
 \paragraph{默认格式}
 
-\begin{function}[updated=2023-03-05]{algo,them,lem,prop,cor,axi,defn,conj,exmp,case,rem}
+\begin{function}[updated=2023-03-05]{algo,them,lem,prop,cor,axi,assm,defn,conj,exmp,case,rem}
 \begin{bitsyntax}[emph={[2]proof}]
 \begin{them}[留数定理]
   (*\meta{定理内容}*)
@@ -1806,12 +1808,12 @@ addTOC = (*<(true)|false>*)
 \caption{预定义的数学环境}
 \centering
 \subfloat[][plain样式]{
-  \begin{tabular}{@{}ccccccc@{}}
+  \begin{tabular}{@{}cccccccc@{}}
   \toprule
-  \textbf{名称} & algo & them & lem & prop & cor & axi \\ \midrule
-  \textbf{全称} & algorithm & theorem & lemma & proposition & corollary & axiom \\
-  \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    \\
-  \textbf{样式} & \multicolumn{6}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
+  \textbf{名称} & algo & them & lem & prop & cor & axi & assm \\ \midrule
+  \textbf{全称} & algorithm & theorem & lemma & proposition & corollary & axiom & assumption \\
+  \textbf{含义} & 算法        & 定理      & 引理    & 命题          & 推论        & 公理    & 假设    \\
+  \textbf{样式} & \multicolumn{7}{c}{\textbf{定理2.1.} \textit{定理内容……}}       \\ \bottomrule
   \end{tabular}
 }
 
