@@ -23,7 +23,7 @@ jobs:
           version: 2025
           package-file: |
             .github/tl_packages
-      - uses: taiki-e/install-action@v2
+      - uses: taiki-e/install-action@v2.85.4
         with:
           tool: fd-find, just
 
@@ -104,7 +104,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-      - uses: taiki-e/install-action@v2
+      - uses: taiki-e/install-action@v2.85.4
         with:
           tool: fd-find, just
       - name: Download bithesis.pdf
@@ -244,7 +244,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v7
-      - uses: taiki-e/install-action@v2
+      - uses: taiki-e/install-action@v2.85.4
         with:
           tool: just
       - name: Download bithesis.pdf
