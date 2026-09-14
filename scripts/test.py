@@ -87,7 +87,7 @@ class TestCase:
         /,
         *,
         name: str | None = None,
-        args: list[str] = ["latexmk", "-g"],
+        args: list[str] = ["latexmk", "-g"],  # ruff: ignore[B006] `args` serves as an example and will not be modified
         env: dict[str, str] | None = None,
         pre: list[Callable[[Self]]] | None = None,
         post: list[Callable[[Self]]] | None = None,

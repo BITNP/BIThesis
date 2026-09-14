@@ -31,7 +31,7 @@ from zipfile import ZipFile
 
 import click
 
-DiffChoice: TypeAlias = Literal["rubypdf"] | Literal["vslavik"]
+DiffChoice: TypeAlias = Literal["rubypdf", "vslavik"]
 
 
 def get_latest_tag() -> str:
@@ -220,10 +220,10 @@ def cli(
             # 出错概率大的在前
             actual_built.result()
             ref_built.result()
-        except Exception as e:
+        except Exception:
             failed.set()
             click.echo(f"💥 无法编译 {ref_dir.name}，回归测试失败。")
-            raise e
+            raise
 
         click.echo(f"👓 完成编译 {ref_dir.name}，准备比较。")
 

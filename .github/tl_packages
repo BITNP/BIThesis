@@ -24,6 +24,7 @@ biblatex-gb7714-2015
 # ----- 2. 编译 templates/* 需要 -----
 
 # collection-latexextra
+accsupp # indirect via xeCJKfntef/l3draw, bitbeamer-only, required since 2026 (CTeX-org/ctex-kit#1078)
 datetime2
 datetime2-english # for datetime2 en-US
 enumitem
@@ -38,6 +39,7 @@ xstring # indirect
 booktabs
 caption
 hologo
+l3experimental # indirect via xeCJKfntef/l3draw, bitbeamer-only, required since 2026 (CTeX-org/ctex-kit#1078)
 listings
 mathtools # indirect
 metalogo
